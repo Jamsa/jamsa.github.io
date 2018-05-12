@@ -68,6 +68,60 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./build_control.html" rel="bookmark" title="Permalink to OA Framework应用构建之——实现控制器">
+                                       OA Framework应用构建之——实现控制器
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2008-08-06
+
+        |
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+        <a href="./tag/oaf.html">oaf</a>
+
+
+        |
+        <a href="./build_control.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>设计一个OA Controller</h1>
+<p>如<a href="./oa-framework-pagejie-xi.html">OA Framework Page解析</a>中所描述的，OA Controller定义了web beans的行为。具体来说，编写控制器代码的目的是：</p>
+<ul>
+<li>
+<p>在运行时处理／初始化UI（包含那些通过编程方式添加的layout）</p>
+</li>
+<li>
+<p>拦截或响应按钮按下之类的用户事件</p>
+</li>
+</ul>
+<p>控制器不应该包含任何业务逻辑；这应该属于模型类。</p>
+<h2>必备知识</h2>
+<p>通常来说，在提出如何设计控制器之前，应该思考一下是否需要创建控制器。</p>
+<p>作为一条规则，应该只在绝对必要的情况下才编写控制器。如果可以通过设计的方式创建页面，就不要通过编程的方式实现region和item。编程方式创建的web beans不能被个性化，重用或继承。而且，一些硬编码的layouts可能会丢失BLAF UI样式。</p>
+<p>在<a href="./build_view.html">实现视图</a>中说过，所有位于共同组件中的顶级regions必须与一个控制器关联。</p>
+<h2>粒度</h2>
+<p>OA Controllers可以与任何region关联（任何实现oracle.apps.fnd.framework.webui.beans.OAWebBeanContainer接口的web beans）；不能将控制器与items关联。</p>
+<p>许多OA Framework新手都想知道控制器应该是 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./build_control.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./oa-frameworkzhuang-tai-guan-li.html" rel="bookmark" title="Permalink to OA Framework状态管理">
                                        OA Framework状态管理
                                     </a>
@@ -553,65 +607,10 @@
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./adv_backbutton.html" rel="bookmark" title="Permalink to 高级OA Framework开发主题——支持浏览后退按钮">
-                                       高级OA Framework开发主题——支持浏览后退按钮
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2008-07-04
-
-        |
-        tags:         <a href="./tag/oracle.html">oracle</a>
-        <a href="./tag/ebs.html">ebs</a>
-        <a href="./tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="./adv_backbutton.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>概述</h1>
-<p>本文档提供了一组<a href="#goals">目标</a>并描述了编码标准，你必须遵守以确保对浏览器后退按钮的支持。</p>
-<p>可用性测试显示用户非常依赖于浏览器后退按钮。不幸的是，这个导航偏好在事务型的应用中将导致一系列潜在的故障点。例如，思考在OA Framework应用中在下面的场景中使用浏览器后退按钮将导致不可预料的问题。</p>
-<table class="table">
-<tr>
-<th>用户导航</th>
-<th>问题</th>
-</tr>
-<tr>
-<td>用户从表格中删除了一行数据页面被重绘并显示了提示信息标明数据行已经被删除（数据行不再显示在表格中）。然后用户按下浏览器后退按钮，页面将显示出数据行仍然在表格中时的页面。这时用户再次尝试删除数据行。</td>
-<td>浏览器缓存了页面内容。如果用户执行的一个动作修改了数据状态，然后使用浏览器后退按钮，浏览的页面缓存没有反映出中间层的状态（在这里，是一个不存在的数据行）。当用户试图对缓存页面中被删除的行进行删除或其它处理时，将导致运行时错误。而支持浏览器后退按钮的页面将检测到这个错误并显示出用户友好的提示信息标明数据行已经被删除了。</td>
-</tr>
-<tr>
-<td>在构物车结算处理时，用户选择了&ldquo;提交定单&rdquo;按钮购买端口。但不知什么原因，用户使用浏览器后退按钮从确认页面退回了定单提交页面并再次点击了&ldquo;提交定单&rdquo;按钮（可能她想修改定单数量）。</td>
-<td>这个场景与前面描述的第一个场景类似，但未加保护的动作将导致&ldquo;成功&rdquo;执行两次交易。（定单可能会被创建两次，而这并不是用户期望的）。支持浏览器后退按钮的页面将可以检查到两次相同的提交并显示出用户友好的提示信息标明定单已经存在了。</td>
-</tr>
-<tr>
-<td>用户从Page1导航到Page2，然后使用退出按钮返回Page1。然后在Page1中点击了一个表单提交组件，这将导致一个未处理的异常（NullPointerException, IndexOutOfBoundsException）。</td>
-<td>OA …</td></tr></table>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./adv_backbutton.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="./index4.html">&laquo;</a>
-    Page 5 / 6
+    Page 5 / 7
         <a href="./index6.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

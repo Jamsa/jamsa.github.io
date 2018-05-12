@@ -68,6 +68,52 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./android-dev-guidexue-xi-bi-ji-application-fundamentals.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 Application Fundamentals">
+                                       Android Dev Guide学习笔记 Application Fundamentals
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/yi-dong.html">移动</a>
+
+    on 2010-07-30
+
+        |
+        tags:         <a href="./tag/android.html">android</a>
+
+
+        |
+        <a href="./android-dev-guidexue-xi-bi-ji-application-fundamentals.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Application基础</h1>
+<p>Android应用程序是用Java语言编写的。被编译的代码和数据以及应用程序需要的资源文件被打包aapt tool打包为Android package格式，打包的文件以.apk结尾。这种文件是应用程序发布和安装到移动设备的方法；也是用户下载到设备上的文件。同一个.apk文件中的所有代码被当作是一个应用程序。</p>
+<p>在很多方面，每个Android应用生存在自己的世界中：</p>
+<ul>
+<li>默认情况下，所有应用程序运行在自己的Linux进程中。Android在应用程序的代码需要执行时启动进程，当它不再被需要和系统资源被其它应用程序需要时停止。</li>
+<li>每个进程有自己的虚拟机，因此应用程序代码与其它应用程序的代码是隔离的。</li>
+<li>默认情况下，每个应用程序被赋予了一个唯一的Linux用户ID。这使得只能访问应用程序自己的文件&mdash;&mdash;尽管有方法将它们导出给其它的应用程序。</li>
+</ul>
+<p>有可能将两个应用程序组织为使用相同的用户ID，在这种情况下它们将可以互相看到对方的文件。为了保护系统资源，拥有相同ID的的应用程序也可以被组织到相同的Linux进程中，共享同一个虚拟机。</p>
+<h1>应用程序组件</h1>
+<p>Android的一个主要的功能是某个应用程序可以使用其它应用程序的元素（在这个应用程序许可时）。比如，如果你的应用程序需要显示滚动的图片列表而另一个应用程序已经开发了一个并且将它对外开放，这时你可以使用它，而不是重新开发一个。你的应用程序不需要包含这个应用程序的代码或者链接（link to）它。而只是在这个需求出现时运行那个应用程序的那段代码。</p>
+<p>为实现这个目的，系统必须在需要应用程序的一部分时启动应用程序进程，并实例化那部分Java对象。因此，与绝大多数的操作系统不同，Android应用程序没有单一的程序入口（比如没有main()函数）。而是拥有可以根据需要实例化和运行的组件。有4种类型的组件 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./android-dev-guidexue-xi-bi-ji-application-fundamentals.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./android-dev-guidexue-xi-bi-ji-what-is-android.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 What is Android?">
                                        Android Dev Guide学习笔记 What is Android?
                                     </a>
@@ -562,64 +608,10 @@
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./build_control.html" rel="bookmark" title="Permalink to OA Framework应用构建之——实现控制器">
-                                       OA Framework应用构建之——实现控制器
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2008-08-06
-
-        |
-        tags:         <a href="./tag/oracle.html">oracle</a>
-        <a href="./tag/ebs.html">ebs</a>
-        <a href="./tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="./build_control.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>设计一个OA Controller</h1>
-<p>如<a href="./oa-framework-pagejie-xi.html">OA Framework Page解析</a>中所描述的，OA Controller定义了web beans的行为。具体来说，编写控制器代码的目的是：</p>
-<ul>
-<li>
-<p>在运行时处理／初始化UI（包含那些通过编程方式添加的layout）</p>
-</li>
-<li>
-<p>拦截或响应按钮按下之类的用户事件</p>
-</li>
-</ul>
-<p>控制器不应该包含任何业务逻辑；这应该属于模型类。</p>
-<h2>必备知识</h2>
-<p>通常来说，在提出如何设计控制器之前，应该思考一下是否需要创建控制器。</p>
-<p>作为一条规则，应该只在绝对必要的情况下才编写控制器。如果可以通过设计的方式创建页面，就不要通过编程的方式实现region和item。编程方式创建的web beans不能被个性化，重用或继承。而且，一些硬编码的layouts可能会丢失BLAF UI样式。</p>
-<p>在<a href="./build_view.html">实现视图</a>中说过，所有位于共同组件中的顶级regions必须与一个控制器关联。</p>
-<h2>粒度</h2>
-<p>OA Controllers可以与任何region关联（任何实现oracle.apps.fnd.framework.webui.beans.OAWebBeanContainer接口的web beans）；不能将控制器与items关联。</p>
-<p>许多OA Framework新手都想知道控制器应该是 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./build_control.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="./index3.html">&laquo;</a>
-    Page 4 / 6
+    Page 4 / 7
         <a href="./index5.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

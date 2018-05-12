@@ -68,6 +68,61 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../java-niobi-ji.html" rel="bookmark" title="Permalink to Java NIO笔记">
+                                       Java NIO笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2011-07-06
+
+        |
+        tags:         <a href="../tag/java.html">java</a>
+
+
+        |
+        <a href="../java-niobi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>简介</h1>
+<p>JDK1.4，以后的版本提供了java.nio包，具体说是Channel和Selector类。</p>
+<h2>I/O概念</h2>
+<h3 id="huan-chong-qu-cao-zuo">缓冲区操作</h3>
+<p>缓冲区操作 缓冲区是所有I/O的基础。输入/输出讲的无非就是把数据移进或移出缓冲区。进程进行IO归结起来就是向操作系统发出请求，让它要么把缓冲区里的数据排干（写），要么把数据缓冲区填满（读）。</p>
+<p>进程使用read()系统调用时。内核向磁盘控制硬件发出命令，要求其从磁盘读取数据。磁盘控制器把数据直接写进内核内存缓存区，这一步通过DMA完成，无需CPU协助。一旦磁盘控制器把缓冲区装满，内核即把数据从内核空间的临时缓冲区拷贝到进程执行read()调用时指定的缓冲区。</p>
+<h3 id="fa-san-hui-ju">发散/汇聚</h3>
+<p>进程只需要一个系统调用，就能把一连串缓冲区地址传递给操作系统。然后，内核就可以顺序填充或排干多个缓冲区，读的时候就把数据发散到多个用户空间缓冲区，写的时候再从多个缓冲区把数据汇聚起来。这样用户进程就不必执行多次系统调用。</p>
+<h3 id="xu-ni-nei-cun">虚拟内存</h3>
+<p>使用虚拟内存的好处：</p>
+<ol>
+<li>
+<p>一个以上的虚拟地址可以指向同一个物理内存地址</p>
+</li>
+<li>
+<p>虚拟内存空间可大于实际可用的硬件内存</p>
+</li>
+</ol>
+<p>前面讲过一的设备控制器不能通过DMA直接存储到用户空间，但是通过利用上面提到的第一项可以把内核空间地址与用户空间地址映射到同一物理地址。这样DMA就可以填充对内核与用户进程同时可见的缓冲区。</p>
+<h3 id="nei-cun-ye-mian-diao-du">内存页面调度</h3>
+<p>为支持虚拟内存的第二个特性，必须进行虚拟内存分页。按这个方案，虚拟内存空间的页面能够继续存在于外部磁盘存储 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../java-niobi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../practical-common-lispbi-ji.html" rel="bookmark" title="Permalink to Practical Common Lisp笔记">
                                        Practical Common Lisp笔记
                                     </a>
@@ -589,56 +644,10 @@
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../android-dev-guidexue-xi-bi-ji-application-fundamentals.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 Application Fundamentals">
-                                       Android Dev Guide学习笔记 Application Fundamentals
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/yi-dong.html">移动</a>
-
-    on 2010-07-30
-
-        |
-        tags:         <a href="../tag/android.html">android</a>
-
-
-        |
-        <a href="../android-dev-guidexue-xi-bi-ji-application-fundamentals.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Application基础</h1>
-<p>Android应用程序是用Java语言编写的。被编译的代码和数据以及应用程序需要的资源文件被打包aapt tool打包为Android package格式，打包的文件以.apk结尾。这种文件是应用程序发布和安装到移动设备的方法；也是用户下载到设备上的文件。同一个.apk文件中的所有代码被当作是一个应用程序。</p>
-<p>在很多方面，每个Android应用生存在自己的世界中：</p>
-<ul>
-<li>默认情况下，所有应用程序运行在自己的Linux进程中。Android在应用程序的代码需要执行时启动进程，当它不再被需要和系统资源被其它应用程序需要时停止。</li>
-<li>每个进程有自己的虚拟机，因此应用程序代码与其它应用程序的代码是隔离的。</li>
-<li>默认情况下，每个应用程序被赋予了一个唯一的Linux用户ID。这使得只能访问应用程序自己的文件&mdash;&mdash;尽管有方法将它们导出给其它的应用程序。</li>
-</ul>
-<p>有可能将两个应用程序组织为使用相同的用户ID，在这种情况下它们将可以互相看到对方的文件。为了保护系统资源，拥有相同ID的的应用程序也可以被组织到相同的Linux进程中，共享同一个虚拟机。</p>
-<h1>应用程序组件</h1>
-<p>Android的一个主要的功能是某个应用程序可以使用其它应用程序的元素（在这个应用程序许可时）。比如，如果你的应用程序需要显示滚动的图片列表而另一个应用程序已经开发了一个并且将它对外开放，这时你可以使用它，而不是重新开发一个。你的应用程序不需要包含这个应用程序的代码或者链接（link to）它。而只是在这个需求出现时运行那个应用程序的那段代码。</p>
-<p>为实现这个目的，系统必须在需要应用程序的一部分时启动应用程序进程，并实例化那部分Java对象。因此，与绝大多数的操作系统不同，Android应用程序没有单一的程序入口（比如没有main()函数）。而是拥有可以根据需要实例化和运行的组件。有4种类型的组件 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../android-dev-guidexue-xi-bi-ji-application-fundamentals.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="../author/jamsa2.html">&laquo;</a>
-    Page 3 / 6
+    Page 3 / 7
         <a href="../author/jamsa4.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

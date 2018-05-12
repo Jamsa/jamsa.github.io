@@ -68,6 +68,61 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../adv_backbutton.html" rel="bookmark" title="Permalink to 高级OA Framework开发主题——支持浏览后退按钮">
+                                       高级OA Framework开发主题——支持浏览后退按钮
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2008-07-04
+
+        |
+        tags:         <a href="../tag/oracle.html">oracle</a>
+        <a href="../tag/ebs.html">ebs</a>
+        <a href="../tag/oaf.html">oaf</a>
+
+
+        |
+        <a href="../adv_backbutton.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>概述</h1>
+<p>本文档提供了一组<a href="#goals">目标</a>并描述了编码标准，你必须遵守以确保对浏览器后退按钮的支持。</p>
+<p>可用性测试显示用户非常依赖于浏览器后退按钮。不幸的是，这个导航偏好在事务型的应用中将导致一系列潜在的故障点。例如，思考在OA Framework应用中在下面的场景中使用浏览器后退按钮将导致不可预料的问题。</p>
+<table class="table">
+<tr>
+<th>用户导航</th>
+<th>问题</th>
+</tr>
+<tr>
+<td>用户从表格中删除了一行数据页面被重绘并显示了提示信息标明数据行已经被删除（数据行不再显示在表格中）。然后用户按下浏览器后退按钮，页面将显示出数据行仍然在表格中时的页面。这时用户再次尝试删除数据行。</td>
+<td>浏览器缓存了页面内容。如果用户执行的一个动作修改了数据状态，然后使用浏览器后退按钮，浏览的页面缓存没有反映出中间层的状态（在这里，是一个不存在的数据行）。当用户试图对缓存页面中被删除的行进行删除或其它处理时，将导致运行时错误。而支持浏览器后退按钮的页面将检测到这个错误并显示出用户友好的提示信息标明数据行已经被删除了。</td>
+</tr>
+<tr>
+<td>在构物车结算处理时，用户选择了&ldquo;提交定单&rdquo;按钮购买端口。但不知什么原因，用户使用浏览器后退按钮从确认页面退回了定单提交页面并再次点击了&ldquo;提交定单&rdquo;按钮（可能她想修改定单数量）。</td>
+<td>这个场景与前面描述的第一个场景类似，但未加保护的动作将导致&ldquo;成功&rdquo;执行两次交易。（定单可能会被创建两次，而这并不是用户期望的）。支持浏览器后退按钮的页面将可以检查到两次相同的提交并显示出用户友好的提示信息标明定单已经存在了。</td>
+</tr>
+<tr>
+<td>用户从Page1导航到Page2，然后使用退出按钮返回Page1。然后在Page1中点击了一个表单提交组件，这将导致一个未处理的异常（NullPointerException, IndexOutOfBoundsException）。</td>
+<td>OA …</td></tr></table>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../adv_backbutton.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../extxue-xi-bi-ji.html" rel="bookmark" title="Permalink to Ext学习笔记">
                                        Ext学习笔记
                                     </a>
@@ -583,62 +638,11 @@ pattern {action}
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../sed-tips.html" rel="bookmark" title="Permalink to Sed Tips">
-                                       Sed Tips
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/xiao-lu.html">效率</a>
-
-    on 2007-06-19
-
-        |
-        tags:         <a href="../tag/linux.html">linux</a>
-        <a href="../tag/sed.html">sed</a>
-
-
-        |
-        <a href="../sed-tips.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>I介绍</h1>
-<h2>1. sed可以完成的工作</h2>
-<p>sed最常用在编辑那些需要不断重复某些编辑动作的文件上。</p>
-<p>可以用sed完成一些重复性的工作。</p>
-<p>sed可以一次执行多个不同的编辑动作。</p>
-<h2>2. sed能做哪些编辑动作</h2>
-<p>删除、修改、添加、插入、合并文件中的资料行，或读入其它文件的资料到文件中，也可以替换其中的字符串、转换其中的字母等。</p>
-<h2>3. sed工作流程</h2>
-<p>从输入中读入内容，操作完毕后发送到标准输出。</p>
-<h1>II使用sed</h1>
-<p>sed命令可以分成编辑指令与文件指令两部分。编辑指令负责控制所有编辑工作，文件指令处理文件。编辑指令由位址与函数两部分组件，位址指令用于定位对象，而编辑指令用于编辑对象。</p>
-<h2>1. 命令行上的编辑指令</h2>
-<p>在命令行上执行sed指令时用-e参数，如果sed指令在文件中用-f参数。</p>
-<div class="highlight"><pre><span></span>sed -e '编辑指令1' -e '编辑指令2' ...文件一 ...文件二
-</pre></div>
-<p>例</p>
-<div class="highlight"><pre><span></span>sed -e '1,10d' -e 's/yellow/black/g' yel.dat …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../sed-tips.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="../author/jamsa5.html">&laquo;</a>
-    Page 6 / 6
+    Page 6 / 7
+        <a href="../author/jamsa7.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->
 </div>
