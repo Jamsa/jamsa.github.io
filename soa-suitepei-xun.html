@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="SOA Suite培训"/>
+        <meta property="og:url" content="/soa-suitepei-xun.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="/soa-suitepei-xun.html" />
+
+        <title>SOA Suite培训 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
+                                <li ><a href="/category/qian-duan.html">前端</a></li>
+                                <li ><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/soa-suitepei-xun.html" rel="bookmark"
+             title="Permalink to SOA Suite培训">SOA Suite培训</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2010-07-13
+
+        |
+        tags:         <a href="/tag/oracle.html">oracle</a>
+        <a href="/tag/ebs.html">ebs</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>介绍</h1>
+<ul>
+<li>配置EBS启用SOA Suite</li>
+<li>Native interface开放为WebService接口</li>
+<li>通过ISG调用外部系统提供的WebService</li>
+</ul>
+<h1>EBS的配置</h1>
+<p>Native Service Enablement Of EBS</p>
+<p>参考Metalink Note:556540.1</p>
+<h1>ISG的设置</h1>
+<h1>Native Interface开放为WebService</h1>
+<h2>开放系统标准接口为WebService</h2>
+<p>通过&ldquo;集成SOA网关&rdquo;这个职责为标准接口授权、生成WSDL、部署或卸载WebService</p>
+<h2>开放自己开发的接口为WebService</h2>
+<p>通过Perl工具程序将自己的接口注册到Repository里</p>
+<h2>外部系统异步调用EBS发布的WebService</h2>
+<h1>ISG调用外部的WebService</h1>
+<p>不支持RPC格式的SOAP消息，只支持Document格式的。</p>
+<h2>Business Event驱动对外部系统WebService的调用</h2>
+<ul>
+<li>Create/Use Invoker Event</li>
+<li>选Workflow Administrator WebApplications职责</li>
+<li>点击&ldquo;Business Events&rdquo;</li>
+<li>点击&ldquo;Create Event&rdquo;</li>
+<li>填写Name，Display Name和Description选择状态为&ldquo;Enabled&rdquo;</li>
+<li>输入Owner Name和Tag（通常都填FND/FND）</li>
+<li>
+<p>点击&ldquo;Apply&rdquo;保存</p>
+</li>
+<li>
+<p>Native Service Invocation Process</p>
+</li>
+<li>Search Invoker Business Event.</li>
+<li>Select to view its subscriptions</li>
+<li>Click "Create Subscription"</li>
+<li>Enter local Subscriber System,Phase(&lt;100 for synchronous response).</li>
+<li>Select Rule Data as "Message".</li>
+<li>Select Action Type "Invoke Web Service".</li>
+<li>Click "Next".</li>
+<li>Follow wizard based WSDL parser UI:</li>
+<li>Enter WSDL URL and click "Next".</li>
+<li>Select Service and click "Next".</li>
+<li>Select Service Port and click "Next".</li>
+<li>Select Service Operation and click "Next".</li>
+<li>Use seeded Java Rule Function - oracle.apps.fnd.wf.bes.WebServiceInvokerSubscription or custom extended class.</li>
+<li>
+<p>Optionally enter WS Security parameters:WFBES_SOAP_USERNAME,WEBES_SOAP_PASSWORD_MOD,WEBES_SOAP_PASSWORD_KEY as </p>
+</li>
+<li>
+<p>Create Receive Event</p>
+</li>
+<li>navigate to "Events" tab in Workflow </li>
+</ul>
+<h2>自定义的Business Event驱动对外部系统的WebService的调用</h2>
+<h2>直接调用外部的WebService</h2>
+<h2>异步调用外部的WebService</h2>
+<p>由Create Subscription时的Phase决定，大于100时为异步调用</p>
+<h1>问题</h1>
+<ul>
+<li>
+<p>如何开放自己开发的接口为WebService</p>
+</li>
+<li>
+<p>与其它系统集成时如何解决人员、权限、登录等方面的问题</p>
+</li>
+<li>
+<p>没有BPEL的情况下（不能通过接口表和多次WebService调用处理）如何处理大数据量的问题</p>
+</li>
+</ul>
+<p>通过接口表的方式，多次调用方法写入数据到接口表，再调用其它方法进行验证，然后再调用方法提交请求。</p>
+<ul>
+<li>
+<p>SOAP头的问题，如何在SOAP头设置相关的用户、职责等信息</p>
+</li>
+<li>
+<p>AQ自动触发对外部系统WebService的调用，还是需要轮询AQ</p>
+</li>
+</ul>
+<p>异步调用时需要运行工作流background engine 的请求</p>
+<p>测试WebService
+http://www.ignyte.com/webservices/ignyte.whatsshowing.webservice/moviefunctions.asmx?wsdl
+参数 88052 18</p>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

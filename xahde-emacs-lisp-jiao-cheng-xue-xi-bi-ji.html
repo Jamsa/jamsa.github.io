@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Xah的Emacs Lisp 教程学习笔记"/>
+        <meta property="og:url" content="/xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="/xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html" />
+
+        <title>Xah的Emacs Lisp 教程学习笔记 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li ><a href="/category/kai-fa.html">开发</a></li>
+                                <li ><a href="/category/qian-duan.html">前端</a></li>
+                                <li class="active"><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html" rel="bookmark"
+             title="Permalink to Xah的Emacs Lisp 教程学习笔记">Xah的Emacs Lisp 教程学习笔记</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/xiao-lu.html">效率</a>
+
+    on 2008-03-10
+
+        |
+        tags:         <a href="/tag/emacs.html">emacs</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>例子</h1>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-open-directory-with-explorer</span> <span class="p">()</span>
+  <span class="s">"在windows中用explorer浏览当前目录"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">shell-command</span> <span class="s">"explorer.exe ."</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">browse-url</span> <span class="s">"www.google.cn"</span><span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-directory-files</span> <span class="p">()</span>
+  <span class="s">"执行shell命令并处理它的输出。这里为显示当前目录下的文件"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="s">"ls -l"</span><span class="p">))</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-current-major-mode</span> <span class="p">()</span>
+  <span class="s">"如果当前为emacs-lisp-mode则显示当前主模式"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">eq</span> <span class="ss">'emacs-lisp-mode</span> <span class="nv">major-mode</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">message</span> <span class="s">"emacs-lisp-mode"</span><span class="p">))</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-regexp-match</span> <span class="p">()</span>
+  <span class="s">"正则表达式匹配"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">test-string</span> <span class="s">"aaaaaaaaaaaa123sfdsfs456"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">regexp-string</span> <span class="s">"\\([0-9]+\\)[a-z]+\\([0-9]+\\)"</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">string-match</span> <span class="nv">regexp-string</span> <span class="nv">test-string</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span> <span class="nv">test-string</span><span class="p">)</span> <span class="s">"--"</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">2</span> <span class="nv">test-string</span><span class="p">)</span> <span class="p">))</span>
+    <span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">dos2unix</span> <span class="p">(</span><span class="nv">file-path</span><span class="p">)</span>
+  <span class="s">"dos换行转unix换行"</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">(</span><span class="nv">mybuffer</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">mybuffer</span> <span class="p">(</span><span class="nv">find-file</span> <span class="nv">file-path</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">replace-string</span> <span class="s">"\r\n"</span> <span class="s">"\n"</span> <span class="no">nil</span> <span class="mi">1</span> <span class="p">(</span><span class="nf">1+</span> <span class="p">(</span><span class="nf">buffer-size</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">save-buffer</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">kill-buffer</span> <span class="nv">mybuffer</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-insert-p</span> <span class="p">()</span>
+  <span class="s">"在光标位置插入&lt;p&gt;&lt;/p&gt;"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">insert</span> <span class="s">"&lt;p&gt;&lt;/p&gt;"</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">backward-char</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-wrap-paragraph</span> <span class="p">(</span><span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
+  <span class="s">"在区域前后加&lt;p&gt;&lt;/p&gt;"</span>
+  <span class="p">(</span><span class="k">interactive</span> <span class="s">"r"</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">end</span><span class="p">)</span> <span class="p">(</span><span class="nf">insert</span> <span class="s">"&lt;/p&gt;"</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">start</span><span class="p">)</span> <span class="p">(</span><span class="nv">inster</span> <span class="s">"&lt;p&gt;"</span><span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-replace-html-chars-in-region</span> <span class="p">(</span><span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
+  <span class="s">"将特殊字符转成html中的符号"</span>
+  <span class="p">(</span><span class="k">interactive</span> <span class="s">"r"</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">save-restriction</span>
+    <span class="p">(</span><span class="nf">narrow-to-region</span> <span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">while</span> <span class="p">(</span><span class="nf">search-forward</span> <span class="s">"&amp;"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)(</span><span class="nf">replace-match</span> <span class="s">"&amp;amp;"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">while</span> <span class="p">(</span><span class="nf">search-forward</span> <span class="s">"&amp;"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)(</span><span class="nf">replace-match</span> <span class="s">"&amp;amp;"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">while</span> <span class="p">(</span><span class="nf">search-forward</span> <span class="s">"&amp;"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)(</span><span class="nf">replace-match</span> <span class="s">"&amp;amp;"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span>
+    <span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-hash-test</span> <span class="p">()</span>
+  <span class="s">"hash table 测试"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">(</span><span class="nv">myhash</span> <span class="nv">val</span><span class="p">)</span>
+    <span class="c1">;; 创建hash table并告诉elips用equal来测试key是否存在</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">myhash</span> <span class="p">(</span><span class="nf">make-hash-table</span> <span class="nb">:test</span> <span class="ss">'equal</span><span class="p">))</span>
+
+    <span class="c1">;; 添加数据</span>
+    <span class="p">(</span><span class="nf">puthash</span> <span class="s">"mary"</span> <span class="s">"19"</span> <span class="nv">myhash</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">puthash</span> <span class="s">"jane"</span> <span class="s">"19"</span> <span class="nv">myhash</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">puthash</span> <span class="s">"liz"</span> <span class="s">"19"</span> <span class="nv">myhash</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">puthash</span> <span class="s">"zj"</span> <span class="s">"19"</span> <span class="nv">myhash</span><span class="p">)</span>
+
+
+    <span class="c1">;; 修改数据</span>
+    <span class="p">(</span><span class="nf">puthash</span> <span class="s">"zj"</span> <span class="s">"27"</span> <span class="nv">myhash</span><span class="p">)</span>
+
+    <span class="c1">;; 删除数据</span>
+    <span class="p">(</span><span class="nf">remhash</span> <span class="s">"liz"</span> <span class="nv">myhash</span><span class="p">)</span>
+
+    <span class="c1">;; 获取数据</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">val</span> <span class="p">(</span><span class="nf">gethash</span> <span class="s">"zj"</span> <span class="nv">myhash</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">message</span> <span class="nv">val</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

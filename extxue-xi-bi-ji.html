@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Ext学习笔记"/>
+        <meta property="og:url" content="/extxue-xi-bi-ji.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="/extxue-xi-bi-ji.html" />
+
+        <title>Ext学习笔记 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li ><a href="/category/kai-fa.html">开发</a></li>
+                                <li class="active"><a href="/category/qian-duan.html">前端</a></li>
+                                <li ><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/extxue-xi-bi-ji.html" rel="bookmark"
+             title="Permalink to Ext学习笔记">Ext学习笔记</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/qian-duan.html">前端</a>
+
+    on 2008-03-19
+
+        |
+        tags:         <a href="/tag/extjs.html">extjs</a>
+        <a href="/tag/javascript.html">javascript</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>基础</h1>
+<h1>Ext继承机制</h1>
+<h1>Ext对象</h1>
+<p>Ext.onReady()是Ext.EventManager.onDocumentReady()的速写方法。</p>
+<h1>布局管理</h1>
+<h2>Ext.Viewport</h2>
+<p>Ext.Viewport是一个特殊的容器它代表应用的可视区域（浏览器的Viewport）。</p>
+<p>Viewport自动将自己渲染到document.body，因此不需要要调用render方法。它在浏览器的viewport调整大小时自动调整自己的大小并管理窗口（Ext的窗口）的大小改变。</p>
+<h2>Ext.Component</h2>
+<p>Ext.Component是所有Ext组件的基类。所有Component的子类能被乍动
+xtype用于标识所需要生成的组件的类型。
+下面两个写法效果是一样的：</p>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">viewport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">Viewport</span><span class="p">({</span>
+        <span class="nx">layout</span><span class="o">:</span><span class="s1">'border'</span><span class="p">,</span>
+        <span class="nx">items</span><span class="o">:</span><span class="p">[</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent</span><span class="p">({</span>
+                <span class="nx">xtype</span><span class="o">:</span><span class="s1">'box'</span><span class="p">,</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span> <span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">height</span><span class="o">:</span><span class="mi">32</span>
+            <span class="p">}),</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent</span><span class="p">({</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'south'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span> <span class="s1">'south'</span><span class="p">,</span>
+                <span class="nx">height</span><span class="o">:</span><span class="mi">32</span>
+            <span class="p">}),</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent</span><span class="p">({</span>
+                <span class="nx">xtype</span><span class="o">:</span><span class="s1">'box'</span><span class="p">,</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'center'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span><span class="s1">'center'</span>
+            <span class="p">})</span>
+        <span class="p">]</span>
+    <span class="p">});</span>
+</pre></div>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">viewport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">Viewport</span><span class="p">({</span>
+        <span class="nx">layout</span><span class="o">:</span><span class="s1">'border'</span><span class="p">,</span>
+        <span class="nx">items</span><span class="o">:</span><span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nx">xtype</span><span class="o">:</span><span class="s1">'box'</span><span class="p">,</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span> <span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">height</span><span class="o">:</span><span class="mi">32</span>
+            <span class="p">},</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent</span><span class="p">({</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'south'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span> <span class="s1">'south'</span><span class="p">,</span>
+                <span class="nx">height</span><span class="o">:</span><span class="mi">32</span>
+            <span class="p">}),</span>
+            <span class="p">{</span>
+                <span class="nx">xtype</span><span class="o">:</span><span class="s1">'box'</span><span class="p">,</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'center'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span><span class="s1">'center'</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">});</span>
+</pre></div>
+<h1>其它</h1>
+<h2>ExtJS中FormPanel实现数据加载和提交</h2>
+<p>在使用使用FormPanel时我们通常需要使用它的form对象来加载数据或提交数据。FormPanel中的form对象为Ext.form.BasicForm类型的对象，它有load和submit方法分别用于加载数据和提交数据。而这两个方法都是通过调用Ext.form.BasicForm中的doAction方法来操作的。doAction方法带有两个参数，其中第二个参数为从load或submit方法传递过来的Ext.form.Action对象的配置数据（Config Options）。其中的success和failure属性是用于处理请求成功或失败的函数。但需要注意的是，文档中的说明是这个success或failure取决于Http请求过程是否出错。实际情况却并非这样，我在开发过程中发现HTTP响应代码一直都是200，但被调用的函数却一直都是failure属性对应的函数。通过查看Action.js可以发现响应过来的数据是需要符合一定格式的，Ext.form.Action.Load的API文档开头就说明了响应数据包必须类似下面的格式：</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nx">success</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">clientName</span><span class="o">:</span> <span class="s2">"Fred. Olsen Lines"</span><span class="p">,</span>
+        <span class="nx">portOfLoading</span><span class="o">:</span> <span class="s2">"FXT"</span><span class="p">,</span>
+        <span class="nx">portOfDischarge</span><span class="o">:</span> <span class="s2">"OSL"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>这个说明在我使用ExtJS的时候再次误导了我。我认为只需要响应的数据为类似的格式就可以了。结果仍然出错，查看Action.js中的handleResponse方法可以看出，返回的数据为上面代码的格式，但并不是说从服务端发送过来的数据就是这样的格式，而是需要将Ext.form.Action.Load的result属性设置成上面的格式的数据。从handleResponse也可以看出，Action.js使用了form.reader属性来处理服务端数据。这个属性也可以在初始化FormPanel的时候传递给FormPanel，FormPanel将会把这个属性传递给它内置的BasicForm对象。怎样使用JsonReader来使提取响应数据来使它满足PanelForm的要求呢？再看handleResponse中的代码，在reader存在的情况下，它返回的是所需要的格式的数据，一个包含success属性和data属性的对象，而data属性来自于JsonReader的read方法处理后的结果。再查看JsonReader.js中的read方法，它调用的是readRecords来读取数据，而返回的值是由reader的root属性决定的，从JsonReader.js中还可以看出，root属性对应的JSON对象必须是集合类型的，因此我们在后台发送过来的数据必须也是集合类型，我在这里也出了错。一直认为加载数据到Form里，一次只加载一条，所以从服务端传递过来的数据都是单个的对象，而将JsonReader对象的root设置为单个对象的名称，结果Form中一直都加载不上数据。后来将服务端传递过来的数据修改为集合数型问题解决了。</p>
+<p>小结：</p>
+<p>1.ExtJS中JsonReader对于数据的处理总是一致的，不管你需要的是单条记录还是多条记录，它总是通过total属性判断记录数，通过root属性对应的名称来取记录集合。</p>
+<p>2.FormPanel中处理数据的为内置的BasicForm类型的对象，它通过load和submit方法来加载或提交数据。而这两个方法是通过Ext.form.Action的两个子类Ext.form.Action.Load、Ext.form.Action.Submit来提交请求和调用用户的success和failure方法。决定调用success和failure的并非Http请求是否出错，而是决定于Action.js中handleResponse的处理结果。我们可以通过设置FormPanel的reader配置对象来干预handleResponse对数据的处理。而这个reader也可设置响应数据与FormPanel中字段的对应关系。</p>
+<p>3.多看源码，可以获取更多。</p>
+<p>附：</p>
+<p>表格中双击进行编辑的JS源码，这个代码比官方文档中的处理方式简单一些，觉得官方文档中的edit中加载数据的处理是一种hack的方式，并不太适合实际应用。</p>
+<p>[[http://extjs.com/learn/Tutorial:Using_Ext_grid_form_dialog_to_achieve_paging_list,_create,_edit,_delete_function][ExtJS网站上的CRUD的文章，其中包含有加载数据进行编辑的例子]]</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">onReady</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="kd">var</span> <span class="nx">newFormWin</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">form1</span><span class="p">;</span>
+
+    <span class="c1">//表格处理</span>
+    <span class="c1">//Ext.BLANK_IMAGE_URL = 'extjs/resources/images/default/s.gif';</span>
+    <span class="nx">Ext</span><span class="p">.</span><span class="nx">QuickTips</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">sm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">CheckboxSelectionModel</span><span class="p">();</span> <span class="c1">//CheckBox选择列</span>
+
+    <span class="kd">var</span> <span class="nx">cm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">ColumnModel</span><span class="p">([</span>
+        <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">RowNumberer</span><span class="p">(),</span> <span class="c1">//行号列</span>
+        <span class="nx">sm</span><span class="p">,</span>
+        <span class="p">{</span><span class="nx">header</span><span class="o">:</span><span class="s1">'编号'</span><span class="p">,</span><span class="nx">dataIndex</span><span class="o">:</span><span class="s1">'id'</span><span class="p">},</span>
+        <span class="p">{</span><span class="nx">header</span><span class="o">:</span><span class="s1">'性别'</span><span class="p">,</span><span class="nx">dataIndex</span><span class="o">:</span><span class="s1">'sex'</span><span class="p">,</span><span class="nx">renderer</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">value</span><span class="o">==</span><span class="s1">'1'</span><span class="p">){</span>
+                <span class="k">return</span> <span class="s2">"男"</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="k">return</span> <span class="s2">"女"</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}},</span> <span class="c1">//增加性别，自定义renderer，即显示的样式，可以加html代码，来显示图片等。</span>
+        <span class="p">{</span><span class="nx">header</span><span class="o">:</span><span class="s1">'名称'</span><span class="p">,</span><span class="nx">dataIndex</span><span class="o">:</span><span class="s1">'name'</span><span class="p">},</span>
+        <span class="p">{</span><span class="nx">header</span><span class="o">:</span><span class="s1">'描述'</span><span class="p">,</span><span class="nx">dataIndex</span><span class="o">:</span><span class="s1">'memo'</span><span class="p">}</span>
+    <span class="p">]);</span>
+
+    <span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+        <span class="nx">proxy</span><span class="o">:</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">HttpProxy</span><span class="p">({</span><span class="nx">url</span><span class="o">:</span><span class="nx">ACTION_URL</span><span class="p">}),</span><span class="c1">//调用的动作</span>
+        <span class="nx">reader</span><span class="o">:</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">JsonReader</span><span class="p">({</span>
+            <span class="nx">totalProperty</span><span class="o">:</span> <span class="s1">'total'</span><span class="p">,</span>
+            <span class="nx">root</span><span class="o">:</span> <span class="s1">'list'</span><span class="p">,</span>
+            <span class="nx">successProperty</span> <span class="o">:</span><span class="s1">'success'</span>
+        <span class="p">},</span>
+                                        <span class="p">[{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'id'</span><span class="p">,</span><span class="nx">mapping</span><span class="o">:</span><span class="s1">'id'</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span><span class="s1">'string'</span><span class="p">},</span>
+                                         <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'sex'</span><span class="p">,</span><span class="nx">mapping</span><span class="o">:</span><span class="s1">'sex'</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span><span class="s1">'string'</span><span class="p">},</span>
+                                         <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'name'</span><span class="p">,</span><span class="nx">mapping</span><span class="o">:</span><span class="s1">'name'</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span><span class="s1">'string'</span><span class="p">},</span>
+                                         <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'memo'</span><span class="p">,</span><span class="nx">mapping</span><span class="o">:</span><span class="s1">'memo'</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span><span class="s1">'string'</span><span class="p">}</span> <span class="c1">//列的映射</span>
+                                        <span class="p">])</span>
+    <span class="p">});</span>
+
+
+    <span class="kd">var</span> <span class="nx">grid</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">GridPanel</span><span class="p">({</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="s1">'grid'</span><span class="p">,</span>
+        <span class="nx">el</span><span class="o">:</span> <span class="s1">'center'</span><span class="p">,</span>
+        <span class="nx">region</span><span class="o">:</span><span class="s1">'center'</span><span class="p">,</span>
+        <span class="nx">title</span><span class="o">:</span><span class="s1">'用户'</span><span class="p">,</span>
+        <span class="nx">ds</span><span class="o">:</span> <span class="nx">ds</span><span class="p">,</span>
+        <span class="nx">sm</span><span class="o">:</span> <span class="nx">sm</span><span class="p">,</span>
+        <span class="nx">cm</span><span class="o">:</span> <span class="nx">cm</span><span class="p">,</span>
+        <span class="nx">bbar</span><span class="o">:</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">PagingToolbar</span><span class="p">({</span>
+            <span class="nx">pageSize</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="nx">store</span><span class="o">:</span> <span class="nx">ds</span><span class="p">,</span>
+            <span class="nx">displayInfo</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">displayMsg</span><span class="o">:</span> <span class="s1">'显示第 {0} 条到 {1} 条记录，一共 {2} 条'</span><span class="p">,</span>
+            <span class="nx">emptyMsg</span><span class="o">:</span> <span class="s2">"没有记录"</span>
+        <span class="p">})</span> <span class="c1">//页脚显示分页</span>
+    <span class="p">});</span>
+
+
+    <span class="c1">//布局处理</span>
+    <span class="nx">Ext</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">Manager</span><span class="p">.</span><span class="nx">setProvider</span><span class="p">(</span><span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">CookieProvider</span><span class="p">());</span>
+    <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">Viewport</span><span class="p">({</span>
+        <span class="nx">layout</span><span class="o">:</span><span class="s1">'border'</span><span class="p">,</span>
+        <span class="nx">items</span><span class="o">:</span><span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nx">xtype</span><span class="o">:</span><span class="s1">'box'</span><span class="p">,</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span> <span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">height</span><span class="o">:</span><span class="mi">32</span><span class="p">,</span>
+                <span class="nx">title</span><span class="o">:</span><span class="s1">'north'</span>
+            <span class="p">},{</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'south'</span><span class="p">,</span>
+                <span class="nx">contentEl</span><span class="o">:</span> <span class="s1">'south'</span><span class="p">,</span>
+                <span class="nx">split</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
+                <span class="nx">height</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+                <span class="nx">minSize</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+                <span class="nx">maxSize</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+                <span class="nx">collapsible</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">title</span><span class="o">:</span><span class="s1">'South'</span><span class="p">,</span>
+                <span class="nx">margins</span><span class="o">:</span><span class="s1">'0 0 0 0'</span>
+            <span class="p">},</span>
+            <span class="nx">grid</span>
+        <span class="p">]</span>
+    <span class="p">});</span>
+
+    <span class="c1">//el:指定html元素用于显示grid</span>
+    <span class="nx">grid</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span><span class="c1">//Ext.getCmp('grid').render();//渲染表格</span>
+    <span class="nx">ds</span><span class="p">.</span><span class="nx">load</span><span class="p">({</span><span class="nx">params</span><span class="o">:</span><span class="p">{</span><span class="nx">start</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">limit</span><span class="o">:</span><span class="mi">10</span><span class="p">}});</span> <span class="c1">//加载数据</span>
+
+    <span class="nx">grid</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"rowdblclick"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">grid</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">loadFormData</span><span class="p">(</span><span class="nx">grid</span><span class="p">);</span>
+        <span class="c1">//alert(form1.reader);</span>
+    <span class="p">});</span>
+
+    <span class="c1">// 载入被选择的数据行的表单数据</span>
+    <span class="kd">var</span> <span class="nx">loadFormData</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">grid</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">_record</span> <span class="o">=</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">getSelectionModel</span><span class="p">().</span><span class="nx">getSelected</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_record</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Ext</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">'修改操作'</span><span class="p">,</span> <span class="s1">'请选择要修改的一项！'</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">myFormWin</span><span class="p">();</span>
+            <span class="nx">form1</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span> <span class="p">{</span>
+                <span class="nx">url</span> <span class="o">:</span> <span class="nx">EDIT_ACTION_URL</span><span class="o">+</span><span class="s1">'?sid='</span><span class="o">+</span> <span class="nx">_record</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'id'</span><span class="p">),</span>
+                <span class="nx">waitMsg</span> <span class="o">:</span> <span class="s1">'正在载入数据...'</span><span class="p">,</span>
+                <span class="nx">success</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span><span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">Ext</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">'编辑'</span><span class="p">,</span> <span class="s1">'载入成功！'</span><span class="p">);</span>
+                <span class="p">},</span>
+                <span class="nx">failure</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span><span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">Ext</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">'编辑'</span><span class="p">,</span> <span class="s1">'载入失败'</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+
+
+
+    <span class="kd">var</span> <span class="nx">myFormWin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// create the window on the first click and reuse on subsequent</span>
+        <span class="c1">// clicks</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">newFormWin</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">newFormWin</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">Window</span><span class="p">(</span> <span class="p">{</span>
+                <span class="nx">el</span> <span class="o">:</span> <span class="s1">'topic-win'</span><span class="p">,</span>
+                <span class="nx">layout</span> <span class="o">:</span> <span class="s1">'fit'</span><span class="p">,</span>
+                <span class="nx">width</span> <span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
+                <span class="nx">height</span> <span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+                <span class="nx">closeAction</span> <span class="o">:</span> <span class="s1">'hide'</span><span class="p">,</span>
+                <span class="nx">plain</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">title</span> <span class="o">:</span> <span class="s1">'窗口'</span><span class="p">,</span>
+                <span class="nx">items</span> <span class="o">:</span> <span class="nx">form1</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+        <span class="nx">newFormWin</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">'New1'</span><span class="p">);</span>
+    <span class="p">};</span>
+
+
+
+    <span class="nx">form1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">FormPanel</span><span class="p">(</span> <span class="p">{</span>
+        <span class="c1">// collapsible : true,// 是否可以展开</span>
+        <span class="nx">labelWidth</span> <span class="o">:</span> <span class="mi">75</span><span class="p">,</span> <span class="c1">// label settings here cascade unless overridden</span>
+        <span class="nx">url</span> <span class="o">:</span> <span class="s1">'AddLevel.action'</span><span class="p">,</span>
+        <span class="nx">frame</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s1">'修改'</span><span class="p">,</span>
+        <span class="nx">bodyStyle</span> <span class="o">:</span> <span class="s1">'padding:5px 5px 0'</span><span class="p">,</span>
+        <span class="nx">width</span> <span class="o">:</span> <span class="mi">350</span><span class="p">,</span>
+        <span class="nx">waitMsgTarget</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="c1">//这个属性决定了load和submit中对数据的处理，list必须是一个集合类型，json格式应该是[]包含的一个数组</span>
+        <span class="nx">reader</span><span class="o">:</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">JsonReader</span><span class="p">({</span><span class="nx">root</span><span class="o">:</span><span class="s1">'list'</span><span class="p">},</span>
+                                        <span class="p">[{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'id'</span><span class="p">,</span><span class="nx">mapping</span><span class="o">:</span><span class="s1">'id'</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span><span class="s1">'string'</span><span class="p">},</span>
+                                         <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'sex'</span><span class="p">,</span><span class="nx">mapping</span><span class="o">:</span><span class="s1">'sex'</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span><span class="s1">'string'</span><span class="p">},</span>
+                                         <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'memo'</span><span class="p">,</span><span class="nx">mapping</span><span class="o">:</span><span class="s1">'memo'</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span><span class="s1">'string'</span><span class="p">}</span>
+                                        <span class="p">]),</span>
+        <span class="nx">defaults</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">width</span> <span class="o">:</span> <span class="mi">230</span>
+        <span class="p">},</span>
+        <span class="nx">defaultType</span> <span class="o">:</span> <span class="s1">'textfield'</span><span class="p">,</span>
+        <span class="nx">items</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+            <span class="nx">fieldLabel</span> <span class="o">:</span> <span class="s1">'编号'</span><span class="p">,</span>
+            <span class="nx">name</span> <span class="o">:</span> <span class="s1">'id'</span><span class="p">,</span>
+            <span class="nx">allowBlank</span> <span class="o">:</span> <span class="kc">false</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">fieldLabel</span> <span class="o">:</span> <span class="s1">'性别'</span><span class="p">,</span>
+            <span class="nx">name</span> <span class="o">:</span> <span class="s1">'sex'</span><span class="p">,</span>
+            <span class="nx">allowBlank</span> <span class="o">:</span> <span class="kc">false</span>
+        <span class="p">},</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">TextArea</span><span class="p">(</span> <span class="p">{</span>
+            <span class="nx">fieldLabel</span> <span class="o">:</span> <span class="s1">'备注'</span><span class="p">,</span>
+            <span class="nx">name</span> <span class="o">:</span> <span class="s1">'memo'</span><span class="p">,</span>
+            <span class="nx">growMin</span> <span class="o">:</span> <span class="mi">234</span>
+        <span class="p">})],</span>
+
+        <span class="nx">buttons</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+            <span class="nx">text</span> <span class="o">:</span> <span class="s1">'保存'</span><span class="p">,</span>
+            <span class="nx">disabled</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">handler</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">form1</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">isValid</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="nx">form1</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">submit</span><span class="p">(</span> <span class="p">{</span>
+                        <span class="nx">url</span> <span class="o">:</span> <span class="s1">'AddLevel.action'</span><span class="p">,</span>
+                        <span class="nx">success</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">from</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">Ext</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">'保存成功'</span><span class="p">,</span> <span class="s1">'添加级别成功！'</span><span class="p">);</span>
+                            <span class="nx">ds</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span> <span class="p">{</span>
+                                <span class="nx">params</span> <span class="o">:</span> <span class="p">{</span>
+                                    <span class="nx">start</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+                                    <span class="nx">limit</span> <span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+                                    <span class="nx">forumId</span> <span class="o">:</span> <span class="mi">4</span>
+                                <span class="p">}</span>
+                            <span class="p">});</span>
+                        <span class="p">},</span>
+                        <span class="nx">failure</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">Ext</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">'保存失败'</span><span class="p">,</span> <span class="s1">'添加级别失败！'</span><span class="p">);</span>
+                        <span class="p">},</span>
+                        <span class="nx">waitMsg</span> <span class="o">:</span> <span class="s1">'正在保存数据，稍后...'</span>
+                    <span class="p">});</span>
+                    <span class="nx">dialog</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">Ext</span><span class="p">.</span><span class="nx">Msg</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'信息'</span><span class="p">,</span> <span class="s1">'请填写完成再提交!'</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">text</span> <span class="o">:</span> <span class="s1">'取消'</span><span class="p">,</span>
+            <span class="nx">handler</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">newFormWin</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}]</span>
+    <span class="p">});</span>
+
+
+
+<span class="p">});</span>
+</pre></div>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

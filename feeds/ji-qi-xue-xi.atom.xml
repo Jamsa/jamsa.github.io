@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Jamsa的笔记 - 机器学习</title><link href="/" rel="alternate"></link><link href="/feeds/ji-qi-xue-xi.atom.xml" rel="self"></link><id>/</id><updated>2015-05-18T00:00:00+08:00</updated><entry><title>Build Machine Learning Systems with Python 笔记</title><link href="/build-machine-learning-systems-with-python-bi-ji.html" rel="alternate"></link><published>2015-05-18T00:00:00+08:00</published><updated>2015-05-18T00:00:00+08:00</updated><author><name>Jamsa</name></author><id>tag:None,2015-05-18:/build-machine-learning-systems-with-python-bi-ji.html</id><summary type="html">&lt;h1&gt;Build Machine Learning Systems with Python 笔记&lt;/h1&gt;
+&lt;h2&gt;起步&lt;/h2&gt;
+&lt;p&gt;机器学习（ML）告诉机器如何自己处理任务。
+机器学习计算的典型过程：
+1. 读取和清理数据
+2. 浏览和理解输入的数据
+3. 分析如何以将数据呈现给学习算法
+4. 选择合适的模型和学习算法
+5. 准确的评估性能&lt;/p&gt;
+&lt;h3 id="zhun-bei-gong-zuo"&gt;准备工作&lt;/h3&gt;
+&lt;p&gt;安装NumPy、SciPy、Matplotlib。NumPy提供高度优化过的多维数组计算支持，这是多数先进算法的基础数据结构。SciPy使用这些数组来提供快速的算法实现。Matplotlib用于绘制高质量的图形。&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Build Machine Learning Systems with Python 笔记&lt;/h1&gt;
+&lt;h2&gt;起步&lt;/h2&gt;
+&lt;p&gt;机器学习（ML）告诉机器如何自己处理任务。
+机器学习计算的典型过程：
+1. 读取和清理数据
+2. 浏览和理解输入的数据
+3. 分析如何以将数据呈现给学习算法
+4. 选择合适的模型和学习算法
+5. 准确的评估性能&lt;/p&gt;
+&lt;h3 id="zhun-bei-gong-zuo"&gt;准备工作&lt;/h3&gt;
+&lt;p&gt;安装NumPy、SciPy、Matplotlib。NumPy提供高度优化过的多维数组计算支持，这是多数先进算法的基础数据结构。SciPy使用这些数组来提供快速的算法实现。Matplotlib用于绘制高质量的图形。&lt;/p&gt;</content><category term="machine learn"></category><category term="python"></category></entry></feed>

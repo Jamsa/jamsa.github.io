@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="C Primer Plus 笔记"/>
+        <meta property="og:url" content="/c-primer-plus-bi-ji.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="/c-primer-plus-bi-ji.html" />
+
+        <title>C Primer Plus 笔记 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
+                                <li ><a href="/category/qian-duan.html">前端</a></li>
+                                <li ><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/c-primer-plus-bi-ji.html" rel="bookmark"
+             title="Permalink to C Primer Plus 笔记">C Primer Plus 笔记</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2015-06-29
+
+        |
+        tags:         <a href="/tag/c.html">c</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>C Primer Plus 笔记</h1>
+<h2>起步</h2>
+<h3 id="biao-zhun">标准</h3>
+<p>C89 标准是由 1983 年由 ANSI 起草，于 1989 年被正式接受，它定义了语言和标准 C 程序库。C99 标准是 ISO于 1990 年制定的。ISO 和 ANSI 的标准在本质上是相同的。通常说的 ANSI C 就是指的 ANSI 版本。
+C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语言小而简单。在三个方面对它进行增强：
+ 1. 添加了对国际化字符集的处理。
+ 2. 修复明显的不足（如，64 位处理器）
+ 3. 数值计算方面的增强（代替 FORTRAN ）
+C11 标准是在 2007 年提出的，最初叫 C1X。在 C11 中标准委员会考虑到 C99 并未像 C90 那样广泛会厂商支持，因此 C99 中的一些内容在 C11 中变成了可选功能。</p>
+<h3 id="bian-cheng">编程</h3>
+<p>C 实现将编写过程分为编译和链接两步。编译器将代码转换为中间代码，链接器将它与其它代码组合成执行文件。C 使用这两部分来实现程序的模块化。</p>
+<h2>介绍</h2>
+<h3 id="guan-yu-han-shu-shen-ming">关于函数申明</h3>
+<p>C90 标准中中添加了原型，旧编译器可能不识别。原型申明对于编译器来说是个特殊的函数，称为<strong>函数申明</strong>。它需要指定函数的所有属性。
+旧的 C 在函数申明时有更多的限制，只能指定返回值，不能说明参数。C90，C99 和 C11 编译器能识别这一写法但会指出不要再使用它。
+C 标准推荐提供所有函数的原型。</p>
+<h3 id="cheng-xu-zhuang-tai">程序状态</h3>
+<p>简单来说就是在程序某个时间点上所有变量的值的集合。它是当前计算状态的快照</p>
+<h3 id="guan-jian-zi">关键字</h3>
+<p>C99 增加的关键字：
+<code>signed, const, enum, volatile</code>
+C11 增加的关键字：
+<code>inline, _Alignas, _Alignof, _Bool, _Complex, _Generic, _Imaginary, _Noreturn, _Static_Assert, #_Thread_local</code></p>
+<h2>C 中的数据</h2>
+<h3 id="shu-ju-lei-xing">数据类型</h3>
+<p>bit, Byte, Word 中 byte 通常是计算机的内存单元。word 是特定计算机平台上内存的自然单位。比如 16 位机器，就是 word 为 16 位。</p>
+<p>浮点数与数学上的实数对应。在机器中表示为分数和它的指数两部分。因此对浮点数进行某些数学操作时（如减去一个较大的数）会丢失精度。浮点数不可能表示所有的数字，因此它会取近似值。比如将 7.0 存储为 6.99999。浮点操作也比整数操作慢。</p>
+<h3 id="ji-chu-lei-xing">基础类型</h3>
+<h4 id="zheng-shu-lei-xing">整数类型</h4>
+<p>C 提供了多种整数类型
+ 1. int 为表示有符号整数。
+ 2. short int 或称 short
+ 3. long int 或称 long
+ 4. long long int 或称 long long (C99)，最少为 64 位。
+ 5. unsigned int 或称 unsigned 用于非负整数
+ 6. unsigned long int 或称 unsigned long。unsigned short int 或称 unsigned short 都来自于 C90 标准。C99 还添加了 unsigned long long int 或称 unsigned long long。
+ 7. . signed 关键字可以显式的用于前面的那些类型。</p>
+<p>这么多的整数类型，C 只保证 short 不会比 int 长，long 不会比 int 短。对于当前的 PC，通常认为 long long 为 64 位，long 为 32 位，short 为 16 位，int 为 16 或 32位，这依赖于具体的机器的 word 长度。
+在 printf 中使用 <code>%u</code>打印 unsigned int，<code>%hd%</code>打印 long，<code>%ld</code>打印 long long。</p>
+<h4 id="zi-fu-xing">字符型</h4>
+<p>char 用于存储字符，但在技术上来说存的是整数。用数字来描述某个字符。标准 ASCII 代码用 0 至 127 表示。这个范围用 7 位就够了，char 类型通常定义为一个内存单元大小（8-bit）。很多字符集用 127 或 255 不够表示。Unicode 可以描述超过 110000 个字符。ISO/IEC 开发的 10646 与 unicode 字符集兼容。
+C 将 byte 定义为 char 使用的 bit 数量，因此有 16-bit 或 32-bit 的 char 类型。</p>
+<p>Signed 和 Unsigned char，分别用 -128 至 127 或 0 至 255 表示 char，需要查看编译器手册或检查 limits.h 来了解你的编译器所使用的类型。C90 标准中允许使用 signed char 或 unsigned char。</p>
+<h4 id="_bool-xing">_Bool 型</h4>
+<p>C99 中添加的类型，可以为 true 或 false。由于 C 中使用 1 作为 true，0 作为 false，因此 _Bool 类型实际上只是整型。</p>
+<h4 id="ke-yi-zhi-lei-xing-stdinth-he-inttypesh">可移植类型：stdint.h 和 inttypes.h</h4>
+<p>C 提供了非常多的整数类型。同一个名称在不同平台上可能代表的含义不同。C99 中为不同平台的名称定义了统一的含义，定义在 stdint.h 中。比如，int32_t 表示 32 位有符号整数。
+为避免某些平台不支持明确的整数宽度（比如指定为 32 位），C99 和 C11 提供了另一种类型的名称。这套名称保证提供的满足需要的最小类型，这些类型被称为<em>最小宽度类型</em>。比如，<code>int_least8_t</code>能提供保存 8 位整数的类型。如果在 16 位系统上，<code>int8_t</code>类型可能没有定义。但是，<code>int_least8_t</code>类型将是可用的，有可能它会使用一个 16 位的整数。
+有些程序员可能会更关心速度而不是空间。对他们来说，C99 和 C11 中定义了鼍一套用于快速计算的类型。这些类型被称为<em>快速最小宽度类型</em>。比如<code>int_fast8_t</code>定义了用于代替整数的提供最快计算速度的的 8 位无符号值。
+最后，对于一些程序员来说，最大的</p>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

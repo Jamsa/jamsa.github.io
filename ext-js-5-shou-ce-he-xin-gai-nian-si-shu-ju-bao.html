@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Ext JS 5 手册 核心概念（四）数据包"/>
+        <meta property="og:url" content="/ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="/ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html" />
+
+        <title>Ext JS 5 手册 核心概念（四）数据包 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li ><a href="/category/kai-fa.html">开发</a></li>
+                                <li class="active"><a href="/category/qian-duan.html">前端</a></li>
+                                <li ><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html" rel="bookmark"
+             title="Permalink to Ext JS 5 手册 核心概念（四）数据包">Ext JS 5 手册 核心概念（四）数据包</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="/tag/javascript.html">javascript</a>
+        <a href="/tag/extjs.html">extjs</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>Ext JS 5 手册 核心概念（四）数据包</h1>
+<h2>核心概念</h2>
+<h3 id="shu-ju-bao">数据包</h3>
+<p>数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的：
+ - Ext.data.Model
+ - Store
+ - Ext.data.proxy.Proxy</p>
+<p>上面的类几乎在所有应用中都被用到。它们由一些卫星类支撑：</p>
+<p><img alt="数据包相关类" src="/extjs5_guide/data-model.png"/></p>
+<h4 id="model">Model</h4>
+<p>类所包的中心是<code>Ext.data.Model</code>。<code>Model</code>用于描述应用中一个实体。
+Model中的主要部分有：
+ - Fields
+ - Proxies
+ - Validations
+ - Associations</p>
+<p><img alt="Model 的主要组成部分" src="/extjs5_guide/model-breakdown.png"/></p>
+<h5 id="chuang-jian-model">创建 Model</h5>
+<p>通常可以定义一个公用的基础类。这个基类能定义所有 Model 公用的属性。
+Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.model.Base'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">'Ext.data.Model'</span><span class="p">,</span>
+
+    <span class="nx">fields</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">'id'</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">'int'</span>
+    <span class="p">}],</span>
+
+    <span class="nx">schema</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'MyApp.model'</span><span class="p">,</span>  <span class="c1">// generate auto entityName</span>
+
+        <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>     <span class="c1">// Ext.util.ObjectTemplate</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="nx">ajax</span><span class="p">,</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s1">'{entityName}.json'</span><span class="p">,</span>
+            <span class="nx">reader</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">type</span><span class="o">:</span> <span class="s1">'json'</span><span class="p">,</span>
+                <span class="nx">rootProperty</span><span class="o">:</span> <span class="s1">'{entityName:lowercase}'</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<h5 id="proxy">Proxy</h5>
+<p>Proxy 由 Model 和 Store 使用的，用于处理加载和保存 Model 数据的。有两种类型的 Proxy: Client 和 Server。
+ - Client Proxy 包括 Memory 和 Local Storage两种。
+ - Server Proxy 用于从远程服务端处理数据。例如：AJAX、JSONP、REST。</p>
+<h5 id="schema">Schema</h5>
+<p>Schema 是一些有关联关系的实体的集合。当 Model 父类型指定了<code>schema</code>属性时，这个属性将会被子类模板继承。</p>
+<p><code>schema</code>的<code>namespace</code>属性能让所有 Model 得到一个缩短的<code>entityName</code>。这个名称主要用于定义 Model 之间的关联关系。</p>
+<p><code>schema</code>的<code>proxy</code>属性是一个对象模板它与基于 Ext.XTemplate 的文本模板是类似的。不同之处在于当给予对象模板数据时它将产生出来对象来。在上面的代码里，模板数据用于自动定义所有 Model 的<code>proxy</code>配置，而不需要显式的定义<code>proxy</code>。</p>
+<p>这样每个 Model 实例将根据不同的值采用相同的方式来加载数据。可以避免了在不同的 Model 中重复定义 proxy。</p>
+<h4 id="store_1">Store</h4>
+<p>Model 通常与 Store 一起使用，Store 是记录（Model 子类的实例）的集合。创建 Store 并加载数据：</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Store</span> <span class="p">({</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="s1">'MyApp.model.User'</span>
+<span class="p">});</span>
+
+<span class="nx">store</span><span class="p">.</span><span class="nx">load</span><span class="p">({</span>
+    <span class="nx">callback</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">first_name</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">first</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">'name'</span><span class="p">);</span>
+       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">first_name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<h5 id="nei-lian-shu-ju">内联数据</h5>
+<p>Store 可以加载内联数据。Store 将会将它的<code>data</code>属性中的对象转换成对应的 Model 类型的记录集。</p>
+<div class="highlight"><pre><span></span><span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="s1">'MyApp.model.User'</span><span class="p">,</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">"Philip J. Fry"</span>
+    <span class="p">},{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">"Hubert Farnsworth"</span>
+    <span class="p">},{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">"Turanga Leela"</span>
+    <span class="p">},{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">"Amy Wong"</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+</pre></div>
+<h5 id="pai-xu-he-fen-zu">排序和分组</h5>
+<p>Store 可以在本地或远程执行排序、过滤和分组操作。</p>
+<div class="highlight"><pre><span></span><span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="s1">'MyApp.model.User'</span><span class="p">,</span>
+
+    <span class="nx">sorters</span><span class="o">:</span> <span class="p">[</span><span class="s1">'name'</span><span class="p">,</span><span class="s1">'id'</span><span class="p">],</span>
+    <span class="nx">filters</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">property</span><span class="o">:</span> <span class="s1">'name'</span><span class="p">,</span>
+        <span class="nx">value</span>   <span class="o">:</span> <span class="s1">'Philip J. Fry'</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<h4 id="association_1">Association</h4>
+<p>Model 可以通过 Association API 关联起来。多数应用都需要处理很多互相关联的 Model。</p>
+<p>以下是一个多对一的关联示例：</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.model.User'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">'MyApp.model.Base'</span><span class="p">,</span>
+
+    <span class="nx">fields</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">'name'</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+
+<span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.model.Post'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">'MyApp.model.Base'</span><span class="p">,</span>
+
+    <span class="nx">fields</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">'userId'</span><span class="p">,</span>
+        <span class="nx">reference</span><span class="o">:</span> <span class="s1">'User'</span><span class="p">,</span> <span class="c1">// the entityName for MyApp.model.User</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">'int'</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">'title'</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+</pre></div>
+<p>定义好关联关系之后，就可以很容易的访问关联的数据：</p>
+<div class="highlight"><pre><span></span><span class="c1">// Loads User with ID 1 and related posts and comments</span>
+<span class="c1">// using User's Proxy</span>
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'User: '</span> <span class="o">+</span> <span class="nx">user</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'name'</span><span class="p">));</span>
+
+        <span class="nx">user</span><span class="p">.</span><span class="nx">posts</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">posts</span><span class="p">){</span>
+            <span class="nx">posts</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Post: '</span> <span class="o">+</span> <span class="nx">post</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'title'</span><span class="p">));</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">posts</span><span class="p">().</span><span class="nx">add</span><span class="p">({</span>
+    <span class="nx">userId</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">'Post 10'</span>
+<span class="p">});</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">posts</span><span class="p">().</span><span class="nx">sync</span><span class="p">();</span>
+
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">Post</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">post</span><span class="p">.</span><span class="nx">getUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Got user from post: '</span> <span class="o">+</span> <span class="nx">user</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'name'</span><span class="p">));</span>
+        <span class="p">});</span>                           
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">Post</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">post</span><span class="p">.</span><span class="nx">setUser</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>                         
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<h5 id="jia-zai-qian-tao-shu-ju">加载嵌套数据</h5>
+<p>定义好关联关系之后，可以在单个请求中加载关联数据。例如，服务端的响应如下：</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">"success"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"user"</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Philip J. Fry"</span><span class="p">,</span>
+        <span class="s2">"posts"</span><span class="o">:</span> <span class="p">[{</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Post 1"</span>
+        <span class="p">},{</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Post 2"</span>
+        <span class="p">},{</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Post 3"</span>
+        <span class="p">}]</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+<p>这种情况下框架能自动解析出单个响应中的嵌套数据，而不需要发起两次请求，分别来获取 User 和 Post 的数据。</p>
+<h4 id="yan-zheng_1">验证</h4>
+<p>Model 提供了数据验证的支持。</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.model.User'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">'Ext.data.Model'</span><span class="p">,</span>
+    <span class="nx">fields</span><span class="o">:</span> <span class="p">...,</span>
+
+    <span class="nx">validators</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="p">[</span>
+            <span class="s1">'presence'</span><span class="p">,</span>
+            <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'length'</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span> <span class="mi">7</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'exclusion'</span><span class="p">,</span> <span class="nx">list</span><span class="o">:</span> <span class="p">[</span><span class="s1">'Bender'</span><span class="p">]</span> <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<p>验证定义时是以字段名作为 key，值作为它的规则。这些规则由一个验证对象配置，或多个验证对象配置数组构成的。上面的这个验证规则验证了<code>name</code>字段，它的长度必须大于7，并且不能是<code>Bender</code>。
+某些验证规则可能会包含不同的属性&mdash;&mdash;比如<code>min</code>和<code>max</code>属性等等。Ext JS 有5种内置验证器并且易于添加自定义的规则。
+ - presence 确保字段有值。
+ - length 确保字符串的长度处于<code>min</code>和<code>max</code>之间，这两个选项都是可选的
+ - format 确保字符串匹配某个正则表达式
+ - inclusion 确保值匹配某个特定的值列表
+ - exclusion 确保值不属于某个特定的值列表</p>
+<div class="highlight"><pre><span></span><span class="c1">// now lets try to create a new user with as many validation</span>
+<span class="c1">// errors as we can</span>
+<span class="kd">var</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyApp</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">({</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">'Bender'</span>
+<span class="p">});</span>
+
+<span class="c1">// run some validation on the new user we just created</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Is User valid?'</span><span class="p">,</span> <span class="nx">newUser</span><span class="p">.</span><span class="nx">isValid</span><span class="p">());</span>
+
+<span class="c1">//returns 'false' as there were validation errors</span>
+
+<span class="kd">var</span> <span class="nx">errors</span> <span class="o">=</span> <span class="nx">newUser</span><span class="p">.</span><span class="nx">getValidation</span><span class="p">(),</span>
+    <span class="nx">error</span>  <span class="o">=</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'name'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Error is: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+
+<span class="nx">newUser</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'Bender Bending Rodriguez'</span><span class="p">);</span>
+<span class="nx">errors</span> <span class="o">=</span> <span class="nx">newUser</span><span class="p">.</span><span class="nx">getValidation</span><span class="p">();</span>
+</pre></div>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

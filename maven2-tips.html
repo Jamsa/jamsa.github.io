@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Maven2 Tips"/>
+        <meta property="og:url" content="/maven2-tips.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="/maven2-tips.html" />
+
+        <title>Maven2 Tips | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
+                                <li ><a href="/category/qian-duan.html">前端</a></li>
+                                <li ><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/maven2-tips.html" rel="bookmark"
+             title="Permalink to Maven2 Tips">Maven2 Tips</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2009-09-21
+
+        |
+        tags:         <a href="/tag/maven.html">maven</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>mvn命令行</h1>
+<h2>执行Java程序</h2>
+<div class="highlight"><pre><span></span>mvn exec:java -Dexec.mainClass=org.jamsa.scalademo.FunctionValue
+</pre></div>
+<h2>运行单个单元测试</h2>
+<div class="highlight"><pre><span></span>mvn test -Dtest=AppTest
+</pre></div>
+<h2>安装包和源码包</h2>
+<div class="highlight"><pre><span></span>mvn install:install-file -Dfile=target/jsonplugin-0.34.jar -Dsources=target/jsonplugin-0.34-sources.jar -DartifactId=jsonplugin -DgroupId=com.googlecode -Dversion=0.34 -Dclassifier=sources -Dpackaging=jar
+</pre></div>
+<h2>生成lift应用</h2>
+<div class="highlight"><pre><span></span>mvn.bat archetype:generate -U -DarchetypeGroupId=net.liftweb -DarchetypeArtifactId=lift-archetype-blank -DremoteRepositories=http://scala-tools.org/repo-releases -DgroupId=demo.helloworld -DartifactId=helloworld -Dversion=1.0-SNAPSHOT
+</pre></div>
+<h1>pom.xml配置</h1>
+<h2>dependency的scope</h2>
+<div class="highlight"><pre><span></span>    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="c">&lt;!-- 使ide能找到c标签库的tld文件 --&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>taglibs<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>standard<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.1.2<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+<p>这里的test表示在测试时才需要该依赖。而provided则表示发布后的环境中将提供这个包。</p>
+<h2>scala插件配置</h2>
+<div class="highlight"><pre><span></span>      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.scala-tools<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>maven-scala-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;executions&gt;</span>
+          <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>compile<span class="nt">&lt;/goal&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>testCompile<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+          <span class="nt">&lt;/execution&gt;</span>
+        <span class="nt">&lt;/executions&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+          <span class="nt">&lt;scalaVersion&gt;</span>${scala.version}<span class="nt">&lt;/scalaVersion&gt;</span>
+          <span class="nt">&lt;args&gt;</span>
+            <span class="nt">&lt;arg&gt;</span>-target:jvm-1.5<span class="nt">&lt;/arg&gt;</span>
+            <span class="nt">&lt;arg&gt;</span>-encoding<span class="nt">&lt;/arg&gt;</span>
+            <span class="nt">&lt;arg&gt;</span>GBK<span class="nt">&lt;/arg&gt;</span>
+          <span class="nt">&lt;/args&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+</pre></div>
+<p>通过args可指定-encoding参数，可以避免出现scalac识别源码字符集错误的问题。</p>
+<h2>指定所使用的依赖的编译版本</h2>
+<div class="highlight"><pre><span></span>    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.json<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>json<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>20090211<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;classifier&gt;</span>jdk1.5<span class="nt">&lt;/classifier&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+<h2>jetty插件的配置</h2>
+<div class="highlight"><pre><span></span>        <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.mortbay.jetty<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>maven-jetty-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+            <span class="nt">&lt;stopPort&gt;</span>9966<span class="nt">&lt;/stopPort&gt;</span>
+            <span class="nt">&lt;stopKey&gt;</span>foo<span class="nt">&lt;/stopKey&gt;</span>
+            <span class="nt">&lt;webAppConfig&gt;</span>
+                <span class="nt">&lt;contextPath&gt;</span>/budget<span class="nt">&lt;/contextPath&gt;</span>
+                <span class="nt">&lt;defaultsDescriptor&gt;</span>src/main/resources/webdefault.xml
+                <span class="nt">&lt;/defaultsDescriptor&gt;</span>
+                <span class="c">&lt;!--</span>
+<span class="c">                    &lt;overrideDescriptor&gt;src/main/resources/override-web.xml&lt;/overrideDescriptor&gt;</span>
+<span class="c">                --&gt;</span>
+            <span class="nt">&lt;/webAppConfig&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+    <span class="nt">&lt;/plugin&gt;</span>
+</pre></div>
+<p>这里有一个样例 <a href="webdefault.xml">webdefault.xml</a> 。webdefault.xml可以解决执行jetty:run时静态文件不能修改的问题。</p>
+<h2>一个简单的Profile</h2>
+<div class="highlight"><pre><span></span>    <span class="nt">&lt;profiles&gt;</span>
+        <span class="nt">&lt;profile&gt;</span>
+            <span class="nt">&lt;id&gt;</span>oc4j<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;dependencies&gt;</span>
+                <span class="nt">&lt;dependency&gt;</span>
+                    <span class="nt">&lt;groupId&gt;</span>xerces<span class="nt">&lt;/groupId&gt;</span>
+                    <span class="nt">&lt;artifactId&gt;</span>xercesImpl<span class="nt">&lt;/artifactId&gt;</span>
+                    <span class="nt">&lt;version&gt;</span>2.6.2<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;/dependency&gt;</span>
+                <span class="nt">&lt;dependency&gt;</span>
+                    <span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
+                    <span class="nt">&lt;artifactId&gt;</span>jstl<span class="nt">&lt;/artifactId&gt;</span>
+                    <span class="nt">&lt;version&gt;</span>1.1.2<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;/dependency&gt;</span>
+                <span class="nt">&lt;dependency&gt;</span>
+                    <span class="nt">&lt;groupId&gt;</span>taglibs<span class="nt">&lt;/groupId&gt;</span>
+                    <span class="nt">&lt;artifactId&gt;</span>standard<span class="nt">&lt;/artifactId&gt;</span>
+                    <span class="nt">&lt;version&gt;</span>1.1.2<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;/dependency&gt;</span>
+            <span class="nt">&lt;/dependencies&gt;</span>
+            <span class="nt">&lt;build&gt;</span>
+                <span class="nt">&lt;plugins&gt;</span>
+                    <span class="nt">&lt;plugin&gt;</span>
+                        <span class="nt">&lt;artifactId&gt;</span>maven-war-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                        <span class="nt">&lt;configuration&gt;</span>
+                            <span class="nt">&lt;webResources&gt;</span>
+                                <span class="nt">&lt;resource&gt;</span>
+                                    <span class="nt">&lt;directory&gt;</span>src/main/oc4j<span class="nt">&lt;/directory&gt;</span>
+                                <span class="nt">&lt;/resource&gt;</span>
+                            <span class="nt">&lt;/webResources&gt;</span>
+                        <span class="nt">&lt;/configuration&gt;</span>
+                    <span class="nt">&lt;/plugin&gt;</span>
+                <span class="nt">&lt;/plugins&gt;</span>
+            <span class="nt">&lt;/build&gt;</span>
+        <span class="nt">&lt;/profile&gt;</span>
+    <span class="nt">&lt;/profiles&gt;</span>
+</pre></div>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

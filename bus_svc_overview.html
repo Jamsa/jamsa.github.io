@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="实现服务端功能之——服务"/>
+        <meta property="og:url" content="/bus_svc_overview.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="/bus_svc_overview.html" />
+
+        <title>实现服务端功能之——服务 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
+                                <li ><a href="/category/qian-duan.html">前端</a></li>
+                                <li ><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/bus_svc_overview.html" rel="bookmark"
+             title="Permalink to 实现服务端功能之——服务">实现服务端功能之——服务</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2008-07-08
+
+        |
+        tags:         <a href="/tag/oracle.html">oracle</a>
+        <a href="/tag/ebs.html">ebs</a>
+        <a href="/tag/oaf.html">oaf</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>面向服务的架构预览</h1>
+<p>服务的概念已经出现了很长时间，但面向服务的概念相对是比较新的。面向服务的架构是一种有助于降低应用耦合的一种构建应用的风格，独立管理的组件可以被重用和重新安排到其它完整功能的应用中。SOA提供下面的功能：</p>
+<ul>
+<li>
+<p>构建和注册服务的能力</p>
+</li>
+<li>
+<p>使用户发现和调用服务的能力</p>
+</li>
+<li>
+<p>执行服务的平台</p>
+</li>
+</ul>
+<p>下面的图演示了SOA的基本概念：</p>
+<p>SOA的基本概念</p>
+<p><img alt="srv_overview" src="/oaf_bus_svc_overview/srv_overview.gif"/></p>
+<p>使用面向服务的架构你可以：</p>
+<ul>
+<li>
+<p>容易的将Oracle Applications和其它的应用集成</p>
+</li>
+<li>
+<p>影响已经部署的应用保护现有投资</p>
+</li>
+<li>
+<p>容易适应更多的需求</p>
+</li>
+</ul>
+<h1>服务预览</h1>
+<p>服务在EBS的开发、测试、分类、公共安全和私有接口架构中是一个关键组件。开发者使用统一的指导方针和实现方式来创建服务，然后当它们控制源代码时被自动发布到集中的接口仓库。</p>
+<p>服务时自描述的，独立的组件可以被部署为web service、EJB session beans或作为共设的Java API（与客户端被部署在同一个JVM中）。服务接口根据用途分为多种不同的类型。Oracle支持业务对象服务。</p>
+<p>业务对象是自包含的代表了真实世界的业务领域对象：一个文档、一个地方、一个人或一件事。从实现的角度来说，业务对象包含一个或多个视力对象（VO）映射到下层的复合实体（EO）（子实体不能没有父对象）。比如，在OA Framework Toolbox Tutorial中采购单业务对象包含了一个头部信息并带有一行或多行明细，每个包含一个或多个供货。供货不能离开明细行独立存在，明细行不能没有头信息。（供货和行是子业务对象组件）。如果删除头，将删除所有的行和供货。通常业务对象视图对象和下层实体对象的区别在于视图对象中出现外键属性，比如定单中的供应商名称。</p>
+<p>下面的摘要是使用业务对象服务的情况：</p>
+<ul>
+<li>
+<p>业务－业务的集成</p>
+</li>
+<li>
+<p>应用－应用的集成（服务－服务）</p>
+</li>
+<li>
+<p>BPEL</p>
+</li>
+<li>
+<p>数据导入、导出和同步</p>
+</li>
+<li>
+<p>富客户端报表框架，比如XML Publisher</p>
+</li>
+<li>
+<p>支持SDO标准</p>
+</li>
+<li>
+<p>实时数据的企业安全搜索（Secure Enterprise Search of real-time data）</p>
+</li>
+</ul>
+<h2>自动创建Web Services</h2>
+<h2>术语</h2>
+<table>
+<thead>
+<tr>
+<th>业务对象（Business Object）</th>
+<th>自包含的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

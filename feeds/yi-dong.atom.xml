@@ -1,0 +1,1327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Jamsa的笔记 - 移动</title><link href="/" rel="alternate"></link><link href="/feeds/yi-dong.atom.xml" rel="self"></link><id>/</id><updated>2015-04-25T00:00:00+08:00</updated><entry><title>Beginning Android Games学习笔记</title><link href="/beginning-android-gamesxue-xi-bi-ji.html" rel="alternate"></link><published>2012-07-28T00:00:00+08:00</published><updated>2015-04-25T00:00:00+08:00</updated><author><name>Jamsa</name></author><id>tag:None,2012-07-28:/beginning-android-gamesxue-xi-bi-ji.html</id><summary type="html">&lt;h1&gt;Game Development 101&lt;/h1&gt;
+&lt;p&gt;在开始hacking前先进行游戏设计。这并非指基本的设计，比如FPS中的WSAD的鼠标之类的。而是类似：是否需要splash screen？需要哪些菜单项？游戏设置里需要有哪些选项？等等。&lt;/p&gt;
+&lt;p&gt;没有银弹。&lt;/p&gt;
+&lt;h2&gt;游戏流派&lt;/h2&gt;
+&lt;p&gt;开始之前先决定流派。除非你创造了新的流派。同一流派的游戏往往有类似的游戏机制（如控制方式、游戏目标之类）。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Causal Game&lt;/li&gt;
+&lt;li&gt;猜迷&lt;/li&gt;
+&lt;li&gt;动作&lt;/li&gt;
+&lt;li&gt;塔防&lt;/li&gt;
+&lt;li&gt;其它创新的游戏&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;游戏设计：笔比代码更强大&lt;/h2&gt;
+&lt;p&gt;在编码前集中设计游戏的用户体验：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;核心机制&lt;/li&gt;
+&lt;li&gt;主要角色的粗略故事&lt;/li&gt;
+&lt;li&gt;基于角色及其背景设计粗略的画面风格&lt;/li&gt;
+&lt;li&gt;主要画面的概要及过渡画面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以一个贪食蛇游戏为例。可以用纸和笔记录下这些设计，以坐标纸画出界面草图。&lt;/p&gt;
+&lt;h3 id="he-xin-ji-zhi"&gt;核心机制：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;蛇头控制前进方向并拖动它的尾部。头和尾由相等尺寸的部分组成只是显示不同&lt;/li&gt;
+&lt;li&gt;当蛇走到屏幕边界时，从屏幕的另一边重新进来&lt;/li&gt;
+&lt;li&gt;左右按钮按下时，蛇将顺时针或逆时针转动90度&lt;/li&gt;
+&lt;li&gt;如果蛇撞到自己，游戏结束&lt;/li&gt;
+&lt;li&gt;如果蛇撞到了新块，则块消失，增加10分，添加一个新块到蛇尾。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;复杂的游戏需要将这些内容分开来设计，最后再将这些合并起来 …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Game Development 101&lt;/h1&gt;
+&lt;p&gt;在开始hacking前先进行游戏设计。这并非指基本的设计，比如FPS中的WSAD的鼠标之类的。而是类似：是否需要splash screen？需要哪些菜单项？游戏设置里需要有哪些选项？等等。&lt;/p&gt;
+&lt;p&gt;没有银弹。&lt;/p&gt;
+&lt;h2&gt;游戏流派&lt;/h2&gt;
+&lt;p&gt;开始之前先决定流派。除非你创造了新的流派。同一流派的游戏往往有类似的游戏机制（如控制方式、游戏目标之类）。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Causal Game&lt;/li&gt;
+&lt;li&gt;猜迷&lt;/li&gt;
+&lt;li&gt;动作&lt;/li&gt;
+&lt;li&gt;塔防&lt;/li&gt;
+&lt;li&gt;其它创新的游戏&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;游戏设计：笔比代码更强大&lt;/h2&gt;
+&lt;p&gt;在编码前集中设计游戏的用户体验：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;核心机制&lt;/li&gt;
+&lt;li&gt;主要角色的粗略故事&lt;/li&gt;
+&lt;li&gt;基于角色及其背景设计粗略的画面风格&lt;/li&gt;
+&lt;li&gt;主要画面的概要及过渡画面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以一个贪食蛇游戏为例。可以用纸和笔记录下这些设计，以坐标纸画出界面草图。&lt;/p&gt;
+&lt;h3 id="he-xin-ji-zhi"&gt;核心机制：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;蛇头控制前进方向并拖动它的尾部。头和尾由相等尺寸的部分组成只是显示不同&lt;/li&gt;
+&lt;li&gt;当蛇走到屏幕边界时，从屏幕的另一边重新进来&lt;/li&gt;
+&lt;li&gt;左右按钮按下时，蛇将顺时针或逆时针转动90度&lt;/li&gt;
+&lt;li&gt;如果蛇撞到自己，游戏结束&lt;/li&gt;
+&lt;li&gt;如果蛇撞到了新块，则块消失，增加10分，添加一个新块到蛇尾。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;复杂的游戏需要将这些内容分开来设计，最后再将这些合并起来。&lt;/p&gt;
+&lt;p&gt;最后一个隐含的机制是：游戏将在蛇充满整个屏幕时结束。&lt;/p&gt;
+&lt;h3 id="gu-shi-he-mei-zhu-feng-ge"&gt;故事和美术风格&lt;/h3&gt;
+&lt;p&gt;取个有趣的名字：Mr.Nom&lt;/p&gt;
+&lt;p&gt;其它：
+ - 涂鸦风格。将草图中设计的块扫描进去作为图像资源
+ - Mr.Nom是利己主义者，我们修改它的块改小点并加个帽子
+ - 让Mr.Nom在每次吃掉一个墨水块时发出咕哝声
+ - 将游戏及其它标识的地方设置为Mr.Nom而不是Doodle Snake&lt;/p&gt;
+&lt;h3 id="ping-mu-xian-shi-he-guo-du"&gt;屏幕显示和过渡&lt;/h3&gt;
+&lt;p&gt;屏幕显示的组成：
+ - 屏幕是一个具有元子性的单元，它将整个显示屏充满，负责游戏的一个部分（如：主画面、设置界面或者游戏屏幕）
+ - 屏幕可以由多个组件（如：按钮、控件等等）
+ - 屏幕允许用户与屏幕元素交互。这些交互可能触发屏幕过渡（从一个屏幕转到另一个屏幕）。&lt;/p&gt;
+&lt;p&gt;按这些规则，Mr.Nom游戏的屏幕和过渡如下：
+ - 首先显示游戏的名称，放上Mr.Nom的logo
+ - 为了让这些看起来更一致，我们也需要背景，可以重用这个背景
+ - 玩家需要玩游戏，因此需要放一个Play按钮。这将是第一个交互组件
+ - Help按钮过渡到帮助屏幕
+ - 声音设计为可爱类型的，有些玩家可能需要静音。给他们一个切换这个选项的按钮&lt;/p&gt;
+&lt;p&gt;然后是详细设计各个屏幕及屏幕上的元素，各个屏幕的状态及不同状态之间的切换，各个屏幕之间如何过渡等细节。&lt;/p&gt;
+&lt;h2&gt;编码&lt;/h2&gt;
+&lt;p&gt;另一个蛋与鸡的问题：我们知道Android游戏相关的API。但我们仍不知道如何编写游戏。我们有游戏设计，但是将它转化为可执行的程序对我们来说仍像是种巫术。下面将开始介绍一个游戏的基本组成。我们将看到接口的伪代码然后用Android提供的API来实现它。使用接口的2个原因：它让我们关注于语义而不是实现细节；它让我们可以在以后更改实现。（比如：将基于CPU渲染的2D画面替换成基于OpenGL ES的实现）。&lt;/p&gt;
+&lt;p&gt;游戏的基本框架可以分为以下模块：
+ - 窗口管理：它的职责是创建窗口和处理关闭窗口、暂停/恢复Android应用程序等
+ - 输入：与窗口管理模块相关，跟踪用户的输入（比如：点击事件、按键等）
+ - 文件IO：用于从磁盘读取我们的资源（asserts）
+ - 图像：这可能是实际游戏中最复杂的模块。它的职责是加载图像并将它们绘制到屏幕上
+ - 音频：它的职责是加载和播放所有声音
+ - 游戏框架：将上面所有的内容连接到一起提供一个易于编写游戏的基础&lt;/p&gt;
+&lt;p&gt;每个模块都是由一到多个接口组成。每个接口将有至少一个依赖于底层平台（这里是Android）的实现。&lt;/p&gt;
+&lt;h3 id="ying-yong-cheng-xu-he-chuang-kou-guan-li"&gt;应用程序和窗口管理&lt;/h3&gt;
+&lt;p&gt;游戏与其它程序一样有UI。它包含在某种窗口中。窗口作为容器，基本上可以将它当作画布，我们在上面绘制游戏内容。&lt;/p&gt;
+&lt;p&gt;多数操作系统允许用户通过某种方式与窗口交互。&lt;/p&gt;
+&lt;p&gt;应用程序和窗口管理模块也实际上负责设置窗口以使得它填充满某个UI组件以便我们可以将来在上面进行渲染。它也接收用户输入。UI组件可以使用CPU或依赖于硬件加速（OpenGL ES）进行渲染。&lt;/p&gt;
+&lt;p&gt;应用程序和窗口管理模块没有实际的接口集。我们会将它合并到游戏框架中。我们需要记住应用程序状态和窗口事件需要管理：
+ - 创建：在窗口（应用程序）启动时被调用一次
+ - 暂停：在应用程序被某种机制暂停运行时被调用
+ - 恢复：在窗口被放到前台应用被恢复运行时被调用&lt;/p&gt;
+&lt;h3 id="shu-ru"&gt;输入&lt;/h3&gt;
+&lt;p&gt;用户需要以某种方式与游戏交互。多数操作系统中，输入事件被分发给当前被聚焦的窗口。这个窗口再将事件分给被聚焦的UI组件。这个分发过程对用户是透明的；我们需要关心的只是从被聚焦的UI组件获取事件。操作系统的UI API会在事件分发系统中提供某种钩子机制以便我们可以简单的注册和记录事件。通过钩子记录事件是输入模块的主要任务。有两种操作可以记录这些信息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;轮询：通过检查输入设备的当前状态。任何当前检查和上次检查之间的状态将丢失。这种输入处理适用于检查类似用户是否点了某个特殊的按钮之类的情况。不适合于跟踪文本输入，按键事件的顺序也会丢失。&lt;/li&gt;
+&lt;li&gt;基于事件的处理：它能提供完整自上次检查以来完整的事件历史。适用于执行文本输入和任何依赖于顺序的事件。它也适用于检查手指何时第一次点击屏幕或者何时离开屏幕的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;输入设备&amp;mdash;&amp;mdash;Android有3种主要输入方法：触摸屏、键盘/轨迹球和加速感应。前2者可以适用于轮询和事件机制。加速感应通常只适用于轮询。触摸屏事件可以生成三种事件：
+ - 接触：在手指接触屏幕时发生
+ - 拖动：手指在屏幕上拖动时发生。在拖动事件之前总会有一个接触事件
+ - 离开：在手指离开屏幕时发生&lt;/p&gt;
+&lt;p&gt;每个触摸屏事件都有附加信息：相对于UI组件原点的相对位置和在多点触控条件下区分接触手指的索引指示器。&lt;/p&gt;
+&lt;p&gt;键盘可以产生两种事件：
+ - Key-down：在一个键被按下时发生
+ - Key-up：在键弹起时发生。这个事件的前面总会存在一个Key-down事件&lt;/p&gt;
+&lt;p&gt;键盘事件也携带了附加信息。Key-down事件保存了被按的键的代码。Key-up事件保存了键的代码和一个实际的Unicode字符。Key-up事件产生的键代码和Unicode字符是不同的。其它键的状态也被记录，比如Shift键。通过这种方法，我们可以在key-up事件中获得大写和小写字母。在key-down事件中我们只知道某种按钮被按下了；而不知道实际产生了什么字符。&lt;/p&gt;
+&lt;p&gt;加速感应&amp;mdash;&amp;mdash;我们总是轮询加速感应。加速感应报告加速度x,y和z三个方向的加速。x沿屏幕下边从左向右，y沿屏幕左边从下向上，z沿与屏幕垂直方向从下向上。各个方向以米/秒的平方(m/s^2)表示。&lt;/p&gt;
+&lt;h3 id="wen-jian-io"&gt;文件IO&lt;/h3&gt;
+&lt;p&gt;通过输入输出流读写数据。从APK文件中读取Assert。&lt;/p&gt;
+&lt;p&gt;我们需要的文件IO接口：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;com.badlogic.androidgames.framework&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.io.IOException&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.io.InputStream&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.io.OutputStream&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;interface&lt;/span&gt; &lt;span class="nc"&gt;FileIO&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; 
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;InputStream&lt;/span&gt; &lt;span class="nf"&gt;readAsset&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;fileName&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;IOException&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;InputStream&lt;/span&gt; &lt;span class="nf"&gt;readFile&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;fileName&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;IOException&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;OutputStream&lt;/span&gt; &lt;span class="nf"&gt;writeFile&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;fileName&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;IOException&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+&lt;span class="o"&gt;}&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="yin-pin"&gt;音频&lt;/h3&gt;
+&lt;p&gt;音频编程是个更加复杂的主题。我们不使用高级音频处理，只是回放从文件加加载的声音效果和音乐，与图像模块加载位图类似。&lt;/p&gt;
+&lt;h4 id="sheng-yin-de-wu-li-xian-xiang"&gt;声音的物理现象&lt;/h4&gt;
+&lt;p&gt;声音通常是被当作波在某种媒介中传播，比如在空气或水中。波不是实际的物体，而是分子在媒介中的运动。&lt;/p&gt;
+&lt;h4 id="ji-lu-he-hui-fang"&gt;记录和回放&lt;/h4&gt;
+&lt;p&gt;声音的记录和回放看起来非常简单：记录时，我们只需要记录在某个时间点在某个区域中声波产生的分子压力有多大。回放只是让喇叭周围的空气分子像我们记录时的那样波动就可以了。&lt;/p&gt;
+&lt;p&gt;实际上当然比这要复杂。音频的两种记录方式：模拟的和数字的。这两种方式都是通过某种麦克风记录音波，通常使用某种薄膜将分子压力记录为某种信号。&lt;/p&gt;
+&lt;p&gt;记录数字音频时是时间上分离的时间点来记录的。根据在薄膜上的分子压力它被推向内或向外。这个过程被称为采样，我们在不同的时间点上进行采样。在某个时间单元上进行的采样次数被称作采样率。通常这个时间单元以秒记，这个单位被称作Hz。每秒进行的采样次数越多，音频的质量就越高。CD回放的率是44100Hz即44.1KHz，在电话传输的语音是8KHz。&lt;/p&gt;
+&lt;p&gt;采样率只是一种音频质量的一种属性。存储每个采样状态的方法也扮演了重要的角色，它也是数字化的的一个子工程。这个采样的状态实际上是薄膜离它的自然原点的位置。为记录下它是向外还是向内推的。采样状态被记录为正数或附数。我们可以将这个数以多种方式记录：8位、16位或者32位整数，32位浮点甚至是64位浮点数。每种数据类型都有它的精度限制，8位的整数只能存储127个正数和128个负数值。32位整数则提供了更多的值。当存储浮点数时，这个状态值通常被记录在-1和1之间。最大正数和最小附描述了薄膜与它的自然原点的位置差。薄膜的状态也因此被称为振幅。它描述了它遇到的声音的响亮程度。&lt;/p&gt;
+&lt;p&gt;单个麦克风只能记录单声道声音，它将丢失空间信息。两个麦克风可以让我们可以度量出在不同的空间位置，因此被称为立体声。你可以将我个麦克风放在左边另一个放在右边以记录下立体声。当这两个声音被同时播放时，可以再现出空间感。但这也意味着在保存立体声时我们需要保存两倍数量的采样。&lt;/p&gt;
+&lt;p&gt;回放则简单一些。一旦我们有了数字格式的音频采样，通过指定采样率和数据类型我们就可以将这些数据放到音频处理单元，它会将这些信息转化为信号传递到喇叭上。喇叭将这些信号转化为薄膜的振动，它按顺序使周围的空间振动产生声波。这与记录声音时相同，只是反过来了。&lt;/p&gt;
+&lt;h4 id="yin-pin-zhi-liang-he-ya-suo"&gt;音频质量和压缩&lt;/h4&gt;
+&lt;p&gt;根据上面的内容可以知道更高的采样率和更精确的数据类型可以得到更好的音频效果。但是也意味着需要更大的空间来存储音频信号。&lt;/p&gt;
+&lt;p&gt;设想记录一段60秒的的音频两次：一次是8KHz的采样率每个采样以8位来存储，另一次是44KHz的采样率每个采样以16位来存储。第一种情况下每个采样率占用1byte。除以采样率8000Hz，我们每秒需要8000butes。完全保存60秒的音频记录需要480000butes大概为半MB。另一种方式下：每个采样2bytes，2乘以44000bytes每秒。即88000butes每秒。乘60秒，达到5280000bytes超过5MB。通常3分钟的流行音乐需要超过15MB内存，这还只是单声道的录音。立体声所需内存还要翻倍。&lt;/p&gt;
+&lt;p&gt;很多聪明的人们相出了复杂的算法将音频进行压缩。压缩后的音频通常损失很小，原始音频中某些次要的部分被忽略了。当你播放MP3或者OGG时，实际听到的是有损的压缩音频。因此，使用MP3或者OGG将帮助我们节约大量的磁盘空间。&lt;/p&gt;
+&lt;p&gt;如何从被压缩文件中回放音频呢？有一些专业的解码硬件可以处理各种压缩音频格式，普通的音频硬件只能处理未压缩的采样。在将采样传递给音频卡之前，我们需要先读取这些压缩的音频并进行解压，或通过流读取所需要的部分。&lt;/p&gt;
+&lt;h4 id="shi-jian"&gt;实践&lt;/h4&gt;
+&lt;p&gt;由于音频要占用大量内存。我们在播放背景音乐时，将使用音频流，通常只有一个音频流在播放，因此我们只需要访问一次磁盘。&lt;/p&gt;
+&lt;p&gt;对于音效，比如枪声等，则不同。通常需要多次播放。应该将这些短的声音加载到内存中。&lt;/p&gt;
+&lt;p&gt;因此，我们有下面的需求：
+ - 我们需要一个方式从文件加载音频流
+ - 需要控制音频流的播放
+ - 我们需要控制完全加载到内存的音频的播放&lt;/p&gt;
+&lt;p&gt;将这些直接转换成Audio、Music和Sound接口：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;com.badlogic.androidgames.framework&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;interface&lt;/span&gt; &lt;span class="nc"&gt;Audio&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; 
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Music&lt;/span&gt; &lt;span class="nf"&gt;newMusic&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Sound&lt;/span&gt; &lt;span class="nf"&gt;newSound&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; 
+&lt;span class="o"&gt;}&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Audio接口使用我们的方法来创建Music和Sound实例。Music表示音频流文件。Sound表示保存在内存中的音效。Audio.newMusic()和Audio.newSound()都接收文件名参数并抛出IOException。文件名指向APK文件中的assert文件。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;com.badlogic.androidgames.framework&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;interface&lt;/span&gt; &lt;span class="nc"&gt;Music&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; 
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;play&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;stop&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;pause&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setLooping&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;looping&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setVolume&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;isPlaying&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;isStopped&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;isLooping&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;dispose&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; 
+&lt;span class="o"&gt;}&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Music接口包含的内容更多点。除了控制播放外还可以设置是否循环播放。也允许设置音量值&amp;mdash;&amp;mdash;从0到1之间的浮点数。在我们不再需要这个Music实例时，应该使用dispose来关闭资源。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;com.badlogic.androidgames.framework&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;interface&lt;/span&gt; &lt;span class="nc"&gt;Sound&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; 
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;play&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; 
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;dispose&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; 
+&lt;span class="o"&gt;}&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Sound接口更简单些。我们只需要调用它的play()方法，它接收一个音量参数。当我们不需要这个实例时也使用dispose释放资源。&lt;/p&gt;
+&lt;h2&gt;图形&lt;/h2&gt;
+&lt;p&gt;图形模块用于将图像绘制到屏幕上。如果需要高性能的图形，则至少需要知道图形编程的一些基础知识。我们从2D图形开始。&lt;/p&gt;
+&lt;p&gt;问题：图片是如何输出显示的？&lt;/p&gt;
+&lt;h3 id="guang-zha-xiang-su-he-zheng-huan-chong_1"&gt;光栅、像素和帧缓冲&lt;/h3&gt;
+&lt;p&gt;当今的显示器都是基于光栅的。光栅是一种二维的网格，称为图片元素，即像素。光栅网格有有限的宽和高，通常用每行和每列的像素个数表示。&lt;/p&gt;
+&lt;p&gt;像素有2个属性：它在网格上的位置和颜色。位置是二维的迪卡尔坐标。这意味着它总是整数。在这个坐标系中原点在网格的左上角。x轴从左向右，y轴从上至下。&lt;/p&gt;
+&lt;p&gt;网格的左上角是(0,0)。坐标系中x轴最大值是光栅宽度减1，y轴最大值是光栅高度减1。&lt;/p&gt;
+&lt;p&gt;显示器从图形处理器接收固定的流信息。它将光栅中每个像素的颜色按程序或操作系统的控制绘制到屏幕上。显示器将每秒刷新很多次显示。这个频率叫作刷新率。以Hz表示。液晶显示器的刷新率通常是每秒60Hz；CRT和等离子显示器通常会有更高的刷新率。&lt;/p&gt;
+&lt;p&gt;图形处理器可以访问特殊的被称为显示内存（VRAM）的内存区域。VRAM是一块保留的区域用于保存显示在屏幕上的每个像素。这个区域通常被称为帧缓冲。一个完整的屏幕图片被称作一帧。对于显示在光栅网格中的每个像素，在帧缓冲中都有一个内存地址保存了它的颜色。当我们需要改变屏幕显示时，只需要简单的修改VRAM中像素的颜色值。&lt;/p&gt;
+&lt;p&gt;为什么y轴在坐标系统中是从上向下的？VRAM或者RAM，是线性的一维的。可以将它看作一维数组。如何将2维的像素坐标映射到一维的内存地址上呢？位于(x,y)坐标上的像素的内存地址是：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;rasterWidth&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我们也可以从地址计算出坐标：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;rasterWidth&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;rasterWidth&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;因此y轴坐标从上向下是因为像素颜色所使用的内存布局决定的。显示器将从左至右坐上至下更新每个像素的颜色，直到屏幕的底部。它可以很方便的将VRAM中的内容转换成屏幕上的颜色信息。&lt;/p&gt;
+&lt;p&gt;NOTE：如果可以完全访问帧缓冲，则可以得到非常好的性能。现代操作系统不允许用户直接访问帧缓冲。通常是绘制到内存区域然后由操作系统将它们复制到实际的帧缓冲。&lt;/p&gt;
+&lt;h3 id="chui-zhi-sao-miao-he-shuang-huan-chong"&gt;垂直扫描和双缓冲&lt;/h3&gt;
+&lt;p&gt;前面介绍过的刷新率看起来速度比较慢，有可能出现写帧缓冲的速度快过刷新的速度。更坏的是我们不知道VRAM是何时被复制到帧的，这可能会产生一个问题如果我们在这个中间绘制了新的内容。则屏幕会显示一部分新帧的内容和一部分旧帧的内容。这在很多PC游戏中可以看到。&lt;/p&gt;
+&lt;p&gt;解决这个问题的一个办法是被称为双缓冲。它不只使用一个帧缓冲，图形处理器（GPU）管理两个，一个前台缓冲一个后台缓冲。前台是显示器可用的帧，后台帧是允许绘制下一帧才会显示的。当我们完成绘制后，我们告诉GPU将这两个缓冲区进行交换，通常只是交换前台和后台缓冲的地址。在图形编程API文档中，可以找到page flip和buffer swap之类的，就是指的这个操作。&lt;/p&gt;
+&lt;p&gt;双缓冲没有完全解决这个问题，尽管：交换可能发生在屏幕刷新显示内容的中间。这就是垂直扫描出现的原因。当我们调用buffer swap方法时，GPU将阻塞直到显示器发出它已经完成当前刷新的信号。这时GPU可以安全的交换缓冲区地址。&lt;/p&gt;
+&lt;p&gt;幸运的是，现在我们不需要关心NVRAM、双缓冲和垂直扫描的细节了。我们通过一组API来处理应用程序窗口的内容。这些API，如：OpenGL ES，提供硬件加速，这基于在图形芯片上使用特殊的电路来处理VRAM。可以看到这里没有魔法！你应该知道内部的工作原理，至少在较高的层面上，这可以让你知道你的应用的性能特性。&lt;/p&gt;
+&lt;p&gt;当我们使用非硬件加速的API渲染时，我们不直接处理显示本身。而是在我们的窗口中绘制一个UI组件。这里我们是处理一个延伸至整个窗口的UI组件。我们的坐标系统不会延伸至整个屏幕，只是在这个UI组件中。通过UI组件自身的虚拟帧缓冲，它变成了我们的显示器。操作系统将管理所有可见窗口中的复合组件，确保组件被正确的转化到实际帧缓冲的区域中。&lt;/p&gt;
+&lt;h3 id="shi-yao-shi-yan-se"&gt;什么是颜色？&lt;/h3&gt;
+&lt;p&gt;物理上讲颜色是不同波长的光波。&lt;/p&gt;
+&lt;h4 id="yan-se-mo-xing"&gt;颜色模型&lt;/h4&gt;
+&lt;p&gt;RGB、YUV和CMYK。多数程序API中都是使用RGB颜色模型。&lt;/p&gt;
+&lt;h4 id="yan-se-de-shu-zi-hua-bian-ma"&gt;颜色的数字化编码&lt;/h4&gt;
+&lt;p&gt;如何将RGB三种颜色转化到内存当中？首先是要定义数据类型。我们可以使用浮点数和指定的范围来描述。比如0.0至1.0之间的浮点数。但是这种方法会战胜大量的空间（每个像素3乘以4或8bytes，依赖于使用32位或64位浮点数）。&lt;/p&gt;
+&lt;p&gt;我们可以丢失掉一部分颜色以减少开销，这完全可以，显示器能发出的颜色通常也有一定范围限制。因此我们可以使用整数代替浮点数。我们使用32位整数，使用无符号bytes来描述颜色组成，每个组成的范围是从0至255。对于一个像素，我们只需要3bytes，或者24bits。这可以描述2的24次方（16777216）种不同的颜色。&lt;/p&gt;
+&lt;p&gt;也可以使用16bit来描述像素的颜色。红使用5bits，绿使用6bits，蓝使用余下的5bit。绿使用6bit的原因是我们的眼睛可以看到比红和蓝更多的绿色。&lt;/p&gt;
+&lt;h4 id="tu-pian-ge-shi-yu-ya-suo"&gt;图片格式与压缩&lt;/h4&gt;
+&lt;h4 id="alphahun-he"&gt;Alpha混合&lt;/h4&gt;
+&lt;p&gt;使用32bit描述像素颜色时，可以用24bit来描述RGB值，另外的8bit描述alpha值。&lt;/p&gt;
+&lt;p&gt;图像绘制到帧缓冲中的时候与顺序是相关的，后面绘制的会屏幕前面的，如果存在alpha值，则颜色的计算方式会不同。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;red&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;red&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;alpha&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;red&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="err"&gt;&amp;ndash;&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;blue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;green&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;alpha&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;green&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="err"&gt;&amp;ndash;&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;green&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;blue&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;alpha&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;blue&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="err"&gt;&amp;ndash;&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;alpha值通常在0.0到1.0之间。计算出来的值才是实际显示到屏幕上的值。多数图形软件支持alpha值的计算，如果它不支持则我们可以在加载它们时自己在内存中计算。&lt;/p&gt;
+&lt;h1&gt;游戏框架&lt;/h1&gt;
+&lt;p&gt;游戏应该执行的任务：
+ - 游戏被划分到不同的画面，每个画面都执行类似任务：处理用户输入、将输入应用到屏幕状态、渲染场景。某些屏幕画面可能不需要用户输入，但它会在经过一段时间后转换到另一个画面（如：Splash画面）。
+ - 画面需要以某种方式进行管理（比如：跟踪当前的画面并且要有方法过渡到新画面，将旧画面销毁并将新画面设置为当前画面）。
+ - 游戏还需要允许画面访问不同的模块（图形、音频、输入等）。因此它需要加载资源，获取用户输入，播放声音，渲染缓冲区等等。
+ - 游戏应该是实时的（这意味着移动和更新应该是不断进行的），我们需要让当前的画面不断的更新自己的状态并尽快的渲染。当用户退出游戏时这个循环将被终止。这个循环的单次迭代被称为一帧。每秒的帧数被称为帧率（FPS）。
+ - 我们也需要跟踪上一帧以来所消耗的时间。这可以用于帧率无关的运动。
+ - 游戏需要跟踪窗口的状态（如：它被暂停或恢复），并将这些事件通知给当前的画面。
+ - 游戏框架还需要处理窗口和创建要渲染的UI组件并从它们接收输入。&lt;/p&gt;
+&lt;p&gt;游戏框架伪代码&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//创建UI组件用于显示和接收输入&lt;/span&gt;
+&lt;span class="n"&gt;createWindowAndUIComponent&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+&lt;span class="c1"&gt;//初始化需要的支持模块&lt;/span&gt;
+&lt;span class="n"&gt;Input&lt;/span&gt; &lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Input&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;Graphics&lt;/span&gt; &lt;span class="n"&gt;graphics&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Graphics&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;Audio&lt;/span&gt; &lt;span class="n"&gt;audio&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Audio&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+&lt;span class="n"&gt;Screen&lt;/span&gt; &lt;span class="n"&gt;currentScreen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MainMenu&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;Float&lt;/span&gt; &lt;span class="n"&gt;lastFrameTime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;currentTime&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+&lt;span class="c1"&gt;//游戏主循环&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="o"&gt;(!&lt;/span&gt;&lt;span class="n"&gt;userQuit&lt;/span&gt;&lt;span class="o"&gt;()){&lt;/span&gt;
+    &lt;span class="c1"&gt;//计算上一帧与当前时间的时间差，通常以秒计，用于帧率无关的运动&lt;/span&gt;
+    &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;deltaTime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;currentTime&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;lastFrameTime&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;lastFrameTime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;currentTime&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+    &lt;span class="c1"&gt;//更新画面状态并展现出来。展现既包括渲染屏幕状态到缓冲区，也包括播放音效和声音&lt;/span&gt;
+    &lt;span class="n"&gt;currentScreen&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;updateState&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;deltaTime&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;currentScreen&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;present&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;graphics&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;audio&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;deltaTime&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;//回收资源&lt;/span&gt;
+&lt;span class="n"&gt;cleanupResources&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;以上代码是几乎所有游戏的工作方式。&lt;/p&gt;
+&lt;p&gt;现代操作系统的UI应用程序通常不是实时的。它们基于事件机制，当操作系统将输入事件通知应用时，应用程序渲染自身。这通常是通过在应用启动的时候向操作系统注册回调，然后由它们处理事件通知。这些都发生在UI线程中&amp;mdash;&amp;mdash;一个UI程序的主线程。通常应该尽快从回调中返回，因此我们不需要来自己实现这个循环。&lt;/p&gt;
+&lt;p&gt;我们需要处理游戏的主循环，它将在游戏启动时从主线程派生出来。这意味着我们需要某些措施以便从UI线程中接收事件，比如用户输入和窗口事件。我们需要在某些点上对游戏主循环和UI线程进行同步。&lt;/p&gt;
+&lt;h2&gt;游戏和画面接口&lt;/h2&gt;
+&lt;p&gt;游戏接口
+ - 设置窗口和UI组件并向UI线程注册钩子以便我们接收窗口和输入事件
+ - 启动游戏主循环线程
+ - 跟踪当前画面并在主循环的每次迭代中告诉它更新状态和展现自己
+ - 将UI线程中的窗口事件（如暂停和恢复事件）传送到主循环中并将它们传递到当前画面以便它改变状态
+ - 允许游戏访问所有底层模块：输入、文件IO、图形和音频&lt;/p&gt;
+&lt;p&gt;画面抽像类
+ - 需要通过访问游戏接口的实例来访问底层模块
+ - 需要一个update方法来更新状态
+ - 需要present来展现自己
+ - 需要提供暂停和恢复方法以便游戏实例能暂停或恢复当前的画面
+ - 还需要一个dispose方法来释放系统资源（如assets中的Pixmap）&lt;/p&gt;
+&lt;p&gt;作为游戏开发者，我们想要成为不可知论者，不想要知道主循环是否在运行、是否需要与UI线程同步等这些细节。我们只需要根据底层模块和窗口事件实现不同的游戏画面。&lt;/p&gt;
+&lt;h2&gt;帧率无关的运动&lt;/h2&gt;
+&lt;p&gt;假设用户的设备以60FPS运行我们的游戏。位图以每100帧100像素的速度沿X轴移动。即每帧移动一个像素。它将在经过1.66秒（100/60）从(0,0)移动到(100,0)。&lt;/p&gt;
+&lt;p&gt;如果第二个用户的设备只能以30FPS运行我们的游戏。那它将会需要3.33秒才能从(0,0)移动到(100,0)。&lt;/p&gt;
+&lt;p&gt;这将会不同设备带来不同的体验。解决这个问题的办法是使用帧率无关的运动，而不是在每帧移动固定的像素。如果我们需要以每秒50像素的速度移动，则在计算新位置时使用50*deltaTime就可以计算出自上一帧到现在应该移动的像素。&lt;/p&gt;
+&lt;h1&gt;游戏开发者的Android&lt;/h1&gt;
+&lt;p&gt;实现游戏框架及底层组件的实现基础。&lt;/p&gt;
+&lt;h2&gt;Mainfest文件&lt;/h2&gt;
+&lt;p&gt;Android应用包括多种组件：
+ - Activity：UI组件
+ - Service：后台工作
+ - Content Provider：它可以让你的应用程序与其它应用共享数据
+ - Intent：它由系统或应用自己创建，然后被传递到应用中对它感兴趣的地方
+ - Broadcast Receive：它对某些Intent作出反应，并执行一些相应的动作&lt;/p&gt;
+&lt;h3 id="manifestyuan-su_1"&gt;manifest元素&lt;/h3&gt;
+&lt;p&gt;它是AndroidMainifest.xml的根元素。它的命名空间为android。
+  - package属性指定应用的包名称
+  - versionCode和versionName属性指定应用的版本号的版本名称
+  - installLocation属性可以用于指定2.2及以上版本的系统将应用安装到外部存储卡上。只需要将它的值设置为preferExternal。&lt;/p&gt;
+&lt;h3 id="applicationyuan-su"&gt;application元素&lt;/h3&gt;
+&lt;p&gt;它的属性值中以@开头表示从其它地方获取资源。如从res/drawable目录获取图像（不要指定扩展名）。或者从res/values/strings.xml中获取字符串。
+  - icon属性指定程序图标
+  - label属性指定程序的名称
+  - debuggable属性指定程序是否允许被调试&lt;/p&gt;
+&lt;h3 id="activityyuan-su"&gt;activity元素&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;name属性指定activity所对应的Java类相对于manifest的package属性所指定的包名的名称。你也可以直接指定类的完整包名和类名&lt;/li&gt;
+&lt;li&gt;label属性显示于activity的标题栏。如果未指定application元素的label属性，这个label将被作为应用名称的标题。&lt;/li&gt;
+&lt;li&gt;screenOrientation属性用于指定activity所使用的屏幕方向。可选值可以是portrait,landscape。如果不指定则会使用设备的当前方向，则将是由加速感应的数据决定的。这也意味着当屏幕方向改变时，activity将会被销毁并重新启动。&lt;/li&gt;
+&lt;li&gt;configChanges属性指定设备调整方向或者滑出键盘时作为配置改变进行处理。这种情况下，Android将销毁并重启应用程序以适应这种改变。这通常不适合于游戏。它的可选值有keyboard, keyboardHidden和orientation，多个选项以|组合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Android应用程序有多个入口，可以从activity或service中接收系统或第三方程序发送的特定的intent开始执行。因此我们需要告诉Android针对特定的intent，应该启动哪个activity或service。这些配置记录在activity的intent-filter子元素中。&lt;/p&gt;
+&lt;p&gt;常见的两种intent filter：action和category。action元素告诉Android这个activity是程序的主入口。category元素指定我们想要把这个activity添加到app launcher中。这两个元素放在一起告诉Android将应用程序的图标放到app launcher，当点击它时启动相应的activity。这两个元素的name属性指定了activity将作出反应的intent。android.intent.action.MAIN是Android系统所使用的一个特殊的intent，它用于启动一个应用程序的主activity。android.intent.category.LAUNCHER用于告诉Android这个activity是否应该作为在app launcher中的应用程序入口。通常只会在一个activity中指定这两个intent filter。&lt;/p&gt;
+&lt;h3 id="uses-permissionyuan-su"&gt;uses-permission元素&lt;/h3&gt;
+&lt;p&gt;它是manifest的子元素。它用于对资源的访问许可。它的属性name指定要访问的资源。常用的资源有：
+ - android.permission.RECORD_AUDIO：允许访问录音设备
+ - android.permission.INTERNET：允许访问网络API
+ - android.permission.WRITE_EXTERNAL_STORAGE：允许读写外部存储设备
+ - android.permission.WAKE_LOCK：允许我们取得wake lock。通过使用wake lock我们可以保持设备不进入睡眠状态，即使长时间不接触屏幕。&lt;/p&gt;
+&lt;p&gt;程序安装时将提醒用户程序需要这些访问许可。&lt;/p&gt;
+&lt;h3 id="uses-featureyuan-su"&gt;uses-feature元素&lt;/h3&gt;
+&lt;p&gt;它用于指定应用程序对设备功能的需求。当你从设备上访问Android Market时，如果你的设备无法满足这些要求，这个程序可能不会显示出来。uses-feature有下面的属性：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;uses-feature android:name="string" android:required=["true" | "false"]
+android:glEsVersion="integer" /&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;常用的与游戏相关的feature：
+ - android.hardware.touchscreen.multitouch：需要设备支持多点触控。这种类型的屏幕在跟踪多个手指的独立运动轨迹方面会有些问题。
+ - android.hardware.touchscreen.multitouch.distinct：这是上一个功能的大哥。它需要完全的多点触控支持。&lt;/p&gt;
+&lt;p&gt;游戏开发中通常还需要指定用到OpenGL ES的版本：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;uses-feature android:glEsVersion="0x00020000" required="true"/&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里指定的是需要设备支持OpenGL ES2.0。&lt;/p&gt;
+&lt;h3 id="use-sdkyuan-su"&gt;use-sdk元素&lt;/h3&gt;
+&lt;p&gt;它是manifest的子元素。每个SDK都有自己的版本号。这个元素可以指定应用程序需要的SDK的最小版本和目标版本号。&lt;/p&gt;
+&lt;h2&gt;创建游戏的步骤&lt;/h2&gt;
+&lt;p&gt;需求
+ - 应该能使用最最新的SDK，并与低版本SDK兼容。至少支持Android 1.5以上的版本
+ - 应用能安装到SD卡上
+ - 允许调试
+ - 应该有一个主activity处理所有配置改变，在键盘滑出或者屏幕方向改变时不会被销毁
+ - 它应该固定为纵向或横向
+ - 应该允许我们访问SD卡
+ - 它应该获取到wake lock&lt;/p&gt;
+&lt;p&gt;步骤
+ - 在Ecipse里创建工程
+ - 选反SDK版本，设置目标版本的最低的SDK版本
+ - 将最低的SDK版本设置为3
+ - 打开AndroidManifest.xml
+ - 在manifest元素中添加installLocation属性，将它的值设置为preferExternal
+ - 将application元素的debuggable属性设置为true
+ - 在activity元素中添加screenOrientation属性设置为portrait或landscape。如果要处理keyboard, keyboardHidden, orientation属性改变，则可以将activity元素的configChanges属性设置为keyboard, keyboardHidden或orientation
+ - 添加两个子元素到manifest元素中，并指定它们的name属性为android.permission.WRITE_EXTERNALSTORAGE和android.permission.WAKE_LOCK
+ - 最后，将targetSdkVersion属性添加到use-sdk元素并指定目标平台SDK版本。它应该与第一步指定的版本一致&lt;/p&gt;
+&lt;h2&gt;定义游戏的图标&lt;/h2&gt;
+&lt;p&gt;application元素里定义了属性icon，它指向了res/drawable目录下的icon这个文件。从android 1.6(SDK Version 4)开始。res/drawable目录下可以包含不同分辨率的资源，ldpi是36x36，mdpi为48x48，hdpi是72x72。&lt;/p&gt;
+&lt;p&gt;为了兼容1.5版本系统，我们还需要添加res/drawable目录将res/drawable-mdpi目录的内容放到这里。因为Android 1.5不知道ldpi,mdpi和hdpi，它有可能找不到这些资源。&lt;/p&gt;
+&lt;h2&gt;Android API基础&lt;/h2&gt;
+&lt;h3 id="activityde-sheng-ming-zhou-qi"&gt;Activity的生命周期&lt;/h3&gt;
+&lt;h4 id="li-lun"&gt;理论&lt;/h4&gt;
+&lt;p&gt;Activity的三种状态：
+ - Running：顶层的Activity占用屏幕与用户交互
+ - Paused：当Activity被其它透明的Activity或者对话框覆盖，但是仍然在屏幕上可见，或者屏幕被锁。这个状态的Activity有可能被Android系统在任何时间点杀掉。这时的Activity仍然存活并有可能重新被放到前台运行。
+ - Stopped：当Activity完全被另一个Activity掩盖不再显示在屏幕上（比如启动了另一个Activity或者用户按下了Home键）。系统可以将这个Activity杀掉以回收内存。&lt;/p&gt;
+&lt;p&gt;在Paused和Stopped状态下，Android系统可以决定是否杀掉Activity。它有可能会调用这个Activity的finished()方法来通知它，也有可能直接杀掉Activity所对应的进程。&lt;/p&gt;
+&lt;p&gt;在Paused和Stopped状态下，Activity有可能被放到前台而进入Running状态。恢复运行的Activity仍然是之前内存中的同一个实例，所有Paused或者Stopped时内存的状态和变量都存在。&lt;/p&gt;
+&lt;p&gt;生命周期方法：
+ - onCreate()：应用初次启动时调用的方法。通常在这里设置UI组件和初始化hook到输入系统。这个方法在整个生命周期中只被调用一次。
+ - onRestart()：用于从stopped状态中恢复。它的前一个调用为onStop()。
+ - onStart()：它在onCreate()之后被调用，或者在Activity从Stopped状态恢复之后被调用。在后面这情况下它的前一个方法调用是onRestart()。
+ - onStop()：当Activity进入Stopped状态时被调用。它的前一个方法是onPause()。这意味着在activity进入Stopped之前，它先Paused。onPause()方法可能系统杀掉Activity之前最后一个被调用的方法。我们可能在这里保存状态。因为系统可以决定在杀掉Activity之前不调用onStop()方法，所以我们应该在onPause()方法中保存数据。
+ - onDestroy()方法：这是Activity生命周期结束的调用，当Activity不可恢复地被销毁时将调用它。这是最后一个用来保存信息的方法。注意，这个方法有可能永远不会被调用，系统有可能在调用onPause()或者onStop()之后将Activity杀掉。&lt;/p&gt;
+&lt;p&gt;三个重点：
+ - 在Activity进入Running状态之前，onResume()方法总是会被调用，不论它是从Stopped或Paused状态恢复。因此我们可以简单的忽略onRestart()和onStart()方法。不用区分它是从Stopped状态还是从Paused状态恢复的。对于游戏，只需要知道从onResume()方法开始游戏进入运行Running状态。
+ - Activity有可能在onPause()方法之后被销毁。因此不应该假设onStop()或onDestroy()会被调用。但是也应该明确onPause()一定会在onStop()之前被调用。因此我们可以忽略onStop()和onDestroy()方法，只覆盖onPause()方法。在这个方法中，我们来确保所有状态被持久化，比如最高得分写入外部存储卡。在onPause()方法之后，所有东西关闭，因为Activity有可能不再会运行了。
+ - 如果系统决定在onPause()或onStop()之后杀掉Activity，则onDestroy()方法不会运行。但是有时我们或许想要知道Activity是否会被杀掉。可能使用Activity.isFinishing()方法来检查。可以在onPause()方法中来检查就知道Activity是否会被杀掉。&lt;/p&gt;
+&lt;p&gt;通常我们只需要覆盖onCreate，onResume()和onPause()方法。onCreate()方法创建UI组件来渲染输出和接收输入。onResume()方法启动或者恢复主循环。onPause()来停止主循环，如果Activity.isFinishing()为true，则还需要保存状态。&lt;/p&gt;
+&lt;h2&gt;输入设备处理&lt;/h2&gt;
+&lt;h3 id="huo-qu-hong-kong-shi-jian_1"&gt;获取触控事件&lt;/h3&gt;
+&lt;p&gt;Android2.0开始支持单点触控。2.0（SDK 5）开始支持多点触控。&lt;/p&gt;
+&lt;h3 id="chu-li-dan-dian-hong-kong"&gt;处理单点触控&lt;/h3&gt;
+&lt;p&gt;触控事件被传入OnTouchListener接口的实现中。这个接口只有一个方法onTouch(View view, MotionEvent event)。第一个参数是产生触控事件的View。第二个参数可以获取到触控事件的细节。&lt;/p&gt;
+&lt;p&gt;触控事件的监听可以通过View.setOnTouchListener()方法注册到任何View的实现上。在MotionEvent传递给View自身之前将调用监听中的方法。我们可以在这个方法中返回true来告诉View我们已经处理好这个事件了。如果返回false，则View自己将处理这个事件。&lt;/p&gt;
+&lt;p&gt;MotionEvent实例中常用的3个方法：
+ - MotionEvent.getX()和MotionEvent.getY()：这些方法可以获取触控点在View中的相对坐标的位置。坐标的原点位于View的左上角。x向右，y向下。坐标以像素为单位。这些方法返回的是浮点类型的值，因此坐标值有亚像素坐标精度。
+ - MotionEvent.getAction()：这个方法返回触控的类型。它是一个整数值，它的值可以为：MotionEvent.ACTION_DOWN，MotionEvent.ACTION_MOVE，MotionEvent.ACTION_CANCEL和MotionEvent.ACTION_UP。&lt;/p&gt;
+&lt;p&gt;当手指接触到屏幕时产生MotionEvent.ACTION_DOWN事件。当手指移动时产生MotionEvent.ACTION_MOVE。不能通过保持手指不动来避免产生MotionEvent.ACTION_MODE事件。当手指离开屏幕时产生MotionEvent.ACTION_UP事件。MotionEvent.ACTION_CANCEL事件神秘一些。文档上说是手势取消时产生 。在现实中我从未遇到过这种事件。我们仍然会处理这个事件并将它当作MotionEvent.ACTION_UP来处理。&lt;/p&gt;
+&lt;p&gt;在旧版的Android和第一代设备上触控事件存在下面的问题：
+ - Touch event flood：当手指按到屏幕上时驱动将尽可能的报告更多的事件&amp;mdash;&amp;mdash;有些设备将每秒产生上百次。我们可以在onTouch()方法中添加Thread.sleep(16)来解决这个问题，这将会使分发这个事件的UI线程睡眠16秒。这将使我们每秒最多获取到60个事件，这个响应性对于游戏来说已经足够了。这个问题只在Android1.5的设备上才会有。
+ - 触控操作消耗CPU资源：即使我们在onTouch()中进行睡眠，系统内核仍需要处理驱动报告的事件。在如Hero或者G1这样的设备上，这将消耗50%的CPU资源，这将消耗主循环线程所使用的CPU资源。因此，将导致丢帧，有些情况下可能导致游戏不可玩。在第二代设备上，这个问题报告得少一些，通常可以忽略。对于旧设备这个问题没有很好的解决办法。&lt;/p&gt;
+&lt;p&gt;通常你可以将Thread.sleep(16)放到所有onTouch()方法中。对于新设备这不会产生影响；旧设备将阻止Touch event flood的产生。&lt;/p&gt;
+&lt;h3 id="chu-li-duo-dian-hong-kong"&gt;处理多点触控&lt;/h3&gt;
+&lt;p&gt;多点触控API附加到了MotionEvent类，这个类原来只是为了处理单点触控。&lt;/p&gt;
+&lt;p&gt;处理多点触控与处理单点触控类似。也是实现OnTouchListener接口。也能获取到MotionEvent对象。也可以获取到MotionEvent.ACTION_UP之类的事件类型。&lt;/p&gt;
+&lt;h4 id="pointer-idshe-indices"&gt;Pointer IDs和indices&lt;/h4&gt;
+&lt;p&gt;在获取触控点坐标的时候不同。获取多点触控的坐标时要通过pointer index才能获取到对应的触控点的坐标。类似：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getX&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pointerIndex&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getY&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pointerIndex&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;pointerIndex是MotionEvent中保存手指接触屏幕的坐标值数组（多点中代表一点）的索引。实际用于标识具体某个手指的标识被称为pointer identifier。MotionEvent.getPointerIdentifier(int pointerIndex)会根据pointerIndex返回pointer identifier。在同一手指接触屏幕其间，其pointer identifier值总是一致的，而它的pointer index则有可能会不同，&lt;/p&gt;
+&lt;p&gt;获取pointerIndexr的方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;  &lt;span class="n"&gt;pointerIndex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getAction&lt;/span&gt;&lt;span class="o"&gt;()&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;MotionEvent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;ACTION_POINTER_ID_MASK&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;MotionEvent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;ACTION_POINTER_ID_SHIFT&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4 id="duo-dian-hong-kong-de-shi-jian-lei-xing"&gt;多点触控的事件类型&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getAction&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;MotionEvent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;ACTION_MASK&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;action的值之前解释过。对于多点触控增加了一些新的事件类型：
+ - MotionEvent.ACTION_POINTER_DOWN：这个事件发生在第一个手指接触屏幕之后的其它手指接触屏幕时。第一个手指接触时仍然产生MotionEvent.ACTION_DOWN。
+ - MotionEvent.ACTION_POINTER_UP：最后一个手指离开屏幕之前，其它手指离开屏幕时产生这个事件。最后一个离开屏幕的手指将产生MotionEvent.ACTION_UP，它不必是第一个接触屏幕的手指。&lt;/p&gt;
+&lt;p&gt;单个MotionEvent可以包含多个事件。这种情况出现在合并的事件中，这些事件具有相同的类型。通常只会是MotionEvent.ACTION_MOVE事件。为了检查在单个MotionEvent中包含了多少个事件，可以使用MotionEvent.getPointerCount()方法，它能告诉我们有多少个手指的数据。然后使用数组下标从0至MotionEvent.getPointerCount()-1使用MotionEvent.getX()、MotionEvent.getY()和MotionEvent.getPointerId()来获取pointer identifier和坐标。&lt;/p&gt;
+&lt;h4 id="shi-jian_1"&gt;实践&lt;/h4&gt;
+&lt;p&gt;......&lt;/p&gt;
+&lt;h3 id="chu-li-an-jian-shi-jian_1"&gt;处理按键事件&lt;/h3&gt;
+&lt;p&gt;为了捕获按键事件，我们只需要实现OnKeyListener接口。它只有一个onKey()方法。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;onKey&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;View&lt;/span&gt; &lt;span class="n"&gt;view&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;keyCode&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;KeyEvent&lt;/span&gt; &lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;view变量指定了接收到按键事件的View，keyCode是定义于KeyEvent类中的一个常量，event是代表按键事件自身，它包含了一些额外的信息。&lt;/p&gt;
+&lt;p&gt;屏幕上的虚拟键盘和设备的按键都能产生一个唯一的keyCode。这些code定义于KeyEvent类中，是个static public final的整数。比如KeyCode.KEYCODE_A是字母键A的code。它的值与输入的字符无关，只是用来唯一标识一个按键。&lt;/p&gt;
+&lt;p&gt;KeyEvent与MotionEvent类似。它也有两个常用的方法：
+ - KeyEvent.getAction()：它返回KeyEvent.ACTION_DOWN，KeyEvent.ACTION_UP和KeyEvent.ACTION_MULTIPLE。我们通常可以忽略最后一个，前面两个事件会在按键按下和松开时产生。
+ - KeyEvent.getUnicodeChar()：它返回按键将产生的能输入到文本字段中的Unicode字符。&lt;/p&gt;
+&lt;p&gt;为了获取键盘事件，View必须要拥有输入焦点。可以使用下面的方法强制View获取焦点：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setFocusableInTouchMode&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;requestFocus&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第一个方法保证View能被聚焦。第二个方法请求让View获取焦点。&lt;/p&gt;
+&lt;h3 id="du-qu-jia-su-ji-de-zhuang-tai"&gt;读取加速计的状态&lt;/h3&gt;
+&lt;p&gt;加速计是游戏中非常有意思的输入方式。所有Android设备都需要包含一个三轴的加速计。&lt;/p&gt;
+&lt;p&gt;为了获取加速计的状态需要实现SensorEventListener接口，它有两个方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onSensorChanged&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SensorEvent&lt;/span&gt; &lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onAccuracyChanged&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Sensor&lt;/span&gt; &lt;span class="n"&gt;sensor&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;accurary&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第一个方法将在有新的加速事件到达时被调用。第二个方法将在加速度改变时被调用。通常我们可以忽略第二个方法。&lt;/p&gt;
+&lt;p&gt;如何注册SesorEventListener呢？首先要检查设备是否安装了加速计。现在所有的Android设备都必须包含加速计，但是将来这有可能会改变。我们要100%保证这个设备存在。我们可以通过获取SensorManager来检查设备是否存在。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;SensorManager&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SensorManager&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getSystemService&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;SENSOR_SERVICE&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;SensorManager被称为系统服务，它由Android系统提供。Android系统提供了多种系统服务，每个服务提供不同类型的系统信息。&lt;/p&gt;
+&lt;p&gt;获取到manager之后，我们可以检查是否存在加速计：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;hasAccel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getSensorList&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Sensor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;TYPE_ACCELEROMETER&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="na"&gt;size&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过这个代码能获取到所有加速计。但通常只会有一个设备。&lt;/p&gt;
+&lt;p&gt;检测到设备存在后，我们可以从SensorManager中获取到加速计并将监听注册进去。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Sensor&lt;/span&gt; &lt;span class="n"&gt;sensor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getSensorList&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Sensor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;TYPE_ACCELEROMETER&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;success&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;registerListener&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listener&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sensor&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SensorManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;SENSOR_DELAY_GAME&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;SensorManager.SENSOR_DELAY_GAME指定了应该将加速计的最后的状态告诉给监听器。这通常是为游戏设计的。SensorManager.registerListener()方法返回一个boolean类型的值标识注册是否成功。&lt;/p&gt;
+&lt;p&gt;注册成功后，我们就可以从SensorEventListener.onSensorChanged()方法中接收SensorEvent事件了。这个方法在感应器状态发生改变时被调用。这听起来有点迷惑，因为加速计的状态改变频率是个常量。当我们注册监听时，已经指定了频率了。&lt;/p&gt;
+&lt;p&gt;处理SensorEvent非常容易，它有一个public类型的浮点数组SensorEvent.values，它保存了当前加速计中三个轴的值。SensorEvent.values[0]保存的是X轴，SensorEvent.values[1]保存的是Y轴，SensorEvent.values[2]保存的是Z轴。&lt;/p&gt;
+&lt;p&gt;注意：
+ - 加速计的值有时可能会超出特定的范围，这是因为感应器的错误引起的，如果你需要精确的值则需要对这些值进行调整。
+ - 加速计的轴线总是按相同的顺序，而与屏幕或者Activity的显示方向无关。&lt;/p&gt;
+&lt;h2&gt;文件处理&lt;/h2&gt;
+&lt;h3 id="du-qu-zi-yuan-assets"&gt;读取资源（Assets）&lt;/h3&gt;
+&lt;p&gt;资源位于工程的assets目录下。res目录下的内容读取有限制。使用AssetManager能访问assets目录下的资源。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;AssetManager&lt;/span&gt; &lt;span class="n"&gt;assetManager&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getAssets&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Activity实现了Context接口。通常可以直接从Activity中获取AssertManager。使用AssertManager的open方法可以获取相对于assets目录下的目录中的内容。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;InputStream&lt;/span&gt; &lt;span class="n"&gt;inputStream&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;assetManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;open&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"dir/dir2/filename.txt"&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="fang-wen-wai-bu-cun-chu"&gt;访问外部存储&lt;/h3&gt;
+&lt;p&gt;Android提供了多种方式存储信息：你可以使用首选项、SQLite数据库等等。这些选项都不能很好的处理大的二进制文件。为什么需要这么做呢。因为将应用安装到外部存储而不浪费内部存储的选项只有在Android2.2之后才有。对于之前的版本所有应用程序的数据都必须安装在内部存储空间，因此APK文件中通常只能包含程序代码，在程序首次运行时，再从网络上下载资源文件到SD卡上。&lt;/p&gt;
+&lt;p&gt;其它情况下我们可能也需要访问外部存储，比如游戏关卡编辑器将关卡保存在存储卡上。&lt;/p&gt;
+&lt;p&gt;要访问外部存储首先要使用&lt;uses-permission&gt;获取权限。&lt;/uses-permission&gt;&lt;/p&gt;
+&lt;p&gt;接下来是要检测外部存储卡是否存在。使用下面的代码检测：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getExternalStorageState&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;state是个字符串。Enviroment中定义了一些常量。其中一个是Enviroment.MEDIA_MOUNTED。它也是字符串。如果state的值为这个常量，则可以读写外部存储卡。&lt;/p&gt;
+&lt;p&gt;知道是否能访问外部存储卡后，我们需要获取根目录的名称。如果我们要访问某个具体的名字，则我们需要指定它相对于这个根目录的名字。为了获取根目录的名称，我们需要使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="n"&gt;externalDir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getExternalStorageDirectory&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;从这里开始，我们就可以使用Java I/O类来读写文件了。&lt;/p&gt;
+&lt;h2&gt;音频编程&lt;/h2&gt;
+&lt;h3 id="she-zhi-yin-liang"&gt;设置音量&lt;/h3&gt;
+&lt;p&gt;在Android中，打开Youtube程序的时候按音量键调整音量时，调整的是视频的音量。在Home中按音量调整键时调整的是电话的音量。Android对不同的目的有不同的音频流。当我们在游戏中播放音乐和音效时使用的音频流叫music stream。在播放音效或音乐前，我们要保证音量调整键能控制正确的音频流。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setVolumeControlStream&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AudioManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;STREAM_MUSIC&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里的context就是我们的Activity。调用完这个方法后音量调整键将控制music stream。这将在Activity的整个生命周期中影响播放的音乐和音效。通常应该在Activity.onCreate()方法中做这个操作。&lt;/p&gt;
+&lt;h2&gt;播放音效&lt;/h2&gt;
+&lt;p&gt;前面讨论过音频流和音效的区别。后者存储于内存中通常时长只有数秒。Android提供了SoundPool类来播放音效。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;SoundPool&lt;/span&gt; &lt;span class="n"&gt;soundPool&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;SoundPool&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AudioManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;STREAM_MUSIC&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第一个参数指定了最多同时可以播放多少个音效。这并不是说我们不能加载多个音效播放，它只是限制我们能并发的播放多少音效。第二个参数指定SoundPool将音频输出到哪个音频流，这里选择了音量调整键对应的music stream。最后一个参数现在没有使用默认设置为0。&lt;/p&gt;
+&lt;p&gt;为了从音频文件将音效加载到内存堆中。我们可以使用SoundPool.load()方法。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;AssetFileDescriptor&lt;/span&gt; &lt;span class="n"&gt;descriptor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;assetManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;openFd&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"explosion.ogg"&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;explosionId&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soundPool&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;load&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;descriptor&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;SoundPool.load()的第二个参数是音效的优先级，目前还没有使用，应该将它设置为1以保证与将来的兼容。&lt;/p&gt;
+&lt;p&gt;SoundPool.load()方法将返回一个整数，它被当作被加载的音效的句柄。当我们需要播放这个音效时，只需要指定这个句柄。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;soundPool&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;play&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;explosionId&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.0f&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.0f&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第一个参数是由SoundPool.load()方法返回的句柄。接下来的两个方法是指定左右声道的音量。这两个值应该处于0到1之间。接下来的两个值很少用到，第一个是优先级，当前没有使用设置为0。另一个指定音效是否应该循环播放。通常音效不需要循环播放。最后一个参数是指定回放速度。将它设置为高于1的值时回放的速度将比录制时的速度快，设置为小于1时回放速度将比录制时的速度慢。&lt;/p&gt;
+&lt;p&gt;当我们不再需要音效时可以释放内存。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;soundPool&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;unload&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;explosionId&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通常我们只一个SoundPool实例，使用它来加载、播放和释放音效。当不再需要使用SoundPool时我们应该调用SoundPool.release()方法，它会释放SoundPool使用的资源。调用完这个方法之后，就不能再使用SoundPool了。所有由它加载的音效也都会丢失。&lt;/p&gt;
+&lt;p&gt;注意：
+ - SoundPool.load()方法执行加载的时候是异步进行的。在调用SoundPool.play()方法之前应该等侍一段时间以保证加载的完成。但是我们没有办法检查音效是否加载完成了。只有在SDK8之上的SoundPool才支持这个检测。
+ - SoundPool在播放长的MP3音频文件时存在问题，这个长音频文件批的是&amp;ldquo;超过5至6秒的&amp;rdquo;。这些问题都没有文档。推荐的方法是使用OGG音频文件代替MP3，和使用低的采样率和采样时间，这样会得到较差的音质。&lt;/p&gt;
+&lt;h2&gt;音频流&lt;/h2&gt;
+&lt;p&gt;小的音效可以放到Android应用从操作系统获取到的空间有限的内存堆中。大的音频文件包含长时间的音乐。基于这个原因我们需要将音频流发送到硬件，我们只需要在某一时刻读取一小块足够大小的文件，将它解码成原始的PCM数据并将它丢给音效芯片。&lt;/p&gt;
+&lt;p&gt;这个过程的起来比较吓人。幸运的是我们有MediaPlayer类，它能帮我们处理这些复杂的操作。我们需要做的是告诉它要播放的音频文件。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;MediaPlayer&lt;/span&gt; &lt;span class="n"&gt;mediaPlayer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MediaPlayer&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;接下来我们需要告诉MediaPlayer哪个文件需要播放。这又需要通过AssetFileDescriptor：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;AssetFileDescriptor&lt;/span&gt; &lt;span class="n"&gt;descriptor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;assetManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;openFd&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"music.ogg"&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;mediaplayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setDataSource&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;descriptor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getFileDescriptor&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;descriptor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getStartOffset&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;descriptor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getLength&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这比SoundPool的使用复杂些。MediaPlayer.setDataSouce()方法不能直接接收AssetFileDescriptor。它需要的是FileDescriptor，这可以通过AssetFileDescriptor.getFileDescriptor()方法获取到。另外我们还需要指定偏移量和音频文件的长度。为什么需要偏移量呢？实际上整个Asset是存储在单个文件中的。为了让MediaPlayer获取某个文件的开始位置我们需要提供它在Asset中的偏移量。&lt;/p&gt;
+&lt;p&gt;在播放音乐之前，我们需要调用MediaPlayer的prepare方法来准备播放。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mediaPlayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;prepare&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这将实际打开文件和检查它是否能被MediaPlayer实例读取的播放。从这里开始我们可以播放、暂停和停止播放，也可以设置循环播放和改变音量。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mediaPlayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;start&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这个方法只能在MediaPlayer.prepare()方法调用成功后（可以检查它是否抛出了runtime异常）才能调用。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mediaPlayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;pause&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这个方法也只能在prepare方法和start方法被调用之后才能调用。继续播放可以调用start()方法，不需要再次调用prepare方法。&lt;/p&gt;
+&lt;p&gt;需要停止播放时调用下面的方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mediaPlayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;stop&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当我们需要再次启动一个已经stopped的MediaPlayer时，我们又需要先调用prepare()方法。&lt;/p&gt;
+&lt;p&gt;可以用下面方法设置成循环播放：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mediaPlayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setLooping&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;用下面的方法设置音量：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mediaPlayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setVolume&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这将设置左右声道的音量。文档里没有指定这两个值的范围。以经验来说，有效的范围为0到1。&lt;/p&gt;
+&lt;p&gt;我们可能还需要检查播放是否结束了。有两个方法可以实现这个。在MediaPlayer中注册一个OnCompletionListener接口，它将在播放结束时被调用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mediaPlayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setOnCompletionListener&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listener&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果我们需要主动从MediaPlayer中获取状态，我们可以使用下面的方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;isPlaying&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mediaPlayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;isPlaying&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果MediaPlayer被设置为循环播放，则没有办法来标明播放停止了。&lt;/p&gt;
+&lt;p&gt;最后，如果播放器使用完毕了，我们要确保所有资源都被释放。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mediaPlayer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;release&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在丢弃实例之前总是调用这是是个好的实践。&lt;/p&gt;
+&lt;p&gt;当我们没有将MediaPlayer设置为循环播放并且播放结束时，我们可以调用MediaPlayer.prepare()和MediaPlayer.start()方法重新播放。&lt;/p&gt;
+&lt;p&gt;多数这些方法是以异步的方式工作的，因此在调用MediaPlayer.stop()之后，MediaPlayer.isPlaying()方法可能会要过一小段时间才能返回。这通常不是很大的问题。多数游戏会需要将MediaPlayer设置为循环播放，当需要时再停止播放（比如，切换到另一个屏幕后要播放另一个音乐）。&lt;/p&gt;
+&lt;p&gt;注意：
+ - MediaPlayer.start()，MediaPlayer.pause()和MediaPlayer.resume()只能在上面讨论过的条件下才能被调用。不要在没有prepared的情况下调用不这些方法。MediaPlayer.start()只能在preparing之后的MediaPlayer才能调用或者在调用MediaPlayer.pause()之后用resume恢复。
+ - MediaPlayer实例是重量级对象。拥有多个这样的实例将消耗大量资源。应该尽量保持只有1个来播放音乐。SoundPool处理的音效的情况好一些。
+ - 记得将音量按键设置到music stream否则将不能调整游戏的音量。&lt;/p&gt;
+&lt;h2&gt;图形编程基础&lt;/h2&gt;
+&lt;p&gt;Android为我们提供了2种API绘制内容到屏幕上。主要使用的是较简单的2D图形编程，另一种是可以使用硬件加速的3D图形编程。下面主要讨论使用CanvasAPI进行2D图形编程，它是Skia库的封装，适应于适度复杂的2D图形。在进行图形编程前，我们需要先知道如何进入全屏和wake locks。&lt;/p&gt;
+&lt;h3 id="shi-yong-wake-locks"&gt;使用Wake locks&lt;/h3&gt;
+&lt;p&gt;如果将不接触设备一段时间，电话的屏幕将会变暗。只有在接触屏幕或者按下按钮之后屏幕才会恢复变亮。为了保持屏幕一直亮着，我们需要使用wake lock。&lt;/p&gt;
+&lt;p&gt;首先我们需要在&lt;uses-permission&gt;标签中添加android.permission.WAKE_LOCK。这将允许我们使用WakeLock类。&lt;/uses-permission&gt;&lt;/p&gt;
+&lt;p&gt;我们可以从PowerManager中获取到WakeLock的实例。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PowerManager&lt;/span&gt; &lt;span class="n"&gt;powerManager&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PowerManager&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getSystemService&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;POWER_SERVICE&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;WakeLock&lt;/span&gt; &lt;span class="n"&gt;wakeLock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;powerManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;newWakeLock&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PowerManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;FULL_WAKE_LOCK&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"My Lock"&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;与其它系统服务一样，我们从Context实例中获取PowerManager。PowerManager.newWakeLock()方法接收两个参数：lock的类型和一个可以自定义的标签。有几个不同类型的wake lock：对于我们的需求使用PowerManager.FULL_WAKE_LOCK是正确的选择。它将保证屏幕一直亮着，CPU将一直工作于全速模式下，键盘也将是启用的。&lt;/p&gt;
+&lt;p&gt;为了启用wake lock我们要调用acquire()方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wakeLock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;acquire&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;电话将从这时开始保持唤醒状态，不论用户有多久没有操作。当我们的应用程序paused或者destroyed，我们可以禁用或者释放wake lock：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wakeLock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;release&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通常我们在Activity.onCreate()方法中实例化WakeLock实例，在Activity.OnResume()方法中调用WakeLock.acquire()，在Activity.onPause()方法中调用WakeLock.release()。这样可以保证我们的应用程序在paused或resumed状态下仍然能正常工作。&lt;/p&gt;
+&lt;h3 id="jin-ru-quan-ping"&gt;进入全屏&lt;/h3&gt;
+&lt;p&gt;到目前为止，我们的程序中通知栏和标题栏都是显示的。添加下面的代码可以隐藏这些：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;requestWindowFeature&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Window&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;FEATURE_NO_TITLE&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;getWindow&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;setFlags&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WindowManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;LayoutParams&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;FLAG_FULLSCREEN&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;WindowManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;LayoutParams&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;FLAG_FULLSCREEN&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第一个调用删除了Activity的标题栏，第二个方法隐藏掉状态栏。这些调用只能在设置Activity的context view之前执行。&lt;/p&gt;
+&lt;h3 id="zai-uixian-cheng-zhong-chi-xu-xuan-ran"&gt;在UI线程中持续渲染&lt;/h3&gt;
+&lt;p&gt;尽管持续性的渲染（实现动画效果）听起来很复杂，实际上Android让它变得非常容易了。我们只需要继承View类，并覆盖它的View.onDraw()。这个方法将在View需要重绘时被调用。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RenderView&lt;/span&gt; &lt;span class="kd"&gt;extends&lt;/span&gt; &lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;RenderView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Context&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;){&lt;/span&gt;
+        &lt;span class="kd"&gt;super&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="kd"&gt;protected&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onDraw&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Canvas&lt;/span&gt; &lt;span class="n"&gt;canvas&lt;/span&gt;&lt;span class="o"&gt;){&lt;/span&gt;
+        &lt;span class="c1"&gt;//实现&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;传入onDraw()方法的Canvas是干重活的，通过它来形状、位图到另一个位图或者View（或者Surface）中。&lt;/p&gt;
+&lt;p&gt;我们可以用RenderView作为activity的content view，并用它来进行输入监听。但是这还不够，有两个原因：它没有实际绘制任何内容，即使它绘制了，它也只会在需要的时候进行重绘（比如：当它created或者resumed时或者当被对话框覆盖后重新恢复可见时）。如何让它自己重绘呢？&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;protected&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onDraw&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Canvas&lt;/span&gt; &lt;span class="n"&gt;canvas&lt;/span&gt;&lt;span class="o"&gt;){&lt;/span&gt;
+    &lt;span class="c1"&gt;//绘制&lt;/span&gt;
+    &lt;span class="n"&gt;invalidate&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在onDraw的最后调用View.invalidate()方法告诉Android系统尽快重绘RenderView。这些都是发生在UI线程中，which is a bit of a lazy horse。但我们在onDraw()方法中实现了连续渲染的，虽然相对来说比较慢。后面我们将修复这个问题，现在它还能满足我们的需求。&lt;/p&gt;
+&lt;p&gt;回到Canvas类，它是一个非常强大的类，它对底层的图形库Skia进行了封装，这个库经过了特别的裁剪以执行使用CPU进行的2D渲染。Canvas类提供了非常多的绘制方法，比如绘制图形、位图甚至是文字。&lt;/p&gt;
+&lt;p&gt;draw方法绘制到哪里去了呢？这要看具体的情况。Canvas可以渲染Bitmap实例；Bitmap是Android的2DAPI提供的另一个类。在这里，它被绘制到屏幕上对应的View所占据的区域。当然，这个说法过于简单化了。实际上，它不是直接绘制到屏幕上，而是绘制到了某种位图上，系统会用它来合并Activity中所有View所对应的位图并组合成最终输出的图像。然后这个图像被传递给GPU，并通过其它复杂的方法显示到屏幕上。&lt;/p&gt;
+&lt;p&gt;我们不需要关心这些细节，从我们的角度来看，View看起来像是被拉伸到了整个屏幕，因此它可以被绘制到系统的帧缓冲区。在下面的讨论中，我们假设我们是直接绘制到帧缓冲的，系统来处理垂直扫描和双缓冲的问题。&lt;/p&gt;
+&lt;p&gt;在onDraw()方法中将在系统允许时被调用。对我们来说，它与理论上的游戏主循环非常类似。如果我们想要使用这个方法来实现游戏，我们就需要将所有我们的游戏逻辑放到这个方法中。很多原因导致我们不能这样做，但是，性能只是其中一个原因。&lt;/p&gt;
+&lt;p&gt;注意：
+ 上面的方法能实现持续的渲染，但是强烈推荐你不要使用这种方法！我们只应该在UI线程中执行很少的操作。我们将讨论如何在合适的独立线程中执行游戏的逻辑。&lt;/p&gt;
+&lt;h3 id="huo-qu-ping-mu-fen-bian-chuang-he-zuo-biao-xi-tong"&gt;获取屏幕分辨床（和坐标系统）&lt;/h3&gt;
+&lt;p&gt;为了将游戏元素渲染到屏幕上，我们需要知道屏幕的X轴和Y轴有多少个像素。Canvas类提供了两个方法来获取这些信息：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;width&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;canvas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getWidth&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;canvas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getHeight&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这将返回Canvas的渲染目标的宽度和高度。注意屏幕方向不同时width有可能会小于height。&lt;/p&gt;
+&lt;p&gt;另一个我们需要知道的信息是坐标系统。首先，坐标系统由整数组成（有子像素的概念，这里我们忽略它）。坐标的原点(0,0)总是位于显示的左上角，与屏幕方向无关。X轴向右增长，Y轴向下增长。&lt;/p&gt;
+&lt;h3 id="hui-zhi-jian-dan-de-tu-xing"&gt;绘制简单的图形&lt;/h3&gt;
+&lt;p&gt;介绍Canvas中常用的绘制方法。&lt;/p&gt;
+&lt;h3 id="shi-yong-wei-tu"&gt;使用位图&lt;/h3&gt;
+&lt;p&gt;使用基础的图形如线和圆来绘制游戏也是可能的，但是那并不性感。我们需要了不起的艺术来创建精灵和背景和其它激动人心的东西，我们可以从PNG或者JPEG文件来加载这些。&lt;/p&gt;
+&lt;h4 id="jia-zai-he-jian-cha-wei-tu"&gt;加载和检查位图&lt;/h4&gt;
+&lt;p&gt;Bitmap类会成为我们最好的朋友。我们可以使用BitmapFactory单例从文件加载位图。如下面从assets目录加载图像。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;InputStream&lt;/span&gt; &lt;span class="n"&gt;inputStream&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;assetManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;open&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"bob.png"&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;Bitmap&lt;/span&gt; &lt;span class="n"&gt;bitmap&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BitmapFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;decodeStream&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inputStream&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Bitmap类有一些有趣的方法。首先我们要知道图像的像素宽度和高度。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;width&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bitmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getWidth&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bitmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getHeight&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;接下来我们可能需要知道Bitmap中存储的颜色的格式：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Bitmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Config&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bitmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getConfig&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;config的可选值有：
+ - Config.ALPHA_8
+ - Config.ARGB_4444
+ - Config.ARGB_8888
+ - Config.RGB_565
+第三章和数字化编码颜色一节讨论过这些。&lt;/p&gt;
+&lt;p&gt;有趣的是上面的可选值里没有RGB888。PNG只支持ARGB8888，RGB888和调色板颜色。那么RGB888格式的PNG加载后是什么颜色格式呢？它将是BitmapConfig.RGB_565。这个转换是在使用BitmapFactory加载RGB888格式的PNG时自动发生的。原因是绝大多数的Android设备的缓冲区都是使用这种颜色格式。加载每个像素都是高角深的图像是在浪费内存（image with higher bit depth per pixel）,这些像素最终也将需要被转换成RGB565来渲染。&lt;/p&gt;
+&lt;p&gt;那为什么还需要Config.ARGB_8888配置呢？因为图像在被绘制到帧缓冲区之前是在CPU上构成的。在使用Alpha时，我们可以有比Config.ARGB_4444更多的色深（more bit depth）来处理某些高质量的图像。&lt;/p&gt;
+&lt;p&gt;ARGB8888格式的PNG图像将被加载为Config.ARGB_8888的Bitmap。其它两种颜色格式较少使用。我们可以告诉BitmapFactory尝试以某种特定的颜色格式来加载图像，甚至是与原始的格式不同的格式。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;InputStream&lt;/span&gt; &lt;span class="n"&gt;inputStream&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;assetManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;open&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"bob.png"&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;BitmapFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Options&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;BitmapFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Options&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;inPreferredConfig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Bitmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;ARGB_4444&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;Bitmap&lt;/span&gt; &lt;span class="n"&gt;bitmap&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BitmapFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;decodeStream&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inputStream&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;（上面代码中关于颜色格式的细节）.....&lt;/p&gt;
+&lt;p&gt;（释放位图）......&lt;/p&gt;
+&lt;p&gt;（绘制位图）......&lt;/p&gt;
+&lt;p&gt;（渲染文字）......&lt;/p&gt;
+&lt;h3 id="shi-yong-surfaceviewjin-xing-chi-xu-xuan-ran_1"&gt;使用SurfaceView进行持续渲染&lt;/h3&gt;
+&lt;h4 id="dong-ji"&gt;动机&lt;/h4&gt;
+&lt;p&gt;之前想要实现持续渲染时，我们使用了错误的方法。影响到UI线程的方法是不可接受的；我们需要一个办法在独立的线程中完成那些脏活。即，使用SurfaceView。&lt;/p&gt;
+&lt;p&gt;从它的名字可以看出，SurfaceView类是一个View包含了Surface，Surface是Android API提供的一个类。什么是Surface呢？它是屏幕合成器（screen compositor）渲染View所使用的的原始缓冲区（raw buffer）的抽象。屏幕合成器是在Android所有渲染的后台策划者，也是由它负责在最后将像素放到GPU。Surface在某些情况下可能是硬件加速的。我们不需要知道这些细节，我们只需要知道使用它是一种更直接的渲染内容到屏幕上的方法。&lt;/p&gt;
+&lt;p&gt;我们的目标是在单独的线程中进行渲染而不影响UI线程，而让它来处理其它的事情。SurfaceView类提供了这样的方法从非UI线程中进行渲染。&lt;/p&gt;
+&lt;h4 id="surfaceholderhe-locking"&gt;SurfaceHolder和Locking&lt;/h4&gt;
+&lt;p&gt;为了从非UI线程中渲染SurfaceView，我们需要获取到Surfaceholder类的实例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;SurfaceHolder&lt;/span&gt; &lt;span class="n"&gt;holder&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;surfaceView&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getHolder&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;SurfaceHolder封装了Surface，并为我们做了些辅助工作。它提供了两个方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Canvas&lt;/span&gt; &lt;span class="n"&gt;SurfaceHolder&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;lockCanvas&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;SurfaceHolder&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;unlockAndPost&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Canvas&lt;/span&gt; &lt;span class="n"&gt;canvas&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第一个方法锁定要渲染的Surface并返回相应的Canvas给我们使用。第二个方法解锁Surface并确保我们使用Canvas绘制的内容显示到屏幕上。我们将在渲染线程中使用这两个方法获取Canvas，并用它渲染它，最终将渲染过的图像显示到屏幕上。传递给SurfaceHolder.unlockAndPost()方法的Canvas必须是我们从SurfaceHolder.lockCanvas()方法中获取到的那个。&lt;/p&gt;
+&lt;p&gt;Surface并不会在SurfaceView对象实例化后立即创建。它的创建也是异步的。Surface将在每次Activity进入paused时被销毁并在Activity进入resumed时被创建。&lt;/p&gt;
+&lt;h4 id="surfacede-chuang-jian-he-yan-zheng"&gt;Surface的创建和验证&lt;/h4&gt;
+&lt;p&gt;我们不能在Surface还没有准备好的时候就获取SurfaceHolder。但是，我们可以检查Surface是否已经被创建。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;isCreated&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;surfaceHolder&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getSurface&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;isValid&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果这个方法返回true，我们就可以安全的锁定Surface并使用我们接收到的Canvas绘制了。必须要保证在调用SurfaceHolder.lockCanvas之后Surface被unlock，否则我们的Activity可能会被锁住电话！&lt;/p&gt;
+&lt;h3 id="zui-jia-shi-jian_1"&gt;最佳实践&lt;/h3&gt;
+&lt;p&gt;Android有些奇怪的性能特性。下面是对游戏影响较大的部分：
+ - 垃圾收集器是你最大的敌人。一旦它得到CPU时间来执行时，它将会锁住整个虚拟机600ms。半秒左右的时间游戏画面不会更新。用户将会迷惑。尽可能的避免创建对象，特别是在循环中。
+ - 对象应该在那些不明显的地方创建，尽量避免。不要使用迭代器，它们将创建新对象。不要使用任何标准的Set或Map集合类，它们会在每次插入操作时创建新的对象；使用Android API提供的SparseArray类来代替它们。使用StringBuffer代替+拼接字符。+号操作将在每次操作时创建一个新的StringBuffer。不要使用原生类型的对象类型。
+ - 在Dalvik中方法调用消耗的资源比其它VM的要多。尽量使用静态方法，它们的性能更好。静态方法与静态变量一样通常被当作邪恶的，它们导致错误的设计。因此保持你的设计尽可能的浅析。避免getter和setter方法。直接访问字段比调用那些方法要快上三倍，在没有JIT的情况下要快上七倍。在移除所有getter和setter方法之前先思考你的设计。
+ - 在旧设备的Dalvik中没有JIT（Android 2.2之前）浮点操作是用软件实现的。原来的游戏开发者可能会立即想到用fixed-point数学。不要这么做，因为整数除法同样很慢。多数情况下你不需要使用浮点，新的设备带有FPU。
+ - 尽可能在方法中使用局部（local）变量。访问局部变量比访问成员或者调用getter更快。&lt;/p&gt;
+&lt;h1&gt;OpenGL ES：简介&lt;/h1&gt;
+&lt;h2&gt;什么是OpenGL ES为什么应该了解它？&lt;/h2&gt;
+&lt;p&gt;OpenGL ES是3D图形编程的工业标准。特别是在移动和嵌入式设备上。它由Khronos Group进行维护，这个公司由ATI、NVIDIA和Intel共同组成。&lt;/p&gt;
+&lt;p&gt;当前的3个版本的OpenGL ES：1.0、1.1和2.0。前面两个版本是本书要涉及的版本。所有Android设备都支持OpenGL ES 1.0，多数支持1.1，这个版本在1.0的基础上增加了些新的功能。OpenGL ES 2.0，打破了与1.0的兼容性。你可以使用1.X或者2.0，但是不能同时使用这两个版本。原因在于1.X使用的编程模式被称为fixed-function pipeline，2.0让你可以以编程的方式通过被称为shader的东西部分定义rending pipeline。&lt;/p&gt;
+&lt;p&gt;许多二代设备已经支持OpenGL ES 2.0；但是，它的Java绑定当前不可用（除非你的目标平台是Android 2.3）。OpenGL ES 1.x对于多数游戏来说已经足够了，因此，我们仍然使用它。&lt;/p&gt;
+&lt;p&gt;注意：模拟器只支持OpenGL ES 1.0。不要依赖于模拟器进行测试。&lt;/p&gt;
+&lt;p&gt;OpenGL ES的API是由一套由Khronos提供的C头文件来提供的，没有包含头文件定义的API如何实现的细节。这些细节包含像素和线条如何被渲染等等。硬件制造商按这些规范在它们的GPU的驱动上进行实现。实现的质量会有些区别；有些公司严格遵守规范（PowerVR），有些则很难遵守规范。这有时候会导致与具体实现的GPU相关的BUG，这与Android本身无关，而是与硬件制造商提供的硬件驱动有关。&lt;/p&gt;
+&lt;p&gt;注意：OpenGL ES与桌面版本的OpenGL已经与偏离了。有些内容已经重写或者被彻底移除了。不论如何，还是有可能编写可以运行在两者之上的应用程序。&lt;/p&gt;
+&lt;p&gt;什么是OpenGL ES呢？简短的回答就是它是一个三角形渲染机器。&lt;/p&gt;
+&lt;h3 id="bian-cheng-mo-xing-mo-ni"&gt;编程模型：模拟&lt;/h3&gt;
+&lt;p&gt;可以把OpenGL ES工作的时候当成一个摄像机。为了拍摄照片你需要转移到需要拍照的场景。场景是由对象组成的&amp;mdash;&amp;mdash;比如一个放置了东西的桌子。上面的东西都有自己的位置和方向（相对于像机），也有不同的材质和纹理。比如玻璃是透明的，光线反射较少，桌子可能是由木头组成的，杂志上有某个政客最新的照片，等等。有些对象也可能会移动（比如，飞动的水果）。摄像机也有一些特性，比如焦躁、视野、要拍摄的图像分辨率和大小，和它相对于整个世界的位置和方向（相对于某个原点）。甚至对象和像机都在移动，当按下按钮拍摄照片时仍然可以拍到场景上的图像（忽略快门速度）。在这个无穷短的瞬间所有的东西都存在，图像正确的反应出一这些东西的位置、方向、纹理、材质和光线。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图7-1" src="/beginning_android_games/abstract_scene.png"/&gt;
+图7-1&lt;/p&gt;
+&lt;p&gt;所有的东西相对于场景的原点都有自己的位置和方向。图中的眼睛代表相机，也有它相对于场景原点的位置和方向。图中的锥体被称为视卷或者视锥（view volume or view frustum）。它展示了相机的方向和场景中有多少内容能被它捕获到。白色的球代表的是场景中的光源，它也有相对于原点的位置。&lt;/p&gt;
+&lt;p&gt;为了将这些内容映射到OpenGL ES中，我们定义下面的东西：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对象（或者称为模型）：这些通常由2个4点组成：它们的几何特性，如颜色、纹理和材质。几何外形由一套三角形组成。每个三角形由3D空间的3个点组成。Z轴是朝向我们的。颜色由RGB指定。纹理和材质复杂一些。后面我们再讨论。&lt;/li&gt;
+&lt;li&gt;灯光：OpenGL ES提供了一套不同的光源类型，有各种属性。它们只是在3D空间中的数学对象，有自己的方向，加上颜色之类的属性。&lt;/li&gt;
+&lt;li&gt;摄像机：也是数学对象，也只在3D空间占据一个位置，并且有方向。另外它有参数控制我们能看到多大的图像，类似于真实的相机。这些东西定义一起定义了视锥。任何视锥内的东西都能被相机拍到，而外部的东西则不会进入最终的照片。&lt;/li&gt;
+&lt;li&gt;视口：这决定了最终图像的大小和分辨率。可以把它当作你的摄像机拍摄到的影片类型或者数码相机拍摄到的照片的分辨率。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过这些，OpenGL ES可以构造从摄像机位置所看到的场景的2D图像。我们定义所有的东西都是在3D空间定义的。OpenGL ES是如何将它映射到2D坐标的呢？&lt;/p&gt;
+&lt;h3 id="tou-ying"&gt;投影&lt;/h3&gt;
+&lt;p&gt;这种2D映射是通过被称为投影的方法实现的。我们注意到OpenGL ES主要是涉及三角形。一个三角形由3D空间的3个点构成。为了将这个3角形渲染到帧缓冲区中，OpenGL ES需要知道这些3D点在帧缓冲坐系统中的坐标。知道这三个角的坐标后，只需要简单的将像素绘制到帧缓冲。我们甚至可以通过将3D点转换到2D点实现简单的OpenGL ES，并使用Canvas进行绘制：&lt;/p&gt;
+&lt;p&gt;在3D图形中有2种方法进行投影：
+ - 平行或者称为正交投影：如果你使用过CAD软件，则你对它不会陌生。平行投影的情况下最终的图像总是拥有固定的大小。这是在OpenGL ES中进行2D图形渲染时所用的方法。
+ - 透视投影：这是我们的眼睛所使用的方法。离我们越远的对象在我们的视网膜上会显得更小。这通常是OpenGL ES中3D图形所使用的投影方法。&lt;/p&gt;
+&lt;p&gt;这两种情况下都需要被称为投影平面的东西。它类似于我们的视网膜。这是最终的将光线转换成图片的地方。数学上的投影平面是无限的，我们的视网膜却是有限的。在OpenGL ES中的&amp;ldquo;视网膜&amp;rdquo;相当于视锥顶部的矩形区域。OpenGL ES会将点投影到它的上面。它被称为近端裁剪平面（near clipping plane）它有自己的2D坐标系统。下图展示了叠加了坐标系统的近端裁剪平面。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图7-2" src="/beginning_android_games/view_frustum.png"/&gt;
+图7-2&lt;/p&gt;
+&lt;p&gt;注意上面的坐标是不固定的。我们可以指定投影的坐标系统（比如告诉OpenGL ES将原点放在左下角，让&amp;ldquo;视网膜&amp;rdquo;可以看到X轴480个单位Y轴320个单位的范围）。听起来很熟悉吧？是的，OpenGL ES允许我们指定投影点的坐标系统。&lt;/p&gt;
+&lt;p&gt;当我们指定视锥后，OpenGL ES从三角形的每个点发出一条穿过投影平面的光线。平行或者透视（parallel and perspective）投影方式决定了光线的方向。如下图，展示了两者的区别。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图7-3" src="/beginning_android_games/projection_type.png"/&gt;
+图7-3&lt;/p&gt;
+&lt;p&gt;透视投影将光线从三角形上的点射向相机（或者说眼睛）。这时离投影平面远的物体会显得小些。而当我们使用平行投影时，光线光垂直射向投影平面。这时不管物体的远近如何，它都将会保持相同的大小。&lt;/p&gt;
+&lt;p&gt;前面说过，我们的投影平面在OpenGL ES术语中被称为近端裁剪平面（near clipping plane）。视锥的各个面有相类似的名字。远离相机一端的平面被称为无端裁剪平面（far clipping plane）。其它几个面分别被称为左、右、顶和底端裁剪平面。任何处于这些平面之外或者之后的物体将不会被渲染，即视锥之外的内容被剪掉了。这就是裁剪平面（clipping plane）这一名称的由来。&lt;/p&gt;
+&lt;p&gt;你可能想知道为什么上图中平行投影的视锥为什么会是矩形的。它提示了实际上投影是由我们如何定义裁剪平面而决定的。在透视投影中，左、右、顶和底裁剪平面都不垂直于近端和远端裁剪平面。而在平行投影中，这些裁剪面都是垂直的，这告诉OpenGL ES不要管物体离相机的远近，将它们渲染成相同的大小即可。&lt;/p&gt;
+&lt;h3 id="biao-zhun-she-bei-kong-jian-he-shi-kou"&gt;标准设备空间和视口&lt;/h3&gt;
+&lt;p&gt;当OpenGL ES计算出点在近端裁剪平面上的投影点后，它最终将可以将它们转换成帧缓冲区的像素坐标了。为达到这个目的，它必须先将点转换到标准设备空间（normalized device space）。这等于图7-2中描述的坐标系统。基于标准设备空间坐标OpenGL ES使用下面的简单公式就可以计算出它在帧缓冲区中最终的坐标了。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pixelX&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;norX&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;viewportWidth&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;norX&lt;/span&gt;
+&lt;span class="n"&gt;pixelY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;norY&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;viewportHeight&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;norY&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;norX和norY是3D点在标准设备空间的坐标，viewportWidth和viewportHeight是视口（viewport）的大小。我们不需要关心标准设备空间坐标，OpenGL会自动帮我们完成转换。我们需要关心的是视口和视锥。&lt;/p&gt;
+&lt;h3 id="ju-zhen"&gt;矩阵&lt;/h3&gt;
+&lt;p&gt;下面将看到如何处理视锥和投影。OpenGL ES是以矩阵来表达投影的。对于我们来说我们不需要知道矩阵的内部细节。我们只需要知道它们对应于我们在场景中定义的点。下面的关于矩阵的概要：
+ - 矩阵将转换（transformation）编码然后应用到点上。转换可以被投影，迁移（translation，点的移动），相对于另一个点和轴旋转、拉伸等等。
+ - 通过点和矩阵相乘。我们可以将转换应用到点。例如：通过将一个点与矩阵相乘将导致迁移10个单位，这样就修改了它的坐标。
+ - 我们可以将多个矩阵中的转换通过矩阵乘法拼接到单个矩阵中。当我们将这个拼接出来的单个矩阵与点相乘时，所有存储于这个矩阵中的转换将按它们在矩阵乘法中的顺序应用到点上。
+ - 有一种特殊的矩阵称为标识矩阵（identity matrix）。如果我们将矩阵或点与它相乘，什么都不会发生。可以把点或矩阵与标识矩阵相乘看成数字与1相乘，不会发生什么变化。当我们了解到OpenGL ES如何处理矩阵时，我们就会对标识矩阵有更清楚的认识。这是一个类似蛋与鸡的问题。&lt;/p&gt;
+&lt;p&gt;注意： 这里所讨论的点上指定的3D矢量。&lt;/p&gt;
+&lt;p&gt;OpenGL ES有三种不同的矩阵来处理模型中的点：
+ - Model-view矩阵：我们可以使用这个矩阵来移动、旋转或者拉伸三角形（即Model-view矩阵的Model部分）。这种矩阵也用于指定相机的位置和方向（即Model-view的view部分）。
+ - 投影矩阵：这个矩阵用于对投影进行编码，从而影响相机的视锥。
+ - 纹理（Texture）矩阵：这种矩阵让我们可以处理被称为纹理坐标（texture coordinates）的东西。但是，我们将避免在本书中使用这种矩阵，因为OpenGL ES中的这个部分在很多设备上都由于驱动的Bug而有问题。&lt;/p&gt;
+&lt;h3 id="xuan-ran-guan-xian"&gt;渲染管线&lt;/h3&gt;
+&lt;p&gt;OpenGL ES会跟踪上面这三种矩阵。当我们设置其中一种矩阵时，它将会记住它直到我们再次修改矩阵。在OpenGL ES中，它被称为状态。OpenGL跟踪的不只是矩阵的状态；它也跟踪我们是否需要进行三角形的Ahpha混合，是否要考虑照明，哪个纹理应该被应用到模型上，等等。实际上OpenGL ES是一个巨大的状态机。我们设置它的当前状态，告诉它我们的物体的几何形状，告诉它如何渲染成图片。让我们看看三角形是如何通过这个强大的三角形渲染机器的。下图简要的展示了OpenGL ES中的管线：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="way of triangle" src="/beginning_android_games/way_of_triangle.png"/&gt;&lt;/p&gt;
+&lt;p&gt;三角形是以下面的方式通过管线的：
+ 1. 三角形首先被转换成model-view矩阵。这意味着它的点将与这个矩阵相乘。这个乘法将影响到世界（场景）中的点。
+ 2. 产生的输出与映射矩阵相乘，这将影响到3D点到2D投影平面的转换。
+ 3. 这两部之间（他们可能并行），当前设置的灯光和材质也被应用到三角形，这让它有了颜色。
+ 4. 这些工作做完后，投影三角被载剪到我们的&amp;ldquo;视网膜&amp;rdquo;将被转换到帧缓冲区坐标。
+ 5. 最后一步，OpenGL将三角形的颜色填充到像素，这个颜色受到灯光状态、三角形的纹理、阴影的影响，根据这些因素三角形的某个像素有可能会也有可能不会被合并到帧缓冲区的像素中。&lt;/p&gt;
+&lt;p&gt;我们需要学习如何将模型、纹理丢给OpenGL ES，将设置这些步骤中的状态。在这之前我们先要了解如何让Android允许我们访问OpenGL ES。&lt;/p&gt;
+&lt;p&gt;注意：本节所描述的OpenGL ES管线的工作方式是在高度抽象的情况下，描述得非常简单所留下的细节会是后面章节的重点。另一个要注意的是当OpenGL ES执行投影时，它并不会实际投影到2D坐标系统。而是投影到被称为同质坐标的系统（homogenous coordinate system）上，这个系统实际上是4维的。这与很多数学知识相关，为了简单起见，我们只需要简单的认为OpenGL ES投影到了2D坐标系统。&lt;/p&gt;
+&lt;h2&gt;开始之前&lt;/h2&gt;
+&lt;h2&gt;GLSurfaceView：从2008年开始事情变得简单了&lt;/h2&gt;
+&lt;p&gt;首先我们需要的是某种类型的View，它允许我们使用OpenGL ES进行绘制。幸运的是Android AP提供了GLSurfaceView，它派生于之前我们所使用过的SurfaceView类。&lt;/p&gt;
+&lt;p&gt;我们也需要一个独立的主线程以避免影响UI线程。GLSurfaceView已经为我们提供了这种线程。我们需要做的是实现一个GLSurfaceView.Render的接口，并将它注册到GlSurfaceView中。这个接口有三个方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;interface&lt;/span&gt; &lt;span class="nc"&gt;Render&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onSurfaceCreated&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GL10&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;EGLConfig&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onSurfaceChanged&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GL10&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onDrawFrame&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GL10&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;OnSurfaceCreated()方法在每次GLSurfaceView创建时被调用。这将在每一次启动Activity和每次从Paused状态恢复时发生。这个方法接收两个参数，一个GL0和EGLConfig。GL10实例让我们可以向OpenGL ES发送命令。EGLConfig只是告诉我们surface的属性，比如色深之类的。通常会忽略它。我们将会在onSurfaceCreated()方法中设置我们的几何模型和纹理。&lt;/p&gt;
+&lt;p&gt;onSurfaceChanged()方法将在每次surface改变大小时被调用。新的高度和宽度将以像素为单位作为参数传递进来，还有GL0实例参数以便我们发出OpenGL ES命令。&lt;/p&gt;
+&lt;p&gt;onDrawFrame()方法是发生有趣事件的地方。它与我们之前定义的Screen.render()方法类似，它将会被尽可能快速的被GLSurfaceView提供的渲染线程所调用。在这里我们执行所有渲染操作。&lt;/p&gt;
+&lt;p&gt;除了注册Renderer监听之外，我们还需要在Activity的onPause()/onResume()方法中调用GLSurfaceView.onPause()/onResume()方法。原因很简单。GLSurfaceView将在它的onResume()方法中启动渲染线程，并在onPause()方法中停止这个线程。这意味着我们的监听在Activity进入paused时不会被调用，因为调用我们的监听的渲染线程也被paused。&lt;/p&gt;
+&lt;p&gt;这里产生了另一个问题：每次Activity进入Paused时，GLSurfaceView中的surface将被销毁。当Activity恢复时（GLSurfaceView.onResume()被我们调用时），GLSurfaceView为我们实例化了一个新的OpenGL ES surface，这会导致调用监听中的onSurfaceCreated()方法。如果没有下面的这个问题这将一切OK，问题是：我们设置的所有OpenGL ES的状态将都丢失。这些内容包括纹理等等，这种情况下我们需要重新加载这些信息。这个问题被称作上下文丢失。上下文一词源于我们创建的OpenGL ES的surface，它保留了当前的状态。当我们销毁这个surface时，上下文就丢失了。这并不是最坏的，因为，我们可以在设计游戏时正确的处理上下文丢失的问题。&lt;/p&gt;
+&lt;p&gt;注意：实际上，EGL负责处理上下文和surface的创建和销毁。EGL是Khronos Group的另一个标准；它定义了操作系统UI如何与OpenGL ES一起工作，也定义了操作系统OpenGL ES如何访问底层硬件。这包括了surface的创建，即上下文的管理。因为GLSurfaceView为我们处理了所有EGL的东西，我们可以安全的忽略多数的问题。&lt;/p&gt;
+&lt;p&gt;Render中有趣的方法是onDrawFrame()方法。&lt;/p&gt;
+&lt;p&gt;前面说过GL10的实例让我们可以访问OpenGL ES API。名字中的10表示的是它让我们可以使用所有OpenGL ES 1.0标准中定义的函数。这个类的所有方法都映射到相应的C函数。每个方法以gl开头，这是OpenGL ES中的一个传统。&lt;/p&gt;
+&lt;p&gt;OpenGL ES有许多的常量，这些都定义为了GL10接口中的static public成员。与方法类似，每个常量都有GL_前缀。&lt;/p&gt;
+&lt;p&gt;注意：不要在其它线程中调用OpenGL ES！这是第一条也是最后一条戒令！这是因为OpenGL ES是被设计为在单线程环境下使用，并不是线程安全的。有些可以工作于多线程，但是许多驱动会有问题，因此没有实际意义。&lt;/p&gt;
+&lt;h2&gt;GLGame：实现Game接口&lt;/h2&gt;
+&lt;h2&gt;红色的三角形&lt;/h2&gt;
+&lt;p&gt;根据前面已经知道在使用OpenGL ES进行绘制之前我们需要一些准备工作。这些事情中我们最为关心的是投影和矩阵（及视锥）和视口，这决定了最终输出图像的大小和输出到帧缓冲的位置。&lt;/p&gt;
+&lt;h3 id="ding-yi-shi-kou"&gt;定义视口&lt;/h3&gt;
+&lt;p&gt;OpenGL ES使用视口（viewport）将投影到近端裁剪面的点的坐标转换到帧缓冲坐标。我们可以告诉OpenGL ES只使用一部分帧缓冲区：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Gl10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glViewport&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;x和y轴指定帧缓冲区中viewport的左上角，width和height指定viewport的像素尺寸。注意OpenGL ES假设帧缓冲区坐标系统的原点在屏幕左下方。在全屏模式下通常我们将x和y设置为0，将width和height设置为屏幕的分辨率。通过这种方法可以告诉OpenGL ES只使用部分的帧缓冲。它会将渲染输出拉伸到这个部分区域上。&lt;/p&gt;
+&lt;p&gt;注意：这个方法看起来像是在为渲染设置2D坐标系统，实际上并非如此。它只是定义OpenGL ES用于输出最终图像的帧缓冲区的区域。坐标系统是通过投影和Model-view矩阵实现的。&lt;/p&gt;
+&lt;h3 id="ding-yi-tou-ying-ju-zhen"&gt;定义投影矩阵&lt;/h3&gt;
+&lt;p&gt;下面将讨论投影矩阵。这章我们只讨论2D图形，因此我们使用平行投影。&lt;/p&gt;
+&lt;h4 id="ju-zhen-mo-shi-he-ji-huo-ju-zhen"&gt;矩阵模式和激活矩阵&lt;/h4&gt;
+&lt;p&gt;OpenGL ES有三种类型的矩阵：投影矩阵、Model-view矩阵和纹理矩阵（这里我们忽略这个）。OpenGL ES提供了一些方法来修改这些矩阵。在使用这些方法之前，我们先要告诉OpenGL ES我们要处理哪种类型的矩阵。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;GL10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glMatrixMode&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;mode参数可以是GL10.GL_PROJECTION，Gl10.GL_MODELVIEW或者GL10.GL_TEXTURE。这些常量明确了当前所激活的是哪种类型的矩阵。在这之后进行的矩阵处理方法将按这里设置的类型来处理，直到我们再次通过这个方法修改所激活的矩阵类型。矩阵类型是OpenGL ES的一种状态（如果应用程序进入paused或者resumed状态，这个状态将随上下文丢失）。&lt;/p&gt;
+&lt;h4 id="shi-yong-glorthofjin-xing-zheng-jiao-tou-ying"&gt;使用glOrthof进行正交投影&lt;/h4&gt;
+&lt;p&gt;OpenGL ES为我们提供了下面的方法将当前激活的矩阵设置为正交（平行）投影矩阵：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Gl10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glOrthof&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;bottom&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;top&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;near&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;far&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这看起来与我们的视锥裁剪平面类似。&lt;/p&gt;
+&lt;p&gt;OpenGL ES有标准的坐标系统，X轴朝向右边，Y轴朝向左边，Z轴朝向我们自己。使用glOrthof()我们在这个坐标系统中定义我们的平行投影的视锥。如图7-3所示，我们知道平行投影的视锥像一个盒子。我们可以用这个视锥盒子的各个角来指定glOrthof()的参数。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图7-5" src="/beginning_android_games/orthographic_view_frustum.png"/&gt;
+图7-5&lt;/p&gt;
+&lt;p&gt;视锥的前面直接可以映射为我们的viewport。在全屏时viewport从(0,0)到(480,320)（相当于Hero的横屏模式），前面的左下角将映射到我们屏幕的左下角，前面的右上角映射到屏幕的左上角。（这里不明白，写错了？）OpenGL将自动执行拉伸。&lt;/p&gt;
+&lt;p&gt;由于我们是要进行2D绘图，我们只需要指定角对应的点(left,bottom,near)和（right,top,far），通过这种方式让我们可以如之前在Mr.Nom中使用Canvas一样工作于像素坐标系统。下面是如何设置这个坐标系统：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glOrthof&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;480&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;320&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img alt="图7-6" src="/beginning_android_games/parallel_projection_view_frustum_for_2D.png"/&gt;&lt;/p&gt;
+&lt;p&gt;图7-6&lt;/p&gt;
+&lt;p&gt;我们的视锥非常薄，因为我们只需要2D绘图。坐标系统中的可视部分是从(0,0,1)至(480,320,-1)。任何出现在这个盒子中的点都将显示到屏幕上。这些点将被投影到这个盒子的前面，即近端裁剪平面。投影然后被拉伸到我们的viewport的分辨率。这就是说当我们用一个800x480的设备时，如果我们按上面的方式设定视锥，则我们可以在480x320的坐标系统里工作，然后OpenGL将会将它拉伸到800x480的帧缓冲区（如果我们指定viewport覆盖了整个帧缓冲区的话）。没有什么可以阻止我们使用疯狂的视锥，比如我们也可以使用(-1,-1,100)和（2，2，-100）。所有在这个盒子中的内容都将被拉伸并显示出来。&lt;/p&gt;
+&lt;p&gt;上面的设置中都包含了近端和远端裁剪平面。因为我们在本章里可以完全抛弃z轴，你可能想要将near和far的坐标都设置为0。因为一些原因这样做是不正确的。为求稳当，我们在z轴上分配了一点缓冲。&lt;/p&gt;
+&lt;p&gt;注意：你可能已经注意到了y轴是向上的，原点在屏幕的左下方了。但是在使用Canvas时，许多2D渲染相关的API中y是向下的，原点在左上角。实际上，使用这个新坐标系统更有利于游戏编程。比如，超级玛丽跳起时，你一定不会希望y轴是减少而不是增加。&lt;/p&gt;
+&lt;h3 id="yi-xie-you-yong-de-dai-ma-pian-duan_1"&gt;一些有用的代码片段&lt;/h3&gt;
+&lt;p&gt;下面这段代码在后面所有例子中都会用到。它将屏幕清除为黑色，将viewport设置为整个帧缓冲区大小，并设置投影矩阵（视锥）以便我们使用原点在左下角y轴向上的坐标系统：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glClearColor&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glClear&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GL10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GL_COLOR_BUFFER_BIT&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glViewport&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;glGraphics&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getWidth&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;glGraphics&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getHeight&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glMatrixMode&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GL10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GL_PROJECTION&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glLoadIdentity&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glOrthof&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;320&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;480&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;glLoadIdentity()方法是做什么的呢？多数OpenGL ES提供的处理当前激活矩阵的方法不会直接设置矩阵。它会先按传递给它的参数构造一个临时矩阵并与当前矩阵相乘。glOrthof()方法也不例外。例如，如果我们在每帧中调用glOrthof()方法，则我们将会用投影矩阵与它自己相乘。为了防止这个，我们要先保证在与投影矩阵相乘之前有一个可用的identity矩阵。记住，矩阵与identity矩阵相乘将得到它自己。可以将这个方法当作加载为1的操作，然后将1与其它东西（这里是指由glOrthof()所处理的投影矩阵）相乘。&lt;/p&gt;
+&lt;h3 id="zhi-ding-san-jiao-xing"&gt;指定三角形&lt;/h3&gt;
+&lt;p&gt;接下来我们可以告诉OpenGL ES我们需要渲染的三角形了。三角形的定义如下：
+ - 它是由3个点组成的
+ - 每人点都称为顶点
+ - 每个顶点在3D空间中有自己的位置
+ - 每个位置是由3个浮点数组成的，用于指定x，y和z轴
+ - 每个顶点可以有额外的属性，比如颜色或纹理坐标（texture coordinates）。这些都可以用浮点来描述&lt;/p&gt;
+&lt;p&gt;OpenGL ES需要我们以数组的形式来发送我们的三角形定义。这通常是C的API，我们不能直接用Java数组来表示。我们不得不用Java NIO来处理，它们是连续的内存块。&lt;/p&gt;
+&lt;h3 id="guan-yu-nio-buffer"&gt;关于NIO Buffer&lt;/h3&gt;
+&lt;p&gt;（注：本节内容可以参见Java NIO一书中关于Buffer的部分，那里有详细的描述）&lt;/p&gt;
+&lt;p&gt;更精确的来说，我们需要的是direct NIO buffer。这意味着内存不是在虚拟机的堆（heap）中分配的，而是本机堆（native heap）内存。为了构造direct NIO buffer，我们可以使用下面的代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ByteBuffer&lt;/span&gt; &lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ByteBuffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;allocateDirect&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NUMBER_OF_BYTES&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;order&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ByteOrder&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;nativeOrder&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我们共分配了NUMBER_OF_BYTES个字节的内存，并确保字节序等于所使用的CPU的字节序。NIO buffer有三个属性：
+ - 容量（Capacity）：它可以保存的元素的总数
+ - 位置（Position）：下一个元素将被写入或者读取的元素的位置
+ - 限制（Limit）：定义的最后一个元素的索引加1&lt;/p&gt;
+&lt;p&gt;Capacity是它的实际大小。在ByteBuffer中，它是以bytes来衡量的。position和limit属性可以通过定义的确定，buffer从position开始至limit结束（limit自身除外）。&lt;/p&gt;
+&lt;p&gt;由于我们需要用浮点来定义顶点，因此用bytes来处理并不是很好。但是我们可以将ByteBuffer实例转换为FloatBuffer实例。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;FloatBuffer&lt;/span&gt; &lt;span class="n"&gt;floatBuffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;asFloatBuffer&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Capacity、position和limit在FloatBuffer中是按浮点给出的。我们使用Buffer的方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;vertices&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;定义顶点的位置等等&lt;/span&gt; &lt;span class="o"&gt;...;&lt;/span&gt;
+&lt;span class="n"&gt;floatBuffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;clear&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;floatBuffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;floatBuffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;flip&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;首先定义标准的Java浮点数组。在我们将数组放入buffer之前，先用clear()方法将buffer清空。这并不会删除任何数据，只是将positon设置为0并将limit设置为capacity。接下来我们使用FloatBuffer.put(float[] array)方法将整个数组复制到buffer的开始位置。复制完后，buffer的positon增长了数组的长度。如果再次调用put()方法，则会将额外的数据放到我们复制的数据的后面。最后我们使用FloatBuffer.flip()将position和limit的值交换。（注：flip()之后position位于0，这时再进行读取就会从第一个位置开始读取，这样可以保证读取的时候是按写入时的顺序读取的。）&lt;/p&gt;
+&lt;h3 id="jiang-ding-dian-fa-song-gei-opengl-es"&gt;将顶点发送给OpenGL ES&lt;/h3&gt;
+&lt;p&gt;假设我们的坐标系统是从(0,0,1)到(320,480,-1)，我们可以用下面的代码来定义顶点：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ByteBuffer&lt;/span&gt; &lt;span class="n"&gt;byteBuffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ByteBuffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;allocateDirect&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;byteBuffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;order&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ByteOrder&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;nativeOrder&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;FloatBuffer&lt;/span&gt; &lt;span class="n"&gt;vertices&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;byteBuffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;asFloatBuffer&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Float&lt;/span&gt;&lt;span class="o"&gt;[]{&lt;/span&gt;    &lt;span class="mf"&gt;0.0f&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;    &lt;span class="mf"&gt;0.0f&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+                           &lt;span class="mf"&gt;319.0f&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;    &lt;span class="mf"&gt;0.0f&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+                           &lt;span class="mf"&gt;160.0f&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;    &lt;span class="mf"&gt;479.0f&lt;/span&gt;   &lt;span class="o"&gt;});&lt;/span&gt;
+&lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;flip&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里我们感兴趣的是如何决定要分配多少bytes。因为我们有3个顶点，每个点是由x和y两个坐标组成。每个坐标都是一个float类型的，需要4 bytes。3个顶点乘以2个坐标值乘以4 bytes，一共24bytes。&lt;/p&gt;
+&lt;p&gt;注意：我们不需要指定z轴，OpenGL ES会自动将z轴设置为0。&lt;/p&gt;
+&lt;p&gt;将顶点数据放入buffer并调用flip()之后NIO Buffer的position将被设置为0，limit被设置为6（FloatBuffer的limit和position都是按float占用的空间来计算的而不是byte）。&lt;/p&gt;
+&lt;p&gt;接下来我们就可以告诉OpenGL ES来绘制当前的状态（比如：viewport和投影矩阵）。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glEnableClientState&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GL10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GL_VERTEX_ARRAY&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glVertexPointer&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GL10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GL_FLOAT&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glDrawArrays&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GL10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GL_TRIANGLES&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;调用glEnableClientState()是为了告诉OpenGL ES我们需要绘制的顶点是有位置的。这里2个地方显得有些白痴：
+ - GL0.GL_VERTEX_ARRAY的命名有些迷惑，如果称它为GL10.GL_POSITION_ARRAY会更清楚一些。
+ - 如果没有位置则根本不能进行绘制，调用这个方法真的有些多余。但是我们不得不按OpenGL ES的需要调用这个方法。&lt;/p&gt;
+&lt;p&gt;glVertexPointer()告诉OpenGL ES到哪里可以找到顶点数据。它的第一个参数告诉OpenGL ES每个顶点坐标只包含了2个坐标，x和y。如果是3D坐标，则要把这个参数设置成3。第二个参数告诉OpenGL ES每个坐标的数据类型。GL0.GL_FLOAT表明我们使用的是占4 bytes的float类型。第三个参数stride告诉OpenGL我们的坐标值中每个坐标值之间的间距（以byte为单位）。在这里为0，因为我们的坐标值是一个挨着一个存储的（坐标1(x,y)坐标2(x,y)...）。最后一个参数是FloatBuffer，对于它有两点需要注意：
+ - FloatBuffer是处于本地堆（native heap）的内存块，因此它有一个起始地址。
+ - FloatBuffer中的存储的位置（position）位于从起始地址开始的一个偏移量。&lt;/p&gt;
+&lt;p&gt;OpenGL ES将buffer的起始地址加上buffer中保存的坐标数据的位置（偏移）可以得到buffer中实际保存的浮点数据的地址，通过这种方式它能读取到顶点的数据。顶点数据是OpenGL ES的一种状态。只要我们不修改它（并且上下文不丢失），OpenGL ES将会在后面的调用中一直保留它。&lt;/p&gt;
+&lt;p&gt;接下来调用glDrawArrays()。它将绘制出三角形。它的第一个参数是指定要绘制的图形的类型。我们使用GL10.GL_TRIANGLES告诉它我们需要渲染的是三角形。第二个参数是要渲染的顶点和第一个顶点之间的偏移。这里的偏移是以顶点为单位的，而不是以byte或者float。如果我们定义了多于个三角形时可以用这个偏移来渲染多个三角形中的一部分。最后一个参数告诉OpenGL ES有多少个顶点需要渲染。在这里我们有3个需要渲染。注意这个值总会是3的倍数，这个倍数值与第一个参数指定的图形类型有关。&lt;/p&gt;
+&lt;p&gt;当执行glVertexPointer()时，OpenGL ES会将顶点位置传送到GPU，并为后面执行的渲染命令集而存储这些数据。每次我们告诉OpenGL ES渲染顶点时，它将会取上次调用glVertexPointer()时所传递的顶点数据。&lt;/p&gt;
+&lt;p&gt;每个顶点数据可以含有多个属性而不仅仅只是坐标数据。其它属性可能是顶点的颜色。通常我们称这些属性为顶点属性。&lt;/p&gt;
+&lt;p&gt;OpenGL ES是如何知道我们需要什么颜色的三角形的呢，我们只指定了坐标。OpenGL ES对于没有指定的顶点属性都有默认值。这些默认值中的大多数都是可以直接设置的，比如，设置所有要绘制的顶点的默认颜色：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;GL10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;glColor4f&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这个方法将会将所有未指定顶点颜色的顶点的默认颜色。颜色值是以RGBA的格式指出的，取值范围从0.0至1.0。顶点颜色的默认值为(1,1,1,1)&amp;mdash;&amp;mdash;不透明的白色。&lt;/p&gt;
+&lt;p&gt;上面是在OpenGL ES中使用平行投影渲染一个三角形的所有代码。16行代码清除屏幕，设置viewport和投影矩阵，创建存储顶点位置的NIO缓存，绘制三角形。&lt;/p&gt;
+&lt;h3 id="wan-zheng-de-dai-ma"&gt;完整的代码&lt;/h3&gt;
+&lt;h2&gt;指定每个顶点的颜色&lt;/h2&gt;</content><category term="android"></category></entry><entry><title>Android Dev Guide学习笔记 User Interface</title><link href="/android-dev-guidexue-xi-bi-ji-user-interface.html" rel="alternate"></link><published>2010-08-20T00:00:00+08:00</published><updated>2010-08-20T00:00:00+08:00</updated><author><name>Jamsa</name></author><id>tag:None,2010-08-20:/android-dev-guidexue-xi-bi-ji-user-interface.html</id><summary type="html">&lt;h1&gt;用户界面&lt;/h1&gt;
+&lt;p&gt;在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是View类的子类。&lt;/p&gt;
+&lt;p&gt;View对象是Android平台表达用户界面的基本单元。View class作为被称作&amp;ldquo;构件（widget）&amp;rdquo;的基类，这些构件实现UI对象，如文本域和按钮。ViewGroup类被作为&amp;ldquo;布局（layout）&amp;rdquo;类的基类，它用于描述不同的布局方式，如线型、页签等。&lt;/p&gt;
+&lt;p&gt;View对象的属性中存储了布局参数和屏幕中特定的矩形框中的内容。View对象自己处理自己的度量、布局、绘制、焦点变化、滚动、和在它的矩形范围内的按键/手势交互。用户界面中的View对象也是用户和交互事件接收器的交互点。&lt;/p&gt;
+&lt;h1&gt;View层级结构&lt;/h1&gt;
+&lt;p&gt;在Android平台上，你可以用一组包含View和ViewGroup节点的层级结构来定义Activity的UI，如下图。这个层级树根据需要可以很简单也可以很复杂，你可以使用Android中预定义的构件和布局来构建它，也可以用自定义的View来构建。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/android-dev-guide/viewgroup.png"/&gt;&lt;/p&gt;
+&lt;p&gt;为了让view层级树渲染到屏幕上，你的Activity必须调用setContentView()方法并传递一个根节点的引用。Android系统接收到这个引用来废止、度量和绘制这个树。根节点请求它的子节点绘制自己&amp;mdash;&amp;mdash;每个view group节点负责调用它自己的子节点绘制自己。子节点可能会从父节点中请求得到某个位置的一块区块，但是父节点有最终决定分配哪个位置的多大的区域给子节点。Android从树的顶部开始解析布局元素，并实例华它们并将它们添加到它们的父节点。由于这些元素的绘制是按顺序进行的，如果出现元素重叠 …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;用户界面&lt;/h1&gt;
+&lt;p&gt;在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是View类的子类。&lt;/p&gt;
+&lt;p&gt;View对象是Android平台表达用户界面的基本单元。View class作为被称作&amp;ldquo;构件（widget）&amp;rdquo;的基类，这些构件实现UI对象，如文本域和按钮。ViewGroup类被作为&amp;ldquo;布局（layout）&amp;rdquo;类的基类，它用于描述不同的布局方式，如线型、页签等。&lt;/p&gt;
+&lt;p&gt;View对象的属性中存储了布局参数和屏幕中特定的矩形框中的内容。View对象自己处理自己的度量、布局、绘制、焦点变化、滚动、和在它的矩形范围内的按键/手势交互。用户界面中的View对象也是用户和交互事件接收器的交互点。&lt;/p&gt;
+&lt;h1&gt;View层级结构&lt;/h1&gt;
+&lt;p&gt;在Android平台上，你可以用一组包含View和ViewGroup节点的层级结构来定义Activity的UI，如下图。这个层级树根据需要可以很简单也可以很复杂，你可以使用Android中预定义的构件和布局来构建它，也可以用自定义的View来构建。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/android-dev-guide/viewgroup.png"/&gt;&lt;/p&gt;
+&lt;p&gt;为了让view层级树渲染到屏幕上，你的Activity必须调用setContentView()方法并传递一个根节点的引用。Android系统接收到这个引用来废止、度量和绘制这个树。根节点请求它的子节点绘制自己&amp;mdash;&amp;mdash;每个view group节点负责调用它自己的子节点绘制自己。子节点可能会从父节点中请求得到某个位置的一块区块，但是父节点有最终决定分配哪个位置的多大的区域给子节点。Android从树的顶部开始解析布局元素，并实例华它们并将它们添加到它们的父节点。由于这些元素的绘制是按顺序进行的，如果出现元素重叠，则最后绘制的元素将位于先前绘制的元素的上面。&lt;/p&gt;
+&lt;p&gt;要了解View层级结构的度量和绘制，参见How Android Draws Views。&lt;/p&gt;
+&lt;h1&gt;布局&lt;/h1&gt;
+&lt;p&gt;最常见的定义布局和表达view层次结构的是使用XML布局文件。XML布局文件提供了类似HTML的可读性。每个元素表示一个View或ViewGroup对象。View对象是树中的叶节点，ViewGroup对象是树中的分支节点。&lt;/p&gt;
+&lt;p&gt;XML中的元素代表各自的Java类。因此&lt;code&gt;&amp;lt;TextView&amp;gt;&lt;/code&gt;元素将在UI中创建一个TextView，&lt;code&gt;&amp;lt;LinearLayout&amp;gt;&lt;/code&gt;元素将创建一个LinearLayout view group。当加载布局资源时，Android系统将初始化这些运行时对象，并将它们与布局中的元素对应。&lt;/p&gt;
+&lt;p&gt;例如，一个简单的virtical类型的布局中有一个text view和一个按钮：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?xml version="1.0" encoding="utf-8"?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;LinearLayout&lt;/span&gt; &lt;span class="na"&gt;xmlns:android=&lt;/span&gt;&lt;span class="s"&gt;"http://schemas.android.com/apk/res/android"&lt;/span&gt;
+              &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;"fill_parent"&lt;/span&gt; 
+              &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;"fill_parent"&lt;/span&gt;
+              &lt;span class="na"&gt;android:orientation=&lt;/span&gt;&lt;span class="s"&gt;"vertical"&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;TextView&lt;/span&gt; &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;"@+id/text"&lt;/span&gt;
+              &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;"wrap_content"&lt;/span&gt;
+              &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;"wrap_content"&lt;/span&gt;
+              &lt;span class="na"&gt;android:text=&lt;/span&gt;&lt;span class="s"&gt;"Hello, I am a TextView"&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;Button&lt;/span&gt; &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;"@+id/button"&lt;/span&gt;
+            &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;"wrap_content"&lt;/span&gt;
+            &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;"wrap_content"&lt;/span&gt;
+            &lt;span class="na"&gt;android:text=&lt;/span&gt;&lt;span class="s"&gt;"Hello, I am a Button"&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;注意这里的LinearLayout元素包含了TextView和Button。你可以在其中嵌套一另一个LinearLayout（或其它类型的ViewGroup），来创建更加复杂的布局。&lt;/p&gt;
+&lt;p&gt;关于创建UI布局，请参见Declaring Layout。&lt;/p&gt;
+&lt;p&gt;有多种方法可以进行布局。使用不同类型的view group，你可以构建不限数量的子类型的view和view group。Android系统提供了大量预定义的布局类型，包括：LinearLayout，RelativeLayout，TableLayout，GridLayout等等。每个布局都提供了一套独特的定义子view和布局结构位置的参数。&lt;/p&gt;
+&lt;p&gt;要了解用于布局的各种view groups，参见Common Layout Objects。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tips：你也可以在Java代码中使用addView(View)方法绘制View和ViewGroups，它可以动态的插入新的View和ViewGroup对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;构件&lt;/h1&gt;
+&lt;p&gt;构件是作为界面与用户交互的View对象。Android提供了一套完整的构件实现，如：按钮、复选框、文本域等，以便快速构建UI。某些Android提供的构件更加复杂，如日期选择、时钟、缩放控件等。但是你并不需要受限于Android平台提供的这些构件。如果你想要进行一些个性化和创建自己的动作元素，你可以通过扩展或组合已有的构件定义自己的View对象。&lt;/p&gt;
+&lt;p&gt;请阅读Building Custom Components以了解更多。&lt;/p&gt;
+&lt;p&gt;Android提供的构件位于android.widget包中。&lt;/p&gt;
+&lt;h1&gt;UI事件&lt;/h1&gt;
+&lt;p&gt;一旦你添加了某些Views（构件）到UI中，你就会需要知道用户与它们的交互，以便执行一些操作。为了得到UI事件通知，你需要做两件事：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义一个事件监听器并注册到View中。这是如何监听事件的方法。View类包含了一个&lt;code&gt;&amp;lt;something&amp;gt;Listener&lt;/code&gt;接口的集合，每个里面都有一个名为&lt;code&gt;On&amp;lt;something&amp;gt;()&lt;/code&gt;的回调方法。例如，View.OnClickListener（用于在处理View中的&amp;ldquo;click&amp;rdquo;），View.OnTouchListener（用于处理View中触屏幕事件），View.OnKeyListener（用于处理View中的按键）。因此如果你希望在View中发生&amp;ldquo;click&amp;rdquo;（比如按钮被选中）动作时得到通知，应该实现OnClickListener并定义它的onClick()回调方法（在这里执行你的点击动作），并用setOnClickListener()方法将它注册到View。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;覆盖View中已存在的回调方法。这在你实现自己的View类并且需要监听某些特定动作时需要进行。例如这些事件：屏幕被接触时（onTouchEvent()），轨迹球动作时（onTrackballEvent()），或当设备上的按键被按下时（onKeyDown()）。这能让你定义在你的自定义View中对于这些事件的默认行为并决定这些事件是否被传递到其它子View。同样，这些都是View类的回调，只在建立自定义组件时才需要定义。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;了解关于处理View用户交互的详情请参考Handling UI Events。&lt;/p&gt;
+&lt;h1&gt;菜单&lt;/h1&gt;
+&lt;h1&gt;高级主题&lt;/h1&gt;
+&lt;h2&gt;适配器&lt;/h2&gt;
+&lt;h2&gt;风格和主题&lt;/h2&gt;</content><category term="android"></category></entry><entry><title>Android Dev Guide学习笔记 Application Fundamentals</title><link href="/android-dev-guidexue-xi-bi-ji-application-fundamentals.html" rel="alternate"></link><published>2010-07-30T00:00:00+08:00</published><updated>2010-07-30T00:00:00+08:00</updated><author><name>Jamsa</name></author><id>tag:None,2010-07-30:/android-dev-guidexue-xi-bi-ji-application-fundamentals.html</id><summary type="html">&lt;h1&gt;Application基础&lt;/h1&gt;
+&lt;p&gt;Android应用程序是用Java语言编写的。被编译的代码和数据以及应用程序需要的资源文件被打包aapt tool打包为Android package格式，打包的文件以.apk结尾。这种文件是应用程序发布和安装到移动设备的方法；也是用户下载到设备上的文件。同一个.apk文件中的所有代码被当作是一个应用程序。&lt;/p&gt;
+&lt;p&gt;在很多方面，每个Android应用生存在自己的世界中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默认情况下，所有应用程序运行在自己的Linux进程中。Android在应用程序的代码需要执行时启动进程，当它不再被需要和系统资源被其它应用程序需要时停止。&lt;/li&gt;
+&lt;li&gt;每个进程有自己的虚拟机，因此应用程序代码与其它应用程序的代码是隔离的。&lt;/li&gt;
+&lt;li&gt;默认情况下，每个应用程序被赋予了一个唯一的Linux用户ID。这使得只能访问应用程序自己的文件&amp;mdash;&amp;mdash;尽管有方法将它们导出给其它的应用程序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有可能将两个应用程序组织为使用相同的用户ID，在这种情况下它们将可以互相看到对方的文件。为了保护系统资源，拥有相同ID的的应用程序也可以被组织到相同的Linux进程中，共享同一个虚拟机。&lt;/p&gt;
+&lt;h1&gt;应用程序组件&lt;/h1&gt;
+&lt;p&gt;Android的一个主要的功能是某个应用程序可以使用其它应用程序的元素（在这个应用程序许可时）。比如，如果你的应用程序需要显示滚动的图片列表而另一个应用程序已经开发了一个并且将它对外开放，这时你可以使用它，而不是重新开发一个。你的应用程序不需要包含这个应用程序的代码或者链接（link to）它。而只是在这个需求出现时运行那个应用程序的那段代码。&lt;/p&gt;
+&lt;p&gt;为实现这个目的，系统必须在需要应用程序的一部分时启动应用程序进程，并实例化那部分Java对象。因此，与绝大多数的操作系统不同，Android应用程序没有单一的程序入口（比如没有main()函数）。而是拥有可以根据需要实例化和运行的组件。有4种类型的组件 …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Application基础&lt;/h1&gt;
+&lt;p&gt;Android应用程序是用Java语言编写的。被编译的代码和数据以及应用程序需要的资源文件被打包aapt tool打包为Android package格式，打包的文件以.apk结尾。这种文件是应用程序发布和安装到移动设备的方法；也是用户下载到设备上的文件。同一个.apk文件中的所有代码被当作是一个应用程序。&lt;/p&gt;
+&lt;p&gt;在很多方面，每个Android应用生存在自己的世界中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默认情况下，所有应用程序运行在自己的Linux进程中。Android在应用程序的代码需要执行时启动进程，当它不再被需要和系统资源被其它应用程序需要时停止。&lt;/li&gt;
+&lt;li&gt;每个进程有自己的虚拟机，因此应用程序代码与其它应用程序的代码是隔离的。&lt;/li&gt;
+&lt;li&gt;默认情况下，每个应用程序被赋予了一个唯一的Linux用户ID。这使得只能访问应用程序自己的文件&amp;mdash;&amp;mdash;尽管有方法将它们导出给其它的应用程序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有可能将两个应用程序组织为使用相同的用户ID，在这种情况下它们将可以互相看到对方的文件。为了保护系统资源，拥有相同ID的的应用程序也可以被组织到相同的Linux进程中，共享同一个虚拟机。&lt;/p&gt;
+&lt;h1&gt;应用程序组件&lt;/h1&gt;
+&lt;p&gt;Android的一个主要的功能是某个应用程序可以使用其它应用程序的元素（在这个应用程序许可时）。比如，如果你的应用程序需要显示滚动的图片列表而另一个应用程序已经开发了一个并且将它对外开放，这时你可以使用它，而不是重新开发一个。你的应用程序不需要包含这个应用程序的代码或者链接（link to）它。而只是在这个需求出现时运行那个应用程序的那段代码。&lt;/p&gt;
+&lt;p&gt;为实现这个目的，系统必须在需要应用程序的一部分时启动应用程序进程，并实例化那部分Java对象。因此，与绝大多数的操作系统不同，Android应用程序没有单一的程序入口（比如没有main()函数）。而是拥有可以根据需要实例化和运行的组件。有4种类型的组件：&lt;/p&gt;
+&lt;h3 id="activities"&gt;Activities&lt;/h3&gt;
+&lt;p&gt;一个Activity描述一个可聚焦（focused）的并可被用户操作的用户界面。比如，某个activity可能描述了菜单列表项用户可以从中选择，或它显示单个图片及它的标题。一个文本消息应用程序可能有一个activity来显示联系人列表，另一个activity用于编写消息，其它的activities用于浏览旧消息或修改设置。尽管它们组合在一起构造出了聚合性的用户界面，但每个activity与其它activity间仍然是独立的。每个activity都被实现为Activity类的子类。&lt;/p&gt;
+&lt;p&gt;一个应用程序可能包含单个或多个activity。有多少个activities依赖于应用程序和它的设计。通常，有一个作为应用程序启动时的第一个。从一个activity到另一个是由当前的这个启动另一个。&lt;/p&gt;
+&lt;p&gt;每个activity被设置了一个默认的窗口对象用于绘图。通常，这个窗口填充整个屏幕，但也可以小于屏幕浮动于其它窗口之上。一个activity也可以使用额外的窗口&amp;mdash;&amp;mdash;比如，弹出式对话框或者当用户从屏幕中选择某些特殊的项时向用户显示重要提示信息的窗口。&lt;/p&gt;
+&lt;p&gt;窗口中的可视化内容是由一组有层次结构的views提供的&amp;mdash;&amp;mdash;这些对象从View类派生。每个view控制窗口中的一个长方形区域。父view包含和控制它的子view的布局。作为叶节点的view被绘制到长方形区域中，在这个区域中它们控制和响应用户动作。因此，view是activity中与用户交互发生的地方。比如，一个view可能显示了一个图像并在用户点击图像时发生动作。Android有大量的预定义的view，如： 按钮、文本框、滚动条、菜单项、checkbox等等。&lt;/p&gt;
+&lt;p&gt;窗口中的这个有层次结构的views通过activity提供的Activity.setContentView()方法被设置到窗口中。这个content view位于层次结构的根节点上。&lt;/p&gt;
+&lt;h3 id="services"&gt;Services&lt;/h3&gt;
+&lt;p&gt;服务没有用户界面，但它可以一直在后台运行。比如，服务可以后台播放音乐，或从网络下载数据或者将计算结果提供给activities。每个服务都从Service类继承。&lt;/p&gt;
+&lt;p&gt;一个典型的例子就是媒体播放器从播放列表中播放歌曲。播放器应用程序可能有一个或多个activities来让用户选择歌曲和开始播放。但是，音乐音乐播放过程本身不能由activity来处理，因为用户希望在退出播放器进入其它界面时仍然能播放音乐。为了使音尔播放继承进行，播放器的activity将启动一个后台服务。系统将在播放器的activity未显示在屏幕上时继续播放音乐。&lt;/p&gt;
+&lt;p&gt;系统允许连接（绑定）到正在运行的服务（如果服务没有运行，则将会启动它）。当连接上服务后，你可以通过服务暴露的接口（interface）来与服务通讯。比如音乐服务，这个接口可能允许用户暂停、倒带、停止和重新开始播放。&lt;/p&gt;
+&lt;p&gt;与activities和其它组件类似，服务运行于应用程序的主线程。因此它们不会其它组件和用户界面，它们在处理耗时任务（比如音乐播放）时通常产生另一个进程。&lt;/p&gt;
+&lt;h3 id="broadcast-receivers"&gt;Broadcast receivers&lt;/h3&gt;
+&lt;p&gt;Broadcast receiver是一个组件，它用于接收和对广播信息作出反应。许多广播信息来源于系统的代码&amp;mdash;&amp;mdash;比如，广播时区信息被修改，电源电量低，拍了一个照片或用户修改了语言首选项。应用程序也可以发出广播信息&amp;mdash;&amp;mdash;比如，让其它应用程序知道某些数据被下载到设备并且已经可以使用。&lt;/p&gt;
+&lt;p&gt;应用程序可以有任意数量的broadcast receivers来响应任何信息。所有的receivers都继承于BroadcastReceiver类。&lt;/p&gt;
+&lt;p&gt;Broadcast receivers不显示用户界面。但它们可以在收到信息进行响应时启动一个activity，或者可以使用NotificationManager来向通知用户。通知可以通过闪烁背光、振动、播放音乐等方式提醒用户注意。典型的方式是在状态条上显示一个图标，从这里用户可以从这里打开并获取消息。&lt;/p&gt;
+&lt;h3 id="content-providers"&gt;Content providers&lt;/h3&gt;
+&lt;p&gt;Content provider可以指定应用程序数据允许共享给其它应用程序的数据。数据可以被存储在文件系统或SQLite数据库中，或者以其它允许的方式存储。Content provider继承自ContentProvider类并实现了标准的一组方法允许应用程序接收和存储数据。但是，应用程序并不会直接调用这些方法。而是使用ContentResolver对象的方法调用来实现。ContentResolver可以与任何content provider通讯，它与provider协作管理进程间的复杂通讯。&lt;/p&gt;
+&lt;p&gt;无论何时一个请求都应该由一个特定的组件来处理，Android确保这个组件所属的应用程序运行，如果没有运行就启动它，如果对应的组件没有可用的实例就创建新的实例。&lt;/p&gt;
+&lt;h2&gt;Activating components: intents&lt;/h2&gt;
+&lt;p&gt;Content providers在它们被作为从ContentResolver发出的请求的目标时被激活。其它三个组件&amp;mdash;&amp;mdash;activities、services和broadcast receivers&amp;mdash;&amp;mdash;则通过被称为intends的异步消息来激活。一个Intent是一个Intent对象包含了消息内容。对于activities和services，它标明要请求的动作和并指定要操作的数据的URI，等等。例如，它可以表达请求一个activity展示图片给用户或让用户编辑文本。对于broadcast receivers，intent对象标明将要发生的动作。例如，它可以声明它对相机按钮被按下的动作感兴趣。&lt;/p&gt;
+&lt;p&gt;不同的方法来激活每种类型的组件：
+ - Activity通过传递给Context.startActivity()或Activity.startActivityForResult()一个intent对象来激活。响应的activity可以通过getIntent()方法看到调用它时初始的intent。Android通过调用activity的onNewIntent()方法来将它传递后续的intent。&lt;/p&gt;
+&lt;p&gt;一个activity通常会启动下一个。如果它需要它启动的activity的返回值，要调用startActivityForResult()而不是startActivity()。比如，它启动一个activity让用户选择一个照片，它可能返回选中的照片。返回值是保存在intent对象中的，在调用onActivityResult()方法时被传递进来。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Service通过传递一个intent对象到Context.startService()来启动。Android调用service的onStart()方法并传递intent对象给它。类似的是，可以通过将intent传递给Context.bindService()方法建立目标服务和调用组件之间的连接。服务在onBind()调用中接收intent对象。（如果服务没有运行，bindService()可以选择启动它）。例如，有个activity可以与先前启动的音乐播放服务建立连接以便提供用户界面给用户控制播放。这个activity可以调用bindService()来建立连接，然后调用service定义的方法影响音乐播放。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;应用程序可以传递一个intent对象到类似Context.sendBroadcast()、Context.sendOrderedBroadcast()和Context.sendStickyBroadcast()等方法中来开始一个广播。Android通过调用接收者的onReceive()方法投递这个intent到任何对这个广播感兴趣的接收者。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;关闭组件&lt;/h2&gt;
+&lt;p&gt;Content provider只在响应ContentResolver的请求时才是活动的。Broadcast Receiver只在需要响应广播信息时才是活动的。因此，不需要显式的关闭这些组件。&lt;/p&gt;
+&lt;p&gt;Activities和Services都是有可能长期运行的。Android提供了方法来关闭activities和services：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Activity可以调用它的finish()方法。一个Activity可以使用finishActivity()关闭另一个activity（这个activity由startActivityForResult()启动）。&lt;/li&gt;
+&lt;li&gt;Service可以调用它的stopSelf()方法，或者调用Context.stopService()。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;组件在不再被使用或者Android进行垃圾收集时也可能被系统关闭。&lt;/p&gt;
+&lt;h2&gt;Mainfest文件&lt;/h2&gt;
+&lt;p&gt;在Android启动一个应用程序组件之前，它必须知道组件的存在。因此，应用程序需要在mainfest文件中申明这些组件并把它打包到.apk文件中。&lt;/p&gt;
+&lt;p&gt;Mainfest文件是XML文件，它的名字被固定为AndroidMainfest.xml。它不仅仅申明了应用程序中的组件，还设定了其它的信息，如：应用程序需要的程序库（除默认的Android库外）和希望得到的特权信息。&lt;/p&gt;
+&lt;p&gt;但是mainfest文件主要的任务是将应用程序的组件信息告诉Android。例如下面的一个Activity的申明：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?xml version="1.0" encoding="utf-8"?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;manifest&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;application&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;activity&lt;/span&gt; &lt;span class="na"&gt;android:name=&lt;/span&gt;&lt;span class="s"&gt;"com.example.project.FreneticActivity"&lt;/span&gt;
+                  &lt;span class="na"&gt;android:icon=&lt;/span&gt;&lt;span class="s"&gt;"@drawable/small_pic.png"&lt;/span&gt;
+                  &lt;span class="na"&gt;android:label=&lt;/span&gt;&lt;span class="s"&gt;"@string/freneticLabel"&lt;/span&gt; 
+                  &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt;  &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/activity&amp;gt;&lt;/span&gt;
+        . . .
+    &lt;span class="nt"&gt;&amp;lt;/application&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/manifest&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;activity&amp;gt;&lt;/code&gt;元素的&lt;code&gt;name&lt;/code&gt;属性标明了实现了这个activity的Activity的子类。&lt;code&gt;icon&lt;/code&gt;和&lt;code&gt;label&lt;/code&gt;属性指向包含了显示给用户的图标和标签的资源文件。&lt;/p&gt;
+&lt;p&gt;其它组件的申明方式与这类似&amp;mdash;&amp;mdash;用于services的&lt;code&gt;&amp;lt;service&amp;gt;&lt;/code&gt;元素，用户broadcast receivers的&lt;code&gt;&amp;lt;receiver&amp;gt;&lt;/code&gt;元素和用于content providers和&lt;code&gt;&amp;lt;provider&amp;gt;&lt;/code&gt;元素。未出现在mainfest中的activities、services和content providers对系统是不可见的并且永远不会被运行。但是，broadcast receivers可以在mainfest中申明也可以在代码中动态的创建（作为BroadcastReceiver对象）并使用系统提供的Context.registerReceiver()注册。&lt;/p&gt;
+&lt;h2&gt;Intent filters&lt;/h2&gt;
+&lt;p&gt;Intent对象可以显示的指出目标组件。如果它指明了，Android将查找出那个组件（根据mainfest中的申明信息）并激活它。但是如果目标未明确的给出，则Android需要定位到最佳的一个组件来响应这个intent。它通过比较intent对象可能的目标的intent filters来决定。一个组件的intent filters告诉Android这个组件可以处理的intents的类型。与组件的其它信息一样，它也放在mainfest文件中申明。例如，下例在上面的activity的mainfest文件中添加了两行intent filters：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?xml version="1.0" encoding="utf-8"?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;manifest&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;application&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;activity&lt;/span&gt; &lt;span class="na"&gt;android:name=&lt;/span&gt;&lt;span class="s"&gt;"com.example.project.FreneticActivity"&lt;/span&gt;
+                  &lt;span class="na"&gt;android:icon=&lt;/span&gt;&lt;span class="s"&gt;"@drawable/small_pic.png"&lt;/span&gt;
+                  &lt;span class="na"&gt;android:label=&lt;/span&gt;&lt;span class="s"&gt;"@string/freneticLabel"&lt;/span&gt; 
+                  &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt;  &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;intent-filter&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;action&lt;/span&gt; &lt;span class="na"&gt;android:name=&lt;/span&gt;&lt;span class="s"&gt;"android.intent.action.MAIN"&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;category&lt;/span&gt; &lt;span class="na"&gt;android:name=&lt;/span&gt;&lt;span class="s"&gt;"android.intent.category.LAUNCHER"&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;/intent-filter&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;intent-filter&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="err"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;action&lt;/span&gt; &lt;span class="na"&gt;android:name=&lt;/span&gt;&lt;span class="s"&gt;"com.example.project.BOUNCE"&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;data&lt;/span&gt; &lt;span class="na"&gt;android:mimeType=&lt;/span&gt;&lt;span class="s"&gt;"image/jpeg"&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;category&lt;/span&gt; &lt;span class="na"&gt;android:name=&lt;/span&gt;&lt;span class="s"&gt;"android.intent.category.DEFAULT"&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;/intent-filter&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/activity&amp;gt;&lt;/span&gt;
+        . . .
+    &lt;span class="nt"&gt;&amp;lt;/application&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/manifest&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第一个filter&amp;mdash;&amp;mdash;组合了&amp;ldquo;android.intent.action.MAIN&amp;rdquo;和&amp;ldquo;android.intent.category.LAUNCHER&amp;rdquo;&amp;mdash;&amp;mdash;这是一个常用的方法。它表明这个activity应该显示在launcher中。换言之，这个activity是这个应用程序的入口，用户从应用程序launcher中选择到的属于这个应用程序的第一个activity。&lt;/p&gt;
+&lt;p&gt;第二个filter申明了这个activity可以操作的数据类型。&lt;/p&gt;
+&lt;p&gt;一个组件可以有任意多的intent filters，每个申明一组不同的功能。果它没有filters，则它只允许被那些显示的申明了目标组件的intents激活。&lt;/p&gt;
+&lt;p&gt;对于那些在代码中创建和注册的broadcast receiver，intent filter是直接作为IntentFilter对象实例化的。所有其它filter都是在mainfest中设置的。&lt;/p&gt;
+&lt;h1&gt;Activities和Tasks&lt;/h1&gt;
+&lt;p&gt;前面说过，一个activity可以启动另一个，这包括定义于不同应用程序中的另一个。设想一下，你想要让用户在street map中显示一些位置。已经有一个activity可以实现这个功能，因此你的activity需要做的就是将需要的信息放到一个intent对象中并将它传递给startActivity()。地图将显示相关的信息。当用户点击&lt;code&gt;BACK&lt;/code&gt;键后，原来的activity重新显示到屏幕上。&lt;/p&gt;
+&lt;p&gt;对于用户而言，它会将map view当作你应用程序的一部分，即使它是由另一个应用程序定义并运行于那个应用程序的进程中。Android给用户提供的这种用户体验是通过将这两个Activity组织到相同的task中。简单来说，task就是用户体验到的&amp;ldquo;application&amp;rdquo;。它由一组相关的activities组成，被组织为一个堆栈。堆栈中的根activity是开始任务的那个&amp;mdash;&amp;mdash;通常，它是用户从launcher中选择的那个activity。位于堆栈顶端的activity是当前在运行的展示给用户的这个。当一个activity启动另一个时，新的activity被推入堆栈中。新启动的这个变成正在运行的activity。前一个activity仍然在堆栈中。当用户按下&lt;code&gt;BACK&lt;/code&gt;时，当前的activity从堆栈中弹出前一个activity恢复成为正在运行的activity。&lt;/p&gt;
+&lt;p&gt;堆栈包含对象，如果任务对于同一个Activity有多个实例被打开&amp;mdash;&amp;mdash;多个map view&amp;mdash;&amp;mdash;堆栈中对于每个实例都有单独的入口。堆栈中的activities永远不会重新被整理排序，只会推入和弹出。&lt;/p&gt;
+&lt;p&gt;一个任务就是一个activities堆栈，而不是一个类或mainfest文件中的一个元素。因此，没有办法不依赖于activities来设置任务的值。任务的值整体上是在根activity处设置的。&lt;/p&gt;
+&lt;p&gt;任务中的所有activities是作为一个整体移动的。整个任务（整个activity堆栈）可以被放到前台或后台。设想一下当前的任务有4个activities在它的堆栈中&amp;mdash;&amp;mdash;在当前的activity下有3个activity。当用户按下;&lt;code&gt;HOME&lt;/code&gt;键时回到launcher，然后选择了一个新的应用程序（实际上是一个新的任务）。当前的任务转到后台，新任务的root activity被显示出来。然后，隔一段时间后，用户回到主界面重新选择了选前的应用程序（前一个task）。那个有4个activities的任务将回到前台。这时用户按下;&lt;code&gt;BACK&lt;/code&gt;，屏幕将不会显示刚才离开的那个activity（之前那个任务的root activity）。而是当前任务的activities堆栈的顶部弹出并显示之前的一个activity。&lt;/p&gt;
+&lt;p&gt;上面描述的是activites和tasks的默认行为。但是也有方法修改它的几乎所有方面。Tasks与activities的关联，和task中activity的行为是由启动activity的intent对象里的标识位和mainfest文件中&lt;code&gt;&amp;lt;activity&amp;gt;&lt;/code&gt;元素的属性决定的。请求者和响应都有权决定将发生什么样的情况。&lt;/p&gt;
+&lt;p&gt;主要的intent标识有：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;FLAG_ACTIVITY_NEW_TASK 
+FLAG_ACTIVITY_CLEAR_TOP 
+FLAG_ACTIVITY_RESET_TASK_IF_NEEDED 
+FLAG_ACTIVITY_SINGLE_TOP
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;主要的&lt;code&gt;&amp;lt;activity&amp;gt;&lt;/code&gt;属性有：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;taskAffinity 
+launchMode 
+allowTaskReparenting 
+clearTaskOnLaunch 
+alwaysRetainTaskState 
+finishOnTaskLaunch
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下面的章节将描述这些标识和属性，以及它们如何互相影响，如何考虑和应用它们。&lt;/p&gt;
+&lt;h2&gt;Affinities and new tasks&lt;/h2&gt;
+&lt;p&gt;默认情况下，应用程序中的所有的activities都有一个affinity&amp;mdash;&amp;mdash;有个选项标识它们属于相同的任务。但是，可以在&lt;code&gt;&amp;lt;activity&amp;gt;&lt;/code&gt;元素可以设置每个activity的&lt;code&gt;taskAffinity&lt;/code&gt;属性。定义于不同应用程序的activities可以共享同一个affinity，或者，定义于同一个应用程序的activities可以赋予不同的affinities。Affinity通常在两种情况下出现：当启动activity的Intent对象包含了FLAG_ACTIVITY_NEW_TASK标识，和当activity的allowTaskReparenting属性设置为&amp;ldquo;true&amp;rdquo;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;FLAG_ACTIVITY_NEW_TASK标识&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;前面说过，新的activity总是被放到调用startActivity()启动它的任务中。它被推入调用者相同的堆栈。但是，如果传递给startActivity()的intent对象包含了FLAG_ACTIVITY_NEW_TASK标识；系统会将把它作为一个不同的任务来安置这个新的activity。就像这个标识名所表达的，它将是一个新的任务。但是，这并不是总会创建新的任务。如果已经有存一个与这个activity的affinity相同的任务，则会将这个activity归于那个任务。如果不存在才开始一个新任务。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;allowTaskReparenting属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果一个activity的allowTaskReparenting属性被设置为&amp;ldquo;true&amp;rdquo;，在与它具有相同的affinity相同的任务进入前台时，它可以从启动它的任务转移到与它的affinity相同的这个任务里。例如，假设某个旅行应用程序中选择某个城市后会有个activity报告天气情况。它与这个应用程序里的其它activities有相同的affinity，并且它允许reparent（allows reparenting）。如果你的某个activities启动了这个activity，则它将初始化为与你的activity属于同一个任务。但是，如果这个旅行程序下次切换到前台时，显示天气信息的这个activity将被重新赋给旅行程序，并在旅行程序中显示。&lt;/p&gt;
+&lt;p&gt;如果一个.apk文件中包含多个&amp;ldquo;应用程序&amp;rdquo;（从用户角度来看），你可能会需要给不同的activites赋予不同的affinities。&lt;/p&gt;
+&lt;h2&gt;Launch Modes&lt;/h2&gt;
+&lt;p&gt;有4种launcher Modes可以赋给&lt;code&gt;&amp;lt;activity&amp;gt;&lt;/code&gt;元素的launcherMode属性：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;"standard" (the default mode) 
+"singleTop" 
+"singleTask" 
+"singleInstance"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这些modes的区别在于：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;哪个任务将hold响应intent的activity。对于&amp;ldquo;standard&amp;rdquo;和&amp;ldquo;singleTop&amp;rdquo; modes，它将是发起intent的那个任务（并调用了startActivity()）&amp;mdash;&amp;mdash;除非intent对象包含FLAG_ACTIVITY_NEW_TASK标识。在这种情况下，将按上一节描述的方式选择一个不同的任务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;ldquo;singleTask&amp;rdquo;和&amp;ldquo;singleInstance&amp;rdquo; modes标明了activities总是们于task的根节点。它们定义了一个任务；它们永远不会launched到另一个任务。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;是否允许出现这个activity的多个实例。&amp;ldquo;standard&amp;rdquo;和&amp;ldquo;singleTop&amp;rdquo; activity可以被实例化多次。它们可以属于多个不同的任务，同一个任务中也可以有相同的activity的多个实例。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;ldquo;singleTask&amp;rdquo;和&amp;ldquo;singleInstance&amp;rdquo;则只允许一个实例。由于这些activities位于任务的根节点，这也限制了同一时刻同一个任务在设备上只能有单个实例。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实例在其所属的任务中是否可以有其它activities。&amp;ldquo;singleInstance&amp;rdquo;的activity在它所属的任务中是否只允许有一个实例。如果它启动另一个activity，则这个activity是否将被设置为另一个任务依赖于它的launch mode&amp;mdash;&amp;mdash;如果intent中设置了FLAG_ACTIVITY_NEW_TASK。则这时，&amp;ldquo;singleInstance&amp;rdquo;mode与&amp;ldquo;singleTask&amp;rdquo;是等效的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其它三种模式允许多个activities属于（同一）任务。&amp;ldquo;singleTask&amp;rdquo;activity将总是任务的根activity，但它可以启动其它activities，并将这些activities设置为与它相同的task。&amp;ldquo;standard&amp;rdquo;和&amp;ldquo;singleTop&amp;rdquo;的activites可以出现在任务堆栈的任何地方。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;是否需要一个新的实例来处理一个新的intent。对于默认的&amp;ldquo;standard&amp;rdquo;mode，总是会创建新的实例来响应新的intent。每个实例处理一个intent。对于&amp;ldquo;singleTop&amp;rdquo;mode，一个已经存在的实例将会重用于处理新的intent，如果它位于目标任务的activity堆栈的顶部。如果它不在顶部，它将不会被重用，会为这个新的intent对象创建一个新的实例然后将这个实例推入堆栈。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如，假设有一个任务的activity堆栈包含了一个root activity A以及B activity和C activity，堆栈的内容是A-B-C-D。一个intent到达了需要一个类型的D的activity。如果是在默认的&amp;ldquo;standard&amp;rdquo;模式下，将产生一个新的实例堆栈的内容会变成A-B-C-D-D。但是，如果D的launch mode为&amp;ldquo;singleTop&amp;rdquo;；则有已有的实例将用于处理这个intent（由于已有的这个实例位于栈顶），因此堆栈仍然是A-B-C-D。&lt;/p&gt;
+&lt;p&gt;但是，如果到达的intent需要类型为B的activity，则会产生一个新的B类型的实例而不会管B的mode是&amp;ldquo;standard&amp;rdquo;或&amp;ldquo;singleTop&amp;rdquo;（因为B并不在栈顶），因此堆栈的内容会变为A-B-C-D-B。&lt;/p&gt;
+&lt;p&gt;前面提过，永远不会有多个&amp;ldquo;singleTask&amp;rdquo;或&amp;ldquo;singleInstance&amp;rdquo;的activity，因此这个实例将被用于处理所有新的intents。&amp;ldquo;singleInstance&amp;rdquo;的activity总是位于堆栈的顶部（因为它是任务中唯一的activity），因此它总是位于处理intent的位置。但是&amp;ldquo;singleTask&amp;rdquo;类型的activity却并不一定会位于堆栈的顶部。如果它没有位于栈顶，则相应的intent将被丢弃。（即使intent被丢弃，它仍然会导致task切换到前台）&lt;/p&gt;
+&lt;p&gt;当一个已经存在的activity被请求处理一个新的intent时，这个intent对象被传递到activity的onNewIntent()调用中。（最初启动这个activity的intent可以通过调用getIntent()来获取）&lt;/p&gt;
+&lt;p&gt;注意，当创建了新的activity来处理新的intent时，用户总是可以使用BACK键返回前一个状态（回到前一个activity）。但是当使用已经存在的activity处理新的intent时，用户不可以按BACK键回到这个activity实例接收到这个intent对象之前的界面。&lt;/p&gt;
+&lt;h2&gt;Clearing the stack&lt;/h2&gt;
+&lt;p&gt;如果用户离开某个任务较长时间，系统会清理掉除根activity之外的其它activities。当用户再次返回任务时，任务与用户离开前相同，只是它会显示初始的那个activity。这意味着，过一段时间后，用户重新回到任务时有可能要放弃之前所做的一些操作。&lt;/p&gt;
+&lt;p&gt;上面的情况是默认的情况。也有些activity属性可以用于控制和修改这种行为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;alwaysRetainTaskState属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当任务的root activity的这个属性被设置为&amp;ldquo;true&amp;rdquo;时，前面所说的默认行为不会发生。即使过很长时间，任务仍将保留整个activities堆栈。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;clearTaskOnLaunch属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当任务的root activity的这个属性被设置为&amp;ldquo;true&amp;rdquo;时，当用户离开task并重新回来时，root activity之外的activity将被清理掉。即与alwaysRetainTaskState是相反的。用户返回task时总是回到初始的状态，即使只过很短的时间。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;finishOnTaskLaunch属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个属性与clearTaskOnLaunch类似，但它只工作在单个activity，而不是整个task。它可以导致任何activity消失，也包括root activity。当它被设置为&amp;ldquo;true&amp;rdquo;时，activity只会存在于当前的会话。如果用户离开任务又重新回到任务，它将不会再存在。&lt;/p&gt;
+&lt;p&gt;有另一个方法强制从堆栈中删除activities。如果intent对象包含FLAG_ACTIVITY_CLEAR_TOP标识，目标任务堆栈中已经有一个相应类型的activity来处理这个intent，所有位于那个实例之上的activities将被清除以便那个activity位于堆栈顶部来响应这个intent。如果指定的activity的launch mode是&amp;ldquo;standard&amp;rdquo;类型的，它也将被从堆栈删除，然后创建一个新的实例来处理这个intent。这是因为launch mode为&amp;ldquo;standard&amp;rdquo;的activity总是会创建新的实例来处理新的intent对象。&lt;/p&gt;
+&lt;p&gt;FLAG_ACTIVITY_CLEAR_TOP通常与FLAG_ACTIVITY_NEW_TASK一起使用。当同时使用时，这些标识总是会找到另一个任务中已经存在的activity然后将它设置到响应intent的位置。&lt;/p&gt;
+&lt;h2&gt;Starting tasks&lt;/h2&gt;
+&lt;p&gt;一个activity可以设置为task的入口，给它一个intent filter &amp;ldquo;android.intent.action.MAIN&amp;rdquo;作为action，&amp;ldquo;android.intent.category.LAUNCHER&amp;rdquo;作为category。这个类型的filter将会导致在application launcher中显示图标和标签，让用户可以启动这个应用程序或重新进入已经启动的应用程序。&lt;/p&gt;
+&lt;p&gt;后者相当重要：用户必须可以离开任务后能重新回到任务。因此，&amp;ldquo;singleTask&amp;rdquo;和&amp;ldquo;singleInstance&amp;rdquo;这两种launch mode总是会导致初始化新的task，应该只用于有MAIN和LAUNCHER filter的activity。设想下下，当没有这个filter时将发生什么：一个intent启动了一个&amp;ldquo;singleTask&amp;rdquo;的activity，初始化了一个新的task，用户在这个task上使用了一段时间。然后按HOME键。这时这个task在主屏幕上变得不可见。因为它没有被显示在application launcher上，用户不能再回到这个task了。&lt;/p&gt;
+&lt;p&gt;类似还有FLAG_ACTIVITY_NEW_TASK标识。如果这个标识导致一个activity启动了一个新的task用户按HOME键离开，则必须要有一些方法让用户返回来。某些情况下（比如通知管理）总是在外部任务中启动activities，而不会在自身中启动，因此它总是在传递给startActivity()的intent中设置FLAG_ACTIVITY_NEW_TASK。如果你有一个activity可能被外部的实体调用时有可能使用这个标识，注意那个用户会有一个独立的方法返回到它启动的task中。&lt;/p&gt;
+&lt;p&gt;如果你不希望在那种情况下用户返回到那个activity，就需要设置&lt;code&gt;&amp;lt;activity&amp;gt;&lt;/code&gt;元素的finishOnTaskLaunch为&amp;ldquo;true&amp;rdquo;。&lt;/p&gt;
+&lt;h1&gt;进程和线程&lt;/h1&gt;
+&lt;p&gt;当应用程序的第一个组件需要运行时，Android启动一个带有单个线程的Linux进程来执行。默认情况下，这个应用程序的所有组件运行时那个进程和线程中。&lt;/p&gt;
+&lt;p&gt;当然，你也可以将组件运行到其它进程中，也可以在任何进程中生成额外的线程。&lt;/p&gt;
+&lt;h2&gt;进程&lt;/h2&gt;
+&lt;p&gt;组件运行的进程是通过mainfest文件控制的。组件元素&amp;mdash;&amp;mdash;&lt;code&gt;&amp;lt;activity&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;service&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;receiver&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;provider&amp;gt;&lt;/code&gt;&amp;mdash;&amp;mdash;每个都有一个process属性可以指定组件运行的进程。这些属性可以设置每个组件运行在自己的进程中，或者一些组件共享同一进程，而其它组件不。他们也可以设置让不同应用程序的组件运行在相同的进程中&amp;mdash;&amp;mdash;提供了应用程序共享相同的Linux用户ID并且有相同的授权。&lt;code&gt;&amp;lt;application&amp;gt;&lt;/code&gt;元素也有process属性，可以设置一个默认值给所有组件。&lt;/p&gt;
+&lt;p&gt;所有组件都在初始化到特定进程的主线程中，系统调用组件时从这个线程分派。不会为每个实例单独创建线程。所以，响应那些调用的方法&amp;mdash;&amp;mdash;像View.onKeyDown()，这个方法用于报告用户的动作和生命周期通知&amp;mdash;&amp;mdash;总是运行在进程的主线程中。这意味着在被系统调用时组件不应该执行长时间或阻塞的操作（比如网络操作或计算循环），因为这将阻塞这个进程中的任何其它组件。你也可以为长时间的操作生成新的线程。&lt;/p&gt;
+&lt;p&gt;Android可以决定在某些点关闭进程，比如当内存不足并且其它进程需要立即为用户提供服务时。运行在进程中的应用程序组件因此被销毁。当重新需要它们时将重新启动这些组件。&lt;/p&gt;
+&lt;p&gt;当决定要关闭哪个进程时，Android衡量它们对用户的重要性。比如，相比那些显示在屏幕上的activity相关的进程，它将更有可能关闭那些不再显示的activity相关的进程。决定是否关闭一个进程，依赖于组件运行于其中的进程的状态。&lt;/p&gt;
+&lt;h2&gt;线程&lt;/h2&gt;
+&lt;p&gt;即使你可以限制你的应用程序到单个进程，它们也有可能在某些时候执行一些后台的工作。因为用户界面必须总是快速的响应用户动作，包含activity的线程也不应该是像网络下载这样的时间消费型的操作。任何不能快速完成的工作应该放到不同的线程中。&lt;/p&gt;
+&lt;p&gt;线程的创建是使用Java中标准的Thread对象。Android提供了大量便利的类来管理线程&amp;mdash;&amp;mdash;用于在纯种中运行消息循环的Looper，用于处理消息的Handler，和用于为消息循环设置线程的HandlerThread。&lt;/p&gt;
+&lt;h2&gt;远程过程调用&lt;/h2&gt;
+&lt;p&gt;Android有一个轻量级的RPC机制&amp;mdash;&amp;mdash;当调用的方法是本地调用，但是执行的是远程方法调用的形式（在另一个进程中），执行结果被返回到调用者。这需要分解方法调用和所有相关的数据到操作系统可以理解的层面，将它从本地进程地址空间到远程进程的地址空间，并在那里重新组装和重新进行调用。返回值必须被传输到相反的方向。Android提供了执行这些工作的所有代码，你可以关注于定义和实现RPC接口本身。&lt;/p&gt;
+&lt;p&gt;一个RPC接口可以只包含方法。默认情况下，所有方法是同步执行的（本地方法被阻塞直到远程方法执行完成），即使没有返回值。&lt;/p&gt;
+&lt;p&gt;工作机制如下：使用IDL（接口定义语言）申明你需要实现的RPC接口。使用aidl工具从那个申明中生成可以被本地和远程进程使用的Java接口定义。它包含两个内部类，如图：
+&lt;img alt="" src="/android-dev-guide/binder_rpc.png"/&gt;&lt;/p&gt;
+&lt;p&gt;内部类的代码有管理远程调用你在IDL中申明的接口需要的所有代码。两个内部类都实现了IBinder接口。一个用于本地internally by the system；你编写的代码可以忽略它。另一个称为Stub，继承自Binder类。除了为有效进行RPC调用的代码，它还包含你申明的RPC接口中申明的方法。你应该在Stub的子类中实现这些方法，像上图标出的。&lt;/p&gt;
+&lt;p&gt;通常，远程进程可以被由service管理（因为service可以通知系统关于进程和它到其它进程的连接）。它将同时有由aidl工具生成的接口和实现RPC方法的Stub子类。Service的客户端可以只有由aidl工具生成的接口。&lt;/p&gt;
+&lt;p&gt;下面是service和客户端建立连接的过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务的客户端（在本地侧）需要实现onServiceConnected和onServiceDisconnected()方法以便在建立远程service的连接成功时收到通知，当成功后。将调用bindService()设置连接。&lt;/li&gt;
+&lt;li&gt;Service的onBind()方法可以被实现为接受或拒绝连接，依赖于它接收到的intent（intent传递到bindService()）。如果连接被接受，它将返回一个Stub子类的实例。&lt;/li&gt;
+&lt;li&gt;如果service接受了连接，Android调用客户端的onServiceConnected()方法并将它传递给它一个IBinder对象，一个由service管理的Stub子类的代理。通过这个代理，客户端可以调用远程的service。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;线程安全的方法&lt;/h2&gt;
+&lt;p&gt;有些情况下，你实现的方法可能会被多个线程调用，因此必须将它们编写为线程安全的。&lt;/p&gt;
+&lt;p&gt;这主要是针对于远程调用&amp;mdash;&amp;mdash;上节讨论过的RPC机制。当调用一个实现在IBinder对象中的方法（起源于同一进程中的IBinder），方法执行在调用者自己的线程中。但是，调用起源于另一进程时，方法执行于从线程中中选择的线程Android将它维护在与IBinder相同的进程中，它不会执行于进程的主线程。例如，然而service的onBind()方法将被从service的进程的主线程调用，从onBind()返回的实现了那些方法的对象（例如，实现RPC方法的Stub的子类）将被从线程池中的线程调用。由于service可以有多个客户端，同一时刻线程池中将会有多个线程同时预定了IBinder中的方法。因此，IBinder的方法必须实现线程安全。&lt;/p&gt;
+&lt;p&gt;类似的，content provider可以接收源于其它进程的数据请求。尽管ContentResolver和ContentProvider隐藏了如何管理进程间通讯的细节。ContentProvider的那些用于响应这些请求的方法&amp;mdash;&amp;mdash;query()，insert()，delete()，update()和getType()&amp;mdash;&amp;mdash;被content provider的进程的线程池调用，而不是进程的主线程。由于这些方法可以被从任意数量的线程同时调用，因此它们也应该是线程安全的。&lt;/p&gt;
+&lt;h1&gt;组件生命周期&lt;/h1&gt;
+&lt;p&gt;应用程序组件有自己的生命周期&amp;mdash;&amp;mdash;开始于Android初始化它们来响应intent对象直到结束时实例被销毁。在这期间，它们有时可能是活动的有时是不活动的，或者在活跃的某些时候，对于用户可见或不可见。这节讨论activities，services和broadcast receivers的生命周期&amp;mdash;&amp;mdash;包括它们在生命周期内的状态，以及通知状态改变的方法，和在进程中这些状态有可能因为中断和销毁而受到的影响。&lt;/p&gt;
+&lt;h2&gt;Activity的生命周期&lt;/h2&gt;
+&lt;p&gt;一个activity本质上有3个状态：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它在前台时（位于当前task的activity堆栈的顶部）时它处于activity或running状态。这使得activity可以获取用户动作。&lt;/li&gt;
+&lt;li&gt;如果它失去焦点但仍然显示给用户则它处于paused状态。另一个activity位于这个activity的上面它不是透明的也不覆盖整个屏幕，因此一些paused状态可以显示。Paused状态的activity是完全存活的（它它维护所有状态和成员信息并仍然与窗口管理器关联），但是可以在系统内存极低的情况下被系统杀掉。&lt;/li&gt;
+&lt;li&gt;如果它被另一个activity完全掩盖则它变成stopped状态。它仍然包含状态和成员信息。但是它不再对用户可见它的窗口被隐藏并有可能在系统内存不足的时候被杀掉。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果某个activity是paused或stopped状态，系统可以将它从内存中删除或要求它完成（调用它的finish()方法），或简单的杀掉它的进程。当它再次显示给用户时，它必须完全的重新启动和恢复到前一个状态。&lt;/p&gt;
+&lt;p&gt;当activity从一个状态迁移到另一个状态时，它会通过调用下面的方法进行通知：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;void onCreate(Bundle savedInstanceState) 
+void onStart() 
+void onRestart() 
+void onResume() 
+void onPause() 
+void onStop() 
+void onDestroy()
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这些方法都是勾子方法你可以覆盖它在状态变化时执行相应的工作。所有activities必须实现onCreate()在对象初始化后执行初始化设置。很多activity还会实现onPause()来提交数据变化或准备停止与用户交互。&lt;/p&gt;
+&lt;p&gt;这7个方法放一起定义了activity的整个生命周期。有3个嵌套循环你可以实现它们来实现监控。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Activity的整个生存周期（entire lifetime）处于第一个调用onCreate()和最后一个调用onDestroy()之间。一个Activity在onCreate()方法中设置它的&amp;ldquo;全局&amp;rdquo;状态，并在onDestroy()中释放所有的资源。例如，如果它有一个线程运行于后台进行网络数据下载，它可以在onCreate()中创建这个线程然后在onDestroy()中停止这个线程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Activity的可见的生命周期处于onStart()和onStop()之间。在这期间，用户可以在屏幕上看到activity，尽管它可能不会显示在前台与用户交互。在这两个方法之间，你可以维护需要通过activity显示给用户的资源。比如，你可以在onStart()中注册BroadcastReceiver监听一些影响UI的变化，在onStop()中取消注册，这时用户将不会再看到你显示的东西。onStart()和onStop()方法可能被调用多次，activity交替的显示或隐藏。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Activity的前台生命周期处于onResume()和onPause()调用之间。在些期间，activity显示于屏幕上处于其它activities之前与用户交互。Activity可以经常在resumed和paused状态间转换&amp;mdash;&amp;mdash;比如，当设备休眠时或新的activity启动时onPause()被调用，当一个新的activity result或新的intent被交付时onResume()被调用。因此，在这两个方法中的代码应该是非常轻量级的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下图描述了一个activity的在不同状态间转换的路径。彩色椭圆形的是activity的主要状态。方形的代表的是回调方法，你可以实现它在状态变更的时候执行一些操作。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/android-dev-guide/activity_lifecycle.png"/&gt;&lt;/p&gt;
+&lt;p&gt;下表描述了每个方法的细节和它在activity的整个生命周期中的位置：&lt;/p&gt;
+&lt;p&gt;方法 || 描述 || Killable? || 下一个方法
+onCreate() | 在activity初次被创建时被调用。这里应该是执行所有静态设置的地方&amp;mdash;&amp;mdash;创建views，将数据绑定到list，等等。这个方法被传入一个Bundle对象，它包含了activity的前一个状态（如果那个状态被捕获了，参见后面讲到的保存activity的状态）。它后面总是执行onStart()。 | 否 | onStart()
+onResart() | 在activity被停止，而被再次启动之前。后面执行onStart()。 | 否 | onStart()
+onStart() | 在activity被显示给用户之前被调用。如果activity要被切换到前台，则后面执行onResume()，如果它activity变为隐藏则执行onStop()。 | 否 | onResume()或onStop()
+onResume() | 在activity与用户交互之前被调用。在这个时候activity位于activity堆栈的顶部，接下来调用的方法是onPause() | 否 | onPause()
+onPause() | 当系统需要开始恢复另一个activity时它被调用。这个方法通常用于提交未保存的数据为持久化数据，停止动画和其它消耗CPU的操作。它应该要执行得很快，因为下一个activity在它返回之前不能被恢复。如果activity回到前台执行，则接下来执行的是onResume()，如果它变为对用户不可见，则接下来要执行的是onStop()。 | 是 | onResume()或onStop()
+onStop() | 当activity不再对用户可见时被调用。这可能是因为它将被销毁或由于另一个activity（已经存在的actiivty或是新建的）已经恢复并将它覆盖了。如果activity恢复于用户交互则接下来将执行onRestart()，如果这个activity离开，则将执行onDestroy() | 是 | onRestart()或onDestroy()
+onDestroy() | 当activity被销毁后被执行。这是那个activity执行的最后一个调用。它可能是由于activity完成而被执行（在上面调用了finish()方法），或者由于系统销毁了这个activity实例以节约空间。你可以通过isFinishing()方法来区分这两种情景。 | 是 | 无&lt;/p&gt;
+&lt;p&gt;注意上表中Killable这列。它标明了系统是否可以在这个方法返回,而未执行任何其它代码的的时候杀掉持有这个activity的进程。有三个方法（onPause()，onStop()和onDestroy()）被设置为&amp;ldquo;是&amp;rdquo;。因为onPause是第一个，因此它是唯一一个保证在进程被杀掉之前执行的&amp;mdash;&amp;mdash;onStop()和onDestroy()则有可能不被执行。因此，你应该在onPause()中进行数据的持久化。&lt;/p&gt;
+&lt;p&gt;标明为&amp;ldquo;否&amp;rdquo;的方法保护持有activity的进程，在它们被执行期间不会被杀死。因此activity处于killable状态，是在从onPause()返回onResume()的时间。它不会再次处于killable状态直到再次调用onPause()返回。&lt;/p&gt;
+&lt;p&gt;上节进程生命周期中提到，技术上来说activity的killable的是根据上来的定义来决定的，但是它仍然有可能会被系统杀掉&amp;mdash;&amp;mdash;但那只在极端的情况下。&lt;/p&gt;
+&lt;h3 id="bao-cun-activityzhuang-tai"&gt;保存activity状态&lt;/h3&gt;
+&lt;p&gt;当系统而非用户关闭activity以节约内存时，用户可能会希望返回activity之前的状态。&lt;/p&gt;
+&lt;p&gt;为了捕获activity被杀掉之前的状态，你可以实现activity的onSaveInstanceState()方法。Android会在让activity变得易于销毁之前会执行这个方法&amp;mdash;&amp;mdash;它会先于onPause()被调用。它被传递给一个Bundle对象，使用这个对象你可以将activity的状态记录为键值对。当activity再次被启动时，Bundle对象会被传递给onCreate()和onStart()方法之后被调用的一个方法，onRestoreInstanceState()，因此这两个方法都可以重建之前所捕获的状态。&lt;/p&gt;
+&lt;p&gt;与onPause和之前讨论的其它方法不同，onSaveInstanceState()和onRestoreInstanceState()都不是生命周期方法。它们不会总是被调用。例如，Android只会在activity变得易于被系统销毁之前才调用onSaveInstanceState()，但它不会在activity是由用户操作（比如按下BACK键）销毁的情况下被调用。在那种情况下，用户不会期望返回之前的状态，因此没有必要保存它的状态。&lt;/p&gt;
+&lt;p&gt;因为onSaveInstanceState()并不总会被调用，因此你应该只用它来记录activit的临时（transient）状态，而不是保存持久化数据。应该使用onPause()来达到这个目的。&lt;/p&gt;
+&lt;h3 id="xie-diao-activities"&gt;协调activities&lt;/h3&gt;
+&lt;p&gt;当一个activity启动另一个时，它们都经历生命周期转换。一个暂停并可能会停止，而其它启动。有时，你可能需要协调这些activities。&lt;/p&gt;
+&lt;p&gt;生命周期回调的顺序是明确界定的，特别是当这两个activities牌同一进程中时：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;当前activity的onPause()方法被调用。&lt;/li&gt;
+&lt;li&gt;接下来，要启动的activity的onCreate()，onStart()和onResume()方法被依次调用。&lt;/li&gt;
+&lt;li&gt;当启动的activity不再显示在屏幕上时，它的onStop()方法被调用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;服务的生命周期&lt;/h2&gt;
+&lt;p&gt;服务可以用于两种方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它被启动后会一直运行直到有人停止它或它停止自己。在这种模式下，通过调用Context.startService()方法被启动，通过调用Context.stopService()被停止。它可以通过调用Service.stopSelf()或Service.stopSelfResult()停止自己。停止服务的stopService()方法只需要调用一次，而不用管startService()被调用过多少次。&lt;/li&gt;
+&lt;li&gt;可以使用它提供的接口以编程的方式对它进行操作。客户端建立到服务对象的连接并使用那个连接调用服务。通过调用Context.bindService()建立连接，并用Context.unbindService()关闭连接。多个客户端可以绑定到同一服务。如果服务还没有被启动，bindService()可以选择将它启动。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这两种模式并不是完全分离的。你可以绑定到一个由startService()启动的服务。比如，一个后台播放音乐的服务可能是调用startService()启动的，并接收了一个包含要播放的音乐的标识的intent对象。后来，可能用户想要进行一些播放控制或者获取当前播放的歌曲的信息，activity可以使用bindService()连接到服务。在这种情况下，stopService()将不会停止这个服务，而是要到最后一个binding被关闭。&lt;/p&gt;
+&lt;p&gt;与activity类似，服务也有生命周期方法你可以实现它来监控它的状态改变。但它比activity的方法少得多&amp;mdash;&amp;mdash;只有3个&amp;mdash;&amp;mdash;并且它们都是public的，而不是protected的：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;void onCreate()
+void onStart(Intent intent)
+void onDestroy()
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过实现这3个方法，你可以监控服务生命周期中的两个嵌套循环：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;整个服务的完全的生命期（entire lifetime）处于onCreate()被调用和onDestroy()方法返回。与activity类似，服务在onCreate()中进行初始化，在onDestroy()中释放资源。比如，音乐播放服务可以在onCreate()方法中创建播放线程，而在onDestroy()中停止线程。&lt;/li&gt;
+&lt;li&gt;服务的活动生命期（active lifetime）开始于对onStart()的调用。这个方法会被传入传递给startService()方法的intent对象。音乐服务可以打开intent发现要播放哪些音乐，并开始播放。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;没有对应的服务停止回调&amp;mdash;&amp;mdash;没有onStop()方法&lt;/p&gt;
+&lt;p&gt;onCreate()和onDestroy()方法被所有服务所调用，不管它是由Context.startService()还是由Context.bindService()启动的。但是，onStart()只会被由startService()启动的服务所调用。&lt;/p&gt;
+&lt;p&gt;如果一个服务允许其它人bind到它，则可以实现这些额外的回调方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;IBinder onBind(Intent intent)
+boolean onUnbind(Intent intent)
+void onRebind(Intent intent)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;onBind()回调被传入传递给bindService的intent对象，onUnbind()方法可以得到传递给unbindService()的intent对象。如果服务允许binding，onBind()返回供客户端与服务交互的通讯通道。如果新的客户端连接到服务onUnbind()方法可以要求onRebind()被调用。&lt;/p&gt;
+&lt;p&gt;下图描述了服务的回调方法。尽管，图中区分了startServicet()和bindService()创建的的服务，但是要记住任何服务，不论它是如何被启动的，都可以允许客户端bind到它，因此任何服务都可以接收onBind()和onUnbind()调用。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/android-dev-guide/binder_rpc.png"/&gt;&lt;/p&gt;
+&lt;h2&gt;广播接收者生命周期&lt;/h2&gt;
+&lt;p&gt;Broadcast receiver有单个回调方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;void onReceive(Context curContext, Intent broadcastMsg)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当广播信息到达接收者时，Android将调用它的onReceive()方法并将包含消息的intent对象传递给它。广播接收者被作为只在执行这个方法时才是活动状态的。当onReceive()返回后，它不再处于激活状态。&lt;/p&gt;
+&lt;p&gt;与活动状态的广播信息接收者相关的进程会被保护而不被杀掉。但是如果接收者不是活动状态时可以在任何时候被系统杀掉，比如当其它进程需要内存时。&lt;/p&gt;
+&lt;p&gt;这带来了一个问题，当一个广播消息的响应是费时的操作时，一些操作应该在单独的线程中完成，与用户界面所在的主线程是不同的线程。如果onReceive()产生线程然后返回时，整个进程，包括新建的这个线程，被认为是非激活的（除非进程中的其它应用程序组件处于激活状态），它有可能会被杀掉。解决这个问题的办法是在onReceive()中启动一个服务让这个服务执行那些操作，这样系统会认为进程中仍然是激活的有操作在执行。&lt;/p&gt;
+&lt;h2&gt;进程和生命周期&lt;/h2&gt;
+&lt;p&gt;Android系统试图让应用程序进程尽可能长时间的运行，但是最终它在内存不足时仍然需要移除旧的进程。决定哪个进程需要保留哪个需要被杀掉，Android将根据每个进程中运行的组件和这些组件的状态，将进程放入&amp;ldquo;importance hierarchy&amp;rdquo;。重要性最低的进程将被先被淘汰，然后是下一个最低的，如此继续。有一个级别描述重要性：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;前台进程（foreground process）是当前用户需要做的。当满足下面某个条件时进程被当作是前台进程：&lt;/li&gt;
+&lt;li&gt;它运行了一个activity与用户交互（Activity对象的onResume()方法已经被调用了）。&lt;/li&gt;
+&lt;li&gt;它包含了一个用户正与之进行交互的服务。&lt;/li&gt;
+&lt;li&gt;它拥有一个服务对象正在执行它的生命周期回调（onCreate()，onStart()或onDestroy()）。&lt;/li&gt;
+&lt;li&gt;它拥有一个广播接收者对象正在执行它的onReceive()方法。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在任意时刻仅有少量前台进程存在。他们被杀掉是被当作最后的手段&amp;mdash;&amp;mdash;如果内存不足它们不能继续执行。通常来说，在这一时刻，设备已经达到内存分页的状态，因此杀掉一些前台进程是为了保持对用户响应。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可见进程（visible process）是在前台没有任何显示组件，但是仍然可以影响用户在屏幕上看到的内容。如果进程满足下面的任何条件则进程被作为是可见的：&lt;/li&gt;
+&lt;li&gt;它包含了一个不在前台显示的activity，但是仍然对于用户可见（它的onPause()方法已经被调用）。这有可能发生，比如，如果前台的activity是一个对话框前一个activity仍然在它后面可见。&lt;/li&gt;
+&lt;li&gt;它包含了一个绑定到可见activity的服务。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;可见进程被认为是非常重要的，不会被杀死，除非是为了保持所有前台进程（foreground process）的运行。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;服务进程是正在运行用startService()启动的服务的进程并且不属于上面的两类。尽管服务进程不直接与用户看到的任何信息挂钩，它们通常与用户关注的东西相关（比如后台播放mp3或下载网络数据），因此系统保持它们运行除非没有足够内存保持他们与可见进程和前台进程同时运行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;后台进程（background process）是包含当前不向用户显示的activity（Activity对象的onStop()方法已经被调用）的进程。这些进程不直接影响用户体验，可以在任何时间被杀掉为前台进程、可见进程或服务进程节约出内存。通常有许多后台进程在运行，它们被保存在LRU（last recently used）列表中，以确保最近与用户交互过的activity相关的进程最后被杀掉。如果一个activity正确的实现了神经质生命周期方法，捕获了它的当前状态，杀掉它的进程将不会对用户体验产生有害的影响。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;空进程（empty process）是不包含任何activity的应用程序组件。保持这种进程的唯一原因就是作为缓存以提高下次在它里面执行组件时的启动速度。系统通常会杀掉这些进程以在进程缓存和下层内核缓存间平衡整个系统的资源。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Android基于当前处于活动状态的组件的重要性将进程排在它可能的最高级别。例如，如果进程包含了一个服务和一个可见的activity，则这个进程将被排作可见进程，而不是服务进程。&lt;/p&gt;
+&lt;p&gt;另外，进程的排名可能因为其它进程依赖它而提升。服务于其它进程的进程的排名不会低于它所服务的进程。比如，如果内容提供者进程A服务于一个客户进程B，或一个服务进程A被绑定到组件进程B，进程A将总会被认为重要性至少与B相同。&lt;/p&gt;
+&lt;p&gt;因为运行服务的进程的排名高于运行后台activites的进程，一个要启动长时间操作的activity最好是为这次操作启动一个服务，而不是简单的产生一个线程&amp;mdash;&amp;mdash;特别是有可能拖垮activity的操作。比如后台音乐播放和上传相机拍摄的图片到一个网站上。使用服务保证该行动至少有&amp;ldquo;服务过程（service process）&amp;rdquo;优先级，不论activity发生了什么。前面讲过的广播接收者生命周期一节中提到的，这也是同样的原因广播接收者应该采用服务而不是简单的将时间消耗型操作放到线程中。&lt;/p&gt;</content><category term="android"></category></entry><entry><title>Android Dev Guide学习笔记 What is Android?</title><link href="/android-dev-guidexue-xi-bi-ji-what-is-android.html" rel="alternate"></link><published>2010-07-30T00:00:00+08:00</published><updated>2010-07-30T00:00:00+08:00</updated><author><name>Jamsa</name></author><id>tag:None,2010-07-30:/android-dev-guidexue-xi-bi-ji-what-is-android.html</id><summary type="html">&lt;h1&gt;Android是什么？&lt;/h1&gt;
+&lt;h1&gt;功能&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Application framework允许重用和替换的组件&lt;/li&gt;
+&lt;li&gt;Dalvik虚拟机&lt;/li&gt;
+&lt;li&gt;集成了基于WebKit引擎的浏览器&lt;/li&gt;
+&lt;li&gt;基于2D图形库的优化过的图形；基于OpenGL ES 1.0规范的3D图形（可选的硬件加速）。&lt;/li&gt;
+&lt;li&gt;SQLite来支持结构化数据存储&lt;/li&gt;
+&lt;li&gt;多媒体方面 支持：音频、视频和图像支持（MPEG4、H.264、MP3、AAC、AMR、JPG、PNG、GIF）&lt;/li&gt;
+&lt;li&gt;GSM通讯（依赖于硬件）&lt;/li&gt;
+&lt;li&gt;蓝牙、EDGE、3G和WiFi（依赖于硬件）&lt;/li&gt;
+&lt;li&gt;摄像头、GPS、罗盘和加速感应（依赖于硬件）&lt;/li&gt;
+&lt;li&gt;丰富的开发环境，包括：设备模拟器，用于调试的工具，内存和性能分析，和Eclipse IDE插件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Android架构&lt;/h1&gt;
+&lt;p&gt;下图展示了Android操作系统的主要组件。
+&lt;img alt="system architecture" src="/android-dev-guide/system-architecture.jpg"/&gt;&lt;/p&gt;
+&lt;h1&gt;应用程序&lt;/h1&gt;
+&lt;p&gt;Android发布时一般带有一套核心应用程序，包括email客户端，SMS程序，日历 …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Android是什么？&lt;/h1&gt;
+&lt;h1&gt;功能&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Application framework允许重用和替换的组件&lt;/li&gt;
+&lt;li&gt;Dalvik虚拟机&lt;/li&gt;
+&lt;li&gt;集成了基于WebKit引擎的浏览器&lt;/li&gt;
+&lt;li&gt;基于2D图形库的优化过的图形；基于OpenGL ES 1.0规范的3D图形（可选的硬件加速）。&lt;/li&gt;
+&lt;li&gt;SQLite来支持结构化数据存储&lt;/li&gt;
+&lt;li&gt;多媒体方面 支持：音频、视频和图像支持（MPEG4、H.264、MP3、AAC、AMR、JPG、PNG、GIF）&lt;/li&gt;
+&lt;li&gt;GSM通讯（依赖于硬件）&lt;/li&gt;
+&lt;li&gt;蓝牙、EDGE、3G和WiFi（依赖于硬件）&lt;/li&gt;
+&lt;li&gt;摄像头、GPS、罗盘和加速感应（依赖于硬件）&lt;/li&gt;
+&lt;li&gt;丰富的开发环境，包括：设备模拟器，用于调试的工具，内存和性能分析，和Eclipse IDE插件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Android架构&lt;/h1&gt;
+&lt;p&gt;下图展示了Android操作系统的主要组件。
+&lt;img alt="system architecture" src="/android-dev-guide/system-architecture.jpg"/&gt;&lt;/p&gt;
+&lt;h1&gt;应用程序&lt;/h1&gt;
+&lt;p&gt;Android发布时一般带有一套核心应用程序，包括email客户端，SMS程序，日历，地图，浏览器，联系人和其它。所有应用都是用Java编写的。&lt;/p&gt;
+&lt;h1&gt;应用程序框架&lt;/h1&gt;
+&lt;p&gt;通过提供一个开放的开发平台。Android给开发者提供了构建极其丰富和具有创新性的应用的能力。开发者可以自由的获取硬件的好处，访问位置信息，执行后台服务，设置警报，在状态条上增加通知等等。&lt;/p&gt;
+&lt;p&gt;开发者可以像核心应用程序一样访问相同的应用程序框架提供的API。应用程序框架被设计为简单的可重用组件；任何应用程序都可以发布它自己的功能其它应用程序可以使用这些功能（比如框架提供的安全性约束）。同样的机制也允许用户替换组件。&lt;/p&gt;
+&lt;p&gt;在所有应用程序下都是一套服务系统，它包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;丰富和具有扩展性的一套Views，它可以用于构造应用程序，包括：列表、表格、文本框、按钮和甚至是可嵌入的浏览器。&lt;/li&gt;
+&lt;li&gt;Content Providers允许应用程序访问数据或者共享自己的数据。&lt;/li&gt;
+&lt;li&gt;Resource Manager提供访问非代码性的资源比如：本地化字符串、图片、布局文件。&lt;/li&gt;
+&lt;li&gt;Notification Manager允许所有应用程序在状态条上显示自己的通知信息。&lt;/li&gt;
+&lt;li&gt;Activity Manager管理应用程序和生命周期并提供了一个通用的导航堆栈（navigation backstack）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;程序库&lt;/h1&gt;
+&lt;p&gt;Android包括一套用于Android系统组件的C/C++程序库。它通过Android应用程序框架暴露给开发人员。一些核心库如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;System C library - 源于BSD系统实现的标准C系统库（libc）被调整为适用于嵌入式Linux设备优化。&lt;/li&gt;
+&lt;li&gt;Media Libraries - 基于PacketVideo的OpenCORE；这些程序库支持播放和记录许多流行的音频和视频格式，如：静态图片文件、MPEG4、H.264、MP3、AAC、AMR、JPG和PNG。&lt;/li&gt;
+&lt;li&gt;Surface Manager - 管理从不同的应用程序访问显示子系统和无缝集成2D和3D图形。&lt;/li&gt;
+&lt;li&gt;LibWebCore - 一个现代的浏览器引擎来支持Android浏览器和可嵌入的web view。&lt;/li&gt;
+&lt;li&gt;SGL - 底层的2D图形引擎。&lt;/li&gt;
+&lt;li&gt;3D libraries - 基于OpenGL ES 1.0 APIs实现；这个库支持硬件3D加速（在可用时）或包含高度优化的3D软件光栅。&lt;/li&gt;
+&lt;li&gt;Freetype - 位图和矢量字体渲染。&lt;/li&gt;
+&lt;li&gt;SQLite - 为所有应用程序提供了一个功能强大的轻量级关系数据库引擎。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Android运行环境&lt;/h1&gt;
+&lt;p&gt;Android包含了一套核心程序库在Java程序中绝大部分的功能都是可用的。&lt;/p&gt;
+&lt;p&gt;所有Android应用程序运行在自己的进程中，使用自己的Dalvik虚拟机实例。Dalvik虚拟机被编写为可以有效的运行多个虚机。Dalvik虚拟机上的执行文件是Dalvik可执行文件格式（.dex）它被优化为最小的内存占用。这个虚拟机是基于寄存器的，可以运行Java语言编译的被&amp;ldquo;dx&amp;rdquo;工具转译为dex格式的class。&lt;/p&gt;
+&lt;p&gt;Dalvik虚拟机依赖于Linux内核提供的底层功能，如：线程和底层的内存管理。&lt;/p&gt;
+&lt;h1&gt;Linux内核&lt;/h1&gt;
+&lt;p&gt;Android的核心系统服务依赖于Linux 2.6，如：安全、内存管理、进程管理、网络栈和驱动模型。内核也扮演了硬件和其它软件栈之间的抽像层。&lt;/p&gt;</content><category term="android"></category></entry></feed>

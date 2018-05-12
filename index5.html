@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Jamsa的笔记"/>
+        <meta property="og:url" content=""/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="website"/>
+
+        <link rel="canonical" href="" />
+
+        <title>Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li ><a href="/category/kai-fa.html">开发</a></li>
+                                <li ><a href="/category/qian-duan.html">前端</a></li>
+                                <li ><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span9">
+                <section>
+                    <ol id="posts-list" class="hfeed" start="9">
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/build_view.html" rel="bookmark" title="Permalink to OA Framework应用构建之——实现视图">
+                                       OA Framework应用构建之——实现视图
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2008-07-08
+
+        |
+        tags:         <a href="/tag/oracle.html">oracle</a>
+        <a href="/tag/ebs.html">ebs</a>
+        <a href="/tag/oaf.html">oaf</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>页面</h1>
+<p>创建页面的基本步骤是创建pages，region，items。</p>
+<h2>Page LayoutRegion的关键属性</h2>
+<p>创建一个pageLayout区域时，应该特别注意下面的属性：</p>
+<ul>
+<li>
+<p>AutoFooter将这个设置为true以保证在页面上有应用的保密和版权说明链接。</p>
+</li>
+<li>
+<p>Help Target如果你需要为当前页显示帮助按钮，必须在这里指定帮助文件（通常是文件名）。</p>
+</li>
+<li>
+<p>AM Definition用于设置页面的根应用模块。必须使用类的全名，比如：oracle.apps.fnd.framework.toolbox.tutorial.server.SearchAM</p>
+</li>
+<li>
+<p>Function Name总是设置页面的保密函数</p>
+</li>
+<li>
+<p>Window Title浏览器窗口标题</p>
+</li>
+<li>
+<p>Title显示在page header中的文本。</p>
+</li>
+<li>
+<p>Form在pageLayout中设置为true，这通常是默认设置，不要在其子对象中添加亲折form。OA Framework在同一个页面中只支持一个form。</p>
+</li>
+<li>
+<p>pageLayout Components注意OA Framework页面基础　一文中提到的，页面包含了特殊的被命名的组件，其中一个就是标识图案。为了在页面关联标识图案，选择pageLayout区域或pageLayoutComponents节点，然后右键菜单中选择创建image item，并把它的Image URI属性设置为<imagename>.gif。</imagename></p>
+</li>
+</ul>
+<h2>Item …</h2>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/build_view.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/bus_svc_overview.html" rel="bookmark" title="Permalink to 实现服务端功能之——服务">
+                                       实现服务端功能之——服务
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2008-07-08
+
+        |
+        tags:         <a href="/tag/oracle.html">oracle</a>
+        <a href="/tag/ebs.html">ebs</a>
+        <a href="/tag/oaf.html">oaf</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>面向服务的架构预览</h1>
+<p>服务的概念已经出现了很长时间，但面向服务的概念相对是比较新的。面向服务的架构是一种有助于降低应用耦合的一种构建应用的风格，独立管理的组件可以被重用和重新安排到其它完整功能的应用中。SOA提供下面的功能：</p>
+<ul>
+<li>
+<p>构建和注册服务的能力</p>
+</li>
+<li>
+<p>使用户发现和调用服务的能力</p>
+</li>
+<li>
+<p>执行服务的平台</p>
+</li>
+</ul>
+<p>下面的图演示了SOA的基本概念：</p>
+<p>SOA的基本概念</p>
+<p><img alt="srv_overview" src="/oaf_bus_svc_overview/srv_overview.gif"/></p>
+<p>使用面向服务的架构你可以：</p>
+<ul>
+<li>
+<p>容易的将Oracle Applications和其它的应用集成</p>
+</li>
+<li>
+<p>影响已经部署的应用保护现有投资</p>
+</li>
+<li>
+<p>容易适应更多的需求</p>
+</li>
+</ul>
+<h1>服务预览</h1>
+<p>服务在EBS的开发、测试、分类、公共安全和私有接口架构中是一个关键组件。开发者使用统一的指导方针和实现方式来创建服务，然后当它们控制源代码时被自动发布到集中的接口仓库。</p>
+<p>服务时自描述的，独立的组件可以被部署为web service、EJB session beans或作为共设的Java API（与客户端被部署在同一个JVM中）。服务接口根据用途分为多种不同的类型。Oracle支持业务对象服务。</p>
+<p>业务对象是自包含的代表了真实世界的业务领域对象：一个文档、一个地方、一个人或一件事。从实现的角度来说，业务对象包含一个或多个视力对象（VO）映射到下层的复合实体（EO）（子实体不能没有父对象）。比如，在OA Framework Toolbox Tutorial中采购单业务对象包含了一个头部信息并带有一行或多行明细，每个包含一个或多个供货。供货不能离开明细行独立存在 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/bus_svc_overview.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/emacs-tips.html" rel="bookmark" title="Permalink to Emacs Tips">
+                                       Emacs Tips
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/xiao-lu.html">效率</a>
+
+    on 2008-07-08
+
+        |
+        tags:         <a href="/tag/emacs.html">emacs</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>一 基本概念</h1>
+<ul>
+<li>
+<p>1.常见的按键组合：
+    a.最常见的命令都被绑定到了"C-n"(n可以是任意符号)</p>
+<p>b.次常见的命令被绑定到了"ESC n"形式</p>
+<p>c.其它常见的命令被绑定到了"C-x something"</p>
+<p>d.某些特殊命令被绑定到了&ldquo;C-c something"的形式。这些命令通常都与某些特殊的编辑模式有关</p>
+<p>e.有些命令没有被绑定到按钮上。而是通过"ESC x long-command-nam RETURN&rdquo;命令方式执行</p>
+</li>
+<li>
+<p>2.如果用F10无法打开菜单,可以用"ESC `"</p>
+</li>
+<li>
+<p>3."C-x C-v"读错文件时修正</p>
+</li>
+<li>
+<p>4."C-x i"插件文件</p>
+</li>
+<li>
+<p>5.使用"C-s"保存时遇到麻烦时,试试使用"C-x C-w …</p></li></ul>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/emacs-tips.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/wxpython-in-actionde-du-shu-bi-ji.html" rel="bookmark" title="Permalink to wxPython In Action的读书笔记">
+                                       wxPython In Action的读书笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2008-07-08
+
+        |
+        tags:         <a href="/tag/python.html">python</a>
+        <a href="/tag/wxpython.html">wxpython</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>Chap 1 Welcome to wxPython</h1>
+<p>一个20行的wxPython程序：</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/env python</span>
+<span class="kn">import</span> <span class="nn">wx</span>
+<span class="k">class</span> <span class="nc">MyFrame</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="bp">None</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">"My Frame"</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">))</span>
+        <span class="n">panel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">panel</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MOTION</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">OnMove</span><span class="p">)</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">"Pos"</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">posCtrl …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/wxpython-in-actionde-du-shu-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/adv_back_use_cases.html" rel="bookmark" title="Permalink to 高级OA Framework开发主题——支持浏览后退按钮的用例">
+                                       高级OA Framework开发主题——支持浏览后退按钮的用例
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2008-07-04
+
+        |
+        tags:         <a href="/tag/oracle.html">oracle</a>
+        <a href="/tag/ebs.html">ebs</a>
+        <a href="/tag/oaf.html">oaf</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>概述</h1>
+<p>本文档描述了与标准后退行为相关的公用应用设计模式，并包含了各个步骤的实现细节。</p>
+<h2>需要阅读</h2>
+<p><a href="/adv_backbutton.html#goals">Supporting the Browser Back Button - Target Goals</a></p>
+<h1>一般规则</h1>
+<p>通常，你的产品在用户使用后退按钮时应该遵循下面的规则。参见下面的特殊事务流以了解实现和行为的细节。</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/adv_back_use_cases.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/adv_backbutton.html" rel="bookmark" title="Permalink to 高级OA Framework开发主题——支持浏览后退按钮">
+                                       高级OA Framework开发主题——支持浏览后退按钮
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2008-07-04
+
+        |
+        tags:         <a href="/tag/oracle.html">oracle</a>
+        <a href="/tag/ebs.html">ebs</a>
+        <a href="/tag/oaf.html">oaf</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>概述</h1>
+<p>本文档提供了一组<a href="#goals">目标</a>并描述了编码标准，你必须遵守以确保对浏览器后退按钮的支持。</p>
+<p>可用性测试显示用户非常依赖于浏览器后退按钮。不幸的是，这个导航偏好在事务型的应用中将导致一系列潜在的故障点。例如，思考在OA Framework应用中在下面的场景中使用浏览器后退按钮将导致不可预料的问题。</p>
+<table class="table">
+<tr>
+<th>用户导航</th>
+<th>问题</th>
+</tr>
+<tr>
+<td>用户从表格中删除了一行数据页面被重绘并显示了提示信息标明数据行已经被删除（数据行不再显示在表格中）。然后用户按下浏览器后退按钮，页面将显示出数据行仍然在表格中时的页面。这时用户再次尝试删除数据行。</td>
+<td>浏览器缓存了页面内容。如果用户执行的一个动作修改了数据状态，然后使用浏览器后退按钮，浏览的页面缓存没有反映出中间层的状态（在这里，是一个不存在的数据行）。当用户试图对缓存页面中被删除的行进行删除或其它处理时，将导致运行时错误。而支持浏览器后退按钮的页面将检测到这个错误并显示出用户友好的提示信息标明数据行已经被删除了。</td>
+</tr>
+<tr>
+<td>在构物车结算处理时，用户选择了&ldquo;提交定单&rdquo;按钮购买端口。但不知什么原因，用户使用浏览器后退按钮从确认页面退回了定单提交页面并再次点击了&ldquo;提交定单&rdquo;按钮（可能她想修改定单数量）。</td>
+<td>这个场景与前面描述的第一个场景类似，但未加保护的动作将导致&ldquo;成功&rdquo;执行两次交易。（定单可能会被创建两次，而这并不是用户期望的）。支持浏览器后退按钮的页面将可以检查到两次相同的提交并显示出用户友好的提示信息标明定单已经存在了。</td>
+</tr>
+<tr>
+<td>用户从Page1导航到Page2，然后使用退出按钮返回Page1。然后在Page1中点击了一个表单提交组件，这将导致一个未处理的异常（NullPointerException, IndexOutOfBoundsException）。</td>
+<td>OA …</td></tr></table>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/adv_backbutton.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/extxue-xi-bi-ji.html" rel="bookmark" title="Permalink to Ext学习笔记">
+                                       Ext学习笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/qian-duan.html">前端</a>
+
+    on 2008-03-19
+
+        |
+        tags:         <a href="/tag/extjs.html">extjs</a>
+        <a href="/tag/javascript.html">javascript</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>基础</h1>
+<h1>Ext继承机制</h1>
+<h1>Ext对象</h1>
+<p>Ext.onReady()是Ext.EventManager.onDocumentReady()的速写方法。</p>
+<h1>布局管理</h1>
+<h2>Ext.Viewport</h2>
+<p>Ext.Viewport是一个特殊的容器它代表应用的可视区域（浏览器的Viewport）。</p>
+<p>Viewport自动将自己渲染到document.body，因此不需要要调用render方法。它在浏览器的viewport调整大小时自动调整自己的大小并管理窗口（Ext的窗口）的大小改变。</p>
+<h2>Ext.Component</h2>
+<p>Ext.Component是所有Ext组件的基类。所有Component的子类能被乍动
+xtype用于标识所需要生成的组件的类型。
+下面两个写法效果是一样的：</p>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">viewport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">Viewport</span><span class="p">({</span>
+        <span class="nx">layout</span><span class="o">:</span><span class="s1">'border'</span><span class="p">,</span>
+        <span class="nx">items</span><span class="o">:</span><span class="p">[</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent</span><span class="p">({</span>
+                <span class="nx">xtype</span><span class="o">:</span><span class="s1">'box'</span><span class="p">,</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span> <span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">height</span><span class="o">:</span><span class="mi">32</span>
+            <span class="p">}),</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/extxue-xi-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html" rel="bookmark" title="Permalink to Xah的Emacs Lisp 教程学习笔记">
+                                       Xah的Emacs Lisp 教程学习笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/xiao-lu.html">效率</a>
+
+    on 2008-03-10
+
+        |
+        tags:         <a href="/tag/emacs.html">emacs</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>例子</h1>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-open-directory-with-explorer</span> <span class="p">()</span>
+  <span class="s">"在windows中用explorer浏览当前目录"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">shell-command</span> <span class="s">"explorer.exe ."</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">browse-url</span> <span class="s">"www.google.cn"</span><span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-directory-files</span> <span class="p">()</span>
+  <span class="s">"执行shell命令并处理它的输出。这里为显示当前目录下的文件"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="s">"ls -l"</span><span class="p">))</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-current-major-mode</span> <span class="p">()</span>
+  <span class="s">"如果当前为emacs-lisp-mode则显示当前主模式"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">eq</span> <span class="ss">'emacs-lisp-mode</span> <span class="nv">major-mode</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">message</span> <span class="s">"emacs-lisp-mode"</span><span class="p">))</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-regexp-match</span> <span class="p">()</span>
+  <span class="s">"正则表达式匹配"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">test-string</span> <span class="s">"aaaaaaaaaaaa123sfdsfs456"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">regexp-string</span> <span class="s">"\\([0-9]+\\)[a-z]+\\([0-9]+\\)"</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">string-match</span> <span class="nv">regexp-string</span> <span class="nv">test-string</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span> <span class="nv">test-string …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html" rel="bookmark" title="Permalink to Linux内核设备驱动第三版读书笔记">
+                                       Linux内核设备驱动第三版读书笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2008-01-17
+
+        |
+        tags:         <a href="/tag/linux.html">linux</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>Chap 2 构建和运行内核</h1>
+<h2>设置测试系统</h2>
+<p>书中的例子以Kernel 2.6.x为基础（2.6.10）。</p>
+<h2>Hello World模块</h2>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp"></span>
+<span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">"Dual BSD/GPL"</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">"Hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">"Goodbye, cruel world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/programming-perlbi-ji.html" rel="bookmark" title="Permalink to Programming Perl笔记">
+                                       Programming Perl笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2007-12-02
+
+        |
+        tags:         <a href="/tag/perl.html">perl</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>OverView</h1>
+<h2>自然的人工语言</h2>
+<h3 id="bian-liang-yu-fa">变量语法</h3>
+<p>变量类型</p>
+<p>类型 || 字符 || 例子 || 说明
+标量 | $ | $cents | 单个的值（数字或字符串）
+数组 | @ | @large | 值列表，键为数字
+哈希表 | % | %interest | 一组值，键为字符串
+子程序 | &amp; | &amp;how | 一块可被调用的代码
+glob | <code><em></em></code> | <code></code></p>struck | 所有被命名为struck的东西
+<h3 id="bian-liang-fu-zhi">变量赋值</h3>
+<h4 id="dan-yi-bian-liang">单一变量</h4>
+<div class="highlight"><pre><span></span><span class="nv">$answer</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>                <span class="c1"># 一个整数</span>
+<span class="nv">$pi</span> <span class="o">=</span> <span class="mf">3.14159265</span><span class="p">;</span>            <span class="c1"># 一个实数</span>
+<span class="nv">$avocados</span> <span class="o">=</span> <span class="mf">6.02e23</span><span class="p">;</span>         <span class="c1"># 科学计数法</span>
+<span class="nv">$pet</span> <span class="o">=</span> <span class="s">"Camel"</span><span class="p">;</span>              <span class="c1"># 字符串</span>
+<span class="nv">$sign</span> <span class="o">=</span> <span class="s">"I love my $pet"</span><span class="p">;</span>    <span class="c1"># 带插值的字符串</span>
+<span class="nv">$cost</span> <span class="o">=</span> <span class="s">'It …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/programming-perlbi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    </ol><!-- /#posts-list -->
+<p class="paginator">
+        <a href="/index4.html">&laquo;</a>
+    Page 5 / 6
+        <a href="/index6.html">&raquo;</a>
+</p>
+                </section><!-- /#content -->
+</div>
+<div class="span3">
+    <section id="sidebar">
+            <div>
+                <h2>Browse content by</h2>
+                <ul class="fa-ul">
+                <li><a href="/categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
+                <li><a href="/archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
+                <li><a href="/tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
+
+                <li><a href="/feeds/all.atom.xml"><i class="fa-li fa fa-rss"></i> Feed</a></li>
+                </ul>
+            </div><!-- /.browse -->
+<!-- /.Tags -->
+    </section><!-- /#sidebar -->
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

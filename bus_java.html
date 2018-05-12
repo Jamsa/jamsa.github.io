@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="实现服务端功能之——Java实体对象"/>
+        <meta property="og:url" content="/bus_java.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="/bus_java.html" />
+
+        <title>实现服务端功能之——Java实体对象 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
+                                <li ><a href="/category/qian-duan.html">前端</a></li>
+                                <li ><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/bus_java.html" rel="bookmark"
+             title="Permalink to 实现服务端功能之——Java实体对象">实现服务端功能之——Java实体对象</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/kai-fa.html">开发</a>
+
+    on 2007-09-02
+
+        |
+        tags:         <a href="/tag/oracle.html">oracle</a>
+        <a href="/tag/ebs.html">ebs</a>
+        <a href="/tag/oaf.html">oaf</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>关于实体对象</h1>
+<p>实体对象包含了业务逻辑和对表的DML操作。</p>
+<h2>对象模型和关键类</h2>
+<ul>
+<li>
+<p>oracle.apps.fnd.framework.server.OAEntityCache：这个缓冲用于存储特殊实体的查询过的行。映射到同样的实体的多个视图对象共享相同的实体缓存。</p>
+</li>
+<li>
+<p><yourentityname>EOImpl继承oracle.apps.fnd.framework.server.OAEntityImpl：这是实体对象本身。当实例化后，它代表数据中的一行。</yourentityname></p>
+</li>
+<li>
+<p>oracle.apps.fnd.framework.server.OAEntityDefImpl：表示描述实体对象的元数据，包括属性（attributes）、事件、校验器、关联和属性（properties）。当实例化后，它描述了实体对象类的所有实例。实体定义类是一个单例类。</p>
+</li>
+<li>
+<p><yourentityname>Expert继承oracle.apps.fnd.framework.server.OAEntityExpert：这是一个特殊的单例辅助类，它用于注册一个实体。</yourentityname></p>
+</li>
+<li>
+<p>oracle.jbo.Key：这是一个不可变的主、外键或复合主键。</p>
+</li>
+</ul>
+<h1>创建</h1>
+<p>为了创建实体对象，必须调用对应的上层视图对象中的createRow方法然后再调用insertRow方法。</p>
+<div class="highlight"><pre><span></span><span class="c1">// In the application module; this example from the OA Framework</span>
+<span class="c1">// ToolBox Tutorial will instantiate a SupplierEOImpl.</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">()</span>
+<span class="o">{</span>
+  <span class="n">OAViewObject</span> <span class="n">vo</span> <span class="o">=</span> <span class="n">getSuppliersVO</span><span class="o">();</span>
+  <span class="n">vo</span><span class="o">.</span><span class="na">insertRow</span><span class="o">(</span><span class="n">vo</span><span class="o">.</span><span class="na">createRow</span><span class="o">());</span>
+
+  <span class="c1">// Always call this after you perform a row insert. See the Entity Object</span>
+  <span class="c1">// New / Initial section below for additional information.</span>
+  <span class="n">vo</span><span class="o">.</span><span class="na">setNewRowState</span><span class="o">(</span><span class="n">Row</span><span class="o">.</span><span class="na">STATUS_INITIALIZED</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+<p>视图对象的createRow方法调用下层实体对象的create()方法。可以在实体的create()方法中添加初始化代码，可以参考oracle.apps.fnd.framework.toolbox.tutorial.server.SupplierEOImpl类。</p>
+<p><strong>警告：</strong> 不要将初始化逻辑放到实体对象的构造器中；总是应该将这些代码添加到create()方法中super.create(attributeList)方法调用的后面。</p>
+<p><strong>技巧：</strong> 如果默认值可以在设计时决定，并且是为特定的UI而决定的，也可以通过在设计器中设置item的Initial Value属性来指定默认值。这些值可以被用户个性化；而不需要创建实体你的对象的子类并覆盖create()方法来设置默认值。查看Defaulting章节查看细节信息。</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * In the SupplierEOImpl class; initialize a new supplier.</span>
+<span class="cm"> */</span>
+<span class="n">Public</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">(</span><span class="n">AttributeList</span> <span class="n">attributeList</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">attributeList</span><span class="o">);</span> 
+  <span class="n">OADBTransaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">getOADBTransaction</span><span class="o">();</span>
+
+  <span class="c1">// Supplier id is obtained from the table's sequence</span>
+  <span class="n">Number</span> <span class="n">supplierId</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">getSequenceValue</span><span class="o">(</span><span class="s">"FWK_TBX_SUPPLIERS_S"</span><span class="o">);</span>
+  <span class="n">setSupplierId</span><span class="o">(</span><span class="n">supplierId</span><span class="o">);</span>
+
+  <span class="c1">// Start date should be set to sysdate</span>
+  <span class="n">setStartDate</span><span class="o">(</span><span class="n">transaction</span><span class="o">.</span><span class="na">getCurrentDBDate</span><span class="o">());</span>
+<span class="o">}</span> <span class="c1">// end create()</span>
+</pre></div>
+<p><strong>技巧：</strong> 当在实体对象中设置值时，总是使用set<attributename>(val)代替setAttribute("<attributename>", val)方法可以提高性能，因为前者跳过了查找字段的步骤。如果需要忽略编程方式实现的属性校验而仍需要执行设计时定义的校验时，可以直接调用setAttributeInternal()。查看Entity Object and View Object Attribute Setters以获取更多信息。</attributename></attributename></p>
+<h2>复合实体关联</h2>
+<p>在复合关联中BC4J将在设置父对象主键属性值时自动设置子实体对象。父对象主键值是在调用create()方法时通过attributeList参数传递进去的，并且在super.create(attributeList)被执行时被设置值。</p>
+<p>不要尝试自己来处理主键值。</p>
+<h2>实体对象的Initial/New状态</h2>
+<p>缺省情况下，实体对象被创建时row状态为STATUS_NEW，并且BC4J将它们添加到它们的校验器中并且post监听。这时，任何事件触发校验或数据库提交sequence包括这些实体对象。（By default, entity objects are created with the     row state of STATUS_NEW, and BC4J adds them to its validation and post listener lists. In this case, any event that triggers a validation or database post sequence includes these entity objects.）</p>
+<p>如OA Framework Model Coding Standards中的规定，应该将通过显式的在视图对象中调用创建新行的方法后立即调用ViewRowImpl对象的setNewRowState(STATE_INITIALIZED)方法。</p>
+<p>当执行这个后，BC4J将从事务中和校验监听列表中移除对应的实体对象，这样它们将不会被校验或提交到数据库。当用户做出修改（属性的&ldquo;setter&rdquo;被调用后），实体对象的状态修改为STATUS_NEW，并且BC4J返回它到validation/post lists。你也可以在ViewRowImpl上调用setNewRowState(STATUS_NEW)在任何时候手工改变状态。</p>
+<h2>特殊&ldquo;Create&rdquo;的情况</h2>
+<p><strong>&ldquo;Flattened&rdquo;主／从处于单一行中</strong></p>
+<p>在OA Framework ToolBox教程中，我们有主／从实体显示于同一行中，&ldquo;flattened&rdquo;行中。比如采购单包含了很多行，它们依次包含了多个供货商，在我们的UI中，我们将采购单的行和供货单实现为1:1的关系。</p>
+<p>尽管BC4J可以很容易的为单个视图对象行创建多个不同类型的实体对象&mdash;&mdash;这些实体对象是不相关的或是平等的&mdash;&mdash;在一个对象是另一个对象子对象时需要你介入。在这种情况下，必须在你的视图对象行实现的create()方法中添加下面的代码，以确保正确的父对象的主键被设置到低层次的子对象的实体中：</p>
+<div class="highlight"><pre><span></span><span class="c1">// The following is required to support the creating the master/detail line</span>
+<span class="c1">// and shipment entities that have been "flattened" into a single row in</span>
+<span class="c1">// POLineShipFullVO with a 1:1 join.</span>
+<span class="c1">//</span>
+<span class="c1">// If you don't do this, BC4J will automatically treat them like peers and</span>
+<span class="c1">// try to set the po header id as the parent key for both entities.</span>
+
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">(</span><span class="n">oracle</span><span class="o">.</span><span class="na">jbo</span><span class="o">.</span><span class="na">AttributeList</span> <span class="n">nvp</span><span class="o">)</span> 
+<span class="o">{</span> 
+  <span class="n">PurchaseOrderLineEOImpl</span> <span class="n">lineEO</span> <span class="o">=</span> <span class="o">(</span><span class="n">PurchaseOrderLineEOImpl</span><span class="o">)</span><span class="n">getEntity</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> 
+  <span class="n">PurchaseOrderShipmentEOImpl</span> <span class="n">shipmentEO</span> <span class="o">=</span> <span class="o">(</span><span class="n">PurchaseOrderShipmentEOImpl</span><span class="o">)</span><span class="n">getEntity</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>    
+
+  <span class="k">try</span> 
+  <span class="o">{</span>
+    <span class="c1">// Create Lines EO </span>
+    <span class="n">lineEO</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">nvp</span><span class="o">);</span> 
+
+    <span class="c1">// Create Shipments EO </span>
+    <span class="n">shipmentEO</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">lineEO</span><span class="o">);</span> 
+
+    <span class="c1">// Calling this ensures that any personalization default values are</span>
+    <span class="c1">// properly set since the OAF normally sets this in the super.create(), but</span>
+    <span class="c1">// since this is not called in this workaround, we need another method</span>
+    <span class="c1">// to ensure customer defaults are applied.</span>
+    <span class="n">setDefaultValue</span><span class="o">();</span>
+  <span class="o">}</span> 
+  <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> 
+  <span class="o">{</span> 
+    <span class="n">lineEO</span><span class="o">.</span><span class="na">revert</span><span class="o">();</span> 
+    <span class="n">shipmentEO</span><span class="o">.</span><span class="na">revert</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">ex</span> <span class="k">instanceof</span> <span class="n">oracle</span><span class="o">.</span><span class="na">jbo</span><span class="o">.</span><span class="na">JboException</span><span class="o">)</span> 
+    <span class="o">{</span> 
+      <span class="n">oracle</span><span class="o">.</span><span class="na">jbo</span><span class="o">.</span><span class="na">JboException</span> <span class="n">jboEx</span> <span class="o">=</span> <span class="o">(</span><span class="n">oracle</span><span class="o">.</span><span class="na">jbo</span><span class="o">.</span><span class="na">JboException</span><span class="o">)</span><span class="n">ex</span><span class="o">;</span> 
+      <span class="c1">// Developers have to do the mapping on their own because of the override. </span>
+      <span class="n">jboEx</span><span class="o">.</span><span class="na">doEntityToVOMapping</span><span class="o">(</span><span class="n">getApplicationModule</span><span class="o">(),</span> <span class="k">new</span> <span class="n">oracle</span><span class="o">.</span><span class="na">jbo</span><span class="o">.</span><span class="na">ViewObject</span><span class="o">[]{</span><span class="n">getViewObject</span><span class="o">()});</span>    
+      <span class="k">throw</span> <span class="n">jboEx</span><span class="o">;</span> 
+    <span class="o">}</span> 
+    <span class="k">throw</span> <span class="n">OAException</span><span class="o">.</span><span class="na">wrapperException</span><span class="o">(</span><span class="n">ex</span><span class="o">);</span> 
+  <span class="o">}</span>
+<span class="o">}</span> <span class="c1">// end create() </span>
+</pre></div>
+<h2>实体对象缓存</h2>
+<p>一旦被创建后，BC4J将实体对象因为各种原因被存储于特殊的事务缓冲区中，在JDeveloper BC4J文档中有完整的描述。两个重要的好处在于：</p>
+<ul>
+<li>
+<p>处理同一个根应用模块中的多个视图对象可以共享同样的下层实体对象。这意味着在一个视图对象中修改实体后将立即反映到其它引用该实体对象的视图对象中。</p>
+</li>
+<li>
+<p>数据修改将被保留在缓冲区中即使视图对象的行集被刷新。比如，在主－从关系中，在 <strong>从</strong> 视图对象中由实体对象派生的属性值被保存在缓存中，即使用户从一个 <strong>主</strong> 视图对象转换到另一个。所有数据修改将原封不动的保存在事务生命中。</p>
+</li>
+</ul>
+<p>懂得这个缓冲区的存在是很重要的，因为你必须明确的执行某些验证，比如，当执行唯一性验证时你必须同时检查实体缓冲区和数据库。</p>
+<p>有三种主要方式同时检查缓冲区和数据库：</p>
+<ol>
+<li>
+<p>使用findByPrimaryKey()方法</p>
+</li>
+<li>
+<p>手工迭代缓冲区</p>
+</li>
+<li>
+<p>使用关联对象迭代缓冲区</p>
+</li>
+</ol>
+<p><strong>findByPrimaryKey()方法</strong></p>
+<p>findByPrimaryKey()方法确保先查询缓冲区中与给定的主键相匹配的实体对象，然后查找数据库。这是一个非常用有的方法，但它并不是一个轻量的方法，因为它为从数据库中找到的记录实例化实体对象。它将 <strong>整个</strong> 实体对象放入内存，而不只是主键。这个方法可以&mdash;&mdash;也应该&mdash;&mdash;被用于当你不需要查找一个匹配的情况&mdash;&mdash;比如，当验证一个基于序列的主键。它也适合用于需要在查找到的目标上调用方法以便中间层访问的情况。</p>
+<p>下面的代码来自于oracle.apps.fnd.framework.toolbox.schema.server.SupplierEOImpl类，描述了这个方法的使用：</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSupplierId</span><span class="o">(</span><span class="n">Number</span> <span class="n">value</span><span class="o">)</span>
+<span class="o">{</span> 
+  <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="c1">// Supplier id must be unique. To verify this, you must check both the</span>
+    <span class="c1">// entity cache and the database. In this case, it's appropriate</span>
+    <span class="c1">// to use findByPrimaryKey( ) because you're unlikely to get a match, and</span>
+    <span class="c1">// and are therefore unlikely to pull a bunch of large objects into memory.</span>
+
+    <span class="c1">// Note that findByPrimaryKey() is guaranteed to check all suppliers. </span>
+    <span class="c1">// First it checks the entity cache, then it checks the database.</span>
+
+    <span class="n">OADBTransaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">getOADBTransaction</span><span class="o">();</span>
+    <span class="n">Object</span><span class="o">[]</span> <span class="n">supplierKey</span> <span class="o">=</span> <span class="o">{</span><span class="n">value</span><span class="o">};</span>
+    <span class="n">EntityDefImpl</span> <span class="n">supplierDefinition</span> <span class="o">=</span> <span class="n">SupplierEOImpl</span><span class="o">.</span><span class="na">getDefinitionObject</span><span class="o">();</span>
+    <span class="n">SupplierEOImpl</span> <span class="n">supplier</span> <span class="o">=</span> 
+      <span class="o">(</span><span class="n">SupplierEOImpl</span><span class="o">)</span><span class="n">supplierDefinition</span><span class="o">.</span><span class="na">findByPrimaryKey</span><span class="o">(</span><span class="n">transaction</span><span class="o">,</span> <span class="k">new</span> <span class="n">Key</span><span class="o">(</span><span class="n">supplierKey</span><span class="o">));</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">supplier</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">OAAttrValException</span><span class="o">(</span><span class="n">OAException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+             <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span> <span class="c1">// EO name</span>
+             <span class="n">getPrimaryKey</span><span class="o">(),</span> <span class="c1">// EO PK</span>
+             <span class="s">"SupplierId"</span><span class="o">,</span> <span class="c1">// Attribute Name</span>
+             <span class="n">value</span><span class="o">,</span> <span class="c1">// Bad attribute value</span>
+             <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message application short name</span>
+             <span class="s">"FWK_TBX_T_SUP_ID_UNIQUE"</span><span class="o">);</span> <span class="c1">// Message name </span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="n">setAttributeInternal</span><span class="o">(</span><span class="n">SUPPLIERID</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+<span class="o">}</span> <span class="c1">// end setSupplierId()</span>
+</pre></div>
+<p><strong>手工迭代缓冲区</strong></p>
+<p>可以通过手工的方式检查实体缓冲区，以执行与findByPrimaryKey()相同的检查。然后再在另一步中执行对数据库的检查。这种方式的好处是可以避免不必要的实例对象（译：实体）。</p>
+<p>下面的例子也是来自于ToolBox教程中SupplierEOImpl类中：</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="c1">// Since this value is marked as "mandatory," the BC4J Framework will take</span>
+  <span class="c1">// care of ensuring that it's a non-null value. However, if it is null, we</span>
+  <span class="c1">// don't want to proceed with any validation that could result in a NPE.</span>
+
+  <span class="k">if</span> <span class="o">((</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">||</span> <span class="o">(!(</span><span class="s">""</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">trim</span><span class="o">()))))</span>
+  <span class="o">{</span>
+    <span class="c1">// Verify that the name is unique. To do this, we must check both the entity</span>
+    <span class="c1">// cache and the database. We begin with the entity cache.</span>
+    <span class="n">com</span><span class="o">.</span><span class="na">sun</span><span class="o">.</span><span class="na">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">collections</span><span class="o">.</span><span class="na">Iterator</span> <span class="n">supplierIterator</span> <span class="o">=</span> 
+      <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getAllEntityInstancesIterator</span><span class="o">(</span><span class="n">getDBTransaction</span><span class="o">());</span>
+
+    <span class="n">Number</span> <span class="n">currentId</span> <span class="o">=</span> <span class="n">getSupplierId</span><span class="o">();</span>
+
+    <span class="k">while</span> <span class="o">(</span> <span class="n">supplierIterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()</span> <span class="o">)</span>
+    <span class="o">{</span>
+      <span class="n">SupplierEOImpl</span> <span class="n">cachedSupplier</span> <span class="o">=</span> <span class="o">(</span><span class="n">SupplierEOImpl</span><span class="o">)</span><span class="n">supplierIterator</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+
+      <span class="n">String</span> <span class="n">cachedName</span> <span class="o">=</span> <span class="n">cachedSupplier</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+      <span class="n">Number</span> <span class="n">cachedId</span> <span class="o">=</span> <span class="n">cachedSupplier</span><span class="o">.</span><span class="na">getSupplierId</span><span class="o">();</span>
+
+      <span class="c1">// We found a match for the name we're trying to set, so throw an</span>
+      <span class="c1">// exception. Note that we need to exclude this EO from our test.</span>
+
+      <span class="n">If</span> <span class="o">(</span><span class="n">cachedName</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="n">cachedName</span><span class="o">)</span> <span class="o">&amp;&amp;</span>    
+        <span class="n">cachedId</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">currentId</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">)</span>
+      <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">OAAttrValException</span><span class="o">(</span><span class="n">OAException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+                               <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span> <span class="c1">// EO name</span>
+                               <span class="n">getPrimaryKey</span><span class="o">(),</span> <span class="c1">// EO PK</span>
+                               <span class="s">"Name"</span><span class="o">,</span> <span class="c1">// Attribute Name</span>
+                               <span class="n">value</span><span class="o">,</span> <span class="c1">// Attribute value</span>
+                               <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message product short name</span>
+                               <span class="s">"FWK_TBX_T_SUP_DUP_NAME"</span><span class="o">);</span> <span class="c1">// Message name </span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Now we want to check the database for any occurrences of the supplier</span>
+    <span class="c1">// name. The most efficient way to check this is with a validation view</span>
+    <span class="c1">// object which we add to a special "Validation" application module.</span>
+    <span class="n">OADBTransaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">getOADBTransaction</span><span class="o">();</span>
+    <span class="n">OAApplicationModule</span> <span class="n">vam</span><span class="o">;</span>
+    <span class="c1">// Look to see if the VAM has already been created in this transaction. If not,</span>
+    <span class="c1">// create it.</span>
+    <span class="n">vam</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAApplicationModule</span><span class="o">)</span><span class="n">transaction</span><span class="o">.</span><span class="na">findApplicationModule</span><span class="o">(</span><span class="s">"supplierVAM"</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">vam</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+    <span class="o">{</span> 
+      <span class="n">vam</span> <span class="o">=</span> 
+      <span class="o">(</span><span class="n">OAApplicationModule</span><span class="o">)</span><span class="n">transaction</span><span class="o">.</span><span class="na">createApplicationModule</span><span class="o">(</span><span class="s">"supplierVAM"</span><span class="o">,</span>
+         <span class="s">"oracle.apps.fnd.framework.toolbox.schema.server.SupplierVAM"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Now, we use a lightweight "validation" view object to see if a supplier exists</span>
+    <span class="c1">// with the given name.</span>
+    <span class="n">SupplierNameVVOImpl</span> <span class="n">valNameVo</span> <span class="o">=</span> <span class="o">(</span><span class="n">SupplierNameVVOImpl</span><span class="o">)</span><span class="n">vam</span><span class="o">.</span><span class="na">findViewObject</span><span class="o">(</span><span class="s">"SupplierNameVVO"</span><span class="o">);</span>
+    <span class="n">valNameVo</span><span class="o">.</span><span class="na">initQuery</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">valNameVo</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span>
+    <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">OAAttrValException</span><span class="o">(</span><span class="n">OAException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+            <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span> <span class="c1">// EO name</span>
+            <span class="n">getPrimaryKey</span><span class="o">(),</span> <span class="c1">// EO PK</span>
+            <span class="s">"Name"</span><span class="o">,</span> <span class="c1">// Attribute Name</span>
+            <span class="n">value</span><span class="o">,</span> <span class="c1">// Attribute value</span>
+            <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message application short name</span>
+            <span class="s">"FWK_TBX_T_SUP_DUP_NAME"</span><span class="o">);</span> <span class="c1">// Message name</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="n">setAttributeInternal</span><span class="o">(</span><span class="n">NAME</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+<span class="o">}</span> <span class="c1">// end setName()</span>
+</pre></div>
+<p><strong>关联对象迭代</strong></p>
+<p>这与findByPrimaryKey()类似，它保证同时检查实体缓冲区和数据库。它也将会将找到的实体对象加载到内存，这用于需要调用实体中方法时。与findByPrimaryKey()方法不同，它可以通过任何key查找任何类型的实体对象，这只用于与当前对象间通过关联对象相关联的实体对象。</p>
+<p>下面的代码描述了根复合实体对象使用关联对象查找它的所有子对象。</p>
+<div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kt">void</span> <span class="nf">checkLineExists</span><span class="o">()</span>
+<span class="o">{</span> 
+  <span class="c1">// A purchase order header must have at least 1 associated line.</span>
+  <span class="c1">// To check this, we first do a manual check of the entity cache</span>
+  <span class="c1">// If we find a line for this header, we're done (note that the entity cache won't</span>
+  <span class="c1">// include EOs that are DELETED or DEAD).</span>
+
+  <span class="n">com</span><span class="o">.</span><span class="na">sun</span><span class="o">.</span><span class="na">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">collections</span><span class="o">.</span><span class="na">Iterator</span> <span class="n">fastIterator</span> <span class="o">=</span> 
+    <span class="n">PurchaseOrderLineEOImpl</span><span class="o">.</span><span class="na">getDefinitionObject</span><span class="o">().</span><span class="na">getAllEntityInstancesIterator</span><span class="o">(</span><span class="n">getDBTransaction</span><span class="o">());</span>
+
+  <span class="n">Number</span> <span class="n">currentHeaderId</span> <span class="o">=</span> <span class="n">getHeaderId</span><span class="o">();</span>
+  <span class="k">while</span> <span class="o">(</span> <span class="n">fastIterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()</span> <span class="o">)</span>
+  <span class="o">{</span>
+    <span class="n">PurchaseOrderLineEOImpl</span> <span class="n">cachedLine</span> <span class="o">=</span> <span class="o">(</span><span class="n">PurchaseOrderLineEOImpl</span><span class="o">)</span><span class="n">fastIterator</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+
+    <span class="n">Number</span> <span class="n">cachedHeaderId</span> <span class="o">=</span> <span class="n">cachedLine</span><span class="o">.</span><span class="na">getHeaderId</span><span class="o">();</span>
+
+    <span class="c1">// If we find a match, we're done. Don't forget to look ONLY for lines</span>
+    <span class="c1">// for this header... The entity cache can include lines for other headers</span>
+    <span class="c1">// also.</span>
+
+    <span class="n">If</span> <span class="o">((</span><span class="n">cachedHeaderId</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">cachedHeaderId</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">currentHeaderId</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">))</span>
+    <span class="o">{</span>
+      <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span> 
+  <span class="o">}</span>
+
+  <span class="c1">// We haven't found any matches in the cache yet, so now we need to check</span>
+  <span class="c1">// the database...    </span>
+
+  <span class="c1">// In this example, we're illustrating the use of the association between the</span>
+  <span class="c1">// header and its lines to iterate through all the shipments.  This will</span>
+  <span class="c1">// check both the cache and the database, and will bring all the rows</span>
+  <span class="c1">// into the middle tier.</span>
+  <span class="c1">// Note that this looks only at lines for this</span>
+  <span class="c1">// header so we don't need to filter our results, so it is convenient.</span>
+  <span class="n">RowIterator</span> <span class="n">linesIterator</span> <span class="o">=</span> <span class="n">getPurchaseOrderLineEO</span><span class="o">();</span>
+
+  <span class="k">if</span> <span class="o">(!(</span><span class="n">linesIterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()))</span>
+  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">OARowValException</span><span class="o">(</span><span class="n">OARowValException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+                <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span>
+                <span class="n">getPrimaryKey</span><span class="o">(),</span>
+                <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message product short name</span>
+                <span class="s">"FWK_TBX_T_PO_NO_LINES"</span><span class="o">);</span> <span class="c1">// Message name</span>
+  <span class="o">}</span>
+<span class="o">}</span> <span class="c1">// end checkLineExists()</span>
+</pre></div>
+<h2>实体状态</h2>
+<p>每个实体对象都有一个相关的&ldquo;实体状态&rdquo;它描述了实体的状态与下层数据库和事务关联。可以调用getEntityState()检查实体的状态。</p>
+<p><strong>技巧：</strong> BC4J从实体缓冲区中自动移除任何状态为STATUS_DEAD的实体对象，因此你不需要在查找&ldquo;好&rdquo;的实体对象时关心手工排除这些对象的问题。</p>
+<ul>
+<li>
+<p>STATUS_NEW 实体对象在当前事务中是新的</p>
+</li>
+<li>
+<p>STATUS_DELETED 实体对象来自于数据库并且在当前事务中已经被删除</p>
+</li>
+<li>
+<p>STATUS_MODIFIED 实体对象来自于数据库并且已经被改变了</p>
+</li>
+<li>
+<p>STATUS_UNMODIFIED 实体对象来源于数据库并且没有被改变为，或者已经被改变过并且改变已经被提交</p>
+</li>
+<li>
+<p>STATUS_DEAD 实体对象在当前事务中是新的并且已经被删除</p>
+</li>
+<li>
+<p>STATUS_INITIALIZED 实体对象牌&ldquo;临时（temporary）&rdquo;状态并且将不会被提交或校验</p>
+</li>
+</ul>
+<h1>修改／校验</h1>
+<p>这节描述如何正确执行属性级和实体级的校验。</p>
+<h2>属性级校验</h2>
+<p>如<a href="/build_view.html">实现视图</a>一章中描述的，当向页面发起HTTP POST请求时修改的值时，OA Framework将这些值回写到下层的视图对象，再通过调用实体对象的setter方法将这些值写入下层的实体对象。</p>
+<p>因此每个属性的校验应该被添加到它的setter方法中（查看ToolBox的PurchaseOrderHeaderEOImpl的setHeaderId()方法，如下），调用实体对象的setter方法执行的是属性级的校验。</p>
+<p>如果显示的指定了校验（比如，你在JDeveloper Entity Object Wizard中指定一个属性在它被保存后不能被更新），这个校验是在setAttributeInternal()方法中执行的，你应该将它放在你自己的校验逻辑的后面执行。它也将在validateEntity()中执行。</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Sets the PO Header Id.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Business Rules:</span>
+<span class="cm"> * Required; cannot be null.</span>
+<span class="cm"> * Cannot be updated on a committed row.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setHeaderId</span><span class="o">(</span><span class="n">Number</span> <span class="n">value</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="c1">// BC4J validates that this can be updated only on a new line. This</span>
+  <span class="c1">// adds the additional check of only allowing an update if the value</span>
+  <span class="c1">// is null to prevent changes while the object is in memory.</span>
+
+  <span class="n">If</span> <span class="o">(</span><span class="n">getHeaderId</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">OAAttrValException</span><span class="o">(</span><span class="n">OAException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+                                 <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span> <span class="c1">// EO name</span>
+                                 <span class="n">getPrimaryKey</span><span class="o">(),</span> <span class="c1">// EO PK</span>
+                                 <span class="s">"HeaderId"</span><span class="o">,</span> <span class="c1">// Attribute Name</span>
+                                 <span class="n">value</span><span class="o">,</span> <span class="c1">// Attribute value</span>
+                                 <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message product short name</span>
+                                 <span class="s">"DEBUG -- need message name"</span><span class="o">);</span> <span class="c1">// Message name</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="n">OADBTransaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="o">(</span><span class="n">OADBTransaction</span><span class="o">)</span><span class="n">getOADBTransaction</span><span class="o">();</span>
+
+    <span class="c1">// findByPrimaryKey() is guaranteed to first check the entity cache, then check</span>
+    <span class="c1">// the database. This is an appropriate use of this method because finding a    </span>
+    <span class="c1">// match would be the exception rather than the rule so we're not worried </span>
+    <span class="c1">// about pulling entities into the middle tier.</span>
+
+    <span class="n">Object</span><span class="o">[]</span> <span class="n">headerKey</span> <span class="o">=</span> <span class="o">{</span><span class="n">value</span><span class="o">};</span>
+    <span class="n">EntityDefImpl</span> <span class="n">hdrDef</span> <span class="o">=</span> <span class="n">PurchaseOrderHeaderEOImpl</span><span class="o">.</span><span class="na">getDefinitionObject</span><span class="o">();</span>
+    <span class="n">PurchaseOrderHeaderEOImpl</span> <span class="n">hdrEO</span> <span class="o">=</span> 
+      <span class="o">(</span><span class="n">PurchaseOrderHeaderEOImpl</span><span class="o">)</span><span class="n">hdrDef</span><span class="o">.</span><span class="na">findByPrimaryKey</span><span class="o">(</span><span class="n">transaction</span><span class="o">,</span> <span class="k">new</span> <span class="n">Key</span><span class="o">(</span><span class="n">headerKey</span><span class="o">));</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">hdrEO</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">OAAttrValException</span><span class="o">(</span><span class="n">OAException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+                                   <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span> <span class="c1">// EO name</span>
+                                   <span class="n">getPrimaryKey</span><span class="o">(),</span> <span class="c1">// EO PK</span>
+                                   <span class="s">"HeaderId"</span><span class="o">,</span> <span class="c1">// Attribute Name</span>
+                                   <span class="n">value</span><span class="o">,</span> <span class="c1">// Attribute value</span>
+                                   <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message product short name</span>
+                                   <span class="s">"FWK_TBX_T_PO_ID_UNIQUE"</span><span class="o">);</span> <span class="c1">// Message name</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="c1">// Executes declarative validation, and finally sets the new value.</span>
+  <span class="n">setAttributeInternal</span><span class="o">(</span><span class="n">HEADERID</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+<span class="o">}</span> <span class="c1">// end setHeaderId()</span>
+</pre></div>
+<p><strong>不同的&ldquo;Set&rdquo;方法</strong></p>
+<p>有多种方法可以设置实体变量的值。在编码中，通常调用set<attributename>()和setAttributeInternal()。查看Entity Object and View Object Attribute Setters获取更多的信息。</attributename></p>
+<h2>交叉属性校验</h2>
+<p>任何与两个个或更多属性值相关的校验应该被包含在validateEntity()方法中；不要将交叉属性校验放在单个属性的setter方法中，因为属性值的设置可能是无序的。</p>
+<h2>实体校验</h2>
+<p>当OA Framework在HTTP POST处理周期中设置实体对象值时，它总会校验它接触到的视图对象的行，它依次在下层的实体对象（一个或多个）上调用validateEntity()方法。而且，entities are validated again prior to posting (up to 10 times in a composition).</p>
+<p>任何操作于行级的逻辑&mdash;&mdash;且对被重复调用不是非常敏感的校验&mdash;&mdash;应该被包含在validateEntity()方法中。</p>
+<p>下面的PurchaseOrderHeaderEOImpl代码描述了实体级的校验：</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Performs entity-level validation including cross-attribute validation that</span>
+<span class="cm"> * is not appropriately performed in a single attribute setter.</span>
+<span class="cm"> */</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">validateEntity</span><span class="o">()</span>
+<span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">validateEntity</span><span class="o">();</span>
+
+  <span class="c1">// If our supplier value has changed, verify that the order is in an "IN_PROCESS"</span>
+  <span class="c1">// or "REJECTED" state. Changes to the supplier in any other state are disallowed. </span>
+  <span class="c1">// Note that these checks for supplier and site are both performed here</span>
+  <span class="c1">// because they are doing cross-attribute validation.</span>
+
+  <span class="n">String</span> <span class="n">status</span> <span class="o">=</span> <span class="n">getStatusCode</span><span class="o">();</span>
+
+  <span class="k">if</span> <span class="o">(((</span><span class="s">"APPROVED"</span><span class="o">)</span><span class="n">Equals</span><span class="o">(</span><span class="n">status</span><span class="o">))</span> <span class="o">||</span> <span class="o">(</span><span class="s">"COMPLETED"</span><span class="n">Equals</span><span class="o">(</span><span class="n">status</span><span class="o">)))</span>
+  <span class="o">{</span>
+    <span class="c1">// Start by getting the original value and comparing it to the current</span>
+    <span class="c1">// value. Changes at this point are invalid.</span>
+
+    <span class="n">Number</span> <span class="n">oldSupplierId</span> <span class="o">=</span> <span class="o">(</span><span class="n">Number</span><span class="o">)</span><span class="n">getPostedAttribute</span><span class="o">(</span><span class="n">SUPPLIERID</span><span class="o">);</span>
+    <span class="n">Number</span> <span class="n">currentSupplierId</span> <span class="o">=</span> <span class="n">getSupplierId</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">oldSupplierId</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">currentSupplierId</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">OAAttrValException</span><span class="o">(</span><span class="n">OAException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+                                   <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span> <span class="c1">// EO name</span>
+                                   <span class="n">getPrimaryKey</span><span class="o">(),</span> <span class="c1">// EO PK</span>
+                                   <span class="s">"SupplierId"</span><span class="o">,</span> <span class="c1">// Attribute Name</span>
+                                   <span class="n">currentSupplierId</span><span class="o">,</span> <span class="c1">// Attribute value</span>
+                                   <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message product short name</span>
+                                   <span class="s">"FWK_TBX_T_PO_SUPPLIER_NOUPDATE"</span><span class="o">);</span> <span class="c1">// Message name</span>
+    <span class="o">}</span>
+
+    <span class="c1">// If our supplier site has changed, verify that the order is in an "IN_PROCESS"</span>
+    <span class="c1">// state. Changes to the supplier site in any other state are disallowed.</span>
+
+    <span class="n">Number</span> <span class="n">oldSiteId</span> <span class="o">=</span> <span class="o">(</span><span class="n">Number</span><span class="o">)</span><span class="n">getPostedAttribute</span><span class="o">(</span><span class="n">SUPPLIERSITEID</span><span class="o">);</span>
+    <span class="n">Number</span> <span class="n">currentSiteId</span> <span class="o">=</span> <span class="n">getSupplierSiteId</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">oldSiteId</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">currentSiteId</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">OAAttrValException</span><span class="o">(</span><span class="n">OAException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+                                  <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span> <span class="c1">// EO name</span>
+                                  <span class="n">getPrimaryKey</span><span class="o">(),</span> <span class="c1">// EO PK</span>
+                                  <span class="s">"SupplierId"</span><span class="o">,</span> <span class="c1">// Attribute Name</span>
+                                  <span class="n">currentSiteId</span><span class="o">,</span> <span class="c1">// Attribute value</span>
+                                  <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message product short name</span>
+                                  <span class="s">"FWK_TBX_T_PO_SUPSITE_NOUPDATE"</span><span class="o">);</span> <span class="c1">// Message name</span>
+    <span class="o">}</span>
+  <span class="o">}</span> 
+
+  <span class="c1">// Verify that our supplier site is valid for the supplier and make sure it is</span>
+  <span class="c1">// an active "Purchasing" site.</span>
+
+  <span class="n">SupplierEntityExpert</span> <span class="n">supplierExpert</span> <span class="o">=</span> 
+    <span class="n">SupplierEOImpl</span><span class="o">.</span><span class="na">getSupplierEntityExpert</span><span class="o">(</span><span class="n">getOADBTransaction</span><span class="o">());</span>
+
+  <span class="k">if</span> <span class="o">(!(</span><span class="n">supplierExpert</span><span class="o">.</span><span class="na">isSiteValidForPurchasing</span><span class="o">(</span><span class="n">getSupplierId</span><span class="o">(),</span> <span class="n">getSupplierSiteId</span><span class="o">())))</span>
+  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">OAAttrValException</span><span class="o">(</span><span class="n">OAException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+                                 <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span> <span class="c1">// EO name</span>
+                                 <span class="n">getPrimaryKey</span><span class="o">(),</span> <span class="c1">// EO PK</span>
+                                 <span class="s">"SupplierSiteId"</span><span class="o">,</span> <span class="c1">// Attribute Name</span>
+                                 <span class="n">getSupplierSiteId</span><span class="o">(),</span> <span class="c1">// Attribute value</span>
+                                 <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message product short name</span>
+                                 <span class="s">"FWK_TBX_T_PO_SUPSITE_INVALID"</span><span class="o">);</span> <span class="c1">// Message name</span>
+  <span class="o">}</span>
+<span class="o">}</span> <span class="c1">// end validateEntity();</span>
+</pre></div>
+<h2>交叉实体校验</h2>
+<p>开发者经常认为他们需要实现&ldquo;交叉实体（cross-entity）&rdquo;校验，一个实体对象在校验中调用另一个的方法。在OA Framework中，&ldquo;交叉实体校验&rdquo;意味着某些非常特殊的东西：</p>
+<ul>
+<li>
+<p>实体A和实体B在执行validateEntity()方法时各自己引用对方（因为实体A需要从实体B获得一些属性，实体B需要从实体A获得一些属性）and...</p>
+</li>
+<li>
+<p>期望两个对象都是&ldquo;脏（dirty）&rdquo;对象（需要校验）在同一个事务中and...</p>
+</li>
+<li>
+<p>另一个实体对象必须是有效的，以便引用它的对象获取属性值用于自己的校验。这样问题就来了：哪个实体应该先校验？</p>
+</li>
+</ul>
+<p><strong>技巧：</strong> 对于复合关联的主／从实体对象这不是个问题，因为子对象将会先于父对象被校验，且BC4J Framework将校验复合层级结构向上10次的校验，从底部到顶部直到所有实体都是有效的。</p>
+<p>需要&ldquo;交叉实体校验&rdquo;的环境是非常少见的。如果你觉得需要，解决的办法是创建一个特殊的&ldquo;调停者&rdquo;对象实现BC4J的ValidationListener接口。简单来说，这个对象交叉实体中的哪个对象的校验先执行。</p>
+<h2>不妥当的校验失败处理</h2>
+<p>在实体级的校验方法（validateEntity()，set<attributename>()或其它）中调用Transaction.rollback()，Transaction.clearEntityCache()执行回滚或清除BC4J缓冲的操作。如果因为某些原因需要执行这些操作，你必须按下面的方法在 <strong>应用模块／事务级（application module/transaction level）</strong> 捕获校验异常，并执行你需要的方法。比如，在应用模块级执行回滚是安全的；在实体级执行回滚或清理实体缓冲区却不是，并且可能导致不可预知的行为。</attributename></p>
+<div class="highlight"><pre><span></span><span class="n">Bad</span> <span class="n">Code</span><span class="o">:</span>
+<span class="o">---------</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">validateEntity</span><span class="o">()</span>
+<span class="o">{</span>
+  <span class="o">...</span>
+  <span class="n">DBTransaction</span> <span class="n">txn</span> <span class="o">=</span> <span class="n">getDBTransaction</span><span class="o">();</span>
+
+  <span class="c1">// Do not issue a rollback from within the EO.</span>
+  <span class="n">txn</span><span class="o">.</span><span class="na">rollback</span><span class="o">();</span>
+  <span class="k">throw</span> <span class="n">OAException</span><span class="o">(...);</span>
+<span class="o">}</span>
+
+<span class="n">Good</span> <span class="n">Code</span><span class="o">:</span>
+<span class="o">----------</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">validateEntity</span><span class="o">()</span>
+<span class="o">{</span>
+  <span class="o">...</span>
+  <span class="k">throw</span> <span class="n">OAException</span><span class="o">(...);</span>
+<span class="o">}</span>
+
+<span class="c1">// The following logic is written at the application-module level.</span>
+
+<span class="k">try</span>
+<span class="o">{</span>
+  <span class="n">txn</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="k">catch</span> <span class="o">(</span><span class="n">OAException</span> <span class="n">e</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="c1">// Cache the exception thrown by the validation logic in the EO, </span>
+  <span class="c1">// and perform the rollback.</span>
+  <span class="n">txn</span><span class="o">.</span><span class="na">rollback</span><span class="o">();</span>
+<span class="o">}</span> 
+</pre></div>
+<h1>删除</h1>
+<p>为了删除实体对象，可以在对应的视图对象上调用remove()方法，如下面的应用模块中的代码所示。</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Deletes a purchase order from the PoSimpleSummaryVO using the</span>
+<span class="cm"> * poHeaderId parameter.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="n">Boolean</span> <span class="nf">delete</span><span class="o">(</span><span class="n">String</span> <span class="n">poHeaderId</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="c1">// First, we need to find the selected purchase order in our VO.</span>
+  <span class="c1">// When we find it, we call remove( ) on the row which in turn</span>
+  <span class="c1">// calls remove on the associated PurchaseOrderHeaderEOImpl object.</span>
+  <span class="kt">int</span> <span class="n">poToDelete</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">poHeaderId</span><span class="o">);</span>
+
+  <span class="n">OAViewObject</span> <span class="n">vo</span> <span class="o">=</span> <span class="n">getPoSimpleSummaryVO</span><span class="o">();</span> 
+  <span class="n">PoSimpleSummaryVORowImpl</span> <span class="n">row</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+  <span class="c1">// This tells us the number of rows that have been fetched in the</span>
+  <span class="c1">// row set, and will not pull additional rows in like some of the</span>
+  <span class="c1">// other "get count" methods.</span>
+  <span class="kt">int</span> <span class="n">fetchedRowCount</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="na">getFetchedRowCount</span><span class="o">();</span>
+  <span class="kt">boolean</span> <span class="n">rowFound</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+  <span class="c1">// We use a separate iterator -- even though we could step through the</span>
+  <span class="c1">// rows without it -- because we don't want to affect row currency.</span>
+  <span class="n">RowSetIterator</span> <span class="n">deleteIter</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="na">createRowSetIterator</span><span class="o">(</span><span class="s">"deleteIter"</span><span class="o">);</span>
+
+  <span class="k">if</span> <span class="o">(</span><span class="n">fetchedRowCount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> 
+  <span class="o">{</span> 
+    <span class="n">deleteIter</span><span class="o">.</span><span class="na">setRangeStart</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> 
+    <span class="n">deleteIter</span><span class="o">.</span><span class="na">setRangeSize</span><span class="o">(</span><span class="n">fetchedRowCount</span><span class="o">);</span> 
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">fetchedRowCount</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> 
+    <span class="o">{</span> 
+      <span class="n">row</span> <span class="o">=</span> <span class="o">(</span><span class="n">PoSimpleSummaryVORowImpl</span><span class="o">)</span><span class="n">deleteIter</span><span class="o">.</span><span class="na">getRowAtRangeIndex</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> 
+
+      <span class="c1">// For performance reasons, we generate ViewRowImpls for all</span>
+      <span class="c1">// View Objects. When we need to obtain an attribute value,</span>
+      <span class="c1">// we use the named accessors instead of a generic String lookup.</span>
+
+      <span class="c1">// Number primaryKey = (Number)row.getAttribute("HeaderId");</span>
+      <span class="n">Number</span> <span class="n">primaryKey</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="na">getHeaderId</span><span class="o">();</span>
+
+      <span class="k">if</span> <span class="o">(</span><span class="n">primaryKey</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">poToDelete</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+      <span class="o">{</span>
+        <span class="n">row</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+        <span class="n">rowFound</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">getTransaction</span><span class="o">().</span><span class="na">commit</span><span class="o">();</span>
+        <span class="k">break</span><span class="o">;</span> <span class="c1">// only one possible selected row in this case</span>
+      <span class="o">}</span> 
+    <span class="o">}</span> 
+  <span class="o">}</span> 
+
+  <span class="c1">// Always close iterators.</span>
+  <span class="n">deleteIter</span><span class="o">.</span><span class="na">closeRowSetIterator</span><span class="o">();</span> 
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="n">rowFound</span><span class="o">);</span>
+<span class="o">}</span> <span class="c1">// end delete()</span>
+</pre></div>
+<p><strong>校验和级联删除</strong></p>
+<p>row.remove()方法依次调用下层实体对象的remove()方法。为实现特殊的删除行为，比如，检查删除操作是否被允许，或实现级联删除，应该在实体的remove()方法中添加代码，如下所描述的TooBox中的PurchaseOrderHeaderEOImpl。</p>
+<p><strong>注意：</strong> 由于Oracle Applications编码规范禁止使用数据库的级联删除功能。BC4J Framework需要我们手工为多层的purchase order业务对象实现自己的级联删除，每个实体对象在在执行super.remove()之前，先删除它自己的直接子对象。如下所示：</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Marks all the lines for deletion, then mark the header for deletion.</span>
+<span class="cm"> * You can delete a purchase order only if it is "In Process" or "Rejected."</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">()</span>
+<span class="o">{</span>
+  <span class="n">String</span> <span class="n">status</span> <span class="o">=</span> <span class="n">getStatusCode</span><span class="o">();</span>
+
+  <span class="k">if</span> <span class="o">((</span><span class="s">"IN_PROCESS"</span><span class="n">Equals</span><span class="o">(</span><span class="n">status</span><span class="o">))</span> <span class="o">||</span> <span class="o">(</span><span class="s">"REJECTED"</span><span class="n">Equals</span><span class="o">(</span><span class="n">status</span><span class="o">)))</span>
+  <span class="o">{</span>
+
+    <span class="c1">// Note this is a good use of the header -&gt; lines association since we</span>
+    <span class="c1">// want to call remove( ) on each line.</span>
+    <span class="n">RowIterator</span> <span class="n">linesIterator</span> <span class="o">=</span> <span class="n">getPurchaseOrderLineEO</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">linesIterator</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="n">PurchaseOrderLineEOImpl</span> <span class="n">line</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+      <span class="k">while</span> <span class="o">(</span><span class="n">linesIterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span>
+      <span class="o">{</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="o">(</span><span class="n">PurchaseOrderLineEOImpl</span><span class="o">)</span><span class="n">linesIterator</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+        <span class="n">line</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+      <span class="o">}</span>
+    <span class="o">}</span> 
+    <span class="kd">super</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span> <span class="c1">// Must be called last in this case.</span>
+  <span class="o">}</span>
+  <span class="k">else</span> 
+  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">OARowValException</span><span class="o">(</span><span class="n">OARowValException</span><span class="o">.</span><span class="na">TYP_ENTITY_OBJECT</span><span class="o">,</span>
+                                <span class="n">getEntityDef</span><span class="o">().</span><span class="na">getFullName</span><span class="o">(),</span>
+                                <span class="n">getPrimaryKey</span><span class="o">(),</span>
+                                <span class="s">"ICX"</span><span class="o">,</span> <span class="c1">// Message product short name</span>
+                                <span class="s">"FWK_TBX_T_PO_NO_DELETE"</span><span class="o">);</span> <span class="c1">// Message name</span>
+  <span class="o">}</span>
+<span class="o">}</span> <span class="c1">// end remove()</span>
+</pre></div>
+<h1>锁</h1>
+<p>BC4J支持下面的锁技术：</p>
+<ul>
+<li>
+<p>悲观锁 BC4J在执行setAttribute()方法时锁定实体对象对应的数据库行（在做出任何修改之前）。如果行已经被锁，BC4J将招聘一个AlreadyLockedException异常。这也是BC4J缺省的锁模式。</p>
+</li>
+<li>
+<p>乐观锁 BC4J在执行数据库post处理逻辑时锁定实体对象对应的数据库行。如果行已经被锁，BC4J将抛出AlreadyLockedException异常。</p>
+</li>
+</ul>
+<p><strong>注意：</strong> OA Framework默认使用乐观锁并且推荐使用，由于连接池使传统的悲观锁不能实行。但是对于基于Form的应用是使用悲观锁的。</p>
+<p>如果你需要悲观锁，你必须改变事务的行为：</p>
+<div class="highlight"><pre><span></span><span class="c1">// In the application module...</span>
+
+<span class="n">OADBTransaction</span> <span class="n">txn</span> <span class="o">=</span> <span class="n">getOADBTransaction</span><span class="o">();</span>
+<span class="n">txn</span><span class="o">.</span><span class="na">setLockingMode</span><span class="o">(</span><span class="n">Transaction</span><span class="o">.</span><span class="na">LOCK_PESSIMISTIC</span><span class="o">);</span>
+</pre></div>
+<h2>过期数据侦测</h2>
+<p>当BC4J锁定一行时，它试着决定行对象是否被其它用户删除或修改，因为它是为当前用户而查询的。</p>
+<ul>
+<li>
+<p>如果行已经被删除了，BC4J抛出RowAlreadyDeletedException。</p>
+</li>
+<li>
+<p>如果行已经被修改，BC4J抛出RowInconsistentException。</p>
+</li>
+</ul>
+<p>为覆盖缺省的逐行比较的检测行为，可以在实体对象属性定义向导中使用属性级的Chage Indicator标志。如果某个属性的这个标志被选中，BC4J限制对这个属性的比较。Oracle Application PL/SQL API通常使用OBJECT_VERSION_NUMBER表列检查数据的改变，这列也可以影响实体对象。查看下面的Object Version Number Column。</p>
+<h1>提交</h1>
+<p>当准备提交实体对象的修改时，只要简单的从应用模块中调用getTransaction()Commit()。当调用这个方法时，你的对象被校验（如果需要），posted和committed。</p>
+<ol>
+<li>
+<p>commit()方法调用oracle.apps.fnd.framework.OADBTransaction.validate()方法。</p>
+</li>
+<li>
+<p>validate()方法检查所有需要校验的根实体对象的&ldquo;Validation Listener&ldquo;。（在多个实体组成的复合对象，只有根实体对象被添加到Validation list）。校验完成后在commit前，它将不会存在于list中，因为当对象校验成功后，BC4J将会从validation list中移除它。</p>
+</li>
+</ol>
+<p><strong>技巧：</strong> 也可以调用OADBTransaction.validate()方法在任何地方强制进行校验。它执行相同的功能。</p>
+<ol>
+<li>对象位于validation list中，OADBTransaction validate()方法将调用实体的final viladate()方法，现依次调用validateEntity()执行你的校验逻辑。</li>
+</ol>
+<p><strong>注意：</strong> 在BC4J中对于list中各个实体的校验顺序是随机的。但是，在一个复合对象中，比如一个采购单有多个供货商。BC4J总是在校验父对象前校验子对象。BC4J只会将复合对象的根实体放入validation list中（子对象不会被包含进来）。当根实体对象调用super.validateEntity时，BC4J调用它的子对象的validate，直到遍历整个层级结构。由于这个原因，你应该在你的校验逻辑之前调用super.validateEntity以保证父对象在校验子对象后才校验自己。</p>
+<ol>
+<li>
+<p>commit方法调用OADBTransaction postChanges方法。</p>
+</li>
+<li>
+<p>postChanges方法检查&ldquo;Post Listener&rdquo;获得实体对象中哪些数据需要被提交（posted）到数据库。</p>
+</li>
+<li>
+<p>对于post list中的任何对象，OADBTransaction postChanges方法调用实体的postChanges方法。当对象被提交（posted），BC4J将它从post list中移除。</p>
+</li>
+<li>
+<p>如果没有错误发生，数据库commit被发出，任何数据库锁被释放。</p>
+</li>
+</ol>
+<h1>回滚</h1>
+<p>OA Framework为post和commit动作实现了一个&ldquo;all or nothing&ldquo;的事务处理方式。不管错误是否严重，如果数据库post或commit失败，OA Framework：</p>
+<ul>
+<li>发起JDBC rollback释放数据库锁。</li>
+</ul>
+<p><strong>注意：</strong> 这不会影响中间层的状态。</p>
+<ul>
+<li>恢复视图行对象的状态以便于事务发起第二次尝试。</li>
+</ul>
+<p><strong>注意：</strong> 这意味着你不需要显式的rollback失败的实体对象事务；OA Framework将在post或commit失败后自动显示出用户友好的错误信息。下面的例子描述了用户按下Apply按钮后commit和后来显示&ldquo;Confirmation&ldquo;对话框的情况。</p>
+<div class="highlight"><pre><span></span><span class="c1">// In the root application module</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">apply</span><span class="o">()</span>
+<span class="o">{</span>
+  <span class="n">getTransaction</span><span class="o">()</span><span class="n">Commit</span><span class="o">();</span>
+<span class="o">}</span> 
+
+<span class="c1">// In the controller</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">processFormData</span><span class="o">(</span><span class="n">OAPageContext</span> <span class="n">pageContext</span><span class="o">,</span> <span class="n">OAWebBean</span> <span class="n">webBean</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">processFormRequest</span><span class="o">(</span><span class="n">webBean</span><span class="o">);</span>
+
+  <span class="c1">// Handle the user pressing the "Apply" button</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">pageContext</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"Apply"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="n">OAApplicationModule</span> <span class="n">am</span> <span class="o">=</span> <span class="n">pageContext</span><span class="o">.</span><span class="na">getRootApplicationModule</span><span class="o">();</span>
+
+    <span class="c1">// No need for any special exception handling.  You can just display the</span>
+    <span class="c1">// confirmation message because the OAF won't reach this code if the post/commit</span>
+    <span class="c1">// fails.</span>
+    <span class="n">am</span><span class="o">.</span><span class="na">invokeMethod</span><span class="o">(</span><span class="s">"apply"</span><span class="o">);</span>
+    <span class="n">OAException</span> <span class="n">confirmMessage</span> <span class="o">=</span> 
+      <span class="k">new</span> <span class="n">OAException</span><span class="o">(</span><span class="s">"ICX"</span><span class="o">,</span> <span class="s">"FWK_TBX_T_SUPPLIER_CREATE_CONF"</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span>
+                       <span class="n">OAException</span><span class="o">.</span><span class="na">CONFIRMATION</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="n">pageContext</span><span class="o">.</span><span class="na">putDialogMessage</span><span class="o">(</span><span class="n">confirmMessage</span><span class="o">);</span>
+
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<h2>回滚方法</h2>
+<p>手工清除中间层视图对象和实体对象缓冲，可以从应用模块中调用getTransaction().rollback()。这也将roll back任何数据库修改并清除任何缓存于事务中的值。查找Support the Browser Back Button了解这对于创建实体对象的作用。</p>
+<p>如果执行PL/SQL过程需要显式的roll back数据库而不影响中间层，可以在应用模块中调用getTransaction().executeCommand("rollback")。</p>
+<p><strong>注意：</strong> 如BC4J Native JDBC Statement Management中说过的。Transaction.rollback()会调用vo.clearCache()关闭相关的视图对象的JDBC结果集（游标）。比如，如果按下面的顺序执行：</p>
+<div class="highlight"><pre><span></span><span class="n">vo</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">();</span>
+<span class="n">Transaction</span><span class="o">.</span><span class="na">rollback</span><span class="o">();</span>
+<span class="n">vo</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</pre></div>
+<p>SQL异常&ldquo;ORA-01002: fetch out of sequence&rdquo;（这通常是由于在数据库中执行rollback使打开的cursors失效）将不会发生，因为Transaction.rollback()关闭了游标，强制vo.next()重新执行视图对象的查询并打开一个新的有效游标。</p>
+<p>当Transaction.rollback() roll back 数据库状态和中间层业务对象状态，下层直接JDBC调用并不会有意识的rollback任何中间层业务对象的状态，因此不要关闭JDBC游标。</p>
+<p>i. Transaction.executeCommand("rollback")调用或</p>
+<p>ii. BC4J的&ldquo;rollback to savepoint&rdquo;数据库调用是在Transaction.postChanges()或Transaction.commit()方法调用时validation或post出错时，由内部发出的的。尽管实体对象或视图对象中用户修改的数据仍然存在，实体的post state已经变回modified state以便用户可以再次发起post/commit。</p>
+<p>BC4J Framework不会补偿JDBC或数据库的rollback，无效的JDBC和数据库游标中的结果集（当数据库执行rollback调用后，游标被打开）。因此，如果你需要使用Transaction.executeCommand("rollback")，请先查看M52 model coding standards。</p>
+<p>如果需要覆盖post处理或EntityImpl中的beforeCommid，请先参考下节不当的Post处理。</p>
+<h2>不当的Post处理</h2>
+<p>在下面的情况下避免调用executeQuery()：</p>
+<ul>
+<li>
+<p>在视图对象的EntityImpl的post处理器方法（postChanges，beforePost，afterPost）中。</p>
+</li>
+<li>
+<p>在beforeCommit中并且随后试图在相同的视图对象中使用vo.next()，vo.first()等方法获取行。</p>
+</li>
+</ul>
+<p>未完成！！</p>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

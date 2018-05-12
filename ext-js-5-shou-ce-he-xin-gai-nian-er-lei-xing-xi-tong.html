@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Ext JS 5 手册 核心概念（二）类型系统"/>
+        <meta property="og:url" content="/ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="/ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html" />
+
+        <title>Ext JS 5 手册 核心概念（二）类型系统 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="/">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="/category/fang-fa.html">方法</a></li>
+                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li ><a href="/category/kai-fa.html">开发</a></li>
+                                <li class="active"><a href="/category/qian-duan.html">前端</a></li>
+                                <li ><a href="/category/xiao-lu.html">效率</a></li>
+                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html" rel="bookmark"
+             title="Permalink to Ext JS 5 手册 核心概念（二）类型系统">Ext JS 5 手册 核心概念（二）类型系统</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="/category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="/tag/javascript.html">javascript</a>
+        <a href="/tag/extjs.html">extjs</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>Ext JS 5 手册 核心概念（二）类型系统</h1>
+<h2>核心概念</h2>
+<h3 id="lei-xing-xi-tong">类型系统</h3>
+<h4 id="ming-ming-yue-ding">命名约定</h4>
+<h5 id="lei">类</h5>
+<p>类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符和其它非数字字母。
+类名应该按包分类。至少应该使用唯一的顶级命名空间。
+顶级命名字音和类名应该使用驼峰式命名规则，其它部分都使用小写。
+非<code>Sencha</code>提供的类不应该使用<code>Ext</code>作为顶级命名空间。</p>
+<h5 id="yuan-wen-jian">源文件</h5>
+<p>类文件名按包路径保存。一个文件中只有一个类。
+所有的类都应该放在同一个根目录下。</p>
+<h5 id="fang-fa-he-bian-liang">方法和变量</h5>
+<ul>
+<li>方法和变量只使用字母和数字。只在必要时使用数字字符。不要使用下划线、连字符和其它非数字字母。</li>
+<li>方法和变量名应该使用驼峰式命名。这一规则同样适用于缩略词。</li>
+</ul>
+<h5 id="shu-xing">属性</h5>
+<ul>
+<li>类属性名遵循相同的命名规则</li>
+<li>类的静态属性应该全部使用大写</li>
+</ul>
+<h4 id="sheng-ming_1">声明</h4>
+<h5 id="ext-js-4-zhi-qian-de-fang-shi">Ext JS 4 之前的方式</h5>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">ns</span><span class="p">(</span><span class="s1">'My.cool'</span><span class="p">);</span>
+<span class="nx">My</span><span class="p">.</span><span class="nx">cool</span><span class="p">.</span><span class="nx">Window</span> <span class="o">=</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Ext</span><span class="p">.</span><span class="nx">Window</span><span class="p">,</span> <span class="p">{</span> <span class="p">...</span> <span class="p">});</span>
+</pre></div>
+<h5 id="xin-de-fang-shi">新的方式</h5>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">className</span><span class="p">,</span> <span class="nx">members</span><span class="p">,</span> <span class="nx">onClassCreated</span><span class="p">);</span>
+</pre></div>
+<h4 id="pei-zhi_1">配置</h4>
+<p>在 Ext JS 4 中使用<code>config</code>属性，它由<code>Ext.Class</code>前置处理器在类创建前进行处理，它包含以下功能：
+ - 配置和封装类专员
+ - 自动在类原型中生成属性的<code>getter</code>和<code>setter</code>方法
+ - 为每个属性生成<code>apply</code>方法。自动生成的<code>setter</code>方法将会在设置值之前调用<code>apply</code>方法。可以覆盖属性的<code>apply</code>方法来添加自己的逻辑。如果<code>apply</code>方法无返回值，则<code>setter</code>将不会设置这个值。</p>
+<p>在 Ext JS 5 中对于使用<code>config</code>的类来说，不再需要手动调用<code>initConfig()</code>方法。但是如果你的类继承自<code>Ext.Base</code>，则仍要调用<code>initConfig()</code>方法。</p>
+<h4 id="jing-tai-cheng-yuan">静态成员</h4>
+<p>可以使用<code>statics</code>来进行配置：</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'Computer'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">statics</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">instanceCount</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">factory</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">brand</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 'this' in static methods refer to the class itself</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="k">this</span><span class="p">({</span><span class="nx">brand</span><span class="o">:</span> <span class="nx">brand</span><span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">config</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">brand</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">dellComputer</span> <span class="o">=</span> <span class="nx">Computer</span><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">'Dell'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">appleComputer</span> <span class="o">=</span> <span class="nx">Computer</span><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">'Mac'</span><span class="p">);</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">appleComputer</span><span class="p">.</span><span class="nx">getBrand</span><span class="p">());</span> <span class="c1">// using the auto-generated getter to get the value of a config property. Alerts "Mac"</span>
+</pre></div>
+<h4 id="cuo-wu-chu-li-he-diao-shi">错误处理和调试</h4>
+<p>Ext JS 包含了有效的调试和错误处理功能。
+ - 可以使用<code>Ext.getDisplayName()</code>来获取方法的显示名称。这在发生异常时显示类名和方法名时非常有用。<code>throw new Error('['+ Ext.getDisplayName(arguments.callee) +'] Some message here');</code>
+ - 当使用<code>Ext.define()</code>定义的任何类方法抛出错误时，你可以在基于 WebKit 的浏览器的调用栈中看到方法和类名。</p>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
