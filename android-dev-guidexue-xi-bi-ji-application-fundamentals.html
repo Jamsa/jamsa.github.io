@@ -83,6 +83,8 @@
         tags:         <a href="./tag/android.html">android</a>
 
 
+        |
+        <a href="./android-dev-guidexue-xi-bi-ji-application-fundamentals.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->
@@ -419,6 +421,18 @@ void onRebind(Intent intent)
 <p>因为运行服务的进程的排名高于运行后台activites的进程，一个要启动长时间操作的activity最好是为这次操作启动一个服务，而不是简单的产生一个线程&mdash;&mdash;特别是有可能拖垮activity的操作。比如后台音乐播放和上传相机拍摄的图片到一个网站上。使用服务保证该行动至少有&ldquo;服务过程（service process）&rdquo;优先级，不论activity发生了什么。前面讲过的广播接收者生命周期一节中提到的，这也是同样的原因广播接收者应该采用服务而不是简单的将时间消耗型操作放到线程中。</p>
 
       </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "android-dev-guidexue-xi-bi-ji-application-fundamentals.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
 
     </article>
   </section>
@@ -443,6 +457,15 @@ void onRebind(Intent intent)
             </div>
         </footer>
 
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
 

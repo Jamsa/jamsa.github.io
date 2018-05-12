@@ -5,21 +5,21 @@
         <meta name="author" content="Jamsa" />
         <meta name="robots" content="index, follow"/>
 
-        <meta property="og:title" content="Jamsa的笔记 - mac"/>
-        <meta property="og:url" content="../tag/mac.html"/>
+        <meta property="og:title" content="Pelican 静态博客"/>
+        <meta property="og:url" content="./pelican-jing-tai-bo-ke.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
-        <meta property="og:type" content="website"/>
+        <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="../tag/mac.html" />
+        <link rel="canonical" href="./pelican-jing-tai-bo-ke.html" />
 
-        <title>Jamsa的笔记 - mac | Jamsa的笔记</title>
+        <title>Pelican 静态博客 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
         
 
-        <link rel="stylesheet" type="text/css" href="../theme/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -38,18 +38,18 @@
             <div class="span10 offset1">
                 <header id="banner" >
                     <h1>
-                        <a href="../">Jamsa的笔记 </a>
+                        <a href="./">Jamsa的笔记 </a>
                     </h1>
                     <nav class="navbar">
                         <div class="navbar-inner">
                             <ul class="nav">
-                                <li ><a href="../category/da-shu-ju.html">大数据</a></li>
-                                <li ><a href="../category/fang-fa.html">方法</a></li>
-                                <li ><a href="../category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li ><a href="../category/kai-fa.html">开发</a></li>
-                                <li ><a href="../category/qian-duan.html">前端</a></li>
-                                <li ><a href="../category/xiao-lu.html">效率</a></li>
-                                <li ><a href="../category/yi-dong.html">移动</a></li>
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
                             </ul>
 
                         </div>
@@ -61,39 +61,61 @@
         <div class="row-fluid">
             <div class="span10 offset1">
                 <div class="row-fluid">
-<div class="span9">
-    <section>
-    <h1>Articles tagged with "mac"</h1>
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./pelican-jing-tai-bo-ke.html" rel="bookmark"
+             title="Permalink to Pelican 静态博客">Pelican 静态博客</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
 
-        <div class="row-fluid archive_row">
-            <div class="span1 archive_year">2015</div>
-        </div>
-        <div class="row-fluid archive_row">
-            <div class="offset1 span1 archive_month"> 6</div>
-        </div>
-        <div class="row-fluid archive_row">
-                <div class="offset1 span1 archive_day">
-                29
-                </div>
-            <div class="span10">
-                <a href="../begin-mac-programming-bi-ji.html">Begin Mac Programming 笔记</a>
-            </div>
-        </div>
-    </section>
-</div>
-<div class="span3">
-    <section id="sidebar">
-            <div>
-                <h2>Browse content by</h2>
-                <ul class="fa-ul">
-                <li><a href="../categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
-                <li><a href="../archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
-                <li><a href="../tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
+    in <a href="./category/kai-fa.html">开发</a>
 
-                </ul>
-            </div><!-- /.browse -->
-<!-- /.Tags -->
-    </section><!-- /#sidebar -->
+    on 2018-05-12
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+
+
+        |
+        <a href="./pelican-jing-tai-bo-ke.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>静态文件发布</h1>
+<p><code>直接使用 make github 会把生成的内容发布至 github 仓库</code>，如果你希望在 github 上保存 blog 源码就会被覆盖。</p>
+<p>我是直接在 output 目录下新建仓库，发布至 github pages。</p>
+<div class="highlight"><pre><span></span>cd output
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/xxx/xxx.github.io.git
+git push -u origin master
+</pre></div>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "pelican-jing-tai-bo-ke.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
 </div>
                 </div>
             </div>

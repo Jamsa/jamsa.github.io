@@ -68,8 +68,8 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
-                                    <a href="./pelican-jian-zhan.html" rel="bookmark" title="Permalink to Pelican 建站">
-                                       Pelican 建站
+                                    <a href="./pelican-jing-tai-bo-ke.html" rel="bookmark" title="Permalink to Pelican 静态博客">
+                                       Pelican 静态博客
                                     </a>
                                 </h1>
                             </header>
@@ -87,16 +87,22 @@
         tags:         <a href="./tag/python.html">python</a>
 
 
+        |
+        <a href="./pelican-jing-tai-bo-ke.html#disqus_thread">comments</a>
 
     
-</footer><!-- /.post-info -->                                <p>cd output
+</footer><!-- /.post-info -->                                <h1>静态文件发布</h1>
+<p><code>直接使用 make github 会把生成的内容发布至 github 仓库</code>，如果你希望在 github 上保存 blog 源码就会被覆盖。</p>
+<p>我是直接在 output 目录下新建仓库，发布至 github pages。</p>
+<div class="highlight"><pre><span></span>cd output
 git init
 git add .
 git commit -m "first commit"
 git remote add origin https://github.com/xxx/xxx.github.io.git
-git push -u origin master</p>
+git push -u origin master
+</pre></div>
                                 <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./pelican-jian-zhan.html">Read more...</a>
+                                    <a class="btn btn-small btn-info" href="./pelican-jing-tai-bo-ke.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
@@ -126,6 +132,8 @@ git push -u origin master</p>
         <a href="./tag/mac.html">mac</a>
 
 
+        |
+        <a href="./begin-mac-programming-bi-ji.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                <h1>关于对象</h1>
@@ -178,6 +186,8 @@ git push -u origin master</p>
         tags:         <a href="./tag/c.html">c</a>
 
 
+        |
+        <a href="./c-primer-plus-bi-ji.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                <h1>C Primer Plus 笔记</h1>
@@ -218,6 +228,8 @@ C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语�
         tags:         <a href="./tag/go.html">go</a>
 
 
+        |
+        <a href="./learing-go-bi-ji.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                <h1>Learing Go 笔记</h1>
@@ -268,6 +280,8 @@ C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语�
         tags:         <a href="./tag/scala.html">scala</a>
 
 
+        |
+        <a href="./scala-cookbook-bi-ji.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                <h1>Scala Cookbook 笔记</h1>
@@ -308,6 +322,8 @@ C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语�
         <a href="./tag/python.html">python</a>
 
 
+        |
+        <a href="./build-machine-learning-systems-with-python-bi-ji.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                <h1>Build Machine Learning Systems with Python 笔记</h1>
@@ -351,6 +367,8 @@ C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语�
         tags:         <a href="./tag/hadoop.html">hadoop</a>
 
 
+        |
+        <a href="./hadoop-in-action-bi-ji.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                <h1>Hadoop In Action 笔记</h1>
@@ -393,6 +411,8 @@ MapReduce框架的数据处理过程：</p>
         <a href="./tag/extjs.html">extjs</a>
 
 
+        |
+        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（二）类型系统</h1>
@@ -452,6 +472,8 @@ MapReduce框架的数据处理过程：</p>
         <a href="./tag/extjs.html">extjs</a>
 
 
+        |
+        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（三）组件</h1>
@@ -493,6 +515,8 @@ MapReduce框架的数据处理过程：</p>
         <a href="./tag/extjs.html">extjs</a>
 
 
+        |
+        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（四）数据包</h1>
@@ -564,6 +588,15 @@ Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
             </div>
         </footer>
 
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
 

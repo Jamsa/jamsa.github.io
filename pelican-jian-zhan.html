@@ -87,12 +87,16 @@
     
 </footer><!-- /.post-info -->
 
-        <p>cd output
+        <h1>静态文件发布</h1>
+<p><code>直接使用 make github 会把生成的内容发布至 github 仓库</code>，如果你希望在 github 上保存 blog 源码就会被覆盖。</p>
+<p>我是直接在 output 目录下新建仓库，发布至 github pages。</p>
+<div class="highlight"><pre><span></span>cd output
 git init
 git add .
 git commit -m "first commit"
 git remote add origin https://github.com/xxx/xxx.github.io.git
-git push -u origin master</p>
+git push -u origin master
+</pre></div>
 
       </div><!-- /.entry-content -->
 
