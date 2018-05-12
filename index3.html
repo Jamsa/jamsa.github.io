@@ -68,6 +68,53 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./writing-gnu-emacs-extensionsbi-ji.html" rel="bookmark" title="Permalink to Writing GNU Emacs Extensions笔记">
+                                       Writing GNU Emacs Extensions笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/xiao-lu.html">效率</a>
+
+    on 2010-12-07
+
+        |
+        tags:         <a href="./tag/emacs.html">emacs</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>定制Emacs</h1>
+<h2>全局按键绑定</h2>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">global-set-key</span> <span class="nv">keysequence</span> <span class="nv">command</span><span class="p">)</span>
+</pre></div>
+<p>keysequence 中普通字符按键直接用相应的字符表示。<code>\</code>应该被写作<code>\\</code>。特殊字符如META-问号应该写作<code>\M-?</code>。CONTROL-x应该写作<code>\C-x</code> CONTROL META-x写作<code>\C-\M-x</code>。CONTROL-x在文档中也被缩写为<code>^x</code>，相应的应该表示为<code>\^x</code>。<code>\M-?</code>也可以表示为<code>\e?</code>字符串<code>\e</code>是转义字符。</p>
+<h2>查询按键绑定</h2>
+<p>C-h b命令来查询按键绑定信息，这个命令被绑定到了describe-bindings。</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">global-set-key</span> <span class="s">"\M-?"</span> <span class="ss">'help-command</span><span class="p">)</span>
+</pre></div>
+<h2>对Lisp表达式求值的方法</h2>
+<ul>
+<li>将表达式放到文件中然后load这个一拥而入。M-x load-file RET rebind.el RET。</li>
+<li>使用eval-last-sexp，它被绑定到C-x C-e。</li>
+<li>使用eval-express，它被绑定到<code>M-:</code>。</li>
+<li>使用<code>*scratch*</code>缓冲构 …</li></ul>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./writing-gnu-emacs-extensionsbi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./learn-vi-bi-ji.html" rel="bookmark" title="Permalink to Learn VI 笔记">
                                        Learn VI 笔记
                                     </a>
@@ -545,56 +592,6 @@
 <li>填写Name，Display Name和Description选择状态为&ldquo;Enabled …</li></ul>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./soa-suitepei-xun.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./hui-ji-la-mian-du-shu-bi-ji.html" rel="bookmark" title="Permalink to 会计拉面读书笔记">
-                                       会计拉面读书笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/fang-fa.html">方法</a>
-
-    on 2010-03-12
-
-
-
-
-    
-</footer><!-- /.post-info -->                                <ul>
-<li>
-<p>损益平衡点（Break Even Point）：利润为零或收支相等时的销售额或者销售量。</p>
-</li>
-<li>
-<p>固定费用：每个月保持固定不变的费用。</p>
-</li>
-<li>
-<p>变动费用：随销量变化的费用。</p>
-</li>
-<li>
-<p>收支相等：利润（收入-变动费用）累计起来，正好抵减固定费用。</p>
-</li>
-<li>
-<p>边际利润：(单价-单位变动费用)*销售数量。</p>
-</li>
-<li>
-<p>超过损益平衡点之后，固定费用的包袱就一点都没了，利润于是呈现跳跃式上升的态势（因为超过损益平衡点的销售所产生的边际利润实际上就是利润）。</p>
-</li>
-</ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./hui-ji-la-mian-du-shu-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

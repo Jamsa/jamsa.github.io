@@ -68,6 +68,58 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（五）事件">
+                                       Ext JS 5 手册 核心概念（五）事件
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="./tag/javascript.html">javascript</a>
+        <a href="./tag/extjs.html">extjs</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（五）事件</h1>
+<h2>核心概念</h2>
+<h3 id="shi-yong-shi-jian">使用事件</h3>
+<p>Ext JS 中的组件和类在其生命周期中会产生大量的事件。事件能让你的代码响应程序的变化。</p>
+<h4 id="shi-yao-shi-shi-jian">什么是事件</h4>
+<p>以 Ext.Component 渲染到屏幕上为例，Ext JS 会在渲染完成后产生事件。我们可以配置一个<code>listeners</code>对象来监听这个事件：</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Panel'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">html</span><span class="o">:</span> <span class="s1">'My Panel'</span><span class="p">,</span>
+    <span class="nx">renderTo</span><span class="o">:</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(),</span>
+    <span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">afterrender</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">Ext</span><span class="p">.</span><span class="nx">Msg</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'We have been rendered'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<h4 id="jian-ting-shi-jian">监听事件</h4>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Button'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">renderTo …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（一）可访问性">
                                        Ext JS 5 手册 核心概念（一）可访问性
                                     </a>
@@ -524,53 +576,6 @@
   <span class="n">OAWebBean</span> <span class="n">innerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">"innerTable …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./oafkai-fa-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./writing-gnu-emacs-extensionsbi-ji.html" rel="bookmark" title="Permalink to Writing GNU Emacs Extensions笔记">
-                                       Writing GNU Emacs Extensions笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/xiao-lu.html">效率</a>
-
-    on 2010-12-07
-
-        |
-        tags:         <a href="./tag/emacs.html">emacs</a>
-
-
-
-    
-</footer><!-- /.post-info -->                                <h1>定制Emacs</h1>
-<h2>全局按键绑定</h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">global-set-key</span> <span class="nv">keysequence</span> <span class="nv">command</span><span class="p">)</span>
-</pre></div>
-<p>keysequence 中普通字符按键直接用相应的字符表示。<code>\</code>应该被写作<code>\\</code>。特殊字符如META-问号应该写作<code>\M-?</code>。CONTROL-x应该写作<code>\C-x</code> CONTROL META-x写作<code>\C-\M-x</code>。CONTROL-x在文档中也被缩写为<code>^x</code>，相应的应该表示为<code>\^x</code>。<code>\M-?</code>也可以表示为<code>\e?</code>字符串<code>\e</code>是转义字符。</p>
-<h2>查询按键绑定</h2>
-<p>C-h b命令来查询按键绑定信息，这个命令被绑定到了describe-bindings。</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">global-set-key</span> <span class="s">"\M-?"</span> <span class="ss">'help-command</span><span class="p">)</span>
-</pre></div>
-<h2>对Lisp表达式求值的方法</h2>
-<ul>
-<li>将表达式放到文件中然后load这个一拥而入。M-x load-file RET rebind.el RET。</li>
-<li>使用eval-last-sexp，它被绑定到C-x C-e。</li>
-<li>使用eval-express，它被绑定到<code>M-:</code>。</li>
-<li>使用<code>*scratch*</code>缓冲构 …</li></ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./writing-gnu-emacs-extensionsbi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
