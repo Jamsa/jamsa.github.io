@@ -6,11 +6,11 @@
         <meta name="robots" content="index, follow"/>
 
         <meta property="og:title" content="OA Framework状态管理"/>
-        <meta property="og:url" content="/oa-frameworkzhuang-tai-guan-li.html"/>
+        <meta property="og:url" content="./oa-frameworkzhuang-tai-guan-li.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
         <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="/oa-frameworkzhuang-tai-guan-li.html" />
+        <link rel="canonical" href="./oa-frameworkzhuang-tai-guan-li.html" />
 
         <title>OA Framework状态管理 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,7 @@
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
         
 
-        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -39,18 +38,18 @@
             <div class="span10 offset1">
                 <header id="banner" >
                     <h1>
-                        <a href="/">Jamsa的笔记 </a>
+                        <a href="./">Jamsa的笔记 </a>
                     </h1>
                     <nav class="navbar">
                         <div class="navbar-inner">
                             <ul class="nav">
-                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
-                                <li ><a href="/category/fang-fa.html">方法</a></li>
-                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
-                                <li ><a href="/category/qian-duan.html">前端</a></li>
-                                <li ><a href="/category/xiao-lu.html">效率</a></li>
-                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
                             </ul>
 
                         </div>
@@ -67,23 +66,23 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/oa-frameworkzhuang-tai-guan-li.html" rel="bookmark"
+          <a href="./oa-frameworkzhuang-tai-guan-li.html" rel="bookmark"
              title="Permalink to OA Framework状态管理">OA Framework状态管理</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
     <address class="vcard author">
-        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
     </address>
 
-    in <a href="/category/kai-fa.html">开发</a>
+    in <a href="./category/kai-fa.html">开发</a>
 
     on 2008-07-25
 
         |
-        tags:         <a href="/tag/oracle.html">oracle</a>
-        <a href="/tag/ebs.html">ebs</a>
-        <a href="/tag/oaf.html">oaf</a>
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+        <a href="./tag/oaf.html">oaf</a>
 
 
 
@@ -94,7 +93,7 @@
 <p>这个文档用于描述OA Framework状态管理架构，包括缓存应用系统用户数据和从页面间值传递的机制。</p>
 <h1>结构预览</h1>
 <p>主要状态管理组：</p>
-<p><img alt="state_architecture" src="/oaf_state/state_architecture.gif"/></p>
+<p><img alt="state_architecture" src="./oaf_state/state_architecture.gif"/></p>
 <h1>根应用模块（数据库会话和事务状态）</h1>
 <p>如<a href="/page.html">OA Framework 页面解析</a>一文中描述的，每个OA Framework页面与一个根应用模块关联，根应用模块提供事务环境和JDBC数据库连接。</p>
 <p><strong>注意：</strong> OA Framework中，一个数据库会话与一个JDBC连接关联。</p>
@@ -104,12 +103,12 @@
 <h2>根应用模块保留</h2>
 <p>缺省情况下，当用户从一个页面导航到另一个页面（比如使用GET请求或JSP forward）时，OA Framework渲染新的页面，与前一个页面关联的应用模块实例被&ldquo;释放&rdquo;，一个新的实例请求被发送到应用模块池。</p>
 <p>导航到新的页面时，缺省情况下的原页面的根应用模块将被释放：</p>
-<p><img alt="root_am_default" src="/oaf_state/root_am_default.gif"/></p>
+<p><img alt="root_am_default" src="./oaf_state/root_am_default.gif"/></p>
 <p><strong>注意：</strong> OA Framework在表单提交（POST）期间不会释放应用模块，除非你显式的在控制器中释放应用模块。比如，如果用户对表格中的数据排序或在表格数据中导航&mdash;&mdash;两个动作隐式的提交了页面表单&mdash;&mdash;页面的根应用模块实例被自动保留。</p>
 <p><strong>在页面间保留应用模块</strong></p>
 <p>在多个页面处理同一个任务时相关的页面需要参与同一个虚拟事务。这时，不同页面需要关联到同一个根应用模块实例。</p>
 <p>相关页面共同同一个根应用模块（和事务）：</p>
-<p><img alt="root_am_retain" src="/oaf_state/root_am_retain.gif"/></p>
+<p><img alt="root_am_retain" src="./oaf_state/root_am_retain.gif"/></p>
 <p>为达到这个目的，必须执行下面的操作：</p>
 <ul>
 <li>
@@ -125,7 +124,7 @@
 <p><strong>警告：</strong> 不能简单的让不同页面关联相同的根应用模块。如果忘记设置retainAM标记，每个页面仍将使用不同的应用模块实例和事务，即使这些页面关联的是同一个类型的应用模块。</p>
 <p><strong>注意：</strong> 技术上来说，这依赖于应用模块池的状态。Page B可能获取到与Page A使用的同一个物理应用模块。但是，对象的状态将完全被重置，就像被新创建的一样。从这个观点来看，可以看作一个&ldquo;新的实例&rdquo;。</p>
 <p>两个页面引用相同类型的应用模块，但没有设置Retain AM标记：</p>
-<p><img alt="root_am_noretainproblem" src="/oaf_state/root_am_noretainproblem.gif"/></p>
+<p><img alt="root_am_noretainproblem" src="./oaf_state/root_am_noretainproblem.gif"/></p>
 <p>同样，将retainAM标记设置为&ldquo;Y&ldquo;&mdash;&mdash;但没有将页面的根应用模块设置为相同的类型。这将产生不同的应用模块实例（每个页面一个），各自有自己的事务。</p>
 <p><strong>有条件的保留和释放应用模块</strong></p>
 <p>有些情况下，你需要通过一个条件来决定是否保留或释放应用模块。这时，你可以让应用模块实现oracle.apps.fnd.framework.webui.OAReleaseListener接口，详细描述见Javadoc。</p>
@@ -177,7 +176,7 @@
 <p>同样，当OAPageBean完成一个页面处理时，这就是当前页面和新页面的&ldquo;边界&rdquo;。</p>
 <p>因此，在下面的简单场景中当用户从Page X转到Page A然后再转到Page B，这里有两个请求边界：第一个是Page X和Page A之间，第二个位于Page A和Page B之间。这里也有两个页面边界位于Page X和Page A，Page A和Page B之间。</p>
 <p>请求和页面边界相同：</p>
-<p><img alt="boundary_case1" src="/oaf_state/boundary_case1.gif"/></p>
+<p><img alt="boundary_case1" src="./oaf_state/boundary_case1.gif"/></p>
 <p>有些情况下，请求和页面边界是不相同的。比如下面的JSP Forward情况：</p>
 <ul>
 <li>
@@ -194,7 +193,7 @@
 </li>
 </ul>
 <p>在JSP Forward情况下，请求界面和页面界面不同：</p>
-<p><img alt="boundary_case2" src="/oaf_state/boundary_case2.gif"/></p>
+<p><img alt="boundary_case2" src="./oaf_state/boundary_case2.gif"/></p>
 <p>明确这个区别是很重要的：</p>
 <ul>
 <li>
@@ -285,7 +284,7 @@
 </li>
 </ul>
 <p>应用模块池：</p>
-<p><img alt="am_pool" src="/oaf_state/am_pool.gif"/></p>
+<p><img alt="am_pool" src="./oaf_state/am_pool.gif"/></p>
 
       </div><!-- /.entry-content -->
 

@@ -6,11 +6,11 @@
         <meta name="robots" content="index, follow"/>
 
         <meta property="og:title" content="Practical Common Lisp笔记"/>
-        <meta property="og:url" content="/practical-common-lispbi-ji.html"/>
+        <meta property="og:url" content="./practical-common-lispbi-ji.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
         <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="/practical-common-lispbi-ji.html" />
+        <link rel="canonical" href="./practical-common-lispbi-ji.html" />
 
         <title>Practical Common Lisp笔记 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,7 @@
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
         
 
-        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -39,18 +38,18 @@
             <div class="span10 offset1">
                 <header id="banner" >
                     <h1>
-                        <a href="/">Jamsa的笔记 </a>
+                        <a href="./">Jamsa的笔记 </a>
                     </h1>
                     <nav class="navbar">
                         <div class="navbar-inner">
                             <ul class="nav">
-                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
-                                <li ><a href="/category/fang-fa.html">方法</a></li>
-                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
-                                <li ><a href="/category/qian-duan.html">前端</a></li>
-                                <li ><a href="/category/xiao-lu.html">效率</a></li>
-                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
                             </ul>
 
                         </div>
@@ -67,21 +66,21 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/practical-common-lispbi-ji.html" rel="bookmark"
+          <a href="./practical-common-lispbi-ji.html" rel="bookmark"
              title="Permalink to Practical Common Lisp笔记">Practical Common Lisp笔记</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
     <address class="vcard author">
-        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
     </address>
 
-    in <a href="/category/kai-fa.html">开发</a>
+    in <a href="./category/kai-fa.html">开发</a>
 
     on 2011-06-03
 
         |
-        tags:         <a href="/tag/lisp.html">lisp</a>
+        tags:         <a href="./tag/lisp.html">lisp</a>
 
 
 
@@ -1849,12 +1848,12 @@ NULL         | 判断某个对象是否为NIL。功能上等同于NOT，但最�
 <p>本章讨论由cons cells构成的trees，sets和lookup tables结构的处理函数。</p>
 <h2>Trees</h2>
 <p>包含list的list。<code>((1 2) (3 4) (5 6))</code>的结构。</p>
-<p><img alt="list-or-tree" src="/practical_common_lisp/list-or-tree.png"/></p>
+<p><img alt="list-or-tree" src="./practical_common_lisp/list-or-tree.png"/></p>
 <p>通过COPY-LIST和COPY-TREE来了解list函数和tree函数的区别。</p>
 <p>COPY-LIST只复制构造出list结构的cons cells。而不复制list中的子list。新创建的cons cells仍然指向原来的cons cells指向的list结构。对上面的结构COPY-LIST的结果：</p>
-<p><img alt="copy-list-list-or-tree" src="/practical_common_lisp/copy-list-list-or-tree.png"/></p>
+<p><img alt="copy-list-list-or-tree" src="./practical_common_lisp/copy-list-list-or-tree.png"/></p>
 <p>COPY-TREE复图中的每个cons cells并将它们连接为同样的结构。COPY-TREE的结果：</p>
-<p><img alt="copy-tree-list-or-tree" src="/practical_common_lisp/copy-tree-list-or-tree.png"/></p>
+<p><img alt="copy-tree-list-or-tree" src="./practical_common_lisp/copy-tree-list-or-tree.png"/></p>
 <p>原cons cells指向一个atomic值时，新建的cons cells将指向相同的值。比如数字5、6和符号NIL。</p>
 <p>另一个tree函数是TREE-EUQAL，它比较两个tree是否具有相同的结构并且叶节点都EQL（或者使用:test关键字指定的参数）。</p>
 <p>另一些处理tree的函数类似SUBSTITUTE和NSUBSTITUTE及其-IF和-IF-NOT变种。函数SUBST与SUBSTITUTE类似，它接收一个新项、一个旧项和一个tree，支持:key和:test关键字参数，返回一个新的tree，这个tree中的旧项被替换成了新的项：</p>
@@ -1905,7 +1904,7 @@ NIL
 <p>Association lists即alists和property lists即plists。不应该在很大的table中使用它们&mdash;&mdash;应该使用hash table&mdash;&mdash;应当知道如何在小型table中使用它们，在小型的table中使用时它们会比hash tables更有效率，并且它们都有自己的特点。</p>
 <p>Alists是将keys映射到values的结构并且支持逆向查找，通过key查找value。Alists也支持添加key/value映射来屏蔽已经存在的映射。屏蔽key/value的映射被移除后原来的映射将重新呈现出来。</p>
 <p>在alist的内部它的元素也是由cons cells组成。可以把它的每个元素的CAR和CDR当作key/value对。例如<code>((A . 1) (B . 2) (C . 3))</code>的结构如下：</p>
-<p><img alt="alist-abc-123" src="/practical_common_lisp/alist-abc-123.png"/></p>
+<p><img alt="alist-abc-123" src="./practical_common_lisp/alist-abc-123.png"/></p>
 <p>除非CDR部分是一个list，cons cells总是被表示为dotted pairs格式的s表达式来描述键值对。</p>
 <p>查找alist主要是使用ASSOC方法，它接收一个key和alist作为参数并返回第一个CAR与key匹配的cons cells，如果无key匹配则返回NIL。</p>
 <div class="highlight"><pre><span></span>CL-USER&gt; (assoc 'a '((a . 1) (b . 2) (c . 3)))
@@ -1947,7 +1946,7 @@ NIL
 ((A . 1) (B . 2) (C . 3))
 </pre></div>
 <p>另一种look table是plist。结构上来讲plist只是标准的list。将A B和C映射为1 2 3的plist结构如下：</p>
-<p><img alt="plist-abc-123" src="/practical_common_lisp/plist-abc-123.png"/></p>
+<p><img alt="plist-abc-123" src="./practical_common_lisp/plist-abc-123.png"/></p>
 <p>但是，plist的弹性比alist小些。实际上，plist只支持一个基础的GETF查找操作。GETF函数接收一个plist和key作为参数并返回相应的vaue或者在未找到时返回NIL。</p>
 <p>与ASSOC不同，GETF总是使用EQ比较key是否匹配。因此，你不应该使用数字或字符作为plist的key；这些类型的EQ行为是不确定的。实际上应该总是使用符号来作为plist的key。</p>
 <p>可以使用SETF和GETF来设置或取key相关的value。</p>

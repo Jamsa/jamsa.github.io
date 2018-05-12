@@ -6,11 +6,11 @@
         <meta name="robots" content="index, follow"/>
 
         <meta property="og:title" content="Beginning Android Games学习笔记"/>
-        <meta property="og:url" content="/beginning-android-gamesxue-xi-bi-ji.html"/>
+        <meta property="og:url" content="./beginning-android-gamesxue-xi-bi-ji.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
         <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="/beginning-android-gamesxue-xi-bi-ji.html" />
+        <link rel="canonical" href="./beginning-android-gamesxue-xi-bi-ji.html" />
 
         <title>Beginning Android Games学习笔记 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,7 @@
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
         
 
-        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -39,18 +38,18 @@
             <div class="span10 offset1">
                 <header id="banner" >
                     <h1>
-                        <a href="/">Jamsa的笔记 </a>
+                        <a href="./">Jamsa的笔记 </a>
                     </h1>
                     <nav class="navbar">
                         <div class="navbar-inner">
                             <ul class="nav">
-                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
-                                <li ><a href="/category/fang-fa.html">方法</a></li>
-                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li ><a href="/category/kai-fa.html">开发</a></li>
-                                <li ><a href="/category/qian-duan.html">前端</a></li>
-                                <li ><a href="/category/xiao-lu.html">效率</a></li>
-                                <li class="active"><a href="/category/yi-dong.html">移动</a></li>
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li ><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li class="active"><a href="./category/yi-dong.html">移动</a></li>
                             </ul>
 
                         </div>
@@ -67,21 +66,21 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/beginning-android-gamesxue-xi-bi-ji.html" rel="bookmark"
+          <a href="./beginning-android-gamesxue-xi-bi-ji.html" rel="bookmark"
              title="Permalink to Beginning Android Games学习笔记">Beginning Android Games学习笔记</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
     <address class="vcard author">
-        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
     </address>
 
-    in <a href="/category/yi-dong.html">移动</a>
+    in <a href="./category/yi-dong.html">移动</a>
 
     on 2012-07-28
 
         |
-        tags:         <a href="/tag/android.html">android</a>
+        tags:         <a href="./tag/android.html">android</a>
 
 
 
@@ -739,7 +738,7 @@ android:glEsVersion="integer" /&gt;
 <p>什么是OpenGL ES呢？简短的回答就是它是一个三角形渲染机器。</p>
 <h3 id="bian-cheng-mo-xing-mo-ni">编程模型：模拟</h3>
 <p>可以把OpenGL ES工作的时候当成一个摄像机。为了拍摄照片你需要转移到需要拍照的场景。场景是由对象组成的&mdash;&mdash;比如一个放置了东西的桌子。上面的东西都有自己的位置和方向（相对于像机），也有不同的材质和纹理。比如玻璃是透明的，光线反射较少，桌子可能是由木头组成的，杂志上有某个政客最新的照片，等等。有些对象也可能会移动（比如，飞动的水果）。摄像机也有一些特性，比如焦躁、视野、要拍摄的图像分辨率和大小，和它相对于整个世界的位置和方向（相对于某个原点）。甚至对象和像机都在移动，当按下按钮拍摄照片时仍然可以拍到场景上的图像（忽略快门速度）。在这个无穷短的瞬间所有的东西都存在，图像正确的反应出一这些东西的位置、方向、纹理、材质和光线。</p>
-<p><img alt="图7-1" src="/beginning_android_games/abstract_scene.png"/>
+<p><img alt="图7-1" src="./beginning_android_games/abstract_scene.png"/>
 图7-1</p>
 <p>所有的东西相对于场景的原点都有自己的位置和方向。图中的眼睛代表相机，也有它相对于场景原点的位置和方向。图中的锥体被称为视卷或者视锥（view volume or view frustum）。它展示了相机的方向和场景中有多少内容能被它捕获到。白色的球代表的是场景中的光源，它也有相对于原点的位置。</p>
 <p>为了将这些内容映射到OpenGL ES中，我们定义下面的东西：</p>
@@ -756,11 +755,11 @@ android:glEsVersion="integer" /&gt;
  - 平行或者称为正交投影：如果你使用过CAD软件，则你对它不会陌生。平行投影的情况下最终的图像总是拥有固定的大小。这是在OpenGL ES中进行2D图形渲染时所用的方法。
  - 透视投影：这是我们的眼睛所使用的方法。离我们越远的对象在我们的视网膜上会显得更小。这通常是OpenGL ES中3D图形所使用的投影方法。</p>
 <p>这两种情况下都需要被称为投影平面的东西。它类似于我们的视网膜。这是最终的将光线转换成图片的地方。数学上的投影平面是无限的，我们的视网膜却是有限的。在OpenGL ES中的&ldquo;视网膜&rdquo;相当于视锥顶部的矩形区域。OpenGL ES会将点投影到它的上面。它被称为近端裁剪平面（near clipping plane）它有自己的2D坐标系统。下图展示了叠加了坐标系统的近端裁剪平面。</p>
-<p><img alt="图7-2" src="/beginning_android_games/view_frustum.png"/>
+<p><img alt="图7-2" src="./beginning_android_games/view_frustum.png"/>
 图7-2</p>
 <p>注意上面的坐标是不固定的。我们可以指定投影的坐标系统（比如告诉OpenGL ES将原点放在左下角，让&ldquo;视网膜&rdquo;可以看到X轴480个单位Y轴320个单位的范围）。听起来很熟悉吧？是的，OpenGL ES允许我们指定投影点的坐标系统。</p>
 <p>当我们指定视锥后，OpenGL ES从三角形的每个点发出一条穿过投影平面的光线。平行或者透视（parallel and perspective）投影方式决定了光线的方向。如下图，展示了两者的区别。</p>
-<p><img alt="图7-3" src="/beginning_android_games/projection_type.png"/>
+<p><img alt="图7-3" src="./beginning_android_games/projection_type.png"/>
 图7-3</p>
 <p>透视投影将光线从三角形上的点射向相机（或者说眼睛）。这时离投影平面远的物体会显得小些。而当我们使用平行投影时，光线光垂直射向投影平面。这时不管物体的远近如何，它都将会保持相同的大小。</p>
 <p>前面说过，我们的投影平面在OpenGL ES术语中被称为近端裁剪平面（near clipping plane）。视锥的各个面有相类似的名字。远离相机一端的平面被称为无端裁剪平面（far clipping plane）。其它几个面分别被称为左、右、顶和底端裁剪平面。任何处于这些平面之外或者之后的物体将不会被渲染，即视锥之外的内容被剪掉了。这就是裁剪平面（clipping plane）这一名称的由来。</p>
@@ -784,7 +783,7 @@ android:glEsVersion="integer" /&gt;
  - 纹理（Texture）矩阵：这种矩阵让我们可以处理被称为纹理坐标（texture coordinates）的东西。但是，我们将避免在本书中使用这种矩阵，因为OpenGL ES中的这个部分在很多设备上都由于驱动的Bug而有问题。</p>
 <h3 id="xuan-ran-guan-xian">渲染管线</h3>
 <p>OpenGL ES会跟踪上面这三种矩阵。当我们设置其中一种矩阵时，它将会记住它直到我们再次修改矩阵。在OpenGL ES中，它被称为状态。OpenGL跟踪的不只是矩阵的状态；它也跟踪我们是否需要进行三角形的Ahpha混合，是否要考虑照明，哪个纹理应该被应用到模型上，等等。实际上OpenGL ES是一个巨大的状态机。我们设置它的当前状态，告诉它我们的物体的几何形状，告诉它如何渲染成图片。让我们看看三角形是如何通过这个强大的三角形渲染机器的。下图简要的展示了OpenGL ES中的管线：</p>
-<p><img alt="way of triangle" src="/beginning_android_games/way_of_triangle.png"/></p>
+<p><img alt="way of triangle" src="./beginning_android_games/way_of_triangle.png"/></p>
 <p>三角形是以下面的方式通过管线的：
  1. 三角形首先被转换成model-view矩阵。这意味着它的点将与这个矩阵相乘。这个乘法将影响到世界（场景）中的点。
  2. 产生的输出与映射矩阵相乘，这将影响到3D点到2D投影平面的转换。
@@ -835,13 +834,13 @@ android:glEsVersion="integer" /&gt;
 </pre></div>
 <p>这看起来与我们的视锥裁剪平面类似。</p>
 <p>OpenGL ES有标准的坐标系统，X轴朝向右边，Y轴朝向左边，Z轴朝向我们自己。使用glOrthof()我们在这个坐标系统中定义我们的平行投影的视锥。如图7-3所示，我们知道平行投影的视锥像一个盒子。我们可以用这个视锥盒子的各个角来指定glOrthof()的参数。</p>
-<p><img alt="图7-5" src="/beginning_android_games/orthographic_view_frustum.png"/>
+<p><img alt="图7-5" src="./beginning_android_games/orthographic_view_frustum.png"/>
 图7-5</p>
 <p>视锥的前面直接可以映射为我们的viewport。在全屏时viewport从(0,0)到(480,320)（相当于Hero的横屏模式），前面的左下角将映射到我们屏幕的左下角，前面的右上角映射到屏幕的左上角。（这里不明白，写错了？）OpenGL将自动执行拉伸。</p>
 <p>由于我们是要进行2D绘图，我们只需要指定角对应的点(left,bottom,near)和（right,top,far），通过这种方式让我们可以如之前在Mr.Nom中使用Canvas一样工作于像素坐标系统。下面是如何设置这个坐标系统：</p>
 <div class="highlight"><pre><span></span><span class="n">gl</span><span class="o">.</span><span class="na">glOrthof</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">480</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">320</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
 </pre></div>
-<p><img alt="图7-6" src="/beginning_android_games/parallel_projection_view_frustum_for_2D.png"/></p>
+<p><img alt="图7-6" src="./beginning_android_games/parallel_projection_view_frustum_for_2D.png"/></p>
 <p>图7-6</p>
 <p>我们的视锥非常薄，因为我们只需要2D绘图。坐标系统中的可视部分是从(0,0,1)至(480,320,-1)。任何出现在这个盒子中的点都将显示到屏幕上。这些点将被投影到这个盒子的前面，即近端裁剪平面。投影然后被拉伸到我们的viewport的分辨率。这就是说当我们用一个800x480的设备时，如果我们按上面的方式设定视锥，则我们可以在480x320的坐标系统里工作，然后OpenGL将会将它拉伸到800x480的帧缓冲区（如果我们指定viewport覆盖了整个帧缓冲区的话）。没有什么可以阻止我们使用疯狂的视锥，比如我们也可以使用(-1,-1,100)和（2，2，-100）。所有在这个盒子中的内容都将被拉伸并显示出来。</p>
 <p>上面的设置中都包含了近端和远端裁剪平面。因为我们在本章里可以完全抛弃z轴，你可能想要将near和far的坐标都设置为0。因为一些原因这样做是不正确的。为求稳当，我们在z轴上分配了一点缓冲。</p>

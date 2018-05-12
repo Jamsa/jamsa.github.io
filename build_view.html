@@ -6,11 +6,11 @@
         <meta name="robots" content="index, follow"/>
 
         <meta property="og:title" content="OA Framework应用构建之——实现视图"/>
-        <meta property="og:url" content="/build_view.html"/>
+        <meta property="og:url" content="./build_view.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
         <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="/build_view.html" />
+        <link rel="canonical" href="./build_view.html" />
 
         <title>OA Framework应用构建之——实现视图 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,7 @@
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
         
 
-        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -39,18 +38,18 @@
             <div class="span10 offset1">
                 <header id="banner" >
                     <h1>
-                        <a href="/">Jamsa的笔记 </a>
+                        <a href="./">Jamsa的笔记 </a>
                     </h1>
                     <nav class="navbar">
                         <div class="navbar-inner">
                             <ul class="nav">
-                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
-                                <li ><a href="/category/fang-fa.html">方法</a></li>
-                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
-                                <li ><a href="/category/qian-duan.html">前端</a></li>
-                                <li ><a href="/category/xiao-lu.html">效率</a></li>
-                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
                             </ul>
 
                         </div>
@@ -67,23 +66,23 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/build_view.html" rel="bookmark"
+          <a href="./build_view.html" rel="bookmark"
              title="Permalink to OA Framework应用构建之——实现视图">OA Framework应用构建之——实现视图</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
     <address class="vcard author">
-        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
     </address>
 
-    in <a href="/category/kai-fa.html">开发</a>
+    in <a href="./category/kai-fa.html">开发</a>
 
     on 2008-07-08
 
         |
-        tags:         <a href="/tag/oracle.html">oracle</a>
-        <a href="/tag/ebs.html">ebs</a>
-        <a href="/tag/oaf.html">oaf</a>
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+        <a href="./tag/oaf.html">oaf</a>
 
 
 
@@ -380,7 +379,7 @@
 <p>OA Framework每次渲染页面时，它将为每个web bean关联的视图对象属性调用当前视图对象行的get<attributename>方法。</attributename></p>
 <p>例如，对于&ldquo;Suppliers&ldquo;表，绑定到了SuppliersVO视图对象。SuppliersVO映射到了SupplierEOImpl，尽管它也包含了一个&ldquo;计算&rdquo;属性（&ldquo;OnHoldDisplay&rdquo;），它与不对应的实体的属性对应。</p>
 <p>OA Framework在执行查询后读取模型数据：</p>
-<p><img alt="read_data_flow" src="/oaf_build_view/read_data_flow.gif"/></p>
+<p><img alt="read_data_flow" src="./oaf_build_view/read_data_flow.gif"/></p>
 <ol>
 <li>
 <p>用户选择&ldquo;Search&ldquo;区域中的&ldquo;Go&ldquo;按钮查询&rdquo;Suppliers&ldquo;表。</p>
@@ -407,7 +406,7 @@
 <h1>写入模型数据</h1>
 <p>不论何时，浏览器发出POST请求，OA Framework将自动把用户输入表单的数据写入下层的视图对象，它再依次更新对应的实体。</p>
 <p>HTTP POST数据过程：</p>
-<p><img alt="write_data_flow" src="/oaf_build_view/write_data_flow.gif"/></p>
+<p><img alt="write_data_flow" src="./oaf_build_view/write_data_flow.gif"/></p>
 <p><strong>注意：</strong> 下面的步骤假设数据库行所对应的实体对象已经被实例化和初始化（比如在进入Create页面时已经调用了视图对象的create方法创建实体对象）。</p>
 <ol>
 <li>
@@ -517,7 +516,7 @@
 <h1>菜单和页面安全</h1>
 <p>在OA Framework应用中，页面中的菜单是用tab模型来实现的。</p>
 <p>OA Framework ToolBox 教程的菜单：</p>
-<p><img alt="toolbox_menu" src="/oaf_build_view/toolbox_menu.gif"/></p>
+<p><img alt="toolbox_menu" src="./oaf_build_view/toolbox_menu.gif"/></p>
 <p>菜单结构提供了两个明显的用途：</p>
 <ul>
 <li>

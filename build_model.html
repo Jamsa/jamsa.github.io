@@ -6,11 +6,11 @@
         <meta name="robots" content="index, follow"/>
 
         <meta property="og:title" content="OA Framework应用构建之——实现模型"/>
-        <meta property="og:url" content="/build_model.html"/>
+        <meta property="og:url" content="./build_model.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
         <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="/build_model.html" />
+        <link rel="canonical" href="./build_model.html" />
 
         <title>OA Framework应用构建之——实现模型 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,7 @@
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
         
 
-        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -39,18 +38,18 @@
             <div class="span10 offset1">
                 <header id="banner" >
                     <h1>
-                        <a href="/">Jamsa的笔记 </a>
+                        <a href="./">Jamsa的笔记 </a>
                     </h1>
                     <nav class="navbar">
                         <div class="navbar-inner">
                             <ul class="nav">
-                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
-                                <li ><a href="/category/fang-fa.html">方法</a></li>
-                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
-                                <li ><a href="/category/qian-duan.html">前端</a></li>
-                                <li ><a href="/category/xiao-lu.html">效率</a></li>
-                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
                             </ul>
 
                         </div>
@@ -67,23 +66,23 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/build_model.html" rel="bookmark"
+          <a href="./build_model.html" rel="bookmark"
              title="Permalink to OA Framework应用构建之——实现模型">OA Framework应用构建之——实现模型</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
     <address class="vcard author">
-        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
     </address>
 
-    in <a href="/category/kai-fa.html">开发</a>
+    in <a href="./category/kai-fa.html">开发</a>
 
     on 2008-07-08
 
         |
-        tags:         <a href="/tag/oracle.html">oracle</a>
-        <a href="/tag/ebs.html">ebs</a>
-        <a href="/tag/oaf.html">oaf</a>
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+        <a href="./tag/oaf.html">oaf</a>
 
 
 
@@ -115,7 +114,7 @@
 </ul>
 <p>这个区别是非常重要的，它保证了从不同客户端访问服务代码的能力。</p>
 <p>OA Framework&ldquo;洋葱形&rdquo;的代码层次边界：</p>
-<p><img alt="onion" src="/oaf_build_model/onion.gif"/></p>
+<p><img alt="onion" src="./oaf_build_model/onion.gif"/></p>
 <p>通常可以在这些边界征用，对象引用下层的数据流，而不会引用上层的。</p>
 <ul>
 <li>
@@ -607,7 +606,7 @@
 </ul>
 <p><strong>扩展业务对象</strong></p>
 <p>下表描述了创建业务对象和关联到需要扩展的校验时要的相关对象。</p>
-<p><img alt="modelobjects" src="/oaf_build_model/modelobjects.gif"/></p>
+<p><img alt="modelobjects" src="./oaf_build_model/modelobjects.gif"/></p>
 <p>第一行列举了定义实体时所有可能创建的对象。第一个格子说明了创建一个实体对象时将产生两个文件：元数据定义的XML文件，和实际的Java实现类文件。实体对象处理属性级和记录级的校验。这些校验通常需要使用Validation View Objects (VVO)。校验对象在Validation Application Module(VAM)中分组。与实体对象类似，创建VVO和VAM产生了元数据定义XMl文件，并为每个对象产生了Java实现类文件。最后，实体对象有时会接收辅助类提供的一些服务，为实体对象提供的验证服务。辅助类是Entity Expert通过实体对象的属性连接到实体对象。</p>
 <p>上图描述了所有业务对象继承时的情况。虽然并不总是这样。多数情况下，将对继承的结果满意。注意，不应该修改蕨类的定义或复制基类。应该使用继承。</p>
 <p>未完！！！！！</p>

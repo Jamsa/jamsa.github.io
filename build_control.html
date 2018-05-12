@@ -6,11 +6,11 @@
         <meta name="robots" content="index, follow"/>
 
         <meta property="og:title" content="OA Framework应用构建之——实现控制器"/>
-        <meta property="og:url" content="/build_control.html"/>
+        <meta property="og:url" content="./build_control.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
         <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="/build_control.html" />
+        <link rel="canonical" href="./build_control.html" />
 
         <title>OA Framework应用构建之——实现控制器 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,7 @@
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
         
 
-        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -39,18 +38,18 @@
             <div class="span10 offset1">
                 <header id="banner" >
                     <h1>
-                        <a href="/">Jamsa的笔记 </a>
+                        <a href="./">Jamsa的笔记 </a>
                     </h1>
                     <nav class="navbar">
                         <div class="navbar-inner">
                             <ul class="nav">
-                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
-                                <li ><a href="/category/fang-fa.html">方法</a></li>
-                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
-                                <li ><a href="/category/qian-duan.html">前端</a></li>
-                                <li ><a href="/category/xiao-lu.html">效率</a></li>
-                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
                             </ul>
 
                         </div>
@@ -67,23 +66,23 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/build_control.html" rel="bookmark"
+          <a href="./build_control.html" rel="bookmark"
              title="Permalink to OA Framework应用构建之——实现控制器">OA Framework应用构建之——实现控制器</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
     <address class="vcard author">
-        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
     </address>
 
-    in <a href="/category/kai-fa.html">开发</a>
+    in <a href="./category/kai-fa.html">开发</a>
 
     on 2008-08-06
 
         |
-        tags:         <a href="/tag/oracle.html">oracle</a>
-        <a href="/tag/ebs.html">ebs</a>
-        <a href="/tag/oaf.html">oaf</a>
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+        <a href="./tag/oaf.html">oaf</a>
 
 
 
@@ -91,7 +90,7 @@
 </footer><!-- /.post-info -->
 
         <h1>设计一个OA Controller</h1>
-<p>如<a href="/oa-framework-pagejie-xi.html">OA Framework Page解析</a>中所描述的，OA Controller定义了web beans的行为。具体来说，编写控制器代码的目的是：</p>
+<p>如<a href="./oa-framework-pagejie-xi.html">OA Framework Page解析</a>中所描述的，OA Controller定义了web beans的行为。具体来说，编写控制器代码的目的是：</p>
 <ul>
 <li>
 <p>在运行时处理／初始化UI（包含那些通过编程方式添加的layout）</p>
@@ -104,7 +103,7 @@
 <h2>必备知识</h2>
 <p>通常来说，在提出如何设计控制器之前，应该思考一下是否需要创建控制器。</p>
 <p>作为一条规则，应该只在绝对必要的情况下才编写控制器。如果可以通过设计的方式创建页面，就不要通过编程的方式实现region和item。编程方式创建的web beans不能被个性化，重用或继承。而且，一些硬编码的layouts可能会丢失BLAF UI样式。</p>
-<p>在<a href="/build_view.html">实现视图</a>中说过，所有位于共同组件中的顶级regions必须与一个控制器关联。</p>
+<p>在<a href="./build_view.html">实现视图</a>中说过，所有位于共同组件中的顶级regions必须与一个控制器关联。</p>
 <h2>粒度</h2>
 <p>OA Controllers可以与任何region关联（任何实现oracle.apps.fnd.framework.webui.beans.OAWebBeanContainer接口的web beans）；不能将控制器与items关联。</p>
 <p>许多OA Framework新手都想知道控制器应该是&rdquo;多大&ldquo;。应该一个页面一个，或一个功能region一个（比如&ldquo;Search&rdquo; region），或一个复合web bean（比如一个table）一个，或者？答案是要看情况。</p>
@@ -266,7 +265,7 @@
 </pre></div>
 <p>在调用super.processRequest(pageContxt, webBean)后，范例中的代码从request参数中获取名为&ldquo;headerId（从Search页面传递过来的参数）&rdquo;。这个值被显示在页面标题和breadcrumbs上，并且它被传递给模型以便查询。</p>
 <p>使用页面的title值定义页面标题和breadcrumbs：</p>
-<p><img alt="page_title" src="/oaf_build_control/page_title.gif"/></p>
+<p><img alt="page_title" src="./oaf_build_control/page_title.gif"/></p>
 <p>由于显示于页面中的值必须被翻译，我们在Oracle应用消息字典（Oracle Application Message Dictionary）中创建了一个名为FWK_TBX_T_PO_HEADER_TEXT的消息，消息内容为&ldquo;Purchase Order: &amp;PO_NUMBER&rdquo;。这个代码定义了以令牌PO_NUMBER作为Purchase Order Number的占位符，然后从oracle.apps.fnd.framework.webui.OAPageContext（它将操作委派给AOL/J）中提取翻译后的版本。然后将翻译后的字符串作为页面标题。</p>
 <p><strong>警告：</strong> 不要在用户界面中使用硬编码的文本值。所有以编程方式显示的文本值必须来源于消息字典（Message Dictionary）。也可以在设计时在web bean中使用这种方式（所有显示的bean属性都是被翻译的），或者也可以从多国语言表中查询出值来显示。</p>
 <p>最后，这个只读的&rdquo;details&ldquo;页面自动按给定的编号进行查询而不管它是否会被渲染。它通过将编号传递给页面根应用模块的initDetails()方法。然后应用模块将参数传递给适当的视图对象，在那里将参数与WHERE子句绑定并执行查询。</p>
@@ -467,7 +466,7 @@
    <span class="o">...</span>
 </pre></div>
 <p>如果需要执行视图对象查询，应该按下面在&ldquo;Search&rdquo;区域中按下&ldquo;Go&rdquo;按钮的事件处理的例子的方式。</p>
-<p>首先，添加方法到应用模块中（这个例子中，它是页面的根应用模块）它接收查询，然后将它委派给视图对象执行查询（查看<a href="/build_model.html">实现模型</a>获取关于查询的信息）。</p>
+<p>首先，添加方法到应用模块中（这个例子中，它是页面的根应用模块）它接收查询，然后将它委派给视图对象执行查询（查看<a href="./build_model.html">实现模型</a>获取关于查询的信息）。</p>
 <div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">search</span><span class="o">(</span><span class="n">String</span> <span class="n">orderNumber</span><span class="o">,</span> <span class="n">String</span> <span class="n">created</span><span class="o">,</span> <span class="n">String</span> <span class="n">showMyOrders</span><span class="o">)</span>
 <span class="o">{</span>
   <span class="n">PoSummarySimpleExpVOImpl</span> <span class="n">vo</span> <span class="o">=</span> <span class="n">getPoSummarySimpleExpVO</span><span class="o">();</span>
@@ -509,7 +508,7 @@
 <span class="n">am</span><span class="o">.</span><span class="na">invokeMethod</span><span class="o">(</span><span class="s">"search"</span><span class="o">,</span> <span class="n">parameters</span><span class="o">,</span> <span class="n">parameterTypes</span><span class="o">);</span>
 </pre></div>
 <p>类似地，由于视图对象是实体对象的导管&mdash;&mdash;不应该在控制器中直接与视图对象交互&mdash;&mdash;也应该通过应用模块来处理实体操作。</p>
-<p><strong>注意：</strong> 如<a href="/build_model.html">实现模型</a>中描述的，添加到应用模块中的方法命名应该与UI&ldquo;事件（events）&ldquo;对应。比如，如果用户按了&ldquo;Create&rdquo;按钮，应用模块方法应该命名为&ldquo;create&rdquo;等等。</p>
+<p><strong>注意：</strong> 如<a href="./build_model.html">实现模型</a>中描述的，添加到应用模块中的方法命名应该与UI&ldquo;事件（events）&ldquo;对应。比如，如果用户按了&ldquo;Create&rdquo;按钮，应用模块方法应该命名为&ldquo;create&rdquo;等等。</p>
 <p><strong>创建的实例</strong></p>
 <div class="highlight"><pre><span></span><span class="n">processFormRequest</span><span class="o">(</span><span class="n">OAPageContext</span> <span class="n">pageContext</span><span class="o">,</span> <span class="n">OAWebBean</span> <span class="n">webBean</span><span class="o">)</span>
 <span class="o">{</span>

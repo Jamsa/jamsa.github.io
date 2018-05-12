@@ -6,11 +6,11 @@
         <meta name="robots" content="index, follow"/>
 
         <meta property="og:title" content="OA Framework Page解析"/>
-        <meta property="og:url" content="/oa-framework-pagejie-xi.html"/>
+        <meta property="og:url" content="./oa-framework-pagejie-xi.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
         <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="/oa-framework-pagejie-xi.html" />
+        <link rel="canonical" href="./oa-framework-pagejie-xi.html" />
 
         <title>OA Framework Page解析 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,7 @@
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
         
 
-        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Jamsa的笔记 Atom Feed" />
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -39,18 +38,18 @@
             <div class="span10 offset1">
                 <header id="banner" >
                     <h1>
-                        <a href="/">Jamsa的笔记 </a>
+                        <a href="./">Jamsa的笔记 </a>
                     </h1>
                     <nav class="navbar">
                         <div class="navbar-inner">
                             <ul class="nav">
-                                <li ><a href="/category/da-shu-ju.html">大数据</a></li>
-                                <li ><a href="/category/fang-fa.html">方法</a></li>
-                                <li ><a href="/category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li class="active"><a href="/category/kai-fa.html">开发</a></li>
-                                <li ><a href="/category/qian-duan.html">前端</a></li>
-                                <li ><a href="/category/xiao-lu.html">效率</a></li>
-                                <li ><a href="/category/yi-dong.html">移动</a></li>
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
                             </ul>
 
                         </div>
@@ -67,23 +66,23 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/oa-framework-pagejie-xi.html" rel="bookmark"
+          <a href="./oa-framework-pagejie-xi.html" rel="bookmark"
              title="Permalink to OA Framework Page解析">OA Framework Page解析</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
     <address class="vcard author">
-        by <a class="url fn" href="/author/jamsa.html">Jamsa</a>
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
     </address>
 
-    in <a href="/category/kai-fa.html">开发</a>
+    in <a href="./category/kai-fa.html">开发</a>
 
     on 2010-07-27
 
         |
-        tags:         <a href="/tag/oracle.html">oracle</a>
-        <a href="/tag/ebs.html">ebs</a>
-        <a href="/tag/oaf.html">oaf</a>
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+        <a href="./tag/oaf.html">oaf</a>
 
 
 
@@ -96,13 +95,13 @@
 <p>浏览器向一个页面发出请求时，OA Framework读取页面定义的元数据创建web bean结构。每个bean与一个UI控制器关联，OA Framework调用你编写的代码初始化页面。页面处理完成后，OA Framework将web bean结构交给UIX框架处理以生成发送给浏览器的HTML。</p>
 <p>当浏览器发出一个表单提请求时，OA Framework重新创建bean及其层次结构（只在必要的时候才重新创建，通常这些bean是被缓存的，只在特定的情况下才重新创建），然后调用为page bean编写的事件处理代码。当页面处理完成后，页面HTML重新生成并发送给浏览器。</p>
 <p>OA Framework MVC架构：</p>
-<p><img alt="anatomy" src="/oaf_page/anatomy.gif"/></p>
+<p><img alt="anatomy" src="./oaf_page/anatomy.gif"/></p>
 <h1>模型Model</h1>
 <p>模型包括下层的数据和应用业务逻辑。它也提花了现实世界对象和应用服务间的抽像层。</p>
 <h2>应用模块Application Modules</h2>
 <p>BC4j应用模块本质上是一个容器，它管理和提供对&ldquo;相关&ldquo;BC4J模型对象的访问。这里的&ldquo;相关&rdquo;指的是同一个任务中的参与者。比如所有的BC4J对象在同一个任务中参与同一个事务&mdash;&mdash;即使对应的用户界面需要用户访问多个页面。</p>
 <p>应用模块：</p>
-<p><img alt="ess_model_arch_am" src="/oaf_page/ess_model_arch_am.gif"/></p>
+<p><img alt="ess_model_arch_am" src="./oaf_page/ess_model_arch_am.gif"/></p>
 <p>应用模块是oracle.apps.fnd.framework.server.OAApplicationModuleImpl类的子类。</p>
 <p>每个OAFramework 页都有一个根（root）应用模块，它与最顶层的页面区域（page region）关联。根应用模块提供事务环境和连接数据库。</p>
 <ul>
@@ -119,7 +118,7 @@
 <p><strong>注意：</strong> 实体也可以基于视图、同义词、快照而定义。</p>
 <p>OA Framework支持Java和PL/SQL实体。</p>
 <p>实体对象：</p>
-<p><img alt="ess_model_arch_eo" src="/oaf_page/ess_model_arch_eo.gif"/></p>
+<p><img alt="ess_model_arch_eo" src="./oaf_page/ess_model_arch_eo.gif"/></p>
 <p>多数实体是oracle.aps.fnd.framework.server.OAEntityImpl的子类（PL/SQL继承于特殊版本的OAEntityImpl）。</p>
 <p>表和实体对象一一对象，所有实体应该包含与之关联的表的所有列。实体对象使用映射了它的属性和数据库列，并自动实现了查询、插入、更新、删除等操作。多数情况下，我们只需要添加校验逻辑。</p>
 <p>实体对象可以用于任何程序（不限于OA Framework）。</p>
@@ -128,7 +127,7 @@
 <h2>视图对象（View Objects）和视图链接（View Links）</h2>
 <p>BC4J视图对象处理数据库查询。查询执行后，视图对象提供了访问它的结果集的功能。结果集包含了一个或多个视图行，视图行与数据库查询的行相对应。</p>
 <p>视图对象：</p>
-<p><img alt="ess_model_arch_vo" src="/oaf_page/ess_model_arch_vo.gif"/></p>
+<p><img alt="ess_model_arch_vo" src="./oaf_page/ess_model_arch_vo.gif"/></p>
 <p>所有的视图对象都是oracle.apps.fnd.framework.server.OAViewObjectImpl类的子类。</p>
 <p>视图对象可以配置为使用下面的策略查询数据：</p>
 <ul>
@@ -159,7 +158,7 @@
 <p>与实体对象类似，也可以为视图对象建立关联，称为视图链接（view links）。比如可以在定单头视图对象和定单内容间建立视图链接对象。这可以用于在运行时访问定单头时自动查询定单内容。</p>
 <h2>OADBTransaction</h2>
 <p>OADBTransaction：</p>
-<p><img alt="ess_model_arch_tran" src="/oaf_page/ess_model_arch_tran.gif"/></p>
+<p><img alt="ess_model_arch_tran" src="./oaf_page/ess_model_arch_tran.gif"/></p>
 <p><strong>注意：</strong> 准备的来说这个图应该要包含实现类oracle.apps.fnd.framework.server.OADBTransactionImpl替代oracle.apps.fnd.framework.OADBTransaction接口。</p>
 <p>如图所示，OADBTransaction扮演的是模型中的中心角色，因为它与一个根应用模块关联，管理JDBC连接/数据库会话，直接拥有你创建的任何实体（根应用模块拥有的视图对象中的行指向实体对象）。可以使用OADBTransaction在模型代码中完成下面的操作：</p>
 <ul>
@@ -278,7 +277,7 @@
 </ol>
 <h2>OAPageContext</h2>
 <p>当OA Framework收到一个OA.jsp请求时，OAPageBean创建一个oracle.apps.fnd.framework.webui.OAPageContext，这个类仅在页面处理过程中存在。上面描述的三个方法（processRequest()，processFormData()，processFormRequest()）都有一个OAPageContext参数，任何将要编写的控制器代码都使用了这个至关重要的类。</p>
-<p><img alt="pagecontext_arch" src="/oaf_page/pagecontext_arch.gif"/></p>
+<p><img alt="pagecontext_arch" src="./oaf_page/pagecontext_arch.gif"/></p>
 <p>如上图所描述的，OAPageContext有指向request和根应用模块的引用。根据这个关系，OAPageContext被传递到每个控制器的响应处理方法中，你将看到如何在下面的通用任务中使用OAPageContext：</p>
 <p><strong>访问请求参数</strong></p>
 <p>可以使用getParameter(String name)方法读取请求参数。</p>
@@ -339,7 +338,7 @@
 </li>
 </ul>
 <p>web bean例子（OATableBean）：</p>
-<p><img alt="bean_arch" src="/oaf_page/bean_arch.gif"/></p>
+<p><img alt="bean_arch" src="./oaf_page/bean_arch.gif"/></p>
 <p><strong>内部Bean结构</strong></p>
 <p>每个web bean自己包含了下列的信息：</p>
 <ul>
@@ -354,7 +353,7 @@
 </li>
 </ul>
 <p>描述web bean使用Dictionary保存键值对属性：</p>
-<p><img alt="bean_internals_attr" src="/oaf_page/bean_internals_attr.gif"/></p>
+<p><img alt="bean_internals_attr" src="./oaf_page/bean_internals_attr.gif"/></p>
 <p><strong>数据绑定值</strong></p>
 <p>与上面的图表描述的情况不同，OA Framework web bean的attributes实际上是用数据绑定值实现的，这意味着它是由下层的数据源提供的，在组件被渲染时才被获取。后面将看到如何定义用户自定义绑定值。</p>
 <p><strong>渲染</strong></p>
