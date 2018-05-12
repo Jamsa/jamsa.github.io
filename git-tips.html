@@ -5,14 +5,14 @@
         <meta name="author" content="Jamsa" />
         <meta name="robots" content="index, follow"/>
 
-        <meta property="og:title" content="Tags for Jamsa的笔记"/>
-        <meta property="og:url" content="./tags.html"/>
+        <meta property="og:title" content="Git Tips"/>
+        <meta property="og:url" content="./git-tips.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
-        <meta property="og:type" content="website"/>
+        <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="./tags.html" />
+        <link rel="canonical" href="./git-tips.html" />
 
-        <title>Tags for Jamsa的笔记</title>
+        <title>Git Tips | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -46,7 +46,7 @@
                                 <li ><a href="./category/da-shu-ju.html">大数据</a></li>
                                 <li ><a href="./category/fang-fa.html">方法</a></li>
                                 <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li ><a href="./category/kai-fa.html">开发</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
                                 <li ><a href="./category/qian-duan.html">前端</a></li>
                                 <li ><a href="./category/xiao-lu.html">效率</a></li>
                                 <li ><a href="./category/yi-dong.html">移动</a></li>
@@ -61,61 +61,61 @@
         <div class="row-fluid">
             <div class="span10 offset1">
                 <div class="row-fluid">
-<div class="span9">
-    <section>
-    <h1>Tags for Jamsa的笔记</h1>
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./git-tips.html" rel="bookmark"
+             title="Permalink to Git Tips">Git Tips</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
 
-    <dl>
-        <dd><a href="./tag/android.html">android (4)</a></dd>
-        <dd><a href="./tag/asm.html">asm (1)</a></dd>
-        <dd><a href="./tag/awk.html">awk (1)</a></dd>
-        <dd><a href="./tag/c.html">c (1)</a></dd>
-        <dd><a href="./tag/clojure.html">clojure (1)</a></dd>
-        <dd><a href="./tag/cornel.html">cornel (1)</a></dd>
-        <dd><a href="./tag/design-pattern.html">design pattern (1)</a></dd>
-        <dd><a href="./tag/ebs.html">ebs (13)</a></dd>
-        <dd><a href="./tag/emacs.html">emacs (8)</a></dd>
-        <dd><a href="./tag/extjs.html">extjs (8)</a></dd>
-        <dd><a href="./tag/git.html">git (1)</a></dd>
-        <dd><a href="./tag/go.html">go (1)</a></dd>
-        <dd><a href="./tag/hadoop.html">hadoop (1)</a></dd>
-        <dd><a href="./tag/java.html">java (1)</a></dd>
-        <dd><a href="./tag/javascript.html">javascript (8)</a></dd>
-        <dd><a href="./tag/jsf.html">jsf (1)</a></dd>
-        <dd><a href="./tag/linux.html">linux (3)</a></dd>
-        <dd><a href="./tag/lisp.html">lisp (2)</a></dd>
-        <dd><a href="./tag/mac.html">mac (1)</a></dd>
-        <dd><a href="./tag/machine-learn.html">machine learn (1)</a></dd>
-        <dd><a href="./tag/maven.html">maven (2)</a></dd>
-        <dd><a href="./tag/oaf.html">oaf (12)</a></dd>
-        <dd><a href="./tag/objective-c.html">objective-c (1)</a></dd>
-        <dd><a href="./tag/oracle.html">oracle (13)</a></dd>
-        <dd><a href="./tag/org.html">org (1)</a></dd>
-        <dd><a href="./tag/perl.html">perl (1)</a></dd>
-        <dd><a href="./tag/python.html">python (5)</a></dd>
-        <dd><a href="./tag/scala.html">scala (2)</a></dd>
-        <dd><a href="./tag/scheme.html">scheme (1)</a></dd>
-        <dd><a href="./tag/seam.html">seam (1)</a></dd>
-        <dd><a href="./tag/sed.html">sed (1)</a></dd>
-        <dd><a href="./tag/vi.html">vi (1)</a></dd>
-        <dd><a href="./tag/vim.html">vim (1)</a></dd>
-        <dd><a href="./tag/wxpython.html">wxpython (1)</a></dd>
-    </dl>
-    </section>
-</div>
-<div class="span3">
-    <section id="sidebar">
-            <div>
-                <h2>Browse content by</h2>
-                <ul class="fa-ul">
-                <li><a href="./categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
-                <li><a href="./archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
-                <li><a href="./tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
+    in <a href="./category/kai-fa.html">开发</a>
 
-                </ul>
-            </div><!-- /.browse -->
-<!-- /.Tags -->
-    </section><!-- /#sidebar -->
+    on 2018-05-12
+
+        |
+        tags:         <a href="./tag/git.html">git</a>
+
+
+        |
+        <a href="./git-tips.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <ul>
+<li>强制本地回退至指定版本</li>
+</ul>
+<p><code>git reflog
+ git reset --hard oxfb</code></p>
+<ul>
+<li>强制远程回退至指定版本</li>
+</ul>
+<p>先强制本地回退，然后强制推送。</p>
+<p><code>git push -f</code></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "git-tips.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
 </div>
                 </div>
             </div>

@@ -68,6 +68,97 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../emacs-dired-tip.html" rel="bookmark" title="Permalink to Emacs Dired Tip">
+                                       Emacs Dired Tip
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/xiao-lu.html">效率</a>
+
+    on 2018-05-12
+
+        |
+        tags:         <a href="../tag/emacs.html">emacs</a>
+
+
+        |
+        <a href="../emacs-dired-tip.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <ul>
+<li>批量mark文件</li>
+</ul>
+<p>在dired下 <code>% m regexp</code>可批量mark文件。</p>
+<p>更多mark方式可参照<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Marks-vs-Flags.html" target="_blank">手册</a>。</p>
+<ul>
+<li>批量替换文件内容</li>
+</ul>
+<p>对mark的文件可使用<code>dired-do-find-regexp-and-replace</code>做文件内容的批量替换。</p>
+<ul>
+<li>批量修改文件名</li>
+</ul>
+<p>在dired模式下可以<code>dired-toggle-readonly</code>切换为编辑模式，编辑模式下可以直接修改buffer中的文件名，使用<code>wdired-finish-edit (C-x C-s)</code>像保存文件一样，保存对文件名的修改。</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../emacs-dired-tip.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../git-tips.html" rel="bookmark" title="Permalink to Git Tips">
+                                       Git Tips
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-05-12
+
+        |
+        tags:         <a href="../tag/git.html">git</a>
+
+
+        |
+        <a href="../git-tips.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <ul>
+<li>强制本地回退至指定版本</li>
+</ul>
+<p><code>git reflog
+ git reset --hard oxfb</code></p>
+<ul>
+<li>强制远程回退至指定版本</li>
+</ul>
+<p>先强制本地回退，然后强制推送。</p>
+<p><code>git push -f</code></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../git-tips.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../pelican-jing-tai-bo-ke.html" rel="bookmark" title="Permalink to Pelican 静态博客">
                                        Pelican 静态博客
                                     </a>
@@ -91,7 +182,11 @@
         <a href="../pelican-jing-tai-bo-ke.html#disqus_thread">comments</a>
 
     
-</footer><!-- /.post-info -->                                <h1>静态文件发布</h1>
+</footer><!-- /.post-info -->                                <h2>重新整理博客</h2>
+<h2>草稿</h2>
+<div class="highlight"><pre><span></span><span class="n">Status</span><span class="o">:</span> <span class="n">draft</span>
+</pre></div>
+<h2>静态文件发布</h2>
 <p><code>直接使用 make github 会把生成的内容发布至 github 仓库</code>，如果你希望在 github 上保存 blog 源码就会被覆盖。</p>
 <p>我是直接在 output 目录下新建仓库，发布至 github pages。</p>
 <div class="highlight"><pre><span></span>cd output
@@ -99,10 +194,66 @@ git init
 git add .
 git commit -m "first commit"
 git remote add origin https://github.com/xxx/xxx.github.io.git
-git push -u origin master
-</pre></div>
+git push -u origin master …</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../pelican-jing-tai-bo-ke.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../pythonxu-ni-huan-jing-guan-li.html" rel="bookmark" title="Permalink to Python虚拟环境管理">
+                                       Python虚拟环境管理
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-05-12
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+
+
+        |
+        <a href="../pythonxu-ni-huan-jing-guan-li.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>Python虚拟环境的管理工具有很多种，我常用的有pyenv、virtualenv和conda。最近因为折腾深度学习环境经常需要安装不同版本的keras、tensorflow、pytorch等，折腾下来后总结下他们的区别。</p>
+<ul>
+<li>pyenv</li>
+</ul>
+<p>可以用来安装多个不同的python发行版，除python官方版本外，也可以用来安装anaconda、miniconda。可以解决项目对python版本的依赖问题。</p>
+<ul>
+<li>virtualenv</li>
+</ul>
+<p>可以为不同的项目创建隔离的python库环境。我之前的web项目多数使用它来进行环境隔离。一般可认为它不跨python解释器版本。</p>
+<ul>
+<li>pyenv-virtualenv</li>
+</ul>
+<p>pyenv的一个插件，整合了pyenv和virtualenv。</p>
+<ul>
+<li>conda</li>
+</ul>
+<p>既可以管理多个python版本，也可以管理项目的依赖环境。可以认为它是pyenv + virtualenv + pip的组合。</p>
+<p>在包管理方面pip与conda的区别主要在于pip对本地库的跟踪不太好。即使有wheel，一些python程序库的本地库依赖仍然需要在操作系统中手工安装。由于不同python版本对本地库的依赖可能不一样，特别是在本地库依赖比较复杂的时候，手工安装就不便于跨多个python版本使用。比如，要同时在python2和python3下安装多个版本的cuda和cudnn的时候。conda在安装包的时候，本地库依赖基本上是由conda安装预编译好的版本。</p>
+<p>在虚拟环境管理方面virtualenv与conda的方式也不完全相同。virtualenv在创建虚拟环境时，通过shim的方式调用发行版本对应的python解释器（应该也包括在发行版全局安装的其它程序，未测试）。而conda创建的虚拟环境则更彻底，连python解释器及基本的python包都会在虚拟环境中重新安装一份。带来负面影响是conda安装的虚拟环境通常会比virtualenv更占空间。</p>
+<p>为了兼顾两者的优点，我同时在使用pyenv、pyenv-virtualenv、conda。安装的方式为：</p>
+<ol>
+<li>
+<p>安装pyenv和pyenv-virtualenv …</p></li></ol>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../pythonxu-ni-huan-jing-guan-li.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
@@ -382,166 +533,6 @@ MapReduce框架的数据处理过程：</p>
 <li>list …</li></ol>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../hadoop-in-action-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（二）类型系统">
-                                       Ext JS 5 手册 核心概念（二）类型系统
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="../tag/javascript.html">javascript</a>
-        <a href="../tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（二）类型系统</h1>
-<h2>核心概念</h2>
-<h3 id="lei-xing-xi-tong">类型系统</h3>
-<h4 id="ming-ming-yue-ding">命名约定</h4>
-<h5 id="lei">类</h5>
-<p>类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符和其它非数字字母。
-类名应该按包分类。至少应该使用唯一的顶级命名空间。
-顶级命名字音和类名应该使用驼峰式命名规则，其它部分都使用小写。
-非<code>Sencha</code>提供的类不应该使用<code>Ext</code>作为顶级命名空间。</p>
-<h5 id="yuan-wen-jian">源文件</h5>
-<p>类文件名按包路径保存。一个文件中只有一个类。
-所有的类都应该放在同一个根目录下。</p>
-<h5 id="fang-fa-he-bian-liang">方法和变量</h5>
-<ul>
-<li>方法和变量只使用字母和数字。只在必要时使用数字字符。不要使用下划线、连字符和其它非数字字母。</li>
-<li>方法和变量名应该使用驼峰式命名。这一规则同样适用于缩略词。</li>
-</ul>
-<h5 id="shu-xing">属性</h5>
-<ul>
-<li>类属性名遵循相同的命名规则</li>
-<li>类的静态属性应该全部使用大写</li>
-</ul>
-<h4 id="sheng-ming_1">声明</h4>
-<h5 id="ext-js-4-zhi-qian-de-fang-shi">Ext JS 4 之前的方式</h5>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">ns</span><span class="p">(</span><span class="s1">'My.cool'</span><span class="p">);</span>
-<span class="nx">My</span><span class="p">.</span><span class="nx">cool …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（三）组件">
-                                       Ext JS 5 手册 核心概念（三）组件
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="../tag/javascript.html">javascript</a>
-        <a href="../tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（三）组件</h1>
-<h2>核心概念</h2>
-<h3 id="zu-jian">组件</h3>
-<p>Ext JS 应用中的 UI 是由一个或多个被称为<code>组件(Components)</code>的构件组成的。所有组件都是<code>Ext.Component</code>的子类，它能自动管理组件的生命周期，如：实例化、渲染、改变大小和位置、销毁。</p>
-<h4 id="zu-jian-de-ceng-ji">组件的层级</h4>
-<p><code>Container</code>是一种特殊的能包含其它组件的组件。一个典型的应用是由一些树状嵌套的组件组成的，由<code>container</code>来负责管理组件和它们的子组件的生命周期，包括它们的：创建、渲染、改变大小和位置、销毁。一个典型应用的组件层级是由顶部的<code>Viewport</code>开始，它包含了其它<code>containers</code>和组件嵌套而成：
-<img alt="组件层级" src="../extjs5_guide/component_heirarchy_5.png"/>
-子组件通过<code>Container</code>的<code>items</code>配置属性添加到 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（四）数据包">
-                                       Ext JS 5 手册 核心概念（四）数据包
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="../tag/javascript.html">javascript</a>
-        <a href="../tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（四）数据包</h1>
-<h2>核心概念</h2>
-<h3 id="shu-ju-bao">数据包</h3>
-<p>数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的：
- - Ext.data.Model
- - Store
- - Ext.data.proxy.Proxy</p>
-<p>上面的类几乎在所有应用中都被用到。它们由一些卫星类支撑：</p>
-<p><img alt="数据包相关类" src="../extjs5_guide/data-model.png"/></p>
-<h4 id="model">Model</h4>
-<p>类所包的中心是<code>Ext.data.Model</code>。<code>Model</code>用于描述应用中一个实体。
-Model中的主要部分有：
- - Fields
- - Proxies
- - Validations
- - Associations</p>
-<p><img alt="Model 的主要组成部分" src="../extjs5_guide/model-breakdown.png"/></p>
-<h5 id="chuang-jian-model">创建 Model</h5>
-<p>通常可以定义一个公用的基础类。这个基类能定义所有 Model 公用的属性。
-Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.model.Base' …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

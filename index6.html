@@ -68,6 +68,177 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./extxue-xi-bi-ji.html" rel="bookmark" title="Permalink to Ext学习笔记">
+                                       Ext学习笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/qian-duan.html">前端</a>
+
+    on 2008-03-19
+
+        |
+        tags:         <a href="./tag/extjs.html">extjs</a>
+        <a href="./tag/javascript.html">javascript</a>
+
+
+        |
+        <a href="./extxue-xi-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>基础</h1>
+<h1>Ext继承机制</h1>
+<h1>Ext对象</h1>
+<p>Ext.onReady()是Ext.EventManager.onDocumentReady()的速写方法。</p>
+<h1>布局管理</h1>
+<h2>Ext.Viewport</h2>
+<p>Ext.Viewport是一个特殊的容器它代表应用的可视区域（浏览器的Viewport）。</p>
+<p>Viewport自动将自己渲染到document.body，因此不需要要调用render方法。它在浏览器的viewport调整大小时自动调整自己的大小并管理窗口（Ext的窗口）的大小改变。</p>
+<h2>Ext.Component</h2>
+<p>Ext.Component是所有Ext组件的基类。所有Component的子类能被乍动
+xtype用于标识所需要生成的组件的类型。
+下面两个写法效果是一样的：</p>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">viewport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">Viewport</span><span class="p">({</span>
+        <span class="nx">layout</span><span class="o">:</span><span class="s1">'border'</span><span class="p">,</span>
+        <span class="nx">items</span><span class="o">:</span><span class="p">[</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent</span><span class="p">({</span>
+                <span class="nx">xtype</span><span class="o">:</span><span class="s1">'box'</span><span class="p">,</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span> <span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">height</span><span class="o">:</span><span class="mi">32</span>
+            <span class="p">}),</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./extxue-xi-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html" rel="bookmark" title="Permalink to Xah的Emacs Lisp 教程学习笔记">
+                                       Xah的Emacs Lisp 教程学习笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/xiao-lu.html">效率</a>
+
+    on 2008-03-10
+
+        |
+        tags:         <a href="./tag/emacs.html">emacs</a>
+
+
+        |
+        <a href="./xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>例子</h1>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-open-directory-with-explorer</span> <span class="p">()</span>
+  <span class="s">"在windows中用explorer浏览当前目录"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">shell-command</span> <span class="s">"explorer.exe ."</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">browse-url</span> <span class="s">"www.google.cn"</span><span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-directory-files</span> <span class="p">()</span>
+  <span class="s">"执行shell命令并处理它的输出。这里为显示当前目录下的文件"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="s">"ls -l"</span><span class="p">))</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-current-major-mode</span> <span class="p">()</span>
+  <span class="s">"如果当前为emacs-lisp-mode则显示当前主模式"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">eq</span> <span class="ss">'emacs-lisp-mode</span> <span class="nv">major-mode</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">message</span> <span class="s">"emacs-lisp-mode"</span><span class="p">))</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-regexp-match</span> <span class="p">()</span>
+  <span class="s">"正则表达式匹配"</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">test-string</span> <span class="s">"aaaaaaaaaaaa123sfdsfs456"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">regexp-string</span> <span class="s">"\\([0-9]+\\)[a-z]+\\([0-9]+\\)"</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">string-match</span> <span class="nv">regexp-string</span> <span class="nv">test-string</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span> <span class="nv">test-string …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html" rel="bookmark" title="Permalink to Linux内核设备驱动第三版读书笔记">
+                                       Linux内核设备驱动第三版读书笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2008-01-17
+
+        |
+        tags:         <a href="./tag/linux.html">linux</a>
+
+
+        |
+        <a href="./linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Chap 2 构建和运行内核</h1>
+<h2>设置测试系统</h2>
+<p>书中的例子以Kernel 2.6.x为基础（2.6.10）。</p>
+<h2>Hello World模块</h2>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp"></span>
+<span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">"Dual BSD/GPL"</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">"Hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">"Goodbye, cruel world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./programming-perlbi-ji.html" rel="bookmark" title="Permalink to Programming Perl笔记">
                                        Programming Perl笔记
                                     </a>

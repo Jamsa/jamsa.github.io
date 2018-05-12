@@ -68,6 +68,166 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（二）类型系统">
+                                       Ext JS 5 手册 核心概念（二）类型系统
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="../tag/javascript.html">javascript</a>
+        <a href="../tag/extjs.html">extjs</a>
+
+
+        |
+        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（二）类型系统</h1>
+<h2>核心概念</h2>
+<h3 id="lei-xing-xi-tong">类型系统</h3>
+<h4 id="ming-ming-yue-ding">命名约定</h4>
+<h5 id="lei">类</h5>
+<p>类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符和其它非数字字母。
+类名应该按包分类。至少应该使用唯一的顶级命名空间。
+顶级命名字音和类名应该使用驼峰式命名规则，其它部分都使用小写。
+非<code>Sencha</code>提供的类不应该使用<code>Ext</code>作为顶级命名空间。</p>
+<h5 id="yuan-wen-jian">源文件</h5>
+<p>类文件名按包路径保存。一个文件中只有一个类。
+所有的类都应该放在同一个根目录下。</p>
+<h5 id="fang-fa-he-bian-liang">方法和变量</h5>
+<ul>
+<li>方法和变量只使用字母和数字。只在必要时使用数字字符。不要使用下划线、连字符和其它非数字字母。</li>
+<li>方法和变量名应该使用驼峰式命名。这一规则同样适用于缩略词。</li>
+</ul>
+<h5 id="shu-xing">属性</h5>
+<ul>
+<li>类属性名遵循相同的命名规则</li>
+<li>类的静态属性应该全部使用大写</li>
+</ul>
+<h4 id="sheng-ming_1">声明</h4>
+<h5 id="ext-js-4-zhi-qian-de-fang-shi">Ext JS 4 之前的方式</h5>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">ns</span><span class="p">(</span><span class="s1">'My.cool'</span><span class="p">);</span>
+<span class="nx">My</span><span class="p">.</span><span class="nx">cool …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（三）组件">
+                                       Ext JS 5 手册 核心概念（三）组件
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="../tag/javascript.html">javascript</a>
+        <a href="../tag/extjs.html">extjs</a>
+
+
+        |
+        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（三）组件</h1>
+<h2>核心概念</h2>
+<h3 id="zu-jian">组件</h3>
+<p>Ext JS 应用中的 UI 是由一个或多个被称为<code>组件(Components)</code>的构件组成的。所有组件都是<code>Ext.Component</code>的子类，它能自动管理组件的生命周期，如：实例化、渲染、改变大小和位置、销毁。</p>
+<h4 id="zu-jian-de-ceng-ji">组件的层级</h4>
+<p><code>Container</code>是一种特殊的能包含其它组件的组件。一个典型的应用是由一些树状嵌套的组件组成的，由<code>container</code>来负责管理组件和它们的子组件的生命周期，包括它们的：创建、渲染、改变大小和位置、销毁。一个典型应用的组件层级是由顶部的<code>Viewport</code>开始，它包含了其它<code>containers</code>和组件嵌套而成：
+<img alt="组件层级" src="../extjs5_guide/component_heirarchy_5.png"/>
+子组件通过<code>Container</code>的<code>items</code>配置属性添加到 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（四）数据包">
+                                       Ext JS 5 手册 核心概念（四）数据包
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="../tag/javascript.html">javascript</a>
+        <a href="../tag/extjs.html">extjs</a>
+
+
+        |
+        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（四）数据包</h1>
+<h2>核心概念</h2>
+<h3 id="shu-ju-bao">数据包</h3>
+<p>数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的：
+ - Ext.data.Model
+ - Store
+ - Ext.data.proxy.Proxy</p>
+<p>上面的类几乎在所有应用中都被用到。它们由一些卫星类支撑：</p>
+<p><img alt="数据包相关类" src="../extjs5_guide/data-model.png"/></p>
+<h4 id="model">Model</h4>
+<p>类所包的中心是<code>Ext.data.Model</code>。<code>Model</code>用于描述应用中一个实体。
+Model中的主要部分有：
+ - Fields
+ - Proxies
+ - Validations
+ - Associations</p>
+<p><img alt="Model 的主要组成部分" src="../extjs5_guide/model-breakdown.png"/></p>
+<h5 id="chuang-jian-model">创建 Model</h5>
+<p>通常可以定义一个公用的基础类。这个基类能定义所有 Model 公用的属性。
+Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.model.Base' …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（五）事件">
                                        Ext JS 5 手册 核心概念（五）事件
                                     </a>
@@ -418,184 +578,6 @@
 <p>与coordinated状态管理对应的是independent状态。Independent identity只处理自身，而不与其它identities相关联 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../practical-clojure-ji-bi.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../practical-common-lispbi-ji.html" rel="bookmark" title="Permalink to Practical Common Lisp笔记">
-                                       Practical Common Lisp笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2011-06-03
-
-        |
-        tags:         <a href="../tag/lisp.html">lisp</a>
-
-
-        |
-        <a href="../practical-common-lispbi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>环境搭建</h1>
-<p>尝试了多种common lisp的实现，在windows下使用Lispbox时并不能使用slime。而gnu common lisp和ansi common lisp好像也不能在windows中与emacs 23和slime一起工作。结果发现只有gnu clisp的win32版本可以与win32 slime emacs23配合工作。emacs23的.emacs文件如下：</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'load-path</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">site-lisp-path</span> <span class="s">"/slime"</span><span class="p">))</span>
-<span class="c1">;;(setq inferior-lisp-program "D:\\GCL-2.6.1\\bin\\gcl.bat") ; your Lisp system</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">inferior-lisp-program</span> <span class="s">"D:/clisp-2.46/clisp.exe"</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">require</span> <span class="ss">'slime</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">slime-setup</span><span class="p">)</span>
-</pre></div>
-<h1>Introduction Why Lisp?</h1>
-<h1>Lather, Rinse, Repeat: A …</h1>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../practical-common-lispbi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../programming-in-scala-de-du-shu-bi-ji.html" rel="bookmark" title="Permalink to Programming in Scala 的读书笔记">
-                                       Programming in Scala 的读书笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2010-12-27
-
-        |
-        tags:         <a href="../tag/scala.html">scala</a>
-
-
-        |
-        <a href="../programming-in-scala-de-du-shu-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>语言基础</h1>
-<h2>变量定义</h2>
-<ul>
-<li>
-<p>scala的两种变量：val和var。val类似Java中的final变量。</p>
-</li>
-<li>
-<p>scala中使用类型推断：</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">msg</span> <span class="k">=</span> <span class="s">"Hello, world"</span>
-</pre></div>
-<p>scala根据后面的字符串推断出msg是String类型的。</p>
-<ul>
-<li>在变量名后添加冒号和变量类型可以显式指定变量类型：</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">msg</span><span class="k">:</span><span class="kt">String</span> <span class="o">=</span> <span class="s">"hello, world"</span>
-</pre></div>
-<h2>函数定义</h2>
-<ul>
-<li>例</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="n">max</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">)</span> <span class="n">x</span>
-  <span class="k">else</span> <span class="n">y</span>
-<span class="o">}</span>
-</pre></div>
-<ul>
-<li>
-<p>括号外等号之前的类型为max的返回类型。这里可以不用显式的指定返回类型，编译器会推断出类型。但有时会需要显式的指定，比如函数是递归的时。</p>
-</li>
-<li>
-<p>如果函数仅由一个句子组成，可以不写等号后的大括号</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="n">max2</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">)</span> <span class="n">x</span> <span class="k">else …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../programming-in-scala-de-du-shu-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../oafkai-fa-bi-ji.html" rel="bookmark" title="Permalink to OAF开发笔记">
-                                       OAF开发笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2010-12-09
-
-        |
-        tags:         <a href="../tag/oracle.html">oracle</a>
-        <a href="../tag/ebs.html">ebs</a>
-        <a href="../tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="../oafkai-fa-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>开发advancedTable in advancedTable</h1>
-<ol>
-<li>
-<p>配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable，在outerTable上创建detail，在这个detail中再以主从关系中的从VO创建innerTable。outerTable和inerTable都为advancedTable类型。</p>
-</li>
-<li>
-<p>主从关系中主VO需要增加一个属性用于标识下innerTable是否展开，它的值为字符串Y或N。将outerTable的Detail View Attribute设置为这个属性的名称。</p>
-</li>
-<li>
-<p>将outterTable的Child View Attribute设置为关联字段的名称。</p>
-</li>
-<li>
-<p>将outterTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
-</li>
-<li>
-<p>将innerTable和Detail View Attribute设置为对应的属性（如果有）。</p>
-</li>
-<li>
-<p>将innerTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
-</li>
-<li>
-<p>这些设置与OAF Guide中下面这段代码起的作用是一样的，这样设置以后下面CO中的代码就不需要了。</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">processRequest</span><span class="o">(...)</span>
-<span class="o">{</span>
-  <span class="n">OAWebBean</span> <span class="n">outerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">"outerTable"</span><span class="o">);</span>
-  <span class="n">OAWebBean</span> <span class="n">innerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">"innerTable …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../oafkai-fa-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
