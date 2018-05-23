@@ -68,6 +68,141 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../c-primer-plus-bi-ji.html" rel="bookmark" title="Permalink to C Primer Plus 笔记">
+                                       C Primer Plus 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2015-06-29
+
+        |
+        tags:         <a href="../tag/c.html">c</a>
+
+
+        |
+        <a href="../c-primer-plus-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>C Primer Plus 笔记</h1>
+<h2>起步</h2>
+<h3 id="biao-zhun">标准</h3>
+<p>C89 标准是由 1983 年由 ANSI 起草，于 1989 年被正式接受，它定义了语言和标准 C 程序库。C99 标准是 ISO于 1990 年制定的。ISO 和 ANSI 的标准在本质上是相同的。通常说的 ANSI C 就是指的 ANSI 版本。
+C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语言小而简单。在三个方面对它进行增强：
+ 1. 添加了对国际化字符集的处理。
+ 2. 修复明显的不足（如，64 位处理器）
+ 3. 数值计算方面的增强 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../c-primer-plus-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../learing-go-bi-ji.html" rel="bookmark" title="Permalink to Learing Go 笔记">
+                                       Learing Go 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2015-06-05
+
+        |
+        tags:         <a href="../tag/go.html">go</a>
+
+
+        |
+        <a href="../learing-go-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Learing Go 笔记</h1>
+<h2>介绍</h2>
+<h3 id="chi-xian-wen-dang">离线文档</h3>
+<p>Go自带<code>godoc</code>用于查看程序模块的文档。</p>
+<div class="highlight"><pre><span></span>godoc <span class="nb">builtin</span>
+</pre></div>
+<h3 id="hello-world">Hello World</h3>
+<div class="highlight"><pre><span></span><span class="cm">/* 这行是必须的，所有 Go 文件都必须以 package 开头，对于可单独运行的程序来说，package main 是必须的 */</span>
+<span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">"fmt"</span> <span class="c1">//导入 fmt 包</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span> <span class="c1">//可执行程序入口函数</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">"Hello, world; or 汉字"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+<h3 id="bian-liang-lei-xing-he-guan-jian-zi">变量、类型和关键字</h3>
+<p>Go 使用类似 C 的语法，行结尾不需要分号，同一行放两个以上语句需要用分号隔开。Go 的变量类型放在变量名后面。如不写作<code>int …</code></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../learing-go-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../scala-cookbook-bi-ji.html" rel="bookmark" title="Permalink to Scala Cookbook 笔记">
+                                       Scala Cookbook 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2015-05-21
+
+        |
+        tags:         <a href="../tag/scala.html">scala</a>
+
+
+        |
+        <a href="../scala-cookbook-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Scala Cookbook 笔记</h1>
+<h2>String</h2>
+<h3 id="jian-jie">简介</h3>
+<p>Scala String 是 Java String，可以使用 Java 中 String 对象的方法。由于 Scala 提供了隐式转换，因此 String（即使它是 final 的） 实例也可以使用 StringOps 类中的所有方法，因此你可以将字符串实例当作字符序列。对它使用 foreach 或使用 for 循环。字符串的另一些功能来自于 StringLike 和 WrappedString 等类。String 类至 StringOps 的隐式转换源于 Predef 对象。</p>
+<div class="highlight"><pre><span></span><span class="s">"hello"</span><span class="o">.</span><span class="n">getClass</span><span class="o">.</span><span class="n">getName</span>
+<span class="s">"hello"</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
+<span class="k">for …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../scala-cookbook-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../build-machine-learning-systems-with-python-bi-ji.html" rel="bookmark" title="Permalink to Build Machine Learning Systems with Python 笔记">
                                        Build Machine Learning Systems with Python 笔记
                                     </a>
@@ -411,150 +546,6 @@ Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
 </ul>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ext-js-5-shou-ce-ying-yong-cheng-xu-jia-gou-yi-ying-yong-cheng-xu-jia-gou-jian-jie.html" rel="bookmark" title="Permalink to Ext JS 5 手册 应用程序架构（一）应用程序架构简介">
-                                       Ext JS 5 手册 应用程序架构（一）应用程序架构简介
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="../tag/javascript.html">javascript</a>
-        <a href="../tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="../ext-js-5-shou-ce-ying-yong-cheng-xu-jia-gou-yi-ying-yong-cheng-xu-jia-gou-jian-jie.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 应用程序架构（一）应用程序架构简介</h1>
-<h2>程序架构</h2>
-<h3 id="ying-yong-cheng-xu-jia-gou-jian-jie">应用程序架构简介</h3>
-<p>Ext JS 提供了对 MVC 和 MVVM 架构的支持。</p>
-<h4 id="mvc">MVC</h4>
-<p>在 MVC 架构中，用户与 View 交互，它显示 Model 中的数据。这些交互由 Controller 来处理，它负责修改 View 和 Model。</p>
-<p>View 和 Model 互相是不知道的，因为 Controller 在直接处理更新。即，Controller 包含了 MVC 应用中大多数的程序逻辑。View 有可能也包含了少量业务逻辑。Model 则主要是提供了数据处理和业务逻辑处理的接口。</p>
-<p>MVC …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-ying-yong-cheng-xu-jia-gou-yi-ying-yong-cheng-xu-jia-gou-jian-jie.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ext-js5-shou-ce-ying-yong-cheng-xu-jia-gou-er-view-controller.html" rel="bookmark" title="Permalink to Ext JS5 手册 应用程序架构（二） View Controller">
-                                       Ext JS5 手册 应用程序架构（二） View Controller
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="../tag/javascript.html">javascript</a>
-        <a href="../tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="../ext-js5-shou-ce-ying-yong-cheng-xu-jia-gou-er-view-controller.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h2>Ext JS5 手册 应用程序架构（二） View Controller</h2>
-<h5 id="jian-ting">监听</h5>
-<p>在 Ext JS 5 中对<code>listeners</code>这个配置项进行了增强。</p>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.view.foo.Foo'</span><span class="p">,</span> <span class="p">{</span>
-<span class="nx">extend</span><span class="o">:</span> <span class="s1">'Ext.panel.Panel'</span><span class="p">,</span>
-<span class="nx">xtype</span><span class="o">:</span> <span class="s1">'foo'</span><span class="p">,</span>
-<span class="nx">controller</span><span class="o">:</span> <span class="s1">'foo'</span><span class="p">,</span>
-
-<span class="nx">items</span><span class="o">:</span> <span class="p">[{</span>
-<span class="nx">xtype</span><span class="o">:</span> <span class="s1">'textfield'</span><span class="p">,</span>
-<span class="nx">fieldLabel</span><span class="o">:</span> <span class="s1">'Bar'</span><span class="p">,</span>
-<span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
-<span class="nx">change</span><span class="o">:</span> <span class="s1">'onBarChange'</span> <span class="c1">// no scope given here</span>
-<span class="p">}</span>
-<span class="p">}]</span>
-<span class="p">});</span>
-
-<span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.view.foo.FooController'</span><span class="p">,</span> <span class="p">{</span>
-<span class="nx">extend</span><span class="o">:</span> <span class="s1">'Ext.app …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ext-js5-shou-ce-ying-yong-cheng-xu-jia-gou-er-view-controller.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../she-ji-mo-shi-hui-gu.html" rel="bookmark" title="Permalink to 设计模式回顾">
-                                       设计模式回顾
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2014-11-04
-
-        |
-        tags:         <a href="../tag/java.html">java</a>
-        <a href="../tag/design-pattern.html">design pattern</a>
-
-
-        |
-        <a href="../she-ji-mo-shi-hui-gu.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>设计模式回顾</h1>
-<h2>创建模式</h2>
-<h3 id="simple-factory">Simple Factory</h3>
-<p>工厂类提供静态方法来创建某一接口类型的具体实现，该方法根据传入的参数来决定需要创建哪种类型的实现，因此传入的参数一般带有具体的类型信息（ class 的完整名称，或在某个包下的简称等等）。
-举例：音乐盒接口的实现有钢琴音乐盒，小提琴音乐盒，有一音乐盒工厂类，它的 createMusicBox 方法内部根据参数来创建钢琴音乐盒或小提琴音乐盒。</p>
-<h3 id="abstract-factory">Abstract Factory</h3>
-<p>抽象工厂模式一般用于创建一套对象，它将具体的某套对象的创建方法封装在对应的工厂类实现里。这些工厂类实现了同一接口（抽象工厂）。工厂类接口中的各个方法都返回接口类型。在具体工厂类的实现中它的各个方法能返回一套实现中不同类型的对象。
-举例：多套 UI 组件具有不同的外观，每一套都由实现同一抽象工厂接口的具体工厂类型来创建。抽象工厂接口里规定了能创建哪些 UI 组件，各个组件的接口类型是什么。具体工厂实现里的各个方法会根据它的风格创建出对应的UI组件。</p>
-<h3 id="builder">Builder</h3>
-<p>当创建复杂的对象或结构时，需要一个负责指挥的的导演类对象，它根据传递给它的 IBuilder ，按某一步骤来进行对象的构建。IBuider中 的各个方法代表构建过程的不同步骤。IBuilder 可以有多个不同的实现。</p>
-<h3 id="factory-method">Factory Method</h3>
-<p>Factory Method 会在抽象类中留下某个创建 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../she-ji-mo-shi-hui-gu.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
