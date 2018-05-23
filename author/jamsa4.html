@@ -68,6 +68,189 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../programming-in-scala-de-du-shu-bi-ji.html" rel="bookmark" title="Permalink to Programming in Scala 的读书笔记">
+                                       Programming in Scala 的读书笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2010-12-27
+
+        |
+        tags:         <a href="../tag/scala.html">scala</a>
+
+
+        |
+        <a href="../programming-in-scala-de-du-shu-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>语言基础</h1>
+<h2>变量定义</h2>
+<ul>
+<li>
+<p>scala的两种变量：val和var。val类似Java中的final变量。</p>
+</li>
+<li>
+<p>scala中使用类型推断：</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">msg</span> <span class="k">=</span> <span class="s">"Hello, world"</span>
+</pre></div>
+<p>scala根据后面的字符串推断出msg是String类型的。</p>
+<ul>
+<li>在变量名后添加冒号和变量类型可以显式指定变量类型：</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">msg</span><span class="k">:</span><span class="kt">String</span> <span class="o">=</span> <span class="s">"hello, world"</span>
+</pre></div>
+<h2>函数定义</h2>
+<ul>
+<li>例</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="n">max</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">)</span> <span class="n">x</span>
+  <span class="k">else</span> <span class="n">y</span>
+<span class="o">}</span>
+</pre></div>
+<ul>
+<li>
+<p>括号外等号之前的类型为max的返回类型。这里可以不用显式的指定返回类型，编译器会推断出类型。但有时会需要显式的指定，比如函数是递归的时。</p>
+</li>
+<li>
+<p>如果函数仅由一个句子组成，可以不写等号后的大括号</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="n">max2</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">)</span> <span class="n">x</span> <span class="k">else …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../programming-in-scala-de-du-shu-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../oafkai-fa-bi-ji.html" rel="bookmark" title="Permalink to OAF开发笔记">
+                                       OAF开发笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2010-12-09
+
+        |
+        tags:         <a href="../tag/oracle.html">oracle</a>
+        <a href="../tag/ebs.html">ebs</a>
+        <a href="../tag/oaf.html">oaf</a>
+
+
+        |
+        <a href="../oafkai-fa-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>开发advancedTable in advancedTable</h1>
+<ol>
+<li>
+<p>配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable，在outerTable上创建detail，在这个detail中再以主从关系中的从VO创建innerTable。outerTable和inerTable都为advancedTable类型。</p>
+</li>
+<li>
+<p>主从关系中主VO需要增加一个属性用于标识下innerTable是否展开，它的值为字符串Y或N。将outerTable的Detail View Attribute设置为这个属性的名称。</p>
+</li>
+<li>
+<p>将outterTable的Child View Attribute设置为关联字段的名称。</p>
+</li>
+<li>
+<p>将outterTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
+</li>
+<li>
+<p>将innerTable和Detail View Attribute设置为对应的属性（如果有）。</p>
+</li>
+<li>
+<p>将innerTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
+</li>
+<li>
+<p>这些设置与OAF Guide中下面这段代码起的作用是一样的，这样设置以后下面CO中的代码就不需要了。</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">processRequest</span><span class="o">(...)</span>
+<span class="o">{</span>
+  <span class="n">OAWebBean</span> <span class="n">outerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">"outerTable"</span><span class="o">);</span>
+  <span class="n">OAWebBean</span> <span class="n">innerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">"innerTable …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../oafkai-fa-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../writing-gnu-emacs-extensionsbi-ji.html" rel="bookmark" title="Permalink to Writing GNU Emacs Extensions笔记">
+                                       Writing GNU Emacs Extensions笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/xiao-lu.html">效率</a>
+
+    on 2010-12-07
+
+        |
+        tags:         <a href="../tag/emacs.html">emacs</a>
+
+
+        |
+        <a href="../writing-gnu-emacs-extensionsbi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>定制Emacs</h1>
+<h2>全局按键绑定</h2>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">global-set-key</span> <span class="nv">keysequence</span> <span class="nv">command</span><span class="p">)</span>
+</pre></div>
+<p>keysequence 中普通字符按键直接用相应的字符表示。<code>\</code>应该被写作<code>\\</code>。特殊字符如META-问号应该写作<code>\M-?</code>。CONTROL-x应该写作<code>\C-x</code> CONTROL META-x写作<code>\C-\M-x</code>。CONTROL-x在文档中也被缩写为<code>^x</code>，相应的应该表示为<code>\^x</code>。<code>\M-?</code>也可以表示为<code>\e?</code>字符串<code>\e</code>是转义字符。</p>
+<h2>查询按键绑定</h2>
+<p>C-h b命令来查询按键绑定信息，这个命令被绑定到了describe-bindings。</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">global-set-key</span> <span class="s">"\M-?"</span> <span class="ss">'help-command</span><span class="p">)</span>
+</pre></div>
+<h2>对Lisp表达式求值的方法</h2>
+<ul>
+<li>将表达式放到文件中然后load这个一拥而入。M-x load-file RET rebind.el RET。</li>
+<li>使用eval-last-sexp，它被绑定到C-x C-e。</li>
+<li>使用eval-express，它被绑定到<code>M-:</code>。</li>
+<li>使用<code>*scratch*</code>缓冲构 …</li></ul>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../writing-gnu-emacs-extensionsbi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../learn-vi-bi-ji.html" rel="bookmark" title="Permalink to Learn VI 笔记">
                                        Learn VI 笔记
                                     </a>
@@ -456,165 +639,6 @@
 <p>Android发布时一般带有一套核心应用程序，包括email客户端，SMS程序，日历 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../android-dev-guidexue-xi-bi-ji-what-is-android.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../oa-framework-pagejie-xi.html" rel="bookmark" title="Permalink to OA Framework Page解析">
-                                       OA Framework Page解析
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2010-07-27
-
-        |
-        tags:         <a href="../tag/oracle.html">oracle</a>
-        <a href="../tag/ebs.html">ebs</a>
-        <a href="../tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="../oa-framework-pagejie-xi.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Page基础</h1>
-<p>在浏览器看来，OA Framework页面与其它web页面一样，被渲染为HTML。</p>
-<p>在中间层中，页面是由内存中层级分布的Javabeans组成&mdash;&mdash;非常像传统的Java客户端UI。每个UI构件，比如按钮、表格、tab、商标图像等，被渲染为页面中对应的构件。</p>
-<p>浏览器向一个页面发出请求时，OA Framework读取页面定义的元数据创建web bean结构。每个bean与一个UI控制器关联，OA Framework调用你编写的代码初始化页面。页面处理完成后，OA Framework将web bean结构交给UIX框架处理以生成发送给浏览器的HTML。</p>
-<p>当浏览器发出一个表单提请求时，OA Framework重新创建bean及其层次结构（只在必要的时候才重新创建，通常这些bean是被缓存的，只在特定的情况下才重新创建），然后调用为page bean编写的事件处理代码。当页面处理完成后，页面HTML重新生成并发送给浏览器。</p>
-<p>OA Framework MVC架构：</p>
-<p><img alt="anatomy" src="../oaf_page/anatomy.gif"/></p>
-<h1>模型Model</h1>
-<p>模型包括下层的数据和应用业务逻辑。它也提花了现实世界对象和应用服务间的抽像层。</p>
-<h2>应用模块Application Modules</h2>
-<p>BC4j应用模块本质上是一个容器，它管理和提供对&ldquo;相关&ldquo;BC4J模型对象的访问。这里的&ldquo;相关&rdquo;指的是同一个任务中的参与者 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../oa-framework-pagejie-xi.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../soa-suitepei-xun.html" rel="bookmark" title="Permalink to SOA Suite培训">
-                                       SOA Suite培训
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2010-07-13
-
-        |
-        tags:         <a href="../tag/oracle.html">oracle</a>
-        <a href="../tag/ebs.html">ebs</a>
-
-
-        |
-        <a href="../soa-suitepei-xun.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>介绍</h1>
-<ul>
-<li>配置EBS启用SOA Suite</li>
-<li>Native interface开放为WebService接口</li>
-<li>通过ISG调用外部系统提供的WebService</li>
-</ul>
-<h1>EBS的配置</h1>
-<p>Native Service Enablement Of EBS</p>
-<p>参考Metalink Note:556540.1</p>
-<h1>ISG的设置</h1>
-<h1>Native Interface开放为WebService</h1>
-<h2>开放系统标准接口为WebService</h2>
-<p>通过&ldquo;集成SOA网关&rdquo;这个职责为标准接口授权、生成WSDL、部署或卸载WebService</p>
-<h2>开放自己开发的接口为WebService</h2>
-<p>通过Perl工具程序将自己的接口注册到Repository里</p>
-<h2>外部系统异步调用EBS发布的WebService</h2>
-<h1>ISG调用外部的WebService</h1>
-<p>不支持RPC格式的SOAP消息，只支持Document格式的。</p>
-<h2>Business Event驱动对外部系统WebService的调用</h2>
-<ul>
-<li>Create/Use Invoker Event</li>
-<li>选Workflow Administrator WebApplications职责</li>
-<li>点击&ldquo;Business Events&rdquo;</li>
-<li>点击&ldquo;Create Event&rdquo;</li>
-<li>填写Name，Display Name和Description选择状态为&ldquo;Enabled …</li></ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../soa-suitepei-xun.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../hui-ji-la-mian-du-shu-bi-ji.html" rel="bookmark" title="Permalink to 会计拉面读书笔记">
-                                       会计拉面读书笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/fang-fa.html">方法</a>
-
-    on 2010-03-12
-
-
-
-        |
-        <a href="../hui-ji-la-mian-du-shu-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <ul>
-<li>
-<p>损益平衡点（Break Even Point）：利润为零或收支相等时的销售额或者销售量。</p>
-</li>
-<li>
-<p>固定费用：每个月保持固定不变的费用。</p>
-</li>
-<li>
-<p>变动费用：随销量变化的费用。</p>
-</li>
-<li>
-<p>收支相等：利润（收入-变动费用）累计起来，正好抵减固定费用。</p>
-</li>
-<li>
-<p>边际利润：(单价-单位变动费用)*销售数量。</p>
-</li>
-<li>
-<p>超过损益平衡点之后，固定费用的包袱就一点都没了，利润于是呈现跳跃式上升的态势（因为超过损益平衡点的销售所产生的边际利润实际上就是利润）。</p>
-</li>
-</ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../hui-ji-la-mian-du-shu-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

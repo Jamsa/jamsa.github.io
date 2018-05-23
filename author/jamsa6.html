@@ -68,6 +68,170 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../programming-in-emacs-lispbi-ji.html" rel="bookmark" title="Permalink to Programming in Emacs Lisp笔记">
+                                       Programming in Emacs Lisp笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/xiao-lu.html">效率</a>
+
+    on 2008-07-16
+
+        |
+        tags:         <a href="../tag/emacs.html">emacs</a>
+
+
+        |
+        <a href="../programming-in-emacs-lispbi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>序</h1>
+<h1>表处理</h1>
+<h2>Lisp列表</h2>
+<h3 id="shu-zi-lie-biao-zhong-de-lie-biao">数字，列表中的列表</h3>
+<p>列表里也可以包含数字：(+ 2 2)。</p>
+<p>Lisp里的数据和程序都是相同的方式实现的，他们都是在括号中由单词、数字或者其它列表组成的用空白分隔的列表。因为程序看起来像数据，所以一个程序可以当作数据传递给另一个程序，这是lisp一强非常强大的功能。</p>
+<h3 id="lispyuan-zi">Lisp原子</h3>
+<p>Lisp列表中的单词叫原子（意为原子在Lisp列表中不可再分割成更小的单位）。与原子不同，list可以分隔成更小的单位（car cdr &amp; cons）。</p>
+<p>空的列表：()，被称作空列表。与其它的数据类型不同，空列表被同时看作原子和列表。</p>
+<p>与自然界的原子一样,Lisp中的原子这个名称来出现得太早（意指与自然界的原子一样，原子还可以再分割）。Lisp中部分原子，比如数组就可以进行分割。但是这种机制与列表的分隔是不同的。如果依据对列表的分隔方式来说，列表中原子就是不可分隔的了。</p>
+<h3 id="lie-biao-zhong-de-kong-bai">列表中的空白</h3>
+<p>额外的空白被用来提高代码的可读性。</p>
+<div class="highlight"><pre><span></span><span class="o">'</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span>
+   <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span>
+</pre></div>
+<p>与</p>
+<div class="highlight"><pre><span></span><span class="o">'</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span> <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span>
+</pre></div>
+<p>是相同的。</p>
+<h3 id="lie-biao-pai-ban">列表排版 …</h3>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../programming-in-emacs-lispbi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../build_attrsets.html" rel="bookmark" title="Permalink to OA Framework应用构建之——创建属性集">
+                                       OA Framework应用构建之——创建属性集
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2008-07-08
+
+        |
+        tags:         <a href="../tag/oracle.html">oracle</a>
+        <a href="../tag/ebs.html">ebs</a>
+        <a href="../tag/oaf.html">oaf</a>
+
+
+        |
+        <a href="../build_attrsets.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>设计属性集</h1>
+<p><strong> 注意：</strong> 这节是为Oracle EBS开发者内部使用的。</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../build_attrsets.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../build_model.html" rel="bookmark" title="Permalink to OA Framework应用构建之——实现模型">
+                                       OA Framework应用构建之——实现模型
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2008-07-08
+
+        |
+        tags:         <a href="../tag/oracle.html">oracle</a>
+        <a href="../tag/ebs.html">ebs</a>
+        <a href="../tag/oaf.html">oaf</a>
+
+
+        |
+        <a href="../build_model.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>设计模型对象</h1>
+<h2>客户／服务代码分离</h2>
+<p>在OA Framework的MVC框架中，OA Framework划出了客户端和服务端类的清析界限，典型的JSP应用有3个物理层</p>
+<ul>
+<li>
+<p>浏览器</p>
+</li>
+<li>
+<p>web应用服务（中间层包含UI web bean结构和应用业务逻辑）</p>
+</li>
+<li>
+<p>数据库服务器</p>
+</li>
+</ul>
+<p>在中间层OA Framework对&ldquo;客户端&rdquo;和&ldquo;服务端&rdquo;类划出了界限：</p>
+<ul>
+<li>
+<p>客户端类（视图类和控制器代码）驱动HTML用户界面。</p>
+</li>
+<li>
+<p>服务端类（模型代码）支持任何客户端（不只是OA Framework）用户界面。</p>
+</li>
+</ul>
+<p>这个区别是非常重要的，它保证了从不同客户端访问服务代码的能力。</p>
+<p>OA Framework&ldquo;洋葱形&rdquo;的代码层次边界：</p>
+<p><img alt="onion" src="../oaf_build_model/onion.gif"/></p>
+<p>通常可以在这些边界征用，对象引用下层的数据流，而不会引用上层的。</p>
+<ul>
+<li>
+<p>模型代码不应该直接引用控制器代码。</p>
+</li>
+<li>
+<p>不要在客户端引用或导入任何服务端的实现类或接口（位于oracle.apps.fnd.framework.server包中的类和接口）</p>
+</li>
+<li>
+<p>如果需要服务端代码执行一些操作，应该一直通过使用根应用模块接口（oracle.apps.fnd …</p></li></ul>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../build_model.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../build_view.html" rel="bookmark" title="Permalink to OA Framework应用构建之——实现视图">
                                        OA Framework应用构建之——实现视图
                                     </a>
@@ -449,172 +613,6 @@ xtype用于标识所需要生成的组件的类型。
             <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../extxue-xi-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html" rel="bookmark" title="Permalink to Xah的Emacs Lisp 教程学习笔记">
-                                       Xah的Emacs Lisp 教程学习笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/xiao-lu.html">效率</a>
-
-    on 2008-03-10
-
-        |
-        tags:         <a href="../tag/emacs.html">emacs</a>
-
-
-        |
-        <a href="../xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>例子</h1>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-open-directory-with-explorer</span> <span class="p">()</span>
-  <span class="s">"在windows中用explorer浏览当前目录"</span>
-  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">shell-command</span> <span class="s">"explorer.exe ."</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">browse-url</span> <span class="s">"www.google.cn"</span><span class="p">)</span>
-  <span class="p">)</span>
-
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-directory-files</span> <span class="p">()</span>
-  <span class="s">"执行shell命令并处理它的输出。这里为显示当前目录下的文件"</span>
-  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="s">"ls -l"</span><span class="p">))</span>
-  <span class="p">)</span>
-
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-current-major-mode</span> <span class="p">()</span>
-  <span class="s">"如果当前为emacs-lisp-mode则显示当前主模式"</span>
-  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">eq</span> <span class="ss">'emacs-lisp-mode</span> <span class="nv">major-mode</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">message</span> <span class="s">"emacs-lisp-mode"</span><span class="p">))</span>
-  <span class="p">)</span>
-
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-regexp-match</span> <span class="p">()</span>
-  <span class="s">"正则表达式匹配"</span>
-  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">test-string</span> <span class="s">"aaaaaaaaaaaa123sfdsfs456"</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">regexp-string</span> <span class="s">"\\([0-9]+\\)[a-z]+\\([0-9]+\\)"</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">string-match</span> <span class="nv">regexp-string</span> <span class="nv">test-string</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span> <span class="nv">test-string …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html" rel="bookmark" title="Permalink to Linux内核设备驱动第三版读书笔记">
-                                       Linux内核设备驱动第三版读书笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2008-01-17
-
-        |
-        tags:         <a href="../tag/linux.html">linux</a>
-
-
-        |
-        <a href="../linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Chap 2 构建和运行内核</h1>
-<h2>设置测试系统</h2>
-<p>书中的例子以Kernel 2.6.x为基础（2.6.10）。</p>
-<h2>Hello World模块</h2>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp"></span>
-<span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">"Dual BSD/GPL"</span><span class="p">);</span>
-<span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">"Hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">"Goodbye, cruel world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
-<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../programming-perlbi-ji.html" rel="bookmark" title="Permalink to Programming Perl笔记">
-                                       Programming Perl笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2007-12-02
-
-        |
-        tags:         <a href="../tag/perl.html">perl</a>
-
-
-        |
-        <a href="../programming-perlbi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>OverView</h1>
-<h2>自然的人工语言</h2>
-<h3 id="bian-liang-yu-fa">变量语法</h3>
-<p>变量类型</p>
-<p>类型 || 字符 || 例子 || 说明
-标量 | $ | $cents | 单个的值（数字或字符串）
-数组 | @ | @large | 值列表，键为数字
-哈希表 | % | %interest | 一组值，键为字符串
-子程序 | &amp; | &amp;how | 一块可被调用的代码
-glob | <code><em></em></code> | <code></code></p>struck | 所有被命名为struck的东西
-<h3 id="bian-liang-fu-zhi">变量赋值</h3>
-<h4 id="dan-yi-bian-liang">单一变量</h4>
-<div class="highlight"><pre><span></span><span class="nv">$answer</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>                <span class="c1"># 一个整数</span>
-<span class="nv">$pi</span> <span class="o">=</span> <span class="mf">3.14159265</span><span class="p">;</span>            <span class="c1"># 一个实数</span>
-<span class="nv">$avocados</span> <span class="o">=</span> <span class="mf">6.02e23</span><span class="p">;</span>         <span class="c1"># 科学计数法</span>
-<span class="nv">$pet</span> <span class="o">=</span> <span class="s">"Camel"</span><span class="p">;</span>              <span class="c1"># 字符串</span>
-<span class="nv">$sign</span> <span class="o">=</span> <span class="s">"I love my $pet"</span><span class="p">;</span>    <span class="c1"># 带插值的字符串</span>
-<span class="nv">$cost</span> <span class="o">=</span> <span class="s">'It …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../programming-perlbi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

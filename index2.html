@@ -68,6 +68,175 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./numpy-and-scipybi-ji-yi.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（一）">
+                                       Numpy And Scipy笔记（一）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2017-03-20
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/machine-learn.html">machine learn</a>
+        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="./numpy-and-scipybi-ji-yi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>NumPy</h1>
+<h2>NumPy 数组</h2>
+<div class="highlight"><pre><span></span>`ndarray`与list类似，但是它只允许存储一种类型的数据。这样能得更好的弹性。
+</pre></div>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1e7</span><span class="p">)</span> <span class="c1"># 10^7 element</span>
+<span class="n">larr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">list_times</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+        <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span> <span class="o">*</span> <span class="n">scalar</span>
+    <span class="k">return</span> <span class="n">alist</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c1"># 使用numpy进行计算</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">arr</span> <span class="o">*</span> <span class="mf">1.1</span>
+</pre></div>
+<div class="highlight"><pre><span></span>10 loops, best of 3: 29.9 ms …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./numpy-and-scipybi-ji-yi.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./sklearnde-ji-ben-shi-yong.html" rel="bookmark" title="Permalink to Sklearn的基本使用">
+                                       Sklearn的基本使用
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2016-04-05
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/machine-learn.html">machine learn</a>
+        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="./sklearnde-ji-ben-shi-yong.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="c1"># 样例数据:鸢尾花</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c1"># 150个鸢尾花观察值指定了一些测量：花萼宽带、花萼长度、花瓣宽度和花瓣长度，</span>
+<span class="c1"># 以及对应的子类：Iris setosa、Iris versicolor和Iris virginica。</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+<div class="highlight"><pre><span></span>(150, 4)
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+</pre></div>
+<div class="highlight"><pre><span></span>array([ 5.1,  3.5,  1.4,  0.2])
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c1"># 每个观察的类别</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+<div class="highlight"><pre><span></span>(150,)
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">120</span><span class="p">]</span> <span class="c1"># 某个样例的类别</span>
+</pre></div>
+<div class="highlight"><pre><span></span>0
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">122</span><span class="p">]</span> <span class="c1"># 某个样例的类别 …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./sklearnde-ji-ben-shi-yong.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./begin-mac-programming-bi-ji.html" rel="bookmark" title="Permalink to Begin Mac Programming 笔记">
+                                       Begin Mac Programming 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2015-06-29
+
+        |
+        tags:         <a href="./tag/objective-c.html">objective-c</a>
+        <a href="./tag/mac.html">mac</a>
+
+
+        |
+        <a href="./begin-mac-programming-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>关于对象</h1>
+<h2>Objective-C 中的对象类型</h2>
+<p>Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。</p>
+<p>当我们在Objective-c中实例化一个对象后，它立即会发送一个消息来初始化自己。这个消息被称为<code>init</code>，它通设置初始值。</p>
+<p>类定义包括<code>.h</code>和<code>.m</code>两个文件。</p>
+<h2><code>.h</code>文件结构：</h2>
+<div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">//  NotifyingClass.h</span>
+<span class="c1">//  TextApp</span>
+<span class="c1">//</span>
+<span class="c1">//  Created by Tim Isted on 08/09/2009.</span>
+<span class="c1">//  Copyright 2009 __MyCompanyName__. All rights reserved.</span>
+<span class="c1">//</span>
+<span class="cp">#import &lt;Cocoa/Cocoa.h&gt;</span>
+<span class="k">@interface</span> <span class="nc">NotifyingClass</span> : <span class="bp">NSObject</span> <span class="p">{</span>
+
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+<p>在Objective-c中，使用某个类具有某个<code>public interface</code>来描述哪些消息能发送给这个类。<code>@interface</code>这一行的冒号后面指定这个类的父类，这里指向的是NSObject …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./begin-mac-programming-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./c-primer-plus-bi-ji.html" rel="bookmark" title="Permalink to C Primer Plus 笔记">
                                        C Primer Plus 笔记
                                     </a>
@@ -387,165 +556,6 @@ MapReduce框架的数据处理过程：</p>
 子组件通过<code>Container</code>的<code>items</code>配置属性添加到 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（四）数据包">
-                                       Ext JS 5 手册 核心概念（四）数据包
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="./tag/javascript.html">javascript</a>
-        <a href="./tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（四）数据包</h1>
-<h2>核心概念</h2>
-<h3 id="shu-ju-bao">数据包</h3>
-<p>数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的：
- - Ext.data.Model
- - Store
- - Ext.data.proxy.Proxy</p>
-<p>上面的类几乎在所有应用中都被用到。它们由一些卫星类支撑：</p>
-<p><img alt="数据包相关类" src="./extjs5_guide/data-model.png"/></p>
-<h4 id="model">Model</h4>
-<p>类所包的中心是<code>Ext.data.Model</code>。<code>Model</code>用于描述应用中一个实体。
-Model中的主要部分有：
- - Fields
- - Proxies
- - Validations
- - Associations</p>
-<p><img alt="Model 的主要组成部分" src="./extjs5_guide/model-breakdown.png"/></p>
-<h5 id="chuang-jian-model">创建 Model</h5>
-<p>通常可以定义一个公用的基础类。这个基类能定义所有 Model 公用的属性。
-Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.model.Base' …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（五）事件">
-                                       Ext JS 5 手册 核心概念（五）事件
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="./tag/javascript.html">javascript</a>
-        <a href="./tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（五）事件</h1>
-<h2>核心概念</h2>
-<h3 id="shi-yong-shi-jian">使用事件</h3>
-<p>Ext JS 中的组件和类在其生命周期中会产生大量的事件。事件能让你的代码响应程序的变化。</p>
-<h4 id="shi-yao-shi-shi-jian">什么是事件</h4>
-<p>以 Ext.Component 渲染到屏幕上为例，Ext JS 会在渲染完成后产生事件。我们可以配置一个<code>listeners</code>对象来监听这个事件：</p>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Panel'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">html</span><span class="o">:</span> <span class="s1">'My Panel'</span><span class="p">,</span>
-    <span class="nx">renderTo</span><span class="o">:</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(),</span>
-    <span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">afterrender</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">Ext</span><span class="p">.</span><span class="nx">Msg</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'We have been rendered'</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-<h4 id="jian-ting-shi-jian">监听事件</h4>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Button'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">renderTo …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（一）可访问性">
-                                       Ext JS 5 手册 核心概念（一）可访问性
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="./tag/javascript.html">javascript</a>
-        <a href="./tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（一）可访问性</h1>
-<h2>核心概念</h2>
-<h3 id="ke-fang-wen-xing">可访问性</h3>
-<ul>
-<li>它提供了浅析的标明当前焦点的样式，并允许自字义焦点样式</li>
-<li>键盘导航</li>
-<li>组件的 DOM 元素使用属性提供了语义信息来辅助屏幕阅读等功能：<ul>
-<li>ARIA 角色</li>
-<li>ARIA 状态和属性</li>
-</ul>
-</li>
-<li>提供了 ARIA 包，可以像引用其它包一样的在<code>app.json</code>中引用</li>
-<li>提供了 ARIA 皮肤</li>
-</ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
