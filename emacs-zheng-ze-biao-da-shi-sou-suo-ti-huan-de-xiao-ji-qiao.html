@@ -5,14 +5,14 @@
         <meta name="author" content="Jamsa" />
         <meta name="robots" content="index, follow"/>
 
-        <meta property="og:title" content="Categories for Jamsa的笔记"/>
-        <meta property="og:url" content="./categories.html"/>
+        <meta property="og:title" content="Emacs 正则表达式搜索替换的小技巧"/>
+        <meta property="og:url" content="./emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
-        <meta property="og:type" content="website"/>
+        <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="./categories.html" />
+        <link rel="canonical" href="./emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html" />
 
-        <title>Categories for Jamsa的笔记</title>
+        <title>Emacs 正则表达式搜索替换的小技巧 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -48,7 +48,7 @@
                                 <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
                                 <li ><a href="./category/kai-fa.html">开发</a></li>
                                 <li ><a href="./category/qian-duan.html">前端</a></li>
-                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li class="active"><a href="./category/xiao-lu.html">效率</a></li>
                                 <li ><a href="./category/yi-dong.html">移动</a></li>
                             </ul>
 
@@ -61,34 +61,73 @@
         <div class="row-fluid">
             <div class="span10 offset1">
                 <div class="row-fluid">
-<div class="span9">
-    <section>
-    <h1>Categories for Jamsa的笔记</h1>
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html" rel="bookmark"
+             title="Permalink to Emacs 正则表达式搜索替换的小技巧">Emacs 正则表达式搜索替换的小技巧</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
 
-    <dl>
-        <dd><a href="./category/da-shu-ju.html">大数据 (1)</a></dd>
-        <dd><a href="./category/fang-fa.html">方法 (2)</a></dd>
-        <dd><a href="./category/ji-qi-xue-xi.html">机器学习 (2)</a></dd>
-        <dd><a href="./category/kai-fa.html">开发 (34)</a></dd>
-        <dd><a href="./category/qian-duan.html">前端 (8)</a></dd>
-        <dd><a href="./category/xiao-lu.html">效率 (12)</a></dd>
-        <dd><a href="./category/yi-dong.html">移动 (4)</a></dd>
-    </dl>
-    </section>
-</div>
-<div class="span3">
-    <section id="sidebar">
-            <div>
-                <h2>Browse content by</h2>
-                <ul class="fa-ul">
-                <li><a href="./categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
-                <li><a href="./archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
-                <li><a href="./tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
+    in <a href="./category/xiao-lu.html">效率</a>
 
-                </ul>
-            </div><!-- /.browse -->
-<!-- /.Tags -->
-    </section><!-- /#sidebar -->
+    on 2018-05-23
+
+        |
+        tags:         <a href="./tag/emacs.html">emacs</a>
+
+
+        |
+        <a href="./emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <ul>
+<li>交互式的使用正则表达替换</li>
+</ul>
+<p>在Emacs中使用正则表达式替换时并不会像<code>isearch-forward-regexp</code>那么直观，无法查看到输入的正则表达式是否正确。之前我经常用<code>re-builder</code>进行表达式的测试，但是这样会打断当前的编辑工作。</p>
+<p>经过验证发现可以使用<code>isearch-forward-regexp</code>代替<code>replace-regexp</code>，可以先用<code>isearch-forward-regexp</code>，它能交互式的验证所输入的表达式能否匹配，在匹配上第一个匹配位置时，输入<code>M-%</code>切换为<code>query-replace</code>模式，在输入要替换表达式后即可进行替换操作。</p>
+<ul>
+<li>正则表达式替换重复内容
+以将行首<code>*</code>、<code>**</code>、<code>***</code>替换为同样数量的<code>#</code>为例：</li>
+</ul>
+<p>匹配表达式为：<code>^\(\*\)+</code></p>
+<p>替换表达式为：<code>\, (concat "#" (replace-regexp-in-string "\*" "#" \&amp;))</code></p>
+<p>替换表达式中的<code>\,</code>表示后面的内容为<code>elisp</code>表达式，<code>\&amp;</code>表示匹配表达式所匹配的所有内容，类似的还有<code>\n</code>,<code>n</code>为从 1 开始的数字，表示匹配上的分组内容。</p>
+<ul>
+<li>替换<code>^M</code>字符</li>
+</ul>
+<p>使用<code>M-%</code>调用<code>query-replace</code>，输入<code>C-q</code>表示要搜索的回车符。</p>
+<ul>
+<li>Emacs 正则表达中的反斜线</li>
+</ul>
+<p>在<code>elisp</code>中使用正则式时，反斜杠有时候会让新手很迷惑。在遇到正则表达式本身的特殊符号时，要两个反斜杠，比如\|、\(等，但在字符转义时，只要一个，如\n、\t、\(表示反斜杠本身)。</p>
+<p>另可参考：<a href="http://dsec.pku.edu.cn/~rli/WiKi/EmacsRegexp.html">Emacs Regexp中文手册</a></p>
+<p>在&ldquo;关于反斜线&rdquo;一节中出现的反斜线出现在elisp代码中时应该使用两个反斜线。 </p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
 </div>
                 </div>
             </div>

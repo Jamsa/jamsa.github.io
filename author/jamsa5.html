@@ -68,6 +68,148 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../jboss-seam-xue-xi-bi-ji.html" rel="bookmark" title="Permalink to JBoss Seam 学习笔记">
+                                       JBoss Seam 学习笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2009-01-15
+
+        |
+        tags:         <a href="../tag/seam.html">seam</a>
+        <a href="../tag/jsf.html">jsf</a>
+
+
+        |
+        <a href="../jboss-seam-xue-xi-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>JBoss Seam介绍</h1>
+<p>Seam是一个for Java EE5的应用框架。它是从下面的规则得到灵感的：</p>
+<ul>
+<li>
+<p>集成JSF和EJB3.0</p>
+</li>
+<li>
+<p>集成AJAX。</p>
+</li>
+</ul>
+<p>Seam支持两个开源的JSF AJAX解决方案：ICEFaces和Ajax4JSF。这些解决方案让你可以在应用中添加AJAX支持而不需要编写JS代码。</p>
+<p>Seam也支持内置EJB3组件的的JavaScript远程调用。AJAX客户端可以很容易的调用服务端组件和JMS主题，而不需要中间动作层。</p>
+<p>这两种办法都工作得比较好，如果不是有Seam内置的并发和状态管理，它确保了许多并发和异步的AJAX请求被安全高效的在服务端被处理。</p>
+<ul>
+<li>集成业务流程作为一流的构件。</li>
+</ul>
+<p>集成了jBPM，并允许定义会话层。JSF为这个会话层提供了强大的事件模型。Seam通过暴露jBPM的业务流程相关的事件，使用同样的事件处理机制，为所有Seam的组件模型提供了统一的事件模型。</p>
+<ul>
+<li>
+<p>一种&ldquo;填充&rdquo;</p>
+</li>
+<li>
+<p>申明性状态管理</p>
+</li>
+<li>
+<p>双射</p>
+</li>
+<li>
+<p>工作区管理</p>
+</li>
+<li>
+<p>到处都是带注释的POJO</p>
+</li>
+<li>
+<p>易测试</p>
+</li>
+<li>
+<p>开始！</p>
+</li>
+</ul>
+<p>Seam可以工作于任何支持EJB3的应用服务器中。通过使用Jboss嵌入式EJB3容器，甚至可以在Servlet容器中使用Seam，比如Tomcat或任何J2EE应用服务器。</p>
+<p>在现在并不是所有的人都准备迁移到EJB3。因此，在这期间可以把Seam作为一种框架来使用，使用JSF作展现，Hibernate作持久层，JavaBean处理应用逻辑。当准备迁移到EJB3.0时，迁移将比较直接。</p>
+<h1>Chapter 1. Seam教程 …</h1>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../jboss-seam-xue-xi-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../emacs-org-modeji-gtd.html" rel="bookmark" title="Permalink to Emacs Org Mode及GTD">
+                                       Emacs Org Mode及GTD
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/xiao-lu.html">效率</a>
+
+    on 2009-01-09
+
+        |
+        tags:         <a href="../tag/emacs.html">emacs</a>
+        <a href="../tag/org.html">org</a>
+
+
+        |
+        <a href="../emacs-org-modeji-gtd.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Org Mode常用快捷键</h1>
+<h2>文档操作</h2>
+<ul>
+<li>TAB 折叠或打开子项</li>
+<li>S-TAB 折叠整个文档</li>
+</ul>
+<h2>节点操作相关</h2>
+<ul>
+<li>M-左右 左右移动节点</li>
+<li>M-S-左右 整体左右移动节点及子节点</li>
+<li>M-上下 上移或下移条目</li>
+</ul>
+<h2>记录操作</h2>
+<ul>
+<li>S-上下 调整条目的优先级</li>
+<li>C-c C-t 切换条目状态</li>
+<li>C-c C-s 设置计划时间</li>
+<li>C-s C-d 设置最后完成期限</li>
+</ul>
+<h2>查找操作</h2>
+<ul>
+<li>C-c / 按关键查找</li>
+</ul>
+<h2>日程相关</h2>
+<ul>
+<li>C-c a a 日程表，再输入d、w或m分别表示按日、周或月查看</li>
+<li>C-c a t TODO列表</li>
+<li>C-c a m 按tag查找</li>
+<li>C-c a M 按tag查找，但只针对TODO项 …</li></ul>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../emacs-org-modeji-gtd.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../build_control.html" rel="bookmark" title="Permalink to OA Framework应用构建之——实现控制器">
                                        OA Framework应用构建之——实现控制器
                                     </a>
@@ -514,94 +656,6 @@
 <p>5.使用"C-s"保存时遇到麻烦时,试试使用"C-x C-w …</p></li></ul>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../emacs-tips.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../wxpython-in-actionde-du-shu-bi-ji.html" rel="bookmark" title="Permalink to wxPython In Action的读书笔记">
-                                       wxPython In Action的读书笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2008-07-08
-
-        |
-        tags:         <a href="../tag/python.html">python</a>
-        <a href="../tag/wxpython.html">wxpython</a>
-
-
-        |
-        <a href="../wxpython-in-actionde-du-shu-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Chap 1 Welcome to wxPython</h1>
-<p>一个20行的wxPython程序：</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/env python</span>
-<span class="kn">import</span> <span class="nn">wx</span>
-<span class="k">class</span> <span class="nc">MyFrame</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="bp">None</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">"My Frame"</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">))</span>
-        <span class="n">panel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">panel</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MOTION</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">OnMove</span><span class="p">)</span>
-        <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">"Pos"</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">posCtrl …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../wxpython-in-actionde-du-shu-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../adv_back_use_cases.html" rel="bookmark" title="Permalink to 高级OA Framework开发主题——支持浏览后退按钮的用例">
-                                       高级OA Framework开发主题——支持浏览后退按钮的用例
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2008-07-04
-
-        |
-        tags:         <a href="../tag/oracle.html">oracle</a>
-        <a href="../tag/ebs.html">ebs</a>
-        <a href="../tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="../adv_back_use_cases.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>概述</h1>
-<p>本文档描述了与标准后退行为相关的公用应用设计模式，并包含了各个步骤的实现细节。</p>
-<h2>需要阅读</h2>
-<p><a href="../adv_backbutton.html#goals">Supporting the Browser Back Button - Target Goals</a></p>
-<h1>一般规则</h1>
-<p>通常，你的产品在用户使用后退按钮时应该遵循下面的规则。参见下面的特殊事务流以了解实现和行为的细节。</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../adv_back_use_cases.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
