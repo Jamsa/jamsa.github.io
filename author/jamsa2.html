@@ -68,6 +68,285 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../learning-sklearnbi-ji-si.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（四）">
+                                       Learning Sklearn笔记（四）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2018-01-05
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+        <a href="../tag/machine-learn.html">machine learn</a>
+        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="../learning-sklearnbi-ji-si.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Chap4 特征处理</h1>
+<p>本章主要学习：</p>
+<ul>
+<li>
+<p>特征抽取：将现实世界的数据构建为sklearn中可用的特征数据</p>
+</li>
+<li>
+<p>特征选择：从可用的特征数据中，选择适当的特征集。</p>
+</li>
+<li>
+<p>模型选择：选择合适的算法和参数</p>
+</li>
+</ul>
+<h2>特征抽取</h2>
+<p>根据机器学习的需要将潜在的特征转换为学习方法所需要的格式被称为特征抽取或特征工程。通常可以分为两步：</p>
+<ul>
+<li>
+<p>获取特征：对源数据进行处理并提取学习样本，通常用特征/值对的形式表示，值可以是整数、浮点、字符串、分类代码等。提取特征的方法则严重依赖于源数据。</p>
+</li>
+<li>
+<p>特征转换：多数sklearn算法需要的样本集是list形式的，特征值为浮点类型。</p>
+</li>
+</ul>
+<p>Pandas可以用于对数据的预处理，它提供了类似R语言的功能。</p>
+<p>下面将使用Pandas将tatanic.csv 数据转换为pandas和DataFrame格式（DataFrame是二维标签数据，列可以包含不同的数据类型，每行表示一个样本）</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="n">titanic</span> <span class="o">=</span> <span class="n">pd …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../learning-sklearnbi-ji-si.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../learning-sklearnbi-ji-yi.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（一）">
+                                       Learning Sklearn笔记（一）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2018-01-02
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+        <a href="../tag/machine-learn.html">machine learn</a>
+        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="../learning-sklearnbi-ji-yi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Chap1 介绍</h1>
+<p>任何机器学习问题可以描述为以下三个概念：</p>
+<div class="highlight"><pre><span></span>- 需要学习如何解决的任务为T。
+- 为解决该任务所需要的经验为E。
+- 度量解决任务执行效果的P。
+</pre></div>
+<h2>线性分类</h2>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+
+<span class="n">X_iris</span><span class="p">,</span> <span class="n">y_iris</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+
+<span class="c1">#这里只取前两个特征</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X_iris</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2 …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../learning-sklearnbi-ji-yi.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../numpy-and-scipybi-ji-er.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（二）">
+                                       Numpy And Scipy笔记（二）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2017-03-28
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+        <a href="../tag/machine-learn.html">machine learn</a>
+        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="../numpy-and-scipybi-ji-er.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="c1">#%matplotlib notebook</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+</pre></div>
+<h1>SciPy</h1>
+<p><code>SciPy</code>以NumPy的数组计算处理功能为基础，提供了用于处理科学计算常用的方法：积分、取函数最大、最小值，取稀疏矩阵的特征向量，判断两个分布模式是否相同，等等。</p>
+<h2>最优化和最小化</h2>
+<p>SciPy提供的最优化处理包可以用于解决最小化的问题。典型的最小化问题是执行线性回归，查找函数的最小和最大值，取函数的根，判断两个函数是否相交。</p>
+<p><code>注意</code>：NumPy和SciPy提供的最优化和最小化工具中不含马尔可夫链蒙特卡罗(Markov Chain Monte Carlo (MCMC))功能&mdash;&mdash;即，贝叶斯分析。</p>
+<h3 id="shu-ju-jian-mo-he-ni-he">数据建模和拟合</h3>
+<p>有多种方式对数据进行线性回归拟合。如曲线拟合<code>curve_fit</code>，它是<span class="math">\( x^2 $的（即，最佳拟合方法）。下面示例数据用函数生成，并添加噪音，将这些带噪音的数据使用curve_fit进行拟合。用于拟合的线性方程是\)</span> f …</p><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' }, Macros: {} }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../numpy-and-scipybi-ji-er.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../numpy-and-scipybi-ji-san.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（三）">
+                                       Numpy And Scipy笔记（三）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2017-03-28
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+        <a href="../tag/machine-learn.html">machine learn</a>
+        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="../numpy-and-scipybi-ji-san.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+</pre></div>
+<h1>SciKit</h1>
+<p>本章主要讨论：</p>
+<div class="highlight"><pre><span></span>Scikitimage：比`scipy.ndimage`更强的图像处理模块。
+Scikitlearn：机器学习包。
+</pre></div>
+<h2>Scikit-Image</h2>
+<p>SciPy和<code>ndimage</code>类包含了非常多的处理多维数据的工具，如过滤（高斯平滑）傅利叶变换，形态（二进制侵蚀），插值和测量。可以组合这些工具进行更复杂的处理。Scikit-image正是这一类高级模块，它包含了颜色空间转换、图像强度调整算法、特征检测、锐化和降噪，图像读写等。</p>
+<h3 id="dong-tai-fa-zhi">动态阀值</h3>
+<p>图像处理中的常见的问题是对图像内容进行分块。通常的阀值技术在图像背景色较为平坦时工作得较好。但实际上图像的背景经常是变化的。这种情况下使用scikit-image提供的自适应阀值就能比较容易处理。</p>
+<p>下例我们使用生成的图像，这个图像的背景不是统一的，图像上包含随机放置的点。使用自适应阀值技术我们可以从背景中提取出这些白点。</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">skimage.filter</span> <span class="kn">as …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../numpy-and-scipybi-ji-san.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../numpy-and-scipybi-ji-yi.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（一）">
                                        Numpy And Scipy笔记（一）
                                     </a>
@@ -368,203 +647,10 @@ C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语�
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../build-machine-learning-systems-with-python-bi-ji.html" rel="bookmark" title="Permalink to Build Machine Learning Systems with Python 笔记">
-                                       Build Machine Learning Systems with Python 笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2015-05-18
-
-        |
-        tags:         <a href="../tag/machine-learn.html">machine learn</a>
-        <a href="../tag/python.html">python</a>
-
-
-        |
-        <a href="../build-machine-learning-systems-with-python-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Build Machine Learning Systems with Python 笔记</h1>
-<h2>起步</h2>
-<p>机器学习（ML）告诉机器如何自己处理任务。
-机器学习计算的典型过程：
-1. 读取和清理数据
-2. 浏览和理解输入的数据
-3. 分析如何以将数据呈现给学习算法
-4. 选择合适的模型和学习算法
-5. 准确的评估性能</p>
-<h3 id="zhun-bei-gong-zuo">准备工作</h3>
-<p>安装NumPy、SciPy、Matplotlib。NumPy提供高度优化过的多维数组计算支持，这是多数先进算法的基础数据结构。SciPy使用这些数组来提供快速的算法实现。Matplotlib用于绘制高质量的图形。</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../build-machine-learning-systems-with-python-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../hadoop-in-action-bi-ji.html" rel="bookmark" title="Permalink to Hadoop In Action 笔记">
-                                       Hadoop In Action 笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/da-shu-ju.html">大数据</a>
-
-    on 2015-05-18
-
-        |
-        tags:         <a href="../tag/hadoop.html">hadoop</a>
-
-
-        |
-        <a href="../hadoop-in-action-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Hadoop In Action 笔记</h1>
-<h2>MapReduce</h2>
-<p>MapRecuce程序执行的2个阶段，分别称为mapping和reducing。每个阶段都定义了数据处理函数，这些函数被称为mapper和reducer。在mapping阶段，MapReduce接收输入并将这些数据分别发送给mapper。在reducing阶段，reducer处理所有来自于mapper的输出并产生最终结果。简单来说mapper对输入进行过滤和转换（filter and transform）成reducer可以聚合（aggregate）的东西。
-除mapping和reducing外还需要处理数据的分割和传送。但它们与mapper和reducer不同，它们通常与特定的数据处理过程无关。MapReduce框架提供了能满足于大多数情况下的缺省实现。
-为便于处理需要一种足够强大的通用的数据结构。MapReduce使用list和pair(key/value)作为主要的数据结构。
-MapReduce框架的数据处理过程：</p>
-<ol>
-<li>应用程序的输入必须被构建成包含pair（key/value）的list，list(k1,v1)。处理多个文件的输入格式通常为<code>list(&lt;String filename, String file_content&gt;)</code>。处理单个大文件的格式可能是<code>list(&lt;Integer line_number, String log_event&gt;)</code>。</li>
-<li>list …</li></ol>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../hadoop-in-action-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（二）类型系统">
-                                       Ext JS 5 手册 核心概念（二）类型系统
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="../tag/javascript.html">javascript</a>
-        <a href="../tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（二）类型系统</h1>
-<h2>核心概念</h2>
-<h3 id="lei-xing-xi-tong">类型系统</h3>
-<h4 id="ming-ming-yue-ding">命名约定</h4>
-<h5 id="lei">类</h5>
-<p>类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符和其它非数字字母。
-类名应该按包分类。至少应该使用唯一的顶级命名空间。
-顶级命名字音和类名应该使用驼峰式命名规则，其它部分都使用小写。
-非<code>Sencha</code>提供的类不应该使用<code>Ext</code>作为顶级命名空间。</p>
-<h5 id="yuan-wen-jian">源文件</h5>
-<p>类文件名按包路径保存。一个文件中只有一个类。
-所有的类都应该放在同一个根目录下。</p>
-<h5 id="fang-fa-he-bian-liang">方法和变量</h5>
-<ul>
-<li>方法和变量只使用字母和数字。只在必要时使用数字字符。不要使用下划线、连字符和其它非数字字母。</li>
-<li>方法和变量名应该使用驼峰式命名。这一规则同样适用于缩略词。</li>
-</ul>
-<h5 id="shu-xing">属性</h5>
-<ul>
-<li>类属性名遵循相同的命名规则</li>
-<li>类的静态属性应该全部使用大写</li>
-</ul>
-<h4 id="sheng-ming_1">声明</h4>
-<h5 id="ext-js-4-zhi-qian-de-fang-shi">Ext JS 4 之前的方式</h5>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">ns</span><span class="p">(</span><span class="s1">'My.cool'</span><span class="p">);</span>
-<span class="nx">My</span><span class="p">.</span><span class="nx">cool …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（三）组件">
-                                       Ext JS 5 手册 核心概念（三）组件
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="../tag/javascript.html">javascript</a>
-        <a href="../tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（三）组件</h1>
-<h2>核心概念</h2>
-<h3 id="zu-jian">组件</h3>
-<p>Ext JS 应用中的 UI 是由一个或多个被称为<code>组件(Components)</code>的构件组成的。所有组件都是<code>Ext.Component</code>的子类，它能自动管理组件的生命周期，如：实例化、渲染、改变大小和位置、销毁。</p>
-<h4 id="zu-jian-de-ceng-ji">组件的层级</h4>
-<p><code>Container</code>是一种特殊的能包含其它组件的组件。一个典型的应用是由一些树状嵌套的组件组成的，由<code>container</code>来负责管理组件和它们的子组件的生命周期，包括它们的：创建、渲染、改变大小和位置、销毁。一个典型应用的组件层级是由顶部的<code>Viewport</code>开始，它包含了其它<code>containers</code>和组件嵌套而成：
-<img alt="组件层级" src="../extjs5_guide/component_heirarchy_5.png"/>
-子组件通过<code>Container</code>的<code>items</code>配置属性添加到 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="../author/jamsa.html">&laquo;</a>
-    Page 2 / 7
+    Page 2 / 8
         <a href="../author/jamsa3.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

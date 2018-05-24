@@ -68,6 +68,217 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./beginning-android-gamesxue-xi-bi-ji.html" rel="bookmark" title="Permalink to Beginning Android Games学习笔记">
+                                       Beginning Android Games学习笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/yi-dong.html">移动</a>
+
+    on 2012-07-28
+
+        |
+        tags:         <a href="./tag/android.html">android</a>
+
+
+        |
+        <a href="./beginning-android-gamesxue-xi-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Game Development 101</h1>
+<p>在开始hacking前先进行游戏设计。这并非指基本的设计，比如FPS中的WSAD的鼠标之类的。而是类似：是否需要splash screen？需要哪些菜单项？游戏设置里需要有哪些选项？等等。</p>
+<p>没有银弹。</p>
+<h2>游戏流派</h2>
+<p>开始之前先决定流派。除非你创造了新的流派。同一流派的游戏往往有类似的游戏机制（如控制方式、游戏目标之类）。</p>
+<ol>
+<li>Causal Game</li>
+<li>猜迷</li>
+<li>动作</li>
+<li>塔防</li>
+<li>其它创新的游戏</li>
+</ol>
+<h2>游戏设计：笔比代码更强大</h2>
+<p>在编码前集中设计游戏的用户体验：</p>
+<ul>
+<li>核心机制</li>
+<li>主要角色的粗略故事</li>
+<li>基于角色及其背景设计粗略的画面风格</li>
+<li>主要画面的概要及过渡画面</li>
+</ul>
+<p>以一个贪食蛇游戏为例。可以用纸和笔记录下这些设计，以坐标纸画出界面草图。</p>
+<h3 id="he-xin-ji-zhi">核心机制：</h3>
+<ul>
+<li>蛇头控制前进方向并拖动它的尾部。头和尾由相等尺寸的部分组成只是显示不同</li>
+<li>当蛇走到屏幕边界时，从屏幕的另一边重新进来</li>
+<li>左右按钮按下时，蛇将顺时针或逆时针转动90度</li>
+<li>如果蛇撞到自己，游戏结束</li>
+<li>如果蛇撞到了新块，则块消失，增加10分，添加一个新块到蛇尾。</li>
+</ul>
+<p>复杂的游戏需要将这些内容分开来设计，最后再将这些合并起来 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./beginning-android-gamesxue-xi-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./practical-clojure-ji-bi.html" rel="bookmark" title="Permalink to Practical Clojure 记笔">
+                                       Practical Clojure 记笔
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2012-03-12
+
+        |
+        tags:         <a href="./tag/clojure.html">clojure</a>
+
+
+        |
+        <a href="./practical-clojure-ji-bi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>状态管理</h1>
+<p>Clojure主张消除状态管理。而现实世界仍要需要状态变化。</p>
+<p>多数语言将事物（things）描述为变量或对象，并允许修改它们。这造成了对锁的需求。</p>
+<h2>状态和identity</h2>
+<p>Clojure引入新的思考事物的哲学。它将事物分解为2个独立的概念&mdash;&mdash;状态和identity。状态是与identity关联的某一时间点的值，而identity是事物不会改变的那个部分，它会与不同时间的不同状态建立连接。每个状态下的值都是不可变的。改变通过将identity指向（refer）不同的状态入口而模拟产生的。</p>
+<p>Clojure中的状态可以是任何Clojure中的数据类型。Identity是由三种引用类型（reference type）所表示的：ref、agent、atom和var。每种都描述了一个identity并指向一个状态。分别用于不同的情况：</p>
+<ul>
+<li>ref管理同步的coordinated（协调）状态</li>
+<li>agent管理异步的independent（独立，不受约束）状态</li>
+<li>atom管理同步的independent状态</li>
+</ul>
+<h2>Coordinated与Independent状态</h2>
+<p>许多系统都需要对identity的修改是以协调的方式进行以确保数据的完整性。Coordinated的修改方式下将管理多个独立的identities以确保所有修改都会同时进行。例如，在2个银行帐户间转帐操作时，钱存入一个帐号，必须也保证从另一个帐号减去相应的量，这两个动作必须同时发生。Clojure使用ref来提供这种coodinated状态。</p>
+<p>与coordinated状态管理对应的是independent状态。Independent identity只处理自身，而不与其它identities相关联 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./practical-clojure-ji-bi.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./java-niobi-ji.html" rel="bookmark" title="Permalink to Java NIO笔记">
+                                       Java NIO笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2011-07-06
+
+        |
+        tags:         <a href="./tag/java.html">java</a>
+
+
+        |
+        <a href="./java-niobi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>简介</h1>
+<p>JDK1.4，以后的版本提供了java.nio包，具体说是Channel和Selector类。</p>
+<h2>I/O概念</h2>
+<h3 id="huan-chong-qu-cao-zuo">缓冲区操作</h3>
+<p>缓冲区操作 缓冲区是所有I/O的基础。输入/输出讲的无非就是把数据移进或移出缓冲区。进程进行IO归结起来就是向操作系统发出请求，让它要么把缓冲区里的数据排干（写），要么把数据缓冲区填满（读）。</p>
+<p>进程使用read()系统调用时。内核向磁盘控制硬件发出命令，要求其从磁盘读取数据。磁盘控制器把数据直接写进内核内存缓存区，这一步通过DMA完成，无需CPU协助。一旦磁盘控制器把缓冲区装满，内核即把数据从内核空间的临时缓冲区拷贝到进程执行read()调用时指定的缓冲区。</p>
+<h3 id="fa-san-hui-ju">发散/汇聚</h3>
+<p>进程只需要一个系统调用，就能把一连串缓冲区地址传递给操作系统。然后，内核就可以顺序填充或排干多个缓冲区，读的时候就把数据发散到多个用户空间缓冲区，写的时候再从多个缓冲区把数据汇聚起来。这样用户进程就不必执行多次系统调用。</p>
+<h3 id="xu-ni-nei-cun">虚拟内存</h3>
+<p>使用虚拟内存的好处：</p>
+<ol>
+<li>
+<p>一个以上的虚拟地址可以指向同一个物理内存地址</p>
+</li>
+<li>
+<p>虚拟内存空间可大于实际可用的硬件内存</p>
+</li>
+</ol>
+<p>前面讲过一的设备控制器不能通过DMA直接存储到用户空间，但是通过利用上面提到的第一项可以把内核空间地址与用户空间地址映射到同一物理地址。这样DMA就可以填充对内核与用户进程同时可见的缓冲区。</p>
+<h3 id="nei-cun-ye-mian-diao-du">内存页面调度</h3>
+<p>为支持虚拟内存的第二个特性，必须进行虚拟内存分页。按这个方案，虚拟内存空间的页面能够继续存在于外部磁盘存储 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./java-niobi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./practical-common-lispbi-ji.html" rel="bookmark" title="Permalink to Practical Common Lisp笔记">
+                                       Practical Common Lisp笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2011-06-03
+
+        |
+        tags:         <a href="./tag/lisp.html">lisp</a>
+
+
+        |
+        <a href="./practical-common-lispbi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>环境搭建</h1>
+<p>尝试了多种common lisp的实现，在windows下使用Lispbox时并不能使用slime。而gnu common lisp和ansi common lisp好像也不能在windows中与emacs 23和slime一起工作。结果发现只有gnu clisp的win32版本可以与win32 slime emacs23配合工作。emacs23的.emacs文件如下：</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'load-path</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">site-lisp-path</span> <span class="s">"/slime"</span><span class="p">))</span>
+<span class="c1">;;(setq inferior-lisp-program "D:\\GCL-2.6.1\\bin\\gcl.bat") ; your Lisp system</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">inferior-lisp-program</span> <span class="s">"D:/clisp-2.46/clisp.exe"</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">require</span> <span class="ss">'slime</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">slime-setup</span><span class="p">)</span>
+</pre></div>
+<h1>Introduction Why Lisp?</h1>
+<h1>Lather, Rinse, Repeat: A …</h1>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./practical-common-lispbi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./programming-in-scala-de-du-shu-bi-ji.html" rel="bookmark" title="Permalink to Programming in Scala 的读书笔记">
                                        Programming in Scala 的读书笔记
                                     </a>
@@ -450,204 +661,10 @@
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./sicpdu-shu-bi-ji.html" rel="bookmark" title="Permalink to SICP读书笔记">
-                                       SICP读书笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2010-08-31
-
-        |
-        tags:         <a href="./tag/lisp.html">lisp</a>
-        <a href="./tag/scheme.html">scheme</a>
-
-
-        |
-        <a href="./sicpdu-shu-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Chap.1 Building Abstractions with Procedures</h1>
-<p>在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将两个想法，不论它们是简单或复杂，放到一起，将他们彼此设置并立即观察他们，而不将它们组织成一个想法，通过这种方法可以得到想法之间的关系。3. 将他们从现实的已经存在的其它想法中分离出来：这称为抽象，这样可以构成这些想法的通用想法。</p>
-<p>计算机语言完成任务的三个机制：</p>
-<ul>
-<li>
-<p>原生表达式，它描述了语言所关心的最简单的实体。</p>
-</li>
-<li>
-<p>组合的方法，复合元素是从简单元素构成的。</p>
-</li>
-<li>
-<p>抽象的方法，通过抽象复合元素可以被命名和作为单元被处理。</p>
-</li>
-</ul>
-<p>在编程过程中，我们处理两种类型的元素：过程和数据。数据是要处理的&ldquo;原材料&rdquo;，而过程是处理数据的规则的描述。因此，任何一门强大的编程语言应该能够 描述原生数据类型和原生过程，应该有组合和抽象过程和数据的方法。</p>
-<h2>Exercise 1.2 将下面的表达式转换为form</h2>
-<p><img alt="ch1-z-g-3" src="./SICP/ch1-z-g-3.gif"/></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="mi">5</span> <span class="mi">4</span> <span class="p">(</span><span class="nb">- </span><span class="mi">2</span> <span class="p">(</span><span class="nb">- </span><span class="mi">3</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">6</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">4</span> <span class="mi">3 …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./sicpdu-shu-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./android-dev-guidexue-xi-bi-ji-user-interface.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 User Interface">
-                                       Android Dev Guide学习笔记 User Interface
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/yi-dong.html">移动</a>
-
-    on 2010-08-20
-
-        |
-        tags:         <a href="./tag/android.html">android</a>
-
-
-        |
-        <a href="./android-dev-guidexue-xi-bi-ji-user-interface.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>用户界面</h1>
-<p>在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是View类的子类。</p>
-<p>View对象是Android平台表达用户界面的基本单元。View class作为被称作&ldquo;构件（widget）&rdquo;的基类，这些构件实现UI对象，如文本域和按钮。ViewGroup类被作为&ldquo;布局（layout）&rdquo;类的基类，它用于描述不同的布局方式，如线型、页签等。</p>
-<p>View对象的属性中存储了布局参数和屏幕中特定的矩形框中的内容。View对象自己处理自己的度量、布局、绘制、焦点变化、滚动、和在它的矩形范围内的按键/手势交互。用户界面中的View对象也是用户和交互事件接收器的交互点。</p>
-<h1>View层级结构</h1>
-<p>在Android平台上，你可以用一组包含View和ViewGroup节点的层级结构来定义Activity的UI，如下图。这个层级树根据需要可以很简单也可以很复杂，你可以使用Android中预定义的构件和布局来构建它，也可以用自定义的View来构建。</p>
-<p><img alt="ViewGroup" src="./android-dev-guide/viewgroup.png"/></p>
-<p>为了让view层级树渲染到屏幕上，你的Activity必须调用setContentView()方法并传递一个根节点的引用。Android系统接收到这个引用来废止、度量和绘制这个树。根节点请求它的子节点绘制自己&mdash;&mdash;每个view group节点负责调用它自己的子节点绘制自己。子节点可能会从父节点中请求得到某个位置的一块区块，但是父节点有最终决定分配哪个位置的多大的区域给子节点。Android从树的顶部开始解析布局元素，并实例华它们并将它们添加到它们的父节点。由于这些元素的绘制是按顺序进行的，如果出现元素重叠 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./android-dev-guidexue-xi-bi-ji-user-interface.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./android-dev-guidexue-xi-bi-ji-application-fundamentals.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 Application Fundamentals">
-                                       Android Dev Guide学习笔记 Application Fundamentals
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/yi-dong.html">移动</a>
-
-    on 2010-07-30
-
-        |
-        tags:         <a href="./tag/android.html">android</a>
-
-
-        |
-        <a href="./android-dev-guidexue-xi-bi-ji-application-fundamentals.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Application基础</h1>
-<p>Android应用程序是用Java语言编写的。被编译的代码和数据以及应用程序需要的资源文件被打包aapt tool打包为Android package格式，打包的文件以.apk结尾。这种文件是应用程序发布和安装到移动设备的方法；也是用户下载到设备上的文件。同一个.apk文件中的所有代码被当作是一个应用程序。</p>
-<p>在很多方面，每个Android应用生存在自己的世界中：</p>
-<ul>
-<li>默认情况下，所有应用程序运行在自己的Linux进程中。Android在应用程序的代码需要执行时启动进程，当它不再被需要和系统资源被其它应用程序需要时停止。</li>
-<li>每个进程有自己的虚拟机，因此应用程序代码与其它应用程序的代码是隔离的。</li>
-<li>默认情况下，每个应用程序被赋予了一个唯一的Linux用户ID。这使得只能访问应用程序自己的文件&mdash;&mdash;尽管有方法将它们导出给其它的应用程序。</li>
-</ul>
-<p>有可能将两个应用程序组织为使用相同的用户ID，在这种情况下它们将可以互相看到对方的文件。为了保护系统资源，拥有相同ID的的应用程序也可以被组织到相同的Linux进程中，共享同一个虚拟机。</p>
-<h1>应用程序组件</h1>
-<p>Android的一个主要的功能是某个应用程序可以使用其它应用程序的元素（在这个应用程序许可时）。比如，如果你的应用程序需要显示滚动的图片列表而另一个应用程序已经开发了一个并且将它对外开放，这时你可以使用它，而不是重新开发一个。你的应用程序不需要包含这个应用程序的代码或者链接（link to）它。而只是在这个需求出现时运行那个应用程序的那段代码。</p>
-<p>为实现这个目的，系统必须在需要应用程序的一部分时启动应用程序进程，并实例化那部分Java对象。因此，与绝大多数的操作系统不同，Android应用程序没有单一的程序入口（比如没有main()函数）。而是拥有可以根据需要实例化和运行的组件。有4种类型的组件 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./android-dev-guidexue-xi-bi-ji-application-fundamentals.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./android-dev-guidexue-xi-bi-ji-what-is-android.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 What is Android?">
-                                       Android Dev Guide学习笔记 What is Android?
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/yi-dong.html">移动</a>
-
-    on 2010-07-30
-
-        |
-        tags:         <a href="./tag/android.html">android</a>
-
-
-        |
-        <a href="./android-dev-guidexue-xi-bi-ji-what-is-android.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Android是什么？</h1>
-<h1>功能</h1>
-<ul>
-<li>Application framework允许重用和替换的组件</li>
-<li>Dalvik虚拟机</li>
-<li>集成了基于WebKit引擎的浏览器</li>
-<li>基于2D图形库的优化过的图形；基于OpenGL ES 1.0规范的3D图形（可选的硬件加速）。</li>
-<li>SQLite来支持结构化数据存储</li>
-<li>多媒体方面 支持：音频、视频和图像支持（MPEG4、H.264、MP3、AAC、AMR、JPG、PNG、GIF）</li>
-<li>GSM通讯（依赖于硬件）</li>
-<li>蓝牙、EDGE、3G和WiFi（依赖于硬件）</li>
-<li>摄像头、GPS、罗盘和加速感应（依赖于硬件）</li>
-<li>丰富的开发环境，包括：设备模拟器，用于调试的工具，内存和性能分析，和Eclipse IDE插件</li>
-</ul>
-<h1>Android架构</h1>
-<p>下图展示了Android操作系统的主要组件。
-<img alt="system architecture" src="./android-dev-guide/system-architecture.jpg"/></p>
-<h1>应用程序</h1>
-<p>Android发布时一般带有一套核心应用程序，包括email客户端，SMS程序，日历 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./android-dev-guidexue-xi-bi-ji-what-is-android.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="./index3.html">&laquo;</a>
-    Page 4 / 7
+    Page 4 / 8
         <a href="./index5.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

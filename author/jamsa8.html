@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Jamsa的笔记 - Jamsa"/>
+        <meta property="og:url" content="../author/jamsa.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="website"/>
+
+        <link rel="canonical" href="../author/jamsa.html" />
+
+        <title>Jamsa的笔记 - Jamsa | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="../theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="../">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="../category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="../category/fang-fa.html">方法</a></li>
+                                <li ><a href="../category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li ><a href="../category/kai-fa.html">开发</a></li>
+                                <li ><a href="../category/qian-duan.html">前端</a></li>
+                                <li ><a href="../category/xiao-lu.html">效率</a></li>
+                                <li ><a href="../category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span9">
+                <section>
+                    <ol id="posts-list" class="hfeed" start="9">
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../gawkbi-ji.html" rel="bookmark" title="Permalink to gawk笔记">
+                                       gawk笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/xiao-lu.html">效率</a>
+
+    on 2007-06-19
+
+        |
+        tags:         <a href="../tag/awk.html">awk</a>
+        <a href="../tag/linux.html">linux</a>
+
+
+        |
+        <a href="../gawkbi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>I.简介</h1>
+<p>gawk的主要功能是针对档案的第一行搜寻指令的patterns。当一行里有符合指定的patterns，gawk就会在此行执行指定的actions。gawk依此方式处理输入档案的每一行直到输入档案结束。
+gawk程序由很多的pattern与action所组成，action写在大括号{}里面。一个pattern后面就跟着一个action。整个gawk程序像下面的样子：
+pattern {action}
+pattern {action}
+在gawk程序里面，pattern和action都能被省略，但是不能两个同时省略。如果pattern被省略，对于文件中的每一行，action都会被执行。如果action被省略，内定的action则会打印出所有符合pattern的输入行。</p>
+<h2>1.执行gawk程序</h2>
+<p>有两种方式</p>
+<h3 id="axie-zai-ming-ling-xing">a.写在命令行</h3>
+<div class="highlight"><pre><span></span>gawk 'program' input-file1 input-file2 ...
+</pre></div>
+<h3 id="bxie-zai-dan-du-de-cheng-xu-wen-jian-zhong">b.写在单独的程序文件中</h3>
+<div class="highlight"><pre><span></span>gawk -f program-file input-file1 input-file2 ...
+</pre></div>
+<p>当程序文件不止一个时，可以写成</p>
+<div class="highlight"><pre><span></span>gawk -f program-file1 -f program-file2 ... input-file1 input-file2 ...
+</pre></div>
+<h2>2.一个简单的例子 …</h2>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../gawkbi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../python-bian-ma-gui-ze.html" rel="bookmark" title="Permalink to Python 编码规则">
+                                       Python 编码规则
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2007-06-19
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+
+
+        |
+        <a href="../python-bian-ma-gui-ze.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <ol>
+<li>
+<p>呆板的坚持使用一致性是傻得没边！(A Foolish Consistency is the Hobgoblin of Little Minds)</p>
+</li>
+<li>
+<p>打破一条既定规则的两个好理由：
+ a. 当应用这个规则是将导致代码可读性下降，即便对某人来说，他已经习惯于按这条规则来阅读代码了。</p>
+</li>
+</ol>
+<p>b. 为了和周围的代码保持一致而打破规则（也许是历史原因）</p>
+<ol>
+<li>代码布局
+ a. 缩进
+使用Emacs的Python-mode的默认4个空格。</li>
+</ol>
+<p>永远不要混用制表符和空格，最流行的方式是采用空格，其次是使用制表符。混合空格和制表符的代码将被转换成空格。（Emacs中，选中整个缓冲区，按ESC-x去除制表符（untabilfy))。调用Python解释器时-t选项，可对混合制表符和空白的发出警告，-tt时警告将变成错误。</p>
+<p>b. 行
+将行限制在79个字符，对顺序排放的大文本块或者注释推荐限制在72个字符。</p>
+<p>折叠长行的首选方法是使用Python支持的圆括号，方括号和花括号内的行延续。如果需要你可以在表达式周围增加一对额外的圆括号，但有时使用反斜杠看起来更好。</p>
+<p>c. 空行</p>
+<p>用两行空行分割顶层函数和类的定义，类内方法的定义使用单个行分割，额外的空行可被用于相关函数组成的群。在一组相关的单句中间可以省略空行。</p>
+<p>当空行用于分割方法的定义时，在'class'行和第一个方法定义之间也需要一个空行。</p>
+<p>在函数中使用空行时 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../python-bian-ma-gui-ze.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../sed-tips.html" rel="bookmark" title="Permalink to Sed Tips">
+                                       Sed Tips
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/xiao-lu.html">效率</a>
+
+    on 2007-06-19
+
+        |
+        tags:         <a href="../tag/linux.html">linux</a>
+        <a href="../tag/sed.html">sed</a>
+
+
+        |
+        <a href="../sed-tips.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>I介绍</h1>
+<h2>1. sed可以完成的工作</h2>
+<p>sed最常用在编辑那些需要不断重复某些编辑动作的文件上。</p>
+<p>可以用sed完成一些重复性的工作。</p>
+<p>sed可以一次执行多个不同的编辑动作。</p>
+<h2>2. sed能做哪些编辑动作</h2>
+<p>删除、修改、添加、插入、合并文件中的资料行，或读入其它文件的资料到文件中，也可以替换其中的字符串、转换其中的字母等。</p>
+<h2>3. sed工作流程</h2>
+<p>从输入中读入内容，操作完毕后发送到标准输出。</p>
+<h1>II使用sed</h1>
+<p>sed命令可以分成编辑指令与文件指令两部分。编辑指令负责控制所有编辑工作，文件指令处理文件。编辑指令由位址与函数两部分组件，位址指令用于定位对象，而编辑指令用于编辑对象。</p>
+<h2>1. 命令行上的编辑指令</h2>
+<p>在命令行上执行sed指令时用-e参数，如果sed指令在文件中用-f参数。</p>
+<div class="highlight"><pre><span></span>sed -e '编辑指令1' -e '编辑指令2' ...文件一 ...文件二
+</pre></div>
+<p>例</p>
+<div class="highlight"><pre><span></span>sed -e '1,10d' -e 's/yellow/black/g' yel.dat …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../sed-tips.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    </ol><!-- /#posts-list -->
+<p class="paginator">
+        <a href="../author/jamsa7.html">&laquo;</a>
+    Page 8 / 8
+</p>
+                </section><!-- /#content -->
+</div>
+<div class="span3">
+    <section id="sidebar">
+            <div>
+                <h2>Browse content by</h2>
+                <ul class="fa-ul">
+                <li><a href="../categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
+                <li><a href="../archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
+                <li><a href="../tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
+
+                </ul>
+            </div><!-- /.browse -->
+<!-- /.Tags -->
+    </section><!-- /#sidebar -->
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

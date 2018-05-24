@@ -68,6 +68,199 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./build-machine-learning-systems-with-python-bi-ji.html" rel="bookmark" title="Permalink to Build Machine Learning Systems with Python 笔记">
+                                       Build Machine Learning Systems with Python 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2015-05-18
+
+        |
+        tags:         <a href="./tag/machine-learn.html">machine learn</a>
+        <a href="./tag/python.html">python</a>
+
+
+        |
+        <a href="./build-machine-learning-systems-with-python-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Build Machine Learning Systems with Python 笔记</h1>
+<h2>起步</h2>
+<p>机器学习（ML）告诉机器如何自己处理任务。
+机器学习计算的典型过程：
+1. 读取和清理数据
+2. 浏览和理解输入的数据
+3. 分析如何以将数据呈现给学习算法
+4. 选择合适的模型和学习算法
+5. 准确的评估性能</p>
+<h3 id="zhun-bei-gong-zuo">准备工作</h3>
+<p>安装NumPy、SciPy、Matplotlib。NumPy提供高度优化过的多维数组计算支持，这是多数先进算法的基础数据结构。SciPy使用这些数组来提供快速的算法实现。Matplotlib用于绘制高质量的图形。</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./build-machine-learning-systems-with-python-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./hadoop-in-action-bi-ji.html" rel="bookmark" title="Permalink to Hadoop In Action 笔记">
+                                       Hadoop In Action 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/da-shu-ju.html">大数据</a>
+
+    on 2015-05-18
+
+        |
+        tags:         <a href="./tag/hadoop.html">hadoop</a>
+
+
+        |
+        <a href="./hadoop-in-action-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Hadoop In Action 笔记</h1>
+<h2>MapReduce</h2>
+<p>MapRecuce程序执行的2个阶段，分别称为mapping和reducing。每个阶段都定义了数据处理函数，这些函数被称为mapper和reducer。在mapping阶段，MapReduce接收输入并将这些数据分别发送给mapper。在reducing阶段，reducer处理所有来自于mapper的输出并产生最终结果。简单来说mapper对输入进行过滤和转换（filter and transform）成reducer可以聚合（aggregate）的东西。
+除mapping和reducing外还需要处理数据的分割和传送。但它们与mapper和reducer不同，它们通常与特定的数据处理过程无关。MapReduce框架提供了能满足于大多数情况下的缺省实现。
+为便于处理需要一种足够强大的通用的数据结构。MapReduce使用list和pair(key/value)作为主要的数据结构。
+MapReduce框架的数据处理过程：</p>
+<ol>
+<li>应用程序的输入必须被构建成包含pair（key/value）的list，list(k1,v1)。处理多个文件的输入格式通常为<code>list(&lt;String filename, String file_content&gt;)</code>。处理单个大文件的格式可能是<code>list(&lt;Integer line_number, String log_event&gt;)</code>。</li>
+<li>list …</li></ol>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./hadoop-in-action-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（二）类型系统">
+                                       Ext JS 5 手册 核心概念（二）类型系统
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="./tag/javascript.html">javascript</a>
+        <a href="./tag/extjs.html">extjs</a>
+
+
+        |
+        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（二）类型系统</h1>
+<h2>核心概念</h2>
+<h3 id="lei-xing-xi-tong">类型系统</h3>
+<h4 id="ming-ming-yue-ding">命名约定</h4>
+<h5 id="lei">类</h5>
+<p>类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符和其它非数字字母。
+类名应该按包分类。至少应该使用唯一的顶级命名空间。
+顶级命名字音和类名应该使用驼峰式命名规则，其它部分都使用小写。
+非<code>Sencha</code>提供的类不应该使用<code>Ext</code>作为顶级命名空间。</p>
+<h5 id="yuan-wen-jian">源文件</h5>
+<p>类文件名按包路径保存。一个文件中只有一个类。
+所有的类都应该放在同一个根目录下。</p>
+<h5 id="fang-fa-he-bian-liang">方法和变量</h5>
+<ul>
+<li>方法和变量只使用字母和数字。只在必要时使用数字字符。不要使用下划线、连字符和其它非数字字母。</li>
+<li>方法和变量名应该使用驼峰式命名。这一规则同样适用于缩略词。</li>
+</ul>
+<h5 id="shu-xing">属性</h5>
+<ul>
+<li>类属性名遵循相同的命名规则</li>
+<li>类的静态属性应该全部使用大写</li>
+</ul>
+<h4 id="sheng-ming_1">声明</h4>
+<h5 id="ext-js-4-zhi-qian-de-fang-shi">Ext JS 4 之前的方式</h5>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">ns</span><span class="p">(</span><span class="s1">'My.cool'</span><span class="p">);</span>
+<span class="nx">My</span><span class="p">.</span><span class="nx">cool …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（三）组件">
+                                       Ext JS 5 手册 核心概念（三）组件
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="./tag/javascript.html">javascript</a>
+        <a href="./tag/extjs.html">extjs</a>
+
+
+        |
+        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（三）组件</h1>
+<h2>核心概念</h2>
+<h3 id="zu-jian">组件</h3>
+<p>Ext JS 应用中的 UI 是由一个或多个被称为<code>组件(Components)</code>的构件组成的。所有组件都是<code>Ext.Component</code>的子类，它能自动管理组件的生命周期，如：实例化、渲染、改变大小和位置、销毁。</p>
+<h4 id="zu-jian-de-ceng-ji">组件的层级</h4>
+<p><code>Container</code>是一种特殊的能包含其它组件的组件。一个典型的应用是由一些树状嵌套的组件组成的，由<code>container</code>来负责管理组件和它们的子组件的生命周期，包括它们的：创建、渲染、改变大小和位置、销毁。一个典型应用的组件层级是由顶部的<code>Viewport</code>开始，它包含了其它<code>containers</code>和组件嵌套而成：
+<img alt="组件层级" src="./extjs5_guide/component_heirarchy_5.png"/>
+子组件通过<code>Container</code>的<code>items</code>配置属性添加到 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（四）数据包">
                                        Ext JS 5 手册 核心概念（四）数据包
                                     </a>
@@ -367,221 +560,10 @@ Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./beginning-android-gamesxue-xi-bi-ji.html" rel="bookmark" title="Permalink to Beginning Android Games学习笔记">
-                                       Beginning Android Games学习笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/yi-dong.html">移动</a>
-
-    on 2012-07-28
-
-        |
-        tags:         <a href="./tag/android.html">android</a>
-
-
-        |
-        <a href="./beginning-android-gamesxue-xi-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Game Development 101</h1>
-<p>在开始hacking前先进行游戏设计。这并非指基本的设计，比如FPS中的WSAD的鼠标之类的。而是类似：是否需要splash screen？需要哪些菜单项？游戏设置里需要有哪些选项？等等。</p>
-<p>没有银弹。</p>
-<h2>游戏流派</h2>
-<p>开始之前先决定流派。除非你创造了新的流派。同一流派的游戏往往有类似的游戏机制（如控制方式、游戏目标之类）。</p>
-<ol>
-<li>Causal Game</li>
-<li>猜迷</li>
-<li>动作</li>
-<li>塔防</li>
-<li>其它创新的游戏</li>
-</ol>
-<h2>游戏设计：笔比代码更强大</h2>
-<p>在编码前集中设计游戏的用户体验：</p>
-<ul>
-<li>核心机制</li>
-<li>主要角色的粗略故事</li>
-<li>基于角色及其背景设计粗略的画面风格</li>
-<li>主要画面的概要及过渡画面</li>
-</ul>
-<p>以一个贪食蛇游戏为例。可以用纸和笔记录下这些设计，以坐标纸画出界面草图。</p>
-<h3 id="he-xin-ji-zhi">核心机制：</h3>
-<ul>
-<li>蛇头控制前进方向并拖动它的尾部。头和尾由相等尺寸的部分组成只是显示不同</li>
-<li>当蛇走到屏幕边界时，从屏幕的另一边重新进来</li>
-<li>左右按钮按下时，蛇将顺时针或逆时针转动90度</li>
-<li>如果蛇撞到自己，游戏结束</li>
-<li>如果蛇撞到了新块，则块消失，增加10分，添加一个新块到蛇尾。</li>
-</ul>
-<p>复杂的游戏需要将这些内容分开来设计，最后再将这些合并起来 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./beginning-android-gamesxue-xi-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./practical-clojure-ji-bi.html" rel="bookmark" title="Permalink to Practical Clojure 记笔">
-                                       Practical Clojure 记笔
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2012-03-12
-
-        |
-        tags:         <a href="./tag/clojure.html">clojure</a>
-
-
-        |
-        <a href="./practical-clojure-ji-bi.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>状态管理</h1>
-<p>Clojure主张消除状态管理。而现实世界仍要需要状态变化。</p>
-<p>多数语言将事物（things）描述为变量或对象，并允许修改它们。这造成了对锁的需求。</p>
-<h2>状态和identity</h2>
-<p>Clojure引入新的思考事物的哲学。它将事物分解为2个独立的概念&mdash;&mdash;状态和identity。状态是与identity关联的某一时间点的值，而identity是事物不会改变的那个部分，它会与不同时间的不同状态建立连接。每个状态下的值都是不可变的。改变通过将identity指向（refer）不同的状态入口而模拟产生的。</p>
-<p>Clojure中的状态可以是任何Clojure中的数据类型。Identity是由三种引用类型（reference type）所表示的：ref、agent、atom和var。每种都描述了一个identity并指向一个状态。分别用于不同的情况：</p>
-<ul>
-<li>ref管理同步的coordinated（协调）状态</li>
-<li>agent管理异步的independent（独立，不受约束）状态</li>
-<li>atom管理同步的independent状态</li>
-</ul>
-<h2>Coordinated与Independent状态</h2>
-<p>许多系统都需要对identity的修改是以协调的方式进行以确保数据的完整性。Coordinated的修改方式下将管理多个独立的identities以确保所有修改都会同时进行。例如，在2个银行帐户间转帐操作时，钱存入一个帐号，必须也保证从另一个帐号减去相应的量，这两个动作必须同时发生。Clojure使用ref来提供这种coodinated状态。</p>
-<p>与coordinated状态管理对应的是independent状态。Independent identity只处理自身，而不与其它identities相关联 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./practical-clojure-ji-bi.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./java-niobi-ji.html" rel="bookmark" title="Permalink to Java NIO笔记">
-                                       Java NIO笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2011-07-06
-
-        |
-        tags:         <a href="./tag/java.html">java</a>
-
-
-        |
-        <a href="./java-niobi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>简介</h1>
-<p>JDK1.4，以后的版本提供了java.nio包，具体说是Channel和Selector类。</p>
-<h2>I/O概念</h2>
-<h3 id="huan-chong-qu-cao-zuo">缓冲区操作</h3>
-<p>缓冲区操作 缓冲区是所有I/O的基础。输入/输出讲的无非就是把数据移进或移出缓冲区。进程进行IO归结起来就是向操作系统发出请求，让它要么把缓冲区里的数据排干（写），要么把数据缓冲区填满（读）。</p>
-<p>进程使用read()系统调用时。内核向磁盘控制硬件发出命令，要求其从磁盘读取数据。磁盘控制器把数据直接写进内核内存缓存区，这一步通过DMA完成，无需CPU协助。一旦磁盘控制器把缓冲区装满，内核即把数据从内核空间的临时缓冲区拷贝到进程执行read()调用时指定的缓冲区。</p>
-<h3 id="fa-san-hui-ju">发散/汇聚</h3>
-<p>进程只需要一个系统调用，就能把一连串缓冲区地址传递给操作系统。然后，内核就可以顺序填充或排干多个缓冲区，读的时候就把数据发散到多个用户空间缓冲区，写的时候再从多个缓冲区把数据汇聚起来。这样用户进程就不必执行多次系统调用。</p>
-<h3 id="xu-ni-nei-cun">虚拟内存</h3>
-<p>使用虚拟内存的好处：</p>
-<ol>
-<li>
-<p>一个以上的虚拟地址可以指向同一个物理内存地址</p>
-</li>
-<li>
-<p>虚拟内存空间可大于实际可用的硬件内存</p>
-</li>
-</ol>
-<p>前面讲过一的设备控制器不能通过DMA直接存储到用户空间，但是通过利用上面提到的第一项可以把内核空间地址与用户空间地址映射到同一物理地址。这样DMA就可以填充对内核与用户进程同时可见的缓冲区。</p>
-<h3 id="nei-cun-ye-mian-diao-du">内存页面调度</h3>
-<p>为支持虚拟内存的第二个特性，必须进行虚拟内存分页。按这个方案，虚拟内存空间的页面能够继续存在于外部磁盘存储 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./java-niobi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./practical-common-lispbi-ji.html" rel="bookmark" title="Permalink to Practical Common Lisp笔记">
-                                       Practical Common Lisp笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2011-06-03
-
-        |
-        tags:         <a href="./tag/lisp.html">lisp</a>
-
-
-        |
-        <a href="./practical-common-lispbi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>环境搭建</h1>
-<p>尝试了多种common lisp的实现，在windows下使用Lispbox时并不能使用slime。而gnu common lisp和ansi common lisp好像也不能在windows中与emacs 23和slime一起工作。结果发现只有gnu clisp的win32版本可以与win32 slime emacs23配合工作。emacs23的.emacs文件如下：</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'load-path</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">site-lisp-path</span> <span class="s">"/slime"</span><span class="p">))</span>
-<span class="c1">;;(setq inferior-lisp-program "D:\\GCL-2.6.1\\bin\\gcl.bat") ; your Lisp system</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">inferior-lisp-program</span> <span class="s">"D:/clisp-2.46/clisp.exe"</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">require</span> <span class="ss">'slime</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">slime-setup</span><span class="p">)</span>
-</pre></div>
-<h1>Introduction Why Lisp?</h1>
-<h1>Lather, Rinse, Repeat: A …</h1>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./practical-common-lispbi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="./index2.html">&laquo;</a>
-    Page 3 / 7
+    Page 3 / 8
         <a href="./index4.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->
