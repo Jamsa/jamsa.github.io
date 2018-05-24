@@ -68,6 +68,47 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./scala-cookbook-bi-ji.html" rel="bookmark" title="Permalink to Scala Cookbook 笔记">
+                                       Scala Cookbook 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2015-05-21
+
+        |
+        tags:         <a href="./tag/scala.html">scala</a>
+
+
+        |
+        <a href="./scala-cookbook-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Scala Cookbook 笔记</h1>
+<h2>String</h2>
+<h3 id="jian-jie">简介</h3>
+<p>Scala String 是 Java String，可以使用 Java 中 String 对象的方法。由于 Scala 提供了隐式转换，因此 String（即使它是 final 的） 实例也可以使用 StringOps 类中的所有方法，因此你可以将字符串实例当作字符序列。对它使用 foreach 或使用 for 循环。字符串的另一些功能来自于 StringLike 和 WrappedString 等类。String 类至 StringOps 的隐式转换源于 Predef 对象。</p>
+<div class="highlight"><pre><span></span><span class="s">"hello"</span><span class="o">.</span><span class="n">getClass</span><span class="o">.</span><span class="n">getName</span>
+<span class="s">"hello"</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
+<span class="k">for …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./scala-cookbook-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./build-machine-learning-systems-with-python-bi-ji.html" rel="bookmark" title="Permalink to Build Machine Learning Systems with Python 笔记">
                                        Build Machine Learning Systems with Python 笔记
                                     </a>
@@ -508,53 +549,6 @@ Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
 <span class="nx">extend</span><span class="o">:</span> <span class="s1">'Ext.app …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./ext-js5-shou-ce-ying-yong-cheng-xu-jia-gou-er-view-controller.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./she-ji-mo-shi-hui-gu.html" rel="bookmark" title="Permalink to 设计模式回顾">
-                                       设计模式回顾
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2014-11-04
-
-        |
-        tags:         <a href="./tag/java.html">java</a>
-        <a href="./tag/design-pattern.html">design pattern</a>
-
-
-        |
-        <a href="./she-ji-mo-shi-hui-gu.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>设计模式回顾</h1>
-<h2>创建模式</h2>
-<h3 id="simple-factory">Simple Factory</h3>
-<p>工厂类提供静态方法来创建某一接口类型的具体实现，该方法根据传入的参数来决定需要创建哪种类型的实现，因此传入的参数一般带有具体的类型信息（ class 的完整名称，或在某个包下的简称等等）。
-举例：音乐盒接口的实现有钢琴音乐盒，小提琴音乐盒，有一音乐盒工厂类，它的 createMusicBox 方法内部根据参数来创建钢琴音乐盒或小提琴音乐盒。</p>
-<h3 id="abstract-factory">Abstract Factory</h3>
-<p>抽象工厂模式一般用于创建一套对象，它将具体的某套对象的创建方法封装在对应的工厂类实现里。这些工厂类实现了同一接口（抽象工厂）。工厂类接口中的各个方法都返回接口类型。在具体工厂类的实现中它的各个方法能返回一套实现中不同类型的对象。
-举例：多套 UI 组件具有不同的外观，每一套都由实现同一抽象工厂接口的具体工厂类型来创建。抽象工厂接口里规定了能创建哪些 UI 组件，各个组件的接口类型是什么。具体工厂实现里的各个方法会根据它的风格创建出对应的UI组件。</p>
-<h3 id="builder">Builder</h3>
-<p>当创建复杂的对象或结构时，需要一个负责指挥的的导演类对象，它根据传递给它的 IBuilder ，按某一步骤来进行对象的构建。IBuider中 的各个方法代表构建过程的不同步骤。IBuilder 可以有多个不同的实现。</p>
-<h3 id="factory-method">Factory Method</h3>
-<p>Factory Method 会在抽象类中留下某个创建 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./she-ji-mo-shi-hui-gu.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

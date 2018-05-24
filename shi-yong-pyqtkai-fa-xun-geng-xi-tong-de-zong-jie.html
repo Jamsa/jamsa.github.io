@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="使用PyQT开发巡更系统的总结"/>
+        <meta property="og:url" content="./shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="./shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html" />
+
+        <title>使用PyQT开发巡更系统的总结 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="./">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html" rel="bookmark"
+             title="Permalink to 使用PyQT开发巡更系统的总结">使用PyQT开发巡更系统的总结</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2016-04-16
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/pyqt.html">pyqt</a>
+
+
+        |
+        <a href="./shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>PyQT的内存管理模型：</h1>
+<p><code>PyQT</code>中使用了两套内存管理模型，因此需要注意内存泄漏的问题。python对象会自动释放内存，但是Qt对象却不一定。Qt有自己的树状结构内存管理机制。每个Qt对象创建时，如果指定了parent（非继承结构上的父类，而是内存结构上）对象，则它是在父对象被销毁时才会被销毁。如果Qt对象创建时未指定父对象，则需要手动管理这个对象的销毁。这个销毁操作不能像销毁python对象一样使用del，而应该使用sip模块的delete方法。例如，在Python对象中包含Qt对象时，可以在<code>__del__</code>方法中处理Qt对象的销毁：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Job</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
+
+     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="n">sip</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="p">)</span>
+</pre></div>
+<h1>线程模型：</h1>
+<p>在pyqt中使用Qt线程并不能避免GIL锁的问题。应该尽量使用Python线程来进行处理（我的实际使用中未遇到这类问题）。使用QThread有可能引发的问题：</p>
+<p><a href="http://hgoldfish.com/blogs/article/80/">QThread的讨论链接</a></p>
+<p>尽量不要在非主线程使用QObject的对象。Qt的文档说，QObject与QThread有特别的关联。有以下几个注意事项：</p>
+<ol>
+<li>
+<p>只有创建QObject的进程才能使用它。不能在一个线程里面创建QTimer，而在另外一个线程里面调用QTimer.start()。</p>
+</li>
+<li>
+<p>在一个线程里面创建的QObject不能在另外一个线程里面被销毁。</p>
+</li>
+<li>
+<p>Qt的内存管理模型区别&ldquo;父QObject&rdquo;和&ldquo;子QObject&rdquo;。Qt要求&ldquo;子QObject&rdquo;必须和&ldquo;父QObject&rdquo;同一个线程。</p>
+</li>
+</ol>
+<p>很不幸的是，第2条和Python的GC有冲突。Python的GC不固定地在某个线程里面运行。如果刚好回收了一个不在当前线程里面创建的QObject，程序就有可能会崩溃。注：貌似PyQt的开发者提到会解决这个问题，不知道现在怎么样了。</p>
+<h1>信号/槽</h1>
+<p>PyQT  4.5以后的版本可以直接使用pyqtSignal和pyqtSlot来定义信号和槽。</p>
+<p>pyqtSignal只能用于QObject的子类中。可以用pyqtSinagl产生的信号对象的connect方法将信号与槽连接起来。</p>
+<p>pyqtSlot是一个decorator用于定义槽。</p>
+<h1>PyQt中使用SQLDatabase连接sqlite3</h1>
+<p>使用过程中发现如果为tableView定义<code>QSqlQueryModel</code>，调用<code>QSqlQueryModel.setQuery</code>之后它会自动执行查询，不需要再执行<code>select</code>或<code>exec_()</code>方法，如果执行<code>exec_()</code>方法反而会导致锁库。</p>
+<p>几个小技巧：</p>
+<p>1. 实现表格的实时刷新：通常要实现数据刷新需要调用QSqlQueryModel的setQuery方法重新执行查询。这个时候表格中选中的行或单元格会失去焦点。如果只是想根据内存中的数据实现实时的表格展现。可以通过在QSqlQueryModel的子类中添加定时器，该定时器定时产生QSqlQueryModel的layoutChanged信号。例：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestQueryModel</span><span class="p">(</span><span class="n">QSqlQueryModel</span><span class="p">):</span>
+     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">parent</span><span class="p">):</span> 
+        <span class="n">QSqlQueryModel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">=</span><span class="n">QSqlDatabase</span><span class="o">.</span><span class="n">addDatabase</span><span class="p">(</span><span class="s2">"QSQLITE"</span><span class="p">,</span><span class="s2">"MainTableModel"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setDatabaseName</span><span class="p">(</span><span class="n">DB_FILE_NAME</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="err">&lsquo;</span><span class="n">select</span> <span class="err">&hellip;</span>
+        <span class="n">timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">timer</span><span class="o">.</span><span class="n">setInterval</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+        <span class="n">timer</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">refreshTable</span><span class="p">)</span>
+     <span class="k">def</span> <span class="nf">refreshTable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layoutChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+</pre></div>
+<p>2. 实现行变色或单元格变色：通过覆盖QSqlQueryModel中的data方法：</p>
+<div class="highlight"><pre><span></span>   <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">role</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">index</span><span class="o">.</span><span class="n">isValid</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">QVariant</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">BackgroundRole</span><span class="p">:</span> <span class="c1"># 变色</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isRowTimeout</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">QBrush</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">yellow</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">QBrush</span><span class="p">()</span>
+            <span class="c1">#if index.row() % 2 == 0:</span>
+            <span class="c1">#    return QBrush(Qt.yellow)</span>
+            <span class="c1"># delta = self.getDeltaSeconds(index)</span>
+            <span class="c1"># if delta &gt; 60: # 1分钟显示黄</span>
+            <span class="c1">#     return QBrush(Qt.yellow)</span>
+            <span class="c1"># else:</span>
+            <span class="c1">#     return QBrush()</span>
+        <span class="k">elif</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">:</span> <span class="c1"># 显示值</span>
+            <span class="n">variant</span> <span class="o">=</span> <span class="n">QSqlQueryModel</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">role</span><span class="p">)</span> <span class="c1"># 默认显示值</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span><span class="o">==</span><span class="mi">6</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpcServer</span><span class="p">:</span>                          <span class="c1"># 最后活动列</span>
+                <span class="n">delta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDeltaSeconds</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                <span class="c1">#return QVariant()</span>
+                <span class="k">if</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">QVariant</span><span class="p">(</span> <span class="sa">u</span><span class="s1">'未连接'</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">delta</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">QVariant</span><span class="p">(</span> <span class="sa">u</span><span class="s1">'在线'</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">QVariant</span><span class="p">(</span><span class="sa">u</span><span class="s1">'离线'</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">variant</span>
+        <span class="k">elif</span> <span class="n">role</span> <span class="o">!=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">QVariant</span><span class="p">()</span>
+        <span class="c1">#return super(QSqlQueryModel,self).data(index,role)</span>
+        <span class="k">return</span> <span class="n">QSqlQueryModel</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">role</span><span class="p">)</span>
+</pre></div>
+<p>3. 表头列名：通过覆盖QSqlQueryModel中的headerData方法：</p>
+<div class="highlight"><pre><span></span>   <span class="n">header_labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">'主机识别码'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'别名'</span><span class="p">,</span><span class="sa">u</span><span class="s1">'主机名'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'命令类型代码'</span><span class="p">,</span><span class="sa">u</span><span class="s1">'命令类型'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'命令内容'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'超时'</span><span class="p">,</span><span class="sa">u</span><span class="s1">'时间'</span><span class="p">,</span><span class="sa">u</span><span class="s1">'是否定时'</span><span class="p">,</span><span class="sa">u</span><span class="s1">'回应'</span><span class="p">,</span><span class="sa">u</span><span class="s1">'回应时间'</span><span class="p">,</span><span class="sa">u</span><span class="s1">'回应1'</span><span class="p">,</span><span class="sa">u</span><span class="s1">'回应1时间'</span><span class="p">]</span>
+   <span class="k">def</span> <span class="nf">headerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span> <span class="ow">and</span> <span class="n">orientation</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Horizontal</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">header_labels</span><span class="p">[</span><span class="n">section</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">QSqlQueryModel</span><span class="o">.</span><span class="n">headerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">section</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">role</span><span class="p">)</span>
+</pre></div>
+<h1>sqlite3相关</h1>
+<p>1. ifnull、时间差、汉字的处理：</p>
+<div class="highlight"><pre><span></span><span class="n">sqlstr</span> <span class="o">=</span> <span class="s2">"select t.client_id,h.name,h.host_name,t.command_type,case when t.command_type ='workCheck' then '"</span><span class="o">+</span><span class="sa">u</span><span class="s1">'巡查'</span><span class="o">+</span><span class="s2">"' else '"</span><span class="o">+</span><span class="sa">u</span><span class="s1">'状态检查'</span><span class="o">+</span><span class="s2">"' end as command_type_name,t.command_message,t.command_timeout,t.creation_time,case when ifnull(t.schedule_flag,'false')='true' then '"</span><span class="o">+</span><span class="sa">u</span><span class="s2">"是"</span><span class="o">+</span><span class="s2">"' else '"</span><span class="o">+</span><span class="sa">u</span><span class="s2">"否"</span><span class="o">+</span><span class="s2">"' end schedule_flag,t.reply_message,t.reply_time,t.reply1_message,t.reply1_time ,case when (strftime('</span><span class="si">%s</span><span class="s2">',ifnull(t.reply_time,datetime('now','localtime'))) - strftime('</span><span class="si">%s</span><span class="s2">',t.creation_time) - ifnull(t.command_timeout,"</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">globalConfig</span><span class="p">[</span><span class="s1">'timeout'</span><span class="p">])</span><span class="o">+</span><span class="s2">"))&gt;0 then '"</span><span class="o">+</span><span class="sa">u</span><span class="s1">'是'</span><span class="o">+</span><span class="s2">"' else '"</span><span class="o">+</span><span class="sa">u</span><span class="s1">'否'</span><span class="o">+</span><span class="s2">"' end as is_timeout from client_host_logs t,client_hosts h where t.client_id = h.id "</span>
+</pre></div>
+<p>这里<code>datetime(&lsquo;now&rsquo;,&rsquo;localtime&rsquo;)</code>，是用于当前时间的<code>localtime</code>表示，因为<code>datetime</code>默认取的是<code>utc</code>时间，而不是本地时间，这个sql中需要将它与<code>creation_time</code>和<code>reply_time</code>等字段进行计算，这两个字段中保存的都是本地时间，因此使用<code>datetime(&lsquo;now&rsquo;)</code>取当前时间时需要传递<code>localtime</code>参数。</p>
+<p>2. QSqlDatabase的使用，<code>QSqlDatabase.database(dbname)</code>可以认为是创建数据库连接，不传<code>dbname</code>时认为是创建一个默认的连接。同一连接是会被复用的，如果不同的地方使用相同的<code>dbname</code>则认为会获取到同一个数据库连接进行操作。这时有可能会出现锁的情况。应该在不同的地方和线程中考虑使用不同的<code>dbname</code>，即不同的数据库连接来进行操作，防止出现锁表的问题。</p>
+<h1>使用pyinstaller打包pyqt程序</h1>
+<p>打包过程本身非常简单。如果程序需要uac权限运行，则需要在spec中指定uac信息，如：</p>
+<div class="highlight"><pre><span></span><span class="n">exe</span> <span class="o">=</span> <span class="n">EXE</span><span class="p">(</span><span class="n">pyz</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">scripts</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">binaries</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">zipfiles</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">datas</span><span class="p">,</span>
+          <span class="n">name</span><span class="o">=</span><span class="s1">'JKClient'</span><span class="p">,</span>
+          <span class="n">debug</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+          <span class="n">strip</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+          <span class="n">upx</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+          <span class="n">manifest</span><span class="o">=</span><span class="s1">'JKClient.exe.manifest'</span><span class="p">,</span>
+          <span class="n">icon</span><span class="o">=</span><span class="s1">'res/icon.ico'</span><span class="p">,</span>
+          <span class="n">console</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+          <span class="n">uac_admin</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+<p>程序运行时目录下要有对应的manifest文件。</p>
+<h1>通过<code>_winreg</code>操作注册表</h1>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_auto_run</span><span class="p">(</span><span class="n">valueName</span><span class="p">,</span><span class="n">absPath</span><span class="p">,</span><span class="n">addToMachineKey</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">"""添加启动项"""</span>
+    <span class="n">pkey</span> <span class="o">=</span> <span class="n">_winreg</span><span class="o">.</span><span class="n">HKEY_CURRENT_USER</span>
+    <span class="k">if</span> <span class="n">addToMachineKey</span><span class="p">:</span>
+        <span class="n">pkey</span> <span class="o">=</span> <span class="n">_winreg</span><span class="o">.</span><span class="n">HKEY_LOCAL_MACHINE</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">_winreg</span><span class="o">.</span><span class="n">OpenKey</span><span class="p">(</span><span class="n">pkey</span><span class="p">,</span> <span class="s1">'Software</span><span class="se">\\</span><span class="s1">Microsoft</span><span class="se">\\</span><span class="s1">Windows</span><span class="se">\\</span><span class="s1">CurrentVersion</span><span class="se">\\</span><span class="s1">Run'</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">valuetype</span><span class="p">)</span> <span class="o">=</span> <span class="n">_winreg</span><span class="o">.</span><span class="n">QueryValueEx</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">valueName</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">absPath</span><span class="p">:</span>
+            <span class="k">return</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">_winreg</span><span class="o">.</span><span class="n">CreateKey</span><span class="p">(</span><span class="n">pkey</span><span class="p">,</span><span class="s2">"Software</span><span class="se">\\</span><span class="s2">Microsoft</span><span class="se">\\</span><span class="s2">Windows</span><span class="se">\\</span><span class="s2">CurrentVersion</span><span class="se">\\</span><span class="s2">Run"</span><span class="p">)</span>
+    <span class="n">_winreg</span><span class="o">.</span><span class="n">SetValueEx</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">valueName</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">_winreg</span><span class="o">.</span><span class="n">REG_SZ</span><span class="p">,</span><span class="n">absPath</span><span class="p">)</span>
+</pre></div>
+<h1>通过pywin32添加计划任务（win7）：</h1>
+<p>win7中有uac权限的程序无法通过添加注册表项进行启动。只能通过添加计划任务的方式进行启动。
+代码如下：</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">win32com.client</span><span class="o">,</span><span class="nn">sys</span>
+<span class="k">def</span> <span class="nf">add_schedule_run</span><span class="p">(</span><span class="n">valueName</span><span class="p">,</span><span class="n">absPath</span><span class="p">):</span>
+    <span class="sd">"""添加计划任务"""</span>
+    <span class="n">service</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">'Schedule.Service'</span><span class="p">)</span>
+    <span class="n">service</span><span class="o">.</span><span class="n">Connect</span><span class="p">()</span>
+    <span class="c1">#service.getRunningTasks()</span>
+    <span class="n">rootFolder</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">GetFolder</span><span class="p">(</span><span class="s2">"</span><span class="se">\\</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">rootFolder</span><span class="o">.</span><span class="n">getTask</span><span class="p">(</span><span class="n">valueName</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">task</span> <span class="ow">and</span> <span class="n">task</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="n">valueName</span><span class="p">:</span>
+            <span class="n">taskDef</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">Definition</span>
+            <span class="n">taskAction</span> <span class="o">=</span> <span class="n">taskDef</span><span class="o">.</span><span class="n">Actions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">taskPath</span> <span class="o">=</span> <span class="n">taskAction</span><span class="o">.</span><span class="n">Path</span>
+            <span class="k">if</span> <span class="n">taskPath</span> <span class="o">==</span> <span class="n">absPath</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>               <span class="c1"># 路径不同时删除原来的计划任务</span>
+                <span class="n">rootFolder</span><span class="o">.</span><span class="n">DeleteTask</span><span class="p">(</span><span class="n">valueName</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>                    <span class="c1"># 任务不存在</span>
+    <span class="n">taskDef</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">NewTask</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">regInfo</span> <span class="o">=</span> <span class="n">taskDef</span><span class="o">.</span><span class="n">RegistrationInfo</span>
+    <span class="n">regInfo</span><span class="o">.</span><span class="n">Description</span> <span class="o">=</span> <span class="s2">"JKClient"</span>
+    <span class="n">regInfo</span><span class="o">.</span><span class="n">Author</span> <span class="o">=</span> <span class="s2">"JKClient"</span>
+    <span class="n">principal</span> <span class="o">=</span> <span class="n">taskDef</span><span class="o">.</span><span class="n">Principal</span>
+    <span class="n">principal</span><span class="o">.</span><span class="n">LogonType</span> <span class="o">=</span> <span class="mi">3</span>     <span class="c1"># 当任何用户登录时</span>
+    <span class="n">principal</span><span class="o">.</span><span class="n">RunLevel</span> <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># 最高权限运行</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="n">taskDef</span><span class="o">.</span><span class="n">Settings</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">Enabled</span> <span class="o">=</span> <span class="bp">True</span> <span class="c1">#启用</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">StartWhenAvailable</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">Hidden</span> <span class="o">=</span> <span class="bp">False</span> <span class="c1">#If False, the task will be visible in the UI. The default is False.</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">MultipleInstances</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#单实例</span>
+    <span class="n">triggers</span> <span class="o">=</span> <span class="n">taskDef</span><span class="o">.</span><span class="n">Triggers</span>
+    <span class="n">trigger</span> <span class="o">=</span> <span class="n">triggers</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="c1"># TASK_TRIGGER_LOGON</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">taskDef</span><span class="o">.</span><span class="n">Actions</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 执行程序</span>
+    <span class="n">action</span><span class="o">.</span><span class="n">Path</span> <span class="o">=</span> <span class="n">absPath</span>
+    <span class="c1"># 6：TASK_CREATE_OR_UPDATE，3：User must already be logged on. The task will be run only in an existing interactive session.</span>
+    <span class="n">rootFolder</span><span class="o">.</span><span class="n">RegisterTaskDefinition</span><span class="p">(</span><span class="n">valueName</span><span class="p">,</span> <span class="n">taskDef</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span><span class="bp">None</span> <span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+<p>该方法不能用于windowsxp。</p>
+<h1>QString转Python str：</h1>
+<p>python2.7下需要对字符串进行转换。</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">qstr_to_utf8str</span><span class="p">(</span><span class="n">qt_str</span><span class="p">):</span>
+    <span class="sd">"""QString转utf8 str"""</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">qt_str</span><span class="o">.</span><span class="n">toUtf8</span><span class="p">())</span>
+</pre></div>
+<h1>多线程rpcServer:</h1>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ThreadingXMLRPCServer</span><span class="p">(</span><span class="n">ThreadingMixIn</span><span class="p">,</span> <span class="n">SimpleXMLRPCServer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ip_port</span><span class="p">):</span>
+        <span class="n">SimpleXMLRPCServer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ip_port</span><span class="p">,</span><span class="n">allow_none</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">RPCServer</span><span class="p">(</span><span class="n">Thread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RPCServer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">ThreadingXMLRPCServer</span><span class="p">((</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">register_introspection_functions</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">register_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateClientState</span><span class="p">,</span> <span class="s2">"updateClientState"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">register_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateClientLog</span><span class="p">,</span> <span class="s2">"updateClientLog"</span><span class="p">)</span>
+</pre></div>
+<h1>PyQT加载国际化资源</h1>
+<p>Qt默认是支持国际化的，在PyQt安装好后也已经带了国际化资源，在模块目录下有pm资源文件。pyqt程序启动时如果不加载这些资源，那么默认情况下它是不会自动加载的。这会造成使用<code>QInputDialog.getText(self, u'发送指令', prompt_msg)</code>这类方法时，所产生的对话框等界面组件上出现&ldquo;ok&rdquo;&rdquo;cancel&rdquo;，而不显示中文。</p>
+<p>解决方法是直接从PyQt的资源路径上加载资源，或者从指定的目录上加载资源。</p>
+<div class="highlight"><pre><span></span>     <span class="n">translator</span> <span class="o">=</span> <span class="n">QTranslator</span><span class="p">()</span>
+    <span class="c1">#print(QLibraryInfo.location(QLibraryInfo.TranslationsPath)) #PyQt程序库所带的资源路径</span>
+    <span class="n">aa</span> <span class="o">=</span> <span class="n">translator</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"qt_zh_CN"</span><span class="p">,</span><span class="s2">"./res&rdquo;) #自定义的资源路径加载资源</span>
+    <span class="c1">#translator.load("qt_zh_CN","c:/Python27/Lib/site-packages/PyQt4/translations")</span>
+    <span class="c1">#print('##'+str(aa))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">installTranslator</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span>
+</pre></div>
+<p>当使用pyinstaller打包程序时，不会自动打包资源文件，因此应该像上面的代码一样把<code>PyQt/translations</code>目录下的资源复制到工程目录下。</p>
+<p>c:\Python27\Scripts\pyinstaller.exe JKServer.spec</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

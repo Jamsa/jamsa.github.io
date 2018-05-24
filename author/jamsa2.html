@@ -401,6 +401,57 @@ Scikitlearn：机器学习包。
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html" rel="bookmark" title="Permalink to 使用PyQT开发巡更系统的总结">
+                                       使用PyQT开发巡更系统的总结
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2016-04-16
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+        <a href="../tag/pyqt.html">pyqt</a>
+
+
+        |
+        <a href="../shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>PyQT的内存管理模型：</h1>
+<p><code>PyQT</code>中使用了两套内存管理模型，因此需要注意内存泄漏的问题。python对象会自动释放内存，但是Qt对象却不一定。Qt有自己的树状结构内存管理机制。每个Qt对象创建时，如果指定了parent（非继承结构上的父类，而是内存结构上）对象，则它是在父对象被销毁时才会被销毁。如果Qt对象创建时未指定父对象，则需要手动管理这个对象的销毁。这个销毁操作不能像销毁python对象一样使用del，而应该使用sip模块的delete方法。例如，在Python对象中包含Qt对象时，可以在<code>__del__</code>方法中处理Qt对象的销毁：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Job</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
+
+     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="n">sip</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="p">)</span>
+</pre></div>
+<h1>线程模型：</h1>
+<p>在pyqt中使用Qt线程并不能避免GIL锁的问题。应该尽量使用Python线程来进行处理（我的实际使用中未遇到这类问题）。使用QThread有可能引发的问题：</p>
+<p><a href="http://hgoldfish.com/blogs/article/80/">QThread的讨论链接</a></p>
+<p>尽量不要在非主线程使用QObject的对象。Qt的文档说，QObject与QThread有特别的关联。有以下几个注意事项：</p>
+<ol>
+<li>
+<p>只有创建QObject的进程才能使用它。不能在一个线程里面创建QTimer …</p></li></ol>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../sklearnde-ji-ben-shi-yong.html" rel="bookmark" title="Permalink to Sklearn的基本使用">
                                        Sklearn的基本使用
                                     </a>
@@ -601,47 +652,6 @@ C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语�
 <p>Go 使用类似 C 的语法，行结尾不需要分号，同一行放两个以上语句需要用分号隔开。Go 的变量类型放在变量名后面。如不写作<code>int …</code></p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../learing-go-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../scala-cookbook-bi-ji.html" rel="bookmark" title="Permalink to Scala Cookbook 笔记">
-                                       Scala Cookbook 笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2015-05-21
-
-        |
-        tags:         <a href="../tag/scala.html">scala</a>
-
-
-        |
-        <a href="../scala-cookbook-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Scala Cookbook 笔记</h1>
-<h2>String</h2>
-<h3 id="jian-jie">简介</h3>
-<p>Scala String 是 Java String，可以使用 Java 中 String 对象的方法。由于 Scala 提供了隐式转换，因此 String（即使它是 final 的） 实例也可以使用 StringOps 类中的所有方法，因此你可以将字符串实例当作字符序列。对它使用 foreach 或使用 for 循环。字符串的另一些功能来自于 StringLike 和 WrappedString 等类。String 类至 StringOps 的隐式转换源于 Predef 对象。</p>
-<div class="highlight"><pre><span></span><span class="s">"hello"</span><span class="o">.</span><span class="n">getClass</span><span class="o">.</span><span class="n">getName</span>
-<span class="s">"hello"</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
-<span class="k">for …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../scala-cookbook-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

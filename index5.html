@@ -68,6 +68,89 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./hui-bian-yu-yan-wang-shuang-du-shu-bi-ji.html" rel="bookmark" title="Permalink to 汇编语言（王爽）读书笔记">
+                                       汇编语言（王爽）读书笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2010-09-01
+
+        |
+        tags:         <a href="./tag/asm.html">asm</a>
+
+
+        |
+        <a href="./hui-bian-yu-yan-wang-shuang-du-shu-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>基础知识</h1>
+<h2>存储单元</h2>
+<p>最小信息单位是bit（比特、二进制位），8bit为1Byte（字节）。存储单元以字节为单位计。128个存储单元的存储器可以存储128字节。</p>
+<h2>CPU对存储器的读写</h2>
+<h3 id="du-xie-shi-cpuyu-wai-bu-qi-jian-jin-xing-3lei-xin-xi-jiao-hu">读写时CPU与外部器件进行3类信息交互：</h3>
+<ul>
+<li>
+<p>存储单元的地址（地址信息）</p>
+</li>
+<li>
+<p>器件的选择，读或写的命令（控制信息）</p>
+</li>
+<li>
+<p>读或写的数据（数据信息）</p>
+</li>
+</ul>
+<h3 id="du-xie-guo-cheng">读写过程</h3>
+<h4 id="cpucong-3hao-dan-yuan-zhong-du-qu-shu-ju-guo-cheng">CPU从3号单元中读取数据过程</h4>
+<ol>
+<li>
+<p>CPU通过地址线将地址信息3发出。</p>
+</li>
+<li>
+<p>CPU通过控制线发出内存读取命令，选中存储芯片，并通知它，将要从中读取。</p>
+</li>
+<li>
+<p>存储器将3号单元中的数据通过数据线送入CPU。</p>
+</li>
+</ol>
+<h4 id="cpuxiang-3hao-dan-yuan-xie-ru-shu-ju">CPU向3号单元写入数据</h4>
+<ol>
+<li>
+<p>CPU通过地址线将地址信息3发出。</p>
+</li>
+<li>
+<p>CPU通过控制线发出内存写命令，选中存储器芯片，并通知它，要向其中写入数据。</p>
+</li>
+<li>
+<p>CPU通过数据线将数据送入内存的3号单元中。</p>
+</li>
+</ol>
+<h3 id="di-zhi-zong-xian_1">地址总线</h3>
+<p>一个CPU有N根地址线，则可以立这个CPU的地址总线宽度为N。这样CPU可以最多寻找2的N次方个内存单元。</p>
+<h3 id="shu-ju-zong-xian">数据总线</h3>
+<p>CPU与内存或其它器件之间的数据传递是通过数据总线进行的。数据总线宽度决定了CPU和外界的数据传送速度（宽度不足时将需要进行多次传送）。8088CPU数据总线宽度为8，8086CPU的数据总线宽度为16。</p>
+<h3 id="kong-zhi-zong-xian">控制总线</h3>
+<p>控制总线是一些不同控制线的集合。有多少根控制总线，就意味着CPU提供了对外部器件的多少种控制。它决定了CPU对外部器件的控制能力。</p>
+<h3 id="di-zhi-kong-jian-gai-shu">地址空间概述</h3>
+<p>主板上的核心器件通过总线 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./hui-bian-yu-yan-wang-shuang-du-shu-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./sicpdu-shu-bi-ji.html" rel="bookmark" title="Permalink to SICP读书笔记">
                                        SICP读书笔记
                                     </a>
@@ -510,52 +593,6 @@
 <p>使用Maven的<code>Archetype</code>机制创建第一个工程。Archetype被定义为原始的模式或模型，从它可以生成同一类型的东西 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./better-builds-with-maven-xue-xi-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./maven2-tips.html" rel="bookmark" title="Permalink to Maven2 Tips">
-                                       Maven2 Tips
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2009-09-21
-
-        |
-        tags:         <a href="./tag/maven.html">maven</a>
-
-
-        |
-        <a href="./maven2-tips.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>mvn命令行</h1>
-<h2>执行Java程序</h2>
-<div class="highlight"><pre><span></span>mvn exec:java -Dexec.mainClass=org.jamsa.scalademo.FunctionValue
-</pre></div>
-<h2>运行单个单元测试</h2>
-<div class="highlight"><pre><span></span>mvn test -Dtest=AppTest
-</pre></div>
-<h2>安装包和源码包</h2>
-<div class="highlight"><pre><span></span>mvn install:install-file -Dfile=target/jsonplugin-0.34.jar -Dsources=target/jsonplugin-0.34-sources.jar -DartifactId=jsonplugin -DgroupId=com.googlecode -Dversion=0.34 -Dclassifier=sources -Dpackaging=jar
-</pre></div>
-<h2>生成lift应用</h2>
-<div class="highlight"><pre><span></span>mvn.bat archetype:generate -U -DarchetypeGroupId=net …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./maven2-tips.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
