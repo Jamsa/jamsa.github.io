@@ -122,6 +122,95 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../spring-cloud-shang-shou-2-fu-wu-zhu-ce.html" rel="bookmark" title="Permalink to Spring Cloud 上手2-服务注册">
+                                       Spring Cloud 上手2-服务注册
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-05-30
+
+        |
+        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="../spring-cloud-shang-shou-2-fu-wu-zhu-ce.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第二篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>服务治理框架</h1>
+<p>Spring Cloud为服务治理提供了抽象接口，在Spring Cloud应用中可以支持多种不同的服务治理框架，如：Eureka、Consul、Zookeeper。</p>
+<p>Spring Cloud Eureka是Spring Cloud Netflix项目提供的服务治理模块。Spring Cloud Netflix是Spring Cloud的子项目，Netflix公司贡献的模块都包含在这个子项目中，如：服务发现(Eureka)，熔断器（Hstrix），集合服务（Zuul），负载均衡（Ribbon)。</p>
+<p>在我们的系列文章里就直接使用Netflix全家桶了。</p>
+<h1>构建Eureka服务注册中心</h1>
+<p>根据<a href="../spring-cloud-shang-shou-1-zhun-bei.html">前一篇文章</a>的规划，我们将在<code>registry</code>工程中构建服务注册中心。</p>
+<h2>依赖配置</h2>
+<p>首先在registry/build.gradle中配置注册中心的依赖。</p>
+<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-server' …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-2-fu-wu-zhu-ce.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html" rel="bookmark" title="Permalink to Spring Cloud 上手3-服务提供者">
+                                       Spring Cloud 上手3-服务提供者
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-05-30
+
+        |
+        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="../spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第三篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>微服务下的代码共享</h1>
+<p>对于微服务间是否需要进行代码共享，大家都有不同的看法。在本系列文章中，为减少代码量，我们使用了api模块在服务提供方和消费方间进行代码共享。</p>
+<p>在实际的生产应用上，实际上我个人是倾向于不共享代码的。这样可以避免代码上的强依赖，加快服务构建的速度。</p>
+<p>Philipp Hauer的两篇文章可供参考</p>
+<p><a href="https://blog.philipphauer.de/restful-api-design-best-practices/">RESTful API Design. Best Practices in a Nutshell</a></p>
+<p><a href="https://blog.philipphauer.de/dont-share-libraries-among-microservices/">Don't Share Libraries among Microservices</a></p>
+<h1>创建服务提供者</h1>
+<p>我们在<code>demo0</code>中创建一个服务，启动<code>demo0-service</code>应用后，将在<code>Eureka</code>注册中心中看到它。</p>
+<p>在<a href="../spring-cloud-shang-shou-1-zhun-bei.html">第一篇文章</a>提到过，<code>demo0</code>只起目录分类作用，不是实际工程，实际工程是它下面的两个子模块<code>api</code>和 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html" rel="bookmark" title="Permalink to Emacs 正则表达式搜索替换的小技巧">
                                        Emacs 正则表达式搜索替换的小技巧
                                     </a>
@@ -507,116 +596,6 @@ git push -u origin master …</pre></div>
 </script>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../ti-du-de-li-jie.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../matplotlibde-shi-yong.html" rel="bookmark" title="Permalink to Matplotlib的使用">
-                                       Matplotlib的使用
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2018-02-25
-
-        |
-        tags:         <a href="../tag/python.html">python</a>
-        <a href="../tag/machine-learn.html">machine learn</a>
-        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="../matplotlibde-shi-yong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="c1">#在-pi至pi之间产生256个数</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-<span class="c1">#计算X的sine与cosine值</span>
-<span class="n">C</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-<span class="c1">#绘制曲线</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
-
-<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-<p><img alt="png" src="../matplotlib/matplotlib_0_0.png"/></p>
-<div class="highlight"><pre><span></span><span class="c1"># 创建一个大小为 8X6 英寸，每英寸80个点的图片</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80 …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../matplotlibde-shi-yong.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../numpyde-shi-yong.html" rel="bookmark" title="Permalink to Numpy的使用">
-                                       Numpy的使用
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2018-02-21
-
-        |
-        tags:         <a href="../tag/python.html">python</a>
-        <a href="../tag/machine-learn.html">machine learn</a>
-        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="../numpyde-shi-yong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="c1">#numpy的使用</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-</pre></div>
-<div class="highlight"><pre><span></span><span class="n">data1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span>
-</pre></div>
-<div class="highlight"><pre><span></span><span class="n">data2</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]]</span>
-<span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
-</pre></div>
-<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">arr2</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr1</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr2</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-</pre></div>
-<div class="highlight"><pre><span></span>2
-(2, 4)
-float64
-int64
-</pre></div>
-<div class="highlight"><pre><span></span><span class="c1">#数组初始化</span>
-<span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10 …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../numpyde-shi-yong.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
