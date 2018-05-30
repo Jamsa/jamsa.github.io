@@ -68,6 +68,60 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./spring-cloud-shang-shou-1-zhun-bei.html" rel="bookmark" title="Permalink to Spring Cloud 上手1-准备">
+                                       Spring Cloud 上手1-准备
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-05-30
+
+        |
+        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="./spring-cloud-shang-shou-1-zhun-bei.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>目标</h1>
+<p>从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的文档资料看了不少，但&ldquo;纸上得来终觉浅，绝知此事要躬行&rdquo;。所以就有了做一个Spring Cloud Demo工程的想法，主要用来体验Spring Cloud的各种组件和功能。</p>
+<p>代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>规划</h1>
+<p>先从最简单的Demo开始，使用SpringCloud的基础功能：Eureka、Zuul、Feign。后续再考虑添加Stream，Bus相关的内容。在工程数量较多，不好维护了，再考虑采用docker和minikube来进行管理。借用一句话&ldquo;好的架构就像眼镜，你会知道什么时候需要它&rdquo;。</p>
+<p>工程目录规划如下：</p>
+<div class="highlight"><pre><span></span>├── build.gradle
+├── common
+│&nbsp;&nbsp; ├── build.gradle
+│&nbsp;&nbsp; └── src
+│&nbsp;&nbsp;     └── main
+├── demo0
+│&nbsp;&nbsp; ├── api
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── src
+│&nbsp;&nbsp; └── service
+│&nbsp;&nbsp;     ├── build.gradle
+│&nbsp;&nbsp;     └── src
+├── demo1
+│&nbsp;&nbsp; ├── api
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── src …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-1-zhun-bei.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html" rel="bookmark" title="Permalink to Emacs 正则表达式搜索替换的小技巧">
                                        Emacs 正则表达式搜索替换的小技巧
                                     </a>
@@ -313,6 +367,49 @@ git push -u origin master …</pre></div>
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./rocketmq-zhu-yao-gai-nian.html" rel="bookmark" title="Permalink to RocketMQ 主要概念">
+                                       RocketMQ 主要概念
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-05-12
+
+        |
+        tags:         <a href="./tag/mq.html">mq</a>
+
+
+        |
+        <a href="./rocketmq-zhu-yao-gai-nian.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h2>主要概念</h2>
+<p>Topic：消息主题，它分布在多个Master节点上。Topic下有多个Topic分区，每个分区上有多个Que。Que是消息存储队列。要实现有序消息，只能有一个Que，这会影响高可用能力。</p>
+<p>Broker：负责接收发送自生产者的消息，存储消息，处理消费者的拉取消息请求。存储消息元数据，如：消费组，消费偏移量和主题/队列关信息。</p>
+<p>Tag：消息标签。消费端不指定Tag的时候可以接收到同一主题下不同的Tag的消息。</p>
+<p>NameServer: 命名服务。用于生产者和消费者通过主题查找对应的Broker。</p>
+<h2>高可用</h2>
+<p>NameServer可以提供多个，互相之间没有通信关系，它们是无状态的。</p>
+<p>单个Broker和所有NameServer保持长连接，且每隔30秒向所有NameServer发送心跳，心跳包含了自身的Topic配置信息。NameServer每隔10秒扫描存活的Broker连接，若某连接2分钟内没有发送心跳包，则断开连接。Broker挂掉时，NameServer会主动关闭连接。连接断开时，NameServer会立即感知，更新Topic与队列的对应关系，但不通知生产者和消费者。</p>
+<p>Broker以Master/Slave节点来提供高可用，Master节点可以写入，Slave节点可以读取。4个节点的两对Master/Slave组合可以实现高可用。同一Topic的两个Topic分区分布两个Master节点上，Slave上存储了Master上消息的副本。当一个Master当掉时 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./rocketmq-zhu-yao-gai-nian.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./ti-du-de-li-jie.html" rel="bookmark" title="Permalink to 梯度的理解">
                                        梯度的理解
                                     </a>
@@ -520,102 +617,6 @@ int64
 <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10 …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./numpyde-shi-yong.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./learning-sklearnbi-ji-er.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（二）">
-                                       Learning Sklearn笔记（二）
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2018-01-05
-
-        |
-        tags:         <a href="./tag/python.html">python</a>
-        <a href="./tag/machine-learn.html">machine learn</a>
-        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="./learning-sklearnbi-ji-er.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Chap2 监督学习</h1>
-<h2>使用SVM进行图像识别</h2>
-<p>SVM通过选择分享不同样例的最宽分割超平面来进行分类处理。</p>
-<p>通过使用非线性平面，例如 polynomial 或 rbf(radial basis function) 核函数将样本映射到高维特征空间对非线性分布的数据进行分类。</p>
-<p>SVM非常适合于高维或稀疏的样本，内存消耗也比较为有效，因为在学习和决定边界时，它只使用样本的子集。</p>
-<p>需要注意的是SVM模型训练是计算密集型的。用它进行分类时不会返回数值型的置信度值，虽然我们可以使用交叉验证法避免这个问题，但随之而来的是更高的计算开销。</p>
-<p>下面的示例是使用SVM对人脸进行分类处理：</p>
-<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
-<span class="kn">import</span> <span class="nn">sklearn</span> <span class="kn">as</span> <span class="nn">sk</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_olivetti_faces</span>
-
-<span class="c1">#获取数据集</span>
-<span class="n">faces</span> <span class="o">=</span> <span class="n">fetch_olivetti_faces</span><span class="p">()</span>
-
-<span class="k">print</span> <span class="n">faces</span><span class="o">.</span><span class="n">DESCR</span>
-</pre></div>
-<div class="highlight"><pre><span></span>Modified Olivetti …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./learning-sklearnbi-ji-er.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./learning-sklearnbi-ji-san.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（三）">
-                                       Learning Sklearn笔记（三）
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2018-01-05
-
-        |
-        tags:         <a href="./tag/python.html">python</a>
-        <a href="./tag/machine-learn.html">machine learn</a>
-        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="./learning-sklearnbi-ji-san.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>非监督学习</h1>
-<p>从前一章我们可以看到即监督学习方法可以在已有数据基础上判断将来的数据，但也存在明显的缺点：数据必须是准备过的；必须人工对一定的样本进行标记。这项工作通常需要由专家来完成（比如，为了正确的分类莺尾花，需要一些了解这些花的人），这将需要耗费一些时间和金钱，并且不会产生大量的数据（至少不能与Internet上的数据相比！）。每个监督学习方法都需要构建在尽可能多的样本数据上。</p>
-<p>但是某些情况下我们可能没有标记过的数据。比如在婚礼上安排座位，你想将某类人分在同一桌（新娘的家人，新郎的朋友等），这个任务在机器学习中被称为&ldquo;聚类&rdquo;（Clustering）。有些人可能属于多个分组，你需要决定不那么相似的人是否能放在一起（比如新娘和新郎的父母）。聚类需要找出所有元素中相类似的一组元素，但是不同分组中的元素是不同的。如何定义相似是聚类方法需要回答的问题。另一个重要的问题是如何分割簇。人类非常善于从二维数据中找出聚簇（比如从地图中根据出现的街道标识出城市），但是当维度增加时情况会更复杂。</p>
-<p>本章将聚焦于多个聚类方法：k-means、affinity propagation、mean shift、Gaussian Mixture Models。</p>
-<p>非监督学习的另一个方面是降维（Dimentionality Reduction）。假如我们需要展现学习样本的大量属性并将它们的主要特性展示出来。当特征数量超过3时就非常困难了，因为我们不能展示3维以上的模型。降维提供了一种手段，让我们可以将高维数据在低维空间中展现出来，并保留（至少是部分的保留 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./learning-sklearnbi-ji-san.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
