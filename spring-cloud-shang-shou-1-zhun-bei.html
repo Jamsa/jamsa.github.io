@@ -153,56 +153,56 @@
 <h2>根模块的build.gradle</h2>
 <div class="highlight"><pre><span></span><span class="c1">//依赖版本号</span>
 <span class="n">ext</span><span class="o">.</span><span class="na">versions</span> <span class="o">=</span> <span class="o">[</span>
-        <span class="nl">spring:</span> <span class="s1">'4.3.14.RELEASE'</span><span class="o">,</span>
-        <span class="n">springCloud</span> <span class="o">:</span><span class="s1">'1.3.2.RELEASE'</span><span class="o">,</span>
-        <span class="n">springBoot</span> <span class="o">:</span> <span class="s1">'1.5.10.RELEASE'</span><span class="o">,</span>
-        <span class="nl">netflix:</span><span class="s1">'1.4.3.RELEASE'</span>
+        <span class="nl">spring:</span> <span class="s1">'4.3.17.RELEASE'</span><span class="o">,</span>
+        <span class="n">springCloud</span> <span class="o">:</span><span class="s1">'Edgware.SR3'</span>
 <span class="o">]</span>
 <span class="c1">//依赖</span>
 <span class="n">ext</span><span class="o">.</span><span class="na">libs</span> <span class="o">=</span> <span class="o">[</span>
-        <span class="s2">"spring-cloud"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter:${versions.springCloud}"</span><span class="o">,</span>
-        <span class="s2">"spring-boot"</span><span class="o">:</span><span class="s2">"org.springframework.boot:spring-boot-starter:${versions.springBoot}"</span><span class="o">,</span>
+        <span class="s2">"spring-cloud"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-dependencies:${versions.springCloud}"</span><span class="o">,</span>
         <span class="s2">"spring-web"</span><span class="o">:</span><span class="s2">"org.springframework:spring-web:${versions.spring}"</span><span class="o">,</span>
-        <span class="s2">"eureka-server"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:${versions.netflix}"</span><span class="o">,</span>
-        <span class="s2">"eureka-client"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:${versions.netflix}"</span><span class="o">,</span>
-        <span class="s2">"zuul"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-zuul:${versions.netflix}"</span><span class="o">,</span>
-        <span class="s2">"http-client"</span><span class="o">:</span><span class="s2">"org.apache.httpcomponents:httpclient:4.5.2"</span>
+        <span class="s2">"spring-boot"</span><span class="o">:</span><span class="s2">"org.springframework.boot:spring-boot-starter"</span><span class="o">,</span>
+        <span class="s2">"eureka-server"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"</span><span class="o">,</span>
+        <span class="s2">"eureka-client"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"</span><span class="o">,</span>
+        <span class="s2">"zuul"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-zuul"</span><span class="o">,</span>
+        <span class="s2">"feign"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-feign"</span>
 <span class="o">]</span>
 <span class="c1">//只起分类作用的目录</span>
 <span class="n">ext</span><span class="o">.</span><span class="na">excludeFolds</span> <span class="o">=</span> <span class="o">[</span><span class="s2">"provider"</span><span class="o">,</span><span class="s2">"consumer"</span><span class="o">]</span>
 
 <span class="n">buildscript</span> <span class="o">{</span>
     <span class="n">ext</span> <span class="o">{</span>
-        <span class="n">springIOVersion</span> <span class="o">=</span> <span class="s1">'1.0.5.RELEASE'</span>
-        <span class="n">springBootVersion</span> <span class="o">=</span> <span class="s1">'1.5.10.RELEASE'</span>
+        <span class="c1">//springIOVersion = '1.0.5.RELEASE'</span>
+        <span class="n">springBootVersion</span> <span class="o">=</span> <span class="s1">'1.5.13.RELEASE'</span>
     <span class="o">}</span>
     <span class="n">repositories</span> <span class="o">{</span>
-        <span class="n">jcenter</span><span class="o">()</span>
-        <span class="n">mavenLocal</span><span class="o">()</span>
+        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"http://maven.aliyun.com/nexus/content/groups/public/"</span> <span class="o">}</span>
         <span class="n">mavenCentral</span><span class="o">()</span>
-        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"http://repo.spring.io/release"</span> <span class="o">}</span>
-        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"http://repo.spring.io/milestone"</span> <span class="o">}</span>
-        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"http://repo.spring.io/snapshot"</span> <span class="o">}</span>
-        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"https://plugins.gradle.org/m2/"</span> <span class="o">}</span>
     <span class="o">}</span>
     <span class="n">dependencies</span> <span class="o">{</span>
-        <span class="n">classpath</span> <span class="s2">"io.spring.gradle:dependency-management-plugin:${springIOVersion}"</span>
         <span class="n">classpath</span> <span class="s2">"org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"</span>
     <span class="o">}</span>
 <span class="o">}</span>
+
 
 <span class="n">subprojects</span> <span class="o">{</span>
     <span class="c1">//对分类目录不需要进行配置</span>
     <span class="k">if</span><span class="o">(</span><span class="n">excludeFolds</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">name</span><span class="o">))</span> <span class="k">return</span>
 
+
     <span class="n">repositories</span> <span class="o">{</span>
         <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"http://maven.aliyun.com/nexus/content/groups/public/"</span> <span class="o">}</span>
-        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"https://oss.sonatype.org/content/groups/public/"</span> <span class="o">}</span>
-        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"https://repo.spring.io/libs-milestone/"</span> <span class="o">}</span>
         <span class="n">mavenCentral</span><span class="o">()</span>
     <span class="o">}</span>
 
     <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'java'</span>
+
+    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s2">"io.spring.dependency-management"</span>
+
+    <span class="n">dependencyManagement</span> <span class="o">{</span>
+        <span class="n">imports</span> <span class="o">{</span>
+            <span class="n">mavenBom</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'spring-cloud'</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
     <span class="c1">//api工程不需要使用spring boot插件</span>
     <span class="k">if</span><span class="o">(!</span><span class="n">name</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s2">"api"</span><span class="o">))</span> <span class="o">{</span>
@@ -213,16 +213,18 @@
     <span class="n">targetCompatibility</span> <span class="o">=</span> <span class="s1">'1.8'</span>
     <span class="n">group</span> <span class="o">=</span> <span class="s1">'org.github.jamsa.sc'</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s1">'0.0.1'</span>
+
     <span class="k">if</span><span class="o">(</span><span class="n">name</span><span class="o">==</span><span class="s1">'api'</span><span class="o">){</span>
+        <span class="c1">// API类工程的基本依赖</span>
         <span class="n">dependencies</span> <span class="o">{</span>
             <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'spring-web'</span>
         <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="n">dependencies</span> <span class="o">{</span>
-        <span class="c1">//compile libs.'spring-web'</span>
-        <span class="c1">//compile libs.'spring-boot'</span>
-        <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'http-client'</span>
+    <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+        <span class="c1">// Feign客户端工程的基本依赖</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'feign'</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-client'</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 
     <span class="c1">//设置打包参数</span>
@@ -235,6 +237,8 @@
 </pre></div>
 <p>需要排除的分类目录，在<code>ext.excludeFolds</code>中维护，<code>subprojects</code>根据这个配置项进行排除。<code>subprojects</code>段中集中处理各模块的公共依赖和Gradle插件，如<code>api</code>模块都不需要依赖<code>spring boot</code>插件，但是需要<code>spring-web</code>；自动处理打包参数，设置打包名称。</p>
 <p>这样处理后<code>api</code>类的子模块如果没有其它依赖，就不再需要添加<code>build.gradle</code>。<code>service</code>类的包，则只需要声明依赖和为<code>jar</code>任务指定<code>Main-Class</code>。</p>
+<p>需要注意的是<code>io.spring.dependency-management</code>，这个依赖管理插件。由于SpringCloud组件较多依赖关系复杂，使用该插件才能正确的配置好版本间的依赖关系，该插件能自动根据<code>springCloud</code>版本号自动选择下面那些相依赖的组件的版本。而上面指定的spring版本也是根据依赖查询到的版本号。</p>
+<p><code>buildscript</code>中的内容主要处理gradle <code>spring boot</code>插件，该插件主要用于打包FatJar。因此，在API工程中不需要启用这一插件。</p>
 <h2><code>provider:service</code>的build.gradle</h2>
 <div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
     <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':provider:api'</span><span class="o">)</span>
@@ -244,7 +248,7 @@
 <span class="n">jar</span> <span class="o">{</span>
     <span class="n">manifest</span> <span class="o">{</span>
         <span class="n">attributes</span> <span class="s2">"Manifest-Version"</span><span class="o">:</span> <span class="mf">1.0</span><span class="o">,</span>
-                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.provider.controller.ProviderController'</span>
+                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.sc.provider.controller.ProviderController'</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>

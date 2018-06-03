@@ -91,8 +91,8 @@
 
         <p>这是Spring Cloud上手系列的第三篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
 <h1>微服务下的代码共享</h1>
-<p>对于微服务间是否需要进行代码共享，大家都有不同的看法。在本系列文章中，为减少代码量，我们使用了api模块在服务提供方和消费方间进行代码共享。</p>
-<p>在实际的生产应用中，我个人是倾向于不共享代码的。这样可以避免代码上的强依赖，加快服务构建的速度。</p>
+<p>对于微服务间是否需要进行代码共享，大家都有不同的看法。</p>
+<p>虽然，实际的生产应用中，我个人是倾向于不共享代码的。这样可以避免代码上的强依赖，加快服务构建的速度。但是，在<a href="./spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html">下一篇</a>讲服务消费的时候将使用几种不同的方式来调用服务。在本系列文章的其它地方，为减少代码量，我们主要使用了api模块在服务提供方和消费方间进行代码共享。</p>
 <p>Philipp Hauer的两篇文章可供参考</p>
 <p><a href="https://blog.philipphauer.de/restful-api-design-best-practices/">RESTful API Design. Best Practices in a Nutshell</a></p>
 <p><a href="https://blog.philipphauer.de/dont-share-libraries-among-microservices/">Don't Share Libraries among Microservices</a></p>
@@ -109,7 +109,7 @@
 <span class="n">jar</span> <span class="o">{</span>
     <span class="n">manifest</span> <span class="o">{</span>
         <span class="n">attributes</span> <span class="s2">"Manifest-Version"</span><span class="o">:</span> <span class="mf">1.0</span><span class="o">,</span>
-                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.provider.controller.ProviderController'</span>
+                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.sc.provider.controller.ProviderController'</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -118,13 +118,16 @@
 <p>在<code>api</code>模块中添加远程服务接口：</p>
 <div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ProviderRemoteService</span> <span class="o">{</span>
     <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"/hello"</span><span class="o">,</span><span class="n">method</span><span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
-    <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+    <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nd">@RequestParam</span><span class="o">(</span><span class="s">"name"</span><span class="o">)</span> <span class="n">String</span> <span class="n">name</span><span class="o">);</span><span class="c1">//这个name对服务消费方是必须的，否则调用时会报错</span>
 <span class="o">}</span>
 </pre></div>
+<p>这个接口可供服务提供方和消费方共享。</p>
 <p>在<code>service</code>模块中编写Spring Boot程序入口和服务实现：</p>
 <div class="highlight"><pre><span></span><span class="nd">@SpringBootApplication</span>
 <span class="nd">@EnableEurekaClient</span>
-<span class="nd">@RestController</span><span class="o">(</span><span class="s">"/provider"</span><span class="o">)</span>
+<span class="nd">@RestController</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackages</span><span class="o">={</span><span class="s">"com.github.jamsa.sc.provider"</span><span class="o">})</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/provider"</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProviderController</span> <span class="kd">implements</span> <span class="n">ProviderRemoteService</span> <span class="o">{</span>
 
     <span class="nd">@Override</span>
@@ -137,6 +140,7 @@
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
+<p>这里的<code>@EnableEurekaClient</code>注解用于向服务注册中心注册服务。另一个类似的注解是<code>@EnableDiscoveryClient</code>两者的区别在于前者来自于<code>spring-cloud-netflix</code>只能用于<code>eureka</code>，后者来自于<code>spring-cloud-commons</code>，可用于其它类型的注册中心，如果使用了<code>eureka</code>则两者的作用是一样的。</p>
 <p>在<code>application.yml</code>中配置服务注册中心地址：</p>
 <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span>
@@ -155,6 +159,7 @@
 <p>完成后使用<code>java -jar provider/service/build/libs/sc-provider-service-0.0.1.jar</code>启动服务注册中心。</p>
 <p>就能在<code>http://localhost:9001</code>查看到<code>SC_PROVIDER</code>服务的注册信息了。</p>
 <p><img alt="Eureka服务注册中心" src="./spring_cloud_tut/eureka2.png"/></p>
+<p>访问<code>http://localhost:9010/provider/hello?name=Jamsa</code>能直接访问到该服务。</p>
 
       </div><!-- /.entry-content -->
       <div class="comments">

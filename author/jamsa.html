@@ -68,6 +68,63 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html" rel="bookmark" title="Permalink to Spring Cloud 上手4-服务消费者">
+                                       Spring Cloud 上手4-服务消费者
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-06-03
+
+        |
+        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="../spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第四篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>版本依赖的坑</h1>
+<p>在写前面几篇的时候都没感觉到SpringCloud的依赖关系处理必须使用<code>io.spring.dependency-management</code>来处理。在使用Feign进行服务消费时遇到很多错误：</p>
+<ul>
+<li>
+<p>Feign服务客户端的Bean无法实例化</p>
+</li>
+<li>
+<p>java.lang.NoClassDefFoundError: feign/Feign$Builder</p>
+</li>
+</ul>
+<p>和其它很多错误。现在已经将<a href="../spring-cloud-shang-shou-1-zhun-bei.html">第一篇</a>中的构建依赖处理好。</p>
+<h1>配置模块依赖</h1>
+<p>在<code>consumer:service</code>工程的<code>build.gradle</code>中添加以下配置：</p>
+<div class="highlight"><pre><span></span>dependencies {
+    compile project(':provider:api')
+    compile libs.'eureka-client'  //Eureka客户端
+}
+
+jar {
+    manifest {
+        attributes "Manifest-Version": 1.0,
+                'Main-Class': 'com.github …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../spring-cloud-shang-shou-1-zhun-bei.html" rel="bookmark" title="Permalink to Spring Cloud 上手1-准备">
                                        Spring Cloud 上手1-准备
                                     </a>
@@ -192,14 +249,14 @@
     
 </footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第三篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
 <h1>微服务下的代码共享</h1>
-<p>对于微服务间是否需要进行代码共享，大家都有不同的看法。在本系列文章中，为减少代码量，我们使用了api模块在服务提供方和消费方间进行代码共享。</p>
-<p>在实际的生产应用中，我个人是倾向于不共享代码的。这样可以避免代码上的强依赖，加快服务构建的速度。</p>
+<p>对于微服务间是否需要进行代码共享，大家都有不同的看法。</p>
+<p>虽然，实际的生产应用中，我个人是倾向于不共享代码的。这样可以避免代码上的强依赖，加快服务构建的速度。但是，在<a href="../spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html">下一篇</a>讲服务消费的时候将使用几种不同的方式来调用服务。在本系列文章的其它地方，为减少代码量，我们主要使用了api模块在服务提供方和消费方间进行代码共享。</p>
 <p>Philipp Hauer的两篇文章可供参考</p>
 <p><a href="https://blog.philipphauer.de/restful-api-design-best-practices/">RESTful API Design. Best Practices in a Nutshell</a></p>
 <p><a href="https://blog.philipphauer.de/dont-share-libraries-among-microservices/">Don't Share Libraries among Microservices</a></p>
 <h1>创建服务提供者</h1>
 <p>我们在<code>provider</code>中创建一个服务，启动<code>provider-service</code>应用后，将在<code>Eureka</code>注册中心中看到它。</p>
-<p>在<a href="../spring-cloud-shang-shou-1-zhun-bei.html">第一篇文章</a>提到过，<code>provider</code>只起目录分类作用，不是实际工程，实际工程是它下面的两个子模块<code>api</code>和 …</p>
+<p>在<a href="../spring-cloud-shang-shou-1-zhun-bei.html">第一篇文章</a>提到过，<code>provider …</code></p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html">Read more...</a>
                                 </p>
@@ -490,112 +547,6 @@ git push -u origin master …</pre></div>
 <p>Broker以Master/Slave节点来提供高可用，Master节点可以写入，Slave节点可以读取。4个节点的两对Master/Slave组合可以实现高可用。同一Topic的两个Topic分区分布两个Master节点上，Slave上存储了Master上消息的副本。当一个Master当掉时 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../rocketmq-zhu-yao-gai-nian.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ti-du-de-li-jie.html" rel="bookmark" title="Permalink to 梯度的理解">
-                                       梯度的理解
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2018-05-12
-
-        |
-        tags:         <a href="../tag/python.html">python</a>
-        <a href="../tag/machine-learn.html">machine learn</a>
-
-
-        |
-        <a href="../ti-du-de-li-jie.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>梯度的理解</h1>
-<p>参考以下两篇文章:</p>
-<p><a href="https://www.zhihu.com/question/36301367">如何直观形象的理解方向导数与梯度以及它们之间的关系？</a>对导数和梯度的解释最为简明。</p>
-<p><a href="https://blog.csdn.net/walilk/article/details/50978864">WangBo的机器学习乐园的博文</a></p>
-<p>总结以下内容：</p>
-<ul>
-<li>导数：</li>
-</ul>
-<p>导数指的是一元函数在某点经轴正方向的变化率。</p>
-<div class="math">$$f'(x) = \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}$$</div>
-<ul>
-<li>偏导数：</li>
-</ul>
-<p>偏导数是多元函数在某点沿某个轴正方向的变化率。</p>
-<div class="math">$$\frac{\partial f(x_0,x_1, \ldots, x_n) }{\partial x_j} = \lim_{\Delta x \to 0 …</div><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' }, Macros: {} }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ti-du-de-li-jie.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

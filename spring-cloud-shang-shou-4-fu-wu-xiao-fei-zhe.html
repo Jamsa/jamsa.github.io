@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Spring Cloud 上手4-服务消费者"/>
+        <meta property="og:url" content="./spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="./spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html" />
+
+        <title>Spring Cloud 上手4-服务消费者 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="./">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html" rel="bookmark"
+             title="Permalink to Spring Cloud 上手4-服务消费者">Spring Cloud 上手4-服务消费者</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-06-03
+
+        |
+        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="./spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>这是Spring Cloud上手系列的第四篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>版本依赖的坑</h1>
+<p>在写前面几篇的时候都没感觉到SpringCloud的依赖关系处理必须使用<code>io.spring.dependency-management</code>来处理。在使用Feign进行服务消费时遇到很多错误：</p>
+<ul>
+<li>
+<p>Feign服务客户端的Bean无法实例化</p>
+</li>
+<li>
+<p>java.lang.NoClassDefFoundError: feign/Feign$Builder</p>
+</li>
+</ul>
+<p>和其它很多错误。现在已经将<a href="./spring-cloud-shang-shou-1-zhun-bei.html">第一篇</a>中的构建依赖处理好。</p>
+<h1>配置模块依赖</h1>
+<p>在<code>consumer:service</code>工程的<code>build.gradle</code>中添加以下配置：</p>
+<div class="highlight"><pre><span></span>dependencies {
+    compile project(':provider:api')
+    compile libs.'eureka-client'  //Eureka客户端
+}
+
+jar {
+    manifest {
+        attributes "Manifest-Version": 1.0,
+                'Main-Class': 'com.github.jamsa.sc.consumer.controller.ConsumerController'
+    }
+}
+</pre></div>
+<p>即这个工程有三个主要的依赖：</p>
+<ul>
+<li>
+<p><code>provider:api</code>中的接口声明。</p>
+</li>
+<li>
+<p>它也是Eureka客户端工程，也依赖于<code>eureka-client</code>。</p>
+</li>
+<li>
+<p>对<code>feign</code>的依赖则由全局的<code>build.gradle</code>中处理。</p>
+</li>
+</ul>
+<h1>使用Feign在消费方编写API进行消费</h1>
+<p><code>consumer:service</code>中添加消费接口，和对应的Fallback实现，fallback实现中不需要配置<code>@RequestParam</code>这类注解，因为它不是对远程方法的引用，它本身就是无法连接远程服务时的替代实现。</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 引用服务提供方提供的接口</span>
+<span class="cm"> */</span>
+<span class="nd">@FeignClient</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"sc-provider"</span><span class="o">,</span><span class="n">fallback</span> <span class="o">=</span> <span class="n">FeignFallbackConsumerRemoteService</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ConsumerRemoteService</span><span class="o">{</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"/provider/hello"</span><span class="o">,</span><span class="n">method</span><span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+    <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nd">@RequestParam</span><span class="o">(</span><span class="s">"name"</span><span class="o">)</span> <span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FeignFallbackConsumerRemoteService</span> <span class="kd">implements</span> <span class="n">ConsumerRemoteService</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"未连接远程服务"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>添加控制器：</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 服务消费方</span>
+<span class="cm"> */</span>
+<span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableEurekaClient</span>
+<span class="nd">@EnableFeignClients</span><span class="o">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="o">{</span><span class="s">"com.github.jamsa.sc.consumer.service"</span><span class="o">})</span>
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/consumer"</span><span class="o">)</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackages</span><span class="o">={</span><span class="s">"com.github.jamsa.sc.consumer"</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConsumerController</span><span class="o">{</span>
+
+    <span class="c1">//注入服务接口</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ConsumerRemoteService</span> <span class="n">consumerRemoteService</span><span class="o">;</span>
+
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/hello"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Hello From Remote:"</span><span class="o">+</span><span class="n">consumerRemoteService</span><span class="o">.</span><span class="na">hello</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ConsumerController</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>在工程根目录使用<code>gradle :consumer:service:build</code>构建之后，执行<code>java -jar consumer/service/build/libs/sc-consumer-service-0.0.1.jar</code>。启动完毕后，就可以通过<code>http://localhost:9011/consumer/hello?name=Jamsa</code>直接访问就能看到从<code>provider</code>返回的信息。</p>
+<h1>使用Feign 和服务提供方的API进行消费</h1>
+<p>使用服务提供方的API，只是在消费端编写接口继承提供方的接口。所共享的代码也仅仅只是接口中的方法声明和各类注解了。</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+         var _hmt = _hmt || [];
+         (function() {
+           var hm = document.createElement("script");
+           hm.src = "https://hm.baidu.com/hm.js?5e20e9cdd1185d24ece1dae11118a04f";
+           var s = document.getElementsByTagName("script")[0]; 
+           s.parentNode.insertBefore(hm, s);
+         })();
+        </script>
+</body>
+</html>
