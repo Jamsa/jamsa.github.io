@@ -176,6 +176,64 @@ jar {
 <p>在工程根目录使用<code>gradle :consumer:service:build</code>构建之后，执行<code>java -jar consumer/service/build/libs/sc-consumer-service-0.0.1.jar</code>。启动完毕后，就可以通过<code>http://localhost:9011/consumer/hello?name=Jamsa</code>直接访问就能看到从<code>provider</code>返回的信息。</p>
 <h1>使用Feign 和服务提供方的API进行消费</h1>
 <p>使用服务提供方的API，只是在消费端编写接口继承提供方的接口。所共享的代码也仅仅只是接口中的方法声明和各类注解了。</p>
+<p>这里我们另外编写一个使用<code>provider:api</code>中的接口的服务：</p>
+<div class="highlight"><pre><span></span><span class="nd">@FeignClient</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"sc-provider"</span><span class="o">,</span><span class="n">fallback</span> <span class="o">=</span> <span class="n">FeignFallbackConsumerRemoteService</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/provider"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ConsumerRemoteApiService</span> <span class="kd">extends</span> <span class="n">ProviderRemoteService</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</pre></div>
+<p>如上所述，这只是一个空接口。</p>
+<p>将它注入到<code>ConsumerController</code>中，并在<code>helloByApi</code>这个方法中调用：</p>
+<div class="highlight"><pre><span></span>    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ConsumerRemoteApiService</span> <span class="n">consumerRemoteApiService</span><span class="o">;</span>
+
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/helloByApi"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">helloByApi</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Hello From Remote By API:"</span><span class="o">+</span><span class="n">consumerRemoteApiService</span><span class="o">.</span><span class="na">hello</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+    <span class="o">}</span>
+</pre></div>
+<p>重新构建并运行之后，访问<code>http://localhost:9011/consumer/helloByApi?name=Jamsa</code>，结果报错了：</p>
+<div class="highlight"><pre><span></span>Whitelabel Error Page
+
+This application has no explicit mapping for /error, so you are seeing this as a fallback.
+
+Sun Jun 03 23:04:58 CST 2018
+There was an unexpected error (type=Internal Server Error, status=500).
+status 404 reading ConsumerRemoteApiService#hello(String); content: {"timestamp":1528038298528,"status":404,"error":"Not Found","message":"No message available","path":"/hello"}
+</pre></div>
+<p>这是因为我在api中写的<code>RequestMapping</code>并非最终的<code>uri</code>，我在<code>ProviderController</code>上添加了<code>@RequestMapping("/provider")</code>注解，最终<code>hello</code>方法被映射到了<code>/provider/hello</code>上。</p>
+<p>在上面这种方式进行消费时，虽然我在<code>ConsumerRemoteApiService</code>中也添加了<code>@RequestMapping("/provider")</code>注解，但是这个注解好像被忽略掉了，估计是因为被注解的类上没有<code>Controller</code>注解。</p>
+<p>如果要让这种方式调用成功，就不能在<code>ProviderController</code>上添加<code>@RequestMapping</code>注解。需要将它的内容合并到<code>ProviderRemoteService</code>的<code>@RequestMapping</code>。</p>
+<p><code>ProviderController</code>调整为</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> *  服务提供方</span>
+<span class="cm"> * Created by zhujie on 2018/5/29.</span>
+<span class="cm"> */</span>
+<span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableEurekaClient</span>
+<span class="nd">@RestController</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackages</span><span class="o">={</span><span class="s">"com.github.jamsa.sc.provider"</span><span class="o">})</span>
+<span class="c1">//@RequestMapping("/provider")</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProviderController</span> <span class="kd">implements</span> <span class="n">ProviderRemoteService</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Hello "</span><span class="o">+</span><span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ProviderController</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><code>ProvicerRemoteServic</code>调整为：</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ProviderRemoteService</span> <span class="o">{</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"/provider/hello"</span><span class="o">,</span><span class="n">method</span><span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+    <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nd">@RequestParam</span><span class="o">(</span><span class="s">"name"</span><span class="o">)</span> <span class="n">String</span> <span class="n">name</span><span class="o">);</span><span class="c1">//这个name对服务消费方是必须的，否则调用时会报错</span>
+<span class="o">}</span>
+</pre></div>
+<p>调整完毕后重新构建<code>provider:service</code>和<code>consumer:service</code>（因为它们都依赖于<code>provider:api</code>），重新运行这两个应用，就能在<code>http://localhost:9011/consumer/helloByApi?name=Jamsa</code>看到期望的结果了。</p>
 
       </div><!-- /.entry-content -->
       <div class="comments">
