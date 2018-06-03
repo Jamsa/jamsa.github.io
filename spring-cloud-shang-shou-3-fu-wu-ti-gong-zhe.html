@@ -92,31 +92,31 @@
         <p>这是Spring Cloud上手系列的第三篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
 <h1>微服务下的代码共享</h1>
 <p>对于微服务间是否需要进行代码共享，大家都有不同的看法。在本系列文章中，为减少代码量，我们使用了api模块在服务提供方和消费方间进行代码共享。</p>
-<p>在实际的生产应用上，实际上我个人是倾向于不共享代码的。这样可以避免代码上的强依赖，加快服务构建的速度。</p>
+<p>在实际的生产应用中，我个人是倾向于不共享代码的。这样可以避免代码上的强依赖，加快服务构建的速度。</p>
 <p>Philipp Hauer的两篇文章可供参考</p>
 <p><a href="https://blog.philipphauer.de/restful-api-design-best-practices/">RESTful API Design. Best Practices in a Nutshell</a></p>
 <p><a href="https://blog.philipphauer.de/dont-share-libraries-among-microservices/">Don't Share Libraries among Microservices</a></p>
 <h1>创建服务提供者</h1>
-<p>我们在<code>demo0</code>中创建一个服务，启动<code>demo0-service</code>应用后，将在<code>Eureka</code>注册中心中看到它。</p>
-<p>在<a href="./spring-cloud-shang-shou-1-zhun-bei.html">第一篇文章</a>提到过，<code>demo0</code>只起目录分类作用，不是实际工程，实际工程是它下面的两个子模块<code>api</code>和<code>service</code>其中<code>api</code>提供客户端调用的接口，供后面使用<code>Feign</code>使用，<code>service</code>是一个Spring Boot应用，提供实际的服务。</p>
+<p>我们在<code>provider</code>中创建一个服务，启动<code>provider-service</code>应用后，将在<code>Eureka</code>注册中心中看到它。</p>
+<p>在<a href="./spring-cloud-shang-shou-1-zhun-bei.html">第一篇文章</a>提到过，<code>provider</code>只起目录分类作用，不是实际工程，实际工程是它下面的两个子模块<code>api</code>和<code>service</code>其中<code>api</code>提供客户端调用的接口，供后面使用<code>Feign</code>使用，<code>service</code>是一个Spring Boot应用，提供实际的服务。</p>
 <h2>配置模块依赖</h2>
 <p>前面提到过<code>api</code>模块如果没有依赖需要声明，就不需要添加<code>build.gradle</code>了。<code>service</code>则需要添加<code>build.gradle</code>，添加配置，设置<code>Main-Class</code>信息：</p>
 <div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':demo0:api'</span><span class="o">)</span>
+    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':provider:api'</span><span class="o">)</span>
     <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-client'</span>
 <span class="o">}</span>
 
 <span class="n">jar</span> <span class="o">{</span>
     <span class="n">manifest</span> <span class="o">{</span>
         <span class="n">attributes</span> <span class="s2">"Manifest-Version"</span><span class="o">:</span> <span class="mf">1.0</span><span class="o">,</span>
-                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.demo0.controller.Demo0Controller'</span>
+                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.provider.controller.ProviderController'</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
-<p>这里的<code>compile project(':demo0:api')</code>标明<code>service</code>模块依赖于<code>api</code>模块。</p>
+<p>这里的<code>compile project(':provider:api')</code>标明<code>service</code>模块依赖于<code>api</code>模块。</p>
 <h2>创建服务</h2>
 <p>在<code>api</code>模块中添加远程服务接口：</p>
-<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Demo0RemoteService</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ProviderRemoteService</span> <span class="o">{</span>
     <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"/hello"</span><span class="o">,</span><span class="n">method</span><span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
     <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">name</span><span class="o">);</span>
 <span class="o">}</span>
@@ -124,8 +124,8 @@
 <p>在<code>service</code>模块中编写Spring Boot程序入口和服务实现：</p>
 <div class="highlight"><pre><span></span><span class="nd">@SpringBootApplication</span>
 <span class="nd">@EnableEurekaClient</span>
-<span class="nd">@RestController</span><span class="o">(</span><span class="s">"/demo0"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo0Controller</span> <span class="kd">implements</span> <span class="n">Demo0RemoteService</span> <span class="o">{</span>
+<span class="nd">@RestController</span><span class="o">(</span><span class="s">"/provider"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProviderController</span> <span class="kd">implements</span> <span class="n">ProviderRemoteService</span> <span class="o">{</span>
 
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
@@ -133,14 +133,14 @@
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">Demo0Controller</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">args</span><span class="o">);</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ProviderController</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">args</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
 <p>在<code>application.yml</code>中配置服务注册中心地址：</p>
 <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-demo0</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-provider</span>
 <span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">9010</span>
 <span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
@@ -151,9 +151,9 @@
       <span class="l l-Scalar l-Scalar-Plain">defaultZone</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:9001/eureka/</span>
 </pre></div>
 <h2>构建并启动服务</h2>
-<p>在根模块中使用<code>gradle :demo0:service:build</code>构建服务注册中心应用。</p>
-<p>完成后使用<code>java -jar demo0/service/build/libs/sc-demo0-service-0.0.1.jar</code>启动服务注册中心。</p>
-<p>就能在<code>http://localhost:9001</code>查看到<code>SC_DEMO0</code>服务的注册信息了。</p>
+<p>在根模块中使用<code>gradle :provider:service:build</code>构建服务注册中心应用。</p>
+<p>完成后使用<code>java -jar provider/service/build/libs/sc-provider-service-0.0.1.jar</code>启动服务注册中心。</p>
+<p>就能在<code>http://localhost:9001</code>查看到<code>SC_PROVIDER</code>服务的注册信息了。</p>
 <p><img alt="Eureka服务注册中心" src="./spring_cloud_tut/eureka2.png"/></p>
 
       </div><!-- /.entry-content -->

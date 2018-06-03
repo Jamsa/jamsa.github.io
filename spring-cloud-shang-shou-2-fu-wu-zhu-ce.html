@@ -153,7 +153,7 @@
 </pre></div>
 <p><code>spring</code>和<code>server</code>段是Spring Boot程序的配置部分，用于配置应用名称和服务端口。注册中心的配置都在<code>eureka</code>段，<code>registerWithEureka</code>需要设置为<code>false</code>，标明应用不要把自己注册到<code>Eureka</code>中，<code>fetchRegistry</code>标明不需要从注册中心获取服务信息。<code>serviceUrl.defaultZone</code>用于配置服务中心的访问地址。其它应用在配置服务注册中心地址时，需要与这个地址保持一致，url中的变量就是上面的属性。</p>
 <p>在idea中配置这个文件的时候发现有个小问题，idea中的自动提示总是显示为中杠分隔的属性名，如：<code>service-url</code>、<code>default-zone</code>等，这个问题导致我在测试的时候，客户端程序总是无法连接到注册中心。</p>
-<h2>构建和启动服务</h2>
+<h2>构建并启动服务</h2>
 <p>在根模块中使用<code>gradle :registry:build</code>构建服务注册中心应用。</p>
 <p>完成后使用<code>java -jar registry/build/libs/sc-registry-0.0.1.jar</code>启动服务注册中心。</p>
 <p>就能在<code>http://localhost:9001</code>查看到服务注册信息了，当然现在还没有服务注册。</p>

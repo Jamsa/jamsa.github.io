@@ -100,13 +100,13 @@
 │&nbsp;&nbsp; ├── build.gradle
 │&nbsp;&nbsp; └── src
 │&nbsp;&nbsp;     └── main
-├── demo0
+├── provider
 │&nbsp;&nbsp; ├── api
 │&nbsp;&nbsp; │&nbsp;&nbsp; └── src
 │&nbsp;&nbsp; └── service
 │&nbsp;&nbsp;     ├── build.gradle
 │&nbsp;&nbsp;     └── src
-├── demo1
+├── consumer
 │&nbsp;&nbsp; ├── api
 │&nbsp;&nbsp; │&nbsp;&nbsp; └── src
 │&nbsp;&nbsp; └── service
@@ -124,7 +124,7 @@
 </pre></div>
 <ul>
 <li>
-<p><code>demo0</code>和<code>demo1</code>为两个业务服务模块，其中<code>demo0</code>和<code>demo1</code>只做目录分类用，不是实际的模块。<code>api</code>和<code>service</code>是模块，<code>api</code>存放客户端服务端共享的接口和类，<code>service</code>是实际的服务提供者。</p>
+<p><code>provider</code>和<code>consumer</code>为两个业务服务模块，其中<code>provider</code>和<code>consumer</code>只做目录分类用，不是实际的模块。<code>api</code>和<code>service</code>是模块，<code>api</code>存放客户端服务端共享的接口和类，<code>service</code>是实际的服务提供者。</p>
 </li>
 <li>
 <p><code>registry</code>为Eureka为基础构建的服务注册中心。</p>
@@ -146,10 +146,10 @@
 <div class="highlight"><pre><span></span><span class="n">rootProject</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'sc-cloud'</span>
 
 <span class="n">include</span> <span class="s1">'registry'</span><span class="o">,</span><span class="s1">'gateway'</span>
-<span class="n">include</span> <span class="s1">'demo0:api'</span><span class="o">,</span><span class="s1">'demo0:service'</span>
-<span class="n">include</span> <span class="s1">'demo1:api'</span><span class="o">,</span><span class="s1">'demo1:service'</span>
+<span class="n">include</span> <span class="s1">'provider:api'</span><span class="o">,</span><span class="s1">'provider:service'</span>
+<span class="n">include</span> <span class="s1">'consumer:api'</span><span class="o">,</span><span class="s1">'consumer:service'</span>
 </pre></div>
-<p>根模块代号<code>sc-cloud</code>，包含<code>registry</code>，<code>gateway</code>和两个<code>demo</code>模块下的<code>api</code>和<code>service</code>模块。由于Gradle在处理<code>incdlude &lsquo;demo0:api&lsquo;</code>时也会把<code>demo0</code>包含进去，因此我们在build.gradle中进行全局性配置时需要排除这些只起分类作用的模块。</p>
+<p>根模块代号<code>sc-cloud</code>，包含<code>registry</code>，<code>gateway</code>和<code>provider</code>、<code>consumer</code>模块下的<code>api</code>和<code>service</code>模块。由于Gradle在处理<code>incdlude &lsquo;provider:api&lsquo;</code>时也会把<code>provider</code>包含进去，因此我们在build.gradle中进行全局性配置时需要排除这些只起分类作用的模块。</p>
 <h2>根模块的build.gradle</h2>
 <div class="highlight"><pre><span></span><span class="c1">//依赖版本号</span>
 <span class="n">ext</span><span class="o">.</span><span class="na">versions</span> <span class="o">=</span> <span class="o">[</span>
@@ -169,7 +169,7 @@
         <span class="s2">"http-client"</span><span class="o">:</span><span class="s2">"org.apache.httpcomponents:httpclient:4.5.2"</span>
 <span class="o">]</span>
 <span class="c1">//只起分类作用的目录</span>
-<span class="n">ext</span><span class="o">.</span><span class="na">excludeFolds</span> <span class="o">=</span> <span class="o">[</span><span class="s2">"demo0"</span><span class="o">,</span><span class="s2">"demo1"</span><span class="o">]</span>
+<span class="n">ext</span><span class="o">.</span><span class="na">excludeFolds</span> <span class="o">=</span> <span class="o">[</span><span class="s2">"provider"</span><span class="o">,</span><span class="s2">"consumer"</span><span class="o">]</span>
 
 <span class="n">buildscript</span> <span class="o">{</span>
     <span class="n">ext</span> <span class="o">{</span>
@@ -235,20 +235,20 @@
 </pre></div>
 <p>需要排除的分类目录，在<code>ext.excludeFolds</code>中维护，<code>subprojects</code>根据这个配置项进行排除。<code>subprojects</code>段中集中处理各模块的公共依赖和Gradle插件，如<code>api</code>模块都不需要依赖<code>spring boot</code>插件，但是需要<code>spring-web</code>；自动处理打包参数，设置打包名称。</p>
 <p>这样处理后<code>api</code>类的子模块如果没有其它依赖，就不再需要添加<code>build.gradle</code>。<code>service</code>类的包，则只需要声明依赖和为<code>jar</code>任务指定<code>Main-Class</code>。</p>
-<h2><code>demo0:service</code>的build.gradle</h2>
+<h2><code>provider:service</code>的build.gradle</h2>
 <div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':demo0:api'</span><span class="o">)</span>
+    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':provider:api'</span><span class="o">)</span>
     <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-client'</span>
 <span class="o">}</span>
 
 <span class="n">jar</span> <span class="o">{</span>
     <span class="n">manifest</span> <span class="o">{</span>
         <span class="n">attributes</span> <span class="s2">"Manifest-Version"</span><span class="o">:</span> <span class="mf">1.0</span><span class="o">,</span>
-                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.demo0.controller.Demo0Controller'</span>
+                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.provider.controller.ProviderController'</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
-<p>它声明了依赖于<code>:demo0:api</code>并设定了<code>Main-Class</code>。</p>
+<p>它声明了依赖于<code>:provider:api</code>并设定了<code>Main-Class</code>。</p>
 
       </div><!-- /.entry-content -->
       <div class="comments">
