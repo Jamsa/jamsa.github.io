@@ -68,6 +68,60 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./numpy-and-scipybi-ji-yi.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（一）">
+                                       Numpy And Scipy笔记（一）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2017-03-20
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/machine-learn.html">machine learn</a>
+        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="./numpy-and-scipybi-ji-yi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>NumPy</h1>
+<h2>NumPy 数组</h2>
+<div class="highlight"><pre><span></span>`ndarray`与list类似，但是它只允许存储一种类型的数据。这样能得更好的弹性。
+</pre></div>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1e7</span><span class="p">)</span> <span class="c1"># 10^7 element</span>
+<span class="n">larr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">list_times</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+        <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span> <span class="o">*</span> <span class="n">scalar</span>
+    <span class="k">return</span> <span class="n">alist</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c1"># 使用numpy进行计算</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">arr</span> <span class="o">*</span> <span class="mf">1.1</span>
+</pre></div>
+<div class="highlight"><pre><span></span>10 loops, best of 3: 29.9 ms …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./numpy-and-scipybi-ji-yi.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html" rel="bookmark" title="Permalink to 使用PyQT开发巡更系统的总结">
                                        使用PyQT开发巡更系统的总结
                                     </a>
@@ -510,49 +564,6 @@ MapReduce框架的数据处理过程：</p>
 <span class="nx">My</span><span class="p">.</span><span class="nx">cool …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（三）组件">
-                                       Ext JS 5 手册 核心概念（三）组件
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="./tag/javascript.html">javascript</a>
-        <a href="./tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（三）组件</h1>
-<h2>核心概念</h2>
-<h3 id="zu-jian">组件</h3>
-<p>Ext JS 应用中的 UI 是由一个或多个被称为<code>组件(Components)</code>的构件组成的。所有组件都是<code>Ext.Component</code>的子类，它能自动管理组件的生命周期，如：实例化、渲染、改变大小和位置、销毁。</p>
-<h4 id="zu-jian-de-ceng-ji">组件的层级</h4>
-<p><code>Container</code>是一种特殊的能包含其它组件的组件。一个典型的应用是由一些树状嵌套的组件组成的，由<code>container</code>来负责管理组件和它们的子组件的生命周期，包括它们的：创建、渲染、改变大小和位置、销毁。一个典型应用的组件层级是由顶部的<code>Viewport</code>开始，它包含了其它<code>containers</code>和组件嵌套而成：
-<img alt="组件层级" src="./extjs5_guide/component_heirarchy_5.png"/>
-子组件通过<code>Container</code>的<code>items</code>配置属性添加到 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

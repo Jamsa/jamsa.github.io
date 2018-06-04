@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Spring Cloud 上手5-服务网关"/>
+        <meta property="og:url" content="../drafts/spring-cloud-shang-shou-5-fu-wu-wang-guan.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="../drafts/spring-cloud-shang-shou-5-fu-wu-wang-guan.html" />
+
+        <title>Spring Cloud 上手5-服务网关 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="../theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="../">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="../category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="../category/fang-fa.html">方法</a></li>
+                                <li ><a href="../category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="../category/kai-fa.html">开发</a></li>
+                                <li ><a href="../category/qian-duan.html">前端</a></li>
+                                <li ><a href="../category/xiao-lu.html">效率</a></li>
+                                <li ><a href="../category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="../drafts/spring-cloud-shang-shou-5-fu-wu-wang-guan.html" rel="bookmark"
+             title="Permalink to Spring Cloud 上手5-服务网关">Spring Cloud 上手5-服务网关</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-06-03
+
+        |
+        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="../drafts/spring-cloud-shang-shou-5-fu-wu-wang-guan.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>ZUUL概述</h1>
+<p>服务网关是微服务中向外部系统提供REST API过程中起服务路由、负载均衡的角色。也可将权限控制等功能放在服务网关上，为微服务提供保护。</p>
+<p>SpringCloud Netflix中的Zuul承担了这样的功能。它可以作为Eureka客户端与Eureka集成，实现自动的服务路由。也可以通过配置文件来调整路由的策略，对内部服务提供保护。</p>
+<p>使用Zuul的典型场景是这样的：</p>
+<div class="highlight"><pre><span></span>                              -------------
+                             (   外部调用  )
+                              -------------
+                                    ||
+                         +-----------------------+
+                         |         Zuul          |
+                         +-----------------------+
+                                    ||
+                                    ||
+                         +-----------------------+
+                         |       consumer        |
+                         +-----------------------+
+                               ||          || 
+                         +----------+  +---------+
+                         |Service A |  |Service B|
+                         | provider |  | provider|
+                         |          |  |         |
+                         +----------+  +---------+
+</pre></div>
+<p>外部调用通过Zuul调用内部的REST服务，通常情况下内部并不会把所有服务都暴露给外部。上图中的<code>Sercie A/B provider</code>就只是供内部调用的，<code>consumer</code>供外部系统调用的服务。</p>
+<h1>使用Zuul开发服务网关</h1>
+<p>在我们的示例中服务网关放在<code>gateway</code>模块中。</p>
+<h2>依赖配置</h2>
+<p><code>gateway</code>模块的<code>build.gradle</code>:</p>
+<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'zuul'</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-client'</span>
+<span class="o">}</span>
+
+<span class="n">jar</span> <span class="o">{</span>
+    <span class="n">manifest</span> <span class="o">{</span>
+        <span class="n">attributes</span> <span class="s2">"Manifest-Version"</span><span class="o">:</span> <span class="mf">1.0</span><span class="o">,</span>
+                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.sc.gateway.Application'</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>从上面可以看出<code>gateway</code>模块也是一个<code>eureka-client</code>模块，它通过eureka查询服务信息，并自动对eureka上注册的服务进行映射。</p>
+<h2>入口程序</h2>
+<p><code>Application</code>类的内容也相当简单:</p>
+<div class="highlight"><pre><span></span><span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableZuulProxy</span>
+<span class="nd">@EnableEurekaClient</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">Application</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>只需要添加<code>@EnableZuulProxy</code>和<code>@EnableEurekaClient</code>注解，基本的服务网关就完成了。</p>
+<h2>配置信息</h2>
+<p>再来看看<code>application.yml</code>的内容：</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">instance</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">hostname</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+  <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">serviceUrl</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">defaultZone</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:9001/eureka/</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-gateway</span>
+<span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">9000</span>
+<span class="l l-Scalar l-Scalar-Plain">zuul</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">routes</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">sc-consumer</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/api/**</span>
+      <span class="l l-Scalar l-Scalar-Plain">serviceId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-consumer</span>
+<span class="l l-Scalar l-Scalar-Plain">management</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">security</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+<p>这里与之前的<code>eureka-client</code>工程并没有不同，只是多了<code>management</code>和<code>zuul</code>段。<code>management</code>段中禁用的安全检查，以便我们能直接通过<code>http://localhost:9000/routes</code>来查看路由信息。由于<code>spring-cloud-starter-zuul</code>已经包含了<code>spring-boot-starter-actuator</code>，它本身具备路由管理能力，只不过默认情况下直接访问<code>/routes</code>会报<code>Unauthorized 401</code>错误。</p>
+<p><code>zuul</code>段的配置信息用于路由规则配置，上面配置文件中的作用是将<code>sc-consumer</code>这个应用映射至<code>http://localhost:9000/api/**</code>下。</p>
+<p>因为<code>zuul</code>也是<code>eureka</code>客户端工程，它会自动映射<code>eureka</code>注册中心注册的服务，所以，即使上面不添加<code>zuul</code>这段配置，我们也能通过<code>http://localhost:9000/服务id/**</code>访问到对应的服务。比如，通过<code>http://localhost:9000/sc-provider/provider/hello?name=Jamsa</code>就能访问到<code>:provider:service</code>应用。</p>
+<h1>路由配置</h1>
+<p>以上配置完成后，我们可以通过<code>http://localhost:9000/routes</code>看下路由表:</p>
+<div class="highlight"><pre><span></span>{"/api/**":"sc-consumer","/sc-consumer/**":"sc-consumer","/sc-provider/**":"sc-provider"}
+</pre></div>
+<p>从这里能看到<code>sc-provider</code>和<code>sc-consumer</code>都被映射到了应用名称对应的<code>URL</code>下，<code>/api/**</code>是来自配置文件的映射配置，也被映射到了<code>sc-consumer</code>应用。</p>
+<p>如果我们想保护<code>sc-provider</code>，不将它暴露到外部怎么办呢？有两种方式，第一种是添加<code>ignoredServices</code>规则，匹配上这个表达式的服务名将被不被自动映射；第二种是使用<code>ignore-patterns</code>规则，匹配上这个规则的路径会被忽略。例如：</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">zuul</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">ignoredServices</span><span class="p p-Indicator">:</span> <span class="s">'*'</span> <span class="c1">#忽略所有服务</span>
+  <span class="l l-Scalar l-Scalar-Plain">routes</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">sc-consumer</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/api/**</span>
+      <span class="l l-Scalar l-Scalar-Plain">serviceId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-consumer</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">zuul</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">ignoredServices</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-provider</span> <span class="c1">#忽略sc-provider服务</span>
+  <span class="l l-Scalar l-Scalar-Plain">routes</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">sc-consumer</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/api/**</span>
+      <span class="l l-Scalar l-Scalar-Plain">serviceId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-consumer</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">zuul</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">ignored-patterns</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/**/hello/**</span>  <span class="c1">#忽略所有包含/hello/的路径</span>
+  <span class="l l-Scalar l-Scalar-Plain">routes</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">sc-consumer</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/api/**</span>
+      <span class="l l-Scalar l-Scalar-Plain">serviceId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-consumer</span>
+</pre></div>
+<p><a href="http://blog.51cto.com/1754966750/1958422">参考</a></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "drafts/spring-cloud-shang-shou-5-fu-wu-wang-guan.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+         var _hmt = _hmt || [];
+         (function() {
+           var hm = document.createElement("script");
+           hm.src = "https://hm.baidu.com/hm.js?5e20e9cdd1185d24ece1dae11118a04f";
+           var s = document.getElementsByTagName("script")[0]; 
+           s.parentNode.insertBefore(hm, s);
+         })();
+        </script>
+</body>
+</html>

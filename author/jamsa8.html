@@ -68,6 +68,63 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../extxue-xi-bi-ji.html" rel="bookmark" title="Permalink to Ext学习笔记">
+                                       Ext学习笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/qian-duan.html">前端</a>
+
+    on 2008-03-19
+
+        |
+        tags:         <a href="../tag/extjs.html">extjs</a>
+        <a href="../tag/javascript.html">javascript</a>
+
+
+        |
+        <a href="../extxue-xi-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>基础</h1>
+<h1>Ext继承机制</h1>
+<h1>Ext对象</h1>
+<p>Ext.onReady()是Ext.EventManager.onDocumentReady()的速写方法。</p>
+<h1>布局管理</h1>
+<h2>Ext.Viewport</h2>
+<p>Ext.Viewport是一个特殊的容器它代表应用的可视区域（浏览器的Viewport）。</p>
+<p>Viewport自动将自己渲染到document.body，因此不需要要调用render方法。它在浏览器的viewport调整大小时自动调整自己的大小并管理窗口（Ext的窗口）的大小改变。</p>
+<h2>Ext.Component</h2>
+<p>Ext.Component是所有Ext组件的基类。所有Component的子类能被乍动
+xtype用于标识所需要生成的组件的类型。
+下面两个写法效果是一样的：</p>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">viewport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">Viewport</span><span class="p">({</span>
+        <span class="nx">layout</span><span class="o">:</span><span class="s1">'border'</span><span class="p">,</span>
+        <span class="nx">items</span><span class="o">:</span><span class="p">[</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent</span><span class="p">({</span>
+                <span class="nx">xtype</span><span class="o">:</span><span class="s1">'box'</span><span class="p">,</span>
+                <span class="nx">region</span><span class="o">:</span><span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">el</span><span class="o">:</span> <span class="s1">'north'</span><span class="p">,</span>
+                <span class="nx">height</span><span class="o">:</span><span class="mi">32</span>
+            <span class="p">}),</span>
+            <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../extxue-xi-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html" rel="bookmark" title="Permalink to Xah的Emacs Lisp 教程学习笔记">
                                        Xah的Emacs Lisp 教程学习笔记
                                     </a>

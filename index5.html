@@ -68,6 +68,50 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./practical-common-lispbi-ji.html" rel="bookmark" title="Permalink to Practical Common Lisp笔记">
+                                       Practical Common Lisp笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2011-06-03
+
+        |
+        tags:         <a href="./tag/lisp.html">lisp</a>
+
+
+        |
+        <a href="./practical-common-lispbi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>环境搭建</h1>
+<p>尝试了多种common lisp的实现，在windows下使用Lispbox时并不能使用slime。而gnu common lisp和ansi common lisp好像也不能在windows中与emacs 23和slime一起工作。结果发现只有gnu clisp的win32版本可以与win32 slime emacs23配合工作。emacs23的.emacs文件如下：</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'load-path</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">site-lisp-path</span> <span class="s">"/slime"</span><span class="p">))</span>
+<span class="c1">;;(setq inferior-lisp-program "D:\\GCL-2.6.1\\bin\\gcl.bat") ; your Lisp system</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">inferior-lisp-program</span> <span class="s">"D:/clisp-2.46/clisp.exe"</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">require</span> <span class="ss">'slime</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">slime-setup</span><span class="p">)</span>
+</pre></div>
+<h1>Introduction Why Lisp?</h1>
+<h1>Lather, Rinse, Repeat: A …</h1>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./practical-common-lispbi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./programming-in-scala-de-du-shu-bi-ji.html" rel="bookmark" title="Permalink to Programming in Scala 的读书笔记">
                                        Programming in Scala 的读书笔记
                                     </a>
@@ -586,59 +630,6 @@
 <p>为实现这个目的，系统必须在需要应用程序的一部分时启动应用程序进程，并实例化那部分Java对象。因此，与绝大多数的操作系统不同，Android应用程序没有单一的程序入口（比如没有main()函数）。而是拥有可以根据需要实例化和运行的组件。有4种类型的组件 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./android-dev-guidexue-xi-bi-ji-application-fundamentals.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./android-dev-guidexue-xi-bi-ji-what-is-android.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 What is Android?">
-                                       Android Dev Guide学习笔记 What is Android?
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/yi-dong.html">移动</a>
-
-    on 2010-07-30
-
-        |
-        tags:         <a href="./tag/android.html">android</a>
-
-
-        |
-        <a href="./android-dev-guidexue-xi-bi-ji-what-is-android.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Android是什么？</h1>
-<h1>功能</h1>
-<ul>
-<li>Application framework允许重用和替换的组件</li>
-<li>Dalvik虚拟机</li>
-<li>集成了基于WebKit引擎的浏览器</li>
-<li>基于2D图形库的优化过的图形；基于OpenGL ES 1.0规范的3D图形（可选的硬件加速）。</li>
-<li>SQLite来支持结构化数据存储</li>
-<li>多媒体方面 支持：音频、视频和图像支持（MPEG4、H.264、MP3、AAC、AMR、JPG、PNG、GIF）</li>
-<li>GSM通讯（依赖于硬件）</li>
-<li>蓝牙、EDGE、3G和WiFi（依赖于硬件）</li>
-<li>摄像头、GPS、罗盘和加速感应（依赖于硬件）</li>
-<li>丰富的开发环境，包括：设备模拟器，用于调试的工具，内存和性能分析，和Eclipse IDE插件</li>
-</ul>
-<h1>Android架构</h1>
-<p>下图展示了Android操作系统的主要组件。
-<img alt="system architecture" src="./android-dev-guide/system-architecture.jpg"/></p>
-<h1>应用程序</h1>
-<p>Android发布时一般带有一套核心应用程序，包括email客户端，SMS程序，日历 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./android-dev-guidexue-xi-bi-ji-what-is-android.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

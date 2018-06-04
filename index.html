@@ -68,6 +68,75 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./spring-cloud-shang-shou-5-fu-wu-wang-guan.html" rel="bookmark" title="Permalink to Spring Cloud 上手5-服务网关">
+                                       Spring Cloud 上手5-服务网关
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-06-04
+
+        |
+        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="./spring-cloud-shang-shou-5-fu-wu-wang-guan.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>ZUUL概述</h1>
+<p>服务网关是微服务中向外部系统提供REST API过程中起服务路由、负载均衡的角色。也可将权限控制等功能放在服务网关上，为微服务提供保护。</p>
+<p>SpringCloud Netflix中的Zuul承担了这样的功能。它可以作为Eureka客户端与Eureka集成，实现自动的服务路由。也可以通过配置文件来调整路由的策略，对内部服务提供保护。</p>
+<p>使用Zuul的典型场景是这样的：</p>
+<div class="highlight"><pre><span></span>                              -------------
+                             (   外部调用  )
+                              -------------
+                                    ||
+                         +-----------------------+
+                         |         Zuul          |
+                         +-----------------------+
+                                    ||
+                                    ||
+                         +-----------------------+
+                         |       consumer        |
+                         +-----------------------+
+                               ||          || 
+                         +----------+  +---------+
+                         |Service A |  |Service B|
+                         | provider |  | provider|
+                         |          |  |         |
+                         +----------+  +---------+
+</pre></div>
+<p>外部调用通过Zuul调用内部的REST服务，通常情况下内部并不会把所有服务都暴露给外部。上图中的<code>Sercie A/B provider</code>就只是供内部调用的，<code>consumer</code>供外部系统调用的服务。</p>
+<h1>使用Zuul开发服务网关</h1>
+<p>在我们的示例中服务网关放在<code>gateway</code>模块中。</p>
+<h2>依赖配置</h2>
+<p><code>gateway</code>模块的<code>build.gradle</code>:</p>
+<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'zuul'</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-client'</span>
+<span class="o">}</span>
+
+<span class="n">jar</span> <span class="o">{</span>
+    <span class="n">manifest …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-5-fu-wu-wang-guan.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html" rel="bookmark" title="Permalink to Spring Cloud 上手4-服务消费者">
                                        Spring Cloud 上手4-服务消费者
                                     </a>
@@ -504,49 +573,6 @@ git push -u origin master …</pre></div>
 <p>安装pyenv和pyenv-virtualenv …</p></li></ol>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./pythonxu-ni-huan-jing-guan-li.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./rocketmq-zhu-yao-gai-nian.html" rel="bookmark" title="Permalink to RocketMQ 主要概念">
-                                       RocketMQ 主要概念
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-05-12
-
-        |
-        tags:         <a href="./tag/mq.html">mq</a>
-
-
-        |
-        <a href="./rocketmq-zhu-yao-gai-nian.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h2>主要概念</h2>
-<p>Topic：消息主题，它分布在多个Master节点上。Topic下有多个Topic分区，每个分区上有多个Que。Que是消息存储队列。要实现有序消息，只能有一个Que，这会影响高可用能力。</p>
-<p>Broker：负责接收发送自生产者的消息，存储消息，处理消费者的拉取消息请求。存储消息元数据，如：消费组，消费偏移量和主题/队列关信息。</p>
-<p>Tag：消息标签。消费端不指定Tag的时候可以接收到同一主题下不同的Tag的消息。</p>
-<p>NameServer: 命名服务。用于生产者和消费者通过主题查找对应的Broker。</p>
-<h2>高可用</h2>
-<p>NameServer可以提供多个，互相之间没有通信关系，它们是无状态的。</p>
-<p>单个Broker和所有NameServer保持长连接，且每隔30秒向所有NameServer发送心跳，心跳包含了自身的Topic配置信息。NameServer每隔10秒扫描存活的Broker连接，若某连接2分钟内没有发送心跳包，则断开连接。Broker挂掉时，NameServer会主动关闭连接。连接断开时，NameServer会立即感知，更新Topic与队列的对应关系，但不通知生产者和消费者。</p>
-<p>Broker以Master/Slave节点来提供高可用，Master节点可以写入，Slave节点可以读取。4个节点的两对Master/Slave组合可以实现高可用。同一Topic的两个Topic分区分布两个Master节点上，Slave上存储了Master上消息的副本。当一个Master当掉时 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./rocketmq-zhu-yao-gai-nian.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
