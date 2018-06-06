@@ -5,14 +5,14 @@
         <meta name="author" content="Jamsa" />
         <meta name="robots" content="index, follow"/>
 
-        <meta property="og:title" content="Tags for Jamsa的笔记"/>
-        <meta property="og:url" content="./tags.html"/>
+        <meta property="og:title" content="Jamsa的笔记"/>
+        <meta property="og:url" content="."/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
         <meta property="og:type" content="website"/>
 
-        <link rel="canonical" href="./tags.html" />
+        <link rel="canonical" href="." />
 
-        <title>Tags for Jamsa的笔记</title>
+        <title>Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -62,50 +62,66 @@
             <div class="span10 offset1">
                 <div class="row-fluid">
 <div class="span9">
-    <section>
-    <h1>Tags for Jamsa的笔记</h1>
+                <section>
+                    <ol id="posts-list" class="hfeed" start="9">
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./sed-tips.html" rel="bookmark" title="Permalink to Sed Tips">
+                                       Sed Tips
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
 
-    <dl>
-        <dd><a href="./tag/android.html">android (4)</a></dd>
-        <dd><a href="./tag/asm.html">asm (1)</a></dd>
-        <dd><a href="./tag/awk.html">awk (1)</a></dd>
-        <dd><a href="./tag/c.html">c (1)</a></dd>
-        <dd><a href="./tag/clojure.html">clojure (1)</a></dd>
-        <dd><a href="./tag/cornel.html">cornel (1)</a></dd>
-        <dd><a href="./tag/design-pattern.html">design pattern (1)</a></dd>
-        <dd><a href="./tag/ebs.html">ebs (13)</a></dd>
-        <dd><a href="./tag/emacs.html">emacs (9)</a></dd>
-        <dd><a href="./tag/extjs.html">extjs (8)</a></dd>
-        <dd><a href="./tag/git.html">git (1)</a></dd>
-        <dd><a href="./tag/go.html">go (1)</a></dd>
-        <dd><a href="./tag/hadoop.html">hadoop (1)</a></dd>
-        <dd><a href="./tag/java.html">java (2)</a></dd>
-        <dd><a href="./tag/javascript.html">javascript (8)</a></dd>
-        <dd><a href="./tag/jsf.html">jsf (1)</a></dd>
-        <dd><a href="./tag/jupyter-notebook.html">jupyter notebook (10)</a></dd>
-        <dd><a href="./tag/linux.html">linux (3)</a></dd>
-        <dd><a href="./tag/lisp.html">lisp (2)</a></dd>
-        <dd><a href="./tag/mac.html">mac (1)</a></dd>
-        <dd><a href="./tag/machine-learn.html">machine learn (12)</a></dd>
-        <dd><a href="./tag/maven.html">maven (2)</a></dd>
-        <dd><a href="./tag/mq.html">mq (1)</a></dd>
-        <dd><a href="./tag/oaf.html">oaf (12)</a></dd>
-        <dd><a href="./tag/objective-c.html">objective-c (1)</a></dd>
-        <dd><a href="./tag/oracle.html">oracle (13)</a></dd>
-        <dd><a href="./tag/org.html">org (1)</a></dd>
-        <dd><a href="./tag/perl.html">perl (1)</a></dd>
-        <dd><a href="./tag/pyqt.html">pyqt (1)</a></dd>
-        <dd><a href="./tag/python.html">python (17)</a></dd>
-        <dd><a href="./tag/scala.html">scala (2)</a></dd>
-        <dd><a href="./tag/scheme.html">scheme (1)</a></dd>
-        <dd><a href="./tag/seam.html">seam (1)</a></dd>
-        <dd><a href="./tag/sed.html">sed (1)</a></dd>
-        <dd><a href="./tag/spring-cloud.html">spring cloud (6)</a></dd>
-        <dd><a href="./tag/vi.html">vi (1)</a></dd>
-        <dd><a href="./tag/vim.html">vim (1)</a></dd>
-        <dd><a href="./tag/wxpython.html">wxpython (1)</a></dd>
-    </dl>
-    </section>
+    in <a href="./category/xiao-lu.html">效率</a>
+
+    on 2007-06-19
+
+        |
+        tags:         <a href="./tag/linux.html">linux</a>
+        <a href="./tag/sed.html">sed</a>
+
+
+        |
+        <a href="./sed-tips.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>I介绍</h1>
+<h2>1. sed可以完成的工作</h2>
+<p>sed最常用在编辑那些需要不断重复某些编辑动作的文件上。</p>
+<p>可以用sed完成一些重复性的工作。</p>
+<p>sed可以一次执行多个不同的编辑动作。</p>
+<h2>2. sed能做哪些编辑动作</h2>
+<p>删除、修改、添加、插入、合并文件中的资料行，或读入其它文件的资料到文件中，也可以替换其中的字符串、转换其中的字母等。</p>
+<h2>3. sed工作流程</h2>
+<p>从输入中读入内容，操作完毕后发送到标准输出。</p>
+<h1>II使用sed</h1>
+<p>sed命令可以分成编辑指令与文件指令两部分。编辑指令负责控制所有编辑工作，文件指令处理文件。编辑指令由位址与函数两部分组件，位址指令用于定位对象，而编辑指令用于编辑对象。</p>
+<h2>1. 命令行上的编辑指令</h2>
+<p>在命令行上执行sed指令时用-e参数，如果sed指令在文件中用-f参数。</p>
+<div class="highlight"><pre><span></span>sed -e '编辑指令1' -e '编辑指令2' ...文件一 ...文件二
+</pre></div>
+<p>例</p>
+<div class="highlight"><pre><span></span>sed -e '1,10d' -e 's/yellow/black/g' yel.dat …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./sed-tips.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    </ol><!-- /#posts-list -->
+<p class="paginator">
+        <a href="./index8.html">&laquo;</a>
+    Page 9 / 9
+</p>
+                </section><!-- /#content -->
 </div>
 <div class="span3">
     <section id="sidebar">
