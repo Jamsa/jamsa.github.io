@@ -68,6 +68,49 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./hadoop-in-action-bi-ji.html" rel="bookmark" title="Permalink to Hadoop In Action 笔记">
+                                       Hadoop In Action 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/da-shu-ju.html">大数据</a>
+
+    on 2015-05-18
+
+        |
+        tags:         <a href="./tag/hadoop.html">hadoop</a>
+
+
+        |
+        <a href="./hadoop-in-action-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Hadoop In Action 笔记</h1>
+<h2>MapReduce</h2>
+<p>MapRecuce程序执行的2个阶段，分别称为mapping和reducing。每个阶段都定义了数据处理函数，这些函数被称为mapper和reducer。在mapping阶段，MapReduce接收输入并将这些数据分别发送给mapper。在reducing阶段，reducer处理所有来自于mapper的输出并产生最终结果。简单来说mapper对输入进行过滤和转换（filter and transform）成reducer可以聚合（aggregate）的东西。
+除mapping和reducing外还需要处理数据的分割和传送。但它们与mapper和reducer不同，它们通常与特定的数据处理过程无关。MapReduce框架提供了能满足于大多数情况下的缺省实现。
+为便于处理需要一种足够强大的通用的数据结构。MapReduce使用list和pair(key/value)作为主要的数据结构。
+MapReduce框架的数据处理过程：</p>
+<ol>
+<li>应用程序的输入必须被构建成包含pair（key/value）的list，list(k1,v1)。处理多个文件的输入格式通常为<code>list(&lt;String filename, String file_content&gt;)</code>。处理单个大文件的格式可能是<code>list(&lt;Integer line_number, String log_event&gt;)</code>。</li>
+<li>list …</li></ol>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./hadoop-in-action-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（二）类型系统">
                                        Ext JS 5 手册 核心概念（二）类型系统
                                     </a>
@@ -530,54 +573,6 @@ Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
 <p>复杂的游戏需要将这些内容分开来设计，最后再将这些合并起来 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./beginning-android-gamesxue-xi-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./practical-clojure-ji-bi.html" rel="bookmark" title="Permalink to Practical Clojure 记笔">
-                                       Practical Clojure 记笔
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2012-03-12
-
-        |
-        tags:         <a href="./tag/clojure.html">clojure</a>
-
-
-        |
-        <a href="./practical-clojure-ji-bi.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>状态管理</h1>
-<p>Clojure主张消除状态管理。而现实世界仍要需要状态变化。</p>
-<p>多数语言将事物（things）描述为变量或对象，并允许修改它们。这造成了对锁的需求。</p>
-<h2>状态和identity</h2>
-<p>Clojure引入新的思考事物的哲学。它将事物分解为2个独立的概念&mdash;&mdash;状态和identity。状态是与identity关联的某一时间点的值，而identity是事物不会改变的那个部分，它会与不同时间的不同状态建立连接。每个状态下的值都是不可变的。改变通过将identity指向（refer）不同的状态入口而模拟产生的。</p>
-<p>Clojure中的状态可以是任何Clojure中的数据类型。Identity是由三种引用类型（reference type）所表示的：ref、agent、atom和var。每种都描述了一个identity并指向一个状态。分别用于不同的情况：</p>
-<ul>
-<li>ref管理同步的coordinated（协调）状态</li>
-<li>agent管理异步的independent（独立，不受约束）状态</li>
-<li>atom管理同步的independent状态</li>
-</ul>
-<h2>Coordinated与Independent状态</h2>
-<p>许多系统都需要对identity的修改是以协调的方式进行以确保数据的完整性。Coordinated的修改方式下将管理多个独立的identities以确保所有修改都会同时进行。例如，在2个银行帐户间转帐操作时，钱存入一个帐号，必须也保证从另一个帐号减去相应的量，这两个动作必须同时发生。Clojure使用ref来提供这种coodinated状态。</p>
-<p>与coordinated状态管理对应的是independent状态。Independent identity只处理自身，而不与其它identities相关联 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./practical-clojure-ji-bi.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

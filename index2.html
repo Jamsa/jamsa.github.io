@@ -68,6 +68,53 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./pelican-jing-tai-bo-ke.html" rel="bookmark" title="Permalink to Pelican 静态博客">
+                                       Pelican 静态博客
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-05-12
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+
+
+        |
+        <a href="./pelican-jing-tai-bo-ke.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h2>重新整理博客</h2>
+<h2>草稿</h2>
+<div class="highlight"><pre><span></span><span class="n">Status</span><span class="o">:</span> <span class="n">draft</span>
+</pre></div>
+<h2>静态文件发布</h2>
+<p><code>直接使用 make github 会把生成的内容发布至 github 仓库</code>，如果你希望在 github 上保存 blog 源码就会被覆盖。</p>
+<p>我是直接在 output 目录下新建仓库，发布至 github pages。</p>
+<div class="highlight"><pre><span></span>cd output
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/xxx/xxx.github.io.git
+git push -u origin master …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./pelican-jing-tai-bo-ke.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./pythonxu-ni-huan-jing-guan-li.html" rel="bookmark" title="Permalink to Python虚拟环境管理">
                                        Python虚拟环境管理
                                     </a>
@@ -596,109 +643,6 @@ int64
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X_iris</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2 …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./learning-sklearnbi-ji-yi.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./numpy-and-scipybi-ji-er.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（二）">
-                                       Numpy And Scipy笔记（二）
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2017-03-28
-
-        |
-        tags:         <a href="./tag/python.html">python</a>
-        <a href="./tag/machine-learn.html">machine learn</a>
-        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="./numpy-and-scipybi-ji-er.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="c1">#%matplotlib notebook</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-</pre></div>
-<h1>SciPy</h1>
-<p><code>SciPy</code>以NumPy的数组计算处理功能为基础，提供了用于处理科学计算常用的方法：积分、取函数最大、最小值，取稀疏矩阵的特征向量，判断两个分布模式是否相同，等等。</p>
-<h2>最优化和最小化</h2>
-<p>SciPy提供的最优化处理包可以用于解决最小化的问题。典型的最小化问题是执行线性回归，查找函数的最小和最大值，取函数的根，判断两个函数是否相交。</p>
-<p><code>注意</code>：NumPy和SciPy提供的最优化和最小化工具中不含马尔可夫链蒙特卡罗(Markov Chain Monte Carlo (MCMC))功能&mdash;&mdash;即，贝叶斯分析。</p>
-<h3 id="shu-ju-jian-mo-he-ni-he">数据建模和拟合</h3>
-<p>有多种方式对数据进行线性回归拟合。如曲线拟合<code>curve_fit</code>，它是<span class="math">\( x^2 $的（即，最佳拟合方法）。下面示例数据用函数生成，并添加噪音，将这些带噪音的数据使用curve_fit进行拟合。用于拟合的线性方程是\)</span> f …</p><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' }, Macros: {} }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./numpy-and-scipybi-ji-er.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

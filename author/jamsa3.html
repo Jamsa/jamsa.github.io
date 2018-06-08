@@ -68,6 +68,109 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../numpy-and-scipybi-ji-er.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（二）">
+                                       Numpy And Scipy笔记（二）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2017-03-28
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+        <a href="../tag/machine-learn.html">machine learn</a>
+        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="../numpy-and-scipybi-ji-er.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="c1">#%matplotlib notebook</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+</pre></div>
+<h1>SciPy</h1>
+<p><code>SciPy</code>以NumPy的数组计算处理功能为基础，提供了用于处理科学计算常用的方法：积分、取函数最大、最小值，取稀疏矩阵的特征向量，判断两个分布模式是否相同，等等。</p>
+<h2>最优化和最小化</h2>
+<p>SciPy提供的最优化处理包可以用于解决最小化的问题。典型的最小化问题是执行线性回归，查找函数的最小和最大值，取函数的根，判断两个函数是否相交。</p>
+<p><code>注意</code>：NumPy和SciPy提供的最优化和最小化工具中不含马尔可夫链蒙特卡罗(Markov Chain Monte Carlo (MCMC))功能&mdash;&mdash;即，贝叶斯分析。</p>
+<h3 id="shu-ju-jian-mo-he-ni-he">数据建模和拟合</h3>
+<p>有多种方式对数据进行线性回归拟合。如曲线拟合<code>curve_fit</code>，它是<span class="math">\( x^2 $的（即，最佳拟合方法）。下面示例数据用函数生成，并添加噪音，将这些带噪音的数据使用curve_fit进行拟合。用于拟合的线性方程是\)</span> f …</p><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' }, Macros: {} }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../numpy-and-scipybi-ji-er.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../numpy-and-scipybi-ji-san.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（三）">
                                        Numpy And Scipy笔记（三）
                                     </a>
@@ -511,49 +614,6 @@ C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语�
 <p>安装NumPy、SciPy、Matplotlib。NumPy提供高度优化过的多维数组计算支持，这是多数先进算法的基础数据结构。SciPy使用这些数组来提供快速的算法实现。Matplotlib用于绘制高质量的图形。</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../build-machine-learning-systems-with-python-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../hadoop-in-action-bi-ji.html" rel="bookmark" title="Permalink to Hadoop In Action 笔记">
-                                       Hadoop In Action 笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/da-shu-ju.html">大数据</a>
-
-    on 2015-05-18
-
-        |
-        tags:         <a href="../tag/hadoop.html">hadoop</a>
-
-
-        |
-        <a href="../hadoop-in-action-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Hadoop In Action 笔记</h1>
-<h2>MapReduce</h2>
-<p>MapRecuce程序执行的2个阶段，分别称为mapping和reducing。每个阶段都定义了数据处理函数，这些函数被称为mapper和reducer。在mapping阶段，MapReduce接收输入并将这些数据分别发送给mapper。在reducing阶段，reducer处理所有来自于mapper的输出并产生最终结果。简单来说mapper对输入进行过滤和转换（filter and transform）成reducer可以聚合（aggregate）的东西。
-除mapping和reducing外还需要处理数据的分割和传送。但它们与mapper和reducer不同，它们通常与特定的数据处理过程无关。MapReduce框架提供了能满足于大多数情况下的缺省实现。
-为便于处理需要一种足够强大的通用的数据结构。MapReduce使用list和pair(key/value)作为主要的数据结构。
-MapReduce框架的数据处理过程：</p>
-<ol>
-<li>应用程序的输入必须被构建成包含pair（key/value）的list，list(k1,v1)。处理多个文件的输入格式通常为<code>list(&lt;String filename, String file_content&gt;)</code>。处理单个大文件的格式可能是<code>list(&lt;Integer line_number, String log_event&gt;)</code>。</li>
-<li>list …</li></ol>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../hadoop-in-action-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

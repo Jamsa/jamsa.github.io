@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Spring Cloud 上手7-配置中心"/>
+        <meta property="og:url" content="./spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="./spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html" />
+
+        <title>Spring Cloud 上手7-配置中心 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="./">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html" rel="bookmark"
+             title="Permalink to Spring Cloud 上手7-配置中心">Spring Cloud 上手7-配置中心</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-06-07
+
+        |
+        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="./spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>这是Spring Cloud上手系列的第七篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>概述</h1>
+<p>通过Spring Cloud Config可以对各个系统的配置信息进行集中管理和维护。</p>
+<p>Spring Cloud Config服务端读取git、svn或本地目录（包括classpath路径)中保存的配置信息。</p>
+<p>将Spring Cloud Config服务作为Eureka客户端，则为Config Server提供高可用。Config Client程序可以通过Eureka获取Config Server的信息并读取配置。</p>
+<h1>Spring Cloud Config Server配置</h1>
+<h2>添加依赖</h2>
+<p>Spring Config 服务相关的两个依赖是<code>org.springframework.cloud:spring-cloud-config-server</code>和<code>org.springframework.cloud:spring-cloud-config-client</code>，分别对应于配置服务的服务端和客户端。</p>
+<p>我们先在根模块的<code>build.gradle</code>中添加程序库依赖。</p>
+<div class="highlight"><pre><span></span><span class="c1">//依赖</span>
+<span class="n">ext</span><span class="o">.</span><span class="na">libs</span> <span class="o">=</span> <span class="o">[</span>
+        <span class="s2">"spring-cloud"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-dependencies:${versions.springCloud}"</span><span class="o">,</span>
+        <span class="s2">"spring-web"</span><span class="o">:</span><span class="s2">"org.springframework:spring-web:${versions.spring}"</span><span class="o">,</span>
+        <span class="s2">"spring-boot"</span><span class="o">:</span><span class="s2">"org.springframework.boot:spring-boot-starter"</span><span class="o">,</span>
+        <span class="s2">"eureka-server"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"</span><span class="o">,</span>
+        <span class="s2">"eureka-client"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"</span><span class="o">,</span>
+        <span class="s2">"zuul"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-zuul"</span><span class="o">,</span>
+        <span class="s2">"feign"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-feign"</span><span class="o">,</span>
+        <span class="s2">"config-server"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-config-server"</span><span class="o">,</span>
+        <span class="s2">"config-client"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-config-client"</span>
+<span class="o">]</span>
+</pre></div>
+<h2>添加config模块</h2>
+<p>在根模块下添加新的<code>config</code>，以它作为Config Server。将这个模块添加至根模块的<code>settings.gradle</code>中。</p>
+<div class="highlight"><pre><span></span><span class="n">rootProject</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'sc-cloud'</span>
+
+<span class="n">include</span> <span class="s1">'registry'</span><span class="o">,</span><span class="s1">'gateway'</span><span class="o">,</span><span class="s1">'config'</span>
+<span class="n">include</span> <span class="s1">'provider:api'</span><span class="o">,</span><span class="s1">'provider:service'</span>
+<span class="n">include</span> <span class="s1">'consumer:api'</span><span class="o">,</span><span class="s1">'consumer:service'</span>
+</pre></div>
+<p>在<code>config</code>模块自己的<code>build.gradle</code>中添加<code>config-server</code>依赖，并配置好<code>Main-Class</code>：</p>
+<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'config-server'</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-client'</span>
+<span class="o">}</span>
+
+<span class="n">jar</span> <span class="o">{</span>
+    <span class="n">manifest</span> <span class="o">{</span>
+        <span class="n">attributes</span> <span class="s2">"Manifest-Version"</span><span class="o">:</span> <span class="mf">1.0</span><span class="o">,</span>
+                <span class="s1">'Main-Class'</span><span class="o">:</span> <span class="s1">'com.github.jamsa.sc.config.Application'</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<h2>MainClass</h2>
+<p>添加配置服务程序的入口类Application:</p>
+<div class="highlight"><pre><span></span><span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableEurekaClient</span>
+<span class="nd">@EnableConfigServer</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">Application</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>这里我们直接做高可用配置，添加了<code>@EnableEurekaClient</code>注解，这样配置服务的客户端就能通过Eureka注册中心获取配置服务器的信息。</p>
+<p>如果不将配置服务注册至Eureka，配置中心的客户端程序仍然能通过完整的URL来访问配置服务。但无法提供高可用支持。</p>
+<h2>对服务程序进行配置</h2>
+<p>添加<code>application.yml</code>配置文件。</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">instance</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">hostname</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+  <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">serviceUrl</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">defaultZone</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:9001/eureka/</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-config</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">active</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">native</span> <span class="c1">#使用本地目录读取配置文件，而不是从版本仓库</span>
+  <span class="l l-Scalar l-Scalar-Plain">cloud</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">config</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">searchLocations:classpath:/config</span>
+        <span class="l l-Scalar l-Scalar-Plain">git</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">uri</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://xxx.git</span>
+          <span class="l l-Scalar l-Scalar-Plain">searchPaths</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">config</span> <span class="c1">#配置文件放在根目录时不需要配置</span>
+<span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">9002</span>
+<span class="l l-Scalar l-Scalar-Plain">management</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">security</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+<p>这里将<code>spring.profiles.active</code>配置为<code>native</code>，是为了使用本地目录。<code>spring.cloud.config.server.native</code>是针对<code>native profile</code>的配置，在这个配置文件里可以配置多个<code>profile</code>，由<code>active</code>确定使用哪个<code>profile</code>。可以创建多套不同的<code>profile</code>，分别用于本机开发、测试、生产部署。</p>
+<h2>添加样例配置文件</h2>
+<p>根据<code>application.xml</code>中指定的<code>searchLocations</code>，我们在<code>config</code>模块的<code>src/resources</code>目录下添加<code>config</code>目录来保存配置信息。在这个目录下添加以下两个配置文件：</p>
+<p><code>config-for-client-dev.yml</code></p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">env</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name:dev</span>
+  <span class="l l-Scalar l-Scalar-Plain">username:uname for dev</span>
+</pre></div>
+<p><code>config-for-client-test.properties</code></p>
+<div class="highlight"><pre><span></span>env.name=tet
+env.username=uname for test
+</pre></div>
+<h2>打包运行配置服务程序</h2>
+<p>在<code>sc-cloud</code>根模块，执行<code>gradle build</code>编译整个工程。然后运行</p>
+<p><code>java -jar config/build/libs/sc-config-0.0.1.jar</code></p>
+<p>启动配置服务程序。</p>
+<p>启动完毕后，在Eureka注册中心中可以查看到这个新的服务。</p>
+<p><img alt="配置中心" src="./spring_cloud_tut/config1.png"/></p>
+<p>也可以通过<code>http://localhost:9002/config-for-client-dev.yml</code>和<code>http://localhost:9002/config-for-client-test.properties</code>访问上节中的配置文件。</p>
+<p><img alt="配置中心-配置信息dev" src="./spring_cloud_tut/config2.png"/></p>
+<p><img alt="配置中心-配置信息test" src="./spring_cloud_tut/config3.png"/></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+         var _hmt = _hmt || [];
+         (function() {
+           var hm = document.createElement("script");
+           hm.src = "https://hm.baidu.com/hm.js?5e20e9cdd1185d24ece1dae11118a04f";
+           var s = document.getElementsByTagName("script")[0]; 
+           s.parentNode.insertBefore(hm, s);
+         })();
+        </script>
+</body>
+</html>
