@@ -193,6 +193,166 @@ env.username=uname for test
 <p>也可以通过<code>http://localhost:9002/config-for-client-dev.yml</code>和<code>http://localhost:9002/config-for-client-test.properties</code>访问上节中的配置文件。</p>
 <p><img alt="配置中心-配置信息dev" src="./spring_cloud_tut/config2.png"/></p>
 <p><img alt="配置中心-配置信息test" src="./spring_cloud_tut/config3.png"/></p>
+<p>有几种方式可以访问到这些配置文件：</p>
+<ul>
+<li>{application}/{profile}[/{label}]</li>
+<li>{application}-{profile}.yml</li>
+<li>{label}/{application}-{profile}.yml</li>
+<li>{application}-{profile}.properties</li>
+<li>{label}/{application}-{profile}.properties</li>
+</ul>
+<p><code>label</code>是版本库上的分支名称，使用本地文件时，可以用<code>master</code>代替。<code>application</code>是配置文件名，一般将它设置为相应的应用名称，在我们的例子中它是<code>config-for-client</code>。按上述的第一条规则，通过<code>http://localhost:9002/config-for-client/dev/master</code>我们能获取到以下信息：</p>
+<div class="highlight"><pre><span></span>{"name":"config-for-client","profiles":["dev"],"label":"master","version":null,"state":null,"propertySources":[{"name":"classpath:/config/config-for-client-dev.yml","source":{"env":"name:dev username:uname for dev"}}]}
+</pre></div>
+<p>按第五条规则，通过<code>http://localhost:9002/master/config-for-client-dev.properties</code>可以获取到：</p>
+<div class="highlight"><pre><span></span><span class="n">env</span><span class="o">:</span> <span class="n">name</span><span class="o">:</span><span class="n">dev</span> <span class="n">username</span><span class="o">:</span><span class="n">uname</span> <span class="k">for</span> <span class="n">dev</span>
+</pre></div>
+<p>注意这里并不是访问的<code>config-for-client-test.properties</code>，获取到的信息是<code>config-for-client-dev.yml</code>中的内容。</p>
+<h1>Spring Cloud Config Client配置</h1>
+<p>接下来配置在<code>provider-serveice</code>工程，为它添加从配置中心读取配置信息的能力。</p>
+<h2>配置<code>provider-service</code>的依赖</h2>
+<p>在根模块的<code>build.gradle</code>中添加Spring Cloud Config客户端程序库。</p>
+<div class="highlight"><pre><span></span><span class="n">ext</span><span class="o">.</span><span class="na">libs</span> <span class="o">=</span> <span class="o">[</span>
+        <span class="s2">"spring-cloud"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-dependencies:${versions.springCloud}"</span><span class="o">,</span>
+        <span class="s2">"spring-web"</span><span class="o">:</span><span class="s2">"org.springframework:spring-web:${versions.spring}"</span><span class="o">,</span>
+        <span class="s2">"spring-boot"</span><span class="o">:</span><span class="s2">"org.springframework.boot:spring-boot-starter"</span><span class="o">,</span>
+        <span class="s2">"eureka-server"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"</span><span class="o">,</span>
+        <span class="s2">"eureka-client"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"</span><span class="o">,</span>
+        <span class="s2">"zuul"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-zuul"</span><span class="o">,</span>
+        <span class="s2">"feign"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-feign"</span><span class="o">,</span>
+        <span class="s2">"config-server"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-config-server"</span><span class="o">,</span>
+        <span class="s2">"config-client"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-config-client"</span>
+<span class="o">]</span>
+</pre></div>
+<p>在<code>provider-service</code>模块的<code>build.gradle</code>中添加<code>config-client</code>依赖。</p>
+<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':provider:api'</span><span class="o">)</span>
+    <span class="c1">//compile libs.'eureka-client' //Eureka客户端</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'config-client'</span> <span class="c1">//Config客户端</span>
+<span class="o">}</span>
+</pre></div>
+<h2>添加测试端点</h2>
+<p>在<code>sc-provider</code>的<code>ProviderController</code>中添加从配置中心读取配置信息的测试端点。</p>
+<div class="highlight"><pre><span></span>    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${sc.provider.defaultUser: defaultName not found}"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">defaultName</span><span class="o">;</span>
+
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/provider/config"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">config</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="n">defaultName</span><span class="o">;</span>
+    <span class="o">}</span>
+</pre></div>
+<p>通过<code>/provider/config</code>可以读取到<code>defaultName</code>属性，这个属性的值来源于配置中心配置文件中的<code>sc.provider.defaultUser</code>，如果读取不到配置中心的值，则取默认值<code>defaultName not found</code>。</p>
+<h2>调整配置文件</h2>
+<p>主要是添加配置中心相关的配置信息，让<code>provider-service</code>从配置中心读取配置。这里有个较大的调整是需要将配置中心相关的配置信息移到<code>bootstrap.yml</code>中，否则，应用在启动的时候会显示从<code>http://localhost:8888</code>中加载配置。</p>
+<p>这是因为<code>bootstrap.yml</code>配置信息先于<code>application.yml</code>加载，特别是在使用配置中心时，需要将相关的注册中心、配置中心的信息放在<code>bootstrap.yml</code>中。参见<a href="https://cloud.spring.io/spring-cloud-static/spring-cloud-commons/2.0.0.RC1/multi/multi__spring_cloud_context_application_context_services.html">官方文档</a>。</p>
+<p>调整完后的<code>bootstrap.yml</code>:</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-provider</span>
+  <span class="l l-Scalar l-Scalar-Plain">cloud</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">config</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">discovery</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">serviceId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-config</span> <span class="c1">#配置服务中心的应用名称</span>
+        <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="l l-Scalar l-Scalar-Plain">profile</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+      <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+
+<span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">9010</span>
+<span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">instance</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">hostname</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+  <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">serviceUrl</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">defaultZone</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:9001/eureka/</span>
+</pre></div>
+<p><code>application.yml</code>:</p>
+<div class="highlight"><pre><span></span><span class="c1">#取消权限验证</span>
+<span class="l l-Scalar l-Scalar-Plain">management</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">security</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="c1"># 启用/restart端点重新启动应用程序上下文。</span>
+<span class="l l-Scalar l-Scalar-Plain">endpoints</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+<h2>添加测试配置文件</h2>
+<p>在<code>config</code>应用的<code>resources/config/</code>目录下添加<code>sc-provider-dev.yml</code>配置文件，默认情况下配置中心客户端应用，会从配置中心按应用名称和<code>profile</code>读取配置文件，因此，这里的文件被命名为<code>sc-provider-dev</code>，即<code>sc-provider</code>和<code>dev</code> profile的配置文件。</p>
+<p>配置文件内容如下：</p>
+<div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">:</span>
+  <span class="n">provider</span><span class="o">:</span>
+    <span class="n">defaultUser</span><span class="o">:</span> <span class="n">Jamsa</span>
+</pre></div>
+<h1>编译和测试</h1>
+<p>在<code>sc-cloud</code>根模块下执行<code>gradle build</code>，编译所有工程。按以下顺序，在不同的窗口中分别启动：registry、config、provider:service三个应用：</p>
+<div class="highlight"><pre><span></span>java -jar registry/build/libs/sc-registry-0.0.1.jar
+
+java -jar config/build/libs/sc-config-0.0.1.jar
+
+java -jar provider/service/build/libs/sc-provider-service-0.0.1.jar
+</pre></div>
+<p>在启动<code>provider:service</code>的过程中，显示完<code>Spring</code> Logo后的下一行，就可以看到从配置中心加载的配置信息，如果这里显示的是默认地址<code>localhost:8888</code>，则需要再仔细检查<code>bootstrap.yml</code>中的配置信息了。</p>
+<p><img alt="配置中心-客户端启动" src="./spring_cloud_tut/config4.png"/></p>
+<p>启动完毕后，从<code>http://localhost:9002/sc-provider-dev.yml</code>检查配置信息是否能正常读取。再从<code>http://localhost:9010/provider/config</code>看是否能显示出配置<code>sc-provider-dev.yml</code>中配置的值。如果显示的值是<code>defaultName not found</code>，那么读取也是失败的，这个值是在从配置中心读取失败后，读取的默认值。</p>
+<h1>读取快速失败和重试</h1>
+<h2>快速失败</h2>
+<p>在上一步测试的过程中，可能会因为启动顺序、网络等多种原因，导致<code>provider:service</code>启动时读取配置失败。默认情况下，读取失败并不会导致程序启动报错，有些情况下我们可能需要在从配置中心读取失败时及时给出提示。可以在配置中心客户端程序的<code>bootstrap.yml</code>配置文件中添加<code>spring.cloud.config.failFast=true</code>。</p>
+<p>添加这项配置后，我们将配置中心应用停掉，并重启<code>provider:service</code>应用，可以看到以下报错信息：</p>
+<p><img alt="配置中心-客户端failFast" src="./spring_cloud_tut/config5.png"/></p>
+<h2>重试读取</h2>
+<p>当出现这种情况时，更多情况下我们是希望配置中心客户端程序能重试。这时我们可以需要添加<code>spring-retry</code>和<code>spring-boot-starter-aop</code>模块来支持重试读取。默认情况下会重试6次，6次后才会返回错误信息。这可以避免因启动顺序或偶发问题产生的配置信息读取失败。</p>
+<p>我们需要在根模块的<code>build.gradle</code>和<code>ext.libs</code>中注册这两个依赖：</p>
+<div class="highlight"><pre><span></span>"spring-retry":"org.springframework.retry:spring-retry",
+"spring-boot-aop":"org.springframework.boot:spring-boot-starter-aop"
+</pre></div>
+<p>保持<code>provider:service</code>应用的<code>spring.cloud.config.failFast=true</code>，然后在其<code>build.gradle</code>中添加依赖即可，程序本身不需要修改。需要注意的是在<code>Edgware.SR3</code>中，如果应用启动的时候无法连接配置中心，不会像有些文章中提及的那样重试机制会起作用，这个时候重试机制不起作用，应用会直接挂掉。在我验证的过程中，重试机制只在配置中心可连接，但没有响应（发生了不可恢复的异常）的情况下，重试机制才起作用。</p>
+<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':provider:api'</span><span class="o">)</span>
+    <span class="c1">//compile libs.'eureka-client' //Eureka客户端</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'config-client'</span> <span class="c1">//Config客户端</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'spring-retry'</span> <span class="c1">//重试机制</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'spring-boot-aop'</span>
+<span class="o">}</span>
+</pre></div>
+<p><img alt="配置中心-客户端retry" src="./spring_cloud_tut/config6.png"/></p>
+<h1>配置刷新</h1>
+<h2>Actuator监控端点</h2>
+<p>配置的刷新是通过Spring Boot的监控端点来实现的。到目前为止，我们只有访问<code>http://localhost:9002/beans</code>，即配置服务的监控端点才有响应，这是因为Spring Config Server依赖于<code>actuator</code>，我们不需要显式的添加依赖。对于其它服务，我们需要添加<code>spring-boot-starter-actuator</code>这个依赖。这个依赖除了可以用于刷新配置信息外，还带了很多监控Spring Boot服务状态的端点，因此我们把它添加到根模块的依赖中，并将它应用到除<code>api</code>模块之外的所有应用上。</p>
+<p>先调整<code>ext.libs</code>：</p>
+<div class="highlight"><pre><span></span><span class="n">ext</span><span class="o">.</span><span class="na">libs</span> <span class="o">=</span> <span class="o">[</span>
+        <span class="s2">"spring-cloud"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-dependencies:${versions.springCloud}"</span><span class="o">,</span>
+        <span class="s2">"spring-web"</span><span class="o">:</span><span class="s2">"org.springframework:spring-web:${versions.spring}"</span><span class="o">,</span>
+        <span class="s2">"spring-boot"</span><span class="o">:</span><span class="s2">"org.springframework.boot:spring-boot-starter"</span><span class="o">,</span>
+        <span class="s2">"eureka-server"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"</span><span class="o">,</span>
+        <span class="s2">"eureka-client"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"</span><span class="o">,</span>
+        <span class="s2">"zuul"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-netflix-zuul"</span><span class="o">,</span>
+        <span class="s2">"feign"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-starter-feign"</span><span class="o">,</span>
+        <span class="s2">"config-server"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-config-server"</span><span class="o">,</span>
+        <span class="s2">"config-client"</span><span class="o">:</span><span class="s2">"org.springframework.cloud:spring-cloud-config-client"</span><span class="o">,</span>
+        <span class="s2">"spring-retry"</span><span class="o">:</span><span class="s2">"org.springframework.retry:spring-retry"</span><span class="o">,</span>
+        <span class="s2">"spring-boot-actuator"</span><span class="o">:</span><span class="s2">"org.springframework.boot:spring-boot-starter-actuator"</span><span class="o">,</span>
+        <span class="s2">"spring-boot-aop"</span><span class="o">:</span><span class="s2">"org.springframework.boot:spring-boot-starter-aop"</span>
+<span class="o">]</span>
+</pre></div>
+<p>自动添加至其它应用：</p>
+<div class="highlight"><pre><span></span>    <span class="k">if</span><span class="o">(</span><span class="n">name</span><span class="o">==</span><span class="s1">'api'</span><span class="o">){</span>
+        <span class="c1">// API类工程的基本依赖</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'spring-web'</span>
+        <span class="o">}</span>
+    <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+        <span class="c1">// Feign客户端工程的基本依赖</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'feign'</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-client'</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'spring-boot-actuator'</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</pre></div>
+<h2>配置刷新方法</h2>
+<p>在<code>ProviderController</code>上添加<code>@RefreshScope</code>注解，当配置信息修改之后，我们可以通过发送<code>POST</code>请求至<code>http://localhost:9010/refresh</code>来刷新<code>@Value</code>注解对应的配置信息。在refresh过程中，可以从控制台查看到重新从配置中心获取配置信息的日志。</p>
 
       </div><!-- /.entry-content -->
       <div class="comments">
