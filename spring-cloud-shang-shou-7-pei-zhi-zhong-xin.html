@@ -352,7 +352,9 @@ java -jar provider/service/build/libs/sc-provider-service-0.0.1.jar
     <span class="o">}</span>
 </pre></div>
 <h2>配置刷新方法</h2>
+<p>在刷新配置的测试中，由于需要测试修改配置中心的配置文件，我们需要先把配置中心的配置文件移至<code>resources</code>目录的外面。即，将这些文件不进行打包。我们先将<code>config</code>应用的<code>src/main/resources/config</code>目录移至根模块下的<code>support</code>目录下。然后，修改<code>config</code>应用的<code>application.yml</code>配置文件的<code>spring.cloud.config.server.native.searchLocations</code>属性，将它的值修改为<code>file:config目录路径</code>。</p>
 <p>在<code>ProviderController</code>上添加<code>@RefreshScope</code>注解，当配置信息修改之后，我们可以通过发送<code>POST</code>请求至<code>http://localhost:9010/refresh</code>来刷新<code>@Value</code>注解对应的配置信息。在refresh过程中，可以从控制台查看到重新从配置中心获取配置信息的日志。</p>
+<p>比如，修改：<code>support/sc-provider-dev.yml</code>里<code>sc.provider.defaultUser</code>的值。之后发送请求至<code>provider:service</code>应用（<code>curl -X POST http://localhost:9010/refresh</code>）。再查看<code>http://localhost:9010/provider/config</code>就能看到新的配置文件值。</p>
 
       </div><!-- /.entry-content -->
       <div class="comments">
