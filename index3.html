@@ -68,6 +68,73 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./learning-sklearnbi-ji-si.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（四）">
+                                       Learning Sklearn笔记（四）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2018-01-05
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/machine-learn.html">machine learn</a>
+        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="./learning-sklearnbi-ji-si.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Chap4 特征处理</h1>
+<p>本章主要学习：</p>
+<ul>
+<li>
+<p>特征抽取：将现实世界的数据构建为sklearn中可用的特征数据</p>
+</li>
+<li>
+<p>特征选择：从可用的特征数据中，选择适当的特征集。</p>
+</li>
+<li>
+<p>模型选择：选择合适的算法和参数</p>
+</li>
+</ul>
+<h2>特征抽取</h2>
+<p>根据机器学习的需要将潜在的特征转换为学习方法所需要的格式被称为特征抽取或特征工程。通常可以分为两步：</p>
+<ul>
+<li>
+<p>获取特征：对源数据进行处理并提取学习样本，通常用特征/值对的形式表示，值可以是整数、浮点、字符串、分类代码等。提取特征的方法则严重依赖于源数据。</p>
+</li>
+<li>
+<p>特征转换：多数sklearn算法需要的样本集是list形式的，特征值为浮点类型。</p>
+</li>
+</ul>
+<p>Pandas可以用于对数据的预处理，它提供了类似R语言的功能。</p>
+<p>下面将使用Pandas将tatanic.csv 数据转换为pandas和DataFrame格式（DataFrame是二维标签数据，列可以包含不同的数据类型，每行表示一个样本）</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="n">titanic</span> <span class="o">=</span> <span class="n">pd …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./learning-sklearnbi-ji-si.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./learning-sklearnbi-ji-yi.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（一）">
                                        Learning Sklearn笔记（一）
                                     </a>
@@ -585,47 +652,6 @@ C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语�
 <p>Go 使用类似 C 的语法，行结尾不需要分号，同一行放两个以上语句需要用分号隔开。Go 的变量类型放在变量名后面。如不写作<code>int …</code></p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./learing-go-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./scala-cookbook-bi-ji.html" rel="bookmark" title="Permalink to Scala Cookbook 笔记">
-                                       Scala Cookbook 笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2015-05-21
-
-        |
-        tags:         <a href="./tag/scala.html">scala</a>
-
-
-        |
-        <a href="./scala-cookbook-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Scala Cookbook 笔记</h1>
-<h2>String</h2>
-<h3 id="jian-jie">简介</h3>
-<p>Scala String 是 Java String，可以使用 Java 中 String 对象的方法。由于 Scala 提供了隐式转换，因此 String（即使它是 final 的） 实例也可以使用 StringOps 类中的所有方法，因此你可以将字符串实例当作字符序列。对它使用 foreach 或使用 for 循环。字符串的另一些功能来自于 StringLike 和 WrappedString 等类。String 类至 StringOps 的隐式转换源于 Predef 对象。</p>
-<div class="highlight"><pre><span></span><span class="s">"hello"</span><span class="o">.</span><span class="n">getClass</span><span class="o">.</span><span class="n">getName</span>
-<span class="s">"hello"</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
-<span class="k">for …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./scala-cookbook-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

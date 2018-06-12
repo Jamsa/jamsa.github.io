@@ -98,7 +98,7 @@
 <p><img alt="配置中心-bus" src="./spring_cloud_tut/bus-config-server.png"/></p>
 <p>当访问配置中心的<code>/bus/refresh</code>时，它将通过总线发送广播消息。各个客户端接收到消息后，将重新读取配置信息。这样所有配置中心客户端就都能及时获取配置信息的变化。</p>
 <h2>安装消息中间件</h2>
-<p>Spring Cloud Bus支持RabbitMQ和Kafka两种服务。这里我们选择RabbitMQ。安装完毕后，默认的服务商品是<code>5672</code>，默认安装会安装管理控制台，管理控制台运行在<code>15672</code>端口。</p>
+<p>Spring Cloud Bus支持RabbitMQ和Kafka两种服务。这里我们选择RabbitMQ。安装完毕后，默认的服务端口是<code>5672</code>，默认安装会安装管理控制台，管理控制台运行在<code>15672</code>端口。</p>
 <p><img alt="RabbitMQ" src="./spring_cloud_tut/rabbitmq.png"/></p>
 <h2>集成消息总线</h2>
 <p>由于各个应用都有连接配置中心的需要，我们在根模块的<code>build.gradle</code>中添加库和依赖。</p>

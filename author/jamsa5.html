@@ -68,6 +68,53 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../she-ji-mo-shi-hui-gu.html" rel="bookmark" title="Permalink to 设计模式回顾">
+                                       设计模式回顾
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2014-11-04
+
+        |
+        tags:         <a href="../tag/java.html">java</a>
+        <a href="../tag/design-pattern.html">design pattern</a>
+
+
+        |
+        <a href="../she-ji-mo-shi-hui-gu.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>设计模式回顾</h1>
+<h2>创建模式</h2>
+<h3 id="simple-factory">Simple Factory</h3>
+<p>工厂类提供静态方法来创建某一接口类型的具体实现，该方法根据传入的参数来决定需要创建哪种类型的实现，因此传入的参数一般带有具体的类型信息（ class 的完整名称，或在某个包下的简称等等）。
+举例：音乐盒接口的实现有钢琴音乐盒，小提琴音乐盒，有一音乐盒工厂类，它的 createMusicBox 方法内部根据参数来创建钢琴音乐盒或小提琴音乐盒。</p>
+<h3 id="abstract-factory">Abstract Factory</h3>
+<p>抽象工厂模式一般用于创建一套对象，它将具体的某套对象的创建方法封装在对应的工厂类实现里。这些工厂类实现了同一接口（抽象工厂）。工厂类接口中的各个方法都返回接口类型。在具体工厂类的实现中它的各个方法能返回一套实现中不同类型的对象。
+举例：多套 UI 组件具有不同的外观，每一套都由实现同一抽象工厂接口的具体工厂类型来创建。抽象工厂接口里规定了能创建哪些 UI 组件，各个组件的接口类型是什么。具体工厂实现里的各个方法会根据它的风格创建出对应的UI组件。</p>
+<h3 id="builder">Builder</h3>
+<p>当创建复杂的对象或结构时，需要一个负责指挥的的导演类对象，它根据传递给它的 IBuilder ，按某一步骤来进行对象的构建。IBuider中 的各个方法代表构建过程的不同步骤。IBuilder 可以有多个不同的实现。</p>
+<h3 id="factory-method">Factory Method</h3>
+<p>Factory Method 会在抽象类中留下某个创建 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../she-ji-mo-shi-hui-gu.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../beginning-android-gamesxue-xi-bi-ji.html" rel="bookmark" title="Permalink to Beginning Android Games学习笔记">
                                        Beginning Android Games学习笔记
                                     </a>
@@ -573,89 +620,6 @@
 <p>③在新词语和重要句子旁划记号强调 …</p></li></ul>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../ji-bi-ji-de-fang-fa.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../hui-bian-yu-yan-wang-shuang-du-shu-bi-ji.html" rel="bookmark" title="Permalink to 汇编语言（王爽）读书笔记">
-                                       汇编语言（王爽）读书笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2010-09-01
-
-        |
-        tags:         <a href="../tag/asm.html">asm</a>
-
-
-        |
-        <a href="../hui-bian-yu-yan-wang-shuang-du-shu-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>基础知识</h1>
-<h2>存储单元</h2>
-<p>最小信息单位是bit（比特、二进制位），8bit为1Byte（字节）。存储单元以字节为单位计。128个存储单元的存储器可以存储128字节。</p>
-<h2>CPU对存储器的读写</h2>
-<h3 id="du-xie-shi-cpuyu-wai-bu-qi-jian-jin-xing-3lei-xin-xi-jiao-hu">读写时CPU与外部器件进行3类信息交互：</h3>
-<ul>
-<li>
-<p>存储单元的地址（地址信息）</p>
-</li>
-<li>
-<p>器件的选择，读或写的命令（控制信息）</p>
-</li>
-<li>
-<p>读或写的数据（数据信息）</p>
-</li>
-</ul>
-<h3 id="du-xie-guo-cheng">读写过程</h3>
-<h4 id="cpucong-3hao-dan-yuan-zhong-du-qu-shu-ju-guo-cheng">CPU从3号单元中读取数据过程</h4>
-<ol>
-<li>
-<p>CPU通过地址线将地址信息3发出。</p>
-</li>
-<li>
-<p>CPU通过控制线发出内存读取命令，选中存储芯片，并通知它，将要从中读取。</p>
-</li>
-<li>
-<p>存储器将3号单元中的数据通过数据线送入CPU。</p>
-</li>
-</ol>
-<h4 id="cpuxiang-3hao-dan-yuan-xie-ru-shu-ju">CPU向3号单元写入数据</h4>
-<ol>
-<li>
-<p>CPU通过地址线将地址信息3发出。</p>
-</li>
-<li>
-<p>CPU通过控制线发出内存写命令，选中存储器芯片，并通知它，要向其中写入数据。</p>
-</li>
-<li>
-<p>CPU通过数据线将数据送入内存的3号单元中。</p>
-</li>
-</ol>
-<h3 id="di-zhi-zong-xian_1">地址总线</h3>
-<p>一个CPU有N根地址线，则可以立这个CPU的地址总线宽度为N。这样CPU可以最多寻找2的N次方个内存单元。</p>
-<h3 id="shu-ju-zong-xian">数据总线</h3>
-<p>CPU与内存或其它器件之间的数据传递是通过数据总线进行的。数据总线宽度决定了CPU和外界的数据传送速度（宽度不足时将需要进行多次传送）。8088CPU数据总线宽度为8，8086CPU的数据总线宽度为16。</p>
-<h3 id="kong-zhi-zong-xian">控制总线</h3>
-<p>控制总线是一些不同控制线的集合。有多少根控制总线，就意味着CPU提供了对外部器件的多少种控制。它决定了CPU对外部器件的控制能力。</p>
-<h3 id="di-zhi-kong-jian-gai-shu">地址空间概述</h3>
-<p>主板上的核心器件通过总线 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../hui-bian-yu-yan-wang-shuang-du-shu-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

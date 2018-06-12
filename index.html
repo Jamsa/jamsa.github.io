@@ -68,6 +68,46 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./spring-cloud-shang-shou-9-fu-wu-jian-kong.html" rel="bookmark" title="Permalink to Spring Cloud 上手9-服务监控">
+                                       Spring Cloud 上手9-服务监控
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-06-12
+
+        |
+        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="./spring-cloud-shang-shou-9-fu-wu-jian-kong.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第九篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>Spring Cloud Sleuth</h1>
+<p>在Spring Cloud应用中，各服务之间存在复杂的调用关系链。Spring Cloud Sleuth主要的功能就是提供服务调用链追踪功能。</p>
+<p>例如，访问<code>gateway</code>的<code>/api/consumer/hello</code>端点时，会调用<code>consumer:service</code>的<code>/consumer/hello</code>端点，之后调用<code>provider:service</code>的<code>/provider/hello</code>端点。在大型系统中，这种调用关系可能会非常复杂，因此需要有机制能对整个调用链进行追踪。</p>
+<p>较早提供这种追踪组件的是Google的Dapper链路跟踪组件，于2010年发表了相关论文，相关的文章是实现链路追踪的理论基础。目前，除Dapper外，还有Twitter和Zipkin，阿里的Eagleeye等。</p>
+<p>Spring Cloud Sleuth中能方便的集成Zipkin …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-9-fu-wu-jian-kong.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./spring-cloud-shang-shou-8-xiao-xi-zong-xian.html" rel="bookmark" title="Permalink to Spring Cloud 上手8-消息总线">
                                        Spring Cloud 上手8-消息总线
                                     </a>
@@ -100,7 +140,7 @@
 <p><img alt="配置中心-bus" src="./spring_cloud_tut/bus-config-server.png"/></p>
 <p>当访问配置中心的<code>/bus/refresh</code>时，它将通过总线发送广播消息。各个客户端接收到消息后，将重新读取配置信息。这样所有配置中心客户端就都能及时获取配置信息的变化。</p>
 <h2>安装消息中间件</h2>
-<p>Spring Cloud Bus支持RabbitMQ和Kafka两种服务。这里我们选择RabbitMQ。安装完毕后，默认的服务商品是<code>5672</code>，默认安装会安装管理控制台 …</p>
+<p>Spring Cloud Bus支持RabbitMQ和Kafka两种服务。这里我们选择RabbitMQ。安装完毕后，默认的服务端口是<code>5672</code>，默认安装会安装管理控制台 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-8-xiao-xi-zong-xian.html">Read more...</a>
                                 </p>
@@ -499,53 +539,6 @@ jar {
 <p>使用<code>M-%</code>调用<code>query-replace …</code></p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./emacs-dired-tip.html" rel="bookmark" title="Permalink to Emacs Dired Tip">
-                                       Emacs Dired Tip
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/xiao-lu.html">效率</a>
-
-    on 2018-05-12
-
-        |
-        tags:         <a href="./tag/emacs.html">emacs</a>
-
-
-        |
-        <a href="./emacs-dired-tip.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <ul>
-<li>批量mark文件</li>
-</ul>
-<p>在dired下 <code>% m regexp</code>可批量mark文件。</p>
-<p>更多mark方式可参照<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Marks-vs-Flags.html" target="_blank">手册</a>。</p>
-<ul>
-<li>批量替换文件内容</li>
-</ul>
-<p>对mark的文件可使用<code>dired-do-find-regexp-and-replace</code>做文件内容的批量替换。</p>
-<ul>
-<li>批量修改文件名</li>
-</ul>
-<p>在dired模式下可以<code>dired-toggle-readonly</code>切换为编辑模式，编辑模式下可以直接修改buffer中的文件名，使用<code>wdired-finish-edit (C-x C-s)</code>像保存文件一样，保存对文件名的修改。</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./emacs-dired-tip.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

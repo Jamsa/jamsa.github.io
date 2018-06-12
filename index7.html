@@ -68,6 +68,52 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./maven2-tips.html" rel="bookmark" title="Permalink to Maven2 Tips">
+                                       Maven2 Tips
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2009-09-21
+
+        |
+        tags:         <a href="./tag/maven.html">maven</a>
+
+
+        |
+        <a href="./maven2-tips.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>mvn命令行</h1>
+<h2>执行Java程序</h2>
+<div class="highlight"><pre><span></span>mvn exec:java -Dexec.mainClass=org.jamsa.scalademo.FunctionValue
+</pre></div>
+<h2>运行单个单元测试</h2>
+<div class="highlight"><pre><span></span>mvn test -Dtest=AppTest
+</pre></div>
+<h2>安装包和源码包</h2>
+<div class="highlight"><pre><span></span>mvn install:install-file -Dfile=target/jsonplugin-0.34.jar -Dsources=target/jsonplugin-0.34-sources.jar -DartifactId=jsonplugin -DgroupId=com.googlecode -Dversion=0.34 -Dclassifier=sources -Dpackaging=jar
+</pre></div>
+<h2>生成lift应用</h2>
+<div class="highlight"><pre><span></span>mvn.bat archetype:generate -U -DarchetypeGroupId=net …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./maven2-tips.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./jboss-seam-xue-xi-bi-ji.html" rel="bookmark" title="Permalink to JBoss Seam 学习笔记">
                                        JBoss Seam 学习笔记
                                     </a>
@@ -601,61 +647,6 @@
 <p>业务对象是自包含的代表了真实世界的业务领域对象：一个文档、一个地方、一个人或一件事。从实现的角度来说，业务对象包含一个或多个视力对象（VO）映射到下层的复合实体（EO）（子实体不能没有父对象）。比如，在OA Framework Toolbox Tutorial中采购单业务对象包含了一个头部信息并带有一行或多行明细，每个包含一个或多个供货。供货不能离开明细行独立存在 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./bus_svc_overview.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./emacs-tips.html" rel="bookmark" title="Permalink to Emacs Tips">
-                                       Emacs Tips
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/xiao-lu.html">效率</a>
-
-    on 2008-07-08
-
-        |
-        tags:         <a href="./tag/emacs.html">emacs</a>
-
-
-        |
-        <a href="./emacs-tips.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>一 基本概念</h1>
-<ul>
-<li>
-<p>1.常见的按键组合：
-    a.最常见的命令都被绑定到了"C-n"(n可以是任意符号)</p>
-<p>b.次常见的命令被绑定到了"ESC n"形式</p>
-<p>c.其它常见的命令被绑定到了"C-x something"</p>
-<p>d.某些特殊命令被绑定到了&ldquo;C-c something"的形式。这些命令通常都与某些特殊的编辑模式有关</p>
-<p>e.有些命令没有被绑定到按钮上。而是通过"ESC x long-command-nam RETURN&rdquo;命令方式执行</p>
-</li>
-<li>
-<p>2.如果用F10无法打开菜单,可以用"ESC `"</p>
-</li>
-<li>
-<p>3."C-x C-v"读错文件时修正</p>
-</li>
-<li>
-<p>4."C-x i"插件文件</p>
-</li>
-<li>
-<p>5.使用"C-s"保存时遇到麻烦时,试试使用"C-x C-w …</p></li></ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./emacs-tips.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
