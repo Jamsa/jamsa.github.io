@@ -68,6 +68,62 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../spring-cloud-shang-shou-10-ri-zhi-shou-ji.html" rel="bookmark" title="Permalink to Spring Cloud 上手10-日志收集">
+                                       Spring Cloud 上手10-日志收集
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-06-13
+
+        |
+        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="../spring-cloud-shang-shou-10-ri-zhi-shou-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第十篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>ELK简介</h1>
+<p>ELK是Logstash、ElasticSearch和Kibana的组合。Logstash处理日志的收集，ElasticSearch处理日志的检索，Kibana对日志进行可视化展示和查询。</p>
+<p>在Spring Cloud微服务架构下我们主要可以使用ElasticSearch来存储两类信息：一类是通过Logstash收集的各个应用的日志，另一类是作为Zipkin的持久化存储。</p>
+<h2>Zipkin持久化</h2>
+<p>Zipkin本身支持采用ElasticSearch作为其存储引擎，它可以直接与ElasticSearch交互，将跟踪信息保存至ElasticSearch。</p>
+<h2>日志收集方式</h2>
+<p>微服务应用的日志则情况更复杂。ELK与Spring Cloud的集成有两种方式：</p>
+<ul>
+<li>一种是各个微服务节点上部署Logstash实例。微服务输出日志时，按Logstash的需要输出为json格式。Logstash则监控这些日志目录，并将这些日志发送至ElasticSearch。由于Logstash是采用jruby实现的，fatjar有20M左右，并且它进行日志处理时候会消耗较多的cpu资源，会影响到微服务节点的性能，因此一般不建议采用此方案。</li>
+</ul>
+<p><img alt="日志收集-elk-logstash1" src="../spring_cloud_tut/logstash1.png"/></p>
+<ul>
+<li>另一种方式是微服务节点上部署轻量化的日志收集器。通过日志收集器收集日志并转发至独立的Logstash节点。收集器的形式有很多种，可以直接使用Logger将日志转发给Logstash（这篇文章里我们使用这种方式），也可以使用轻量化的日志收集器Filebeat、rsyslog等。</li>
+</ul>
+<p><img alt="日志收集-elk-logstash2" src="../spring_cloud_tut/logstash2.png"/></p>
+<h1>准备ELK环境</h1>
+<p>为测试方便，我们使用Docker来运行ELK镜像，这里不直接使用ELK官方镜像。官方镜像各个组件是独立的，为了测试方便，我们使用集成了ELK三个组件的像。</p>
+<ol>
+<li>安装ELK镜像</li>
+</ol>
+<p><code>docker …</code></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-10-ri-zhi-shou-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../spring-cloud-shang-shou-9-fu-wu-jian-kong.html" rel="bookmark" title="Permalink to Spring Cloud 上手9-服务监控">
                                        Spring Cloud 上手9-服务监控
                                     </a>
@@ -489,56 +545,6 @@ jar {
 <p>在<a href="../spring-cloud-shang-shou-1-zhun-bei.html">第一篇文章</a>提到过，<code>provider …</code></p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html" rel="bookmark" title="Permalink to Emacs 正则表达式搜索替换的小技巧">
-                                       Emacs 正则表达式搜索替换的小技巧
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/xiao-lu.html">效率</a>
-
-    on 2018-05-23
-
-        |
-        tags:         <a href="../tag/emacs.html">emacs</a>
-
-
-        |
-        <a href="../emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <ul>
-<li>交互式的使用正则表达替换</li>
-</ul>
-<p>在Emacs中使用正则表达式替换时并不会像<code>isearch-forward-regexp</code>那么直观，无法查看到输入的正则表达式是否正确。之前我经常用<code>re-builder</code>进行表达式的测试，但是这样会打断当前的编辑工作。</p>
-<p>经过验证发现可以使用<code>isearch-forward-regexp</code>代替<code>replace-regexp</code>，可以先用<code>isearch-forward-regexp</code>，它能交互式的验证所输入的表达式能否匹配，在匹配上第一个匹配位置时，输入<code>M-%</code>切换为<code>query-replace</code>模式，在输入要替换表达式后即可进行替换操作。</p>
-<ul>
-<li>正则表达式替换重复内容
-以将行首<code>*</code>、<code>**</code>、<code>***</code>替换为同样数量的<code>#</code>为例：</li>
-</ul>
-<p>匹配表达式为：<code>^\(\*\)+</code></p>
-<p>替换表达式为：<code>\, (concat "#" (replace-regexp-in-string "\*" "#" \&amp;))</code></p>
-<p>替换表达式中的<code>\,</code>表示后面的内容为<code>elisp</code>表达式，<code>\&amp;</code>表示匹配表达式所匹配的所有内容，类似的还有<code>\n</code>,<code>n</code>为从 1 开始的数字，表示匹配上的分组内容。</p>
-<ul>
-<li>替换<code>^M</code>字符</li>
-</ul>
-<p>使用<code>M-%</code>调用<code>query-replace …</code></p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

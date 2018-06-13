@@ -68,6 +68,58 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../learing-go-bi-ji.html" rel="bookmark" title="Permalink to Learing Go 笔记">
+                                       Learing Go 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2015-06-05
+
+        |
+        tags:         <a href="../tag/go.html">go</a>
+
+
+        |
+        <a href="../learing-go-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Learing Go 笔记</h1>
+<h2>介绍</h2>
+<h3 id="chi-xian-wen-dang">离线文档</h3>
+<p>Go自带<code>godoc</code>用于查看程序模块的文档。</p>
+<div class="highlight"><pre><span></span>godoc <span class="nb">builtin</span>
+</pre></div>
+<h3 id="hello-world">Hello World</h3>
+<div class="highlight"><pre><span></span><span class="cm">/* 这行是必须的，所有 Go 文件都必须以 package 开头，对于可单独运行的程序来说，package main 是必须的 */</span>
+<span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">"fmt"</span> <span class="c1">//导入 fmt 包</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span> <span class="c1">//可执行程序入口函数</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">"Hello, world; or 汉字"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+<h3 id="bian-liang-lei-xing-he-guan-jian-zi">变量、类型和关键字</h3>
+<p>Go 使用类似 C 的语法，行结尾不需要分号，同一行放两个以上语句需要用分号隔开。Go 的变量类型放在变量名后面。如不写作<code>int …</code></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../learing-go-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../scala-cookbook-bi-ji.html" rel="bookmark" title="Permalink to Scala Cookbook 笔记">
                                        Scala Cookbook 笔记
                                     </a>
@@ -495,60 +547,6 @@ Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
 <p>MVC …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-ying-yong-cheng-xu-jia-gou-yi-ying-yong-cheng-xu-jia-gou-jian-jie.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ext-js5-shou-ce-ying-yong-cheng-xu-jia-gou-er-view-controller.html" rel="bookmark" title="Permalink to Ext JS5 手册 应用程序架构（二） View Controller">
-                                       Ext JS5 手册 应用程序架构（二） View Controller
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="../tag/javascript.html">javascript</a>
-        <a href="../tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="../ext-js5-shou-ce-ying-yong-cheng-xu-jia-gou-er-view-controller.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h2>Ext JS5 手册 应用程序架构（二） View Controller</h2>
-<h5 id="jian-ting">监听</h5>
-<p>在 Ext JS 5 中对<code>listeners</code>这个配置项进行了增强。</p>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.view.foo.Foo'</span><span class="p">,</span> <span class="p">{</span>
-<span class="nx">extend</span><span class="o">:</span> <span class="s1">'Ext.panel.Panel'</span><span class="p">,</span>
-<span class="nx">xtype</span><span class="o">:</span> <span class="s1">'foo'</span><span class="p">,</span>
-<span class="nx">controller</span><span class="o">:</span> <span class="s1">'foo'</span><span class="p">,</span>
-
-<span class="nx">items</span><span class="o">:</span> <span class="p">[{</span>
-<span class="nx">xtype</span><span class="o">:</span> <span class="s1">'textfield'</span><span class="p">,</span>
-<span class="nx">fieldLabel</span><span class="o">:</span> <span class="s1">'Bar'</span><span class="p">,</span>
-<span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
-<span class="nx">change</span><span class="o">:</span> <span class="s1">'onBarChange'</span> <span class="c1">// no scope given here</span>
-<span class="p">}</span>
-<span class="p">}]</span>
-<span class="p">});</span>
-
-<span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.view.foo.FooController'</span><span class="p">,</span> <span class="p">{</span>
-<span class="nx">extend</span><span class="o">:</span> <span class="s1">'Ext.app …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ext-js5-shou-ce-ying-yong-cheng-xu-jia-gou-er-view-controller.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
