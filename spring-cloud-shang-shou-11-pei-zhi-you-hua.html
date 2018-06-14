@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Spring Cloud 上手11-配置优化"/>
+        <meta property="og:url" content="./spring-cloud-shang-shou-11-pei-zhi-you-hua.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="./spring-cloud-shang-shou-11-pei-zhi-you-hua.html" />
+
+        <title>Spring Cloud 上手11-配置优化 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="./">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./spring-cloud-shang-shou-11-pei-zhi-you-hua.html" rel="bookmark"
+             title="Permalink to Spring Cloud 上手11-配置优化">Spring Cloud 上手11-配置优化</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-06-14
+
+        |
+        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="./spring-cloud-shang-shou-11-pei-zhi-you-hua.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>这是Spring Cloud上手系列的第十一篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>概述</h1>
+<p>本篇主要对各应用的配置进行优化，原因主要有两个：</p>
+<ul>
+<li>
+<p>此前<a href="./spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html">配置中心</a>一文中只把<code>provider:service</code>与配置中心进行了集成，其它应用仍是读取本地的配置信息。</p>
+</li>
+<li>
+<p>写至本篇的时候，发现各个模块的配置文件已经比较乱了，存在大量重复配置，配置文件中也存在一些不需要的配置项，需要进行一轮整理。</p>
+</li>
+<li>
+<p>增加<code>profile</code>支持为后面将容器化做准备。</p>
+</li>
+</ul>
+<p>优化的目标：</p>
+<ul>
+<li>
+<p>配置中心（config）和注册中心（registry）读取本地配置信息外（先有鸡还是先有蛋的问题，只能读取本地配置文件）。</p>
+</li>
+<li>
+<p>服务网关(gateway)、服务提供者（provider:service）、服务消费者（consumer:service）、调用链分析（zipkin）应用都只保留<code>boostrap.yml</code>配置文件，且该配置文件中只保留注册中心地址、应用名称、端口等基本信息。其余配置信息移至配置中心的共享配置文件（application.yml）或应用对应的配置文件（{application}.yml）。</p>
+</li>
+<li>
+<p>添加<code>profile</code>支持，默认使用<code>dev</code> profile。在配置中心保存的各个应用的配置文件不添加<code>{application}-{profile}.yml</code>配置文件（减少配置文件的量），profile相关的配置信息写在<code>{application}.yml</code>中。</p>
+</li>
+</ul>
+<h1>添加依赖</h1>
+<p>检查要使用配置中心的各个应用的依赖配置，至少需要添加<code>eureka-client</code>和<code>config-client</code>两个依赖。例如，zipkin的依赖配置：</p>
+<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-client'</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'config-client'</span> <span class="c1">//Config客户端</span>
+    <span class="c1">//ZipKin服务</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'zipkin-server'</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'zipkin-server-ui'</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'zipkin-server-rabbit'</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'zipkin-server-elasticsearch'</span>
+<span class="o">}</span>
+</pre></div>
+<h1>调整配置</h1>
+<h2>配置中心服务程序</h2>
+<p>调整后配置中心服务程序的<code>application.yml</code>如下：</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">active</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev,native</span> <span class="c1">#使用本地目录读取配置文件，而不是从版本仓库</span>
+  <span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-config</span>
+  <span class="l l-Scalar l-Scalar-Plain">cloud</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">config</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">searchLocations</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file:/Users/zhujie/Documents/devel/Java/sc-cloud/support/config</span> <span class="c1">#需要从sc-cloud目录下运行程序</span>
+          <span class="c1">#searchLocations:classpath:/config</span>
+        <span class="c1">#git:</span>
+        <span class="c1">#  uri: http://xxx.git</span>
+        <span class="c1">#  searchPaths: config #配置文件放在根目录时不需要配置</span>
+<span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">9002</span>
+
+<span class="c1">#取消权限验证</span>
+<span class="l l-Scalar l-Scalar-Plain">management</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">security</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="c1"># 启用/restart端点重新启动应用程序上下文。</span>
+<span class="l l-Scalar l-Scalar-Plain">endpoints</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="l l-Scalar l-Scalar-Plain">logging</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">level</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">root</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
+    <span class="l l-Scalar l-Scalar-Plain">org.springframework.web.servlet.DispatcherServlet</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+    <span class="l l-Scalar l-Scalar-Plain">org.springframework.cloud.sleuth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+
+<span class="nn">---</span>
+<span class="c1"># dev profile</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+
+<span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">serviceUrl</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">defaultZone</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:9001/eureka/</span>
+
+<span class="nn">---</span>
+<span class="c1"># docker profile</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docker</span>
+
+<span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">serviceUrl</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">defaultZone</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://sc-config-0.eureka.default.svc.cluster.local:9001/eureka/,http://sc-config-1.eureka.default.svc.cluster.local:9001/eureka/</span>
+</pre></div>
+<p>这里将<code>dev</code>和<code>docker</code>两个<code>profile</code>写在了同一配置文件中。</p>
+<h2>配置中心客户端程序</h2>
+<p>调整后的<code>provider:service</code>的<code>bootstrap.yml</code>配置文件如下：</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">active</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+  <span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-provider</span>
+  <span class="l l-Scalar l-Scalar-Plain">cloud</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">config</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">failFast</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1">#快速失败</span>
+      <span class="l l-Scalar l-Scalar-Plain">discovery</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">serviceId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-config</span> <span class="c1">#配置服务中心的应用名称</span>
+        <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">9010</span>
+
+<span class="nn">---</span>
+<span class="c1"># dev profile</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+
+<span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">serviceUrl</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">defaultZone</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:9001/eureka/</span>
+
+<span class="nn">---</span>
+<span class="c1"># docker profile</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docker</span>
+
+<span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">serviceUrl</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">defaultZone</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://sc-config-0.eureka.default.svc.cluster.local:9001/eureka/,http://sc-config-1.eureka.default.svc.cluster.local:9001/eureka/</span>
+</pre></div>
+<p>内容比原来的精简了很多，这是因为其它配置信息移入了配置仓库的<code>application.yml</code>中。</p>
+<h2>配置中心的配置仓库</h2>
+<h3 id="gong-gong-pei-zhi-wen-jian">公共配置文件</h3>
+<p>Spring Cloud 配置中心客户端支持共享配置文件。存放在配置中心根目录的<code>application*.yml</code>配置文件会被各个应用加载。我们将公用配置信息保存在<code>support/config/application.yml</code>中：</p>
+<div class="highlight"><pre><span></span><span class="c1">#公共配置</span>
+
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">zipkin</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">queue</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">zipkin</span>
+  <span class="l l-Scalar l-Scalar-Plain">sleuth</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">sampler</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">percentage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+  <span class="l l-Scalar l-Scalar-Plain">cloud</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">bus</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">trace</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="c1">#取消权限验证</span>
+<span class="l l-Scalar l-Scalar-Plain">management</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">security</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+
+<span class="c1"># 启用/restart端点重新启动应用程序上下文。</span>
+<span class="l l-Scalar l-Scalar-Plain">endpoints</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="l l-Scalar l-Scalar-Plain">logging</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">level</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">root</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
+    <span class="l l-Scalar l-Scalar-Plain">org.springframework.web.servlet.DispatcherServlet</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+    <span class="l l-Scalar l-Scalar-Plain">org.springframework.cloud.sleuth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+
+<span class="nn">---</span>
+<span class="c1"># dev profile</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+    <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5672</span>
+    <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">guest</span>
+    <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">guest</span>
+
+<span class="nn">---</span>
+<span class="c1"># docker profile</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docker</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span>
+    <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5672</span>
+    <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">guest</span>
+    <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">guest</span>
+</pre></div>
+<h3 id="ying-yong-pei-zhi-wen-jian">应用配置文件</h3>
+<p>各个配置中心客户端在启动时，会从配置中心读取应用的私有配置，文件名为<code>support/config/{application}-{profile}.yml</code>。以<code>zipkin</code>应用的配置文件<code>sc-zipkin.yml</code>为例：</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">zipkin</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">collector</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">addresses</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">localhost:5672</span>
+      <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">guest</span>
+      <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">guest</span>
+      <span class="l l-Scalar l-Scalar-Plain">queue</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">zipkin</span>
+  <span class="l l-Scalar l-Scalar-Plain">storage</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span>
+    <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">cluster</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span>
+      <span class="l l-Scalar l-Scalar-Plain">index</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">zipkin</span>
+      <span class="l l-Scalar l-Scalar-Plain">index-shards</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+      <span class="l l-Scalar l-Scalar-Plain">index-replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="nn">---</span>
+<span class="c1"># dev profile</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+
+<span class="l l-Scalar l-Scalar-Plain">zipkin</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">collector</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">addresses</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">localhost:5672</span>
+  <span class="l l-Scalar l-Scalar-Plain">storage</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:9200</span>
+<span class="nn">---</span>
+<span class="c1"># docker profile</span>
+<span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">profiles</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docker</span>
+
+<span class="l l-Scalar l-Scalar-Plain">zipkin</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">collector</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">addresses</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">rabbitmq:5672</span>
+  <span class="l l-Scalar l-Scalar-Plain">storage</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://elk:9200</span>
+</pre></div>
+<h1>构建和运行</h1>
+<p>各应用的配置文件都默认使用<code>dev</code> profile，配置的内容与之前是相同的。因此只需在根模块下使用<code>gradle build</code>重新构建。</p>
+<p>注意，上面配置中心客户端应用都是通过注册中心获取<code>sc-config</code>应用的信息，以服务的方式来访问配置中心。因此，在启动应用时要先启动注册中心、之后是配置中心，然后再启动其它应用。</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "spring-cloud-shang-shou-11-pei-zhi-you-hua.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+         var _hmt = _hmt || [];
+         (function() {
+           var hm = document.createElement("script");
+           hm.src = "https://hm.baidu.com/hm.js?5e20e9cdd1185d24ece1dae11118a04f";
+           var s = document.getElementsByTagName("script")[0]; 
+           s.parentNode.insertBefore(hm, s);
+         })();
+        </script>
+</body>
+</html>

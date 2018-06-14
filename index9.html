@@ -68,6 +68,63 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./bus_java.html" rel="bookmark" title="Permalink to 实现服务端功能之——Java实体对象">
+                                       实现服务端功能之——Java实体对象
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2007-09-02
+
+        |
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+        <a href="./tag/oaf.html">oaf</a>
+
+
+        |
+        <a href="./bus_java.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>关于实体对象</h1>
+<p>实体对象包含了业务逻辑和对表的DML操作。</p>
+<h2>对象模型和关键类</h2>
+<ul>
+<li>
+<p>oracle.apps.fnd.framework.server.OAEntityCache：这个缓冲用于存储特殊实体的查询过的行。映射到同样的实体的多个视图对象共享相同的实体缓存。</p>
+</li>
+<li>
+<p><yourentityname>EOImpl继承oracle.apps.fnd.framework.server.OAEntityImpl：这是实体对象本身。当实例化后，它代表数据中的一行。</yourentityname></p>
+</li>
+<li>
+<p>oracle.apps.fnd.framework.server.OAEntityDefImpl：表示描述实体对象的元数据，包括属性（attributes）、事件、校验器、关联和属性（properties）。当实例化后，它描述了实体对象类的所有实例。实体定义类是一个单例类。</p>
+</li>
+<li>
+<p><yourentityname>Expert继承oracle.apps.fnd.framework.server.OAEntityExpert：这是一个特殊的单例辅助类，它用于注册一个实体。</yourentityname></p>
+</li>
+<li>
+<p>oracle.jbo.Key：这是一个不可变的主、外键或复合主键。</p>
+</li>
+</ul>
+<h1>创建 …</h1>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./bus_java.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./build_error.html" rel="bookmark" title="Permalink to OA Framework应用构建之——错误处理">
                                        OA Framework应用构建之——错误处理
                                     </a>

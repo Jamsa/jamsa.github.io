@@ -68,6 +68,52 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./emacs-lispcan-kao-shou-ce.html" rel="bookmark" title="Permalink to Emacs Lisp参考手册">
+                                       Emacs Lisp参考手册
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/xiao-lu.html">效率</a>
+
+    on 2009-12-31
+
+        |
+        tags:         <a href="./tag/emacs.html">emacs</a>
+
+
+        |
+        <a href="./emacs-lispcan-kao-shou-ce.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>介绍</h1>
+<p>介绍和约定</p>
+<p>这是2.9版的GNU Emacs Lisp参考手册，适应于GNU Emacs 22.1。</p>
+<h2>警告</h2>
+<h2>Lisp历史</h2>
+<h2>习惯约定</h2>
+<p>这节说明了手册中的符号约定。</p>
+<h3 id="yi-xie-zhu-yu">一些术语</h3>
+<p>整个手册中，词Lisp阅读器（the Lisp reader）&ldquo;和&ldquo;Lisp打印机（the Lisp printer）&rdquo;指那些Lisp例程包括将文本方式描述的Lisp对象转换为真实的Lisp对象，反之亦然。&ldquo;你&rdquo;，指阅读本手册的你，即&ldquo;程序员&rdquo;。&ldquo;用户&rdquo;指使用Lisp程序的人，包括你写的那些程序。</p>
+<p>Lisp代码被格式化为：(list 1 2 3)。函数中不合法的变量或参数将被显示为斜体： <strong><em>first-number</em></strong>.</p>
+<h3 id="nilhe-t">nil和t</h3>
+<p>Lisp中符号nil有三种含义：它是一个名为&lsquo;nil&lsquo;的符号；它是逻辑值false；它是空的list&mdash;&mdash;有零个元素的list。当作为变量时 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./emacs-lispcan-kao-shou-ce.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./better-builds-with-maven-xue-xi-bi-ji.html" rel="bookmark" title="Permalink to Better Builds With Maven 学习笔记">
                                        Better Builds With Maven 学习笔记
                                     </a>
@@ -564,73 +610,6 @@
 <p>如果需要服务端代码执行一些操作，应该一直通过使用根应用模块接口（oracle.apps.fnd …</p></li></ul>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./build_model.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./build_view.html" rel="bookmark" title="Permalink to OA Framework应用构建之——实现视图">
-                                       OA Framework应用构建之——实现视图
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2008-07-08
-
-        |
-        tags:         <a href="./tag/oracle.html">oracle</a>
-        <a href="./tag/ebs.html">ebs</a>
-        <a href="./tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="./build_view.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>页面</h1>
-<p>创建页面的基本步骤是创建pages，region，items。</p>
-<h2>Page LayoutRegion的关键属性</h2>
-<p>创建一个pageLayout区域时，应该特别注意下面的属性：</p>
-<ul>
-<li>
-<p>AutoFooter将这个设置为true以保证在页面上有应用的保密和版权说明链接。</p>
-</li>
-<li>
-<p>Help Target如果你需要为当前页显示帮助按钮，必须在这里指定帮助文件（通常是文件名）。</p>
-</li>
-<li>
-<p>AM Definition用于设置页面的根应用模块。必须使用类的全名，比如：oracle.apps.fnd.framework.toolbox.tutorial.server.SearchAM</p>
-</li>
-<li>
-<p>Function Name总是设置页面的保密函数</p>
-</li>
-<li>
-<p>Window Title浏览器窗口标题</p>
-</li>
-<li>
-<p>Title显示在page header中的文本。</p>
-</li>
-<li>
-<p>Form在pageLayout中设置为true，这通常是默认设置，不要在其子对象中添加亲折form。OA Framework在同一个页面中只支持一个form。</p>
-</li>
-<li>
-<p>pageLayout Components注意OA Framework页面基础　一文中提到的，页面包含了特殊的被命名的组件，其中一个就是标识图案。为了在页面关联标识图案，选择pageLayout区域或pageLayoutComponents节点，然后右键菜单中选择创建image item，并把它的Image URI属性设置为<imagename>.gif。</imagename></p>
-</li>
-</ul>
-<h2>Item …</h2>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./build_view.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

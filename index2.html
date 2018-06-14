@@ -68,6 +68,50 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html" rel="bookmark" title="Permalink to Spring Cloud 上手3-服务提供者">
+                                       Spring Cloud 上手3-服务提供者
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-05-30
+
+        |
+        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="./spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第三篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>微服务下的代码共享</h1>
+<p>对于微服务间是否需要进行代码共享，大家都有不同的看法。</p>
+<p>虽然，实际的生产应用中，我个人是倾向于不共享代码的。这样可以避免代码上的强依赖，加快服务构建的速度。但是，在<a href="./spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html">下一篇</a>讲服务消费的时候将使用几种不同的方式来调用服务。在本系列文章的其它地方，为减少代码量，我们主要使用了api模块在服务提供方和消费方间进行代码共享。</p>
+<p>Philipp Hauer的两篇文章可供参考</p>
+<p><a href="https://blog.philipphauer.de/restful-api-design-best-practices/">RESTful API Design. Best Practices in a Nutshell</a></p>
+<p><a href="https://blog.philipphauer.de/dont-share-libraries-among-microservices/">Don't Share Libraries among Microservices</a></p>
+<h1>创建服务提供者</h1>
+<p>我们在<code>provider</code>中创建一个服务，启动<code>provider-service</code>应用后，将在<code>Eureka</code>注册中心中看到它。</p>
+<p>在<a href="./spring-cloud-shang-shou-1-zhun-bei.html">第一篇文章</a>提到过，<code>provider …</code></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./emacs-zheng-ze-biao-da-shi-sou-suo-ti-huan-de-xiao-ji-qiao.html" rel="bookmark" title="Permalink to Emacs 正则表达式搜索替换的小技巧">
                                        Emacs 正则表达式搜索替换的小技巧
                                     </a>
@@ -563,61 +607,6 @@ int64
 <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10 …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./numpyde-shi-yong.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./learning-sklearnbi-ji-er.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（二）">
-                                       Learning Sklearn笔记（二）
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2018-01-05
-
-        |
-        tags:         <a href="./tag/python.html">python</a>
-        <a href="./tag/machine-learn.html">machine learn</a>
-        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="./learning-sklearnbi-ji-er.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Chap2 监督学习</h1>
-<h2>使用SVM进行图像识别</h2>
-<p>SVM通过选择分享不同样例的最宽分割超平面来进行分类处理。</p>
-<p>通过使用非线性平面，例如 polynomial 或 rbf(radial basis function) 核函数将样本映射到高维特征空间对非线性分布的数据进行分类。</p>
-<p>SVM非常适合于高维或稀疏的样本，内存消耗也比较为有效，因为在学习和决定边界时，它只使用样本的子集。</p>
-<p>需要注意的是SVM模型训练是计算密集型的。用它进行分类时不会返回数值型的置信度值，虽然我们可以使用交叉验证法避免这个问题，但随之而来的是更高的计算开销。</p>
-<p>下面的示例是使用SVM对人脸进行分类处理：</p>
-<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
-<span class="kn">import</span> <span class="nn">sklearn</span> <span class="kn">as</span> <span class="nn">sk</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_olivetti_faces</span>
-
-<span class="c1">#获取数据集</span>
-<span class="n">faces</span> <span class="o">=</span> <span class="n">fetch_olivetti_faces</span><span class="p">()</span>
-
-<span class="k">print</span> <span class="n">faces</span><span class="o">.</span><span class="n">DESCR</span>
-</pre></div>
-<div class="highlight"><pre><span></span>Modified Olivetti …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./learning-sklearnbi-ji-er.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

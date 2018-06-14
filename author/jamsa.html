@@ -68,6 +68,61 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../spring-cloud-shang-shou-11-pei-zhi-you-hua.html" rel="bookmark" title="Permalink to Spring Cloud 上手11-配置优化">
+                                       Spring Cloud 上手11-配置优化
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-06-14
+
+        |
+        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="../spring-cloud-shang-shou-11-pei-zhi-you-hua.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第十一篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>概述</h1>
+<p>本篇主要对各应用的配置进行优化，原因主要有两个：</p>
+<ul>
+<li>
+<p>此前<a href="../spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html">配置中心</a>一文中只把<code>provider:service</code>与配置中心进行了集成，其它应用仍是读取本地的配置信息。</p>
+</li>
+<li>
+<p>写至本篇的时候，发现各个模块的配置文件已经比较乱了，存在大量重复配置，配置文件中也存在一些不需要的配置项，需要进行一轮整理。</p>
+</li>
+<li>
+<p>增加<code>profile</code>支持为后面将容器化做准备。</p>
+</li>
+</ul>
+<p>优化的目标：</p>
+<ul>
+<li>
+<p>配置中心（config）和注册中心（registry）读取本地配置信息外（先有鸡还是先有蛋的问题，只能读取本地配置文件）。</p>
+</li>
+<li>
+<p>服务网关(gateway)、服务提供者（provider:service）、服务消费者（consumer:service）、调用链分析（zipkin）应用都只保留<code>boostrap.yml</code>配置文件，且该配置文件中只保留注册中心地址、应用名称、端口等基本信息。其余配置信息移至配置中心的共享配置文件 …</p></li></ul>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-11-pei-zhi-you-hua.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../spring-cloud-shang-shou-10-ri-zhi-shou-ji.html" rel="bookmark" title="Permalink to Spring Cloud 上手10-日志收集">
                                        Spring Cloud 上手10-日志收集
                                     </a>
@@ -94,7 +149,7 @@
 </footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第十篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
 <h1>ELK简介</h1>
 <p>ELK是Logstash、ElasticSearch和Kibana的组合。Logstash处理日志的收集，ElasticSearch处理日志的检索，Kibana对日志进行可视化展示和查询。</p>
-<p>在Spring Cloud微服务架构下我们主要可以使用ElasticSearch来存储两类信息：一类是通过Logstash收集的各个应用的日志，另一类是作为Zipkin的持久化存储。</p>
+<p>在Spring Cloud微服务架构下可以使用ElasticSearch来存储两类信息：一类是通过Logstash收集的各个应用的日志，另一类是作为Zipkin的持久化存储。</p>
 <h2>Zipkin持久化</h2>
 <p>Zipkin本身支持采用ElasticSearch作为其存储引擎，它可以直接与ElasticSearch交互，将跟踪信息保存至ElasticSearch。</p>
 <h2>日志收集方式</h2>
@@ -108,11 +163,7 @@
 </ul>
 <p><img alt="日志收集-elk-logstash2" src="../spring_cloud_tut/logstash2.png"/></p>
 <h1>准备ELK环境</h1>
-<p>为测试方便，我们使用Docker来运行ELK镜像，这里不直接使用ELK官方镜像。官方镜像各个组件是独立的，为了测试方便，我们使用集成了ELK三个组件的像。</p>
-<ol>
-<li>安装ELK镜像</li>
-</ol>
-<p><code>docker …</code></p>
+<p>为测试方便，我们使用Docker来运行ELK镜像，这里不直接使用ELK官方镜像。官方镜像的E L K各个组件是独立的。为了测试方便，我们使用集成了ELK三个组件的像 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-10-ri-zhi-shou-ji.html">Read more...</a>
                                 </p>
@@ -501,50 +552,6 @@ jar {
     <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-server' …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-2-fu-wu-zhu-ce.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html" rel="bookmark" title="Permalink to Spring Cloud 上手3-服务提供者">
-                                       Spring Cloud 上手3-服务提供者
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2018-05-30
-
-        |
-        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
-
-
-        |
-        <a href="../spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第三篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
-<h1>微服务下的代码共享</h1>
-<p>对于微服务间是否需要进行代码共享，大家都有不同的看法。</p>
-<p>虽然，实际的生产应用中，我个人是倾向于不共享代码的。这样可以避免代码上的强依赖，加快服务构建的速度。但是，在<a href="../spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html">下一篇</a>讲服务消费的时候将使用几种不同的方式来调用服务。在本系列文章的其它地方，为减少代码量，我们主要使用了api模块在服务提供方和消费方间进行代码共享。</p>
-<p>Philipp Hauer的两篇文章可供参考</p>
-<p><a href="https://blog.philipphauer.de/restful-api-design-best-practices/">RESTful API Design. Best Practices in a Nutshell</a></p>
-<p><a href="https://blog.philipphauer.de/dont-share-libraries-among-microservices/">Don't Share Libraries among Microservices</a></p>
-<h1>创建服务提供者</h1>
-<p>我们在<code>provider</code>中创建一个服务，启动<code>provider-service</code>应用后，将在<code>Eureka</code>注册中心中看到它。</p>
-<p>在<a href="../spring-cloud-shang-shou-1-zhun-bei.html">第一篇文章</a>提到过，<code>provider …</code></p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-3-fu-wu-ti-gong-zhe.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

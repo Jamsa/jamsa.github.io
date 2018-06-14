@@ -92,7 +92,7 @@
         <p>这是Spring Cloud上手系列的第十篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
 <h1>ELK简介</h1>
 <p>ELK是Logstash、ElasticSearch和Kibana的组合。Logstash处理日志的收集，ElasticSearch处理日志的检索，Kibana对日志进行可视化展示和查询。</p>
-<p>在Spring Cloud微服务架构下我们主要可以使用ElasticSearch来存储两类信息：一类是通过Logstash收集的各个应用的日志，另一类是作为Zipkin的持久化存储。</p>
+<p>在Spring Cloud微服务架构下可以使用ElasticSearch来存储两类信息：一类是通过Logstash收集的各个应用的日志，另一类是作为Zipkin的持久化存储。</p>
 <h2>Zipkin持久化</h2>
 <p>Zipkin本身支持采用ElasticSearch作为其存储引擎，它可以直接与ElasticSearch交互，将跟踪信息保存至ElasticSearch。</p>
 <h2>日志收集方式</h2>
@@ -106,7 +106,7 @@
 </ul>
 <p><img alt="日志收集-elk-logstash2" src="./spring_cloud_tut/logstash2.png"/></p>
 <h1>准备ELK环境</h1>
-<p>为测试方便，我们使用Docker来运行ELK镜像，这里不直接使用ELK官方镜像。官方镜像各个组件是独立的，为了测试方便，我们使用集成了ELK三个组件的像。</p>
+<p>为测试方便，我们使用Docker来运行ELK镜像，这里不直接使用ELK官方镜像。官方镜像的E L K各个组件是独立的。为了测试方便，我们使用集成了ELK三个组件的像。</p>
 <ol>
 <li>安装ELK镜像</li>
 </ol>
@@ -144,7 +144,7 @@ elk:
 <p><img alt="日志收集-docker-elasticsearch" src="./spring_cloud_tut/docker-elasticsearch.png"/></p>
 <p><img alt="日志收集-docker-kibana" src="./spring_cloud_tut/docker-kibana.png"/> </p>
 <h1>ELK与Zipkin集成</h1>
-<p><a href="./spring-cloud-shang-shou-9-fu-wu-jian-kong.html">上一篇</a>文章中我们使用Zipkin进行调用链的跟踪。各个服务的调用信息通过RabbitMQ传递至Zipkin服务。默认情况下这些信息是保存在内存中的，并没有进行持久化。我们可以将ELK中的ElasticSearch来存储Zipkin服务接收的数据。</p>
+<p><a href="./spring-cloud-shang-shou-9-fu-wu-jian-kong.html">上一篇</a>文章中使用Zipkin进行调用链的跟踪。各个服务的调用信息通过RabbitMQ传递至Zipkin服务。默认情况下这些信息是保存在内存中的，并没有进行持久化。我们可以将ELK中的ElasticSearch来存储Zipkin服务接收的数据。</p>
 <h2>添加依赖</h2>
 <p>在根模块的<code>build.gradle</code>中添加<code>io.zipkin.java:zipkin-autoconfigure-storage-elasticsearch-http</code>依赖：</p>
 <div class="highlight"><pre><span></span>        <span class="c1">//zipkin服务端</span>
