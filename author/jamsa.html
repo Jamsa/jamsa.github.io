@@ -68,6 +68,48 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../spring-cloud-shang-shou-12-rong-qi-hua.html" rel="bookmark" title="Permalink to Spring Cloud 上手12-容器化">
+                                       Spring Cloud 上手12-容器化
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-06-15
+
+        |
+        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
+        <a href="../tag/kubernetes.html">kubernetes</a>
+        <a href="../tag/docker.html">docker</a>
+
+
+        |
+        <a href="../spring-cloud-shang-shou-12-rong-qi-hua.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p><code>重要提示：本篇文章的目标在Edgware.SR3上并未成功</code></p>
+<p>原因在于在这个版本上<code>Eureka Client</code>运行在<code>Docker</code>中时，无法以<code>Eureka Client IP</code>地址进行注册，服务消费方从注册中心获取到的是<code>Pod</code>的名称，通过此名称无法访问到服务所在的机器。例如：应用在启动时，查询到<code>sc-config</code>配置中心的主机是<code>sc-config-f54cdc656-2524j</code>这样的主机名，通过个主机名去获取配置信息将会因网络无法连接而失败，进而导致应用无法正常启动。</p>
+<p>注册中心本向使用了StatefulSets进行部署，客户端是使用固定的域名进行访问的，因此没有这个问题。如果我们将其它服务都变成StatefulSets方式进行部署在<code>Edgware.SR3</code>上也许也能成功。但这样整个应用就变成了Sateful Service了，将失去动态扩容的能力。</p>
+<p>问题的根源在于：即使在Eureka Server上添加<code>eureka.instance.prefer-ip-address = true</code>也不能较好解决（添加这个参数后在容器外是有效的，客户端会以IP进行注册）。</p>
+<p>具体问题可参考：</p>
+<p><a href="https://github.com/sparcs360/axon-demo/issues/18">axon-demo/issue …</a></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-12-rong-qi-hua.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../spring-cloud-shang-shou-11-pei-zhi-you-hua.html" rel="bookmark" title="Permalink to Spring Cloud 上手11-配置优化">
                                        Spring Cloud 上手11-配置优化
                                     </a>
@@ -507,51 +549,6 @@ jar {
 │&nbsp;&nbsp; │&nbsp;&nbsp; └── src …</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-1-zhun-bei.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../spring-cloud-shang-shou-2-fu-wu-zhu-ce.html" rel="bookmark" title="Permalink to Spring Cloud 上手2-服务注册">
-                                       Spring Cloud 上手2-服务注册
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2018-05-30
-
-        |
-        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
-
-
-        |
-        <a href="../spring-cloud-shang-shou-2-fu-wu-zhu-ce.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第二篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
-<h1>服务治理框架</h1>
-<p>Spring Cloud为服务治理提供了抽象接口，在Spring Cloud应用中可以支持多种不同的服务治理框架，如：Eureka、Consul、Zookeeper。</p>
-<p>Spring Cloud Eureka是Spring Cloud Netflix项目提供的服务治理模块。Spring Cloud Netflix是Spring Cloud的子项目，Netflix公司贡献的模块都包含在这个子项目中，如：服务发现(Eureka)，熔断器（Hstrix），集合服务（Zuul），负载均衡（Ribbon)。</p>
-<p>在我们的系列文章里就直接使用Netflix全家桶了。</p>
-<h1>构建Eureka服务注册中心</h1>
-<p>根据<a href="../spring-cloud-shang-shou-1-zhun-bei.html">前一篇文章</a>的规划，我们将在<code>registry</code>工程中构建服务注册中心。</p>
-<h2>依赖配置</h2>
-<p>首先在registry/build.gradle中配置注册中心的依赖。</p>
-<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-server' …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-2-fu-wu-zhu-ce.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

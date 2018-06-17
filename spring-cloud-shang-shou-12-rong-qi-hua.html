@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Spring Cloud 上手12-容器化"/>
+        <meta property="og:url" content="./spring-cloud-shang-shou-12-rong-qi-hua.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="./spring-cloud-shang-shou-12-rong-qi-hua.html" />
+
+        <title>Spring Cloud 上手12-容器化 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="./">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./spring-cloud-shang-shou-12-rong-qi-hua.html" rel="bookmark"
+             title="Permalink to Spring Cloud 上手12-容器化">Spring Cloud 上手12-容器化</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-06-15
+
+        |
+        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
+        <a href="./tag/kubernetes.html">kubernetes</a>
+        <a href="./tag/docker.html">docker</a>
+
+
+        |
+        <a href="./spring-cloud-shang-shou-12-rong-qi-hua.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p><code>重要提示：本篇文章的目标在Edgware.SR3上并未成功</code></p>
+<p>原因在于在这个版本上<code>Eureka Client</code>运行在<code>Docker</code>中时，无法以<code>Eureka Client IP</code>地址进行注册，服务消费方从注册中心获取到的是<code>Pod</code>的名称，通过此名称无法访问到服务所在的机器。例如：应用在启动时，查询到<code>sc-config</code>配置中心的主机是<code>sc-config-f54cdc656-2524j</code>这样的主机名，通过个主机名去获取配置信息将会因网络无法连接而失败，进而导致应用无法正常启动。</p>
+<p>注册中心本向使用了StatefulSets进行部署，客户端是使用固定的域名进行访问的，因此没有这个问题。如果我们将其它服务都变成StatefulSets方式进行部署在<code>Edgware.SR3</code>上也许也能成功。但这样整个应用就变成了Sateful Service了，将失去动态扩容的能力。</p>
+<p>问题的根源在于：即使在Eureka Server上添加<code>eureka.instance.prefer-ip-address = true</code>也不能较好解决（添加这个参数后在容器外是有效的，客户端会以IP进行注册）。</p>
+<p>具体问题可参考：</p>
+<p><a href="https://github.com/sparcs360/axon-demo/issues/18">axon-demo/issue/18</a></p>
+<p><a href="https://github.com/spring-cloud/spring-cloud-netflix/issues/2878">spring-cloud-netflix/issue/2878</a></p>
+<p><a href="https://github.com/spring-cloud/spring-cloud-netflix/issues/432">spring-cloud-netflix/issue/432</a></p>
+<p>在<code>spring-cloud-netflix/issue/2878</code>的Issue中提到<code>2.0.0.RELEASE milestone on 26 Apr</code>中将解决这个问题。</p>
+<p>等Spring Cloud升级至F版，也许就能与K8S快乐的玩耍了。</p>
+<p>相关的代码、配置文件的调整已经完成。配套的代码也已经添加了Dockerfile和Kubernetes的部署文件。</p>
+<p>这是Spring Cloud上手系列的第十二篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>概述</h1>
+<p>容器化几乎是大型Spring Cloud集群部署的必经之路。在前面的几篇文章中，我们已经在开发环境上使用docker来运行<code>RabbitMQ</code>和<code>ELK</code>等基础设施。然而Docker由于网络方案等方面的原因在实际生产应用中的案例并不多见。与Docker相比，Kubernetes有着更强大的集群管理和维护能力。随着Docker支持Kubernetes编排，Kubernetes有一统江湖之势。本篇我们的目标是将应用和基础设施部署至Minikube中。</p>
+<h2>部署架构</h2>
+<p>总体部署架构如下：</p>
+<p><img alt="容器化-k8s-deploy-arch" src="./spring_cloud_tut/k8s-deploy-arch.png"/></p>
+<p>Kubernetes暴露的Service主要有3个：</p>
+<ul>
+<li>
+<p>Zuul Gateway</p>
+</li>
+<li>
+<p>ELK中的Kibana控制台</p>
+</li>
+<li>
+<p>RabbitMQ控制台</p>
+</li>
+</ul>
+<p>RabbitMQ和ELK采用Service模式部署，不考虑它们的高可用问题，依赖于Minikube带的DNS功能，通过服务名称进行访问，只将它们的管理控制台暴露出来。</p>
+<p>由于各应用需要通过Registry的地址才能连接，我们准备让Registry以2 replica来运行。因此Registry应用需要以StatefulSet方式进行部署，Kubernetes会为每这两个Pod产生固定的主机名。这两个主机名配置在各应用的<code>docker</code> Profile里，只要在构建容器镜像时指定程序以<code>docker</code> Profile来运行即可。</p>
+<h1>构建镜像</h1>
+<p>为避免使用镜像仓库，我们直接使用Minikube来构建镜像。</p>
+<ol>
+<li>首先安装Docker和Minikube。</li>
+</ol>
+<p>使用<code>eval $(minikube docker-env)</code>让本机Docker命令行连接Minikube中的Docker服务。</p>
+<ol>
+<li>在各个模块下添加Dockerfile文件，以<code>registry</code>模块为例：</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="k">from</span><span class="s"> anapsix/alpine-java</span>
+<span class="k">ADD</span><span class="s"> ./build/libs/sc-registry-0.0.1.jar app.jar</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=dev,native","-jar","/app.jar"]</span>
+</pre></div>
+<ol>
+<li>在<code>support/k8s</code>目录下添加<code>build-imag.sh</code></li>
+</ol>
+<div class="highlight"><pre><span></span>docker build -t jamsa/sc-registry ../../registry
+docker build -t jamsa/sc-config ../../config
+docker build -t jamsa/sc-gateway ../../gateway
+docker build -t jamsa/sc-zipkin ../../zipkin
+docker build -t jamsa/sc-provider ../../provider/service
+docker build -t jamsa/sc-consumer ../../consumer/service
+</pre></div>
+<p>在该目录下执行这个脚本，构建所有镜像。</p>
+<p><img alt="容器化-k8s-build-image" src="./spring_cloud_tut/k8s-build-image.png"/></p>
+<h1>部署</h1>
+<p>上面的部署架构图中主要有StatefulSet和Service两类镜像需要部署。</p>
+<h2>StatefulSet部署</h2>
+<p>这里主要是指<code>sc-registry</code>镜像。其它Pod需要使用它的各个Pod的主机名来连接它。</p>
+<p>首先，编写<code>sc-registry.yml</code>:</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-registry</span>
+  <span class="l l-Scalar l-Scalar-Plain">labels</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-registry</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">9001</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-registry</span>
+  <span class="l l-Scalar l-Scalar-Plain">clusterIP</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">None</span>
+  <span class="l l-Scalar l-Scalar-Plain">selector</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-registry</span>
+
+<span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1beta1</span>
+<span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">StatefulSet</span>
+<span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-registry</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">serviceName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-registry</span>
+  <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">labels</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-registry</span>
+    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">containers</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sc-registry</span>
+        <span class="l l-Scalar l-Scalar-Plain">imagePullPolicy</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Never</span> <span class="c1">#强制使用本地镜像，否则Minikube会从仓库拉取镜像</span>
+        <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jamsa/sc-registry</span>
+        <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">containerPort</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">9001</span>
+          <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">client</span>
+</pre></div>
+<p>这里按Stateless Service、StatefulSet方式部署两个registry实例。</p>
+<p>用<code>kubectl create</code>来让配置生效：</p>
+<p><img alt="容器化-k8s-deploy-registry" src="./spring_cloud_tut/k8s-deploy-registry.png"/></p>
+<p>通过上图能看到两个Pods已经运行起来。</p>
+<p>通过<code>kubectl describe pods sc-registry-1</code>能看到这个Pods的详细信息</p>
+<p><img alt="容器化-k8s-deploy-registry" src="./spring_cloud_tut/k8s-deploy-registry1.png"/></p>
+<p>进入Minikube集群，查询域名信息：</p>
+<div class="highlight"><pre><span></span>➜  ~ kubectl run -i --tty --image busybox dns-test --restart=Never --rm nslookup sc-registry
+Server:    10.96.0.10
+Address 1: 10.96.0.10 kube-dns.kube-system.svc.cluster.local
+
+Name:      sc-registry
+Address 1: 172.17.0.5 sc-registry-0.sc-registry.default.svc.cluster.local
+Address 2: 172.17.0.6 sc-registry-1.sc-registry.default.svc.cluster.local
+</pre></div>
+<p><code>➜  k8s git:(master) ✗</code>是我本机的命令提示符。</p>
+<p>从命令的返回结果可以看到，以Headless Service部署<code>sc-registry</code>之后，两个Pod都分配了单独的域名。我们各个应用的注册中心配置信息需要与这两个域名保持一致。</p>
+<p>我们也可以用<code>kubectl exec</code>来查看某个Pod的信息：</p>
+<div class="highlight"><pre><span></span>➜  k8s git:(master) ✗ kubectl exec sc-registry-0 hostname
+sc-registry-0
+➜  k8s git:(master) ✗ kubectl exec sc-registry-0 cat /etc/hosts
+# Kubernetes-managed hosts file.
+127.0.0.1   localhost
+::1 localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+fe00::0 ip6-mcastprefix
+fe00::1 ip6-allnodes
+fe00::2 ip6-allrouters
+172.17.0.5  sc-registry-0.sc-registry.default.svc.cluster.local sc-registry-0
+➜  k8s git:(master) ✗ kubectl exec sc-registry-0 cat /etc/resolv.conf
+nameserver 10.96.0.10
+search default.svc.cluster.local svc.cluster.local cluster.local
+options ndots:5
+</pre></div>
+<p>从上面的信息我们可以看到，对应的主机名是<code>sc-registry-{0-...}</code>，域名是<code>sc-registry-{0-...}.sc-registry.default.svc.cluster.local</code>。</p>
+<p>我们需要对各个模块bootstrap.yml中Docker Profile的注册中心地址进行调整。</p>
+<p>先删除上面的部署：</p>
+<div class="highlight"><pre><span></span>➜  k8s git:(master) ✗ kubectl get pods
+NAME                    READY     STATUS    RESTARTS   AGE
+hello-c6fb875c9-gb2zs   1/1       Running   2          78d
+sc-registry-0           1/1       Running   0          42m
+sc-registry-1           1/1       Running   0          42m
+➜  k8s git:(master) ✗ kubectl delete service sc-registry
+service "sc-registry" deleted
+➜  k8s git:(master) ✗ kubectl get pods
+NAME                    READY     STATUS    RESTARTS   AGE
+hello-c6fb875c9-gb2zs   1/1       Running   2          78d
+sc-registry-0           1/1       Running   0          42m
+sc-registry-1           1/1       Running   0          42m
+➜  k8s git:(master) ✗ kubectl delete statefulsets sc-registry
+statefulset.apps "sc-registry" deleted
+➜  k8s git:(master) ✗ kubectl get pods
+NAME                    READY     STATUS    RESTARTS   AGE
+hello-c6fb875c9-gb2zs   1/1       Running   2          78d
+</pre></div>
+<p>使用build-images.sh重新构建镜像，并重新部署。</p>
+<div class="highlight"><pre><span></span>➜  k8s git:(master) ✗ kubectl get pods
+NAME                          READY     STATUS    RESTARTS   AGE
+hello-c6fb875c9-gb2zs         1/1       Running   2          80d
+rabbitmq-f8f697d55-ws2tq      1/1       Running   0          5m
+sc-config-f54cdc656-c9l6x     1/1       Running   0          12m
+sc-consumer-6d577db86-stwc9   1/1       Running   0          3m
+sc-gateway-767df68df8-dcjrq   1/1       Running   0          3m
+sc-gateway-767df68df8-v75vc   1/1       Running   0          3m
+sc-provider-b748f9c6-nkgr5    1/1       Running   1          3m
+sc-registry-0                 1/1       Running   5          1d
+sc-registry-1                 1/1       Running   5          1d
+</pre></div>
+<p>通过<code>kubectl logs -f</code>可以持续查看Pods的日志：</p>
+<div class="highlight"><pre><span></span><span class="err">➜</span>  <span class="n">k8s</span> <span class="nl">git</span><span class="p">:(</span><span class="n">master</span><span class="p">)</span> <span class="err">✗</span> <span class="n">kubectl</span> <span class="n">logs</span> <span class="o">-</span><span class="n">f</span> <span class="n">sc</span><span class="o">-</span><span class="n">consumer</span><span class="o">-</span><span class="mi">6</span><span class="n">d577db86</span><span class="o">-</span><span class="n">stwc9</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">06</span><span class="o">-</span><span class="mi">16</span> <span class="mi">17</span><span class="o">:</span><span class="mi">39</span><span class="o">:</span><span class="mf">40.603</span>  <span class="n">INFO</span> <span class="p">[</span><span class="n">sc</span><span class="o">-</span><span class="n">consumer</span><span class="p">,,,]</span> <span class="mi">1</span> <span class="o">---</span> <span class="p">[</span>           <span class="n">main</span><span class="p">]</span> <span class="n">s</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="nl">AnnotationConfigApplicationContext</span> <span class="p">:</span> <span class="n">Refreshing</span> <span class="n">org</span><span class="p">.</span><span class="n">springframework</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">annotation</span><span class="p">.</span><span class="n">AnnotationConfigApplicationContext</span><span class="mi">@763</span><span class="nl">d9750</span><span class="p">:</span> <span class="n">startup</span> <span class="n">date</span> <span class="p">[</span><span class="n">Sat</span> <span class="n">Jun</span> <span class="mi">16</span> <span class="mi">17</span><span class="o">:</span><span class="mi">39</span><span class="o">:</span><span class="mi">40</span> <span class="n">GMT</span> <span class="mi">2018</span><span class="p">];</span> <span class="n">root</span> <span class="n">of</span> <span class="n">context</span> <span class="n">hierarchy</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">06</span><span class="o">-</span><span class="mi">16</span> <span class="mi">17</span><span class="o">:</span><span class="mi">41</span><span class="o">:</span><span class="mf">53.437</span>  <span class="n">INFO</span> <span class="p">[</span><span class="n">sc</span><span class="o">-</span><span class="n">consumer</span><span class="p">,,,]</span> <span class="mi">1</span> <span class="o">---</span> <span class="p">[</span>           <span class="n">main</span><span class="p">]</span> <span class="n">f</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="nl">AutowiredAnnotationBeanPostProcessor</span> <span class="p">:</span> <span class="n">JSR</span><span class="o">-</span><span class="mi">330</span> <span class="err">'</span><span class="n">javax</span><span class="p">.</span><span class="n">inject</span><span class="p">.</span><span class="n">Inject</span><span class="err">'</span> <span class="n">annotation</span> <span class="n">found</span> <span class="n">and</span> <span class="n">supported</span> <span class="k">for</span> <span class="n">autowiring</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">06</span><span class="o">-</span><span class="mi">16</span> <span class="mi">17</span><span class="o">:</span><span class="mi">42</span><span class="o">:</span><span class="mf">17.710</span>  <span class="n">INFO</span> <span class="p">[</span><span class="n">sc</span><span class="o">-</span><span class="n">consumer</span><span class="p">,,,]</span> <span class="mi">1</span> <span class="o">---</span> <span class="p">[</span>           <span class="n">main</span><span class="p">]</span> <span class="n">trationDelegate</span><span class="err">$</span><span class="nl">BeanPostProcessorChecker</span> <span class="p">:</span> <span class="n">Bean</span> <span class="err">'</span><span class="n">org</span><span class="p">.</span><span class="n">springframework</span><span class="p">.</span><span class="n">retry</span><span class="p">.</span><span class="n">annotation</span><span class="p">.</span><span class="n">RetryConfiguration</span><span class="err">'</span> <span class="n">of</span> <span class="n">type</span> <span class="p">[</span><span class="n">org</span><span class="p">.</span><span class="n">springframework</span><span class="p">.</span><span class="n">retry</span><span class="p">.</span><span class="n">annotation</span><span class="p">.</span><span class="n">RetryConfiguration</span><span class="err">$$</span><span class="n">EnhancerBySpringCGLIB</span><span class="err">$$</span><span class="mi">426</span><span class="n">b2064</span><span class="p">]</span> <span class="n">is</span> <span class="n">not</span> <span class="n">eligible</span> <span class="k">for</span> <span class="n">getting</span> <span class="n">processed</span> <span class="n">by</span> <span class="n">all</span> <span class="n">BeanPostProcessors</span> <span class="p">(</span><span class="k">for</span> <span class="nl">example</span><span class="p">:</span> <span class="n">not</span> <span class="n">eligible</span> <span class="k">for</span> <span class="k">auto</span><span class="o">-</span><span class="n">proxying</span><span class="p">)</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">06</span><span class="o">-</span><span class="mi">16</span> <span class="mi">17</span><span class="o">:</span><span class="mi">42</span><span class="o">:</span><span class="mf">21.118</span>  <span class="n">INFO</span> <span class="p">[</span><span class="n">sc</span><span class="o">-</span><span class="n">consumer</span><span class="p">,,,]</span> <span class="mi">1</span> <span class="o">---</span> <span class="p">[</span>           <span class="n">main</span><span class="p">]</span> <span class="n">trationDelegate</span><span class="err">$</span><span class="nl">BeanPostProcessorChecker</span> <span class="p">:</span> <span class="n">Bean</span> <span class="err">'</span><span class="n">configurationPropertiesRebinderAutoConfiguration</span><span class="err">'</span> <span class="n">of</span> <span class="n">type</span> <span class="p">[</span><span class="n">org</span><span class="p">.</span><span class="n">springframework</span><span class="p">.</span><span class="n">cloud</span><span class="p">.</span><span class="n">autoconfigure</span><span class="p">.</span><span class="n">ConfigurationPropertiesRebinderAutoConfiguration</span><span class="err">$$</span><span class="n">EnhancerBySpringCGLIB</span><span class="err">$$</span><span class="mi">68</span><span class="n">c18b3c</span><span class="p">]</span> <span class="n">is</span> <span class="n">not</span> <span class="n">eligible</span> <span class="k">for</span> <span class="n">getting</span> <span class="n">processed</span> <span class="n">by</span> <span class="n">all</span> <span class="n">BeanPostProcessors</span> <span class="p">(</span><span class="k">for</span> <span class="nl">example</span><span class="p">:</span> <span class="n">not</span> <span class="n">eligible</span> <span class="k">for</span> <span class="k">auto</span><span class="o">-</span><span class="n">proxying</span><span class="p">)</span>
+</pre></div>
+<p>通过<code>minikube ssh</code>进入<code>minikube</code>虚拟机查询它的局域网ip地址，之后通过<code>http://ip:32000</code>访问<code>sc-gateway Service</code> 。</p>
+<p>https://github.com/spring-cloud/spring-cloud-netflix/issues/2878</p>
+<p>参考<a href="https://k8smeetup.github.io/docs/tutorials/stateful-application/basic-stateful-set/">Kubernetes手册</a></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "spring-cloud-shang-shou-12-rong-qi-hua.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+         var _hmt = _hmt || [];
+         (function() {
+           var hm = document.createElement("script");
+           hm.src = "https://hm.baidu.com/hm.js?5e20e9cdd1185d24ece1dae11118a04f";
+           var s = document.getElementsByTagName("script")[0]; 
+           s.parentNode.insertBefore(hm, s);
+         })();
+        </script>
+</body>
+</html>
