@@ -68,6 +68,113 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./oa-framework-pagejie-xi.html" rel="bookmark" title="Permalink to OA Framework Page解析">
+                                       OA Framework Page解析
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2010-07-27
+
+        |
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+        <a href="./tag/oaf.html">oaf</a>
+
+
+        |
+        <a href="./oa-framework-pagejie-xi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Page基础</h1>
+<p>在浏览器看来，OA Framework页面与其它web页面一样，被渲染为HTML。</p>
+<p>在中间层中，页面是由内存中层级分布的Javabeans组成&mdash;&mdash;非常像传统的Java客户端UI。每个UI构件，比如按钮、表格、tab、商标图像等，被渲染为页面中对应的构件。</p>
+<p>浏览器向一个页面发出请求时，OA Framework读取页面定义的元数据创建web bean结构。每个bean与一个UI控制器关联，OA Framework调用你编写的代码初始化页面。页面处理完成后，OA Framework将web bean结构交给UIX框架处理以生成发送给浏览器的HTML。</p>
+<p>当浏览器发出一个表单提请求时，OA Framework重新创建bean及其层次结构（只在必要的时候才重新创建，通常这些bean是被缓存的，只在特定的情况下才重新创建），然后调用为page bean编写的事件处理代码。当页面处理完成后，页面HTML重新生成并发送给浏览器。</p>
+<p>OA Framework MVC架构：</p>
+<p><img alt="anatomy" src="./oaf_page/anatomy.gif"/></p>
+<h1>模型Model</h1>
+<p>模型包括下层的数据和应用业务逻辑。它也提花了现实世界对象和应用服务间的抽像层。</p>
+<h2>应用模块Application Modules</h2>
+<p>BC4j应用模块本质上是一个容器，它管理和提供对&ldquo;相关&ldquo;BC4J模型对象的访问。这里的&ldquo;相关&rdquo;指的是同一个任务中的参与者 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./oa-framework-pagejie-xi.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./soa-suitepei-xun.html" rel="bookmark" title="Permalink to SOA Suite培训">
+                                       SOA Suite培训
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2010-07-13
+
+        |
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+
+
+        |
+        <a href="./soa-suitepei-xun.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>介绍</h1>
+<ul>
+<li>配置EBS启用SOA Suite</li>
+<li>Native interface开放为WebService接口</li>
+<li>通过ISG调用外部系统提供的WebService</li>
+</ul>
+<h1>EBS的配置</h1>
+<p>Native Service Enablement Of EBS</p>
+<p>参考Metalink Note:556540.1</p>
+<h1>ISG的设置</h1>
+<h1>Native Interface开放为WebService</h1>
+<h2>开放系统标准接口为WebService</h2>
+<p>通过&ldquo;集成SOA网关&rdquo;这个职责为标准接口授权、生成WSDL、部署或卸载WebService</p>
+<h2>开放自己开发的接口为WebService</h2>
+<p>通过Perl工具程序将自己的接口注册到Repository里</p>
+<h2>外部系统异步调用EBS发布的WebService</h2>
+<h1>ISG调用外部的WebService</h1>
+<p>不支持RPC格式的SOAP消息，只支持Document格式的。</p>
+<h2>Business Event驱动对外部系统WebService的调用</h2>
+<ul>
+<li>Create/Use Invoker Event</li>
+<li>选Workflow Administrator WebApplications职责</li>
+<li>点击&ldquo;Business Events&rdquo;</li>
+<li>点击&ldquo;Create Event&rdquo;</li>
+<li>填写Name，Display Name和Description选择状态为&ldquo;Enabled …</li></ul>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./soa-suitepei-xun.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./hui-ji-la-mian-du-shu-bi-ji.html" rel="bookmark" title="Permalink to 会计拉面读书笔记">
                                        会计拉面读书笔记
                                     </a>
@@ -498,98 +605,6 @@
 <p>任何存储于事务中的数据可以被任何共享同一个根应用模块实例的页面访问（在页面间导航时使用下面描述的方式保留应用模块）。OA Framework提供了方法用于从事务中存储、获取和移除值。可以在控制器（client）和模型（server）代码中访问单一的事务对象，这些工具在oracle …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./oa-frameworkzhuang-tai-guan-li.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./programming-in-emacs-lispbi-ji.html" rel="bookmark" title="Permalink to Programming in Emacs Lisp笔记">
-                                       Programming in Emacs Lisp笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/xiao-lu.html">效率</a>
-
-    on 2008-07-16
-
-        |
-        tags:         <a href="./tag/emacs.html">emacs</a>
-
-
-        |
-        <a href="./programming-in-emacs-lispbi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>序</h1>
-<h1>表处理</h1>
-<h2>Lisp列表</h2>
-<h3 id="shu-zi-lie-biao-zhong-de-lie-biao">数字，列表中的列表</h3>
-<p>列表里也可以包含数字：(+ 2 2)。</p>
-<p>Lisp里的数据和程序都是相同的方式实现的，他们都是在括号中由单词、数字或者其它列表组成的用空白分隔的列表。因为程序看起来像数据，所以一个程序可以当作数据传递给另一个程序，这是lisp一强非常强大的功能。</p>
-<h3 id="lispyuan-zi">Lisp原子</h3>
-<p>Lisp列表中的单词叫原子（意为原子在Lisp列表中不可再分割成更小的单位）。与原子不同，list可以分隔成更小的单位（car cdr &amp; cons）。</p>
-<p>空的列表：()，被称作空列表。与其它的数据类型不同，空列表被同时看作原子和列表。</p>
-<p>与自然界的原子一样,Lisp中的原子这个名称来出现得太早（意指与自然界的原子一样，原子还可以再分割）。Lisp中部分原子，比如数组就可以进行分割。但是这种机制与列表的分隔是不同的。如果依据对列表的分隔方式来说，列表中原子就是不可分隔的了。</p>
-<h3 id="lie-biao-zhong-de-kong-bai">列表中的空白</h3>
-<p>额外的空白被用来提高代码的可读性。</p>
-<div class="highlight"><pre><span></span><span class="o">'</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span>
-   <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span>
-</pre></div>
-<p>与</p>
-<div class="highlight"><pre><span></span><span class="o">'</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span> <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span>
-</pre></div>
-<p>是相同的。</p>
-<h3 id="lie-biao-pai-ban">列表排版 …</h3>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./programming-in-emacs-lispbi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./build_attrsets.html" rel="bookmark" title="Permalink to OA Framework应用构建之——创建属性集">
-                                       OA Framework应用构建之——创建属性集
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2008-07-08
-
-        |
-        tags:         <a href="./tag/oracle.html">oracle</a>
-        <a href="./tag/ebs.html">ebs</a>
-        <a href="./tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="./build_attrsets.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>设计属性集</h1>
-<p><strong> 注意：</strong> 这节是为Oracle EBS开发者内部使用的。</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./build_attrsets.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

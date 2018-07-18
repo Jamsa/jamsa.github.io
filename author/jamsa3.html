@@ -68,6 +68,165 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../ti-du-de-li-jie.html" rel="bookmark" title="Permalink to 梯度的理解">
+                                       梯度的理解
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2018-05-12
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+        <a href="../tag/machine-learn.html">machine learn</a>
+
+
+        |
+        <a href="../ti-du-de-li-jie.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>梯度的理解</h1>
+<p>参考以下两篇文章:</p>
+<p><a href="https://www.zhihu.com/question/36301367">如何直观形象的理解方向导数与梯度以及它们之间的关系？</a>对导数和梯度的解释最为简明。</p>
+<p><a href="https://blog.csdn.net/walilk/article/details/50978864">WangBo的机器学习乐园的博文</a></p>
+<p>总结以下内容：</p>
+<ul>
+<li>导数：</li>
+</ul>
+<p>导数指的是一元函数在某点经轴正方向的变化率。</p>
+<div class="math">$$f'(x) = \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}$$</div>
+<ul>
+<li>偏导数：</li>
+</ul>
+<p>偏导数是多元函数在某点沿某个轴正方向的变化率。</p>
+<div class="math">$$\frac{\partial f(x_0,x_1, \ldots, x_n) }{\partial x_j} = \lim_{\Delta x \to 0 …</div><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' }, Macros: {} }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../ti-du-de-li-jie.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../matplotlibde-shi-yong.html" rel="bookmark" title="Permalink to Matplotlib的使用">
+                                       Matplotlib的使用
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2018-02-25
+
+        |
+        tags:         <a href="../tag/python.html">python</a>
+        <a href="../tag/machine-learn.html">machine learn</a>
+        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="../matplotlibde-shi-yong.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1">#在-pi至pi之间产生256个数</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1">#计算X的sine与cosine值</span>
+<span class="n">C</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1">#绘制曲线</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+<p><img alt="png" src="../matplotlib/matplotlib_0_0.png"/></p>
+<div class="highlight"><pre><span></span><span class="c1"># 创建一个大小为 8X6 英寸，每英寸80个点的图片</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80 …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../matplotlibde-shi-yong.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../numpyde-shi-yong.html" rel="bookmark" title="Permalink to Numpy的使用">
                                        Numpy的使用
                                     </a>
@@ -545,117 +704,6 @@ Scikitlearn：机器学习包。
 <div class="highlight"><pre><span></span>10 loops, best of 3: 29.9 ms …</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../numpy-and-scipybi-ji-yi.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html" rel="bookmark" title="Permalink to 使用PyQT开发巡更系统的总结">
-                                       使用PyQT开发巡更系统的总结
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2016-04-16
-
-        |
-        tags:         <a href="../tag/python.html">python</a>
-        <a href="../tag/pyqt.html">pyqt</a>
-
-
-        |
-        <a href="../shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>PyQT的内存管理模型：</h1>
-<p><code>PyQT</code>中使用了两套内存管理模型，因此需要注意内存泄漏的问题。python对象会自动释放内存，但是Qt对象却不一定。Qt有自己的树状结构内存管理机制。每个Qt对象创建时，如果指定了parent（非继承结构上的父类，而是内存结构上）对象，则它是在父对象被销毁时才会被销毁。如果Qt对象创建时未指定父对象，则需要手动管理这个对象的销毁。这个销毁操作不能像销毁python对象一样使用del，而应该使用sip模块的delete方法。例如，在Python对象中包含Qt对象时，可以在<code>__del__</code>方法中处理Qt对象的销毁：</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Job</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
-
-     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-          <span class="n">sip</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="p">)</span>
-</pre></div>
-<h1>线程模型：</h1>
-<p>在pyqt中使用Qt线程并不能避免GIL锁的问题。应该尽量使用Python线程来进行处理（我的实际使用中未遇到这类问题）。使用QThread有可能引发的问题：</p>
-<p><a href="http://hgoldfish.com/blogs/article/80/">QThread的讨论链接</a></p>
-<p>尽量不要在非主线程使用QObject的对象。Qt的文档说，QObject与QThread有特别的关联。有以下几个注意事项：</p>
-<ol>
-<li>
-<p>只有创建QObject的进程才能使用它。不能在一个线程里面创建QTimer …</p></li></ol>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../sklearnde-ji-ben-shi-yong.html" rel="bookmark" title="Permalink to Sklearn的基本使用">
-                                       Sklearn的基本使用
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2016-04-05
-
-        |
-        tags:         <a href="../tag/python.html">python</a>
-        <a href="../tag/machine-learn.html">machine learn</a>
-        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="../sklearnde-ji-ben-shi-yong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-<span class="c1"># 样例数据:鸢尾花</span>
-<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
-</pre></div>
-<div class="highlight"><pre><span></span><span class="c1"># 150个鸢尾花观察值指定了一些测量：花萼宽带、花萼长度、花瓣宽度和花瓣长度，</span>
-<span class="c1"># 以及对应的子类：Iris setosa、Iris versicolor和Iris virginica。</span>
-<span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-<div class="highlight"><pre><span></span>(150, 4)
-</pre></div>
-<div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
-</pre></div>
-<div class="highlight"><pre><span></span>array([ 5.1,  3.5,  1.4,  0.2])
-</pre></div>
-<div class="highlight"><pre><span></span><span class="c1"># 每个观察的类别</span>
-<span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-<div class="highlight"><pre><span></span>(150,)
-</pre></div>
-<div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">120</span><span class="p">]</span> <span class="c1"># 某个样例的类别</span>
-</pre></div>
-<div class="highlight"><pre><span></span>0
-</pre></div>
-<div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">122</span><span class="p">]</span> <span class="c1"># 某个样例的类别 …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../sklearnde-ji-ben-shi-yong.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

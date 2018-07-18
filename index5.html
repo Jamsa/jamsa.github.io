@@ -68,6 +68,116 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（四）数据包">
+                                       Ext JS 5 手册 核心概念（四）数据包
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="./tag/javascript.html">javascript</a>
+        <a href="./tag/extjs.html">extjs</a>
+
+
+        |
+        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（四）数据包</h1>
+<h2>核心概念</h2>
+<h3 id="shu-ju-bao">数据包</h3>
+<p>数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的：
+ - Ext.data.Model
+ - Store
+ - Ext.data.proxy.Proxy</p>
+<p>上面的类几乎在所有应用中都被用到。它们由一些卫星类支撑：</p>
+<p><img alt="数据包相关类" src="./extjs5_guide/data-model.png"/></p>
+<h4 id="model">Model</h4>
+<p>类所包的中心是<code>Ext.data.Model</code>。<code>Model</code>用于描述应用中一个实体。
+Model中的主要部分有：
+ - Fields
+ - Proxies
+ - Validations
+ - Associations</p>
+<p><img alt="Model 的主要组成部分" src="./extjs5_guide/model-breakdown.png"/></p>
+<h5 id="chuang-jian-model">创建 Model</h5>
+<p>通常可以定义一个公用的基础类。这个基类能定义所有 Model 公用的属性。
+Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.model.Base' …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（五）事件">
+                                       Ext JS 5 手册 核心概念（五）事件
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="./tag/javascript.html">javascript</a>
+        <a href="./tag/extjs.html">extjs</a>
+
+
+        |
+        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（五）事件</h1>
+<h2>核心概念</h2>
+<h3 id="shi-yong-shi-jian">使用事件</h3>
+<p>Ext JS 中的组件和类在其生命周期中会产生大量的事件。事件能让你的代码响应程序的变化。</p>
+<h4 id="shi-yao-shi-shi-jian">什么是事件</h4>
+<p>以 Ext.Component 渲染到屏幕上为例，Ext JS 会在渲染完成后产生事件。我们可以配置一个<code>listeners</code>对象来监听这个事件：</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Panel'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">html</span><span class="o">:</span> <span class="s1">'My Panel'</span><span class="p">,</span>
+    <span class="nx">renderTo</span><span class="o">:</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(),</span>
+    <span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">afterrender</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">Ext</span><span class="p">.</span><span class="nx">Msg</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'We have been rendered'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<h4 id="jian-ting-shi-jian">监听事件</h4>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Button'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">renderTo …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（一）可访问性">
                                        Ext JS 5 手册 核心概念（一）可访问性
                                     </a>
@@ -463,140 +573,6 @@
 <h1>Lather, Rinse, Repeat: A …</h1>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./practical-common-lispbi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./programming-in-scala-de-du-shu-bi-ji.html" rel="bookmark" title="Permalink to Programming in Scala 的读书笔记">
-                                       Programming in Scala 的读书笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2010-12-27
-
-        |
-        tags:         <a href="./tag/scala.html">scala</a>
-
-
-        |
-        <a href="./programming-in-scala-de-du-shu-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>语言基础</h1>
-<h2>变量定义</h2>
-<ul>
-<li>
-<p>scala的两种变量：val和var。val类似Java中的final变量。</p>
-</li>
-<li>
-<p>scala中使用类型推断：</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">msg</span> <span class="k">=</span> <span class="s">"Hello, world"</span>
-</pre></div>
-<p>scala根据后面的字符串推断出msg是String类型的。</p>
-<ul>
-<li>在变量名后添加冒号和变量类型可以显式指定变量类型：</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">msg</span><span class="k">:</span><span class="kt">String</span> <span class="o">=</span> <span class="s">"hello, world"</span>
-</pre></div>
-<h2>函数定义</h2>
-<ul>
-<li>例</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="n">max</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">)</span> <span class="n">x</span>
-  <span class="k">else</span> <span class="n">y</span>
-<span class="o">}</span>
-</pre></div>
-<ul>
-<li>
-<p>括号外等号之前的类型为max的返回类型。这里可以不用显式的指定返回类型，编译器会推断出类型。但有时会需要显式的指定，比如函数是递归的时。</p>
-</li>
-<li>
-<p>如果函数仅由一个句子组成，可以不写等号后的大括号</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="n">max2</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">)</span> <span class="n">x</span> <span class="k">else …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./programming-in-scala-de-du-shu-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./oafkai-fa-bi-ji.html" rel="bookmark" title="Permalink to OAF开发笔记">
-                                       OAF开发笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2010-12-09
-
-        |
-        tags:         <a href="./tag/oracle.html">oracle</a>
-        <a href="./tag/ebs.html">ebs</a>
-        <a href="./tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="./oafkai-fa-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>开发advancedTable in advancedTable</h1>
-<ol>
-<li>
-<p>配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable，在outerTable上创建detail，在这个detail中再以主从关系中的从VO创建innerTable。outerTable和inerTable都为advancedTable类型。</p>
-</li>
-<li>
-<p>主从关系中主VO需要增加一个属性用于标识下innerTable是否展开，它的值为字符串Y或N。将outerTable的Detail View Attribute设置为这个属性的名称。</p>
-</li>
-<li>
-<p>将outterTable的Child View Attribute设置为关联字段的名称。</p>
-</li>
-<li>
-<p>将outterTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
-</li>
-<li>
-<p>将innerTable和Detail View Attribute设置为对应的属性（如果有）。</p>
-</li>
-<li>
-<p>将innerTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
-</li>
-<li>
-<p>这些设置与OAF Guide中下面这段代码起的作用是一样的，这样设置以后下面CO中的代码就不需要了。</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">processRequest</span><span class="o">(...)</span>
-<span class="o">{</span>
-  <span class="n">OAWebBean</span> <span class="n">outerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">"outerTable"</span><span class="o">);</span>
-  <span class="n">OAWebBean</span> <span class="n">innerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">"innerTable …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./oafkai-fa-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

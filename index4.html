@@ -68,6 +68,117 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html" rel="bookmark" title="Permalink to 使用PyQT开发巡更系统的总结">
+                                       使用PyQT开发巡更系统的总结
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2016-04-16
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/pyqt.html">pyqt</a>
+
+
+        |
+        <a href="./shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>PyQT的内存管理模型：</h1>
+<p><code>PyQT</code>中使用了两套内存管理模型，因此需要注意内存泄漏的问题。python对象会自动释放内存，但是Qt对象却不一定。Qt有自己的树状结构内存管理机制。每个Qt对象创建时，如果指定了parent（非继承结构上的父类，而是内存结构上）对象，则它是在父对象被销毁时才会被销毁。如果Qt对象创建时未指定父对象，则需要手动管理这个对象的销毁。这个销毁操作不能像销毁python对象一样使用del，而应该使用sip模块的delete方法。例如，在Python对象中包含Qt对象时，可以在<code>__del__</code>方法中处理Qt对象的销毁：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Job</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
+
+     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="n">sip</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="p">)</span>
+</pre></div>
+<h1>线程模型：</h1>
+<p>在pyqt中使用Qt线程并不能避免GIL锁的问题。应该尽量使用Python线程来进行处理（我的实际使用中未遇到这类问题）。使用QThread有可能引发的问题：</p>
+<p><a href="http://hgoldfish.com/blogs/article/80/">QThread的讨论链接</a></p>
+<p>尽量不要在非主线程使用QObject的对象。Qt的文档说，QObject与QThread有特别的关联。有以下几个注意事项：</p>
+<ol>
+<li>
+<p>只有创建QObject的进程才能使用它。不能在一个线程里面创建QTimer …</p></li></ol>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./shi-yong-pyqtkai-fa-xun-geng-xi-tong-de-zong-jie.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="./sklearnde-ji-ben-shi-yong.html" rel="bookmark" title="Permalink to Sklearn的基本使用">
+                                       Sklearn的基本使用
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2016-04-05
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/machine-learn.html">machine learn</a>
+        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="./sklearnde-ji-ben-shi-yong.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="c1"># 样例数据:鸢尾花</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c1"># 150个鸢尾花观察值指定了一些测量：花萼宽带、花萼长度、花瓣宽度和花瓣长度，</span>
+<span class="c1"># 以及对应的子类：Iris setosa、Iris versicolor和Iris virginica。</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+<div class="highlight"><pre><span></span>(150, 4)
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+</pre></div>
+<div class="highlight"><pre><span></span>array([ 5.1,  3.5,  1.4,  0.2])
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c1"># 每个观察的类别</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+<div class="highlight"><pre><span></span>(150,)
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">120</span><span class="p">]</span> <span class="c1"># 某个样例的类别</span>
+</pre></div>
+<div class="highlight"><pre><span></span>0
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">122</span><span class="p">]</span> <span class="c1"># 某个样例的类别 …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./sklearnde-ji-ben-shi-yong.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./begin-mac-programming-bi-ji.html" rel="bookmark" title="Permalink to Begin Mac Programming 笔记">
                                        Begin Mac Programming 笔记
                                     </a>
@@ -442,116 +553,6 @@ MapReduce框架的数据处理过程：</p>
 子组件通过<code>Container</code>的<code>items</code>配置属性添加到 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（四）数据包">
-                                       Ext JS 5 手册 核心概念（四）数据包
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="./tag/javascript.html">javascript</a>
-        <a href="./tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（四）数据包</h1>
-<h2>核心概念</h2>
-<h3 id="shu-ju-bao">数据包</h3>
-<p>数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的：
- - Ext.data.Model
- - Store
- - Ext.data.proxy.Proxy</p>
-<p>上面的类几乎在所有应用中都被用到。它们由一些卫星类支撑：</p>
-<p><img alt="数据包相关类" src="./extjs5_guide/data-model.png"/></p>
-<h4 id="model">Model</h4>
-<p>类所包的中心是<code>Ext.data.Model</code>。<code>Model</code>用于描述应用中一个实体。
-Model中的主要部分有：
- - Fields
- - Proxies
- - Validations
- - Associations</p>
-<p><img alt="Model 的主要组成部分" src="./extjs5_guide/model-breakdown.png"/></p>
-<h5 id="chuang-jian-model">创建 Model</h5>
-<p>通常可以定义一个公用的基础类。这个基类能定义所有 Model 公用的属性。
-Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'MyApp.model.Base' …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（五）事件">
-                                       Ext JS 5 手册 核心概念（五）事件
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="./tag/javascript.html">javascript</a>
-        <a href="./tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（五）事件</h1>
-<h2>核心概念</h2>
-<h3 id="shi-yong-shi-jian">使用事件</h3>
-<p>Ext JS 中的组件和类在其生命周期中会产生大量的事件。事件能让你的代码响应程序的变化。</p>
-<h4 id="shi-yao-shi-shi-jian">什么是事件</h4>
-<p>以 Ext.Component 渲染到屏幕上为例，Ext JS 会在渲染完成后产生事件。我们可以配置一个<code>listeners</code>对象来监听这个事件：</p>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Panel'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">html</span><span class="o">:</span> <span class="s1">'My Panel'</span><span class="p">,</span>
-    <span class="nx">renderTo</span><span class="o">:</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(),</span>
-    <span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">afterrender</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">Ext</span><span class="p">.</span><span class="nx">Msg</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'We have been rendered'</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-<h4 id="jian-ting-shi-jian">监听事件</h4>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Button'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">renderTo …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

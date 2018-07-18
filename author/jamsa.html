@@ -68,6 +68,138 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../jtvkai-fa-bi-ji-1-kai-shi.html" rel="bookmark" title="Permalink to JTV开发笔记1-开始">
+                                       JTV开发笔记1-开始
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-07-17
+
+        |
+        tags:         <a href="../tag/scala.html">scala</a>
+        <a href="../tag/netty.html">netty</a>
+
+
+        |
+        <a href="../jtvkai-fa-bi-ji-1-kai-shi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>本文是<a href="http://jamsa.github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
+<h1>起因</h1>
+<p>因为工作原因，我经常需要进行远程桌面操作。尝试过多种不同的远程桌面方案，如：QQ远程、Teamviewer、Windows远程桌面、Hamachi等等。在速度比较稳定的，且支持内网连接的工具里只有Teamviewer和QQ远程能稳定使用。切换至Mac环境后，Teamviewer就成了唯一选择，Teamviewer被判定为商业使用后，每5分钟会中断一次，无法正常使用。之间也尝试过使用ngrok配合其它内网vnc工具来进行远程连接。但这些方式都不太方便，比如使用ngrok + Windows远程桌面也能连接，但是远程桌面和VNC都无法与远程用户共享桌面。</p>
+<p>由于这些原因，就有了自己开发一个简化版远程桌面工具的想法。</p>
+<h1>目标</h1>
+<p>仅把它当作个业余项目，近期目标是实现：以中心服务器进行交换，支持内网连接的远程桌面和控制功能。</p>
+<h1>技术选型</h1>
+<p>个人项目选型上比较自由，主要考虑以下几个方面：</p>
+<ul>
+<li>
+<p>考虑到跨平台使用，选定在Java平台上。</p>
+</li>
+<li>
+<p>利用Swing的Robot类可实现对键盘、鼠标的控制。</p>
+</li>
+<li>
+<p>Java语言写Swing相关的内容太啰嗦，选Scala了。</p>
+</li>
+<li>
+<p>网络通讯模块选择netty。</p>
+</li>
+</ul>
+<p>选择的版本如下：</p>
+<ul>
+<li>
+<p>scala 2.12.6</p>
+</li>
+<li>
+<p>sbt 1.1 …</p></li></ul>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../jtvkai-fa-bi-ji-1-kai-shi.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="../jtvkai-fa-bi-ji-2-wang-luo-tong-xun.html" rel="bookmark" title="Permalink to JTV开发笔记2-网络通讯">
+                                       JTV开发笔记2-网络通讯
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-07-17
+
+        |
+        tags:         <a href="../tag/scala.html">scala</a>
+        <a href="../tag/netty.html">netty</a>
+
+
+        |
+        <a href="../jtvkai-fa-bi-ji-2-wang-luo-tong-xun.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>本文是<a href="http://jamsa.github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
+<h1>协议</h1>
+<p>为实现远程控制，我们需要处理两类通讯，客户端与服务器的通讯、客户端与客户端的通讯。</p>
+<p>客户端与服务端的通讯主要有：</p>
+<ol>
+<li>
+<p>登录：客户端发送登录请求后，由服务端进行认证，并分配会话ID。</p>
+</li>
+<li>
+<p>连接申请类：客户端创建新连接，通过这个连接发送连接申请，这个连接是源连接。服务端需要将这一申请转发给目标客户端，目标客户端接收到消息后，创建新连接至服务端，这个连接是目标连接。服务端在源连接与目标连接间建立绑定关系后，两个客户端间就可以实现点对点的通讯了。</p>
+</li>
+</ol>
+<p>客户端与客户端的通讯消息主要有以下几类：</p>
+<ol>
+<li>
+<p>文本消息传输：如错误信息，连接关闭通知等。</p>
+</li>
+<li>
+<p>屏幕画面消息：被控端以一定的频度获取屏幕画面，并将它传输至控制端。控制端将其绘制到控制窗口中。</p>
+</li>
+<li>
+<p>鼠标键盘事件：控制端在控制窗口中查看被控端画面，针对该画面操作的键盘和鼠标事件需要被传递到被控端，被控端根据这些事件进行事件的回放。</p>
+</li>
+</ol>
+<h1>消息对象</h1>
+<p>为满足上述通讯要求，我们需要定义一套用于消息传输的对象。</p>
+<div class="highlight"><pre><span></span><span class="c1">//消息</span>
+<span class="k">sealed</span> <span class="k">trait</span> <span class="nc">JtvMessage</span>
+
+<span class="c1">//服务端处理的会话消息</span>
+<span class="k">trait</span> <span class="nc">ServerSessionMessage</span> <span class="k">extends</span> <span class="nc">JtvMessage</span>
+<span class="c1">//客户端处理的会话消息</span>
+<span class="k">trait …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../jtvkai-fa-bi-ji-2-wang-luo-tong-xun.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../spring-cloud-shang-shou-12-rong-qi-hua.html" rel="bookmark" title="Permalink to Spring Cloud 上手12-容器化">
                                        Spring Cloud 上手12-容器化
                                     </a>
@@ -438,117 +570,6 @@
         <span class="n">attributes</span> <span class="s2">"Manifest-Version"</span><span class="o">:</span> <span class="mf">1 …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-5-fu-wu-wang-guan.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html" rel="bookmark" title="Permalink to Spring Cloud 上手4-服务消费者">
-                                       Spring Cloud 上手4-服务消费者
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2018-06-03
-
-        |
-        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
-
-
-        |
-        <a href="../spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第四篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
-<h1>版本依赖的坑</h1>
-<p>在写前面几篇的时候都没感觉到SpringCloud的依赖关系处理必须使用<code>io.spring.dependency-management</code>来处理。在使用Feign进行服务消费时遇到很多错误：</p>
-<ul>
-<li>
-<p>Feign服务客户端的Bean无法实例化</p>
-</li>
-<li>
-<p>java.lang.NoClassDefFoundError: feign/Feign$Builder</p>
-</li>
-</ul>
-<p>和其它很多错误。现在已经将<a href="../spring-cloud-shang-shou-1-zhun-bei.html">第一篇</a>中的构建依赖处理好。</p>
-<h1>配置模块依赖</h1>
-<p>在<code>consumer:service</code>工程的<code>build.gradle</code>中添加以下配置：</p>
-<div class="highlight"><pre><span></span>dependencies {
-    compile project(':provider:api')
-    compile libs.'eureka-client'  //Eureka客户端
-}
-
-jar {
-    manifest {
-        attributes "Manifest-Version": 1.0,
-                'Main-Class': 'com.github …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-4-fu-wu-xiao-fei-zhe.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../spring-cloud-shang-shou-1-zhun-bei.html" rel="bookmark" title="Permalink to Spring Cloud 上手1-准备">
-                                       Spring Cloud 上手1-准备
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2018-05-30
-
-        |
-        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
-
-
-        |
-        <a href="../spring-cloud-shang-shou-1-zhun-bei.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>目标</h1>
-<p>从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的文档资料看了不少，但&ldquo;纸上得来终觉浅，绝知此事要躬行&rdquo;。所以就有了做一个Spring Cloud Demo工程的想法，主要用来体验Spring Cloud的各种组件和功能。</p>
-<p>代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
-<h1>规划</h1>
-<p>先从最简单的Demo开始，使用SpringCloud的基础功能：Eureka、Zuul、Feign。后续再考虑添加Stream，Bus相关的内容。在工程数量较多，不好维护了，再考虑采用docker和minikube来进行管理。借用一句话&ldquo;好的架构就像眼镜，你会知道什么时候需要它&rdquo;。</p>
-<p>工程目录规划如下：</p>
-<div class="highlight"><pre><span></span>├── build.gradle
-├── common
-│&nbsp;&nbsp; ├── build.gradle
-│&nbsp;&nbsp; └── src
-│&nbsp;&nbsp;     └── main
-├── provider
-│&nbsp;&nbsp; ├── api
-│&nbsp;&nbsp; │&nbsp;&nbsp; └── src
-│&nbsp;&nbsp; └── service
-│&nbsp;&nbsp;     ├── build.gradle
-│&nbsp;&nbsp;     └── src
-├── consumer
-│&nbsp;&nbsp; ├── api
-│&nbsp;&nbsp; │&nbsp;&nbsp; └── src …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-1-zhun-bei.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
