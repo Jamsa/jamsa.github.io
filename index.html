@@ -68,6 +68,61 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./jtvkai-fa-bi-ji-3-fu-wu-duan.html" rel="bookmark" title="Permalink to JTV开发笔记3-服务端">
+                                       JTV开发笔记3-服务端
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-07-19
+
+        |
+        tags:         <a href="./tag/scala.html">scala</a>
+        <a href="./tag/netty.html">netty</a>
+
+
+        |
+        <a href="./jtvkai-fa-bi-ji-3-fu-wu-duan.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>本文是<a href="https://github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
+<h1>概述</h1>
+<p>本文记录的是服务端的程序设计。在写完服务端和客户端程序的时候，我发现整个程序对连接的管理不太完善。于是对客户端程序进行了一次重构，采用连接对象对<code>Channel</code>和消息处理回调进行了封装。在考虑服务端程序的重构时，还没有较好的思路，暂时先用这版服务程序了。</p>
+<h1>设计</h1>
+<h2>功能要求</h2>
+<p>服务端程序需要处理以下任务：</p>
+<ol>
+<li>
+<p>会话和连接的管理：会话连接是个单独的连接，它处理客户端与服务端的命令交互，不参与屏幕和键盘、鼠标事件的传输。客户端进行点对点连接等操作时，由会话连接进行协调来建立点对点连接。</p>
+</li>
+<li>
+<p>点对点消息的传输：当前这版未重构的程序是使用连接对来处理点对点的连接。在会话连接和服务程序的协助下，两个客户端之间可以建立起新的点对点连接。经点对点连接发送的消息将被直接发送到另一端，服务端不对消息进行处理。这里有当前版本可以优化的一个点，在点对点连接建立之后，<code>pipeline</code>应该可以进行动态调节，减少消息的编码和解码开销。</p>
+</li>
+<li>
+<p>管理会话及其连接：管理会话、会话连接、点对点工作连接。在连接中断时，自动从会话的工作连接中移除。如果中断的是会话连接，则应该关闭所有与这个会话相关联的连接，关闭与这个会话中任何一个连接建立的点对点连接。</p>
+</li>
+</ol>
+<h2>实现</h2>
+<h3 id="hui-hua-guan-li">会话管理</h3>
+<p>服务端的会话和连接由会话管理器<code>ServerSessionManager</code>进行管理 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./jtvkai-fa-bi-ji-3-fu-wu-duan.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./jtvkai-fa-bi-ji-1-kai-shi.html" rel="bookmark" title="Permalink to JTV开发笔记1-开始">
                                        JTV开发笔记1-开始
                                     </a>
@@ -92,7 +147,7 @@
         <a href="./jtvkai-fa-bi-ji-1-kai-shi.html#disqus_thread">comments</a>
 
     
-</footer><!-- /.post-info -->                                <p>本文是<a href="http://jamsa.github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
+</footer><!-- /.post-info -->                                <p>本文是<a href="https://github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
 <h1>起因</h1>
 <p>因为工作原因，我经常需要进行远程桌面操作。尝试过多种不同的远程桌面方案，如：QQ远程、Teamviewer、Windows远程桌面、Hamachi等等。在速度比较稳定的，且支持内网连接的工具里只有Teamviewer和QQ远程能稳定使用。切换至Mac环境后，Teamviewer就成了唯一选择，Teamviewer被判定为商业使用后，每5分钟会中断一次，无法正常使用。之间也尝试过使用ngrok配合其它内网vnc工具来进行远程连接。但这些方式都不太方便，比如使用ngrok + Windows远程桌面也能连接，但是远程桌面和VNC都无法与远程用户共享桌面。</p>
 <p>由于这些原因，就有了自己开发一个简化版远程桌面工具的想法。</p>
@@ -156,7 +211,7 @@
         <a href="./jtvkai-fa-bi-ji-2-wang-luo-tong-xun.html#disqus_thread">comments</a>
 
     
-</footer><!-- /.post-info -->                                <p>本文是<a href="http://jamsa.github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
+</footer><!-- /.post-info -->                                <p>本文是<a href="https://github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
 <h1>协议</h1>
 <p>为实现远程控制，我们需要处理两类通讯，客户端与服务器的通讯、客户端与客户端的通讯。</p>
 <p>客户端与服务端的通讯主要有：</p>
@@ -517,59 +572,6 @@
 <div class="highlight"><pre><span></span>java -Dserver.port=9012 -jar provider/service/build …</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-6-fu-zai-jun-heng.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./spring-cloud-shang-shou-5-fu-wu-wang-guan.html" rel="bookmark" title="Permalink to Spring Cloud 上手5-服务网关">
-                                       Spring Cloud 上手5-服务网关
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-06-04
-
-        |
-        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
-
-
-        |
-        <a href="./spring-cloud-shang-shou-5-fu-wu-wang-guan.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第五篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
-<h1>ZUUL概述</h1>
-<p>服务网关是微服务中向外部系统提供REST API过程中起服务路由、负载均衡的角色。也可将权限控制等功能放在服务网关上，为微服务提供保护。</p>
-<p>SpringCloud Netflix中的Zuul承担了这样的功能。它可以作为Eureka客户端与Eureka集成，实现自动的服务路由。也可以通过配置文件来调整路由的策略，对内部服务提供保护。</p>
-<p>使用Zuul的典型场景是这样的：</p>
-<p><img alt="Zuul服务网关" src="./spring_cloud_tut/zuul.png"/></p>
-<p>外部调用通过Zuul调用内部的REST服务，通常情况下内部并不会把所有服务都暴露给外部。上图中的<code>Sercie A/B provider</code>就只是供内部调用的，<code>consumer</code>供外部系统调用的服务。</p>
-<h1>使用Zuul开发服务网关</h1>
-<p>在我们的示例中服务网关放在<code>gateway</code>模块中。</p>
-<h2>依赖配置</h2>
-<p><code>gateway</code>模块的<code>build.gradle</code>:</p>
-<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'zuul'</span>
-    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">'eureka-client'</span>
-<span class="o">}</span>
-
-<span class="n">jar</span> <span class="o">{</span>
-    <span class="n">manifest</span> <span class="o">{</span>
-        <span class="n">attributes</span> <span class="s2">"Manifest-Version"</span><span class="o">:</span> <span class="mf">1 …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-5-fu-wu-wang-guan.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

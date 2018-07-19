@@ -68,6 +68,59 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./android-dev-guidexue-xi-bi-ji-what-is-android.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 What is Android?">
+                                       Android Dev Guide学习笔记 What is Android?
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/yi-dong.html">移动</a>
+
+    on 2010-07-30
+
+        |
+        tags:         <a href="./tag/android.html">android</a>
+
+
+        |
+        <a href="./android-dev-guidexue-xi-bi-ji-what-is-android.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Android是什么？</h1>
+<h1>功能</h1>
+<ul>
+<li>Application framework允许重用和替换的组件</li>
+<li>Dalvik虚拟机</li>
+<li>集成了基于WebKit引擎的浏览器</li>
+<li>基于2D图形库的优化过的图形；基于OpenGL ES 1.0规范的3D图形（可选的硬件加速）。</li>
+<li>SQLite来支持结构化数据存储</li>
+<li>多媒体方面 支持：音频、视频和图像支持（MPEG4、H.264、MP3、AAC、AMR、JPG、PNG、GIF）</li>
+<li>GSM通讯（依赖于硬件）</li>
+<li>蓝牙、EDGE、3G和WiFi（依赖于硬件）</li>
+<li>摄像头、GPS、罗盘和加速感应（依赖于硬件）</li>
+<li>丰富的开发环境，包括：设备模拟器，用于调试的工具，内存和性能分析，和Eclipse IDE插件</li>
+</ul>
+<h1>Android架构</h1>
+<p>下图展示了Android操作系统的主要组件。
+<img alt="system architecture" src="./android-dev-guide/system-architecture.jpg"/></p>
+<h1>应用程序</h1>
+<p>Android发布时一般带有一套核心应用程序，包括email客户端，SMS程序，日历 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./android-dev-guidexue-xi-bi-ji-what-is-android.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./oa-framework-pagejie-xi.html" rel="bookmark" title="Permalink to OA Framework Page解析">
                                        OA Framework Page解析
                                     </a>
@@ -558,53 +611,6 @@
 <p>许多OA Framework新手都想知道控制器应该是 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./build_control.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./oa-frameworkzhuang-tai-guan-li.html" rel="bookmark" title="Permalink to OA Framework状态管理">
-                                       OA Framework状态管理
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2008-07-25
-
-        |
-        tags:         <a href="./tag/oracle.html">oracle</a>
-        <a href="./tag/ebs.html">ebs</a>
-        <a href="./tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="./oa-frameworkzhuang-tai-guan-li.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>概述</h1>
-<p>这个文档用于描述OA Framework状态管理架构，包括缓存应用系统用户数据和从页面间值传递的机制。</p>
-<h1>结构预览</h1>
-<p>主要状态管理组：</p>
-<p><img alt="state_architecture" src="./oaf_state/state_architecture.gif"/></p>
-<h1>根应用模块（数据库会话和事务状态）</h1>
-<p>如<a href="/page.html">OA Framework 页面解析</a>一文中描述的，每个OA Framework页面与一个根应用模块关联，根应用模块提供事务环境和JDBC数据库连接。</p>
-<p><strong>注意：</strong> OA Framework中，一个数据库会话与一个JDBC连接关联。</p>
-<p>根应用模块是任何OA Framework模块的中枢，因为核心应用数据（存储在BC4J视图，实体对象，等等）和页面web bean层级结构自动缓存于根应用模块的oracle.apps.fnd.framework.OADBTransaction对象中。</p>
-<p><strong>警告：</strong> 使用浏览器后退按钮将导致应用模块状态丢失。可以查看Supporting the Browser Back Button一文。</p>
-<p>任何存储于事务中的数据可以被任何共享同一个根应用模块实例的页面访问（在页面间导航时使用下面描述的方式保留应用模块）。OA Framework提供了方法用于从事务中存储、获取和移除值。可以在控制器（client）和模型（server）代码中访问单一的事务对象，这些工具在oracle …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./oa-frameworkzhuang-tai-guan-li.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

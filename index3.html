@@ -68,6 +68,49 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./rocketmq-zhu-yao-gai-nian.html" rel="bookmark" title="Permalink to RocketMQ 主要概念">
+                                       RocketMQ 主要概念
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-05-12
+
+        |
+        tags:         <a href="./tag/mq.html">mq</a>
+
+
+        |
+        <a href="./rocketmq-zhu-yao-gai-nian.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h2>主要概念</h2>
+<p>Topic：消息主题，它分布在多个Master节点上。Topic下有多个Topic分区，每个分区上有多个Que。Que是消息存储队列。要实现有序消息，只能有一个Que，这会影响高可用能力。</p>
+<p>Broker：负责接收发送自生产者的消息，存储消息，处理消费者的拉取消息请求。存储消息元数据，如：消费组，消费偏移量和主题/队列关信息。</p>
+<p>Tag：消息标签。消费端不指定Tag的时候可以接收到同一主题下不同的Tag的消息。</p>
+<p>NameServer: 命名服务。用于生产者和消费者通过主题查找对应的Broker。</p>
+<h2>高可用</h2>
+<p>NameServer可以提供多个，互相之间没有通信关系，它们是无状态的。</p>
+<p>单个Broker和所有NameServer保持长连接，且每隔30秒向所有NameServer发送心跳，心跳包含了自身的Topic配置信息。NameServer每隔10秒扫描存活的Broker连接，若某连接2分钟内没有发送心跳包，则断开连接。Broker挂掉时，NameServer会主动关闭连接。连接断开时，NameServer会立即感知，更新Topic与队列的对应关系，但不通知生产者和消费者。</p>
+<p>Broker以Master/Slave节点来提供高可用，Master节点可以写入，Slave节点可以读取。4个节点的两对Master/Slave组合可以实现高可用。同一Topic的两个Topic分区分布两个Master节点上，Slave上存储了Master上消息的副本。当一个Master当掉时 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./rocketmq-zhu-yao-gai-nian.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./ti-du-de-li-jie.html" rel="bookmark" title="Permalink to 梯度的理解">
                                        梯度的理解
                                     </a>
@@ -650,60 +693,6 @@ Scikitlearn：机器学习包。
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">skimage.filter</span> <span class="kn">as …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./numpy-and-scipybi-ji-san.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./numpy-and-scipybi-ji-yi.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（一）">
-                                       Numpy And Scipy笔记（一）
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2017-03-20
-
-        |
-        tags:         <a href="./tag/python.html">python</a>
-        <a href="./tag/machine-learn.html">machine learn</a>
-        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="./numpy-and-scipybi-ji-yi.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>NumPy</h1>
-<h2>NumPy 数组</h2>
-<div class="highlight"><pre><span></span>`ndarray`与list类似，但是它只允许存储一种类型的数据。这样能得更好的弹性。
-</pre></div>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-</pre></div>
-<div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1e7</span><span class="p">)</span> <span class="c1"># 10^7 element</span>
-<span class="n">larr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">list_times</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
-        <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span> <span class="o">*</span> <span class="n">scalar</span>
-    <span class="k">return</span> <span class="n">alist</span>
-</pre></div>
-<div class="highlight"><pre><span></span><span class="c1"># 使用numpy进行计算</span>
-<span class="o">%</span><span class="n">timeit</span> <span class="n">arr</span> <span class="o">*</span> <span class="mf">1.1</span>
-</pre></div>
-<div class="highlight"><pre><span></span>10 loops, best of 3: 29.9 ms …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./numpy-and-scipybi-ji-yi.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

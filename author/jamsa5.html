@@ -68,6 +68,49 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（三）组件">
+                                       Ext JS 5 手册 核心概念（三）组件
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="../tag/javascript.html">javascript</a>
+        <a href="../tag/extjs.html">extjs</a>
+
+
+        |
+        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（三）组件</h1>
+<h2>核心概念</h2>
+<h3 id="zu-jian">组件</h3>
+<p>Ext JS 应用中的 UI 是由一个或多个被称为<code>组件(Components)</code>的构件组成的。所有组件都是<code>Ext.Component</code>的子类，它能自动管理组件的生命周期，如：实例化、渲染、改变大小和位置、销毁。</p>
+<h4 id="zu-jian-de-ceng-ji">组件的层级</h4>
+<p><code>Container</code>是一种特殊的能包含其它组件的组件。一个典型的应用是由一些树状嵌套的组件组成的，由<code>container</code>来负责管理组件和它们的子组件的生命周期，包括它们的：创建、渲染、改变大小和位置、销毁。一个典型应用的组件层级是由顶部的<code>Viewport</code>开始，它包含了其它<code>containers</code>和组件嵌套而成：
+<img alt="组件层级" src="../extjs5_guide/component_heirarchy_5.png"/>
+子组件通过<code>Container</code>的<code>items</code>配置属性添加到 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-san-zu-jian.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../ext-js-5-shou-ce-he-xin-gai-nian-si-shu-ju-bao.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（四）数据包">
                                        Ext JS 5 手册 核心概念（四）数据包
                                     </a>
@@ -529,50 +572,6 @@ Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
 <p>为支持虚拟内存的第二个特性，必须进行虚拟内存分页。按这个方案，虚拟内存空间的页面能够继续存在于外部磁盘存储 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../java-niobi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../practical-common-lispbi-ji.html" rel="bookmark" title="Permalink to Practical Common Lisp笔记">
-                                       Practical Common Lisp笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2011-06-03
-
-        |
-        tags:         <a href="../tag/lisp.html">lisp</a>
-
-
-        |
-        <a href="../practical-common-lispbi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>环境搭建</h1>
-<p>尝试了多种common lisp的实现，在windows下使用Lispbox时并不能使用slime。而gnu common lisp和ansi common lisp好像也不能在windows中与emacs 23和slime一起工作。结果发现只有gnu clisp的win32版本可以与win32 slime emacs23配合工作。emacs23的.emacs文件如下：</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'load-path</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">site-lisp-path</span> <span class="s">"/slime"</span><span class="p">))</span>
-<span class="c1">;;(setq inferior-lisp-program "D:\\GCL-2.6.1\\bin\\gcl.bat") ; your Lisp system</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">inferior-lisp-program</span> <span class="s">"D:/clisp-2.46/clisp.exe"</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">require</span> <span class="ss">'slime</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">slime-setup</span><span class="p">)</span>
-</pre></div>
-<h1>Introduction Why Lisp?</h1>
-<h1>Lather, Rinse, Repeat: A …</h1>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../practical-common-lispbi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
