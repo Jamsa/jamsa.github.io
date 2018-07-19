@@ -68,6 +68,53 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../spring-cloud-shang-shou-6-fu-zai-jun-heng.html" rel="bookmark" title="Permalink to Spring Cloud 上手6-负载均衡">
+                                       Spring Cloud 上手6-负载均衡
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-06-05
+
+        |
+        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="../spring-cloud-shang-shou-6-fu-zai-jun-heng.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第六篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>Ribbon 概述</h1>
+<p>Ribbon是一个客户端负载均衡器。Feign中使用到了Ribbon。Ribbon与Eureka结合使用时，Ribbon可以从Eureka注册中心中获取服务端列表。</p>
+<h1>验证Feign中的负载均衡</h1>
+<p>Feign包含了对Ribbon的支持，不需要编写额外的代码和配置。我们启动以下应用，来验证：</p>
+<p>registry，运行在9001:</p>
+<div class="highlight"><pre><span></span>java -jar registry/build/libs/sc-registry-0.0.1.jar
+</pre></div>
+<p>provider1，运行在9010:</p>
+<div class="highlight"><pre><span></span>java -jar provider/service/build/libs/sc-provider-service-0.0.1.jar
+</pre></div>
+<p>provider2，运行在9012:</p>
+<div class="highlight"><pre><span></span>java -Dserver.port=9012 -jar provider/service/build …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-6-fu-zai-jun-heng.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../spring-cloud-shang-shou-5-fu-wu-wang-guan.html" rel="bookmark" title="Permalink to Spring Cloud 上手5-服务网关">
                                        Spring Cloud 上手5-服务网关
                                     </a>
@@ -505,67 +552,10 @@ git push -u origin master …</pre></div>
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../pythonxu-ni-huan-jing-guan-li.html" rel="bookmark" title="Permalink to Python虚拟环境管理">
-                                       Python虚拟环境管理
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2018-05-12
-
-        |
-        tags:         <a href="../tag/python.html">python</a>
-
-
-        |
-        <a href="../pythonxu-ni-huan-jing-guan-li.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>Python虚拟环境的管理工具有很多种，我常用的有pyenv、virtualenv和conda。最近因为折腾深度学习环境经常需要安装不同版本的keras、tensorflow、pytorch等，折腾下来后总结下他们的区别。</p>
-<ul>
-<li>pyenv</li>
-</ul>
-<p>可以用来安装多个不同的python发行版，除python官方版本外，也可以用来安装anaconda、miniconda。可以解决项目对python版本的依赖问题。</p>
-<ul>
-<li>virtualenv</li>
-</ul>
-<p>可以为不同的项目创建隔离的python库环境。我之前的web项目多数使用它来进行环境隔离。一般可认为它不跨python解释器版本。</p>
-<ul>
-<li>pyenv-virtualenv</li>
-</ul>
-<p>pyenv的一个插件，整合了pyenv和virtualenv。</p>
-<ul>
-<li>conda</li>
-</ul>
-<p>既可以管理多个python版本，也可以管理项目的依赖环境。可以认为它是pyenv + virtualenv + pip的组合。</p>
-<p>在包管理方面pip与conda的区别主要在于pip对本地库的跟踪不太好。即使有wheel，一些python程序库的本地库依赖仍然需要在操作系统中手工安装。由于不同python版本对本地库的依赖可能不一样，特别是在本地库依赖比较复杂的时候，手工安装就不便于跨多个python版本使用。比如，要同时在python2和python3下安装多个版本的cuda和cudnn的时候。conda在安装包的时候，本地库依赖基本上是由conda安装预编译好的版本。</p>
-<p>在虚拟环境管理方面virtualenv与conda的方式也不完全相同。virtualenv在创建虚拟环境时，通过shim的方式调用发行版本对应的python解释器（应该也包括在发行版全局安装的其它程序，未测试）。而conda创建的虚拟环境则更彻底，连python解释器及基本的python包都会在虚拟环境中重新安装一份。带来负面影响是conda安装的虚拟环境通常会比virtualenv更占空间。</p>
-<p>为了兼顾两者的优点，我同时在使用pyenv、pyenv-virtualenv、conda。安装的方式为：</p>
-<ol>
-<li>
-<p>安装pyenv和pyenv-virtualenv …</p></li></ol>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../pythonxu-ni-huan-jing-guan-li.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="../author/jamsa.html">&laquo;</a>
-    Page 2 / 9
+    Page 2 / 10
         <a href="../author/jamsa3.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

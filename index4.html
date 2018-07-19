@@ -68,6 +68,57 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./numpy-and-scipybi-ji-san.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（三）">
+                                       Numpy And Scipy笔记（三）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2017-03-28
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/machine-learn.html">machine learn</a>
+        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="./numpy-and-scipybi-ji-san.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+</pre></div>
+<h1>SciKit</h1>
+<p>本章主要讨论：</p>
+<div class="highlight"><pre><span></span>Scikitimage：比`scipy.ndimage`更强的图像处理模块。
+Scikitlearn：机器学习包。
+</pre></div>
+<h2>Scikit-Image</h2>
+<p>SciPy和<code>ndimage</code>类包含了非常多的处理多维数据的工具，如过滤（高斯平滑）傅利叶变换，形态（二进制侵蚀），插值和测量。可以组合这些工具进行更复杂的处理。Scikit-image正是这一类高级模块，它包含了颜色空间转换、图像强度调整算法、特征检测、锐化和降噪，图像读写等。</p>
+<h3 id="dong-tai-fa-zhi">动态阀值</h3>
+<p>图像处理中的常见的问题是对图像内容进行分块。通常的阀值技术在图像背景色较为平坦时工作得较好。但实际上图像的背景经常是变化的。这种情况下使用scikit-image提供的自适应阀值就能比较容易处理。</p>
+<p>下例我们使用生成的图像，这个图像的背景不是统一的，图像上包含随机放置的点。使用自适应阀值技术我们可以从背景中提取出这些白点。</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">skimage.filter</span> <span class="kn">as …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./numpy-and-scipybi-ji-san.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./numpy-and-scipybi-ji-yi.html" rel="bookmark" title="Permalink to Numpy And Scipy笔记（一）">
                                        Numpy And Scipy笔记（一）
                                     </a>
@@ -508,71 +559,10 @@ MapReduce框架的数据处理过程：</p>
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（二）类型系统">
-                                       Ext JS 5 手册 核心概念（二）类型系统
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="./tag/javascript.html">javascript</a>
-        <a href="./tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（二）类型系统</h1>
-<h2>核心概念</h2>
-<h3 id="lei-xing-xi-tong">类型系统</h3>
-<h4 id="ming-ming-yue-ding">命名约定</h4>
-<h5 id="lei">类</h5>
-<p>类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符和其它非数字字母。
-类名应该按包分类。至少应该使用唯一的顶级命名空间。
-顶级命名字音和类名应该使用驼峰式命名规则，其它部分都使用小写。
-非<code>Sencha</code>提供的类不应该使用<code>Ext</code>作为顶级命名空间。</p>
-<h5 id="yuan-wen-jian">源文件</h5>
-<p>类文件名按包路径保存。一个文件中只有一个类。
-所有的类都应该放在同一个根目录下。</p>
-<h5 id="fang-fa-he-bian-liang">方法和变量</h5>
-<ul>
-<li>方法和变量只使用字母和数字。只在必要时使用数字字符。不要使用下划线、连字符和其它非数字字母。</li>
-<li>方法和变量名应该使用驼峰式命名。这一规则同样适用于缩略词。</li>
-</ul>
-<h5 id="shu-xing">属性</h5>
-<ul>
-<li>类属性名遵循相同的命名规则</li>
-<li>类的静态属性应该全部使用大写</li>
-</ul>
-<h4 id="sheng-ming_1">声明</h4>
-<h5 id="ext-js-4-zhi-qian-de-fang-shi">Ext JS 4 之前的方式</h5>
-<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">ns</span><span class="p">(</span><span class="s1">'My.cool'</span><span class="p">);</span>
-<span class="nx">My</span><span class="p">.</span><span class="nx">cool …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-er-lei-xing-xi-tong.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="./index3.html">&laquo;</a>
-    Page 4 / 9
+    Page 4 / 10
         <a href="./index5.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->
