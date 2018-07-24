@@ -68,6 +68,52 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html" rel="bookmark" title="Permalink to Spring Cloud 上手7-配置中心">
+                                       Spring Cloud 上手7-配置中心
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-06-07
+
+        |
+        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="../spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第七篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>概述</h1>
+<p>通过Spring Cloud Config可以对各个系统的配置信息进行集中管理和维护。</p>
+<p>Spring Cloud Config服务端读取git、svn或本地目录（包括classpath路径)中保存的配置信息。</p>
+<p>将Spring Cloud Config服务作为Eureka客户端，则为Config Server提供高可用。Config Client程序可以通过Eureka获取Config Server的信息并读取配置。</p>
+<h1>Spring Cloud Config Server配置</h1>
+<h2>添加依赖</h2>
+<p>Spring Config 服务相关的两个依赖是<code>org.springframework.cloud:spring-cloud-config-server</code>和<code>org.springframework.cloud:spring-cloud-config-client</code>，分别对应于配置服务的服务端和客户端。</p>
+<p>我们先在根模块的<code>build.gradle</code>中添加程序库依赖。</p>
+<div class="highlight"><pre><span></span><span class="c1">//依赖</span>
+<span class="n">ext</span><span class="o">.</span><span class="na">libs</span> <span class="o">=</span> <span class="o">[</span>
+        <span class="s2">"spring-cloud …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../spring-cloud-shang-shou-6-fu-zai-jun-heng.html" rel="bookmark" title="Permalink to Spring Cloud 上手6-负载均衡">
                                        Spring Cloud 上手6-负载均衡
                                     </a>
@@ -500,53 +546,6 @@ jar {
 <p><code>git push -f</code></p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../git-tips.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../pelican-jing-tai-bo-ke.html" rel="bookmark" title="Permalink to Pelican 静态博客">
-                                       Pelican 静态博客
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2018-05-12
-
-        |
-        tags:         <a href="../tag/python.html">python</a>
-
-
-        |
-        <a href="../pelican-jing-tai-bo-ke.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h2>重新整理博客</h2>
-<h2>草稿</h2>
-<div class="highlight"><pre><span></span><span class="n">Status</span><span class="o">:</span> <span class="n">draft</span>
-</pre></div>
-<h2>静态文件发布</h2>
-<p><code>直接使用 make github 会把生成的内容发布至 github 仓库</code>，如果你希望在 github 上保存 blog 源码就会被覆盖。</p>
-<p>我是直接在 output 目录下新建仓库，发布至 github pages。</p>
-<div class="highlight"><pre><span></span>cd output
-git init
-git add .
-git commit -m "first commit"
-git remote add origin https://github.com/xxx/xxx.github.io.git
-git push -u origin master …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../pelican-jing-tai-bo-ke.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

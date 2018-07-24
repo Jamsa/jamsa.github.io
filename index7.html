@@ -68,6 +68,48 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./android-dev-guidexue-xi-bi-ji-user-interface.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 User Interface">
+                                       Android Dev Guide学习笔记 User Interface
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/yi-dong.html">移动</a>
+
+    on 2010-08-20
+
+        |
+        tags:         <a href="./tag/android.html">android</a>
+
+
+        |
+        <a href="./android-dev-guidexue-xi-bi-ji-user-interface.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>用户界面</h1>
+<p>在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是View类的子类。</p>
+<p>View对象是Android平台表达用户界面的基本单元。View class作为被称作&ldquo;构件（widget）&rdquo;的基类，这些构件实现UI对象，如文本域和按钮。ViewGroup类被作为&ldquo;布局（layout）&rdquo;类的基类，它用于描述不同的布局方式，如线型、页签等。</p>
+<p>View对象的属性中存储了布局参数和屏幕中特定的矩形框中的内容。View对象自己处理自己的度量、布局、绘制、焦点变化、滚动、和在它的矩形范围内的按键/手势交互。用户界面中的View对象也是用户和交互事件接收器的交互点。</p>
+<h1>View层级结构</h1>
+<p>在Android平台上，你可以用一组包含View和ViewGroup节点的层级结构来定义Activity的UI，如下图。这个层级树根据需要可以很简单也可以很复杂，你可以使用Android中预定义的构件和布局来构建它，也可以用自定义的View来构建。</p>
+<p><img alt="ViewGroup" src="./android-dev-guide/viewgroup.png"/></p>
+<p>为了让view层级树渲染到屏幕上，你的Activity必须调用setContentView()方法并传递一个根节点的引用。Android系统接收到这个引用来废止、度量和绘制这个树。根节点请求它的子节点绘制自己&mdash;&mdash;每个view group节点负责调用它自己的子节点绘制自己。子节点可能会从父节点中请求得到某个位置的一块区块，但是父节点有最终决定分配哪个位置的多大的区域给子节点。Android从树的顶部开始解析布局元素，并实例华它们并将它们添加到它们的父节点。由于这些元素的绘制是按顺序进行的，如果出现元素重叠 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./android-dev-guidexue-xi-bi-ji-user-interface.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./android-dev-guidexue-xi-bi-ji-application-fundamentals.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 Application Fundamentals">
                                        Android Dev Guide学习笔记 Application Fundamentals
                                     </a>
@@ -539,70 +581,6 @@
 <h1>Chapter 1. Seam教程 …</h1>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./jboss-seam-xue-xi-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./emacs-org-modeji-gtd.html" rel="bookmark" title="Permalink to Emacs Org Mode及GTD">
-                                       Emacs Org Mode及GTD
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/xiao-lu.html">效率</a>
-
-    on 2009-01-09
-
-        |
-        tags:         <a href="./tag/emacs.html">emacs</a>
-        <a href="./tag/org.html">org</a>
-
-
-        |
-        <a href="./emacs-org-modeji-gtd.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Org Mode常用快捷键</h1>
-<h2>文档操作</h2>
-<ul>
-<li>TAB 折叠或打开子项</li>
-<li>S-TAB 折叠整个文档</li>
-</ul>
-<h2>节点操作相关</h2>
-<ul>
-<li>M-左右 左右移动节点</li>
-<li>M-S-左右 整体左右移动节点及子节点</li>
-<li>M-上下 上移或下移条目</li>
-</ul>
-<h2>记录操作</h2>
-<ul>
-<li>S-上下 调整条目的优先级</li>
-<li>C-c C-t 切换条目状态</li>
-<li>C-c C-s 设置计划时间</li>
-<li>C-s C-d 设置最后完成期限</li>
-</ul>
-<h2>查找操作</h2>
-<ul>
-<li>C-c / 按关键查找</li>
-</ul>
-<h2>日程相关</h2>
-<ul>
-<li>C-c a a 日程表，再输入d、w或m分别表示按日、周或月查看</li>
-<li>C-c a t TODO列表</li>
-<li>C-c a m 按tag查找</li>
-<li>C-c a M 按tag查找，但只针对TODO项 …</li></ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./emacs-org-modeji-gtd.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

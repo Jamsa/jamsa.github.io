@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Scala继承Java泛型方法的问题"/>
+        <meta property="og:url" content="./scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="./scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html" />
+
+        <title>Scala继承Java泛型方法的问题 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="./">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html" rel="bookmark"
+             title="Permalink to Scala继承Java泛型方法的问题">Scala继承Java泛型方法的问题</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-07-23
+
+        |
+        tags:         <a href="./tag/scala.html">scala</a>
+        <a href="./tag/jtv.html">jtv</a>
+
+
+        |
+        <a href="./scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>问题</h1>
+<p>在使用Scala实现<a href="./jtvkai-fa-bi-ji-4-ke-hu-duan.html">JTV</a>客户端界面程序时，我遇到了Scala重载Java类中的泛型方法的问题。</p>
+<p>因为界面上的<code>JList</code>使用了自定义的元素类型，我需要自定义<code>ListCellRender</code>来列表对象中元素行的显示。最简单的方法就是直接继承<code>DefaultListCellRenderer</code>，它会将<code>JList</code>中的数据元素渲染为<code>JLabel</code>，我只需要覆盖其<code>getListCellRendererComponent</code>实现元素转<code>JLabel</code>的逻辑即可。</p>
+<p>自定义类的结构如下：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FileRender</span> <span class="k">extends</span> <span class="nc">DefaultListCellRenderer</span><span class="o">{</span>
+    <span class="k">override</span> <span class="k">def</span> <span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="k">:</span> <span class="kt">JList</span><span class="o">[</span><span class="k">_</span><span class="o">],</span> <span class="n">value</span><span class="k">:</span> <span class="kt">scala.Any</span><span class="o">,</span> <span class="n">index</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">isSelected</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">,</span> <span class="n">cellHasFocus</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Component</span> <span class="o">=</span> <span class="k">super</span><span class="o">.</span><span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">isSelected</span><span class="o">,</span> <span class="n">cellHasFocus</span><span class="o">)</span>
+  <span class="o">}</span>
+</pre></div>
+<p>编译时会产生错误：</p>
+<div class="highlight"><pre><span></span>Error:(441, 9) class FileRender needs to be abstract, since method getListCellRendererComponent in trait ListCellRenderer of type (x$1: javax.swing.JList[_ &lt;: Object], x$2: Object, x$3: Int, x$4: Boolean, x$5: Boolean)java.awt.Component is not defined
+  class FileRender extends DefaultListCellRenderer{
+</pre></div>
+<h1>原因分析</h1>
+<p>查看<code>DefaultListCellRender</code>和<code>ListCellRender</code></p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DefaultListCellRenderer</span> <span class="kd">extends</span> <span class="n">JLabel</span>
+    <span class="kd">implements</span> <span class="n">ListCellRenderer</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;,</span> <span class="n">Serializable</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="n">Component</span> <span class="nf">getListCellRendererComponent</span><span class="o">(</span>
+        <span class="n">JList</span><span class="o">&lt;?&gt;</span> <span class="n">list</span><span class="o">,</span>
+        <span class="n">Object</span> <span class="n">value</span><span class="o">,</span>
+        <span class="kt">int</span> <span class="n">index</span><span class="o">,</span>
+        <span class="kt">boolean</span> <span class="n">isSelected</span><span class="o">,</span>
+        <span class="kt">boolean</span> <span class="n">cellHasFocus</span><span class="o">)</span>
+    <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">...</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ListCellRenderer</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span>
+<span class="o">{</span>
+    <span class="n">Component</span> <span class="nf">getListCellRendererComponent</span><span class="o">(</span>
+        <span class="n">JList</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span>
+        <span class="n">E</span> <span class="n">value</span><span class="o">,</span>
+        <span class="kt">int</span> <span class="n">index</span><span class="o">,</span>
+        <span class="kt">boolean</span> <span class="n">isSelected</span><span class="o">,</span>
+        <span class="kt">boolean</span> <span class="n">cellHasFocus</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+<p>从错误信息中可以看到，错误的原因在于我们的实现与<code>ListCellRender</code>中方法的泛型参数不匹配。先把第一个参数的泛型参数按错误提示进行修正：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FileRender</span> <span class="k">extends</span> <span class="nc">DefaultListCellRenderer</span><span class="o">{</span>
+    <span class="k">override</span> <span class="k">def</span> <span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="k">:</span> <span class="kt">JList</span><span class="o">[</span><span class="k">_</span> <span class="k">&lt;:</span> <span class="kt">Object</span><span class="o">],</span> <span class="n">value</span><span class="k">:</span> <span class="kt">scala.Any</span><span class="o">,</span> <span class="n">index</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">isSelected</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">,</span> <span class="n">cellHasFocus</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Component</span> <span class="o">=</span> <span class="k">super</span><span class="o">.</span><span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">isSelected</span><span class="o">,</span> <span class="n">cellHasFocus</span><span class="o">)</span>
+  <span class="o">}</span>
+</pre></div>
+<p>再编译时，编译器会提示<code>getListCellRendererComponent</code>未覆盖任何方法。</p>
+<p>从错误信息中可以了解到，应该是由于Scala对于Java实现对接口中的泛型参数无法理解。而我们编写的Scala继承Java类之后，Scala编译器不认为Java实现类与接口中的两个方法具有相同的方法签名。无论我们按接口的签名编写，还是按Java实现类的编译都会导致编译失败。</p>
+<h1>解决</h1>
+<p>在网上搜索这个问题找到了几篇有价值的贴子：</p>
+<p><a href="https://stackoverflow.com/questions/6440176/scala-overriding-generic-java-methods-ii">类似问题</a></p>
+<p><a href="https://issues.scala-lang.org/browse/SI-1737?focusedCommentId=44321&amp;page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-44321">Martin Odersky对这类问题的回复</a></p>
+<p>在这个贴子中，Martin Odersky对这类问题的建议是用Java编写一个实现类，之后再用Scala继承。</p>
+<p><a href="https://www.scala-lang.org/old/node/10687">同一个问题</a></p>
+<p>而针对我们这个具体的问题，上面这个篇贴子给出的方法更简单。它直接用Scala编写<code>ListCellRender</code>的实现，用它作为<code>DefaultListCellRender</code>的代理类。</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FileRender</span> <span class="k">extends</span> <span class="nc">ListCellRenderer</span><span class="o">[</span><span class="kt">FileInfo</span><span class="o">]{</span>
+  <span class="k">val</span> <span class="n">render</span> <span class="k">=</span> <span class="o">(</span><span class="k">new</span> <span class="nc">DefaultListCellRenderer</span><span class="o">).</span><span class="n">asInstanceOf</span><span class="o">[</span><span class="kt">ListCellRenderer</span><span class="o">[</span><span class="kt">FileInfo</span><span class="o">]]</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="k">:</span> <span class="kt">JList</span><span class="o">[</span><span class="k">_</span> <span class="k">&lt;:</span> <span class="kt">FileInfo</span><span class="o">],</span> <span class="n">value</span><span class="k">:</span> <span class="kt">FileInfo</span><span class="o">,</span> <span class="n">index</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">isSelected</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">,</span> <span class="n">cellHasFocus</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Component</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">result</span> <span class="k">=</span> <span class="n">render</span><span class="o">.</span><span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="o">,</span><span class="n">value</span><span class="o">,</span><span class="n">index</span><span class="o">,</span><span class="n">isSelected</span><span class="o">,</span><span class="n">cellHasFocus</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">label</span> <span class="k">=</span> <span class="n">result</span><span class="o">.</span><span class="n">asInstanceOf</span><span class="o">[</span><span class="kt">JLabel</span><span class="o">]</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">getName</span><span class="o">)</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">setIcon</span><span class="o">(</span><span class="nc">ImageUtils</span><span class="o">.</span><span class="n">toImageIcon</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="n">icon</span><span class="o">))</span>
+    <span class="n">label</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+         var _hmt = _hmt || [];
+         (function() {
+           var hm = document.createElement("script");
+           hm.src = "https://hm.baidu.com/hm.js?5e20e9cdd1185d24ece1dae11118a04f";
+           var s = document.getElementsByTagName("script")[0]; 
+           s.parentNode.insertBefore(hm, s);
+         })();
+        </script>
+</body>
+</html>

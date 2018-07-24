@@ -5,14 +5,14 @@
         <meta name="author" content="Jamsa" />
         <meta name="robots" content="index, follow"/>
 
-        <meta property="og:title" content="Learing Go 笔记"/>
-        <meta property="og:url" content="./learing-go-bi-ji.html"/>
+        <meta property="og:title" content="Learning Go 笔记"/>
+        <meta property="og:url" content="./learning-go-bi-ji.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
         <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="./learing-go-bi-ji.html" />
+        <link rel="canonical" href="./learning-go-bi-ji.html" />
 
-        <title>Learing Go 笔记 | Jamsa的笔记</title>
+        <title>Learning Go 笔记 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -66,8 +66,8 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="./learing-go-bi-ji.html" rel="bookmark"
-             title="Permalink to Learing Go 笔记">Learing Go 笔记</a></h1>
+          <a href="./learning-go-bi-ji.html" rel="bookmark"
+             title="Permalink to Learning Go 笔记">Learning Go 笔记</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
@@ -84,12 +84,12 @@
 
 
         |
-        <a href="./learing-go-bi-ji.html#disqus_thread">comments</a>
+        <a href="./learning-go-bi-ji.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->
 
-        <h1>Learing Go 笔记</h1>
+        <h1>Learning Go 笔记</h1>
 <h2>介绍</h2>
 <h3 id="chi-xian-wen-dang">离线文档</h3>
 <p>Go自带<code>godoc</code>用于查看程序模块的文档。</p>
@@ -181,13 +181,30 @@
 <p>Go 支持通常的数值操作符。
 Go 不支持操作符重载（或方法重载），但是一些内置的操作符是被重载过的。如：<code>+</code>可以用于整数、浮点、复数和字符串。</p>
 <h3 id="guan-jian-zi">关键字</h3>
-<p><code>func</code>定义函数
-<code>return</code>从函数中返回
-<code>go</code>用于并发编程
-<code>select</code>用于选择不同类型的通讯
-<code>interface</code>
-<code>struct</code>用于定义类型
-<code>type</code></p>
+<p>后面详细描述的关键字</p>
+<ul>
+<li>
+<p><code>func</code>定义函数</p>
+</li>
+<li>
+<p><code>return</code>从函数中返回</p>
+</li>
+<li>
+<p><code>go</code>用于并发编程</p>
+</li>
+<li>
+<p><code>select</code>用于选择不同类型的通讯</p>
+</li>
+<li>
+<p><code>interface</code></p>
+</li>
+<li>
+<p><code>struct</code>用于定义类型</p>
+</li>
+<li>
+<p><code>type</code></p>
+</li>
+</ul>
 <h3 id="kong-zhi-jie-gou">控制结构</h3>
 <p>Go 的控制结构比较少。比如只有<code>for</code>是用于循环。<code>switch</code>和<code>if</code>都能像<code>for</code>一样接收初始化语句。另外还有被称为<code>type switch</code>和<code>multiway communications multiplexer(多路通信多路复用器)</code>的<code>select</code>。语法与<code>C</code>也有些不同，括号不是必需的，并且左括花号不换行：</p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="nx">x</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span> <span class="c1">// { 是必需的，且不能放到下一行</span>
@@ -263,25 +280,50 @@ Go 不支持操作符重载（或方法重载），但是一些内置的操作�
 <span class="p">}</span>
 </pre></div>
 <h3 id="nei-zhi-han-shu">内置函数</h3>
-<p>内置函数不需要包含其它的包。
- - <code>close</code>：用于<code>channel</code>通讯中关闭<code>channel</code>。
- - <code>delete</code>：用于从<code>map</code>中删除一个元素。
- - <code>len</code>和<code>cap</code>：被用于多种不同的类型，<code>len</code>用于返回字符串<code>slice</code>和数组类型的长度。
- - <code>new</code>：用于为用户定义的数据类型分配内存。
- - <code>make</code>：用于为内置类型（<code>map, slice, channel</code>）分配内存。
- - <code>copy</code>：用于复制<code>slice</code>。
- - <code>append</code>：用于拼接<code>slice</code>。
- - <code>panic</code>和<code>recover</code>：用于异常机制。
- - <code>print</code>和<code>println</code>：低层次的打印函数可以不依赖于<code>fmt</code>包使用。主要用于调试。
- - <code>complex, real, img</code>：用于处理得数类型。</p>
+<p>内置函数不需要包含其它的包。</p>
+<ul>
+<li>
+<p><code>close</code>：用于<code>channel</code>通讯中关闭<code>channel</code>。</p>
+</li>
+<li>
+<p><code>delete</code>：用于从<code>map</code>中删除一个元素。</p>
+</li>
+<li>
+<p><code>len</code>和<code>cap</code>：被用于多种不同的类型，<code>len</code>用于返回字符串<code>slice</code>和数组类型的长度。</p>
+</li>
+<li>
+<p><code>new</code>：用于为用户定义的数据类型分配内存。</p>
+</li>
+<li>
+<p><code>make</code>：用于为内置类型（<code>map, slice, channel</code>）分配内存。</p>
+</li>
+<li>
+<p><code>copy</code>：用于复制<code>slice</code>。</p>
+</li>
+<li>
+<p><code>append</code>：用于拼接<code>slice</code>。</p>
+</li>
+<li>
+<p><code>panic</code>和<code>recover</code>：用于异常机制。</p>
+</li>
+<li>
+<p><code>print</code>和<code>println</code>：低层次的打印函数可以不依赖于<code>fmt</code>包使用。主要用于调试。</p>
+</li>
+<li>
+<p><code>complex, real, img</code>：用于处理得数类型。</p>
+</li>
+</ul>
 <h3 id="array-slice-he-map">Array, slice 和 map</h3>
 <h4 id="array">Array</h4>
-<p>定义为：<code>[n]&lt;type&gt;</code>，<code>n</code>是数组的长度，<code>&lt;type&gt;</code>是数组元素的类型。数组的大小是它的类型的一部分，不能增长。数组是值：将一个数组赋值给另一个将会复制所有元素。如果将它传递给函数，函数接收到的将是数组的副本，而不是指针。
-定义数组时可以将：<code>a := [3]int{1,2,3}</code>写作<code>a := [...]int{1,2,3}</code>，Go 会自动计数。
-所有字段都必须指定，因此如果定义多维数组将会是如下的结构：
-<code>a := [2][2]int{ [2]int{1,2}, [2]int{3,4}}</code>或写作<code>a := [2][2]int{ [...]int{1,2}, [...]int{3,4}}</code>声明数组时总是会需要在方括号中输入数字或三个点。
-定义 Array，slice 和 map 的表达方式已经被简化了：
-<code>a := [2][2]int{ {1,2}, {3,4}}</code></p>
+<p>定义为：<code>[n]&lt;type&gt;</code>，<code>n</code>是数组的长度，<code>&lt;type&gt;</code>是数组元素的类型。数组的大小是它的类型的一部分，不能增长。数组是值：将一个数组赋值给另一个将会复制所有元素。如果将它传递给函数，函数接收到的将是数组的副本，而不是指针。</p>
+<p>定义数组时可以将：<code>a := [3]int{1,2,3}</code>写作<code>a := [...]int{1,2,3}</code>，Go 会自动计数。</p>
+<p>所有字段都必须指定，因此如果定义多维数组将会是如下的结构：</p>
+<p><code>a := [2][2]int{ [2]int{1,2}, [2]int{3,4}}</code></p>
+<p>或写作</p>
+<p><code>a := [2][2]int{ [...]int{1,2}, [...]int{3,4}}</code></p>
+<p>声明数组时总是会需要在方括号中输入数字或三个点。</p>
+<p>定义 Array，slice 和 map 的表达方式已经被简化了：</p>
+<p><code>a := [2][2]int{ {1,2}, {3,4}}</code></p>
 <h4 id="slice">Slice</h4>
 <p><code>Slice</code>与<code>Array</code>类似，但它可以添加元素。<code>slice</code>总是指向它内部的<code>array</code>。<code>slice</code>与是指向<code>array</code>的指针；<code>slice</code>是引用类型，将一个 slice 赋值给另一个 slice 时，两者指向同一个内部<code>array</code>。
 <code>s1 := make([]int ,10)</code>创建了一个可以保存 10 个元素的<code>slice</code>。<code>slice := array[0:n]</code>从 array 中创建<code>slice</code>。<code>len(array) == cap(array) == m</code>。
@@ -326,12 +368,24 @@ Go 不支持操作符重载（或方法重载），但是一些内置的操作�
 <span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">mytype</span><span class="p">)</span> <span class="nx">funcname</span><span class="p">(</span><span class="nx">q</span> <span class="kt">int</span><span class="p">)(</span><span class="nx">r</span><span class="p">,</span><span class="nx">s</span> <span class="kt">int</span><span class="p">){</span> <span class="k">return</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">}</span>
 </pre></div>
 <ul>
-<li><code>func</code>：关键字</li>
-<li><code>p mtype</code>：函数可以被绑定到指定的类型上。它被称为接收者（<code>receiver</code>）</li>
-<li><code>funcname</code>：函数名</li>
-<li><code>q int</code>：函数参数声明。参数是值传递的，会被复制。</li>
-<li><code>r,s int</code>：返回值类型声明。函数可以返回多个值。可以不给出具体名称，只声明类型。只有一个返回值时外部可以不加括号。没有返回值时，可以完全省略掉这个部分。</li>
-<li><code>return 0,0</code>：函数体。</li>
+<li>
+<p><code>func</code>：关键字</p>
+</li>
+<li>
+<p><code>p mtype</code>：函数可以被绑定到指定的类型上。它被称为接收者（<code>receiver</code>）</p>
+</li>
+<li>
+<p><code>funcname</code>：函数名</p>
+</li>
+<li>
+<p><code>q int</code>：函数参数声明。参数是值传递的，会被复制。</p>
+</li>
+<li>
+<p><code>r,s int</code>：返回值类型声明。函数可以返回多个值。可以不给出具体名称，只声明类型。只有一个返回值时外部可以不加括号。没有返回值时，可以完全省略掉这个部分。</p>
+</li>
+<li>
+<p><code>return 0,0</code>：函数体。</p>
+</li>
 </ul>
 <p>函数声明不需要是有序的。编译器会扫描整个文件，不需要先声明函数原型。</p>
 <h3 id="zuo-yong-yu_1">作用域</h3>
@@ -441,11 +495,21 @@ Go 使用<code>MizedCaps, mixedCaps</code>格式而不推荐使用下划线分�
 <p>每个包都应该包含包注释，包注释放在包语句的前面。包含多个文件的包，包注释应该只在一个文件中存在。包注释应该介绍并提供整个包的信息。它将会出现在<code>godoc</code>的最前面。
 每个定义（被导出）的函数应该有一行简单短的注释对其进行说明。</p>
 <h3 id="ce-shi-bao_1">测试包</h3>
-<p>测试文件保存在包目录中，并且命名为<code>*_test.go</code>，测试文件与其它 Go 程序一样，但是<code>go test</code>只会执行这些测试函数。每个测试函数都有相同的签名，并且名称都是以<code>Test</code>开头：<code>func TestXxx(t *testing.T)</code>测试成功的函数只需要返回即可，测试失败时可以用下面的函数通知<code>go test</code>：
- - <code>func (t *T) Fail()</code>：标明测试函数失败，但继续执行。
- - <code>func (t *T) FailNow()</code>：标明测试函数失败并停止执行，同一文件中的其它测试被跳过，然后继续执行下一个测试。
- - <code>func (t *T) Log(args ...interface{})</code>：以类似<code>Print()</code>的方式格式化它的参数，并记录错误日志。
- - <code>func (t *T) Fatal(args ...interface{})</code>：等效于在<code>Log()</code>后执行<code>FailNow()</code>。</p>
+<p>测试文件保存在包目录中，并且命名为<code>*_test.go</code>，测试文件与其它 Go 程序一样，但是<code>go test</code>只会执行这些测试函数。每个测试函数都有相同的签名，并且名称都是以<code>Test</code>开头：<code>func TestXxx(t *testing.T)</code>测试成功的函数只需要返回即可，测试失败时可以用下面的函数通知<code>go test</code>：</p>
+<ul>
+<li>
+<p><code>func (t *T) Fail()</code>：标明测试函数失败，但继续执行。</p>
+</li>
+<li>
+<p><code>func (t *T) FailNow()</code>：标明测试函数失败并停止执行，同一文件中的其它测试被跳过，然后继续执行下一个测试。</p>
+</li>
+<li>
+<p><code>func (t *T) Log(args ...interface{})</code>：以类似<code>Print()</code>的方式格式化它的参数，并记录错误日志。</p>
+</li>
+<li>
+<p><code>func (t *T) Fatal(args ...interface{})</code>：等效于在<code>Log()</code>后执行<code>FailNow()</code>。</p>
+</li>
+</ul>
 <p>示例：</p>
 <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">even</span>
 <span class="kn">import</span> <span class="s">"testing"</span>
@@ -469,20 +533,48 @@ Go 使用<code>MizedCaps, mixedCaps</code>格式而不推荐使用下划线分�
 <p>最后的两行注释是<code>example</code>的一部分，<code>go test</code>使用它来检查输出并以此判断测试是否失败。</p>
 <h3 id="chang-yong-bao">常用包</h3>
 <ul>
-<li><code>fmt</code>：格式化输出。</li>
-<li><code>io</code>：提供原始的 I/O 接口。</li>
-<li><code>bufio</code>：实现缓冲 I/O。</li>
-<li><code>sort</code>：集合排序。</li>
-<li><code>strconv</code>：字符串与基础数据类型的转换。</li>
-<li><code>os</code>：操作系统功能接口。</li>
-<li><code>sync</code>：提供同步基础功能，如排它锁等。</li>
-<li><code>flag</code>：命令行参数解析。</li>
-<li><code>encoding/json</code>：用于编码解码<code>JSON</code>对象。</li>
-<li><code>html/template</code>：生成文本输出的数据驱动模板。</li>
-<li><code>net/http</code>：解析<code>HTTP</code>请求响应，URL提供了一个可扩展的<code>HTTP</code>服务和客户端。</li>
-<li><code>unsafe</code>：提供超出 Go 类型安全的功能（指针类型转换等）。通常应该不使用它。</li>
-<li><code>reflect</code>：用于实现运行时反射功能。</li>
-<li><code>os/exec</code>：用于运行外部命令。</li>
+<li>
+<p><code>fmt</code>：格式化输出。</p>
+</li>
+<li>
+<p><code>io</code>：提供原始的 I/O 接口。</p>
+</li>
+<li>
+<p><code>bufio</code>：实现缓冲 I/O。</p>
+</li>
+<li>
+<p><code>sort</code>：集合排序。</p>
+</li>
+<li>
+<p><code>strconv</code>：字符串与基础数据类型的转换。</p>
+</li>
+<li>
+<p><code>os</code>：操作系统功能接口。</p>
+</li>
+<li>
+<p><code>sync</code>：提供同步基础功能，如排它锁等。</p>
+</li>
+<li>
+<p><code>flag</code>：命令行参数解析。</p>
+</li>
+<li>
+<p><code>encoding/json</code>：用于编码解码<code>JSON</code>对象。</p>
+</li>
+<li>
+<p><code>html/template</code>：生成文本输出的数据驱动模板。</p>
+</li>
+<li>
+<p><code>net/http</code>：解析<code>HTTP</code>请求响应，URL提供了一个可扩展的<code>HTTP</code>服务和客户端。</p>
+</li>
+<li>
+<p><code>unsafe</code>：提供超出 Go 类型安全的功能（指针类型转换等）。通常应该不使用它。</p>
+</li>
+<li>
+<p><code>reflect</code>：用于实现运行时反射功能。</p>
+</li>
+<li>
+<p><code>os/exec</code>：用于运行外部命令。</p>
+</li>
 </ul>
 <h2>基础知识</h2>
 <p>Go 有指针但没有指针运算，因此他们更像 C 里的引用。调用函数时，总是传值的。因此为了修改传递的参数，应该使用指针。
@@ -579,11 +671,12 @@ Go 使用<code>MizedCaps, mixedCaps</code>格式而不推荐使用下划线分�
 <h3 id="zu-he">组合</h3>
 <p>当前的 Go 不是面向对象的编程语言因此没有继承，需要实现&ldquo;继承&rdquo;效果时可以嵌入一个类型。</p>
 <h2>接口</h2>
-<p>Go 中<code>interface</code>有多种含义。所有类型都有一个接口，就是该类型定义的方法的集合。例如：
-```type S struct { i int}
+<p>Go 中<code>interface</code>有多种含义。所有类型都有一个接口，就是该类型定义的方法的集合。例如：</p>
+<p>```type S struct { i int}
 func (p <em>S) Get() int {return p.i }
 func (p </em>S) Put(v int) { p.i = v }</p>
-<div class="highlight"><pre><span></span>你可以定义一个接口类型：
+<div class="highlight"><pre><span></span> 你可以定义一个接口类型：
+
 ```go
 type I inteface {
     Get() int
@@ -756,7 +849,7 @@ Go 也允许指定<code>channel</code>缓冲区的大小，用于设定<code>cha
         <h2>Comments</h2>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-          var disqus_identifier = "learing-go-bi-ji.html";
+          var disqus_identifier = "learning-go-bi-ji.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//jamsa-github-io.disqus.com/embed.js';

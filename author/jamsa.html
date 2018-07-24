@@ -68,6 +68,47 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html" rel="bookmark" title="Permalink to Scala继承Java泛型方法的问题">
+                                       Scala继承Java泛型方法的问题
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-07-23
+
+        |
+        tags:         <a href="../tag/scala.html">scala</a>
+        <a href="../tag/jtv.html">jtv</a>
+
+
+        |
+        <a href="../scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>问题</h1>
+<p>在使用Scala实现<a href="../jtvkai-fa-bi-ji-4-ke-hu-duan.html">JTV</a>客户端界面程序时，我遇到了Scala重载Java类中的泛型方法的问题。</p>
+<p>因为界面上的<code>JList</code>使用了自定义的元素类型，我需要自定义<code>ListCellRender</code>来列表对象中元素行的显示。最简单的方法就是直接继承<code>DefaultListCellRenderer</code>，它会将<code>JList</code>中的数据元素渲染为<code>JLabel</code>，我只需要覆盖其<code>getListCellRendererComponent</code>实现元素转<code>JLabel</code>的逻辑即可。</p>
+<p>自定义类的结构如下：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FileRender</span> <span class="k">extends</span> <span class="nc">DefaultListCellRenderer</span><span class="o">{</span>
+    <span class="k">override</span> <span class="k">def</span> <span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="k">:</span> <span class="kt">JList</span><span class="o">[</span><span class="k">_</span><span class="o">],</span> <span class="n">value</span><span class="k">:</span> <span class="kt">scala.Any</span><span class="o">,</span> <span class="n">index</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">isSelected</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">,</span> <span class="n">cellHasFocus</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Component</span> <span class="o">=</span> <span class="k">super</span><span class="o">.</span><span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">isSelected</span><span class="o">,</span> <span class="n">cellHasFocus …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../jtvkai-fa-bi-ji-3-fu-wu-duan.html" rel="bookmark" title="Permalink to JTV开发笔记3-服务端">
                                        JTV开发笔记3-服务端
                                     </a>
@@ -536,52 +577,6 @@
 <p>Spring Cloud Bus支持RabbitMQ和Kafka两种服务。这里我们选择RabbitMQ。安装完毕后，默认的服务端口是<code>5672</code>，默认安装会安装管理控制台 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-8-xiao-xi-zong-xian.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html" rel="bookmark" title="Permalink to Spring Cloud 上手7-配置中心">
-                                       Spring Cloud 上手7-配置中心
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/kai-fa.html">开发</a>
-
-    on 2018-06-07
-
-        |
-        tags:         <a href="../tag/spring-cloud.html">spring cloud</a>
-
-
-        |
-        <a href="../spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第七篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
-<h1>概述</h1>
-<p>通过Spring Cloud Config可以对各个系统的配置信息进行集中管理和维护。</p>
-<p>Spring Cloud Config服务端读取git、svn或本地目录（包括classpath路径)中保存的配置信息。</p>
-<p>将Spring Cloud Config服务作为Eureka客户端，则为Config Server提供高可用。Config Client程序可以通过Eureka获取Config Server的信息并读取配置。</p>
-<h1>Spring Cloud Config Server配置</h1>
-<h2>添加依赖</h2>
-<p>Spring Config 服务相关的两个依赖是<code>org.springframework.cloud:spring-cloud-config-server</code>和<code>org.springframework.cloud:spring-cloud-config-client</code>，分别对应于配置服务的服务端和客户端。</p>
-<p>我们先在根模块的<code>build.gradle</code>中添加程序库依赖。</p>
-<div class="highlight"><pre><span></span><span class="c1">//依赖</span>
-<span class="n">ext</span><span class="o">.</span><span class="na">libs</span> <span class="o">=</span> <span class="o">[</span>
-        <span class="s2">"spring-cloud …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
