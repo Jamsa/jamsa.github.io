@@ -1,0 +1,183 @@
+210.66.237.26 xxtest.dtxx.com xxtest
+10.66.237.27 xxtest1.dtxx.com xxtest1
+127.0.0.1     zj.hypower.com.cn
+10.232.234.48 sc.hypower.com.cn
+10.232.234.32 ss.hypower.com.cn
+10.232.234.50 erptest.hypower.com.cn erptest
+10.232.234.236 erptest.dthypower.com.cn erptest
+10.232.234.203 erpdev.dthypower.com.cn erpdev
+10.232.234.199 erpnew2.hypower.com.cn erpnew2
+10.232.234.239 biscan
+192.168.1.125 bieetest.dthnerppower.com bieetest
+#Application Server
+10.232.234.56 dthnerp.hypower.com.cn dthnerp
+10.232.234.43 erpapp.hypower.com.cn erpapp
+10.232.234.51 erpapp1.hypower.com.cn erpapp1
+#Database Server
+10.232.234.44 erpdb1.hypower.com.cn erpdb1 # erpdb1 public
+10.232.234.45 erpdb2.hypower.com.cn erpdb2 # erpdb2 public
+#192.168.4.53 ebsr12.shares.com
+#219.234.88.204 ebsr12.shares.com ebsr12
+222.247.40.150 ebsr12.shares.com ebsr12
+10.232.234.39 bieedb.hypower.com.cn
+10.232.234.28 bieeapp.hypower.com.cn
+10.232.234.36 bieeapp1.hypower.com.cn bieeapp1
+10.232.234.37 bieeapp2.hypower.com.cn bieeapp2
+10.232.234.52 bieedb1.hypower.com.cn bieedb1
+10.232.234.29 bieedb2.hypower.com.cn bieedb2
+10.232.234.41 bieedb1vip
+10.232.234.40 bieedb2vip
+10.232.234.197 appnew.hypower.com.cn appnew
+10.232.234.246 biee.hypower.com.cn biee
+10.232.234.245 portal.hypower.com.cn portal
+
+#广西
+10.194.19.137 erptest.cdtgxpower.com
+10.194.19.140 erpapp.cdtgxpower.com
+
+10.194.19.129 erpdb1.cdtgxpower.com erpdb1
+10.194.19.130 erpdb2.cdtgxpower.com erpdb2
+10.194.19.131 erpdb1_vip.cdtgxpower.com erpdb1_vip
+10.194.19.132 erpdb2_vip.cdtgxpower.com erpdb2_vip
+10.194.19.133 erpapp1.cdtgxpower.com erpapp1
+10.194.19.134 erpapp2.cdtgxpower.com erpapp2
+#河北
+10.66.113.39 test.dthbpower.com
+10.66.113.35 erpapp1.dthbpower.com erpapp1
+10.66.113.36 erpapp2.dthbpower.com erpapp2
+10.66.113.37 bieedb.dthbpower.com bieedb
+10.66.113.38 bieeapp.dthbpower.com bieeapp
+10.66.113.30 erpdb1.dthbpower.com          erpdb1
+10.66.113.31 erpdb2.dthbpower.com          erpdb2
+10.66.113.32 erpdb1_vip.dthbpower.com      erpdb1_vip
+10.66.113.33 erpdb2_vip.dthbpower.com      erpdb2_vip
+10.66.113.45 erpapp.dthbpower.com erpapp
+
+#河南
+10.66.200.50 erptest.henan-cdt.com
+#吉林
+10.66.158.16 bieedb.dtjlpower.com bieedb
+10.66.158.17 bieeapp.dtjlpower.com bieeapp
+10.66.158.20 erpapp1.dtjlpower.com erpapp1
+10.66.158.21 erpapp2.dtjlpower.com erpapp2
+10.66.158.18 erpdb1.dtjlpower.com erpdb1
+10.66.158.19 erpdb2.dtjlpower.com erpdb2
+10.66.158.22 erpdb1_vip.dtjlpower.com erpdb1_vip
+10.66.158.23 erpdb2_vip.dtjlpower.com erpdb2_vip
+10.66.158.28 erpapp.dtjlpower.com erpapp
+10.66.158.15 erptest.jldt.com erptest
+#山西
+10.66.134.31 erpdb1.dtsxpower.com erpdb1
+10.66.134.32 erpdb2.dtsxpower.com erpdb2
+10.66.134.33 erpdb1_vip.dtsxpower.com erpdb1_vip
+10.66.134.34 erpdb2_vip.dtsxpower.com erpdb2_vip
+10.66.134.35 scan.dtsxpower.com scan
+10.66.134.36 erpapp1.dtsxpower.com erpapp1
+10.66.134.37 erpapp2.dtsxpower.com erpapp2
+10.66.134.39 bieedb.dtsxpower.com bieedb
+10.66.134.38 bieeapp.dtsxpower.com bieeapp
+10.66.134.40 erptest.dtsxpower.com erptest
+10.66.134.19 erptest.datangsx.com
+#新能源
+#10.96.97.49 erptest.dtxnyfmiss.com
+#10.96.97.50 erpapp.dtxnyfmiss.com
+#10.96.97.42 erpdb1_vip.dtxnyfmiss.com
+#10.96.97.43 erpdb2_vip.dtxnyfmiss.com
+
+10.81.74.80    erpapp1.dtxnyfmiss.com          erpapp1
+10.81.74.81    erpapp2.dtxnyfmiss.com          erpapp2
+10.81.74.90    bieedb.dtxnyfmiss.com             bieedb
+10.81.74.91    bieeapp.dtxnyfmiss.com           bieeapp
+10.81.74.92    erptest.dtxnyfmiss.com            erptest
+10.81.74.101   erpapp.dtxnyfmiss.com         erpapp
+10.81.74.82    erpdb1.dtxnyfmiss.com          erpdb1
+10.81.74.83    erpdb2.dtxnyfmiss.com          erpdb2
+
+
+#山东
+10.96.22.234  bidb.dtsdpower.com bidb 
+10.96.22.235 biap.dtsdpower.com biap 
+10.96.22.14 bieeapp.dtsdpower.com bieeapp
+10.96.22.233 erptest.dtsdpower.com erptest
+10.96.22.236 erpdb1_vip.dtsdpower.com erpdb1_vip 
+10.96.22.237 erpdb2_vip.dtsdpower.com erpdb2_vip 
+10.96.22.238 erpdb3_vip.dtsdpower.com erpdb3_vip 
+10.96.22.239 erpdb4_vip.dtsdpower.com erpdb4_vip 
+10.96.22.19  erpapp.dtsdpower.com
+10.96.22.230 erpapp1.dtsdpower.com
+10.96.22.231 erpapp2.dtsdpower.com
+10.96.22.232 erpapp3.dtsdpower.com
+
+#燃料系统
+222.247.40.150 fuel.dtxx.com fuel
+
+#203.208.46.200 dl-ssl.google.com
+
+10.254.11.88 huijian.jingbo.net
+192.168.33.18 erp-app.jingbo.net
+
+#环境
+10.81.4.122 erpdb1.dthjpower.com erpdb1
+10.81.4.121 erpapp1.dthjpower.com erpapp1
+10.81.4.124 bieedb.dthjpower.com bieedb
+10.81.4.123 bieeapp.dthjpower.com bieeapp
+10.81.4.125 erptest.dthjpower.com erptest
+
+#集团
+10.81.35.2 dev.cdterp.com dev
+10.81.35.3 erptest.cdterp.com erptest
+10.81.74.5 erpapp2.cdterp.com erpapp2
+10.81.74.6 erpapp3.cdterp.com erpapp3
+10.81.74.7 erpapp4.cdterp.com erpapp4
+10.81.74.8 apptest.cdterp.com apptest
+10.81.74.12 erpdb3.cdterp.com erpdb3
+10.81.74.10 erpdb1.cdterp.com erpdb1
+10.81.74.11 erpdb2.cdterp.com erpdb2
+10.81.74.9 dbtest.cdterp.com dbtest
+10.81.74.13 erpdb1_vip.cdterp.com erpdb1_vip
+10.81.74.14 erpdb2_vip.cdterp.com erpdb2_vip
+10.81.74.15 erpdb3_vip.cdterp.com erpdb3_vip
+10.81.74.17 erpapp.cdterp.com erpapp
+10.81.74.18 app.cdterp.com app
+
+#中水
+10.6.6.121 dtzs_test.cdterp.com  dtzs_test
+10.6.6.122 dtzs_dev.cdterp.com  dtzs_dev
+
+#四川
+10.67.93.77 asapp.dtscpower.com.cn asapp
+10.67.93.22 erpapp.dtscpower.com.cn erpapp
+10.67.93.28 erpdb1.dtscpower.com.cn erpdb1
+10.67.93.29 erpdb2.dtscpower.com.cn erpdb2
+10.67.93.25 erpdb1_vip.dtscpower.com.cn erpdb1_vip
+10.67.93.26 erpdb2_vip.dtscpower.com.cn erpdb2_vip
+10.67.93.196 erpdb3.dtscpower.com.cn erpdb3
+10.67.93.202 erpdb3_vip.dtscpower.com.cn erpdb3_vip
+10.67.93.27 scan.dtscpower.com.cn scan
+10.67.93.24 erptest.dtscpower.com.cn erptest
+
+##大唐国际
+10.67.204.2 fmis2.zrpower.com  fmis2
+
+#甘肃
+10.67.74.99      erpapp1.dtgspower.com    erpapp1
+10.67.74.100     erpapp2.dtgspower.com    erpapp2
+
+#江苏
+10.66.198.30    erpdb1.dtjspower.com    erpdb1
+10.66.198.31    erpdb2.dtjspower.com    erpdb2
+10.66.198.32    erpdb1_vip.dtjspower.com   erpdb1_vip
+10.66.198.33    erpdb2_vip.dtjspower.com    erpdb2_vip
+10.66.198.34    scan.dtjspower.com         scan
+10.66.186.100   erpdb1_priv
+10.66.186.101   erpdb2_priv
+10.66.198.35    erpapp1.dtjspower.com erpapp1
+10.66.198.36    erpapp2.dtjspower.com erpapp2
+10.66.198.37    erptest.dtjspower.com erptest
+10.66.198.49    bieedb.dtjspower.com bieedb
+10.66.198.48    bieeapp.dtjspower.com bieeapp
+10.66.198.46    erpapp.dtjspower.com     erpapp 
+
+
+
+192.168.13.85   xap xap

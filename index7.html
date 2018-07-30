@@ -68,6 +68,59 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./sicpdu-shu-bi-ji.html" rel="bookmark" title="Permalink to SICP读书笔记">
+                                       SICP读书笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2010-08-31
+
+        |
+        tags:         <a href="./tag/lisp.html">lisp</a>
+        <a href="./tag/scheme.html">scheme</a>
+
+
+        |
+        <a href="./sicpdu-shu-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Chap.1 Building Abstractions with Procedures</h1>
+<p>在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将两个想法，不论它们是简单或复杂，放到一起，将他们彼此设置并立即观察他们，而不将它们组织成一个想法，通过这种方法可以得到想法之间的关系。3. 将他们从现实的已经存在的其它想法中分离出来：这称为抽象，这样可以构成这些想法的通用想法。</p>
+<p>计算机语言完成任务的三个机制：</p>
+<ul>
+<li>
+<p>原生表达式，它描述了语言所关心的最简单的实体。</p>
+</li>
+<li>
+<p>组合的方法，复合元素是从简单元素构成的。</p>
+</li>
+<li>
+<p>抽象的方法，通过抽象复合元素可以被命名和作为单元被处理。</p>
+</li>
+</ul>
+<p>在编程过程中，我们处理两种类型的元素：过程和数据。数据是要处理的&ldquo;原材料&rdquo;，而过程是处理数据的规则的描述。因此，任何一门强大的编程语言应该能够 描述原生数据类型和原生过程，应该有组合和抽象过程和数据的方法。</p>
+<h2>Exercise 1.2 将下面的表达式转换为form</h2>
+<p><img alt="ch1-z-g-3" src="./SICP/ch1-z-g-3.gif"/></p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="mi">5</span> <span class="mi">4</span> <span class="p">(</span><span class="nb">- </span><span class="mi">2</span> <span class="p">(</span><span class="nb">- </span><span class="mi">3</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">6</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">4</span> <span class="mi">3 …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./sicpdu-shu-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./android-dev-guidexue-xi-bi-ji-user-interface.html" rel="bookmark" title="Permalink to Android Dev Guide学习笔记 User Interface">
                                        Android Dev Guide学习笔记 User Interface
                                     </a>
@@ -503,84 +556,6 @@
 <div class="highlight"><pre><span></span>mvn.bat archetype:generate -U -DarchetypeGroupId=net …</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./maven2-tips.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./jboss-seam-xue-xi-bi-ji.html" rel="bookmark" title="Permalink to JBoss Seam 学习笔记">
-                                       JBoss Seam 学习笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2009-01-15
-
-        |
-        tags:         <a href="./tag/seam.html">seam</a>
-        <a href="./tag/jsf.html">jsf</a>
-
-
-        |
-        <a href="./jboss-seam-xue-xi-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>JBoss Seam介绍</h1>
-<p>Seam是一个for Java EE5的应用框架。它是从下面的规则得到灵感的：</p>
-<ul>
-<li>
-<p>集成JSF和EJB3.0</p>
-</li>
-<li>
-<p>集成AJAX。</p>
-</li>
-</ul>
-<p>Seam支持两个开源的JSF AJAX解决方案：ICEFaces和Ajax4JSF。这些解决方案让你可以在应用中添加AJAX支持而不需要编写JS代码。</p>
-<p>Seam也支持内置EJB3组件的的JavaScript远程调用。AJAX客户端可以很容易的调用服务端组件和JMS主题，而不需要中间动作层。</p>
-<p>这两种办法都工作得比较好，如果不是有Seam内置的并发和状态管理，它确保了许多并发和异步的AJAX请求被安全高效的在服务端被处理。</p>
-<ul>
-<li>集成业务流程作为一流的构件。</li>
-</ul>
-<p>集成了jBPM，并允许定义会话层。JSF为这个会话层提供了强大的事件模型。Seam通过暴露jBPM的业务流程相关的事件，使用同样的事件处理机制，为所有Seam的组件模型提供了统一的事件模型。</p>
-<ul>
-<li>
-<p>一种&ldquo;填充&rdquo;</p>
-</li>
-<li>
-<p>申明性状态管理</p>
-</li>
-<li>
-<p>双射</p>
-</li>
-<li>
-<p>工作区管理</p>
-</li>
-<li>
-<p>到处都是带注释的POJO</p>
-</li>
-<li>
-<p>易测试</p>
-</li>
-<li>
-<p>开始！</p>
-</li>
-</ul>
-<p>Seam可以工作于任何支持EJB3的应用服务器中。通过使用Jboss嵌入式EJB3容器，甚至可以在Servlet容器中使用Seam，比如Tomcat或任何J2EE应用服务器。</p>
-<p>在现在并不是所有的人都准备迁移到EJB3。因此，在这期间可以把Seam作为一种框架来使用，使用JSF作展现，Hibernate作持久层，JavaBean处理应用逻辑。当准备迁移到EJB3.0时，迁移将比较直接。</p>
-<h1>Chapter 1. Seam教程 …</h1>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./jboss-seam-xue-xi-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

@@ -68,6 +68,50 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../git-tips.html" rel="bookmark" title="Permalink to Git Tips">
+                                       Git Tips
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2018-05-12
+
+        |
+        tags:         <a href="../tag/git.html">git</a>
+
+
+        |
+        <a href="../git-tips.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <ul>
+<li>强制本地回退至指定版本</li>
+</ul>
+<p><code>git reflog
+ git reset --hard oxfb</code></p>
+<ul>
+<li>强制远程回退至指定版本</li>
+</ul>
+<p>先强制本地回退，然后强制推送。</p>
+<p><code>git push -f</code></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../git-tips.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../pelican-jing-tai-bo-ke.html" rel="bookmark" title="Permalink to Pelican 静态博客">
                                        Pelican 静态博客
                                     </a>
@@ -585,64 +629,6 @@ int64
 <span class="n">titanic</span> <span class="o">=</span> <span class="n">pd …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../learning-sklearnbi-ji-si.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../learning-sklearnbi-ji-yi.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（一）">
-                                       Learning Sklearn笔记（一）
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2018-01-02
-
-        |
-        tags:         <a href="../tag/python.html">python</a>
-        <a href="../tag/machine-learn.html">machine learn</a>
-        <a href="../tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="../learning-sklearnbi-ji-yi.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Chap1 介绍</h1>
-<p>任何机器学习问题可以描述为以下三个概念：</p>
-<div class="highlight"><pre><span></span>- 需要学习如何解决的任务为T。
-- 为解决该任务所需要的经验为E。
-- 度量解决任务执行效果的P。
-</pre></div>
-<h2>线性分类</h2>
-<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
-
-<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
-
-<span class="n">X_iris</span><span class="p">,</span> <span class="n">y_iris</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
-
-<span class="c1">#这里只取前两个特征</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X_iris</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2 …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../learning-sklearnbi-ji-yi.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

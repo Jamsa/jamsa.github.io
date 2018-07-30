@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="使用 Chocolatey 在 Win10 下配置 rust 开发环境"/>
+        <meta property="og:url" content="./shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="./shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html" />
+
+        <title>使用 Chocolatey 在 Win10 下配置 rust 开发环境 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="./">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html" rel="bookmark"
+             title="Permalink to 使用 Chocolatey 在 Win10 下配置 rust 开发环境">使用 Chocolatey 在 Win10 下配置 rust 开发环境</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-07-29
+
+        |
+        tags:         <a href="./tag/rust.html">rust</a>
+        <a href="./tag/chocolatey.html">chocolatey</a>
+        <a href="./tag/cargo.html">cargo</a>
+        <a href="./tag/msvc.html">msvc</a>
+        <a href="./tag/racer.html">racer</a>
+
+
+        |
+        <a href="./shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h1>简介</h1>
+<p>最近因学习<code>rust</code>编程语言，需要在家中的 Win10 系统上安装<code>rust</code>开发环境。</p>
+<p>安装的目标是在<code>vscode</code>中配合<code>racer</code>实现代码提示功能。</p>
+<p>因刚开始接触<code>rust</code>对于<code>rust</code>的不同<code>channel</code>、<code>toolchain</code>及<code>racer</code>的情况都不太了解所以起了不少弯路，所以编写本文档记录下相关的过程。</p>
+<p>主要参考了：</p>
+<ul>
+<li>
+<p><a href="https://github.com/rust-lang-nursery/rustup.rs/#other-installation-methods">rustup 安装说明</a></p>
+</li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/26944087?open_source=weibo_search">Rust 开发环境指北</a></p>
+</li>
+<li>
+<p><a href="https://github.com/racer-rust/racer">racer 安装说明</a></p>
+</li>
+</ul>
+<p>基础概念：</p>
+<ul>
+<li>
+<p><code>rustup</code>：是<code>rust</code>官方推荐的<code>rust</code>多版本维护工具。它的功能类似于<code>Python</code>的<code>Conda</code>或<code>pyenv</code>这类工具。</p>
+</li>
+<li>
+<p><code>cargo</code>：是<code>rust</code>的构建工具。它的功能类似于<code>Python</code>的<code>pip</code>或<code>Java</code>的<code>Maven</code>等工具，既可以管理依赖也可以管理项目的构建。</p>
+</li>
+<li>
+<p><code>racer</code>：是一个支持<code>vscode</code>和<code>emacs</code>等编译器的<code>rust</code>代码自动完成的工具。</p>
+</li>
+<li>
+<p><code>crate</code>：<code>rust</code>中的程序库。</p>
+</li>
+</ul>
+<h1><code>rust</code>的安装</h1>
+<h2><code>rust</code>的版本选择</h2>
+<p><code>rust</code>在 Windows 上有多个版本可供选择，主要是因为<code>rust</code>编译器目前还依赖于<code>c</code>的链接工具，一些第三方的库在构建时依赖于<code>c</code>工具链。早期的<code>rust</code>版本主要使用<code>mingw</code>来进行编译，这个版本被称为<code>gnu</code>版，从官方文档来看，这个版本应该是包含了<code>mingw</code>的一些工具，不需要安装额外的工具。另一个版本，也是官方推荐的版本是使用<code>msvc</code>，它使用<code>Visual Studio</code>进行构建，需要安装<code>Visual Studio</code>，以便在编译程序时使用相关的编译构建工具。加上<code>cpu</code>架构分<code>i686</code>和<code>x86_64</code>，这样版本选择就有了<code>2*2=4</code>个，再算上<code>rust</code>的三个版本通道<code>stable</code>、<code>beta</code>、<code>nightly</code>，一共就有了<code>12</code>个可供选择的版本。那么如何选择版本呢？官方更推荐使用<code>msvc</code>版本，<code>racer</code>的 <a href="https://github.com/racer-rust/racer">github</a> 上提示，从 2.1 版开始，它需要使用 <code>nightly</code> 版本才能编译。 我试了用<code>stable</code>进行编译，会产生错误<code>#![feature(rustc_private, box_syntax)]</code>，看错误信息是因为<code>stable</code>不支持<code>feature</code>这个函数（刚入门，不确定它是否是函数）。这样我就选择了<code>nightly</code>通道上的<code>msvc</code>版本。</p>
+<p>根据选择的版本，我们需要安装以下程序：</p>
+<ul>
+<li>
+<p><code>rustup</code></p>
+</li>
+<li>
+<p><code>msbuilder</code>及<code>vcbuilder</code></p>
+</li>
+<li>
+<p><code>cmake</code></p>
+</li>
+</ul>
+<h2><code>rustup</code>及<code>toolchain</code>的选择</h2>
+<p>我使用 <a href="https://chocolatey.org">chocolatey</a> 管理 Windows 上的软件安装。</p>
+<p>在<code>chocolatey</code>网站上搜索<code>rustup</code>是搜索不到的，因为它不是<code>stable</code>软件。需要使用以下命令进行安装。</p>
+<div class="highlight"><pre><span></span>choco install rustup --pre
+</pre></div>
+<p>安装完<code>rustup</code>之后，默认它会安装<code>stable msvc</code>版的编译器及相关工具，我们需要切换至<code>nightly msvc</code>。使用以下命令来安装<code>nightly</code>版本，并将其设置为默认使用的版本。这里我还删除了<code>stable</code>版本。</p>
+<div class="highlight"><pre><span></span>rustup toolchain add nightly
+rustup toolchain remove stable
+rustup default nightly
+</pre></div>
+<p>使用<code>rustup</code>从官网下载的速度比较慢。也可以设置<code>rustup</code>的镜像仓库以提高<code>rustup</code>的下载速度。这个设置没有配置文件，只需要设置环境变量:</p>
+<div class="highlight"><pre><span></span>set RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+set RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+</pre></div>
+<p>至此<code>nightly msvc</code>版本的<code>rust</code>编译器及其工具已经安装完毕。</p>
+<h1>编译工具链的安装</h1>
+<h2>安装<code>msbuild</code>、<code>vctools</code>和<code>cmake</code></h2>
+<p>安装完<code>rust</code>的工具后，就已经可以编译<code>rust</code>程序了。安装<code>msbuild</code>和<code>vctools</code>主要是因为在编译<code>racer</code>及其它依赖于<code>c/c++</code>编译器的程序库时需要它们。<code>cmake</code>则是因为<code>racer</code>的安装说明中提到编译<code>racer</code>时依赖于<code>cmake</code>。</p>
+<p>使用以下命令可以完成编译工具链的安装</p>
+<div class="highlight"><pre><span></span>choco install microsoft-build-tools
+choco install visualstudio2017-workload-vctools
+choco install cmake
+</pre></div>
+<p>开始的时候我认为安装完<code>microssoft-build-tools</code>就会包含<code>vctools</code>，因为在<code>msbuild 2015</code>中是包含了<code>c/c++</code>工具链的。只安装<code>microsoft-build-tools</code>就直接编译<code>racer</code>会报找不到<code>link.exe</code>的错误，查询<code>chocolatey</code>上的包信息，可以看到<code>microsoft-build-tools</code>在当前实际指向<a href="https://chocolatey.org/packages/visualstudio2017buildtools">visualstudio2017buildtools</a>这个包，这个包的说明中有明确的说明</p>
+<div class="highlight"><pre><span></span>By default, the package installs only the bare minimum required (the MSBuild Tools workload). The easiest way to add more workloads is to use the workload packages:
+- .NET Core build tools
+- Visual C++ build tools
+- Web development build tools.
+</pre></div>
+<p>它只包含了最小的依赖，如果需要使用<code>vctools</code>需要安装额外的<code>workload</code>，即<code>visualstudio2017-workload-vctools</code>。</p>
+<p>至此，编译<code>racer</code>需要的工具都已经准备好了。</p>
+<h1>编译安装racer</h1>
+<p>按<code>racer</code>官方文档只需要使用<code>cargo +nightly install racer</code>即可编译安装了。但是我在编译时，遇到了几个问题。</p>
+<h2>设置<code>crate</code>镜像仓库</h2>
+<p>在使用<code>cargo</code>编译程序时会自动从<code>crate</code>仓库下载程序的依赖，过程类似于<code>maven</code>仓库或<code>npm</code>仓库中下载依赖。默认的<code>crate</code>仓库的访问速度非常慢，可以在<code>%HOME%\.cargo\config</code>中添加以下内容，以切换至中科大的<code>crate</code>镜像仓库：</p>
+<div class="highlight"><pre><span></span><span class="k">[registry]</span>
+<span class="na">index</span> <span class="o">=</span> <span class="s">"git://mirrors.ustc.edu.cn/crates.io-index"</span>
+</pre></div>
+<h2>设置PATH环境变量</h2>
+<p>上面安装的一系列工具都没有设置到<code>PATH</code>中去，使用不方便，也会影响<code>cargo</code>命令的执行。我使用<code>cmder</code>，直接将对<code>PATH</code>的修改放在了<code>cmder</code>的设置中。相关内容如下：</p>
+<div class="highlight"><pre><span></span><span class="nt">set</span> <span class="nt">PATH</span><span class="o">=%</span><span class="nt">ConEmuBaseDir</span><span class="o">%</span><span class="err">\</span><span class="nt">Scripts</span><span class="o">;%</span><span class="nt">PATH</span><span class="o">%;</span><span class="nt">C</span><span class="o">:</span><span class="err">\</span><span class="nt">Program</span> <span class="nt">Files</span><span class="err">\</span><span class="nt">Git</span><span class="err">\</span><span class="nt">bin</span><span class="o">;</span><span class="nt">C</span><span class="o">:</span><span class="err">\</span><span class="nt">tools</span><span class="err">\</span><span class="nt">miniconda3</span><span class="err">\</span><span class="nt">Scripts</span><span class="o">;</span><span class="nt">C</span><span class="o">:</span><span class="err">\</span><span class="nt">Program</span> <span class="nt">Files</span> <span class="o">(</span><span class="nt">x86</span><span class="o">)</span><span class="err">\</span><span class="nt">Microsoft</span> <span class="nt">Visual</span> <span class="nt">Studio</span><span class="err">\</span><span class="nt">2017</span><span class="err">\</span><span class="nt">BuildTools</span><span class="err">\</span><span class="nt">MSBuild</span><span class="err">\</span><span class="nt">15</span><span class="p">.</span><span class="nc">0</span><span class="err">\</span><span class="nt">Bin</span><span class="err">\</span><span class="nt">amd64</span><span class="o">;</span><span class="nt">C</span><span class="o">:</span><span class="err">\</span><span class="nt">Program</span> <span class="nt">Files</span><span class="err">\</span><span class="nt">CMake</span><span class="err">\</span><span class="nt">bin</span><span class="o">;</span><span class="nt">C</span><span class="o">:</span><span class="err">\</span><span class="nt">Program</span> <span class="nt">Files</span> <span class="o">(</span><span class="nt">x86</span><span class="o">)</span><span class="err">\</span><span class="nt">Microsoft</span> <span class="nt">Visual</span> <span class="nt">Studio</span><span class="err">\</span><span class="nt">2017</span><span class="err">\</span><span class="nt">BuildTools</span><span class="err">\</span><span class="nt">VC</span><span class="err">\</span><span class="nt">Auxiliary</span><span class="err">\</span><span class="nt">Build</span><span class="o">;</span><span class="nt">C</span><span class="o">:</span><span class="err">\</span><span class="nt">Users</span><span class="err">\</span><span class="nt">Lenovo</span><span class="err">\</span><span class="p">.</span><span class="nc">cargo</span><span class="err">\</span><span class="nt">bin</span><span class="err">\</span><span class="o">;</span>
+</pre></div>
+<p>主要添加了<code>cargo</code>和<code>msbuild</code>相关的目录。</p>
+<h2>开始编译</h2>
+<p>完成上述设置后，我开始使用<code>cargo +nightly install racer</code>构建<code>racer</code>，结果报错了：</p>
+<div class="highlight"><pre><span></span>Compiling same-file v1.0.2 (registry `git://mirrors.ustc.edu.cn/crates.io-index`)
+error: failed to run custom build command for `libssh2-sys v0.2.8 (registry `git://mirrors.ustc.edu.cn/crates.io-index`)`
+process didn't exit successfully: `C:\Users\Lenovo\AppData\Local\Temp\cargo-installN2GxW9\release\build\libssh2-sys-7b470d6e1aaab76f\build-script-build` (exit code: 101)
+--- stderr
+fatal: not a git repository (or any of the parent directories): .git
+thread 'main' panicked at '
+
+couldn't determine visual studio generator
+if VisualStudio is installed, however, consider running the appropriate vcvars script before building this crate
+', C:\Users\Lenovo\.cargo\registry\src\mirrors.ustc.edu.cn-61ef6e0cd06fb9b8\cmake-0.1.31\src\lib.rs:552:25
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+
+warning: build failed, waiting for other jobs to finish...
+error: failed to compile `racer v2.1.3 (registry `git://mirrors.ustc.edu.cn/crates.io-index`)`, intermediate artifacts can be found at `C:\Users\Lenovo\AppData\Local\Temp\cargo-installN2GxW9`
+
+Caused by:
+  build failed
+</pre></div>
+<p>从<code>racer</code>和<code>rust</code>的<code>issue</code>中查到是构建工具的问题，那么问题有可能出在<code>msbuild</code>或<code>rust</code>的<code>cmake</code>库，或者<code>cmake</code>本身。在查<code>couldn't determine visual studio generator</code>的时候还走了不少弯路，看到<code>issue</code>上贴出的代码还以为是<code>rust</code>和<code>cmake</code>库不支持<code>vs2017</code>，因为<code>issue</code>上的这个错误，就是因为<code>rust cmake</code>库上写死了<code>vsbuild</code>的版本，从代码来看高于<code>vs2015</code>的版本就不认了，有人也确实是使用<code>vs2015</code>就没有报这个错误。</p>
+<p>在查阅<code>rust cmake</code>库的<a href="https://github.com/alexcrichton/cmake-rs/blob/4a45b77f7e1734a7929ec5c64d4a4b1d9397b24a/src/lib.rs#L575">相关代码</a>发现新版本已经是支持<code>vs2017</code>的了，那问题就有可能是出在<code>vsbuild</code>本身上了。</p>
+<p>因为<code>rust</code>官网对于安装<code>vs</code>并没有明确，推荐的链接是安装完整的<code>visual studio community</code>并包含<code>c/c++</code>选项，而我安装的只是构建工具链。一开始我认为需要安装完整的<code>visual studio</code>，后来才想起来<code>vsbuild</code>和<code>vctool</code>的 2017 版在使用前是需要设置环境变量的。</p>
+<p>先在控制台中运行</p>
+<div class="highlight"><pre><span></span>"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64
+</pre></div>
+<p>会配置好相关的环境变量，之后再使用<code>cargo +nightly install racer</code>进行构建和安装就没有问题了。</p>
+<h1>开发工具</h1>
+<h2>编辑器集成</h2>
+<p>参照<a href="https://zhuanlan.zhihu.com/p/26944087?open_source=weibo_search">Rust 开发环境指北</a>在<code>vscode</code>中安装<code>rust</code>相关插件，使用<code>cargo</code>在<code>rust</code>环境上安装相关的程序库和<code>rust</code>源码，就可以实现代码提示功能，此处不再缀述。</p>
+<h2>调试器</h2>
+<p>可参照<a href="https://www.brycevandyk.com/debug-rust-on-windows-with-visual-studio-code-and-the-msvc-debugger/">这篇文章</a>进行配置。只需要在<code>vscode</code>中安装<code>C/C++</code>和<code>Native Debug</code>这两个插件即可。</p>
+<p><img alt="vscode 调试 rust 代码" src="./rust_win_env/rust_vscode_debug.png"/></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+         var _hmt = _hmt || [];
+         (function() {
+           var hm = document.createElement("script");
+           hm.src = "https://hm.baidu.com/hm.js?5e20e9cdd1185d24ece1dae11118a04f";
+           var s = document.getElementsByTagName("script")[0]; 
+           s.parentNode.insertBefore(hm, s);
+         })();
+        </script>
+</body>
+</html>

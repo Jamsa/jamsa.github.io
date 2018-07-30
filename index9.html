@@ -68,6 +68,52 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./wxpython-in-actionde-du-shu-bi-ji.html" rel="bookmark" title="Permalink to wxPython In Action的读书笔记">
+                                       wxPython In Action的读书笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2008-07-08
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/wxpython.html">wxpython</a>
+
+
+        |
+        <a href="./wxpython-in-actionde-du-shu-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Chap 1 Welcome to wxPython</h1>
+<p>一个20行的wxPython程序：</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/env python</span>
+<span class="kn">import</span> <span class="nn">wx</span>
+<span class="k">class</span> <span class="nc">MyFrame</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="bp">None</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">"My Frame"</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">))</span>
+        <span class="n">panel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">panel</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MOTION</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">OnMove</span><span class="p">)</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">"Pos"</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">posCtrl …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./wxpython-in-actionde-du-shu-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./adv_back_use_cases.html" rel="bookmark" title="Permalink to 高级OA Framework开发主题——支持浏览后退按钮的用例">
                                        高级OA Framework开发主题——支持浏览后退按钮的用例
                                     </a>
@@ -565,59 +611,6 @@ _underlined_
 A footnote reference is simply …</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./emacs-musebiao-ji-gui-ze-xue-xi.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./gawkbi-ji.html" rel="bookmark" title="Permalink to gawk笔记">
-                                       gawk笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/xiao-lu.html">效率</a>
-
-    on 2007-06-19
-
-        |
-        tags:         <a href="./tag/awk.html">awk</a>
-        <a href="./tag/linux.html">linux</a>
-
-
-        |
-        <a href="./gawkbi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>I.简介</h1>
-<p>gawk的主要功能是针对档案的第一行搜寻指令的patterns。当一行里有符合指定的patterns，gawk就会在此行执行指定的actions。gawk依此方式处理输入档案的每一行直到输入档案结束。
-gawk程序由很多的pattern与action所组成，action写在大括号{}里面。一个pattern后面就跟着一个action。整个gawk程序像下面的样子：
-pattern {action}
-pattern {action}
-在gawk程序里面，pattern和action都能被省略，但是不能两个同时省略。如果pattern被省略，对于文件中的每一行，action都会被执行。如果action被省略，内定的action则会打印出所有符合pattern的输入行。</p>
-<h2>1.执行gawk程序</h2>
-<p>有两种方式</p>
-<h3 id="axie-zai-ming-ling-xing">a.写在命令行</h3>
-<div class="highlight"><pre><span></span>gawk 'program' input-file1 input-file2 ...
-</pre></div>
-<h3 id="bxie-zai-dan-du-de-cheng-xu-wen-jian-zhong">b.写在单独的程序文件中</h3>
-<div class="highlight"><pre><span></span>gawk -f program-file input-file1 input-file2 ...
-</pre></div>
-<p>当程序文件不止一个时，可以写成</p>
-<div class="highlight"><pre><span></span>gawk -f program-file1 -f program-file2 ... input-file1 input-file2 ...
-</pre></div>
-<h2>2.一个简单的例子 …</h2>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./gawkbi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

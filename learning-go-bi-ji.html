@@ -131,8 +131,8 @@
 <h4 id="bu-er-xing">布尔型</h4>
 <p>布尔值由常量<code>true</code>和<code>false</code>描述，类型为<code>bool</code></p>
 <h4 id="shu-zhi-lei-xing">数值类型</h4>
-<p>Go 有如<code>int</code>的数值类型。这些类型的长度与机器相关，32 位机器上它是 32 位的，64 位机器上是 64 位的。int 只有 32 位或 64 位，没有其它的定义。<code>uint</code>也是同样的情况。
-如果想使用明确的长度，也可以使用<code>int32</code>或<code>uint32</code>。可用的整数类型列表：<code>int8, int16, int32, int64, byte, uint8, uint16, uint32, uint64</code>。<code>byte</code>是<code>uint8</code>的别名。没有<code>float</code>类型，只有<code>float32, float64</code>。
+<p>Go 有如<code>int</code>的数值类型。这些类型的长度与机器相关，32 位机器上它是 32 位的，64 位机器上是 64 位的。int 只有 32 位或 64 位，没有其它的定义。<code>uint</code>也是同样的情况。</p>
+<p>如果想使用明确的长度，也可以使用<code>int32</code>或<code>uint32</code>。可用的整数类型列表：<code>int8, int16, int32, int64, byte, uint8, uint16, uint32, uint64</code>。<code>byte</code>是<code>uint8</code>的别名。没有<code>float</code>类型，只有<code>float32, float64</code>。
 所有这些类型的赋值是严格检查的，混合使用这些类型会产生编译错误。</p>
 <h4 id="chang-liang">常量</h4>
 <p>Go 中的常量在编译时创建，只允许是数值、字符串或布尔型。可以使用<code>iota</code>建立枚举值：</p>
@@ -690,10 +690,10 @@ type I inteface {
     <span class="nx">p</span><span class="p">.</span><span class="nx">Put</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
-<p>这里<code>p</code>是一个接口类型的值。<code>S</code>实现了接口<code>I</code>，我们可以传递指向类型<code>S</code>的指针给函数：<code>var s S; f(&amp;s)</code>。这里需要传递指针的原因在于我们将方法定义在操作指针类型上了。这不是必需的&mdash;&mdash;我们可以将方法定义的值上&mdash;&mdash;但是<code>Put</code>方法将不会按期望的方式工作。
-事实上 Go 是鸭式类型，不需要声明一个类型是否实现了某一类型。但它不是纯的鸭式类型，因为 Go 编译嘎嘎将进行静态类型检查，检查精英是否实现了接口。但是，Go 有真正的动态特性，它将一种接口转化为另一接口。通常情况下，这一转换发生在运行时。如果转换失败，程序将出错并产生运行时错误。
-Go 中的接口与其它语言中的理念类似：<code>C++</code>中的纯抽像虚拟基类，<code>Haskell</code>中的<code>typeclasses</code>或<code>Python</code>中的鸭式类型。但是其它语言没有能组合接口值、静态类型检查、运行时动态类型转换并且不需要显式的在类型声明时声明它满足某个接口。因此 Go 中的接口是非常强大、具有弹性、高效并且易于编写的。
-当有多个类型实现某一接口时，可以根据类型进行处理：</p>
+<p>这里<code>p</code>是一个接口类型的值。<code>S</code>实现了接口<code>I</code>，我们可以传递指向类型<code>S</code>的指针给函数：<code>var s S; f(&amp;s)</code>。这里需要传递指针的原因在于我们将方法定义在操作指针类型上了。这不是必需的&mdash;&mdash;我们可以将方法定义的值上&mdash;&mdash;但是<code>Put</code>方法将不会按期望的方式工作。</p>
+<p>事实上 Go 是鸭式类型，不需要声明一个类型是否实现了某一类型。但它不是纯的鸭式类型，因为 Go 编译嘎嘎将进行静态类型检查，检查精英是否实现了接口。但是，Go 有真正的动态特性，它将一种接口转化为另一接口。通常情况下，这一转换发生在运行时。如果转换失败，程序将出错并产生运行时错误。</p>
+<p>Go 中的接口与其它语言中的理念类似：<code>C++</code>中的纯抽像虚拟基类，<code>Haskell</code>中的<code>typeclasses</code>或<code>Python</code>中的鸭式类型。但是其它语言没有能组合接口值、静态类型检查、运行时动态类型转换并且不需要显式的在类型声明时声明它满足某个接口。因此 Go 中的接口是非常强大、具有弹性、高效并且易于编写的。</p>
+<p>当有多个类型实现某一接口时，可以根据类型进行处理：</p>
 <div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">f</span><span class="p">(</span><span class="nx">p</span> <span class="nx">I</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="nx">t</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">*</span><span class="nx">S</span><span class="p">:</span>
@@ -761,8 +761,8 @@ Go 中使用接口指针是没有必要的。实际上创建指向接口值的�
 </pre></div>
 <p>设置值的方式与获取值的方式类似，但是只允许在导出成员上使用，在私有成员上使用时会产生运行时错误。</p>
 <h2>并发程序</h2>
-<p><code>goroutine</code>与已有的线程、协程或进程等概念不完全一样。它有自己的模型：它是与其它<code>goroutine</code>并行执行的，有着相同的地址空间的函数。它是轻量级的，仅比分配栈空间多一点点消耗。而初始时栈是很小的，所以它们也是廉价的，并且随着需要在堆空间上分配（和释放）。
-<code>goroutine</code>是个普通函数，只需要使用关键字<code>go</code>作为 开头。</p>
+<p><code>goroutine</code>与已有的线程、协程或进程等概念不完全一样。它有自己的模型：它是与其它<code>goroutine</code>并行执行的，有着相同的地址空间的函数。它是轻量级的，仅比分配栈空间多一点点消耗。而初始时栈是很小的，所以它们也是廉价的，并且随着需要在堆空间上分配（和释放）。</p>
+<p><code>goroutine</code>是个普通函数，只需要使用关键字<code>go</code>作为 开头。</p>
 <div class="highlight"><pre><span></span><span class="nx">ready</span><span class="p">(</span><span class="s">"Tea"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>     <span class="c1">//普通函数调用</span>
 <span class="k">go</span> <span class="nx">ready</span><span class="p">(</span><span class="s">"Tea"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1">//作为 goroutine 运行</span>
 </pre></div>
@@ -793,11 +793,11 @@ Go 中使用接口指针是没有必要的。实际上创建指向接口值的�
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>虽然<code>goroutine</code>是并发执行的，但它们并不是并行运行的。如果不告诉 Go 额外的东西，同一时刻只会有一个<code>goroutine</code>执行。利用<code>runetime.GOMAXPROCS(n)</code>可以设置<code>goroutine</code>并行执行的数量。
-<code>GOMAXPROCS</code>设置了同时运行的<code>CPU</code>的最大数量，并返回之前的设置。如果<code>n&lt;1</code>，不会改变当前设置。也可以通过设置环境变量<code>GOMAXPROCS</code>为它设置值。</p>
+<p>虽然<code>goroutine</code>是并发执行的，但它们并不是并行运行的。如果不告诉 Go 额外的东西，同一时刻只会有一个<code>goroutine</code>执行。利用<code>runetime.GOMAXPROCS(n)</code>可以设置<code>goroutine</code>并行执行的数量。</p>
+<p><code>GOMAXPROCS</code>设置了同时运行的<code>CPU</code>的最大数量，并返回之前的设置。如果<code>n&lt;1</code>，不会改变当前设置。也可以通过设置环境变量<code>GOMAXPROCS</code>为它设置值。</p>
 <h3 id="geng-duo-guan-yu-channel_1">更多关于 channel</h3>
-<p>在 Go 中使用<code>ch := make(chan bool)</code>创建<code>channel</code>时，<code>bool</code>型的无缓冲<code>channel</code>将被创建。这意味着：首先，如果读取（<code>value := &lt;- ch</code>）它将会被阻塞，直到有数据接收。其次，任何发送（<code>ch&lt;-5</code>）将会被阻塞，直到数据被读出。无缓冲<code>channel</code>可以方便的在多个<code>goroutine</code>间同步。
-Go 也允许指定<code>channel</code>缓冲区的大小，用于设定<code>channel</code>可存储元素的数量。<code>ch := make(chan bool, 4)</code>创建了可以存储 4 个元素的<code>bool</code>型<code>channel</code>。</p>
+<p>在 Go 中使用<code>ch := make(chan bool)</code>创建<code>channel</code>时，<code>bool</code>型的无缓冲<code>channel</code>将被创建。这意味着：首先，如果读取（<code>value := &lt;- ch</code>）它将会被阻塞，直到有数据接收。其次，任何发送（<code>ch&lt;-5</code>）将会被阻塞，直到数据被读出。无缓冲<code>channel</code>可以方便的在多个<code>goroutine</code>间同步。</p>
+<p>Go 也允许指定<code>channel</code>缓冲区的大小，用于设定<code>channel</code>可存储元素的数量。<code>ch := make(chan bool, 4)</code>创建了可以存储 4 个元素的<code>bool</code>型<code>channel</code>。</p>
 <p><em>关闭 channel </em>
 当<code>channel</code>被关闭后，读取端需要知道这个事情。下面的代码演示了如何检查<code>channel</code>是否被关闭:</p>
 <div class="highlight"><pre><span></span><span class="nx">x</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="o">&lt;-</span><span class="nx">ch</span>
