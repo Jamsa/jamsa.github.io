@@ -68,6 +68,67 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./rustbian-liang-sheng-ming-zhou-qi-guan-li.html" rel="bookmark" title="Permalink to Rust变量生命周期管理">
+                                       Rust变量生命周期管理
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-08-21
+
+        |
+        tags:         <a href="./tag/rust.html">rust</a>
+
+
+        |
+        <a href="./rustbian-liang-sheng-ming-zhou-qi-guan-li.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》生命周期相关内容的笔记。</p>
+<h1>生命周期</h1>
+<p>Rust生命周期用于控制变量的作用域，主要目标是避免悬垂引用。</p>
+<p>以下面的代码为例</p>
+<div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">"r: {}"</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>编译时会产生如下错误：</p>
+<div class="highlight"><pre><span></span>error: `x` does not live long enough
+   |
+6  |         r = &amp;x;
+   |              - borrow occurs here
+7  |     }
+   |     ^ `x` dropped here while still borrowed
+...
+10 | }
+   | - borrowed value needs to live until here
+</pre></div>
+<p>因为<code>x</code>变量离开作用域后会被释放，导致 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./rustbian-liang-sheng-ming-zhou-qi-guan-li.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html" rel="bookmark" title="Permalink to 使用 Chocolatey 在 Win10 下配置 rust 开发环境">
                                        使用 Chocolatey 在 Win10 下配置 rust 开发环境
                                     </a>
@@ -554,46 +615,6 @@
 <p>为测试方便，我们使用Docker来运行ELK镜像，这里不直接使用ELK官方镜像。官方镜像的E L K各个组件是独立的。为了测试方便，我们使用集成了ELK三个组件的像 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-10-ri-zhi-shou-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./spring-cloud-shang-shou-9-fu-wu-jian-kong.html" rel="bookmark" title="Permalink to Spring Cloud 上手9-服务监控">
-                                       Spring Cloud 上手9-服务监控
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-06-12
-
-        |
-        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
-
-
-        |
-        <a href="./spring-cloud-shang-shou-9-fu-wu-jian-kong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第九篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
-<h1>Spring Cloud Sleuth</h1>
-<p>在Spring Cloud应用中，各服务之间存在复杂的调用关系链。Spring Cloud Sleuth主要的功能就是提供服务调用链追踪功能。</p>
-<p>例如，访问<code>gateway</code>的<code>/api/consumer/hello</code>端点时，会调用<code>consumer:service</code>的<code>/consumer/hello</code>端点，之后调用<code>provider:service</code>的<code>/provider/hello</code>端点。在大型系统中，这种调用关系可能会非常复杂，因此需要有机制能对整个调用链进行追踪。</p>
-<p>较早提供这种追踪组件的是Google的Dapper链路跟踪组件，于2010年发表了相关论文，相关的文章是实现链路追踪的理论基础。目前，除Dapper外，还有Twitter和Zipkin，阿里的Eagleeye等。</p>
-<p>Spring Cloud Sleuth中能方便的集成Zipkin …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-9-fu-wu-jian-kong.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
