@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Jamsa" />
+        <meta name="robots" content="index, follow"/>
+
+        <meta property="og:title" content="Rust Mod和文件系统"/>
+        <meta property="og:url" content="./rust-modhe-wen-jian-xi-tong.html"/>
+        <meta property="og:site_name" content="Jamsa的笔记"/>
+        <meta property="og:type" content="article"/>
+
+        <link rel="canonical" href="./rust-modhe-wen-jian-xi-tong.html" />
+
+        <title>Rust Mod和文件系统 | Jamsa的笔记</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+        
+
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+         stLight.options({
+             publisher: "",
+             doNotHash: false,
+             doNotCopy: false,
+             hashAddressBar: false
+         });
+        </script>
+    </head>
+
+    <body id="index">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <header id="banner" >
+                    <h1>
+                        <a href="./">Jamsa的笔记 </a>
+                    </h1>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
+                                <li ><a href="./category/fang-fa.html">方法</a></li>
+                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
+                                <li ><a href="./category/qian-duan.html">前端</a></li>
+                                <li ><a href="./category/xiao-lu.html">效率</a></li>
+                                <li ><a href="./category/yi-dong.html">移动</a></li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header><!-- /#banner -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./rust-modhe-wen-jian-xi-tong.html" rel="bookmark"
+             title="Permalink to Rust Mod和文件系统">Rust Mod和文件系统</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-08-21
+
+        |
+        tags:         <a href="./tag/rust.html">rust</a>
+
+
+        |
+        <a href="./rust-modhe-wen-jian-xi-tong.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>本文是读《Rust程序设计语言第二版》Mod和文件系统相关内容的笔记。阅读这本书所敲的代码放在<a href="https://github.com/Jamsa/trpl/blob/master/src/lib.rs">Github</a>上。代码没有按书的结构分章节创建工程，而是将所有代码放在一个单独的工程中。</p>
+<h1>模块</h1>
+<p>使用<code>Cargo</code>创建新项目时，默认创建的是二进制<code>crate</code>而不是创建库<code>crate</code>。创建库<code>crate</code>要使用<code>--lib</code>参数而不是<code>--bin</code>参数：</p>
+<div class="highlight"><pre><span></span>$ cargo new communicator --lib
+$ <span class="nb">cd</span> communicator
+</pre></div>
+<p>这时会生成<code>src/lib.rs</code>而不是<code>src/main.rs</code>。</p>
+<p>在上面链接的示例中，我没有使用这种方式创建<code>mod</code>。因为敲的所有示例都在一个工程中，所以只需要添加<code>lib.rs</code>，<code>Cargo.toml</code>中也没有增加内容，只是添加了调用<code>lib.rs</code>的<a href="https://github.com/Jamsa/trpl/blob/master/src/uselib.rs">uselib.rs</a>。</p>
+<h2>模块定义</h2>
+<p><code>Rust</code>默认只知道<code>lib.rs</code>中的内容，通过它来查找对应的<code>模块名.rs</code>。</p>
+<p>可以在<code>src/lib.rs</code>中定义一个或多个模块</p>
+<div class="highlight"><pre><span></span><span class="k">mod</span> <span class="nn">network</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">mod</span> <span class="nn">client</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>在模块外调用这些函数，需要指定模块名并使用命名空间语法<code>::</code>，如：<code>network::connect()</code>。</p>
+<p>模块间是可以嵌套的：</p>
+<div class="highlight"><pre><span></span><span class="k">mod</span> <span class="nn">network</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">mod</span> <span class="nn">client</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<h2>模块移动到其它文件</h2>
+<p>位于层级中的模块，非常类似于文件系统结构。可以利用Rust模块系统，使用多个文件分解Rust项目。这样就不需要将所有代码都放在<code>src/lib.rs</code>或<code>src/main.rs</code>了。</p>
+<p>下面我们将要把下面的<code>client</code>、<code>network</code>和<code>server</code>三个模块拆分至各自的<code>.rs</code>文件中。</p>
+<p><code>src/lib.rs</code></p>
+<div class="highlight"><pre><span></span><span class="k">mod</span> <span class="nn">client</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">mod</span> <span class="nn">network</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">mod</span> <span class="nn">server</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<h3 id="di-yi-bu-chai-fen-client">第一步：拆分<code>client</code></h3>
+<p><code>src/lib.rs</code></p>
+<div class="highlight"><pre><span></span><span class="k">mod</span> <span class="nn">client</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">mod</span> <span class="nn">network</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">mod</span> <span class="nn">server</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p><code>src/client.rs</code></p>
+<div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>注意在上面的<code>client.rs</code>里，不再需要<code>mod</code>声明，因为在<code>src/lib.rs</code>中已经声明了<code>client</code> <code>mod</code>。</p>
+<h3 id="di-er-bu-chai-fen-network">第二步：拆分<code>network</code></h3>
+<p><code>src/lib.rs</code></p>
+<div class="highlight"><pre><span></span><span class="k">mod</span> <span class="nn">client</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">mod</span> <span class="nn">network</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<p><code>src/network.rs</code></p>
+<div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">mod</span> <span class="nn">server</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>这个拆分方法与上次一样，只不过在<code>network.rs</code>中，保留了<code>server</code>模块的声明。</p>
+<h3 id="di-san-bu-chai-fen-server">第三步：拆分<code>server</code></h3>
+<p>如果我们按上面的方式继续拆。就是将<code>src/network.rs</code>改为</p>
+<div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">mod</span> <span class="nn">server</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<p>并增加<code>src/server.rs</code></p>
+<div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>但是，在这样修改后<code>cargo build</code>会报错。</p>
+<div class="highlight"><pre><span></span>$ cargo build
+   Compiling communicator v0.1.0 <span class="o">(</span>file:///projects/communicator<span class="o">)</span>
+error: cannot <span class="nb">declare</span> a new module at this location
+ --&gt; src/network.rs:4:5
+  <span class="p">|</span>
+<span class="m">4</span> <span class="p">|</span> mod server<span class="p">;</span>
+  <span class="p">|</span>     ^^^^^^
+  <span class="p">|</span>
+note: maybe move this module <span class="sb">`</span>src/network.rs<span class="sb">`</span> to its own directory via <span class="sb">`</span>src/network/mod.rs<span class="sb">`</span>
+ --&gt; src/network.rs:4:5
+  <span class="p">|</span>
+<span class="m">4</span> <span class="p">|</span> mod server<span class="p">;</span>
+  <span class="p">|</span>     ^^^^^^
+note: ... or maybe <span class="sb">`</span>use<span class="sb">`</span> the module <span class="sb">`</span>server<span class="sb">`</span> instead of possibly redeclaring it
+ --&gt; src/network.rs:4:5
+  <span class="p">|</span>
+<span class="m">4</span> <span class="p">|</span> mod server<span class="p">;</span>
+  <span class="p">|</span>     ^^^^^^
+</pre></div>
+<p>这说明<code>src/network.rs</code>与<code>src/lib.rs</code>在某些方面是不同的。错误信息中建议的方式是：</p>
+<ol>
+<li>
+<p>新建名为<code>network</code>的目录，这是父模块的名字。</p>
+</li>
+<li>
+<p>将<code>src/network.rs</code>移至新建的<code>network</code>目录，并重命名为<code>src/network/mod.rs</code>。</p>
+</li>
+<li>
+<p>将<code>src/server.rs</code>移动到<code>network</code>目录中。</p>
+</li>
+</ol>
+<p>整个目录结构变为：</p>
+<div class="highlight"><pre><span></span>└── src
+    ├── client.rs
+    ├── lib.rs
+    └── network
+        ├── mod.rs
+        └── server.rs
+</pre></div>
+<p>移动完毕后，各文件的内容如下：</p>
+<ol>
+<li><code>src/lib.rs</code></li>
+</ol>
+<div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">client</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">network</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<ol>
+<li><code>src/client.rs</code></li>
+</ol>
+<div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">"client::connect"</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<ol>
+<li><code>src/network/mod.rs</code></li>
+</ol>
+<div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">"network::connect()"</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">server</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<ol>
+<li><code>src/network/server.rs</code></li>
+</ol>
+<div class="highlight"><pre><span></span><span class="k">pub</span><span class="w">  </span><span class="k">fn</span> <span class="nf">connect</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">"network::server::connect()"</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">"in server mod,super::connect() = network::connect() : "</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span>::<span class="n">connect</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>使用<code>src/usrlib.rs</code>调用这些模块：</p>
+<div class="highlight"><pre><span></span><span class="k">mod</span> <span class="nn">client</span><span class="p">;</span><span class="w"></span>
+<span class="k">mod</span> <span class="nn">network</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">use</span><span class="w"> </span><span class="n">client</span>::<span class="n">connect</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">//use network::connect;</span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">connect</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">network</span>::<span class="n">connect</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">network</span>::<span class="n">server</span>::<span class="n">connect</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 从根模块开始引用</span>
+<span class="w">    </span>::<span class="n">client</span>::<span class="n">connect</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<h2>模块文件系统的规则</h2>
+<ul>
+<li>
+<p>如果<code>foo</code>模块没有子模块，应该<code>foo</code>的声明放在<code>foo.rs</code>文件中。</p>
+</li>
+<li>
+<p>如果<code>foo</code>模块有子模块，应该将<code>foo</code>的声明放在<code>foo/mod.rs</code>中。</p>
+</li>
+</ul>
+<h1>使用<code>pub</code>控制可见性</h1>
+<p>使用<code>extern crate communicator</code>可以从外部模块中将<code>communicator</code>库<code>crate</code>引入到作用域。从外部<code>crate</code>的角度来看，我们所创建的所有模块都位于一个与<code>crate</code>同名的模块内，即位于<code>communicator</code>内部。这个顶层模块被称为<code>crate</code>的<code>根模块</code>。</p>
+<p>即便在项目的子模块中使用外部<code>crate</code>，<code>extern crate</code>也应该位于根模块（即<code>src/main.rs</code>或<code>src/lib.rs</code>中）。在子模块中，我们可以像顶层模块那样引用外部<code>crate</code>中的项了。</p>
+<p>Rust上下文中涉及<code>公有</code>和<code>私有</code>的概念。所有代码默认是私有的，除了自己之外，别人不允许使用这些代码。如果不在自己的项目中使用某个函数，编译器会警告该函数未被使用。</p>
+<p>为了将函数标记为公有，需要在声明的开头增加<code>pub</code>关键字。</p>
+<h2>私有性规则</h2>
+<ul>
+<li>
+<p>如果一个项是公有的，它能被任何父模块访问</p>
+</li>
+<li>
+<p>如果一个项是私有的，它能被其直接父模块及任何子模块访问</p>
+</li>
+</ul>
+<h1>在不同模块中引用命名</h1>
+<p>使用<code>use</code>关键字将指定的模块引入作用域；它并不会将其子模块也引入。</p>
+<p>枚举也像模块一样组成了某种命名空间，也可以使用<code>use</code>来导入枚举成员。</p>
+<p>可以使用<code>*</code>语法，也称<code>glob</code>运算符将某个命名空间下的所有名称都引入作用域：<code>use TrafficLight::*;</code></p>
+<p>使用<code>super</code>关键字访问父模块：<code>super::client::connect();</code></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "rust-modhe-wen-jian-xi-tong.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-footer">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <address>
+                        <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                        </p>
+                        <p>
+                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                        </p>
+                    </address>
+                </div>
+            </div>
+        </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'jamsa-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+         var _hmt = _hmt || [];
+         (function() {
+           var hm = document.createElement("script");
+           hm.src = "https://hm.baidu.com/hm.js?5e20e9cdd1185d24ece1dae11118a04f";
+           var s = document.getElementsByTagName("script")[0]; 
+           s.parentNode.insertBefore(hm, s);
+         })();
+        </script>
+</body>
+</html>

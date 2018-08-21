@@ -68,6 +68,61 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./learning-sklearnbi-ji-er.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（二）">
+                                       Learning Sklearn笔记（二）
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
+
+    on 2018-01-05
+
+        |
+        tags:         <a href="./tag/python.html">python</a>
+        <a href="./tag/machine-learn.html">machine learn</a>
+        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
+
+
+        |
+        <a href="./learning-sklearnbi-ji-er.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Chap2 监督学习</h1>
+<h2>使用SVM进行图像识别</h2>
+<p>SVM通过选择分享不同样例的最宽分割超平面来进行分类处理。</p>
+<p>通过使用非线性平面，例如 polynomial 或 rbf(radial basis function) 核函数将样本映射到高维特征空间对非线性分布的数据进行分类。</p>
+<p>SVM非常适合于高维或稀疏的样本，内存消耗也比较为有效，因为在学习和决定边界时，它只使用样本的子集。</p>
+<p>需要注意的是SVM模型训练是计算密集型的。用它进行分类时不会返回数值型的置信度值，虽然我们可以使用交叉验证法避免这个问题，但随之而来的是更高的计算开销。</p>
+<p>下面的示例是使用SVM对人脸进行分类处理：</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
+<span class="kn">import</span> <span class="nn">sklearn</span> <span class="kn">as</span> <span class="nn">sk</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_olivetti_faces</span>
+
+<span class="c1">#获取数据集</span>
+<span class="n">faces</span> <span class="o">=</span> <span class="n">fetch_olivetti_faces</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="n">faces</span><span class="o">.</span><span class="n">DESCR</span>
+</pre></div>
+<div class="highlight"><pre><span></span>Modified Olivetti …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./learning-sklearnbi-ji-er.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./learning-sklearnbi-ji-san.html" rel="bookmark" title="Permalink to Learning Sklearn笔记（三）">
                                        Learning Sklearn笔记（三）
                                     </a>
@@ -599,48 +654,6 @@ Scikitlearn：机器学习包。
 <p>在Objective-c中，使用某个类具有某个<code>public interface</code>来描述哪些消息能发送给这个类。<code>@interface</code>这一行的冒号后面指定这个类的父类，这里指向的是NSObject …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./begin-mac-programming-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./c-primer-plus-bi-ji.html" rel="bookmark" title="Permalink to C Primer Plus 笔记">
-                                       C Primer Plus 笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2015-06-29
-
-        |
-        tags:         <a href="./tag/c.html">c</a>
-
-
-        |
-        <a href="./c-primer-plus-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>C Primer Plus 笔记</h1>
-<h2>起步</h2>
-<h3 id="biao-zhun">标准</h3>
-<p>C89 标准是由 1983 年由 ANSI 起草，于 1989 年被正式接受，它定义了语言和标准 C 程序库。C99 标准是 ISO于 1990 年制定的。ISO 和 ANSI 的标准在本质上是相同的。通常说的 ANSI C 就是指的 ANSI 版本。
-C99 标准在 1994 年开始制定，目标是在原有 C90 基础上保持语言小而简单。在三个方面对它进行增强：
- 1. 添加了对国际化字符集的处理。
- 2. 修复明显的不足（如，64 位处理器）
- 3. 数值计算方面的增强 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./c-primer-plus-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

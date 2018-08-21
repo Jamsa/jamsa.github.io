@@ -68,6 +68,48 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./rust-modhe-wen-jian-xi-tong.html" rel="bookmark" title="Permalink to Rust Mod和文件系统">
+                                       Rust Mod和文件系统
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-08-21
+
+        |
+        tags:         <a href="./tag/rust.html">rust</a>
+
+
+        |
+        <a href="./rust-modhe-wen-jian-xi-tong.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》Mod和文件系统相关内容的笔记。阅读这本书所敲的代码放在<a href="https://github.com/Jamsa/trpl/blob/master/src/lib.rs">Github</a>上。代码没有按书的结构分章节创建工程，而是将所有代码放在一个单独的工程中。</p>
+<h1>模块</h1>
+<p>使用<code>Cargo</code>创建新项目时，默认创建的是二进制<code>crate</code>而不是创建库<code>crate</code>。创建库<code>crate</code>要使用<code>--lib</code>参数而不是<code>--bin</code>参数：</p>
+<div class="highlight"><pre><span></span>$ cargo new communicator --lib
+$ <span class="nb">cd</span> communicator
+</pre></div>
+<p>这时会生成<code>src/lib.rs</code>而不是<code>src/main.rs</code>。</p>
+<p>在上面链接的示例中，我没有使用这种方式创建<code>mod</code>。因为敲的所有示例都在一个工程中，所以只需要添加<code>lib.rs</code>，<code>Cargo.toml</code>中也没有增加内容，只是添加了调用<code>lib.rs …</code></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./rust-modhe-wen-jian-xi-tong.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./rustbian-liang-sheng-ming-zhou-qi-guan-li.html" rel="bookmark" title="Permalink to Rust变量生命周期管理">
                                        Rust变量生命周期管理
                                     </a>
@@ -91,7 +133,7 @@
         <a href="./rustbian-liang-sheng-ming-zhou-qi-guan-li.html#disqus_thread">comments</a>
 
     
-</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》生命周期相关内容的笔记。</p>
+</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》生命周期相关内容的笔记。阅读这本书所敲的代码放在<a href="https://github.com/Jamsa/trpl/blob/master/src/generic.rs">Github</a>上。代码没有按书的结构分章节创建工程，而是将所有代码放在一个单独的工程中。</p>
 <h1>生命周期</h1>
 <p>Rust生命周期用于控制变量的作用域，主要目标是避免悬垂引用。</p>
 <p>以下面的代码为例</p>
@@ -115,9 +157,7 @@
    |     ^ `x` dropped here while still borrowed
 ...
 10 | }
-   | - borrowed value needs to live until here
-</pre></div>
-<p>因为<code>x</code>变量离开作用域后会被释放，导致 …</p>
+   | - borrowed value needs to live until …</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./rustbian-liang-sheng-ming-zhou-qi-guan-li.html">Read more...</a>
                                 </p>
@@ -152,7 +192,7 @@
         <a href="./rustsuo-you-quan-xi-tong.html#disqus_thread">comments</a>
 
     
-</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。</p>
+</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。阅读这本书所敲的代码放在<a href="https://github.com/Jamsa/trpl/blob/master/src/ownership.rs">Github</a>上。代码没有按书的结构分章节创建工程，而是将所有代码放在一个单独的工程中。</p>
 <h1>所有权</h1>
 <p>所有权是Rust中最为独特的功能，它使得Rust无需垃圾回收即可保障内存安全。</p>
 <h2>所有权规则</h2>
@@ -172,7 +212,7 @@
 <p>1.　内存需要在运行时向操作系统申请。</p>
 <p>1.　需要一个在处理完<code>String</code>时将内存返还给操作系统的方法。</p>
 <p>内存申请在所有编程语言中都是非常通用的。内存的返还在不同语言中则各有区别。在有<code>GC</code>的语言中，<code>GC</code>记录并清除不再使用的内存。没有<code>GC</code>时，识别不再使用的内在，调用代码释放它就是程序员的责任了，如使用<code>allocate</code>和<code>free</code>。</p>
-<p>Rust采用了不同的策略：内存在变量离开作用域后就被自动释放。当变量离开作用域，Rust为其调用<code>drop</code>函数 …</p>
+<p>Rust采用了不同的策略 …</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./rustsuo-you-quan-xi-tong.html">Read more...</a>
                                 </p>
@@ -563,61 +603,6 @@
 <p><a href="https://github.com/sparcs360/axon-demo/issues/18">axon-demo/issue …</a></p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-12-rong-qi-hua.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./spring-cloud-shang-shou-11-pei-zhi-you-hua.html" rel="bookmark" title="Permalink to Spring Cloud 上手11-配置优化">
-                                       Spring Cloud 上手11-配置优化
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-06-14
-
-        |
-        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
-
-
-        |
-        <a href="./spring-cloud-shang-shou-11-pei-zhi-you-hua.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第十一篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
-<h1>概述</h1>
-<p>本篇主要对各应用的配置进行优化，原因主要有两个：</p>
-<ul>
-<li>
-<p>此前<a href="./spring-cloud-shang-shou-7-pei-zhi-zhong-xin.html">配置中心</a>一文中只把<code>provider:service</code>与配置中心进行了集成，其它应用仍是读取本地的配置信息。</p>
-</li>
-<li>
-<p>写至本篇的时候，发现各个模块的配置文件已经比较乱了，存在大量重复配置，配置文件中也存在一些不需要的配置项，需要进行一轮整理。</p>
-</li>
-<li>
-<p>增加<code>profile</code>支持为后面将容器化做准备。</p>
-</li>
-</ul>
-<p>优化的目标：</p>
-<ul>
-<li>
-<p>配置中心（config）和注册中心（registry）读取本地配置信息外（先有鸡还是先有蛋的问题，只能读取本地配置文件）。</p>
-</li>
-<li>
-<p>服务网关(gateway)、服务提供者（provider:service）、服务消费者（consumer:service）、调用链分析（zipkin）应用都只保留<code>boostrap.yml</code>配置文件，且该配置文件中只保留注册中心地址、应用名称、端口等基本信息。其余配置信息移至配置中心的共享配置文件 …</p></li></ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-11-pei-zhi-you-hua.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
