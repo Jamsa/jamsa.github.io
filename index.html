@@ -129,6 +129,61 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./rustsuo-you-quan-xi-tong.html" rel="bookmark" title="Permalink to Rust所有权系统">
+                                       Rust所有权系统
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-08-21
+
+        |
+        tags:         <a href="./tag/rust.html">rust</a>
+
+
+        |
+        <a href="./rustsuo-you-quan-xi-tong.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。</p>
+<h1>所有权</h1>
+<p>所有权是Rust中最为独特的功能，它使得Rust无需垃圾回收即可保障内存安全。</p>
+<h2>所有权规则</h2>
+<ul>
+<li>
+<p>Rust中每个值都有一个被称为所有者的变量。</p>
+</li>
+<li>
+<p>值有且只能有一个所有者。</p>
+</li>
+<li>
+<p>当所有者离开作用域，这个值将被丢弃。</p>
+</li>
+</ul>
+<h2>内存分配</h2>
+<p>以字符串为例，字符串字面量在编译时已经知道它的内容，它被直接硬编码进最终的可执行文件。它的快速高效来自于其不可变性。对于<code>String</code>类型，它为了支持可变，需要在堆上分配一块在编译时未知大小的内存来存储内容。这意味着：</p>
+<p>1.　内存需要在运行时向操作系统申请。</p>
+<p>1.　需要一个在处理完<code>String</code>时将内存返还给操作系统的方法。</p>
+<p>内存申请在所有编程语言中都是非常通用的。内存的返还在不同语言中则各有区别。在有<code>GC</code>的语言中，<code>GC</code>记录并清除不再使用的内存。没有<code>GC</code>时，识别不再使用的内在，调用代码释放它就是程序员的责任了，如使用<code>allocate</code>和<code>free</code>。</p>
+<p>Rust采用了不同的策略：内存在变量离开作用域后就被自动释放。当变量离开作用域，Rust为其调用<code>drop</code>函数 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./rustsuo-you-quan-xi-tong.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html" rel="bookmark" title="Permalink to 使用 Chocolatey 在 Win10 下配置 rust 开发环境">
                                        使用 Chocolatey 在 Win10 下配置 rust 开发环境
                                     </a>
@@ -563,58 +618,6 @@
 <p>服务网关(gateway)、服务提供者（provider:service）、服务消费者（consumer:service）、调用链分析（zipkin）应用都只保留<code>boostrap.yml</code>配置文件，且该配置文件中只保留注册中心地址、应用名称、端口等基本信息。其余配置信息移至配置中心的共享配置文件 …</p></li></ul>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-11-pei-zhi-you-hua.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./spring-cloud-shang-shou-10-ri-zhi-shou-ji.html" rel="bookmark" title="Permalink to Spring Cloud 上手10-日志收集">
-                                       Spring Cloud 上手10-日志收集
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-06-13
-
-        |
-        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
-
-
-        |
-        <a href="./spring-cloud-shang-shou-10-ri-zhi-shou-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>这是Spring Cloud上手系列的第十篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
-<h1>ELK简介</h1>
-<p>ELK是Logstash、ElasticSearch和Kibana的组合。Logstash处理日志的收集，ElasticSearch处理日志的检索，Kibana对日志进行可视化展示和查询。</p>
-<p>在Spring Cloud微服务架构下可以使用ElasticSearch来存储两类信息：一类是通过Logstash收集的各个应用的日志，另一类是作为Zipkin的持久化存储。</p>
-<h2>Zipkin持久化</h2>
-<p>Zipkin本身支持采用ElasticSearch作为其存储引擎，它可以直接与ElasticSearch交互，将跟踪信息保存至ElasticSearch。</p>
-<h2>日志收集方式</h2>
-<p>微服务应用的日志则情况更复杂。ELK与Spring Cloud的集成有两种方式：</p>
-<ul>
-<li>一种是各个微服务节点上部署Logstash实例。微服务输出日志时，按Logstash的需要输出为json格式。Logstash则监控这些日志目录，并将这些日志发送至ElasticSearch。由于Logstash是采用jruby实现的，fatjar有20M左右，并且它进行日志处理时候会消耗较多的cpu资源，会影响到微服务节点的性能，因此一般不建议采用此方案。</li>
-</ul>
-<p><img alt="日志收集-elk-logstash1" src="./spring_cloud_tut/logstash1.png"/></p>
-<ul>
-<li>另一种方式是微服务节点上部署轻量化的日志收集器。通过日志收集器收集日志并转发至独立的Logstash节点。收集器的形式有很多种，可以直接使用Logger将日志转发给Logstash（这篇文章里我们使用这种方式），也可以使用轻量化的日志收集器Filebeat、rsyslog等。</li>
-</ul>
-<p><img alt="日志收集-elk-logstash2" src="./spring_cloud_tut/logstash2.png"/></p>
-<h1>准备ELK环境</h1>
-<p>为测试方便，我们使用Docker来运行ELK镜像，这里不直接使用ELK官方镜像。官方镜像的E L K各个组件是独立的。为了测试方便，我们使用集成了ELK三个组件的像 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-10-ri-zhi-shou-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
