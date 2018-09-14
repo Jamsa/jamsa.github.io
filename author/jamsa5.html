@@ -68,6 +68,61 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../begin-mac-programming-bi-ji.html" rel="bookmark" title="Permalink to Begin Mac Programming 笔记">
+                                       Begin Mac Programming 笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/kai-fa.html">开发</a>
+
+    on 2015-06-29
+
+        |
+        tags:         <a href="../tag/objective-c.html">objective-c</a>
+        <a href="../tag/mac.html">mac</a>
+
+
+        |
+        <a href="../begin-mac-programming-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>关于对象</h1>
+<h2>Objective-C 中的对象类型</h2>
+<p>Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。</p>
+<p>当我们在Objective-c中实例化一个对象后，它立即会发送一个消息来初始化自己。这个消息被称为<code>init</code>，它通设置初始值。</p>
+<p>类定义包括<code>.h</code>和<code>.m</code>两个文件。</p>
+<h2><code>.h</code>文件结构：</h2>
+<div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">//  NotifyingClass.h</span>
+<span class="c1">//  TextApp</span>
+<span class="c1">//</span>
+<span class="c1">//  Created by Tim Isted on 08/09/2009.</span>
+<span class="c1">//  Copyright 2009 __MyCompanyName__. All rights reserved.</span>
+<span class="c1">//</span>
+<span class="cp">#import &lt;Cocoa/Cocoa.h&gt;</span>
+<span class="k">@interface</span> <span class="nc">NotifyingClass</span> : <span class="bp">NSObject</span> <span class="p">{</span>
+
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+<p>在Objective-c中，使用某个类具有某个<code>public interface</code>来描述哪些消息能发送给这个类。<code>@interface</code>这一行的冒号后面指定这个类的父类，这里指向的是NSObject …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../begin-mac-programming-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../c-primer-plus-bi-ji.html" rel="bookmark" title="Permalink to C Primer Plus 笔记">
                                        C Primer Plus 笔记
                                     </a>
@@ -497,55 +552,6 @@ Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
     <span class="nx">renderTo …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（一）可访问性">
-                                       Ext JS 5 手册 核心概念（一）可访问性
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/qian-duan.html">前端</a>
-
-    on 2015-05-17
-
-        |
-        tags:         <a href="../tag/javascript.html">javascript</a>
-        <a href="../tag/extjs.html">extjs</a>
-
-
-        |
-        <a href="../ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（一）可访问性</h1>
-<h2>核心概念</h2>
-<h3 id="ke-fang-wen-xing">可访问性</h3>
-<ul>
-<li>它提供了浅析的标明当前焦点的样式，并允许自字义焦点样式</li>
-<li>键盘导航</li>
-<li>组件的 DOM 元素使用属性提供了语义信息来辅助屏幕阅读等功能：<ul>
-<li>ARIA 角色</li>
-<li>ARIA 状态和属性</li>
-</ul>
-</li>
-<li>提供了 ARIA 包，可以像引用其它包一样的在<code>app.json</code>中引用</li>
-<li>提供了 ARIA 皮肤</li>
-</ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

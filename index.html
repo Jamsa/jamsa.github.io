@@ -68,6 +68,51 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./jiang-ke-xue-shang-wang-gong-ju-cong-ssqie-huan-dao-liao-v2ray.html" rel="bookmark" title="Permalink to 将科学上网工具从ss切换到了v2ray">
+                                       将科学上网工具从ss切换到了v2ray
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/xiao-lu.html">效率</a>
+
+    on 2018-09-11
+
+
+
+        |
+        <a href="./jiang-ke-xue-shang-wang-gong-ju-cong-ssqie-huan-dao-liao-v2ray.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>昨天使用ss的时候发现bandwagon上做ss服务的vps IP又被墙了，这是最近几个月来第二次被墙了。</p>
+<p>通过<a href="https://kiwivm.64clouds.com/main-exec.php?mode=blacklistcheck">bwg提供的链接</a>确认IP已经被墙，在这个链接上也可以更换vps ip。最近由于墙使用了机器学习算法已经识别了ss包的特征（应该是连接阶段模拟http包的特征，我是在手机wifi信号不好的情况下，在4G和wifi间反复切换，ss反复重连时被墙的。上次被墙也是类似的情况，两次被墙都是在使用电信线路的时候），被墙的机率提高，虽然在bwg已经将更换IP的限制从8周调整为了5周，但是从ss迁移至其它科学上网工具已经是必须的了。</p>
+<p>在没有其它更合适的科学上网工具的情况下，准备切换至<a href="https://www.v2ray.com/chapter_00/install.html">v2ray</a>。</p>
+<p>由于我的vps上的centos版本较旧。在安装v2ray的时候遇到两个问题：</p>
+<p>首先是v2ray的go.sh执行时没有回应</p>
+<div class="highlight"><pre><span></span>bash &lt;(curl -L -s https://install.direct/go.sh)
+</pre></div>
+<p>这是因为curl命令在执行时报了ssl错误，只需要执行</p>
+<div class="highlight"><pre><span></span>yum -y update nss
+</pre></div>
+<p>再运行上面的命令进行安装。</p>
+<p>如果你的vps是centos6.x版本的，在go.sh将v2ray变为系统服务时，仍然会出错：</p>
+<div class="highlight"><pre><span></span>Failed to install daemon …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./jiang-ke-xue-shang-wang-gong-ju-cong-ssqie-huan-dao-liao-v2ray.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./rust-modhe-wen-jian-xi-tong.html" rel="bookmark" title="Permalink to Rust Mod和文件系统">
                                        Rust Mod和文件系统
                                     </a>
@@ -561,48 +606,6 @@ $ <span class="nb">cd</span> communicator
 <span class="k">trait …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./jtvkai-fa-bi-ji-2-wang-luo-tong-xun.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./spring-cloud-shang-shou-12-rong-qi-hua.html" rel="bookmark" title="Permalink to Spring Cloud 上手12-容器化">
-                                       Spring Cloud 上手12-容器化
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-06-15
-
-        |
-        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
-        <a href="./tag/kubernetes.html">kubernetes</a>
-        <a href="./tag/docker.html">docker</a>
-
-
-        |
-        <a href="./spring-cloud-shang-shou-12-rong-qi-hua.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p><code>重要提示：本篇文章的目标在Edgware.SR3上并未成功</code></p>
-<p>原因在于在这个版本上<code>Eureka Client</code>运行在<code>Docker</code>中时，无法以<code>Eureka Client IP</code>地址进行注册，服务消费方从注册中心获取到的是<code>Pod</code>的名称，通过此名称无法访问到服务所在的机器。例如：应用在启动时，查询到<code>sc-config</code>配置中心的主机是<code>sc-config-f54cdc656-2524j</code>这样的主机名，通过个主机名去获取配置信息将会因网络无法连接而失败，进而导致应用无法正常启动。</p>
-<p>注册中心本向使用了StatefulSets进行部署，客户端是使用固定的域名进行访问的，因此没有这个问题。如果我们将其它服务都变成StatefulSets方式进行部署在<code>Edgware.SR3</code>上也许也能成功。但这样整个应用就变成了Sateful Service了，将失去动态扩容的能力。</p>
-<p>问题的根源在于：即使在Eureka Server上添加<code>eureka.instance.prefer-ip-address = true</code>也不能较好解决（添加这个参数后在容器外是有效的，客户端会以IP进行注册）。</p>
-<p>具体问题可参考：</p>
-<p><a href="https://github.com/sparcs360/axon-demo/issues/18">axon-demo/issue …</a></p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-12-rong-qi-hua.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
