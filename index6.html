@@ -68,6 +68,60 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（五）事件">
+                                       Ext JS 5 手册 核心概念（五）事件
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/qian-duan.html">前端</a>
+
+    on 2015-05-17
+
+        |
+        tags:         <a href="./tag/javascript.html">javascript</a>
+        <a href="./tag/extjs.html">extjs</a>
+
+
+        |
+        <a href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>Ext JS 5 手册 核心概念（五）事件</h1>
+<h2>核心概念</h2>
+<h3 id="shi-yong-shi-jian">使用事件</h3>
+<p>Ext JS 中的组件和类在其生命周期中会产生大量的事件。事件能让你的代码响应程序的变化。</p>
+<h4 id="shi-yao-shi-shi-jian">什么是事件</h4>
+<p>以 Ext.Component 渲染到屏幕上为例，Ext JS 会在渲染完成后产生事件。我们可以配置一个<code>listeners</code>对象来监听这个事件：</p>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Panel'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">html</span><span class="o">:</span> <span class="s1">'My Panel'</span><span class="p">,</span>
+    <span class="nx">renderTo</span><span class="o">:</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(),</span>
+    <span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">afterrender</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">Ext</span><span class="p">.</span><span class="nx">Msg</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'We have been rendered'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<h4 id="jian-ting-shi-jian">监听事件</h4>
+<div class="highlight"><pre><span></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'Ext.Button'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">renderTo …</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./ext-js-5-shou-ce-he-xin-gai-nian-wu-shi-jian.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./ext-js-5-shou-ce-he-xin-gai-nian-yi-ke-fang-wen-xing.html" rel="bookmark" title="Permalink to Ext JS 5 手册 核心概念（一）可访问性">
                                        Ext JS 5 手册 核心概念（一）可访问性
                                     </a>
@@ -533,70 +587,6 @@
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="n">max2</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">)</span> <span class="n">x</span> <span class="k">else …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./programming-in-scala-de-du-shu-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./oafkai-fa-bi-ji.html" rel="bookmark" title="Permalink to OAF开发笔记">
-                                       OAF开发笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2010-12-09
-
-        |
-        tags:         <a href="./tag/oracle.html">oracle</a>
-        <a href="./tag/ebs.html">ebs</a>
-        <a href="./tag/oaf.html">oaf</a>
-
-
-        |
-        <a href="./oafkai-fa-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>开发advancedTable in advancedTable</h1>
-<ol>
-<li>
-<p>配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable，在outerTable上创建detail，在这个detail中再以主从关系中的从VO创建innerTable。outerTable和inerTable都为advancedTable类型。</p>
-</li>
-<li>
-<p>主从关系中主VO需要增加一个属性用于标识下innerTable是否展开，它的值为字符串Y或N。将outerTable的Detail View Attribute设置为这个属性的名称。</p>
-</li>
-<li>
-<p>将outterTable的Child View Attribute设置为关联字段的名称。</p>
-</li>
-<li>
-<p>将outterTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
-</li>
-<li>
-<p>将innerTable和Detail View Attribute设置为对应的属性（如果有）。</p>
-</li>
-<li>
-<p>将innerTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
-</li>
-<li>
-<p>这些设置与OAF Guide中下面这段代码起的作用是一样的，这样设置以后下面CO中的代码就不需要了。</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">processRequest</span><span class="o">(...)</span>
-<span class="o">{</span>
-  <span class="n">OAWebBean</span> <span class="n">outerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">"outerTable"</span><span class="o">);</span>
-  <span class="n">OAWebBean</span> <span class="n">innerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">"innerTable …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./oafkai-fa-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

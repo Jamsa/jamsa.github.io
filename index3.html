@@ -68,6 +68,60 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./spring-cloud-shang-shou-1-zhun-bei.html" rel="bookmark" title="Permalink to Spring Cloud 上手1-准备">
+                                       Spring Cloud 上手1-准备
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2018-05-30
+
+        |
+        tags:         <a href="./tag/spring-cloud.html">spring cloud</a>
+
+
+        |
+        <a href="./spring-cloud-shang-shou-1-zhun-bei.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>目标</h1>
+<p>从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的文档资料看了不少，但&ldquo;纸上得来终觉浅，绝知此事要躬行&rdquo;。所以就有了做一个Spring Cloud Demo工程的想法，主要用来体验Spring Cloud的各种组件和功能。</p>
+<p>代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1>规划</h1>
+<p>先从最简单的Demo开始，使用SpringCloud的基础功能：Eureka、Zuul、Feign。后续再考虑添加Stream，Bus相关的内容。在工程数量较多，不好维护了，再考虑采用docker和minikube来进行管理。借用一句话&ldquo;好的架构就像眼镜，你会知道什么时候需要它&rdquo;。</p>
+<p>工程目录规划如下：</p>
+<div class="highlight"><pre><span></span>├── build.gradle
+├── common
+│&nbsp;&nbsp; ├── build.gradle
+│&nbsp;&nbsp; └── src
+│&nbsp;&nbsp;     └── main
+├── provider
+│&nbsp;&nbsp; ├── api
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── src
+│&nbsp;&nbsp; └── service
+│&nbsp;&nbsp;     ├── build.gradle
+│&nbsp;&nbsp;     └── src
+├── consumer
+│&nbsp;&nbsp; ├── api
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── src …</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./spring-cloud-shang-shou-1-zhun-bei.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./spring-cloud-shang-shou-2-fu-wu-zhu-ce.html" rel="bookmark" title="Permalink to Spring Cloud 上手2-服务注册">
                                        Spring Cloud 上手2-服务注册
                                     </a>
@@ -542,59 +596,6 @@ git push -u origin master …</pre></div>
 </script>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./ti-du-de-li-jie.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./matplotlibde-shi-yong.html" rel="bookmark" title="Permalink to Matplotlib的使用">
-                                       Matplotlib的使用
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/ji-qi-xue-xi.html">机器学习</a>
-
-    on 2018-02-25
-
-        |
-        tags:         <a href="./tag/python.html">python</a>
-        <a href="./tag/machine-learn.html">machine learn</a>
-        <a href="./tag/jupyter-notebook.html">jupyter notebook</a>
-
-
-        |
-        <a href="./matplotlibde-shi-yong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="c1">#在-pi至pi之间产生256个数</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-<span class="c1">#计算X的sine与cosine值</span>
-<span class="n">C</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-<span class="c1">#绘制曲线</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
-
-<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-<p><img alt="png" src="./matplotlib/matplotlib_0_0.png"/></p>
-<div class="highlight"><pre><span></span><span class="c1"># 创建一个大小为 8X6 英寸，每英寸80个点的图片</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80 …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./matplotlibde-shi-yong.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

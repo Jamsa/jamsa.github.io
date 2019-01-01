@@ -68,6 +68,45 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html" rel="bookmark" title="Permalink to Docker for Mac从容器访问主机服务">
+                                       Docker for Mac从容器访问主机服务
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2019-01-01
+
+        |
+        tags:         <a href="./tag/docker.html">docker</a>
+        <a href="./tag/mac.html">mac</a>
+
+
+        |
+        <a href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>最近两天，在配置本机一套分布式系统的单点登录功能时，需要用到<code>Nginx</code>做同域单点登录，本打算直接用<code>docker</code>运行一个<code>nginx</code>容器就能解决，没想到在使用时却遇到了问题，<code>nginx</code>无法访问主机上运行的服务。</p>
+<p>在使用docker时可以通过端口映射将容器内的端口暴露给主机访问。但是在从docker容器中访问主机网络却不那么方便。特别是在Mac或Windows主机上。</p>
+<p>因为在Mac或Windows主机上，docker实际上是运行在主机提供的虚拟化服务上，相当于运行在一个Linux虚拟机中。从主机上查看时是找不到<code>docker0</code>网桥设备的，这个设备在虚拟机上。</p>
+<p>当我们需要从容器内访问主机网络时，不能使用<code>localhost</code>访问，而要使用主机的局域网地址，如果主机没有连接网络，则非常不方便。实际上在虚拟机的<code>docker0</code>网桥上，Mac主机会被分配一个<code>192.168.65.0</code>段的地址，默认<code>192.168.65.1</code>是网关地址，<code>192.168.65.2</code>就是主机地址 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./jiang-ke-xue-shang-wang-gong-ju-cong-ssqie-huan-dao-liao-v2ray.html" rel="bookmark" title="Permalink to 将科学上网工具从ss切换到了v2ray">
                                        将科学上网工具从ss切换到了v2ray
                                     </a>
@@ -537,75 +576,6 @@ $ <span class="nb">cd</span> communicator
 <p>sbt 1.1 …</p></li></ul>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./jtvkai-fa-bi-ji-1-kai-shi.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./jtvkai-fa-bi-ji-2-wang-luo-tong-xun.html" rel="bookmark" title="Permalink to JTV开发笔记2-网络通讯">
-                                       JTV开发笔记2-网络通讯
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-07-17
-
-        |
-        tags:         <a href="./tag/scala.html">scala</a>
-        <a href="./tag/netty.html">netty</a>
-        <a href="./tag/jtv.html">jtv</a>
-
-
-        |
-        <a href="./jtvkai-fa-bi-ji-2-wang-luo-tong-xun.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>本文是<a href="https://github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
-<h1>协议</h1>
-<p>为实现远程控制，我们需要处理两类通讯，客户端与服务器的通讯、客户端与客户端的通讯。</p>
-<p>客户端与服务端的通讯主要有：</p>
-<ol>
-<li>
-<p>登录：客户端发送登录请求后，由服务端进行认证，并分配会话ID。</p>
-</li>
-<li>
-<p>连接申请类：客户端创建新连接，通过这个连接发送连接申请，这个连接是源连接。服务端需要将这一申请转发给目标客户端，目标客户端接收到消息后，创建新连接至服务端，这个连接是目标连接。服务端在源连接与目标连接间建立绑定关系后，两个客户端间就可以实现点对点的通讯了。</p>
-</li>
-</ol>
-<p>客户端与客户端的通讯消息主要有以下几类：</p>
-<ol>
-<li>
-<p>文本消息传输：如错误信息，连接关闭通知等。</p>
-</li>
-<li>
-<p>屏幕画面消息：被控端以一定的频度获取屏幕画面，并将它传输至控制端。控制端将其绘制到控制窗口中。</p>
-</li>
-<li>
-<p>鼠标键盘事件：控制端在控制窗口中查看被控端画面，针对该画面操作的键盘和鼠标事件需要被传递到被控端，被控端根据这些事件进行事件的回放。</p>
-</li>
-</ol>
-<h1>消息对象</h1>
-<p>为满足上述通讯要求，我们需要定义一套用于消息传输的对象。</p>
-<div class="highlight"><pre><span></span><span class="c1">//消息</span>
-<span class="k">sealed</span> <span class="k">trait</span> <span class="nc">JtvMessage</span>
-
-<span class="c1">//服务端处理的会话消息</span>
-<span class="k">trait</span> <span class="nc">ServerSessionMessage</span> <span class="k">extends</span> <span class="nc">JtvMessage</span>
-<span class="c1">//客户端处理的会话消息</span>
-<span class="k">trait …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./jtvkai-fa-bi-ji-2-wang-luo-tong-xun.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

@@ -5,14 +5,14 @@
         <meta name="author" content="Jamsa" />
         <meta name="robots" content="index, follow"/>
 
-        <meta property="og:title" content="Jamsa的笔记"/>
-        <meta property="og:url" content="."/>
+        <meta property="og:title" content="Docker for Mac从容器访问主机服务"/>
+        <meta property="og:url" content="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html"/>
         <meta property="og:site_name" content="Jamsa的笔记"/>
-        <meta property="og:type" content="website"/>
+        <meta property="og:type" content="article"/>
 
-        <link rel="canonical" href="." />
+        <link rel="canonical" href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html" />
 
-        <title>Jamsa的笔记 - Authors</title>
+        <title>Docker for Mac从容器访问主机服务 | Jamsa的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -46,7 +46,7 @@
                                 <li ><a href="./category/da-shu-ju.html">大数据</a></li>
                                 <li ><a href="./category/fang-fa.html">方法</a></li>
                                 <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li ><a href="./category/kai-fa.html">开发</a></li>
+                                <li class="active"><a href="./category/kai-fa.html">开发</a></li>
                                 <li ><a href="./category/qian-duan.html">前端</a></li>
                                 <li ><a href="./category/xiao-lu.html">效率</a></li>
                                 <li ><a href="./category/yi-dong.html">移动</a></li>
@@ -61,10 +61,63 @@
         <div class="row-fluid">
             <div class="span10 offset1">
                 <div class="row-fluid">
-    <h1>Authors on Jamsa的笔记</h1>
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html" rel="bookmark"
+             title="Permalink to Docker for Mac从容器访问主机服务">Docker for Mac从容器访问主机服务</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
 
-    <ul>        <li><a href="./author/jamsa.html">Jamsa</a> (98)</li>
-    </ul>
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2019-01-01
+
+        |
+        tags:         <a href="./tag/docker.html">docker</a>
+        <a href="./tag/mac.html">mac</a>
+
+
+        |
+        <a href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>最近两天，在配置本机一套分布式系统的单点登录功能时，需要用到<code>Nginx</code>做同域单点登录，本打算直接用<code>docker</code>运行一个<code>nginx</code>容器就能解决，没想到在使用时却遇到了问题，<code>nginx</code>无法访问主机上运行的服务。</p>
+<p>在使用docker时可以通过端口映射将容器内的端口暴露给主机访问。但是在从docker容器中访问主机网络却不那么方便。特别是在Mac或Windows主机上。</p>
+<p>因为在Mac或Windows主机上，docker实际上是运行在主机提供的虚拟化服务上，相当于运行在一个Linux虚拟机中。从主机上查看时是找不到<code>docker0</code>网桥设备的，这个设备在虚拟机上。</p>
+<p>当我们需要从容器内访问主机网络时，不能使用<code>localhost</code>访问，而要使用主机的局域网地址，如果主机没有连接网络，则非常不方便。实际上在虚拟机的<code>docker0</code>网桥上，Mac主机会被分配一个<code>192.168.65.0</code>段的地址，默认<code>192.168.65.1</code>是网关地址，<code>192.168.65.2</code>就是主机地址。从容器内通过这个地址是可以访问到主机上的服务的。</p>
+<p>从<a href="https://docs.docker.com/docker-for-mac/networking/#use-cases-and-workarounds">Docker for Mac网络配置文档</a>上查到，从<code>18.03</code>开始，可以使用<code>gateway.docker.internal</code>和<code>host.docker.internal</code>来访问<code>docker0</code>网桥上的网关和主机网络（不建议在生产环境使用）。</p>
+<p>以下是我的nginx配置片段，它将主机上的8000端口映射至，nginx <code>/r1doc/</code>目录：</p>
+<div class="highlight"><pre><span></span><span class="nt">location</span> <span class="o">/</span><span class="nt">r1doc</span><span class="o">/</span> <span class="p">{</span>
+        <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">host</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">internal</span><span class="o">:</span><span class="mi">8000</span><span class="o">/</span><span class="p">;</span> 
+     <span class="p">}</span>
+</pre></div>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//jamsa-github-io.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
                 </div>
             </div>
         </div>

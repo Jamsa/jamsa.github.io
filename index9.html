@@ -68,6 +68,44 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./build_attrsets.html" rel="bookmark" title="Permalink to OA Framework应用构建之——创建属性集">
+                                       OA Framework应用构建之——创建属性集
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2008-07-08
+
+        |
+        tags:         <a href="./tag/oracle.html">oracle</a>
+        <a href="./tag/ebs.html">ebs</a>
+        <a href="./tag/oaf.html">oaf</a>
+
+
+        |
+        <a href="./build_attrsets.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>设计属性集</h1>
+<p><strong> 注意：</strong> 这节是为Oracle EBS开发者内部使用的。</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./build_attrsets.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./build_model.html" rel="bookmark" title="Permalink to OA Framework应用构建之——实现模型">
                                        OA Framework应用构建之——实现模型
                                     </a>
@@ -583,58 +621,6 @@ xtype用于标识所需要生成的组件的类型。
     <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span> <span class="nv">test-string …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html" rel="bookmark" title="Permalink to Linux内核设备驱动第三版读书笔记">
-                                       Linux内核设备驱动第三版读书笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2008-01-17
-
-        |
-        tags:         <a href="./tag/linux.html">linux</a>
-
-
-        |
-        <a href="./linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>Chap 2 构建和运行内核</h1>
-<h2>设置测试系统</h2>
-<p>书中的例子以Kernel 2.6.x为基础（2.6.10）。</p>
-<h2>Hello World模块</h2>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp"></span>
-<span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">"Dual BSD/GPL"</span><span class="p">);</span>
-<span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">"Hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">"Goodbye, cruel world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
-<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./linuxnei-he-she-bei-qu-dong-di-san-ban-du-shu-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
