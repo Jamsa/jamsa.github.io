@@ -68,6 +68,60 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="../programming-in-emacs-lispbi-ji.html" rel="bookmark" title="Permalink to Programming in Emacs Lisp笔记">
+                                       Programming in Emacs Lisp笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="../category/xiao-lu.html">效率</a>
+
+    on 2008-07-16
+
+        |
+        tags:         <a href="../tag/emacs.html">emacs</a>
+
+
+        |
+        <a href="../programming-in-emacs-lispbi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>序</h1>
+<h1>表处理</h1>
+<h2>Lisp列表</h2>
+<h3 id="shu-zi-lie-biao-zhong-de-lie-biao">数字，列表中的列表</h3>
+<p>列表里也可以包含数字：(+ 2 2)。</p>
+<p>Lisp里的数据和程序都是相同的方式实现的，他们都是在括号中由单词、数字或者其它列表组成的用空白分隔的列表。因为程序看起来像数据，所以一个程序可以当作数据传递给另一个程序，这是lisp一强非常强大的功能。</p>
+<h3 id="lispyuan-zi">Lisp原子</h3>
+<p>Lisp列表中的单词叫原子（意为原子在Lisp列表中不可再分割成更小的单位）。与原子不同，list可以分隔成更小的单位（car cdr &amp; cons）。</p>
+<p>空的列表：()，被称作空列表。与其它的数据类型不同，空列表被同时看作原子和列表。</p>
+<p>与自然界的原子一样,Lisp中的原子这个名称来出现得太早（意指与自然界的原子一样，原子还可以再分割）。Lisp中部分原子，比如数组就可以进行分割。但是这种机制与列表的分隔是不同的。如果依据对列表的分隔方式来说，列表中原子就是不可分隔的了。</p>
+<h3 id="lie-biao-zhong-de-kong-bai">列表中的空白</h3>
+<p>额外的空白被用来提高代码的可读性。</p>
+<div class="highlight"><pre><span></span><span class="o">'</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span>
+   <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span>
+</pre></div>
+<p>与</p>
+<div class="highlight"><pre><span></span><span class="o">'</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span> <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span>
+</pre></div>
+<p>是相同的。</p>
+<h3 id="lie-biao-pai-ban">列表排版 …</h3>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="../programming-in-emacs-lispbi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="../build_attrsets.html" rel="bookmark" title="Permalink to OA Framework应用构建之——创建属性集">
                                        OA Framework应用构建之——创建属性集
                                     </a>
@@ -559,68 +613,6 @@ xtype用于标识所需要生成的组件的类型。
             <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">BoxComponent …</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="../extxue-xi-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="../xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html" rel="bookmark" title="Permalink to Xah的Emacs Lisp 教程学习笔记">
-                                       Xah的Emacs Lisp 教程学习笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="../author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="../category/xiao-lu.html">效率</a>
-
-    on 2008-03-10
-
-        |
-        tags:         <a href="../tag/emacs.html">emacs</a>
-
-
-        |
-        <a href="../xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>例子</h1>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-open-directory-with-explorer</span> <span class="p">()</span>
-  <span class="s">"在windows中用explorer浏览当前目录"</span>
-  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">shell-command</span> <span class="s">"explorer.exe ."</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">browse-url</span> <span class="s">"www.google.cn"</span><span class="p">)</span>
-  <span class="p">)</span>
-
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-directory-files</span> <span class="p">()</span>
-  <span class="s">"执行shell命令并处理它的输出。这里为显示当前目录下的文件"</span>
-  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="s">"ls -l"</span><span class="p">))</span>
-  <span class="p">)</span>
-
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-display-current-major-mode</span> <span class="p">()</span>
-  <span class="s">"如果当前为emacs-lisp-mode则显示当前主模式"</span>
-  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">eq</span> <span class="ss">'emacs-lisp-mode</span> <span class="nv">major-mode</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">message</span> <span class="s">"emacs-lisp-mode"</span><span class="p">))</span>
-  <span class="p">)</span>
-
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">zj-regexp-match</span> <span class="p">()</span>
-  <span class="s">"正则表达式匹配"</span>
-  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">test-string</span> <span class="s">"aaaaaaaaaaaa123sfdsfs456"</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">regexp-string</span> <span class="s">"\\([0-9]+\\)[a-z]+\\([0-9]+\\)"</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">string-match</span> <span class="nv">regexp-string</span> <span class="nv">test-string</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span> <span class="nv">test-string …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="../xahde-emacs-lisp-jiao-cheng-xue-xi-bi-ji.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

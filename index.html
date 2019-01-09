@@ -68,6 +68,63 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="./symmetricds-pei-zhi-bi-ji.html" rel="bookmark" title="Permalink to SymmetricDS 配置笔记">
+                                       SymmetricDS 配置笔记
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
+    </address>
+
+    in <a href="./category/kai-fa.html">开发</a>
+
+    on 2019-01-09
+
+        |
+        tags:         <a href="./tag/shu-ju-tong-bu.html">数据同步</a>
+
+
+        |
+        <a href="./symmetricds-pei-zhi-bi-ji.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h1>介绍</h1>
+<p>SymmetricDS是一个数据同步工具，当前版本是基于数据库触发器捕捉数据变化的。</p>
+<p>官方教程里模拟的场景是主从节点数据同步。使用的数据是来自于SymmetricDS自带的一些SQL脚本。看完后对有些概念还是比较模糊，因此我又重新模拟了一个简单的场景。这个场景里我只对单表DEMO进行双向数据同步。</p>
+<h1>配置步骤</h1>
+<p>这个示例的目标是在corp和store1两个库间，实现DEMO表的双向同步。为方便测试，使用本机docker上运行的mariadb数据库。创建corp和store1两个库和数据库用户。</p>
+<h2>安装</h2>
+<p>我使用的是从官网下载的SymmetricDS 3.9.16。下载完成后，解压即可。</p>
+<h2>准备数据库</h2>
+<p>docker compose配置信息如下：</p>
+<div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">:</span>
+    <span class="n">image</span><span class="o">:</span> <span class="n">mariadb</span>
+    <span class="n">ports</span><span class="o">:</span>
+     <span class="o">-</span> <span class="s2">"3306:3306"</span>
+    <span class="n">environment</span><span class="o">:</span>
+     <span class="o">-</span> <span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="n">mysql</span>
+     <span class="o">-</span> <span class="n">MYSQL_DATABASE</span><span class="o">=</span><span class="n">symtest</span>
+     <span class="o">-</span> <span class="n">MYSQL_USER</span><span class="o">=</span><span class="n">symtest</span>
+     <span class="o">-</span> <span class="n">MYSQL_PASSWORD</span><span class="o">=</span><span class="n">symtest</span>
+    <span class="n">volumes</span><span class="o">:</span>
+     <span class="o">-</span> <span class="o">./</span><span class="n">mysql</span><span class="o">:/</span><span class="n">var</span><span class="sr">/lib/</span><span class="n">mysql</span>
+</pre></div>
+<p>这里的symtest库与测试过程无关。数据库运行后，通过客户端连接该数据库，分别创建corp和store1用户和数据库。</p>
+<p>在 corp和store1上建立DEMO表 …</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="./symmetricds-pei-zhi-bi-ji.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html" rel="bookmark" title="Permalink to Docker for Mac从容器访问主机服务">
                                        Docker for Mac从容器访问主机服务
                                     </a>
@@ -511,71 +568,6 @@ $ <span class="nb">cd</span> communicator
 <p>远程控制：当客户端作为控制端时，通过创建新的控制窗口<code>RemoteFrame</code>来实现对远程桌面的监控和操作。<code>RemoteFrame …</code></p></li></ol>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./jtvkai-fa-bi-ji-4-ke-hu-duan.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./jtvkai-fa-bi-ji-1-kai-shi.html" rel="bookmark" title="Permalink to JTV开发笔记1-开始">
-                                       JTV开发笔记1-开始
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-07-17
-
-        |
-        tags:         <a href="./tag/scala.html">scala</a>
-        <a href="./tag/netty.html">netty</a>
-        <a href="./tag/jtv.html">jtv</a>
-
-
-        |
-        <a href="./jtvkai-fa-bi-ji-1-kai-shi.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>本文是<a href="https://github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
-<h1>起因</h1>
-<p>因为工作原因，我经常需要进行远程桌面操作。尝试过多种不同的远程桌面方案，如：QQ远程、Teamviewer、Windows远程桌面、Hamachi等等。在速度比较稳定的，且支持内网连接的工具里只有Teamviewer和QQ远程能稳定使用。切换至Mac环境后，Teamviewer就成了唯一选择，Teamviewer被判定为商业使用后，每5分钟会中断一次，无法正常使用。之间也尝试过使用ngrok配合其它内网vnc工具来进行远程连接。但这些方式都不太方便，比如使用ngrok + Windows远程桌面也能连接，但是远程桌面和VNC都无法与远程用户共享桌面。</p>
-<p>由于这些原因，就有了自己开发一个简化版远程桌面工具的想法。</p>
-<h1>目标</h1>
-<p>仅把它当作个业余项目，近期目标是实现：以中心服务器进行交换，支持内网连接的远程桌面和控制功能。</p>
-<h1>技术选型</h1>
-<p>个人项目选型上比较自由，主要考虑以下几个方面：</p>
-<ul>
-<li>
-<p>考虑到跨平台使用，选定在Java平台上。</p>
-</li>
-<li>
-<p>利用Swing的Robot类可实现对键盘、鼠标的控制。</p>
-</li>
-<li>
-<p>Java语言写Swing相关的内容太啰嗦，选Scala了。</p>
-</li>
-<li>
-<p>网络通讯模块选择netty。</p>
-</li>
-</ul>
-<p>选择的版本如下：</p>
-<ul>
-<li>
-<p>scala 2.12.6</p>
-</li>
-<li>
-<p>sbt 1.1 …</p></li></ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./jtvkai-fa-bi-ji-1-kai-shi.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
