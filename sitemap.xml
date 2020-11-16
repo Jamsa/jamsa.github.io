@@ -219,20 +219,6 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/tags/plantuml/</loc>
-    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://jamsa.github.io/post/plantuml/</loc>
-    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>http://jamsa.github.io/tags/kubernetes/</loc>
     <lastmod>2018-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>

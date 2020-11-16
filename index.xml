@@ -125,15 +125,6 @@
     </item>
     
     <item>
-      <title>PlantUML的使用</title>
-      <link>http://jamsa.github.io/post/plantuml/</link>
-      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://jamsa.github.io/post/plantuml/</guid>
-      <description>Status: draft 简介 布局控制 部署架构图 ditaa支持 graphviz支持</description>
-    </item>
-    
-    <item>
       <title>Spring Cloud 上手12-容器化</title>
       <link>http://jamsa.github.io/post/java/spring_cloud_tut12/</link>
       <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
