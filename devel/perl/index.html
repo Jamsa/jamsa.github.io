@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Programming Perl笔记 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="OverView 自然的人工语言 变量语法 变量类型 类型 || 字符 || 例子 || 说明 标量 | $ | $cents | 单个的值（数字或字符串） 数组 | @ | @large | 值列表，键为数字 哈希表 | % | %interest | 一" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/perl/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Programming Perl笔记" />
+<meta property="og:description" content="OverView 自然的人工语言 变量语法 变量类型 类型 || 字符 || 例子 || 说明 标量 | $ | $cents | 单个的值（数字或字符串） 数组 | @ | @large | 值列表，键为数字 哈希表 | % | %interest | 一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/perl/" />
+<meta property="article:published_time" content="2007-12-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2007-12-02T00:00:00+00:00" />
+<meta itemprop="name" content="Programming Perl笔记">
+<meta itemprop="description" content="OverView 自然的人工语言 变量语法 变量类型 类型 || 字符 || 例子 || 说明 标量 | $ | $cents | 单个的值（数字或字符串） 数组 | @ | @large | 值列表，键为数字 哈希表 | % | %interest | 一">
+<meta itemprop="datePublished" content="2007-12-02T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2007-12-02T00:00:00+00:00" />
+<meta itemprop="wordCount" content="5399">
+
+
+
+<meta itemprop="keywords" content="perl," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Programming Perl笔记"/>
+<meta name="twitter:description" content="OverView 自然的人工语言 变量语法 变量类型 类型 || 字符 || 例子 || 说明 标量 | $ | $cents | 单个的值（数字或字符串） 数组 | @ | @large | 值列表，键为数字 哈希表 | % | %interest | 一"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h1 id="overview">OverView</h1>
+<h2 id="自然的人工语言">自然的人工语言</h2>
+<h3 id="变量语法">变量语法</h3>
+<p>变量类型</p>
+<p>类型 || 字符 || 例子 || 说明
+标量 | $ | $cents | 单个的值（数字或字符串）
+数组 | @ | @large | 值列表，键为数字
+哈希表 | % | %interest | 一组值，键为字符串
+子程序 | &amp; | &amp;how | 一块可被调用的代码
+glob | <code><em></code> | <code></em></code>struck | 所有被命名为struck的东西</p>
+<h3 id="变量赋值">变量赋值</h3>
+<h4 id="单一变量">单一变量</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$answer</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>                <span class="c1"># 一个整数</span>
+<span class="nv">$pi</span> <span class="o">=</span> <span class="mf">3.14159265</span><span class="p">;</span>            <span class="c1"># 一个实数</span>
+<span class="nv">$avocados</span> <span class="o">=</span> <span class="mf">6.02e23</span><span class="p">;</span>         <span class="c1"># 科学计数法</span>
+<span class="nv">$pet</span> <span class="o">=</span> <span class="s">&#34;Camel&#34;</span><span class="p">;</span>              <span class="c1"># 字符串</span>
+<span class="nv">$sign</span> <span class="o">=</span> <span class="s">&#34;I love my $pet&#34;</span><span class="p">;</span>    <span class="c1"># 带插值的字符串</span>
+<span class="nv">$cost</span> <span class="o">=</span> <span class="s">&#39;It costs $100&#39;</span><span class="p">;</span>     <span class="c1"># 无插值的字符串</span>
+<span class="nv">$thence</span> <span class="o">=</span> <span class="nv">$whence</span><span class="p">;</span>           <span class="c1"># 另一个变量的值</span>
+<span class="nv">$salsa</span> <span class="o">=</span> <span class="nv">$moles</span> <span class="o">*</span> <span class="nv">$avocados</span><span class="p">;</span> <span class="c1"># 表达式</span>
+<span class="nv">$exit</span> <span class="o">=</span> <span class="nb">system</span><span class="p">(</span><span class="s">&#34;vi $file&#34;</span><span class="p">);</span>  <span class="c1"># 命令返回的数字值</span>
+<span class="nv">$cwd</span> <span class="o">=</span> <span class="sb">`pwd`</span><span class="p">;</span>                <span class="c1"># 命令输出的字符串</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>标量也可以引用其它数据结构，包括子程序和对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$ary</span> <span class="o">=</span> <span class="o">\</span><span class="nv">@myarray</span><span class="p">;</span>            <span class="c1"># 一个命名数组的引用</span>
+<span class="nv">$hsh</span> <span class="o">=</span> <span class="o">\</span><span class="nv">%myhash</span><span class="p">;</span>             <span class="c1"># 一个命名哈希的引用</span>
+<span class="nv">$sub</span> <span class="o">=</span> <span class="o">\&amp;</span><span class="n">mysub</span><span class="p">;</span>              <span class="c1"># 一个命名子程序的引用</span>
+
+<span class="nv">$ary</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>          <span class="c1"># 未命名数组的引用</span>
+<span class="nv">$hsh</span> <span class="o">=</span> <span class="p">{</span><span class="n">Na</span> <span class="o">=&gt;</span> <span class="mi">19</span><span class="p">,</span> <span class="n">Cl</span> <span class="o">=&gt;</span> <span class="mi">35</span><span class="p">};</span> <span class="c1"># 未命名哈希的引用</span>
+<span class="nv">$sub</span> <span class="o">=</span> <span class="k">sub</span> <span class="p">{</span> <span class="k">print</span> <span class="nv">$state</span> <span class="p">};</span> <span class="c1"># 未命名的子程序</span>
+
+<span class="nv">$fido</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Camel</span> <span class="s">&#34;Amelia&#34;</span><span class="p">;</span>  <span class="c1"># 对象的引用</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果使用了一个未被赋值过的变量，这个未初始化过的变量将自动按需要产生。根据最小惊讶原则，变量创建时可能带的null值，或&quot;&ldquo;或0，依赖于你在什么地方使用它们，变量将被自动解释为字符串，数字或&quot;true&quot;和&quot;false&rdquo;（布尔变量）。在人类语言中语言环境相当重要。在Perl中，多个操作符希望某一类厅异值作为参数。有时将更具体，将这些参数称作数字环境，字符串环境，或布尔环境。（后面也将谈及列表环境，它与标量环境是相对应的。）Perl将自根据当前环境的需要将数据进行转换。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$camels</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span><span class="p">;</span>
+<span class="k">print</span> <span class="nv">$camels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#34;\n&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>$camels的初始值是一个字符串，但它被转换成数字后加1，然后转换回字符串被输出为124。&quot;\n&quot;换行符也处于字符串环境中，但由于它已经是一个字符串了，因此不需要转换。但主注意我们在它上面使用了双引号——使用单引号的'\n&rsquo;将产生包含两个字符的字符串，内容为斜线和“n”，它不是一个换行符。</p>
+<p>因此，在某种意义上来说，双引号和单引号也是另一种特殊的环境。对引号内的字符串的解释取决于你使用的引号类型。（双引号环境是Perl中的“内插（interpolative）”环境，它也被许多其它的与双引号不同的操作符支持。</p>
+<p>类似地，当你给引用一个“解除引用（dereference）”环境时表示得像引用，但另一方面又表现得像一个标量。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$fido</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Camel</span> <span class="s">&#34;Amelia&#34;</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nv">$fido</span><span class="p">)</span> <span class="p">{</span> <span class="nb">die</span> <span class="s">&#34;dead camel&#34;</span><span class="p">;</span> <span class="p">}</span>
+<span class="nv">$fido</span><span class="o">-&gt;</span><span class="n">saddle</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里创建了一个Camel对象的引用并把它赋给变量$fido。在下一行，我们把$fido作为一个布尔型的标量来检查它是否为“true”，如果不为true抛出异常。但在最后一行，我们把$fido作为一个引用，并要求它在$fido中持有的对象中查找saddle()方法，这发生在Camel类，因此Perl在Camel对象上查找saddle()方法。</p>
+<h4 id="复数变量">复数变量</h4>
+<p>某些类型的变量持有逻辑上配合在一起的多个值。Perl有两种多值变量：数组和哈希。有些情况下，这些行为像标量——比如，他们在需要时被自动创建。但它们与标量不同，当你给它们赋值时，它们为右值提供了一个列表（list）环境而不是一个标量环境。</p>
+<p>数组和哈布之间也不同。你需要使用数字来查找时应该使用数组。需要通过名称来查找时使用哈希。这是两个补充概念。</p>
+<h5 id="数组">数组</h5>
+<p>数组是一个标量的列表，通过标量在列表中的位置来访问。列表中可以包含数字，字符串，或两者都有。（它也可以包含子数组或子哈希的引用）给数组赋值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">@home</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#34;couch&#34;</span><span class="p">,</span> <span class="s">&#34;chair&#34;</span><span class="p">,</span> <span class="s">&#34;table&#34;</span><span class="p">,</span> <span class="s">&#34;stove&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>反过来，你在列表环境中使用@home，比如在列表赋值的右边，你将得到同样的值。因此你可以像下面这样从数组中设置四个标量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="p">(</span><span class="nv">$potato</span><span class="p">,</span> <span class="nv">$lift</span><span class="p">,</span> <span class="nv">$tennis</span><span class="p">,</span> <span class="nv">$pipe</span><span class="p">)</span> <span class="o">=</span> <span class="nv">@home</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这被称为列表赋值。理论上它们是并行发生的，因此你可以像下面这样交换变量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="p">(</span><span class="nv">$alpha</span><span class="p">,</span><span class="nv">$omega</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$omega</span><span class="p">,</span><span class="nv">$alpha</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>与C里一样，数组下标从0开始，通过方括号访问。因为处理的元素是标量，因此你需要在前面加$。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$home</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;couch&#34;</span><span class="p">;</span>
+<span class="nv">$home</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;chair&#34;</span><span class="p">;</span>
+<span class="nv">$home</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;table&#34;</span><span class="p">;</span>
+<span class="nv">$home</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;stove&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>由于数组是有序的，你可以在上面做更多复杂的操作，比如作为堆栈执行push和pop操作。毕竟堆栈也只是一个有序的列表，有一个开始的结束。特别是结束。Perl把数组的结束作为栈顶。（尽管多数Perl程序员把数组当作是水平的，栈顶在右边。）</p>
+<h5 id="哈希">哈希</h5>
+<p>哈希是一组无序标量的集合，通过关联到每个标量的字符串值来访问。由于这个原因哈希经常被叫作关联数组。
+由于哈希中的key不能由它们的位置自动提供，你必须提供key。你可以像数组一样提供一个列表给哈希，但列表中的项将作为键值对分割。哈希使用%来标识。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">%longday</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#34;Sun&#34;</span><span class="p">,</span> <span class="s">&#34;Sunday&#34;</span><span class="p">,</span> <span class="s">&#34;Mon&#34;</span><span class="p">,</span> <span class="s">&#34;Monday&#34;</span><span class="p">,</span> <span class="s">&#34;Tue&#34;</span><span class="p">,</span> <span class="s">&#34;Tuesday&#34;</span><span class="p">,</span>
+            <span class="s">&#34;Wed&#34;</span><span class="p">,</span> <span class="s">&#34;Wednesday&#34;</span><span class="p">,</span> <span class="s">&#34;Thu&#34;</span><span class="p">,</span> <span class="s">&#34;Thursday&#34;</span><span class="p">,</span> <span class="s">&#34;Fri&#34;</span><span class="p">,</span>
+            <span class="s">&#34;Friday&#34;</span><span class="p">,</span> <span class="s">&#34;Sat&#34;</span><span class="p">,</span> <span class="s">&#34;Saturday&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这难于阅读perl提供了=&gt;，使得更容易区分哈希中的键和值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">%longday</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&#34;Sun&#34;</span> <span class="o">=&gt;</span> <span class="s">&#34;Sunday&#34;</span><span class="p">,</span>
+    <span class="s">&#34;Mon&#34;</span> <span class="o">=&gt;</span> <span class="s">&#34;Monday&#34;</span><span class="p">,</span>
+    <span class="s">&#34;Tue&#34;</span> <span class="o">=&gt;</span> <span class="s">&#34;Tuesday&#34;</span><span class="p">,</span>
+    <span class="s">&#34;Wed&#34;</span> <span class="o">=&gt;</span> <span class="s">&#34;Wednesday&#34;</span><span class="p">,</span>
+    <span class="s">&#34;Thu&#34;</span> <span class="o">=&gt;</span> <span class="s">&#34;Thursday&#34;</span><span class="p">,</span>
+    <span class="s">&#34;Fri&#34;</span> <span class="o">=&gt;</span> <span class="s">&#34;Friday&#34;</span><span class="p">,</span>
+    <span class="s">&#34;Sat&#34;</span> <span class="o">=&gt;</span> <span class="s">&#34;Saturday&#34;</span><span class="p">,</span>
+<span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>哈希的排序，可以使用keys函数获取哈希的key列表然后用sort函数进行排序。</p>
+<p>由于哈希是一种奇怪的数组，你必须使用大括号来选择其中的元素。需要再次注意的是你处理的元素是标量，因此应该在它的前面使用$而不是%。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$wife</span><span class="p">{</span><span class="s">&#34;Adam&#34;</span><span class="p">}</span> <span class="o">=</span> <span class="s">&#34;Eve&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="复杂数据结构">复杂数据结构</h4>
+<p>在hash元素中保存list时等号右边应该使用方括号，因为在Perl中小括号和其中逗号不足以将list保存到标量中（小括号用于分组，逗号用于分隔）。下面的写法是错误的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#34;Leah&#34;</span><span class="p">,</span> <span class="s">&#34;Rachel&#34;</span><span class="p">,</span> <span class="s">&#34;Bilhah&#34;</span><span class="p">,</span> <span class="s">&#34;Zilpah&#34;</span><span class="p">);</span>        <span class="c1"># WRONG</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>正确写法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#34;Leah&#34;</span><span class="p">,</span> <span class="s">&#34;Rachel&#34;</span><span class="p">,</span> <span class="s">&#34;Bilhah&#34;</span><span class="p">,</span> <span class="s">&#34;Zilpah&#34;</span><span class="p">];</span>        <span class="c1"># ok</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个语句创建了一个未命名的array并将它的引用放到hash元素<code>$wife{&ldquo;Jacob&rdquo;}</code>中。这种方式也是Perl处理多维数组和嵌套数据结构的方式。与使用普通array和hash一样，也可以按下面的方式赋值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Leah&#34;</span><span class="p">;</span>
+<span class="nv">$wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Rachel&#34;</span><span class="p">;</span>
+<span class="nv">$wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Bilhah&#34;</span><span class="p">;</span>
+<span class="nv">$wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Zilpah&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>哈希中的元素为另一个哈希，而这个哈希中的元素为数组：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#34;Leah&#34;</span>   <span class="o">=&gt;</span> <span class="p">[</span><span class="s">&#34;Reuben&#34;</span><span class="p">,</span> <span class="s">&#34;Simeon&#34;</span><span class="p">,</span> <span class="s">&#34;Levi&#34;</span><span class="p">,</span> <span class="s">&#34;Judah&#34;</span><span class="p">,</span> <span class="s">&#34;Issachar&#34;</span><span class="p">,</span> <span class="s">&#34;Zebulun&#34;</span><span class="p">],</span>
+    <span class="s">&#34;Rachel&#34;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s">&#34;Joseph&#34;</span><span class="p">,</span> <span class="s">&#34;Benjamin&#34;</span><span class="p">],</span>
+    <span class="s">&#34;Bilhah&#34;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s">&#34;Dan&#34;</span><span class="p">,</span> <span class="s">&#34;Naphtali&#34;</span><span class="p">],</span>
+    <span class="s">&#34;Zilpah&#34;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s">&#34;Gad&#34;</span><span class="p">,</span> <span class="s">&#34;Asher&#34;</span><span class="p">],</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>它比下面的方式简洁多了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Leah&#34;</span><span class="p">}[</span><span class="mi">0</span><span class="p">]</span>   <span class="o">=</span> <span class="s">&#34;Reuben&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Leah&#34;</span><span class="p">}[</span><span class="mi">1</span><span class="p">]</span>   <span class="o">=</span> <span class="s">&#34;Simeon&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Leah&#34;</span><span class="p">}[</span><span class="mi">2</span><span class="p">]</span>   <span class="o">=</span> <span class="s">&#34;Levi&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Leah&#34;</span><span class="p">}[</span><span class="mi">3</span><span class="p">]</span>   <span class="o">=</span> <span class="s">&#34;Judah&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Leah&#34;</span><span class="p">}[</span><span class="mi">4</span><span class="p">]</span>   <span class="o">=</span> <span class="s">&#34;Issachar&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Leah&#34;</span><span class="p">}[</span><span class="mi">5</span><span class="p">]</span>   <span class="o">=</span> <span class="s">&#34;Zebulun&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Rachel&#34;</span><span class="p">}[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Joseph&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Rachel&#34;</span><span class="p">}[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Benjamin&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Bilhah&#34;</span><span class="p">}[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Dan&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Bilhah&#34;</span><span class="p">}[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Naphtali&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Zilpah&#34;</span><span class="p">}[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Gad&#34;</span><span class="p">;</span>
+<span class="nv">$kids_of_wife</span><span class="p">{</span><span class="s">&#34;Jacob&#34;</span><span class="p">}{</span><span class="s">&#34;Zilpah&#34;</span><span class="p">}[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Asher&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以使用这种方式添加更多的层，但在内部的描述方式是一样的。</p>
+<p>在这里最重要的一点是Perl允许你将复杂的数据结构描述为一个简单的标量。通过这种简单的封装，Perl构建了面向对象结构。例如前面调用的Camel构造器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$fido</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Camel</span> <span class="s">&#34;Amelia&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们创建了一个Camel对象它被描述为一个标量$fido。但在Camel的内部它更复杂一些。对于面向对象的程序员，我们不需要了解Camel的内部（除非我们是实现Camel类方法的人）。但通常，类似Camel的类是由一个包含Camel的各个属性的hash构成，比如它的名称（在这里是”Amelia&quot;，而不是“fido”），和hump（驼峰）的数量。</p>
+<h4 id="简单数据结构">简单数据结构</h4>
+<p>与真实的语言环境中单词依据不同的环境有不同的含义一样。Perl使用了多种方式来标明当前的环境。其中一个重要的局部环境申明就是package。假设你要在Perl中谈论Camel。你可以这样开始你的模块：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="k">package</span> <span class="nn">Camel</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这将产生多个值得注意的影响。其一就是Perl将假定从这个点开始任何未指明的动词或名词都是关于Camel的。它将自动为任何全局名称前面添加模块名作为前缀“Camel::”。因此代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="k">package</span> <span class="nn">Camel</span><span class="p">;</span>
+<span class="nv">$fido</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">fetch</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样$fido的真实名称为$Camel::fido（&amp;fetch的真实名称为&amp;Camel::fetch，但我们先不谈论动词）。这表示如果另一个模块为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="k">package</span> <span class="nn">Dog</span><span class="p">;</span>
+<span class="nv">$fido</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">fetch</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Perl不会迷惑，因为$fido的真实名称为$Dog::fido，而不是$Camel::fido。包只是建立了一个命名空间。你可以创建任意多个命名空间，但由于同一时间只处于其中一个，你可以假设其它命名空间不存在。这种简单是基于假设的。（当然，这过于简单化了，这只是我们在这章所做的。）</p>
+<p>命名空间使得&amp;Camel::fetch和&amp;Dog::fetch不会迷惑，但包真正好的地方在于它对你的动作进行了分类以便其它包使用它们。当我们说：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$fido</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Camel</span> <span class="s">&#34;Amelia&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们实际调用了Camel包的&amp;new动作，它的全名为&amp;Camel:new。前面所说的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$fido</span><span class="o">-&gt;</span><span class="n">saddle</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>调用的是&amp;Camel::saddle子程序，因为$dido知道它指向的是Camel类型的数据。这就是面向对象编程的工作方式。</p>
+<p>使用已经存在的包时，使用<code>use</code>申明，这不仅是为了调用另一个包中的动作，也将检查那个模块是否已经从磁盘加载过了。实际上，你必须在使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$fido</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Camel</span> <span class="s">&#34;Amelia&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>前，使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="k">use</span> <span class="nn">Camel</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>否则，Perl不知道Camel的定义。</p>
+<p>事实上一些内置模块不需要实际引入它们的动词。这些特殊模块被称为<code>pragmas</code>。比如，你经常可以看到人们使用<code>strict</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="k">use</span> <span class="nn">strict</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>strict模块将使Perl加强对程序的检查，你对一些事务必须更加显式的指定，比如变量的作用范围等。这对于大型项目是很有帮助的。默认情况下Perl为小型项目而优化，但使用strict模块，Perl也能用于需要更多可维护性的大项目。</p>
+<h3 id="动词">动词</h3>
+<p>与其它命令式计算机语言一样，Perl中的动作是命令：它们告诉Perl解释器做什么。另一方面与自然语言一样，Perl动词的含义也依赖于具体的环境。以动词开头的语句通常是纯命令，被整个执行。（有时称这些动词为子程序，特别是当他们是用户定义的时候。）一个常用的内置命令是print命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="k">print</span> <span class="s">&#34;Adam&#39;s wif is $wife{&#39;Adam&#39;}.\n&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这将产生下面输出：
+<example>
+Adam&rsquo;s wife is Eve.
+</example>
+但在某些祈使语句内包含有”语气“。一些动词是用于提问的，对于条件语句非常有用，比如if语句。其它动词将它们的输入参数轮换为返回值，我们称这些动词为函数。</p>
+<p>比如内置的exp函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nv">$e</span> <span class="o">=</span> <span class="nb">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>   <span class="c1"># 2.718281828459 or thereabouts</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但Perl中子程序和函数没有明确区别。动词有时也被称作操作符（当内置时），或子过程。可以按你的喜好来叫——他们都返回一个值，它可能是一个没有意义的值，你可以或使用或忽略它。</p>
+<p>历史上的，Perl需要在任何用户定义的子过程前面加一个<code>&amp;</code>符号。但从Perl 5开始，&amp;符号变为可选项，因此用户定义的动词与内置动词有相同的语法。当我们谈论子程序的名称时，我们仍将使用&amp;符号，比如当我们获取它的引用时（$fetcher = &amp;fetch;）。从语言上来说，你可以把&amp;符号当作不定词，“to fetch“或类似”do fetch“。但我们说”do fetch“时我们可以只说”fetch“。这也是我们在Perl5中抛弃强制使用&amp;符号的实际原因。</p>
+<h2 id="一个求平均值的例子">一个求平均值的例子</h2>
+<p>这个例子用于求数据平均值，数据：
+<example>
+Noël 25
+Ben 76
+Clementine 49
+Norm 66
+Chris 92
+Doug 42
+Carol 25
+Ben 12
+Clementine 0
+Norm 66
+&hellip;
+</example>
+它保存于名为grades的文件中。</p>
+<p>程序如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"> <span class="mi">1</span>  <span class="c1">#!/usr/bin/perl</span>
+ <span class="mi">2</span>  
+ <span class="mi">3</span>  <span class="nb">open</span><span class="p">(</span><span class="n">GRADES</span><span class="p">,</span> <span class="s">&#34;grades&#34;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span> <span class="s">&#34;Can&#39;t open grades: $!\n&#34;</span><span class="p">;</span>
+ <span class="mi">4</span>  <span class="k">while</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=</span> <span class="sr">&lt;GRADES&gt;</span><span class="p">)</span> <span class="p">{</span>
+ <span class="mi">5</span>      <span class="p">(</span><span class="nv">$student</span><span class="p">,</span> <span class="nv">$grade</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
+ <span class="mi">6</span>      <span class="nv">$grades</span><span class="p">{</span><span class="nv">$student</span><span class="p">}</span> <span class="o">.=</span> <span class="nv">$grade</span> <span class="o">.</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+ <span class="mi">7</span>  <span class="p">}</span>
+ <span class="mi">8</span> 
+ <span class="mi">9</span>  <span class="k">foreach</span> <span class="nv">$student</span> <span class="p">(</span><span class="nb">sort</span> <span class="nb">keys</span> <span class="nv">%grades</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">10</span>      <span class="nv">$scores</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mi">11</span>      <span class="nv">$total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    
+<span class="mi">12</span>      <span class="nv">@grades</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">,</span> <span class="nv">$grades</span><span class="p">{</span><span class="nv">$student</span><span class="p">});</span>
+<span class="mi">13</span>      <span class="k">foreach</span> <span class="nv">$grade</span> <span class="p">(</span><span class="nv">@grades</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">14</span>          <span class="nv">$total</span> <span class="o">+=</span> <span class="nv">$grade</span><span class="p">;</span>
+<span class="mi">15</span>          <span class="nv">$scores</span><span class="o">++</span><span class="p">;</span>
+<span class="mi">16</span>      <span class="p">}</span>
+<span class="mi">17</span>      <span class="nv">$average</span> <span class="o">=</span> <span class="nv">$total</span> <span class="o">/</span> <span class="nv">$scores</span><span class="p">;</span>
+<span class="mi">18</span>      <span class="k">print</span> <span class="s">&#34;$student: $grades{$student}\tAverage: $average\n&#34;</span><span class="p">;</span>
+<span class="mi">19</span>  <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>执行时使用-w开关以获取警告信息。</p>
+<h2 id="文件句柄">文件句柄</h2>
+<p>在求平均值的例子中的GRADES是Perl中的另一种数据类型，文件句柄（filehandle）。文件句柄是你给一个文件，设备，socket或管道起的名字，帮助你记得他们是做什么的，隐藏了如缓冲等复杂的东西。（在内部文件句柄像C++等语言中的流。）</p>
+<p>文件句柄使用很容易在不同的地方读写数据。这部分使得Perl成为了一种非常好的脱水语言，它可以在同一时间处理很多文件和操作。</p>
+<p>使用open创建文件句柄并将它绑定到文件。open函数至少需要两个参数：文件句柄和要关联的文件名。Perl也提供了一些预定义的文件句柄。标准输入STDIN，标准输出STDOUT和STDERR，STDERR允许你和程序伪造输出到你的输出中。</p>
+<p>由于你可以使用open创建用于多种目的的文件句柄（输入，输出，管道），因此需要指定你需要的是哪种行为。你可以在命令行上，在文件句前添加字符，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nb">open</span><span class="p">(</span><span class="n">SESAME</span><span class="p">,</span> <span class="s">&#34;filename&#34;</span><span class="p">)</span>               <span class="c1"># read from existing file</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">SESAME</span><span class="p">,</span> <span class="s">&#34;&lt;filename&#34;</span><span class="p">)</span>              <span class="c1">#   (same thing, explicitly)</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">SESAME</span><span class="p">,</span> <span class="s">&#34;&gt;filename&#34;</span><span class="p">)</span>              <span class="c1"># create file and write to it</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">SESAME</span><span class="p">,</span> <span class="s">&#34;&gt;&gt;filename&#34;</span><span class="p">)</span>             <span class="c1"># append to existing file</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">SESAME</span><span class="p">,</span> <span class="s">&#34;| output-pipe-command&#34;</span><span class="p">)</span>  <span class="c1"># set up an output filter</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">SESAME</span><span class="p">,</span> <span class="s">&#34;input-pipe-command |&#34;</span><span class="p">)</span>   <span class="c1"># set up an input filter</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>文件句柄的命名是任意的。一旦打开，文件句柄SESAME就可以使用，直到显式的关闭它（close(SESAME)），或直到在后面的程序中使了open将这个句柄指向了另一个文件。打开一个已经打开的句柄将隐式的关闭先前打开的文件，使用它变为不可达的句柄，并打开一个不同的文件。对于这个操作要小心。有时会出现意外，比如使用<code>open($handle,$file)</code>时，$handle包含了一个constant的字符串。确保$handle的唯一性，否则你将在同一个句柄上打开新文件。或者$handle未定义，Perl将填充它。</p>
+<p>可以用&lt;&gt;操作符读取文件中的行。尖括号包含文件句柄（<SESAME>）。空的操作符&lt;&gt;将从命令行上指定的所有文件中读入行，或从STDIN中读入。（这是许多过滤程序的标准行为。）一个使用STDIN文件句柄的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="k">print</span> <span class="bp">STDOUT</span> <span class="s">&#34;Enter a number: &#34;</span><span class="p">;</span>          <span class="c1"># ask for a number</span>
+<span class="nv">$number</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">;</span>                        <span class="c1"># input the number</span>
+<span class="k">print</span> <span class="bp">STDOUT</span> <span class="s">&#34;The number is $number.\n&#34;</span><span class="p">;</span>  <span class="c1"># print the number</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>STDIN是缺省输入，STDOUT是缺省输出。</p>
+<p>行读入操作符不会自动移除换行符需要使用chop移除它。通常可以这样做：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="nb">chop</span><span class="p">(</span><span class="nv">$number</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="操作符">操作符</h2>
+<h2 id="控制结构">控制结构</h2>
+<h3 id="true的定义">True的定义</h3>
+<ol>
+<li>
+<p>非&quot;&ldquo;和非&quot;0&quot;的字符串为true。</p>
+</li>
+<li>
+<p>除0外的任何数字为true。</p>
+</li>
+<li>
+<p>任何引用都为true。</p>
+</li>
+<li>
+<p>任何未定义的值都为false。</p>
+</li>
+</ol>
+<h2 id="正则表达式">正则表达式</h2>
+<h2 id="列表处理">列表处理</h2>
+<p>Perl中有两个重要的环境，标量环境（处理单一的东西）和列表环境（处理复数的东西）。</p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

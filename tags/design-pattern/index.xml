@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>design pattern on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/design-pattern/</link>
+    <description>Recent content in design pattern on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 04 Nov 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>设计模式回顾</title>
+      <link>http://jamsa.github.io/devel/design_pattern/</link>
+      <pubDate>Tue, 04 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/design_pattern/</guid>
+      <description>设计模式回顾 创建模式 Simple Factory 工厂类提供静态方法来创建某一接口类型的具体实现，该方法根据传入的参数来决定需要创建哪种类型的实现，因此传入的参数一般</description>
+    </item>
+    
+  </channel>
+</rss>

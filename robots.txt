@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://jamsa.github.io/sitemap.xml

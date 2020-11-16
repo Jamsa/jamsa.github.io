@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hadoop on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/hadoop/</link>
+    <description>Recent content in hadoop on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 18 May 2015 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hadoop In Action 笔记</title>
+      <link>http://jamsa.github.io/devel/hadoop_in_action/</link>
+      <pubDate>Mon, 18 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/hadoop_in_action/</guid>
+      <description>Hadoop In Action 笔记 MapReduce MapRecuce程序执行的2个阶段，分别称为mapping和reducing。每个阶段都定义了数据处理函数，这些函数被称为ma</description>
+    </item>
+    
+  </channel>
+</rss>

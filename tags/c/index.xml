@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>c on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/c/</link>
+    <description>Recent content in c on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 29 Jun 2015 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/c/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C Primer Plus 笔记</title>
+      <link>http://jamsa.github.io/devel/c_primer_plus/</link>
+      <pubDate>Mon, 29 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/c_primer_plus/</guid>
+      <description>C Primer Plus 笔记 起步 标准 C89 标准是由 1983 年由 ANSI 起草，于 1989 年被正式接受，它定义了语言和标准 C 程序库。C99 标准是 ISO于 1990 年制定的。ISO 和 ANSI 的标准在本</description>
+    </item>
+    
+  </channel>
+</rss>

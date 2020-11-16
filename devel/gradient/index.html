@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>梯度的理解 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="梯度的理解 参考以下两篇文章: 如何直观形象的理解方向导数与梯度以及它们之间的关系？对导数和梯度的解释最为简明。 WangBo的机器学习乐园的博文" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/gradient/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="梯度的理解" />
+<meta property="og:description" content="梯度的理解 参考以下两篇文章: 如何直观形象的理解方向导数与梯度以及它们之间的关系？对导数和梯度的解释最为简明。 WangBo的机器学习乐园的博文" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/gradient/" />
+<meta property="article:published_time" content="2018-05-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-05-27T00:00:00+00:00" />
+<meta itemprop="name" content="梯度的理解">
+<meta itemprop="description" content="梯度的理解 参考以下两篇文章: 如何直观形象的理解方向导数与梯度以及它们之间的关系？对导数和梯度的解释最为简明。 WangBo的机器学习乐园的博文">
+<meta itemprop="datePublished" content="2018-05-12T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-05-27T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1506">
+
+
+
+<meta itemprop="keywords" content="python,machine learn," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="梯度的理解"/>
+<meta name="twitter:description" content="梯度的理解 参考以下两篇文章: 如何直观形象的理解方向导数与梯度以及它们之间的关系？对导数和梯度的解释最为简明。 WangBo的机器学习乐园的博文"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h1 id="梯度的理解">梯度的理解</h1>
+<p>参考以下两篇文章:</p>
+<p><a href="https://www.zhihu.com/question/36301367">如何直观形象的理解方向导数与梯度以及它们之间的关系？</a>对导数和梯度的解释最为简明。</p>
+<p><a href="https://blog.csdn.net/walilk/article/details/50978864">WangBo的机器学习乐园的博文</a></p>
+<p>总结以下内容：</p>
+<ul>
+<li>导数：</li>
+</ul>
+<p>导数指的是一元函数在某点经轴正方向的变化率。</p>
+<p>$$f'(x) = \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}$$</p>
+<ul>
+<li>偏导数：</li>
+</ul>
+<p>偏导数是多元函数在某点沿某个轴正方向的变化率。</p>
+<p>$$\frac{\partial f(x_0,x_1, \ldots, x_n) }{\partial x_j} = \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \lim_{\Delta x \to 0} \frac{f(x_0, \ldots, x_j + \Delta x, \ldots, x_n) - f(x_0, \ldots, x_j, \ldots, x_n)}{\Delta x}$$</p>
+<ul>
+<li>方向导数：</li>
+</ul>
+<p>导数和偏导数都是沿某轴的正方向变化。任意方向变化率就是方向导数。即：某一点在某一趋近方向上的导数值。</p>
+<p>$$\frac{\partial f(x_0,x_1, \ldots, x_n) }{\partial l } = \lim_{\rho x \to 0} \frac{\Delta y}{\Delta x} = \lim_{\rho x \to 0} \frac{f(x_0, \ldots, x_j + \Delta x, \ldots, x_n) - f(x_0, \ldots, x_j, \ldots, x_n)}{\rho}$$</p>
+<ul>
+<li>梯度</li>
+</ul>
+<p>函数在某点的梯度是一个向量，它的方向与取得最大方向导数的方向一致，而它的模为方向导数的最大值。</p>
+<p>$$gradf(x_0, x_1, \ldots, x_n) = (\frac{\partial f}{\partial x_0}, \ldots, \frac{\partial f}{\partial x_j}, \ldots, \frac{\partial f}{\partial x_n})$$</p>
+<p>梯度是偏导的集合。</p>
+<ul>
+<li>梯度下降</li>
+</ul>
+<p>在每个变量轴减小对应的变量值（学习率*轴的偏导值），可描述为：</p>
+<p>\begin{equation}
+x_0 = x_0 - \alpha \frac{\partial f}{\partial x_0} \\<br>
+\ldots \ldots \ldots \\<br>
+x_j = x_j - \alpha \frac{\partial f}{\partial x_j} \\<br>
+\ldots \ldots \ldots \\<br>
+x_n = x_n - \alpha \frac{\partial f}{\partial x_n} \\<br>
+\end{equation}</p>
+<h2 id="一元情况下的示例">一元情况下的示例</h2>
+<p>以这段简单的<a href="https://github.com/hunkim/PyTorchZeroToAll/blob/master/02_manual_gradient.py">手动求导的pytorch代码</a>为例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]</span>
+<span class="n">y_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># a random guess: random value</span>
+
+<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">w</span>
+
+
+<span class="c1"># Loss function</span>
+<span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+
+
+<span class="c1"># compute gradient</span>
+<span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>  <span class="c1"># d_loss/d_w</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">w</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>代码中 $x$ 为输入 $y$ 为输出，权值为 $w$ 没有偏值项 $b$ 。网络的前向传播公式为 $xw$ 。损失函数<code>loss</code>为 $f(x,y) = (xw -y)^2$ ，即取误差平方。由于w是标量，梯度计算就变成对 $w$ 求偏导，即为一元函数的求导:</p>
+<p>$$f(w) = (xw)^2 + y^2 - 2(xw)y$$
+$${\partial f(w) \over \partial w} = 2xw - 2xy = 2x(xw-y)$$</p>
+<p>即代码中的<code>gradient</code>函数。</p>
+<h1 id="梯度下降算法">梯度下降算法</h1>
+<h2 id="数学推导">数学推导</h2>
+<p><a href="https://blog.csdn.net/yhao2014/article/details/51554910">参考</a></p>
+<p>设拟合函数或神经网络的前向传播函数为$h(\theta)$:</p>
+<p>$$h(\theta) = \theta_0 + \theta_1 x_1 + \ldots + \theta_n x_n = \sum_{j=0}^n \theta_n x_n$$</p>
+<p>其向量形式：</p>
+<p>$$h_\theta (x) = \theta^T X$$</p>
+<p>损失函数为：</p>
+<p>$$J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta (x^i) - y^i)^2$$</p>
+<p>优化目标为最小化损失函数。</p>
+<h3 id="批量梯度下降bgd算法推导">批量梯度下降BGD算法推导</h3>
+<p>对每个$\theta_j$求偏导，得到每个$\theta_j$的梯度：</p>
+<p>$$\frac{\partial J(\theta)}{\partial \theta_j} = \frac{1}{m} \sum_{i = 1}^m (h_\theta (x^i) - y^i) x_j^i$$</p>
+<p>优化参数的过程就是按每个参数的负梯度方向方向来更新每个$\theta_j$，其中的$\alpha$表示步长（学习率）：</p>
+<p>$$\theta_j = \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j} = \theta_j - \frac{\alpha}{m} \sum_{i=1}^m (h_\theta (x^i) - y^i) x_j^i$$</p>
+<p>由于BGD算法需要使用所有训练集数据，如果样本数量很多（即m很大），这种计算会非常耗时。所以就引入了随机梯度下降SGD算法。</p>
+<h3 id="随机梯度下降sgd">随机梯度下降SGD</h3>
+<p>先将损失函数进行改写：</p>
+<p>$$J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta (x^i) - y^i)^2 = \frac{1}{m} \sum_{i=1}^m cost(\theta , (x^i,y^i))$$</p>
+<p>其中的$cost(\theta , (x^i, y^i)) = \frac{1}{2}(h_\theta (x^i) - y^i)^2$称为样本点$(x^i, y^i)$的损失函数。这样就将问题转化为了对单个样本点的优化问题。</p>
+<p>对这个新的损失函数求偏导，得到每个$\theta_j$的梯度</p>
+<p>$$\frac{\partial cost(\theta, (x^i, y^i))}{\partial \theta_j} = (h_\theta (x^i) - y^i)x^i$$</p>
+<p>然后根据这个梯度的负方向来更新每个$\theta_j$</p>
+<p>$$\theta_j = \theta_j - \alpha \frac{\partial cost(\theta , (x^i, y^i))}{\partial \theta_j} = \theta_j - \alpha (h_\theta (x^i) - y^i) x^i$$</p>
+<p>随机梯度下降每次迭代只计算一个柆，能大大减少计算量。缺点是SGD并不是每次迭代都会向着整体最优化方向，并且最终得到的解不一定是全局最优解，而只是局部最优解。最终结果往往是在全局最优解附近。</p>
+<h1 id="求导与神经网络的反向传播">求导与神经网络的反向传播</h1>
+<p><a href="https://www.cnblogs.com/charlotte77/p/5629865.html">参考</a></p>
+<p>即采用链式求导法逐层求导。</p>
+<h2 id="pytorch中的自动求导功能">pytorch中的自动求导功能</h2>
+<p><a href="https://blog.csdn.net/manong_wxd/article/details/78734358">参考</a></p>
+<p>pytorch中的自动求导机制是因为它对历史信息保存了记录。每个变更都有一个<code>.creator</code>属性，它指向把它作为输出的函数。这是一个由<code>Function</code>对象作为节点组成的有向无环图（DAG）的入口点，它们之间的引用就是图的边。每次执行一个操作时，一个表示它的新<code>Function</code>对象就被实例化，它的<code>forward()</code>方法被调用，并且它输出的<code>Variable</code>的创建者被设置为这个函数。然后，通过跟踪从任何变量到叶节点的路径，可以重建创建数据的操作序列，并自动计算梯度。</p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

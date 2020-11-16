@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Ext JS 5 手册 核心概念（二）类型系统 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="Ext JS 5 手册 核心概念（二）类型系统 核心概念 类型系统 命名约定 类 类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/extjs/core_concepts_classes/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Ext JS 5 手册 核心概念（二）类型系统" />
+<meta property="og:description" content="Ext JS 5 手册 核心概念（二）类型系统 核心概念 类型系统 命名约定 类 类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/extjs/core_concepts_classes/" />
+<meta property="article:published_time" content="2015-05-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2015-05-17T00:00:00+00:00" />
+<meta itemprop="name" content="Ext JS 5 手册 核心概念（二）类型系统">
+<meta itemprop="description" content="Ext JS 5 手册 核心概念（二）类型系统 核心概念 类型系统 命名约定 类 类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符">
+<meta itemprop="datePublished" content="2015-05-17T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2015-05-17T00:00:00+00:00" />
+<meta itemprop="wordCount" content="849">
+
+
+
+<meta itemprop="keywords" content="javascript,extjs," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ext JS 5 手册 核心概念（二）类型系统"/>
+<meta name="twitter:description" content="Ext JS 5 手册 核心概念（二）类型系统 核心概念 类型系统 命名约定 类 类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h1 id="ext-js-5-手册-核心概念二类型系统">Ext JS 5 手册 核心概念（二）类型系统</h1>
+<h2 id="核心概念">核心概念</h2>
+<h3 id="类型系统">类型系统</h3>
+<h4 id="命名约定">命名约定</h4>
+<h5 id="类">类</h5>
+<p>类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符和其它非数字字母。
+类名应该按包分类。至少应该使用唯一的顶级命名空间。
+顶级命名字音和类名应该使用驼峰式命名规则，其它部分都使用小写。
+非<code>Sencha</code>提供的类不应该使用<code>Ext</code>作为顶级命名空间。</p>
+<h5 id="源文件">源文件</h5>
+<p>类文件名按包路径保存。一个文件中只有一个类。
+所有的类都应该放在同一个根目录下。</p>
+<h5 id="方法和变量">方法和变量</h5>
+<ul>
+<li>方法和变量只使用字母和数字。只在必要时使用数字字符。不要使用下划线、连字符和其它非数字字母。</li>
+<li>方法和变量名应该使用驼峰式命名。这一规则同样适用于缩略词。</li>
+</ul>
+<h5 id="属性">属性</h5>
+<ul>
+<li>类属性名遵循相同的命名规则</li>
+<li>类的静态属性应该全部使用大写</li>
+</ul>
+<h4 id="声明">声明</h4>
+<h5 id="ext-js-4-之前的方式">Ext JS 4 之前的方式</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">ns</span><span class="p">(</span><span class="s1">&#39;My.cool&#39;</span><span class="p">);</span>
+<span class="nx">My</span><span class="p">.</span><span class="nx">cool</span><span class="p">.</span><span class="nx">Window</span> <span class="o">=</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Ext</span><span class="p">.</span><span class="nx">Window</span><span class="p">,</span> <span class="p">{</span> <span class="p">...</span> <span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="新的方式">新的方式</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">className</span><span class="p">,</span> <span class="nx">members</span><span class="p">,</span> <span class="nx">onClassCreated</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="配置">配置</h4>
+<p>在 Ext JS 4 中使用<code>config</code>属性，它由<code>Ext.Class</code>前置处理器在类创建前进行处理，它包含以下功能：</p>
+<ul>
+<li>配置和封装类专员</li>
+<li>自动在类原型中生成属性的<code>getter</code>和<code>setter</code>方法</li>
+<li>为每个属性生成<code>apply</code>方法。自动生成的<code>setter</code>方法将会在设置值之前调用<code>apply</code>方法。可以覆盖属性的<code>apply</code>方法来添加自己的逻辑。如果<code>apply</code>方法无返回值，则<code>setter</code>将不会设置这个值。</li>
+</ul>
+<p>在 Ext JS 5 中对于使用<code>config</code>的类来说，不再需要手动调用<code>initConfig()</code>方法。但是如果你的类继承自<code>Ext.Base</code>，则仍要调用<code>initConfig()</code>方法。</p>
+<h4 id="静态成员">静态成员</h4>
+<p>可以使用<code>statics</code>来进行配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;Computer&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">statics</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">instanceCount</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">factory</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">brand</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// &#39;this&#39; in static methods refer to the class itself
+</span><span class="c1"></span>            <span class="k">return</span> <span class="k">new</span> <span class="k">this</span><span class="p">({</span><span class="nx">brand</span><span class="o">:</span> <span class="nx">brand</span><span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">config</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">brand</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">dellComputer</span> <span class="o">=</span> <span class="nx">Computer</span><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">&#39;Dell&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">appleComputer</span> <span class="o">=</span> <span class="nx">Computer</span><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">&#39;Mac&#39;</span><span class="p">);</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">appleComputer</span><span class="p">.</span><span class="nx">getBrand</span><span class="p">());</span> <span class="c1">// using the auto-generated getter to get the value of a config property. Alerts &#34;Mac&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="错误处理和调试">错误处理和调试</h4>
+<p>Ext JS 包含了有效的调试和错误处理功能。</p>
+<ul>
+<li>可以使用<code>Ext.getDisplayName()</code>来获取方法的显示名称。这在发生异常时显示类名和方法名时非常有用。<code>throw new Error('['+ Ext.getDisplayName(arguments.callee) +'] Some message here');</code></li>
+<li>当使用<code>Ext.define()</code>定义的任何类方法抛出错误时，你可以在基于 WebKit 的浏览器的调用栈中看到方法和类名。</li>
+</ul>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

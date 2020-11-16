@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>测试页 on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/categories/%E6%B5%8B%E8%AF%95%E9%A1%B5/</link>
+    <description>Recent content in 测试页 on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 25 Apr 2016 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/categories/%E6%B5%8B%E8%AF%95%E9%A1%B5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>测试页</title>
+      <link>http://jamsa.github.io/pages/test/</link>
+      <pubDate>Mon, 25 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/pages/test/</guid>
+      <description>S_lug: URL中该文章的链接地址 Author: 作者 数学公式 \begin{equation} x=\sqrt{b} \end{equation} If $a^2=b$ and ( b=2 ), then the solution must be either $$ a=+\sqrt{2} $$ or $$ a=-\sqrt{2} $$. $$J(\theta) = \frac{1}{2m}\sum_{i=1}^{m}(\theta^{T}X_{i} - Y_{i})^2$$ $e=mc^2$ 代码块 1 2 3 4 5 6 7 @interface «nameOfClas</description>
+    </item>
+    
+  </channel>
+</rss>

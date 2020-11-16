@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mac on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/mac/</link>
+    <description>Recent content in mac on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker for Mac从容器访问主机服务</title>
+      <link>http://jamsa.github.io/devel/docker/docker_container_connect_host/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/docker/docker_container_connect_host/</guid>
+      <description>最近两天，在配置本机一套分布式系统的单点登录功能时，需要用到Nginx做同域单点登录，本打算直接用docker运行一个nginx容器就能解决</description>
+    </item>
+    
+    <item>
+      <title>Begin Mac Programming 笔记</title>
+      <link>http://jamsa.github.io/devel/begin_mac_progamming/</link>
+      <pubDate>Mon, 29 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/begin_mac_progamming/</guid>
+      <description>关于对象 Objective-C 中的对象类型 Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。 当我们在Objectiv</description>
+    </item>
+    
+  </channel>
+</rss>

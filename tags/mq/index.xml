@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mq on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/mq/</link>
+    <description>Recent content in mq on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 12 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/mq/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RocketMQ 主要概念</title>
+      <link>http://jamsa.github.io/devel/java/rocketmq_conceptions/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/rocketmq_conceptions/</guid>
+      <description>主要概念 Topic：消息主题，它分布在多个Master节点上。Topic下有多个Topic分区，每个分区上有多个Que。Que是消息存储队列</description>
+    </item>
+    
+  </channel>
+</rss>

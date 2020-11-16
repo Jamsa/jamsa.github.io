@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SOA Suite培训 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="介绍 配置EBS启用SOA Suite Native interface开放为WebService接口 通过ISG调用外部系统提供的WebService EBS的配置 Native Service" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/oracle_erp/soa_suite/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SOA Suite培训" />
+<meta property="og:description" content="介绍 配置EBS启用SOA Suite Native interface开放为WebService接口 通过ISG调用外部系统提供的WebService EBS的配置 Native Service" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/oracle_erp/soa_suite/" />
+<meta property="article:published_time" content="2010-07-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2010-07-13T00:00:00+00:00" />
+<meta itemprop="name" content="SOA Suite培训">
+<meta itemprop="description" content="介绍 配置EBS启用SOA Suite Native interface开放为WebService接口 通过ISG调用外部系统提供的WebService EBS的配置 Native Service">
+<meta itemprop="datePublished" content="2010-07-13T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2010-07-13T00:00:00+00:00" />
+<meta itemprop="wordCount" content="926">
+
+
+
+<meta itemprop="keywords" content="oracle,ebs," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SOA Suite培训"/>
+<meta name="twitter:description" content="介绍 配置EBS启用SOA Suite Native interface开放为WebService接口 通过ISG调用外部系统提供的WebService EBS的配置 Native Service"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h1 id="介绍">介绍</h1>
+<ul>
+<li>配置EBS启用SOA Suite</li>
+<li>Native interface开放为WebService接口</li>
+<li>通过ISG调用外部系统提供的WebService</li>
+</ul>
+<h1 id="ebs的配置">EBS的配置</h1>
+<p>Native Service Enablement Of EBS</p>
+<p>参考Metalink Note:556540.1</p>
+<h1 id="isg的设置">ISG的设置</h1>
+<h1 id="native-interface开放为webservice">Native Interface开放为WebService</h1>
+<h2 id="开放系统标准接口为webservice">开放系统标准接口为WebService</h2>
+<p>通过“集成SOA网关”这个职责为标准接口授权、生成WSDL、部署或卸载WebService</p>
+<h2 id="开放自己开发的接口为webservice">开放自己开发的接口为WebService</h2>
+<p>通过Perl工具程序将自己的接口注册到Repository里</p>
+<h2 id="外部系统异步调用ebs发布的webservice">外部系统异步调用EBS发布的WebService</h2>
+<h1 id="isg调用外部的webservice">ISG调用外部的WebService</h1>
+<p>不支持RPC格式的SOAP消息，只支持Document格式的。</p>
+<h2 id="business-event驱动对外部系统webservice的调用">Business Event驱动对外部系统WebService的调用</h2>
+<ul>
+<li>Create/Use Invoker Event</li>
+</ul>
+<ol>
+<li>选Workflow Administrator WebApplications职责</li>
+<li>点击“Business Events”</li>
+<li>点击“Create Event”</li>
+<li>填写Name，Display Name和Description选择状态为“Enabled”</li>
+<li>输入Owner Name和Tag（通常都填FND/FND）</li>
+<li>点击“Apply”保存</li>
+</ol>
+<ul>
+<li>Native Service Invocation Process</li>
+</ul>
+<ol>
+<li>Search Invoker Business Event.</li>
+<li>Select to view its subscriptions</li>
+<li>Click &ldquo;Create Subscription&rdquo;</li>
+<li>Enter local Subscriber System,Phase(&lt;100 for synchronous response).</li>
+<li>Select Rule Data as &ldquo;Message&rdquo;.</li>
+<li>Select Action Type &ldquo;Invoke Web Service&rdquo;.</li>
+<li>Click &ldquo;Next&rdquo;.</li>
+<li>Follow wizard based WSDL parser UI:</li>
+<li>Enter WSDL URL and click &ldquo;Next&rdquo;.</li>
+<li>Select Service and click &ldquo;Next&rdquo;.</li>
+<li>Select Service Port and click &ldquo;Next&rdquo;.</li>
+<li>Select Service Operation and click &ldquo;Next&rdquo;.</li>
+<li>Use seeded Java Rule Function - oracle.apps.fnd.wf.bes.WebServiceInvokerSubscription or custom extended class.</li>
+<li>Optionally enter WS Security parameters:WFBES_SOAP_USERNAME,WEBES_SOAP_PASSWORD_MOD,WEBES_SOAP_PASSWORD_KEY as</li>
+</ol>
+<ul>
+<li>Create Receive Event</li>
+</ul>
+<ol>
+<li>navigate to &ldquo;Events&rdquo; tab in Workflow</li>
+</ol>
+<h2 id="自定义的business-event驱动对外部系统的webservice的调用">自定义的Business Event驱动对外部系统的WebService的调用</h2>
+<h2 id="直接调用外部的webservice">直接调用外部的WebService</h2>
+<h2 id="异步调用外部的webservice">异步调用外部的WebService</h2>
+<p>由Create Subscription时的Phase决定，大于100时为异步调用</p>
+<h1 id="问题">问题</h1>
+<ul>
+<li>
+<p>如何开放自己开发的接口为WebService</p>
+</li>
+<li>
+<p>与其它系统集成时如何解决人员、权限、登录等方面的问题</p>
+</li>
+<li>
+<p>没有BPEL的情况下（不能通过接口表和多次WebService调用处理）如何处理大数据量的问题</p>
+<p>通过接口表的方式，多次调用方法写入数据到接口表，再调用其它方法进行验证，然后再调用方法提交请求。</p>
+</li>
+<li>
+<p>SOAP头的问题，如何在SOAP头设置相关的用户、职责等信息</p>
+</li>
+<li>
+<p>AQ自动触发对外部系统WebService的调用，还是需要轮询AQ</p>
+</li>
+</ul>
+<p>异步调用时需要运行工作流background engine 的请求</p>
+<p>测试WebService
+<a href="http://www.ignyte.com/webservices/ignyte.whatsshowing.webservice/moviefunctions.asmx?wsdl">http://www.ignyte.com/webservices/ignyte.whatsshowing.webservice/moviefunctions.asmx?wsdl</a>
+参数 88052 18</p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

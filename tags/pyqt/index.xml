@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pyqt on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/pyqt/</link>
+    <description>Recent content in pyqt on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 16 Apr 2016 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/pyqt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用PyQT开发巡更系统的总结</title>
+      <link>http://jamsa.github.io/devel/pyqtjk/</link>
+      <pubDate>Sat, 16 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/pyqtjk/</guid>
+      <description>PyQT的内存管理模型： PyQT中使用了两套内存管理模型，因此需要注意内存泄漏的问题。python对象会自动释放内存，但是Qt对象却不一定。</description>
+    </item>
+    
+  </channel>
+</rss>

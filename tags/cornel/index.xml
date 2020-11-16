@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cornel on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/cornel/</link>
+    <description>Recent content in cornel on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 19 Sep 2010 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/cornel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>记笔记的方法</title>
+      <link>http://jamsa.github.io/devel/cornell_method/</link>
+      <pubDate>Sun, 19 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/cornell_method/</guid>
+      <description>所有笔记记法都有优缺点。当你自己已经熟悉这些种技法时，你会发现自己其实也在做同样的事情。这是因为在不同的演讲和会议上，你会自动地意识到究竟哪</description>
+    </item>
+    
+  </channel>
+</rss>

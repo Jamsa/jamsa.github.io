@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring Cloud 上手1-准备 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="目标 从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/java/spring_cloud_tut1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring Cloud 上手1-准备" />
+<meta property="og:description" content="目标 从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/java/spring_cloud_tut1/" />
+<meta property="article:published_time" content="2018-05-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-06-03T00:00:00+00:00" />
+<meta itemprop="name" content="Spring Cloud 上手1-准备">
+<meta itemprop="description" content="目标 从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的">
+<meta itemprop="datePublished" content="2018-05-30T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-06-03T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2053">
+
+
+
+<meta itemprop="keywords" content="spring cloud," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Cloud 上手1-准备"/>
+<meta name="twitter:description" content="目标 从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h1 id="目标">目标</h1>
+<p>从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的文档资料看了不少，但“纸上得来终觉浅，绝知此事要躬行”。所以就有了做一个Spring Cloud Demo工程的想法，主要用来体验Spring Cloud的各种组件和功能。</p>
+<p>代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1 id="规划">规划</h1>
+<p>先从最简单的Demo开始，使用SpringCloud的基础功能：Eureka、Zuul、Feign。后续再考虑添加Stream，Bus相关的内容。在工程数量较多，不好维护了，再考虑采用docker和minikube来进行管理。借用一句话“好的架构就像眼镜，你会知道什么时候需要它”。</p>
+<p>工程目录规划如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">├── build.gradle
+├── common
+│   ├── build.gradle
+│   └── src
+│       └── main
+├── provider
+│   ├── api
+│   │   └── src
+│   └── service
+│       ├── build.gradle
+│       └── src
+├── consumer
+│   ├── api
+│   │   └── src
+│   └── service
+│       ├── build.gradle
+│       └── src
+├── gateway
+│   ├── build.gradle
+│   └── src
+├── registry
+│   ├── build.gradle
+│   └── src
+├── settings.gradle
+├── support
+└── web
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><code>provider</code>和<code>consumer</code>为两个业务服务模块，其中<code>provider</code>和<code>consumer</code>只做目录分类用，不是实际的模块。<code>api</code>和<code>service</code>是模块，<code>api</code>存放客户端服务端共享的接口和类，<code>service</code>是实际的服务提供者。</p>
+</li>
+<li>
+<p><code>registry</code>为Eureka为基础构建的服务注册中心。</p>
+</li>
+<li>
+<p><code>gateway</code>为Zuul为基础构建的服务网关，是外部访问的入口。</p>
+</li>
+<li>
+<p><code>common</code>存放公共类，非SpringBoot模块。</p>
+</li>
+<li>
+<p><code>support</code>存放支持程序运行的<code>docker-compose</code>配置信息和<code>docker</code>容器数据卷。</p>
+</li>
+</ul>
+<p>在构建工具的选择上，Github上各路大神的SpringCloud Demo基本上都是以Maven为主的。我这里选择gradle了，只是为了减少编写配置信息。</p>
+<h1 id="gradle配置规划">Gradle配置规划</h1>
+<p>使用Gradle进行多模块配置，可选的配置方案有两种，一种是把配置信息集中在根模块的构建文件中集中配置，另一种是各模块独立配置。这里我考虑结合使用这两种配置方式，将全局配置和版式化的配置集中在根模块的build.gradle进行管理，各个子模块的只在自己的build.gradle中维护其依赖声明等个性化的信息。</p>
+<h2 id="根模块的settingsgradle">根模块的settings.gradle</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">rootProject</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s1">&#39;sc-cloud&#39;</span>
+
+<span class="n">include</span> <span class="s1">&#39;registry&#39;</span><span class="o">,</span><span class="s1">&#39;gateway&#39;</span>
+<span class="n">include</span> <span class="s1">&#39;provider:api&#39;</span><span class="o">,</span><span class="s1">&#39;provider:service&#39;</span>
+<span class="n">include</span> <span class="s1">&#39;consumer:api&#39;</span><span class="o">,</span><span class="s1">&#39;consumer:service&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>根模块代号<code>sc-cloud</code>，包含<code>registry</code>，<code>gateway</code>和<code>provider</code>、<code>consumer</code>模块下的<code>api</code>和<code>service</code>模块。由于Gradle在处理<code>incdlude ‘provider:api‘</code>时也会把<code>provider</code>包含进去，因此我们在build.gradle中进行全局性配置时需要排除这些只起分类作用的模块。</p>
+<h2 id="根模块的buildgradle">根模块的build.gradle</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="c1">//依赖版本号
+</span><span class="c1"></span><span class="n">ext</span><span class="o">.</span><span class="na">versions</span> <span class="o">=</span> <span class="o">[</span>
+        <span class="nl">spring:</span> <span class="s1">&#39;4.3.17.RELEASE&#39;</span><span class="o">,</span>
+        <span class="n">springCloud</span> <span class="o">:</span><span class="s1">&#39;Edgware.SR3&#39;</span>
+<span class="o">]</span>
+<span class="c1">//依赖
+</span><span class="c1"></span><span class="n">ext</span><span class="o">.</span><span class="na">libs</span> <span class="o">=</span> <span class="o">[</span>
+        <span class="s2">&#34;spring-cloud&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-dependencies:${versions.springCloud}&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;spring-web&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework:spring-web:${versions.spring}&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;spring-boot&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;eureka-server&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-netflix-eureka-server&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;eureka-client&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;zuul&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-netflix-zuul&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;feign&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-feign&#34;</span>
+<span class="o">]</span>
+<span class="c1">//只起分类作用的目录
+</span><span class="c1"></span><span class="n">ext</span><span class="o">.</span><span class="na">excludeFolds</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&#34;provider&#34;</span><span class="o">,</span><span class="s2">&#34;consumer&#34;</span><span class="o">]</span>
+
+<span class="n">buildscript</span> <span class="o">{</span>
+    <span class="n">ext</span> <span class="o">{</span>
+        <span class="c1">//springIOVersion = &#39;1.0.5.RELEASE&#39;
+</span><span class="c1"></span>        <span class="n">springBootVersion</span> <span class="o">=</span> <span class="s1">&#39;1.5.13.RELEASE&#39;</span>
+    <span class="o">}</span>
+    <span class="n">repositories</span> <span class="o">{</span>
+        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&#34;http://maven.aliyun.com/nexus/content/groups/public/&#34;</span> <span class="o">}</span>
+        <span class="n">mavenCentral</span><span class="o">()</span>
+    <span class="o">}</span>
+    <span class="n">dependencies</span> <span class="o">{</span>
+        <span class="n">classpath</span> <span class="s2">&#34;org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}&#34;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="n">subprojects</span> <span class="o">{</span>
+    <span class="c1">//对分类目录不需要进行配置
+</span><span class="c1"></span>    <span class="k">if</span><span class="o">(</span><span class="n">excludeFolds</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">name</span><span class="o">))</span> <span class="k">return</span>
+    
+
+    <span class="n">repositories</span> <span class="o">{</span>
+        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&#34;http://maven.aliyun.com/nexus/content/groups/public/&#34;</span> <span class="o">}</span>
+        <span class="n">mavenCentral</span><span class="o">()</span>
+    <span class="o">}</span>
+
+    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;java&#39;</span>
+
+    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s2">&#34;io.spring.dependency-management&#34;</span>
+
+    <span class="n">dependencyManagement</span> <span class="o">{</span>
+        <span class="n">imports</span> <span class="o">{</span>
+            <span class="n">mavenBom</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;spring-cloud&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">//api工程不需要使用spring boot插件
+</span><span class="c1"></span>    <span class="k">if</span><span class="o">(!</span><span class="n">name</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s2">&#34;api&#34;</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;org.springframework.boot&#39;</span>
+    <span class="o">}</span>
+
+    <span class="n">sourceCompatibility</span> <span class="o">=</span> <span class="s1">&#39;1.8&#39;</span>
+    <span class="n">targetCompatibility</span> <span class="o">=</span> <span class="s1">&#39;1.8&#39;</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;org.github.jamsa.sc&#39;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0.1&#39;</span>
+
+    <span class="k">if</span><span class="o">(</span><span class="n">name</span><span class="o">==</span><span class="s1">&#39;api&#39;</span><span class="o">){</span>
+        <span class="c1">// API类工程的基本依赖
+</span><span class="c1"></span>        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;spring-web&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+        <span class="c1">// Feign客户端工程的基本依赖
+</span><span class="c1"></span>        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;feign&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;eureka-client&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">//设置打包参数
+</span><span class="c1"></span>    <span class="n">tasks</span><span class="o">.</span><span class="na">withType</span><span class="o">(</span><span class="n">Jar</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//包名为 sc-项目名-模块名，如果父项目为根项目，则不添加“项目名”
+</span><span class="c1"></span>        <span class="n">archivesBaseName</span> <span class="o">=</span> <span class="s2">&#34;sc-&#34;</span><span class="o">+(</span><span class="n">project</span><span class="o">.</span><span class="na">parent</span><span class="o">==</span><span class="n">rootProject</span><span class="o">?</span><span class="n">project</span><span class="o">.</span><span class="na">name</span><span class="o">:</span><span class="n">project</span><span class="o">.</span><span class="na">parent</span><span class="o">.</span><span class="na">name</span><span class="o">+</span><span class="s2">&#34;-&#34;</span><span class="o">+</span><span class="n">project</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
+        <span class="n">baseName</span> <span class="o">=</span> <span class="n">archivesBaseName</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>需要排除的分类目录，在<code>ext.excludeFolds</code>中维护，<code>subprojects</code>根据这个配置项进行排除。<code>subprojects</code>段中集中处理各模块的公共依赖和Gradle插件，如<code>api</code>模块都不需要依赖<code>spring boot</code>插件，但是需要<code>spring-web</code>；自动处理打包参数，设置打包名称。</p>
+<p>这样处理后<code>api</code>类的子模块如果没有其它依赖，就不再需要添加<code>build.gradle</code>。<code>service</code>类的包，则只需要声明依赖和为<code>jar</code>任务指定<code>Main-Class</code>。</p>
+<p>需要注意的是<code>io.spring.dependency-management</code>，这个依赖管理插件。由于SpringCloud组件较多依赖关系复杂，使用该插件才能正确的配置好版本间的依赖关系，该插件能自动根据<code>springCloud</code>版本号自动选择下面那些相依赖的组件的版本。而上面指定的spring版本也是根据依赖查询到的版本号。</p>
+<p><code>buildscript</code>中的内容主要处理gradle <code>spring boot</code>插件，该插件主要用于打包FatJar。因此，在API工程中不需要启用这一插件。</p>
+<h2 id="providerservice的buildgradle"><code>provider:service</code>的build.gradle</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:provider:api&#39;</span><span class="o">)</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;eureka-client&#39;</span>
+<span class="o">}</span>
+
+<span class="n">jar</span> <span class="o">{</span>
+    <span class="n">manifest</span> <span class="o">{</span>
+        <span class="n">attributes</span> <span class="s2">&#34;Manifest-Version&#34;</span><span class="o">:</span> <span class="mf">1.0</span><span class="o">,</span>
+                <span class="s1">&#39;Main-Class&#39;</span><span class="o">:</span> <span class="s1">&#39;com.github.jamsa.sc.provider.controller.ProviderController&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>它声明了依赖于<code>:provider:api</code>并设定了<code>Main-Class</code>。</p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

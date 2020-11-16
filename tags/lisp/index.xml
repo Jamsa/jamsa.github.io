@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lisp on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/lisp/</link>
+    <description>Recent content in lisp on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 03 Jun 2011 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/lisp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Practical Common Lisp笔记</title>
+      <link>http://jamsa.github.io/devel/lisp/practical_common_lisp/</link>
+      <pubDate>Fri, 03 Jun 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/lisp/practical_common_lisp/</guid>
+      <description>环境搭建 尝试了多种common lisp的实现，在windows下使用Lispbox时并不能使用slime。而gnu common lisp和ansi common li</description>
+    </item>
+    
+    <item>
+      <title>SICP读书笔记</title>
+      <link>http://jamsa.github.io/devel/lisp/sicp/</link>
+      <pubDate>Tue, 31 Aug 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/lisp/sicp/</guid>
+      <description>Chap.1 Building Abstractions with Procedures 在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将</description>
+    </item>
+    
+  </channel>
+</rss>

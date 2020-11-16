@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/</link>
+    <description>Recent content in Tags on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>typescript</title>
+      <link>http://jamsa.github.io/tags/typescript/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/typescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据同步</title>
+      <link>http://jamsa.github.io/tags/%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>http://jamsa.github.io/tags/docker/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mac</title>
+      <link>http://jamsa.github.io/tags/mac/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/mac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>http://jamsa.github.io/tags/rust/</link>
+      <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title> cargo</title>
+      <link>http://jamsa.github.io/tags/cargo/</link>
+      <pubDate>Sun, 29 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/cargo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title> chocolatey</title>
+      <link>http://jamsa.github.io/tags/chocolatey/</link>
+      <pubDate>Sun, 29 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/chocolatey/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title> msvc</title>
+      <link>http://jamsa.github.io/tags/msvc/</link>
+      <pubDate>Sun, 29 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/msvc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title> racer</title>
+      <link>http://jamsa.github.io/tags/racer/</link>
+      <pubDate>Sun, 29 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/racer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title> jtv</title>
+      <link>http://jamsa.github.io/tags/jtv/</link>
+      <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/jtv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scala</title>
+      <link>http://jamsa.github.io/tags/scala/</link>
+      <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/scala/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title> netty</title>
+      <link>http://jamsa.github.io/tags/netty/</link>
+      <pubDate>Thu, 19 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/netty/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>plantuml</title>
+      <link>http://jamsa.github.io/tags/plantuml/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/plantuml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title> kubernetes</title>
+      <link>http://jamsa.github.io/tags/kubernetes/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spring cloud</title>
+      <link>http://jamsa.github.io/tags/spring-cloud/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/spring-cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emacs</title>
+      <link>http://jamsa.github.io/tags/emacs/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>http://jamsa.github.io/tags/git/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine learn</title>
+      <link>http://jamsa.github.io/tags/machine-learn/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/machine-learn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mq</title>
+      <link>http://jamsa.github.io/tags/mq/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/mq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>http://jamsa.github.io/tags/python/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jupyter notebook</title>
+      <link>http://jamsa.github.io/tags/jupyter-notebook/</link>
+      <pubDate>Sun, 25 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/jupyter-notebook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>test</title>
+      <link>http://jamsa.github.io/tags/test/</link>
+      <pubDate>Mon, 25 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pyqt</title>
+      <link>http://jamsa.github.io/tags/pyqt/</link>
+      <pubDate>Sat, 16 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/pyqt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>c</title>
+      <link>http://jamsa.github.io/tags/c/</link>
+      <pubDate>Mon, 29 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/c/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>objective-c</title>
+      <link>http://jamsa.github.io/tags/objective-c/</link>
+      <pubDate>Mon, 29 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/objective-c/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>http://jamsa.github.io/tags/go/</link>
+      <pubDate>Fri, 05 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hadoop</title>
+      <link>http://jamsa.github.io/tags/hadoop/</link>
+      <pubDate>Mon, 18 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/hadoop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>extjs</title>
+      <link>http://jamsa.github.io/tags/extjs/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/extjs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>http://jamsa.github.io/tags/javascript/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>design pattern</title>
+      <link>http://jamsa.github.io/tags/design-pattern/</link>
+      <pubDate>Tue, 04 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/design-pattern/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>http://jamsa.github.io/tags/java/</link>
+      <pubDate>Tue, 04 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android</title>
+      <link>http://jamsa.github.io/tags/android/</link>
+      <pubDate>Sat, 28 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>clojure</title>
+      <link>http://jamsa.github.io/tags/clojure/</link>
+      <pubDate>Mon, 12 Mar 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/clojure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lisp</title>
+      <link>http://jamsa.github.io/tags/lisp/</link>
+      <pubDate>Fri, 03 Jun 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/lisp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ebs</title>
+      <link>http://jamsa.github.io/tags/ebs/</link>
+      <pubDate>Thu, 09 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/ebs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oaf</title>
+      <link>http://jamsa.github.io/tags/oaf/</link>
+      <pubDate>Thu, 09 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/oaf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oracle</title>
+      <link>http://jamsa.github.io/tags/oracle/</link>
+      <pubDate>Thu, 09 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vi</title>
+      <link>http://jamsa.github.io/tags/vi/</link>
+      <pubDate>Wed, 29 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/vi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vim</title>
+      <link>http://jamsa.github.io/tags/vim/</link>
+      <pubDate>Wed, 29 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cornel</title>
+      <link>http://jamsa.github.io/tags/cornel/</link>
+      <pubDate>Sun, 19 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/cornel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>asm</title>
+      <link>http://jamsa.github.io/tags/asm/</link>
+      <pubDate>Wed, 01 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/asm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scheme</title>
+      <link>http://jamsa.github.io/tags/scheme/</link>
+      <pubDate>Tue, 31 Aug 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/scheme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>maven</title>
+      <link>http://jamsa.github.io/tags/maven/</link>
+      <pubDate>Mon, 21 Sep 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/maven/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jsf</title>
+      <link>http://jamsa.github.io/tags/jsf/</link>
+      <pubDate>Thu, 15 Jan 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/jsf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>seam</title>
+      <link>http://jamsa.github.io/tags/seam/</link>
+      <pubDate>Thu, 15 Jan 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/seam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>org</title>
+      <link>http://jamsa.github.io/tags/org/</link>
+      <pubDate>Fri, 09 Jan 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/org/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wxpython</title>
+      <link>http://jamsa.github.io/tags/wxpython/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/wxpython/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>http://jamsa.github.io/tags/linux/</link>
+      <pubDate>Thu, 17 Jan 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>perl</title>
+      <link>http://jamsa.github.io/tags/perl/</link>
+      <pubDate>Sun, 02 Dec 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/perl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>awk</title>
+      <link>http://jamsa.github.io/tags/awk/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/awk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sed</title>
+      <link>http://jamsa.github.io/tags/sed/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/tags/sed/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

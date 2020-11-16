@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/javascript/</link>
+    <description>Recent content in javascript on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 17 May 2015 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ext JS 5 手册 应用程序架构（一）应用程序架构简介</title>
+      <link>http://jamsa.github.io/devel/extjs/architecture_view_overview/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/architecture_view_overview/</guid>
+      <description>Ext JS 5 手册 应用程序架构（一）应用程序架构简介 程序架构 应用程序架构简介 Ext JS 提供了对 MVC 和 MVVM 架构的支持。 MVC 在 MVC 架构中，用户与 View 交互，它显示 Model 中的数</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（一）可访问性</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_accessiblity/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_accessiblity/</guid>
+      <description>Ext JS 5 手册 核心概念（一）可访问性 核心概念 可访问性 它提供了浅析的标明当前焦点的样式，并允许自字义焦点样式 键盘导航 组件的 DOM 元素使用属性提供了语义</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（三）组件</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_components/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_components/</guid>
+      <description>Ext JS 5 手册 核心概念（三）组件 核心概念 组件 Ext JS 应用中的 UI 是由一个或多个被称为组件(Components)的构件组成的。所有组件都是Ext.Co</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（二）类型系统</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_classes/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_classes/</guid>
+      <description>Ext JS 5 手册 核心概念（二）类型系统 核心概念 类型系统 命名约定 类 类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（五）事件</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_events/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_events/</guid>
+      <description>Ext JS 5 手册 核心概念（五）事件 核心概念 使用事件 Ext JS 中的组件和类在其生命周期中会产生大量的事件。事件能让你的代码响应程序的变化。 什么是事件 以 Ext.Component 渲</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（四）数据包</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_data_package/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_data_package/</guid>
+      <description>Ext JS 5 手册 核心概念（四）数据包 核心概念 数据包 数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的： Ext.data.Model Store Ext.data.proxy.Proxy 上面的类几乎在</description>
+    </item>
+    
+    <item>
+      <title>Ext JS5 手册 应用程序架构（二） View Controller</title>
+      <link>http://jamsa.github.io/devel/extjs/architecture_view_controller/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/architecture_view_controller/</guid>
+      <description>Ext JS5 手册 应用程序架构（二） View Controller 监听 在 Ext JS 5 中对listeners这个配置项进行了增强。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 Ext.define(&amp;#39;MyApp.view.foo.Foo&amp;#39;, { extend: &amp;#39;Ext.panel.Panel&amp;#39;, xtype:</description>
+    </item>
+    
+    <item>
+      <title>Ext学习笔记</title>
+      <link>http://jamsa.github.io/devel/extjs/extjs/</link>
+      <pubDate>Wed, 19 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/extjs/</guid>
+      <description>基础 Ext继承机制 Ext对象 Ext.onReady()是Ext.EventManager.onDocumentReady()的速写方法。 布局</description>
+    </item>
+    
+  </channel>
+</rss>

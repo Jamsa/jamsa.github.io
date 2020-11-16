@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Ext JS 5 手册 应用程序架构（一）应用程序架构简介 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="Ext JS 5 手册 应用程序架构（一）应用程序架构简介 程序架构 应用程序架构简介 Ext JS 提供了对 MVC 和 MVVM 架构的支持。 MVC 在 MVC 架构中，用户与 View 交互，它显示 Model 中的数" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/extjs/architecture_view_overview/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Ext JS 5 手册 应用程序架构（一）应用程序架构简介" />
+<meta property="og:description" content="Ext JS 5 手册 应用程序架构（一）应用程序架构简介 程序架构 应用程序架构简介 Ext JS 提供了对 MVC 和 MVVM 架构的支持。 MVC 在 MVC 架构中，用户与 View 交互，它显示 Model 中的数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/extjs/architecture_view_overview/" />
+<meta property="article:published_time" content="2015-05-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2015-05-17T00:00:00+00:00" />
+<meta itemprop="name" content="Ext JS 5 手册 应用程序架构（一）应用程序架构简介">
+<meta itemprop="description" content="Ext JS 5 手册 应用程序架构（一）应用程序架构简介 程序架构 应用程序架构简介 Ext JS 提供了对 MVC 和 MVVM 架构的支持。 MVC 在 MVC 架构中，用户与 View 交互，它显示 Model 中的数">
+<meta itemprop="datePublished" content="2015-05-17T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2015-05-17T00:00:00+00:00" />
+<meta itemprop="wordCount" content="3514">
+
+
+
+<meta itemprop="keywords" content="javascript,extjs," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ext JS 5 手册 应用程序架构（一）应用程序架构简介"/>
+<meta name="twitter:description" content="Ext JS 5 手册 应用程序架构（一）应用程序架构简介 程序架构 应用程序架构简介 Ext JS 提供了对 MVC 和 MVVM 架构的支持。 MVC 在 MVC 架构中，用户与 View 交互，它显示 Model 中的数"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h1 id="ext-js-5-手册-应用程序架构一应用程序架构简介">Ext JS 5 手册 应用程序架构（一）应用程序架构简介</h1>
+<h2 id="程序架构">程序架构</h2>
+<h3 id="应用程序架构简介">应用程序架构简介</h3>
+<p>Ext JS 提供了对 MVC 和 MVVM 架构的支持。</p>
+<h4 id="mvc">MVC</h4>
+<p>在 MVC 架构中，用户与 View 交互，它显示 Model 中的数据。这些交互由 Controller 来处理，它负责修改 View 和 Model。</p>
+<p>View 和 Model 互相是不知道的，因为 Controller 在直接处理更新。即，Controller 包含了 MVC 应用中大多数的程序逻辑。View 有可能也包含了少量业务逻辑。Model 则主要是提供了数据处理和业务逻辑处理的接口。</p>
+<p>MVC 的目标是要清楚的区分应用程序中各个类的职责。这意味着在大型项目中能很好的解耦。让程序易于测试和维护，并且便于代码重用。</p>
+<h4 id="mvvm">MVVM</h4>
+<p>MVC 和 MVVM 的区别在于 MVVM 突出了一个抽象的 ViewModel。它通过数据绑定技术来协调 Model 的数据和 View 展现时使用的数据。</p>
+<p>这使得框架能处理更多的工作，能最小化或消除程序逻辑中直接处理 View。</p>
+<h4 id="用户的使用">用户的使用</h4>
+<p>Ext JS 5 引入的 MVVM 构架中提升了 MVC 架构中的 C。并且能兼容 Ext JS 4 MVC 应用。</p>
+<h4 id="mvc-和-mvvm">MVC 和 MVVM</h4>
+<p>为了了解哪个更适合你的应用，我们需要了解以下术语：</p>
+<ul>
+<li>（M）Model 程序中的数据。它由一组定义了字段的构成。Model 知道如何使用 data package 对数据进行持久化，并且能通过 association 关联到其它的 model。Model 通常与 Store 一起使用，为 grid 或其它组件提供数据。Model 也适合进行验证、转换等数据逻辑处理。</li>
+<li>（V）View 用于展现数据。</li>
+<li>（C）Controller 用于处理视图中的逻辑。它可以渲染视图、控制路由、实例化 Model、进行其它的逻辑处理。</li>
+<li>（VM）ViewModel 用于管理特定的 View 的数据。组件能绑定到它，在数据发生变化时组件会自动更新。</li>
+</ul>
+<p>这些构架能提供非常好的结构和一致性。遵循以下约定能获取很多好处：</p>
+<ul>
+<li>每个应用都是以相同的方式工作的，因此只需要学习一个</li>
+<li>很容易在不同的应用间共享代码</li>
+<li>Sencha Cmd 能为你的应用生成优化版</li>
+</ul>
+<h4 id="创建一个示例应用">创建一个示例应用</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">sencha generate app -ext MyApp ./app
+<span class="nb">cd</span> app
+sencha app watch
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="应用程序概览">应用程序概览</h4>
+<h5 id="目录结构">目录结构</h5>
+<p>Ext JS 应用遵循统一的目录结构。在推荐的目录结构中所有类都放在 app 目录中。这个目录包含的子目录是 MVC 元素的命名空间。View，View Controller 和 ViewModel 都属于视图类元素。</p>
+<h5 id="命名空间">命名空间</h5>
+<p>每个类的第一行都是它的命名空间。格式为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;AppName&gt;.&lt;foldername&gt;.&lt;ClassAndFileName&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="应用程序">应用程序</h4>
+<p><code>index.html</code>中只引用了<code>bootstrap.js</code>，它用于加载<code>app.json</code>。<code>app.json</code>中定义了整个应用的元数据。</p>
+<p><code>app.json</code>中添加了大量的注释信息。</p>
+<h5 id="appjs">app.js</h5>
+<p>应用程序在<code>Application.js</code>中定义了应用类，在<code>app.js</code>中调用了这个类的实例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/*
+</span><span class="cm"> * This file is generated and updated by Sencha Cmd. You can edit this file as
+</span><span class="cm"> * needed for your application, but these edits will have to be merged by
+</span><span class="cm"> * Sencha Cmd when upgrading.
+</span><span class="cm"> */</span>
+<span class="nx">Ext</span><span class="p">.</span><span class="nx">application</span><span class="p">({</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;MyApp&#39;</span><span class="p">,</span>
+
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;MyApp.Application&#39;</span><span class="p">,</span>
+
+    <span class="nx">autoCreateViewport</span><span class="o">:</span> <span class="s1">&#39;MyApp.view.main.Main&#39;</span>
+
+    <span class="c1">//-------------------------------------------------------------------------
+</span><span class="c1"></span>    <span class="c1">// Most customizations should be made to MyApp.Application. If you need to
+</span><span class="c1"></span>    <span class="c1">// customize this file, doing so below this section reduces the likelihood
+</span><span class="c1"></span>    <span class="c1">// of merge conflicts when upgrading to new versions of Sencha Cmd.
+</span><span class="c1"></span>    <span class="c1">//-------------------------------------------------------------------------
+</span><span class="c1"></span><span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>autoCreateViewport</code>是 Ext JS 5 的一个新功能。通过为 container 类指定<code>autoCreateViewport</code>，你可以使用任何类作为你的 Viewport。在这个你还子中我们使用 MyApp.view.main.Main（它是一个 Container 类）作为 Viewport。</p>
+<h5 id="applicationjs">Application.js</h5>
+<p>每个 Ext JS 应用都是从一个 Application 类的实例开始的。这个类由 app.js 调用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.Application&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.app.Application&#39;</span><span class="p">,</span>
+
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;MyApp&#39;</span><span class="p">,</span>
+
+    <span class="nx">stores</span><span class="o">:</span> <span class="p">[</span>
+        <span class="c1">// TODO: add global/shared stores here
+</span><span class="c1"></span>    <span class="p">],</span>
+
+    <span class="nx">launch</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// TODO - Launch the application
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Application 类包含了应用的命名空间、共享的 store 等全局设置。</p>
+<h4 id="view">View</h4>
+<p>View 都是 Ext.Component 的子类。View 包含了应用中所有可以看到的东西。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.view.main.Main&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.container.Container&#39;</span><span class="p">,</span>
+
+    <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;app-main&#39;</span><span class="p">,</span>
+
+    <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;main&#39;</span><span class="p">,</span>
+    <span class="nx">viewModel</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;main&#39;</span>
+    <span class="p">},</span>
+
+    <span class="nx">layout</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;border&#39;</span>
+    <span class="p">},</span>
+
+    <span class="nx">items</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;panel&#39;</span><span class="p">,</span>
+        <span class="nx">bind</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;{name}&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">region</span><span class="o">:</span> <span class="s1">&#39;west&#39;</span><span class="p">,</span>
+        <span class="nx">html</span><span class="o">:</span> <span class="s1">&#39;&lt;ul&gt;...&lt;/ul&gt;&#39;</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">250</span><span class="p">,</span>
+        <span class="nx">split</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">tbar</span><span class="o">:</span> <span class="p">[{</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Button&#39;</span><span class="p">,</span>
+            <span class="nx">handler</span><span class="o">:</span> <span class="s1">&#39;onClickButton&#39;</span>
+        <span class="p">}]</span>
+    <span class="p">},{</span>
+        <span class="nx">region</span><span class="o">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;tabpanel&#39;</span><span class="p">,</span>
+        <span class="nx">items</span><span class="o">:</span><span class="p">[{</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Tab 1&#39;</span><span class="p">,</span>
+            <span class="nx">html</span><span class="o">:</span> <span class="s1">&#39;&lt;h2&gt;Content ...&lt;/h2&gt;&#39;</span>
+        <span class="p">}]</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>View 并不包含任何程序逻辑。所有的 view 逻辑应该放在 ViewController 中。</p>
+<p>View 中比较重要的是配置是 controller 和 viewModel。</p>
+<h5 id="controller-配置">Controller 配置</h5>
+<p><code>controller</code>配置项可以指定 View 的 ViewController类，它是 View 的事件处理器的容器。</p>
+<h5 id="viewmodel-配置">ViewModel 配置</h5>
+<p><code>viewModel</code>配置项可以指定 View 的 ViewModel 类，它是组件的数据提供者。ViewModel 中的数据通常通过组件上的数据绑定来展现和编辑数据。如上例中的面板名称。</p>
+<h4 id="controller">Controller</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.view.main.MainController&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.app.ViewController&#39;</span><span class="p">,</span>
+
+    <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Ext.MessageBox&#39;</span>
+    <span class="p">],</span>
+
+    <span class="nx">alias</span><span class="o">:</span> <span class="s1">&#39;controller.main&#39;</span><span class="p">,</span>
+
+    <span class="nx">onClickButton</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">Ext</span><span class="p">.</span><span class="nx">Msg</span><span class="p">.</span><span class="nx">confirm</span><span class="p">(</span><span class="s1">&#39;Confirm&#39;</span><span class="p">,</span> <span class="s1">&#39;Are you sure?&#39;</span><span class="p">,</span> <span class="s1">&#39;onConfirm&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">onConfirm</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">choice</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">choice</span> <span class="o">===</span> <span class="s1">&#39;yes&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>查看之前的视图 Main.js，你可以看到 tbar 按钮事件的处理器 onClickButton 就定义在这个 Controller 中。</p>
+<p>ViewController 主要用于：</p>
+<ul>
+<li>使用<code>listeners</code>和<code>reference</code>配置连接到 View。</li>
+<li>View 的生命周期管理将自动管理相关联的 ViewController。从初始化到销毁，Ext.app.ViewController 总是与它相关的组件关联。</li>
+<li>ViewController 与其管理的 View 是一对一关联的，减少了复杂性</li>
+<li>提供了支持 View 嵌套使用的封装</li>
+<li>能在关联的 View 的任意层级上选中组件并监听它的事件</li>
+</ul>
+<h4 id="viewmodel">ViewModel</h4>
+<p>Ext JS 5 手册 应用程序架构（二）View Controller</p>
+<h5 id="监听">监听</h5>
+<p>在 Ext JS 5 中对<code>listeners</code>这个配置项进行了增强。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.view.foo.Foo&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.panel.Panel&#39;</span><span class="p">,</span>
+    <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+    <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+
+    <span class="nx">items</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;textfield&#39;</span><span class="p">,</span>
+        <span class="nx">fieldLabel</span><span class="o">:</span> <span class="s1">&#39;Bar&#39;</span><span class="p">,</span>
+        <span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">change</span><span class="o">:</span> <span class="s1">&#39;onBarChange&#39;</span>  <span class="c1">// no scope given here
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+
+<span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.view.foo.FooController&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.app.ViewController&#39;</span><span class="p">,</span>
+    <span class="nx">alias</span><span class="o">:</span> <span class="s1">&#39;controller.foo&#39;</span><span class="p">,</span>
+
+    <span class="nx">onBarChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">barTextField</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// called by &#39;change&#39; event
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上例的<code>onBarChange</code>并未指定<code>scope</code>，事件系统默认会到 Bar 所属的 ViewController 中去找。</p>
+<p>由于历史原因，组件的创建者可以使用<code>listeners</code>配置项，那么 View 是怎么监听到它自己的事件呢？答案是需要显式的配置<code>scope</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.view.foo.Foo&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.panel.Panel&#39;</span><span class="p">,</span>
+    <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+    <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+
+    <span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">collapse</span><span class="o">:</span> <span class="s1">&#39;onCollapse&#39;</span><span class="p">,</span>
+        <span class="nx">scope</span><span class="o">:</span> <span class="s1">&#39;controller&#39;</span>
+    <span class="p">},</span>
+
+    <span class="nx">items</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="p">...</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>scope</code>选项有两个有效的值：<code>this</code>和<code>controller</code>。当编写 MVC 应用时通常总会是<code>controller</code>，即在 ViewController （不是创建 View 实例的 ViewController）中查找。</p>
+<p>由于 View 可能通过 xtype 来创建：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.view.bar.Bar&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.panel.Panel&#39;</span><span class="p">,</span>
+    <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+    <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+
+    <span class="nx">items</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+        <span class="nx">listeners</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">collapse</span><span class="o">:</span> <span class="s1">&#39;onCollapse&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在这种情况下，Foo 是由 Bar 创建的。它能像 Foo 一样 去监听 collapse 事件。在之前的版本的 Ext JS 中，这种声明方式会导致冲突。在 Ext JS 5 中，解决了这一问题。在 Foo 中声明的事件将会触发在 Foo 的 ViewController 中的监听中。在 Bar 中声明的事件将会触发在 Bar 的 ViewController 中。</p>
+<h5 id="reference">Reference</h5>
+<p>我们经常会在编写 controller 时获取某个组件然后对它进行某些操作。比如获取某个表格，然后向表格中添加一行新记录。</p>
+<p>但是如何能获取到组件呢？在 Ext JS 4 中，需要使用<code>refs</code>配置项或其它的方式查找组件。所有这些技术都需要你在要获取的组件上放置一个特殊的唯一属性来进行标识。旧的技术手段使用<code>id</code>配置项（和 Ext.getCmp）或使用<code>itemId</code>配置项（使用<code>refs</code>或其它组件查询方法）。使用<code>id</code>的好处是查询速度快，但是它要求这标识符必须在整个应用程序的 DOM 结构中是唯一的，这通常不方便。使用<code>itemId</code>和其它查询方法要更灵活一些，但是也需要执行一些查询才能获取相应的组件。</p>
+<p>Ext JS 5 提供了<code>reference</code>配置项，可以通过<code>lookupReference</code>来获取组件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.view.foo.Foo&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.panel.Panel&#39;</span><span class="p">,</span>
+    <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+    <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+
+    <span class="nx">tbar</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Add&#39;</span><span class="p">,</span>
+        <span class="nx">handler</span><span class="o">:</span> <span class="s1">&#39;onAdd&#39;</span>
+    <span class="p">}],</span>
+
+    <span class="nx">items</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>
+        <span class="nx">reference</span><span class="o">:</span> <span class="s1">&#39;fooGrid&#39;</span>
+        <span class="p">...</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+
+<span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.view.foo.FooController&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.app.ViewController&#39;</span><span class="p">,</span>
+    <span class="nx">alias</span><span class="o">:</span> <span class="s1">&#39;controller.foo&#39;</span><span class="p">,</span>
+
+    <span class="nx">onAdd</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">grid</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">lookupReference</span><span class="p">(</span><span class="s1">&#39;fooGrid&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这类似于将<code>itemId</code>设置成&quot;fooGrid&quot;并执行“this.down('#fooGrid')”。区别在于<code>reference</code>配置项会将自己注册到它所属的 View 中；<code>lookupReference</code>方法通过查询缓存来检查 refrence 是否需要刷新。当缓存成功后会从缓存中加载对象。</p>
+<h5 id="封装">封装</h5>
+<p>在 Ext JS 4 MVC 实现中使用选择器非常灵活，但是有时会存在一些风险。这些选择器能“看到”所有的组件。</p>
+<p>这个问题可能通过遵循某些最佳实践来解决，但是在 ViewController 中使用<code>listeners</code>和<code>references</code>会变得简单。因为它们只会在它所属的 ViewController 间建立连接。View 可以使用任何的 reference 值，只要保证所属的 view 中是唯一的，这些名称不会被 view 的创建者暴露出去。</p>
+<p>同样，View 会在所属的 ViewController 中查找监听器，而不会将事件分发到由于不正确的选择器所选中的组件的 controller 上。</p>
+<h5 id="监听器和事件域">监听器和事件域</h5>
+<p>在 Ext JS 4.2中，MVC的事件分发器引入了事件域。事件域在事件发生时拦截事件，并通过选器来匹配并分发到 controller。“组件”事件域有整个组件的选择器，其它域具有限制性的选择器。</p>
+<p>在 Ext JS 5 中，每个 ViewController 创建一个被称为“View”事件域的新类型的事件域实例。这下事件域允许 ViewController 使用标准的<code>listen</code>和<code>control</code>方法限定在它们所属的 View。它也提供了一个特殊的选择器匹配 View 本身：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.view.foo.FooController&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.app.ViewController&#39;</span><span class="p">,</span>
+    <span class="nx">alias</span><span class="o">:</span> <span class="s1">&#39;controller.foo&#39;</span><span class="p">,</span>
+
+    <span class="nx">control</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;#&#39;</span><span class="o">:</span> <span class="p">{</span>  <span class="c1">// 匹配当前 View 自己
+</span><span class="c1"></span>            <span class="nx">collapse</span><span class="o">:</span> <span class="s1">&#39;onCollapse&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">button</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">click</span><span class="o">:</span> <span class="s1">&#39;onAnyButtonClick&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>主要的区别在于上面的监听和选择器。“button”选择器将匹配这个 view 或子 view 中任何的按钮。</p>
+<p>最后，这些事件域会向上层的 view 结构 “冒泡”。当事件发生时，首先会投递到标准监听器。然后是投递到它所属的 ViewController，然后是它所属的 view 的父 view 的 ViewController。最后，事件被投递到标准的“component&rsquo;事件域，被 Ext.app.Controller 派生的控制器处理。</p>
+<h5 id="生命周期">生命周期</h5>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

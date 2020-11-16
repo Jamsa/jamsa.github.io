@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/</link>
+    <description>Recent content on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TypeScript Handbook笔记</title>
+      <link>http://jamsa.github.io/devel/ts_handbook/ts-handbook/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/ts_handbook/ts-handbook/</guid>
+      <description>[toc] 基础类型 数字 与js一样ts中所有数字都是浮点，类型是number，除十进制、十六进制字面量外，还支持ES2015中的八进制和二进制字面量。</description>
+    </item>
+    
+    <item>
+      <title>SymmetricDS 配置笔记</title>
+      <link>http://jamsa.github.io/devel/symmetricds_use/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/symmetricds_use/</guid>
+      <description>介绍 SymmetricDS是一个数据同步工具，当前版本是基于数据库触发器捕捉数据变化的。 官方教程里模拟的场景是主从节点数据同步。使用的数据是</description>
+    </item>
+    
+    <item>
+      <title>Docker for Mac从容器访问主机服务</title>
+      <link>http://jamsa.github.io/devel/docker/docker_container_connect_host/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/docker/docker_container_connect_host/</guid>
+      <description>最近两天，在配置本机一套分布式系统的单点登录功能时，需要用到Nginx做同域单点登录，本打算直接用docker运行一个nginx容器就能解决</description>
+    </item>
+    
+    <item>
+      <title>将科学上网工具从ss切换到了v2ray</title>
+      <link>http://jamsa.github.io/devel/v2ray_bandwagon/</link>
+      <pubDate>Tue, 11 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/v2ray_bandwagon/</guid>
+      <description>昨天使用ss的时候发现bandwagon上做ss服务的vps IP又被墙了，这是最近几个月来第二次被墙了。 通过bwg提供的链接确认IP已经被墙</description>
+    </item>
+    
+    <item>
+      <title>Rust Mod和文件系统</title>
+      <link>http://jamsa.github.io/devel/rust/trpl_mod_filesystem/</link>
+      <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/rust/trpl_mod_filesystem/</guid>
+      <description>本文是读《Rust程序设计语言第二版》Mod和文件系统相关内容的笔记。阅读这本书所敲的代码放在Github上。代码没有按书的结构分章节创建工</description>
+    </item>
+    
+    <item>
+      <title>Rust变量生命周期管理</title>
+      <link>http://jamsa.github.io/devel/rust/trpl_life_cycle/</link>
+      <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/rust/trpl_life_cycle/</guid>
+      <description>本文是读《Rust程序设计语言第二版》生命周期相关内容的笔记。阅读这本书所敲的代码放在Github上。代码没有按书的结构分章节创建工程，而是</description>
+    </item>
+    
+    <item>
+      <title>Rust所有权系统</title>
+      <link>http://jamsa.github.io/devel/rust/trpl_ownership/</link>
+      <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/rust/trpl_ownership/</guid>
+      <description>本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。阅读这本书所敲的代码放在Github上。代码没有按书的结构分章节创建工程，而是将</description>
+    </item>
+    
+    <item>
+      <title>使用 Chocolatey 在 Win10 下配置 rust 开发环境</title>
+      <link>http://jamsa.github.io/devel/rust/rust_win_env/</link>
+      <pubDate>Sun, 29 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/rust/rust_win_env/</guid>
+      <description>简介 最近因学习rust编程语言，需要在家中的 Win10 系统上安装rust开发环境。 安装的目标是在vscode中配合racer实现代码提示功能。 因刚开</description>
+    </item>
+    
+    <item>
+      <title>Scala继承Java泛型方法的问题</title>
+      <link>http://jamsa.github.io/devel/java/scala_extend_java_generic_method/</link>
+      <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/scala_extend_java_generic_method/</guid>
+      <description>问题 在使用Scala实现JTV客户端界面程序时，我遇到了Scala重载Java类中的泛型方法的问题。 因为界面上的JList使用了自定义的元素</description>
+    </item>
+    
+    <item>
+      <title>JTV开发笔记3-服务端</title>
+      <link>http://jamsa.github.io/devel/java/jtv3/</link>
+      <pubDate>Thu, 19 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/jtv3/</guid>
+      <description>本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 概述 本文记录的是服务端的程序设计。在写完服务端和客户端程序的时候，我发现整个程序对连接的管</description>
+    </item>
+    
+    <item>
+      <title>JTV开发笔记4-客户端</title>
+      <link>http://jamsa.github.io/devel/java/jtv4/</link>
+      <pubDate>Thu, 19 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/jtv4/</guid>
+      <description>本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 概述 当前的客户端程序已经经过一轮重构。这轮重构将会话管理和控制窗口进行了分离。会话管理与主</description>
+    </item>
+    
+    <item>
+      <title>JTV开发笔记1-开始</title>
+      <link>http://jamsa.github.io/devel/java/jtv1/</link>
+      <pubDate>Tue, 17 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/jtv1/</guid>
+      <description>本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 起因 因为工作原因，我经常需要进行远程桌面操作。尝试过多种不同的远程桌面方案，如：QQ远程、</description>
+    </item>
+    
+    <item>
+      <title>JTV开发笔记2-网络通讯</title>
+      <link>http://jamsa.github.io/devel/java/jtv2/</link>
+      <pubDate>Tue, 17 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/jtv2/</guid>
+      <description>本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 协议 为实现远程控制，我们需要处理两类通讯，客户端与服务器的通讯、客户端与客户端的通讯。 客户</description>
+    </item>
+    
+    <item>
+      <title>PlantUML的使用</title>
+      <link>http://jamsa.github.io/devel/plantuml/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/plantuml/</guid>
+      <description>Status: draft 简介 布局控制 部署架构图 ditaa支持 graphviz支持</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手12-容器化</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut12/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut12/</guid>
+      <description>重要提示：本篇文章的目标在Edgware.SR3上并未成功 原因在于在这个版本上Eureka Client运行在Docker中时，无法以Eure</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手11-配置优化</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut11/</link>
+      <pubDate>Thu, 14 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut11/</guid>
+      <description>这是Spring Cloud上手系列的第十一篇，代码放在GitHub上，随着本系列文章更新。 概述 本篇主要对各应用的配置进行优化，原因主要有两个</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手10-日志收集</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut10/</link>
+      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut10/</guid>
+      <description>这是Spring Cloud上手系列的第十篇，代码放在GitHub上，随着本系列文章更新。 ELK简介 ELK是Logstash、ElasticS</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手9-服务监控</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut9/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut9/</guid>
+      <description>这是Spring Cloud上手系列的第九篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Sleuth 在Spring Cloud应用中，各服务之间存在</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手8-消息总线</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut8/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut8/</guid>
+      <description>这是Spring Cloud上手系列的第八篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Bus简介 Spring Cloud Bus以Spring Cloud Stream</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手7-配置中心</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut7/</link>
+      <pubDate>Thu, 07 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut7/</guid>
+      <description>这是Spring Cloud上手系列的第七篇，代码放在GitHub上，随着本系列文章更新。 概述 通过Spring Cloud Config可以对各个系统的配</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手6-负载均衡</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut6/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut6/</guid>
+      <description>这是Spring Cloud上手系列的第六篇，代码放在GitHub上，随着本系列文章更新。 Ribbon 概述 Ribbon是一个客户端负载均衡器。Feign</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手5-服务网关</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut5/</link>
+      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut5/</guid>
+      <description>这是Spring Cloud上手系列的第五篇，代码放在GitHub上，随着本系列文章更新。 ZUUL概述 服务网关是微服务中向外部系统提供REST</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手4-服务消费者</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut4/</link>
+      <pubDate>Sun, 03 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut4/</guid>
+      <description>这是Spring Cloud上手系列的第四篇，代码放在GitHub上，随着本系列文章更新。 版本依赖的坑 在写前面几篇的时候都没感觉到Spring</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手1-准备</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut1/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut1/</guid>
+      <description>目标 从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手2-服务注册</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut2/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut2/</guid>
+      <description>这是Spring Cloud上手系列的第二篇，代码放在GitHub上，随着本系列文章更新。 服务治理框架 Spring Cloud为服务治理提供了抽象接口，在</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud 上手3-服务提供者</title>
+      <link>http://jamsa.github.io/devel/java/spring_cloud_tut3/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut3/</guid>
+      <description>这是Spring Cloud上手系列的第三篇，代码放在GitHub上，随着本系列文章更新。 微服务下的代码共享 对于微服务间是否需要进行代码共享，</description>
+    </item>
+    
+    <item>
+      <title>Emacs 正则表达式搜索替换的小技巧</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-regexp-replace-tip/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-regexp-replace-tip/</guid>
+      <description>交互式的使用正则表达替换 在Emacs中使用正则表达式替换时并不会像isearch-forward-regexp那么直观，无法查看到输入的正则</description>
+    </item>
+    
+    <item>
+      <title>Emacs Dired Tip</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-dired-tips/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-dired-tips/</guid>
+      <description>批量mark文件 在dired下 % m regexp可批量mark文件。 更多mark方式可参照手册{:target=&amp;quot;_blank&amp;qu</description>
+    </item>
+    
+    <item>
+      <title>Git Tips</title>
+      <link>http://jamsa.github.io/devel/git_tip/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/git_tip/</guid>
+      <description>强制本地回退至指定版本 1 2 git reflog git reset --hard oxfb 强制远程回退至指定版本 先强制本地回退，然后强制推送。 1 git push -f</description>
+    </item>
+    
+    <item>
+      <title>Pelican 静态博客</title>
+      <link>http://jamsa.github.io/devel/pelican/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/pelican/</guid>
+      <description>重新整理博客 草稿 1 Status: draft 静态文件发布 直接使用 make github 会把生成的内容发布至 github 仓库，如果你希望在 github 上保存 blog 源码就会被覆盖。 我是直接在 output 目录下新建仓库，</description>
+    </item>
+    
+    <item>
+      <title>Python虚拟环境管理</title>
+      <link>http://jamsa.github.io/devel/python_env_mgr/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/python_env_mgr/</guid>
+      <description>Python虚拟环境的管理工具有很多种，我常用的有pyenv、virtualenv和conda。最近因为折腾深度学习环境经常需要安装不同版本</description>
+    </item>
+    
+    <item>
+      <title>RocketMQ 主要概念</title>
+      <link>http://jamsa.github.io/devel/java/rocketmq_conceptions/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/rocketmq_conceptions/</guid>
+      <description>主要概念 Topic：消息主题，它分布在多个Master节点上。Topic下有多个Topic分区，每个分区上有多个Que。Que是消息存储队列</description>
+    </item>
+    
+    <item>
+      <title>梯度的理解</title>
+      <link>http://jamsa.github.io/devel/gradient/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/gradient/</guid>
+      <description>梯度的理解 参考以下两篇文章: 如何直观形象的理解方向导数与梯度以及它们之间的关系？对导数和梯度的解释最为简明。 WangBo的机器学习乐园的博文</description>
+    </item>
+    
+    <item>
+      <title>Matplotlib的使用</title>
+      <link>http://jamsa.github.io/devel/matplotlib/</link>
+      <pubDate>Sun, 25 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/matplotlib/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 import pylab as pl import numpy as np #在-pi至pi之间产生256个数 X = np.linspace(-np.pi, np.pi, 256, endpoint=True) #计算X的sine与cosine值 C, S = np.cos(X), np.sin(X) #绘制曲</description>
+    </item>
+    
+    <item>
+      <title>Numpy的使用</title>
+      <link>http://jamsa.github.io/devel/numpy/</link>
+      <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/numpy/</guid>
+      <description>1 2 #numpy的使用 import numpy as np 1 2 data1 = [6,7.5,8,0,1] arr1 = np.array(data1) 1 2 data2 = [[1,2,3,4],[5,6,7,8]] arr2 = np.array(data2) 1 2 3 4 print(arr2.ndim) print(arr2.shape) print(arr1.dtype) print(arr2.dtype) 2 (2, 4) float64 int64 1 2 #数组初始化 np.zeros(10) array([ 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]) 1 2 #多维数</description>
+    </item>
+    
+    <item>
+      <title>Learning Sklearn笔记（三）</title>
+      <link>http://jamsa.github.io/devel/learning_sklearn/chap3/</link>
+      <pubDate>Fri, 05 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/learning_sklearn/chap3/</guid>
+      <description>非监督学习 从前一章我们可以看到即监督学习方法可以在已有数据基础上判断将来的数据，但也存在明显的缺点：数据必须是准备过的；必须人工对一定的样本</description>
+    </item>
+    
+    <item>
+      <title>Learning Sklearn笔记（二）</title>
+      <link>http://jamsa.github.io/devel/learning_sklearn/chap2/</link>
+      <pubDate>Fri, 05 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/learning_sklearn/chap2/</guid>
+      <description>Chap2 监督学习 使用SVM进行图像识别 SVM通过选择分享不同样例的最宽分割超平面来进行分类处理。 通过使用非线性平面，例如 polynomial 或 rbf(radial basis function) 核函数将样本映射</description>
+    </item>
+    
+    <item>
+      <title>Learning Sklearn笔记（四）</title>
+      <link>http://jamsa.github.io/devel/learning_sklearn/chap4/</link>
+      <pubDate>Fri, 05 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/learning_sklearn/chap4/</guid>
+      <description>Chap4 特征处理 本章主要学习： 特征抽取：将现实世界的数据构建为sklearn中可用的特征数据 特征选择：从可用的特征数据中，选择适当的特征集。 模型选</description>
+    </item>
+    
+    <item>
+      <title>Learning Sklearn笔记（一）</title>
+      <link>http://jamsa.github.io/devel/learning_sklearn/chap1/</link>
+      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/learning_sklearn/chap1/</guid>
+      <description>Chap1 介绍 任何机器学习问题可以描述为以下三个概念： - 需要学习如何解决的任务为T。 - 为解决该任务所需要的经验为E。 - 度量解决任务执行效果的P。 线性</description>
+    </item>
+    
+    <item>
+      <title>Numpy And Scipy笔记（三）</title>
+      <link>http://jamsa.github.io/devel/scipy_and_numpy/chap04-scikit/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/scipy_and_numpy/chap04-scikit/</guid>
+      <description>1 2 3 %matplotlib inline import numpy as np import matplotlib.pyplot as plt SciKit 本章主要讨论： Scikitimage：比`scipy.ndimage`更强的图像处理模块。 Scikitlearn</description>
+    </item>
+    
+    <item>
+      <title>Numpy And Scipy笔记（二）</title>
+      <link>http://jamsa.github.io/devel/scipy_and_numpy/chap03-scipy/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/scipy_and_numpy/chap03-scipy/</guid>
+      <description>1 2 3 #%matplotlib notebook %matplotlib inline import matplotlib.pyplot as plt SciPy SciPy以NumPy的数组计算处理功能为基础，提供了用于处理科学计算常用的方法：积分、取函数最大、最小值，取稀疏矩</description>
+    </item>
+    
+    <item>
+      <title>Numpy And Scipy笔记（一）</title>
+      <link>http://jamsa.github.io/devel/scipy_and_numpy/chap02-numpy/</link>
+      <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/scipy_and_numpy/chap02-numpy/</guid>
+      <description>NumPy NumPy 数组 `ndarray`与list类似，但是它只允许存储一种类型的数据。这样能得更好的弹性。 1 import numpy as np 1 2 3 4 5 6 7 arr = np.arange(1e7) # 10^7 element larr = arr.tolist() def list_times(alist,</description>
+    </item>
+    
+    <item>
+      <title>关于</title>
+      <link>http://jamsa.github.io/pages/about/</link>
+      <pubDate>Mon, 25 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/pages/about/</guid>
+      <description>Jamsa 的读书笔记</description>
+    </item>
+    
+    <item>
+      <title>测试页</title>
+      <link>http://jamsa.github.io/pages/test/</link>
+      <pubDate>Mon, 25 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/pages/test/</guid>
+      <description>S_lug: URL中该文章的链接地址 Author: 作者 数学公式 \begin{equation} x=\sqrt{b} \end{equation} If $a^2=b$ and ( b=2 ), then the solution must be either $$ a=+\sqrt{2} $$ or $$ a=-\sqrt{2} $$. $$J(\theta) = \frac{1}{2m}\sum_{i=1}^{m}(\theta^{T}X_{i} - Y_{i})^2$$ $e=mc^2$ 代码块 1 2 3 4 5 6 7 @interface «nameOfClas</description>
+    </item>
+    
+    <item>
+      <title>使用PyQT开发巡更系统的总结</title>
+      <link>http://jamsa.github.io/devel/pyqtjk/</link>
+      <pubDate>Sat, 16 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/pyqtjk/</guid>
+      <description>PyQT的内存管理模型： PyQT中使用了两套内存管理模型，因此需要注意内存泄漏的问题。python对象会自动释放内存，但是Qt对象却不一定。</description>
+    </item>
+    
+    <item>
+      <title>Sklearn的基本使用</title>
+      <link>http://jamsa.github.io/devel/sklearn/</link>
+      <pubDate>Tue, 05 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/sklearn/</guid>
+      <description>1 2 3 from sklearn import datasets # 样例数据:鸢尾花 iris = datasets.load_iris() 1 2 3 # 150个鸢尾花观察值指定了一些测量：花萼宽带、花萼长度、花瓣宽度和花瓣长度， # 以及对应的子类：</description>
+    </item>
+    
+    <item>
+      <title>Begin Mac Programming 笔记</title>
+      <link>http://jamsa.github.io/devel/begin_mac_progamming/</link>
+      <pubDate>Mon, 29 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/begin_mac_progamming/</guid>
+      <description>关于对象 Objective-C 中的对象类型 Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。 当我们在Objectiv</description>
+    </item>
+    
+    <item>
+      <title>C Primer Plus 笔记</title>
+      <link>http://jamsa.github.io/devel/c_primer_plus/</link>
+      <pubDate>Mon, 29 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/c_primer_plus/</guid>
+      <description>C Primer Plus 笔记 起步 标准 C89 标准是由 1983 年由 ANSI 起草，于 1989 年被正式接受，它定义了语言和标准 C 程序库。C99 标准是 ISO于 1990 年制定的。ISO 和 ANSI 的标准在本</description>
+    </item>
+    
+    <item>
+      <title>Learning Go 笔记</title>
+      <link>http://jamsa.github.io/devel/learning_go/</link>
+      <pubDate>Fri, 05 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/learning_go/</guid>
+      <description>Learning Go 笔记 介绍 离线文档 Go自带godoc用于查看程序模块的文档。 1 godoc builtin Hello World 1 2 3 4 5 6 7 8 /* 这行是必须的，所有 Go 文件都必须以 package 开头，对于可单独</description>
+    </item>
+    
+    <item>
+      <title>Scala Cookbook 笔记</title>
+      <link>http://jamsa.github.io/devel/java/scala_cookbook/</link>
+      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/scala_cookbook/</guid>
+      <description>Scala Cookbook 笔记 String 简介 Scala String 是 Java String，可以使用 Java 中 String 对象的方法。由于 Scala 提供了隐式转换，因此 String（即使它是 final 的） 实例也可以使用 StringOps 类中的所</description>
+    </item>
+    
+    <item>
+      <title>Build Machine Learning Systems with Python 笔记</title>
+      <link>http://jamsa.github.io/devel/build_machine_learning_system/</link>
+      <pubDate>Mon, 18 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/build_machine_learning_system/</guid>
+      <description>Build Machine Learning Systems with Python 笔记 起步 机器学习（ML）告诉机器如何自己处理任务。 机器学习计算的典型过程： 读取和清理数据 浏览和理解输入的数据 分析如何以将数据呈现</description>
+    </item>
+    
+    <item>
+      <title>Hadoop In Action 笔记</title>
+      <link>http://jamsa.github.io/devel/hadoop_in_action/</link>
+      <pubDate>Mon, 18 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/hadoop_in_action/</guid>
+      <description>Hadoop In Action 笔记 MapReduce MapRecuce程序执行的2个阶段，分别称为mapping和reducing。每个阶段都定义了数据处理函数，这些函数被称为ma</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 应用程序架构（一）应用程序架构简介</title>
+      <link>http://jamsa.github.io/devel/extjs/architecture_view_overview/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/architecture_view_overview/</guid>
+      <description>Ext JS 5 手册 应用程序架构（一）应用程序架构简介 程序架构 应用程序架构简介 Ext JS 提供了对 MVC 和 MVVM 架构的支持。 MVC 在 MVC 架构中，用户与 View 交互，它显示 Model 中的数</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（一）可访问性</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_accessiblity/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_accessiblity/</guid>
+      <description>Ext JS 5 手册 核心概念（一）可访问性 核心概念 可访问性 它提供了浅析的标明当前焦点的样式，并允许自字义焦点样式 键盘导航 组件的 DOM 元素使用属性提供了语义</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（三）组件</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_components/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_components/</guid>
+      <description>Ext JS 5 手册 核心概念（三）组件 核心概念 组件 Ext JS 应用中的 UI 是由一个或多个被称为组件(Components)的构件组成的。所有组件都是Ext.Co</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（二）类型系统</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_classes/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_classes/</guid>
+      <description>Ext JS 5 手册 核心概念（二）类型系统 核心概念 类型系统 命名约定 类 类名只允许包含字母和数字。数字是允许使用的，但只在必要时使用。不使用下划线、连字符</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（五）事件</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_events/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_events/</guid>
+      <description>Ext JS 5 手册 核心概念（五）事件 核心概念 使用事件 Ext JS 中的组件和类在其生命周期中会产生大量的事件。事件能让你的代码响应程序的变化。 什么是事件 以 Ext.Component 渲</description>
+    </item>
+    
+    <item>
+      <title>Ext JS 5 手册 核心概念（四）数据包</title>
+      <link>http://jamsa.github.io/devel/extjs/core_concepts_data_package/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/core_concepts_data_package/</guid>
+      <description>Ext JS 5 手册 核心概念（四）数据包 核心概念 数据包 数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的： Ext.data.Model Store Ext.data.proxy.Proxy 上面的类几乎在</description>
+    </item>
+    
+    <item>
+      <title>Ext JS5 手册 应用程序架构（二） View Controller</title>
+      <link>http://jamsa.github.io/devel/extjs/architecture_view_controller/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/architecture_view_controller/</guid>
+      <description>Ext JS5 手册 应用程序架构（二） View Controller 监听 在 Ext JS 5 中对listeners这个配置项进行了增强。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 Ext.define(&amp;#39;MyApp.view.foo.Foo&amp;#39;, { extend: &amp;#39;Ext.panel.Panel&amp;#39;, xtype:</description>
+    </item>
+    
+    <item>
+      <title>设计模式回顾</title>
+      <link>http://jamsa.github.io/devel/design_pattern/</link>
+      <pubDate>Tue, 04 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/design_pattern/</guid>
+      <description>设计模式回顾 创建模式 Simple Factory 工厂类提供静态方法来创建某一接口类型的具体实现，该方法根据传入的参数来决定需要创建哪种类型的实现，因此传入的参数一般</description>
+    </item>
+    
+    <item>
+      <title>Beginning Android Games学习笔记</title>
+      <link>http://jamsa.github.io/devel/mobile/beginning_android_games/</link>
+      <pubDate>Sat, 28 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/mobile/beginning_android_games/</guid>
+      <description>Game Development 101 在开始hacking前先进行游戏设计。这并非指基本的设计，比如FPS中的WSAD的鼠标之类的。而是类似：是否需要splash scree</description>
+    </item>
+    
+    <item>
+      <title>Practical Clojure 记笔</title>
+      <link>http://jamsa.github.io/devel/java/practical-clojure/</link>
+      <pubDate>Mon, 12 Mar 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/practical-clojure/</guid>
+      <description>状态管理 Clojure主张消除状态管理。而现实世界仍要需要状态变化。 多数语言将事物（things）描述为变量或对象，并允许修改它们。这造成了</description>
+    </item>
+    
+    <item>
+      <title>Java NIO笔记</title>
+      <link>http://jamsa.github.io/devel/java/java_nio/</link>
+      <pubDate>Wed, 06 Jul 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/java_nio/</guid>
+      <description>简介 JDK1.4，以后的版本提供了java.nio包，具体说是Channel和Selector类。 I/O概念 缓冲区操作 缓冲区操作 缓冲区是所有</description>
+    </item>
+    
+    <item>
+      <title>Practical Common Lisp笔记</title>
+      <link>http://jamsa.github.io/devel/lisp/practical_common_lisp/</link>
+      <pubDate>Fri, 03 Jun 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/lisp/practical_common_lisp/</guid>
+      <description>环境搭建 尝试了多种common lisp的实现，在windows下使用Lispbox时并不能使用slime。而gnu common lisp和ansi common li</description>
+    </item>
+    
+    <item>
+      <title>Programming in Scala 的读书笔记</title>
+      <link>http://jamsa.github.io/devel/java/scala-tip/</link>
+      <pubDate>Mon, 27 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/scala-tip/</guid>
+      <description>语言基础 变量定义 scala的两种变量：val和var。val类似Java中的final变量。 scala中使用类型推断： 1 val msg = &amp;#34;Hello, world&amp;#34; scala</description>
+    </item>
+    
+    <item>
+      <title>OAF开发笔记</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/myoaf/</link>
+      <pubDate>Thu, 09 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/myoaf/</guid>
+      <description>开发advancedTable in advancedTable 配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable</description>
+    </item>
+    
+    <item>
+      <title>Writing GNU Emacs Extensions笔记</title>
+      <link>http://jamsa.github.io/devel/editor/writing-gnu-emacs-extensions/</link>
+      <pubDate>Tue, 07 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/writing-gnu-emacs-extensions/</guid>
+      <description>定制Emacs 全局按键绑定 1 (global-set-key keysequence command) keysequence 中普通字符按键直接用相应的字符表示。\应该被写作\\。特殊字符如META-问号应该写作\M-?。CONT</description>
+    </item>
+    
+    <item>
+      <title>Learn VI 笔记</title>
+      <link>http://jamsa.github.io/devel/editor/learning_vi/</link>
+      <pubDate>Wed, 29 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/learning_vi/</guid>
+      <description>VI编辑器 vi默认模式为命令模式 基本编辑命令都是1到2个字母，如i和cw（change word） 命令特点： 命令大小写敏感 输入的时候没有回显 不</description>
+    </item>
+    
+    <item>
+      <title>记笔记的方法</title>
+      <link>http://jamsa.github.io/devel/cornell_method/</link>
+      <pubDate>Sun, 19 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/cornell_method/</guid>
+      <description>所有笔记记法都有优缺点。当你自己已经熟悉这些种技法时，你会发现自己其实也在做同样的事情。这是因为在不同的演讲和会议上，你会自动地意识到究竟哪</description>
+    </item>
+    
+    <item>
+      <title>汇编语言（王爽）读书笔记</title>
+      <link>http://jamsa.github.io/devel/asm/</link>
+      <pubDate>Wed, 01 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/asm/</guid>
+      <description>基础知识 存储单元 最小信息单位是bit（比特、二进制位），8bit为1Byte（字节）。存储单元以字节为单位计。128个存储单元的存储器可以存</description>
+    </item>
+    
+    <item>
+      <title>SICP读书笔记</title>
+      <link>http://jamsa.github.io/devel/lisp/sicp/</link>
+      <pubDate>Tue, 31 Aug 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/lisp/sicp/</guid>
+      <description>Chap.1 Building Abstractions with Procedures 在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将</description>
+    </item>
+    
+    <item>
+      <title>Android Dev Guide学习笔记 User Interface</title>
+      <link>http://jamsa.github.io/devel/mobile/android-dev-guide/ui-index/</link>
+      <pubDate>Fri, 20 Aug 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/mobile/android-dev-guide/ui-index/</guid>
+      <description>用户界面 在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是</description>
+    </item>
+    
+    <item>
+      <title>Android Dev Guide学习笔记 Application Fundamentals</title>
+      <link>http://jamsa.github.io/devel/mobile/android-dev-guide/fundamentals/</link>
+      <pubDate>Fri, 30 Jul 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/mobile/android-dev-guide/fundamentals/</guid>
+      <description>Application基础 Android应用程序是用Java语言编写的。被编译的代码和数据以及应用程序需要的资源文件被打包aapt tool打</description>
+    </item>
+    
+    <item>
+      <title>Android Dev Guide学习笔记 What is Android?</title>
+      <link>http://jamsa.github.io/devel/mobile/android-dev-guide/what-is-android/</link>
+      <pubDate>Fri, 30 Jul 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/mobile/android-dev-guide/what-is-android/</guid>
+      <description>Android是什么？ 功能 Application framework允许重用和替换的组件 Dalvik虚拟机 集成了基于WebKit引擎的浏览器 基于2D图形库的优化过</description>
+    </item>
+    
+    <item>
+      <title>OA Framework Page解析</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/page/</link>
+      <pubDate>Tue, 27 Jul 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/page/</guid>
+      <description>Page基础 在浏览器看来，OA Framework页面与其它web页面一样，被渲染为HTML。 在中间层中，页面是由内存中层级分布的Javabe</description>
+    </item>
+    
+    <item>
+      <title>SOA Suite培训</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/soa_suite/</link>
+      <pubDate>Tue, 13 Jul 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/soa_suite/</guid>
+      <description>介绍 配置EBS启用SOA Suite Native interface开放为WebService接口 通过ISG调用外部系统提供的WebService EBS的配置 Native Service</description>
+    </item>
+    
+    <item>
+      <title>会计拉面读书笔记</title>
+      <link>http://jamsa.github.io/devel/kjlm/</link>
+      <pubDate>Fri, 12 Mar 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/kjlm/</guid>
+      <description>损益平衡点（Break Even Point）：利润为零或收支相等时的销售额或者销售量。 固定费用：每个月保持固定不变的费用。 变动费用：随销量变化的费用</description>
+    </item>
+    
+    <item>
+      <title>Emacs Lisp参考手册</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-lisp/</link>
+      <pubDate>Thu, 31 Dec 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-lisp/</guid>
+      <description>介绍 介绍和约定 这是2.9版的GNU Emacs Lisp参考手册，适应于GNU Emacs 22.1。 警告 Lisp历史 习惯约定 这节说明了手册中的符号约定。 一些术语 整</description>
+    </item>
+    
+    <item>
+      <title>Better Builds With Maven 学习笔记</title>
+      <link>http://jamsa.github.io/devel/java/maven2/</link>
+      <pubDate>Mon, 21 Sep 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/maven2/</guid>
+      <description>开始 准备使用Maven Maven默认读取&amp;lt;user_home&amp;gt;/.m2/settings.xml，通过proxy段的配置设置代理</description>
+    </item>
+    
+    <item>
+      <title>Maven2 Tips</title>
+      <link>http://jamsa.github.io/devel/java/maven2tips/</link>
+      <pubDate>Mon, 21 Sep 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/maven2tips/</guid>
+      <description>mvn命令行 执行Java程序 1 mvn exec:java -Dexec.mainClass=org.jamsa.scalademo.FunctionValue 运行单个单元测试 1 mvn test -Dtest=AppTest 安装包和源码包 1 mvn install:install-file -Dfile=target/jsonplugin-0.34.jar -Dsources=target/jsonplugin-0.34-sources.jar -DartifactId=jsonplugin -DgroupId=com.googlecode -Dversion=0.34 -Dclassifier=sources -Dpackaging=jar 生成lift应用 1 mvn.bat archetype:generate -U -DarchetypeGroupId=net.liftweb -DarchetypeArtifactId=lift-archetype-blank -DremoteRepositories=http://scala-tools.org/repo-releases -DgroupId=demo.helloworld -DartifactId=helloworld -Dversion=1.0-SNAPSHOT pom.x</description>
+    </item>
+    
+    <item>
+      <title>JBoss Seam 学习笔记</title>
+      <link>http://jamsa.github.io/devel/java/seam/</link>
+      <pubDate>Thu, 15 Jan 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/seam/</guid>
+      <description>JBoss Seam介绍 Seam是一个for Java EE5的应用框架。它是从下面的规则得到灵感的： 集成JSF和EJB3.0 集成AJAX。 Seam支持两个开源</description>
+    </item>
+    
+    <item>
+      <title>Emacs Org Mode及GTD</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-org/</link>
+      <pubDate>Fri, 09 Jan 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-org/</guid>
+      <description>Org Mode常用快捷键 文档操作 TAB 折叠或打开子项 S-TAB 折叠整个文档 节点操作相关 M-左右 左右移动节点 M-S-左右 整体左右移动节点及子节点 M-上下 上移或</description>
+    </item>
+    
+    <item>
+      <title>OA Framework应用构建之——实现控制器</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_control/</link>
+      <pubDate>Wed, 06 Aug 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_control/</guid>
+      <description>Slug: build_control 设计一个OA Controller 如OA Framework Page解析中所描述的，OA Controller定义了web beans的行为。具体来说，编写控制器代码的目的是： 在</description>
+    </item>
+    
+    <item>
+      <title>OA Framework状态管理</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/state/</link>
+      <pubDate>Fri, 25 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/state/</guid>
+      <description>概述 这个文档用于描述OA Framework状态管理架构，包括缓存应用系统用户数据和从页面间值传递的机制。 结构预览 主要状态管理组： 根应用模块（</description>
+    </item>
+    
+    <item>
+      <title>Programming in Emacs Lisp笔记</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-lisp-intro/</link>
+      <pubDate>Wed, 16 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-lisp-intro/</guid>
+      <description>序 表处理 Lisp列表 数字，列表中的列表 列表里也可以包含数字：(+ 2 2)。 Lisp里的数据和程序都是相同的方式实现的，他们都是在括号中由单词、</description>
+    </item>
+    
+    <item>
+      <title>Emacs Tips</title>
+      <link>http://jamsa.github.io/devel/editor/emacs/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs/</guid>
+      <description>一 基本概念 1.常见的按键组合： a.最常见的命令都被绑定到了&amp;quot;C-n&amp;quot;(n可以是任意符号) b.次常见的命令被绑定到了&amp;qu</description>
+    </item>
+    
+    <item>
+      <title>OA Framework应用构建之——创建属性集</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_attrsets/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_attrsets/</guid>
+      <description>Slug: build_attrsets 设计属性集 ** 注意：** 这节是为Oracle EBS开发者内部使用的。</description>
+    </item>
+    
+    <item>
+      <title>OA Framework应用构建之——实现模型</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_model/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_model/</guid>
+      <description>Slug: build_model 设计模型对象 客户／服务代码分离 在OA Framework的MVC框架中，OA Framework划出了客户端和服务端类的清析界限，典型的JS</description>
+    </item>
+    
+    <item>
+      <title>OA Framework应用构建之——实现视图</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_view/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_view/</guid>
+      <description>Slug: build_view 页面 创建页面的基本步骤是创建pages，region，items。 Page LayoutRegion的关键属性 创建一个pageLayout区域时</description>
+    </item>
+    
+    <item>
+      <title>wxPython In Action的读书笔记</title>
+      <link>http://jamsa.github.io/devel/wxpython/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/wxpython/</guid>
+      <description>Chap 1 Welcome to wxPython 一个20行的wxPython程序： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 #!/bin/env python import wx class MyFrame(wx.Frame): def __init__(self): wx.Frame.__init__(self,None,-1,&amp;#34;My Frame&amp;#34;,size=(300,300)) panel = wx.Panel(self,-1) panel.Bind(wx.EVT_MOTION,self.OnMove) wx.StaticText(panel,-1,&amp;#34;Pos&amp;#34;,pos=(10,12)) self.posCtrl = wx.TextCtrl(panel,-1,&amp;#34;&amp;#34;,pos=(40,10)) def OnMove(self,event): pos = event.GetPosition() self.posCtrl.SetValue(&amp;#34;%s,%s&amp;#34; % (pos.x,pos.y)) if __name__ ==</description>
+    </item>
+    
+    <item>
+      <title>实现服务端功能之——服务</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/bus_svc_overview/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/bus_svc_overview/</guid>
+      <description>Slug: bus_svc_overview 面向服务的架构预览 服务的概念已经出现了很长时间，但面向服务的概念相对是比较新的。面向服务的架构是一种有助于降低应用耦合的一种构建应用的风</description>
+    </item>
+    
+    <item>
+      <title>高级OA Framework开发主题——支持浏览后退按钮</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/adv_backbutton/</link>
+      <pubDate>Fri, 04 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/adv_backbutton/</guid>
+      <description>Slug: adv_backbutton 概述 本文档提供了一组目标并描述了编码标准，你必须遵守以确保对浏览器后退按钮的支持。 可用性测试显示用户非常依赖于浏览器后退按钮。不幸的是，</description>
+    </item>
+    
+    <item>
+      <title>高级OA Framework开发主题——支持浏览后退按钮的用例</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/adv_back_use_cases/</link>
+      <pubDate>Fri, 04 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/adv_back_use_cases/</guid>
+      <description>Slug: adv_back_use_cases 概述 本文档描述了与标准后退行为相关的公用应用设计模式，并包含了各个步骤的实现细节。 需要阅读 Supporting the Browser Back Button - Target Goals 一般规则 通常，你的产品在用户使</description>
+    </item>
+    
+    <item>
+      <title>Ext学习笔记</title>
+      <link>http://jamsa.github.io/devel/extjs/extjs/</link>
+      <pubDate>Wed, 19 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/extjs/extjs/</guid>
+      <description>基础 Ext继承机制 Ext对象 Ext.onReady()是Ext.EventManager.onDocumentReady()的速写方法。 布局</description>
+    </item>
+    
+    <item>
+      <title>Xah的Emacs Lisp 教程学习笔记</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-xah-tutorial/</link>
+      <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-xah-tutorial/</guid>
+      <description>例子 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68</description>
+    </item>
+    
+    <item>
+      <title>Linux内核设备驱动第三版读书笔记</title>
+      <link>http://jamsa.github.io/devel/linux/linuxdevicedriversiii/</link>
+      <pubDate>Thu, 17 Jan 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/linux/linuxdevicedriversiii/</guid>
+      <description>Chap 2 构建和运行内核 设置测试系统 书中的例子以Kernel 2.6.x为基础（2.6.10）。 Hello World模块 1 2 3 4 5 6 7 8 9 10 11 12 13 14 #include &amp;lt;linux/init.h&amp;gt;#include &amp;lt;linux/module.h&amp;gt;MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;);</description>
+    </item>
+    
+    <item>
+      <title>Programming Perl笔记</title>
+      <link>http://jamsa.github.io/devel/perl/</link>
+      <pubDate>Sun, 02 Dec 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/perl/</guid>
+      <description>OverView 自然的人工语言 变量语法 变量类型 类型 || 字符 || 例子 || 说明 标量 | $ | $cents | 单个的值（数字或字符串） 数组 | @ | @large | 值列表，键为数字 哈希表 | % | %interest | 一</description>
+    </item>
+    
+    <item>
+      <title>实现服务端功能之——Java实体对象</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/bus_java/</link>
+      <pubDate>Sun, 02 Sep 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/bus_java/</guid>
+      <description>Slug: bus_java 关于实体对象 实体对象包含了业务逻辑和对表的DML操作。 对象模型和关键类 oracle.apps.fnd.framework.server.</description>
+    </item>
+    
+    <item>
+      <title>OA Framework应用构建之——错误处理</title>
+      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_error/</link>
+      <pubDate>Tue, 21 Aug 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_error/</guid>
+      <description>Slug: build_error 异常类型 OA Framework处理三种基本类型的异常：通用、校验和严重。这些类型在这节中简单的描述；特殊异常的使用在下面介绍。 通用异常 BC</description>
+    </item>
+    
+    <item>
+      <title>Emacs Muse标记规则学习</title>
+      <link>http://jamsa.github.io/devel/editor/muse_start/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/muse_start/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70</description>
+    </item>
+    
+    <item>
+      <title>gawk笔记</title>
+      <link>http://jamsa.github.io/devel/linux/gawk/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/linux/gawk/</guid>
+      <description>I.简介 gawk的主要功能是针对档案的第一行搜寻指令的patterns。当一行里有符合指定的patterns，gawk就会在此行执行指定的a</description>
+    </item>
+    
+    <item>
+      <title>Python 编码规则</title>
+      <link>http://jamsa.github.io/devel/python_codestyle/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/python_codestyle/</guid>
+      <description>呆板的坚持使用一致性是傻得没边！(A Foolish Consistency is the Hobgoblin of Little Minds) 打破一条既定规则的两个好理由： a. 当应用这个规则是将导致代码可读性下降，即便对某人来说，他</description>
+    </item>
+    
+    <item>
+      <title>Sed Tips</title>
+      <link>http://jamsa.github.io/devel/linux/sed/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/linux/sed/</guid>
+      <description>I介绍 1. sed可以完成的工作 sed最常用在编辑那些需要不断重复某些编辑动作的文件上。 可以用sed完成一些重复性的工作。 sed可以一次执行多个</description>
+    </item>
+    
+  </channel>
+</rss>

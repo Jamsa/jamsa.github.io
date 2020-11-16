@@ -1,642 +1,174 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="author" content="Jamsa" />
-        <meta name="robots" content="index, follow"/>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-        <meta property="og:title" content="Jamsa的笔记"/>
-        <meta property="og:url" content="."/>
-        <meta property="og:site_name" content="Jamsa的笔记"/>
-        <meta property="og:type" content="website"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-        <link rel="canonical" href="." />
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-        <title>Jamsa的笔记</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
-        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+<meta name="author" content="Jamsa" /><meta name="description" content="Jamsa&#39;s blog site." /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/" />
+  <link href="http://jamsa.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Jamsa&#39;s Blog" />
+  <link href="http://jamsa.github.io/index.xml" rel="feed" type="application/rss+xml" title="Jamsa&#39;s Blog" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Jamsa&#39;s Blog" />
+<meta property="og:description" content="Jamsa&#39;s blog site." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://jamsa.github.io/" />
+<meta property="og:updated_time" content="2020-02-13T00:00:00+00:00" />
+<meta itemprop="name" content="Jamsa&#39;s Blog">
+<meta itemprop="description" content="Jamsa&#39;s blog site.">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Jamsa&#39;s Blog"/>
+<meta name="twitter:description" content="Jamsa&#39;s blog site."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="posts" class="posts">
+    </section>
+  
+  <nav class="pagination">
+    
+    
+  </nav>
+        </div>
         
 
-        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
-
-        <script type="text/javascript">var switchTo5x=true;</script>
-        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-        <script type="text/javascript">
-         stLight.options({
-             publisher: "",
-             doNotHash: false,
-             doNotCopy: false,
-             hashAddressBar: false
-         });
-        </script>
-    </head>
-
-    <body id="index">
-        <div class="row-fluid">
-            <div class="span10 offset1">
-                <header id="banner" >
-                    <h1>
-                        <a href="./">Jamsa的笔记 </a>
-                    </h1>
-                    <nav class="navbar">
-                        <div class="navbar-inner">
-                            <ul class="nav">
-                                <li ><a href="./category/da-shu-ju.html">大数据</a></li>
-                                <li ><a href="./category/fang-fa.html">方法</a></li>
-                                <li ><a href="./category/ji-qi-xue-xi.html">机器学习</a></li>
-                                <li ><a href="./category/kai-fa.html">开发</a></li>
-                                <li ><a href="./category/qian-duan.html">前端</a></li>
-                                <li ><a href="./category/xiao-lu.html">效率</a></li>
-                                <li ><a href="./category/yi-dong.html">移动</a></li>
-                            </ul>
-
-                        </div>
-                    </nav>
-                </header><!-- /#banner -->
-            </div>
-        </div>
-
-        <div class="row-fluid">
-            <div class="span10 offset1">
-                <div class="row-fluid">
-<div class="span9">
-                <section>
-                    <ol id="posts-list" class="hfeed" start="9">
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./symmetricds-pei-zhi-bi-ji.html" rel="bookmark" title="Permalink to SymmetricDS 配置笔记">
-                                       SymmetricDS 配置笔记
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2019-01-09
-
-        |
-        tags:         <a href="./tag/shu-ju-tong-bu.html">数据同步</a>
-
-
-        |
-        <a href="./symmetricds-pei-zhi-bi-ji.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>介绍</h1>
-<p>SymmetricDS是一个数据同步工具，当前版本是基于数据库触发器捕捉数据变化的。</p>
-<p>官方教程里模拟的场景是主从节点数据同步。使用的数据是来自于SymmetricDS自带的一些SQL脚本。看完后对有些概念还是比较模糊，因此我又重新模拟了一个简单的场景。这个场景里我只对单表DEMO进行双向数据同步。</p>
-<h1>配置步骤</h1>
-<p>这个示例的目标是在corp和store1两个库间，实现DEMO表的双向同步。为方便测试，使用本机docker上运行的mariadb数据库。创建corp和store1两个库和数据库用户。</p>
-<h2>安装</h2>
-<p>我使用的是从官网下载的SymmetricDS 3.9.16。下载完成后，解压即可。</p>
-<h2>准备数据库</h2>
-<p>docker compose配置信息如下：</p>
-<div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">:</span>
-    <span class="n">image</span><span class="o">:</span> <span class="n">mariadb</span>
-    <span class="n">ports</span><span class="o">:</span>
-     <span class="o">-</span> <span class="s2">"3306:3306"</span>
-    <span class="n">environment</span><span class="o">:</span>
-     <span class="o">-</span> <span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="n">mysql</span>
-     <span class="o">-</span> <span class="n">MYSQL_DATABASE</span><span class="o">=</span><span class="n">symtest</span>
-     <span class="o">-</span> <span class="n">MYSQL_USER</span><span class="o">=</span><span class="n">symtest</span>
-     <span class="o">-</span> <span class="n">MYSQL_PASSWORD</span><span class="o">=</span><span class="n">symtest</span>
-    <span class="n">volumes</span><span class="o">:</span>
-     <span class="o">-</span> <span class="o">./</span><span class="n">mysql</span><span class="o">:/</span><span class="n">var</span><span class="sr">/lib/</span><span class="n">mysql</span>
-</pre></div>
-<p>这里的symtest库与测试过程无关。数据库运行后，通过客户端连接该数据库，分别创建corp和store1用户和数据库。</p>
-<p>在 corp和store1上建立DEMO表 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./symmetricds-pei-zhi-bi-ji.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html" rel="bookmark" title="Permalink to Docker for Mac从容器访问主机服务">
-                                       Docker for Mac从容器访问主机服务
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2019-01-01
-
-        |
-        tags:         <a href="./tag/docker.html">docker</a>
-        <a href="./tag/mac.html">mac</a>
-
-
-        |
-        <a href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>最近两天，在配置本机一套分布式系统的单点登录功能时，需要用到<code>Nginx</code>做同域单点登录，本打算直接用<code>docker</code>运行一个<code>nginx</code>容器就能解决，没想到在使用时却遇到了问题，<code>nginx</code>无法访问主机上运行的服务。</p>
-<p>在使用docker时可以通过端口映射将容器内的端口暴露给主机访问。但是在从docker容器中访问主机网络却不那么方便。特别是在Mac或Windows主机上。</p>
-<p>因为在Mac或Windows主机上，docker实际上是运行在主机提供的虚拟化服务上，相当于运行在一个Linux虚拟机中。从主机上查看时是找不到<code>docker0</code>网桥设备的，这个设备在虚拟机上。</p>
-<p>当我们需要从容器内访问主机网络时，不能使用<code>localhost</code>访问，而要使用主机的局域网地址，如果主机没有连接网络，则非常不方便。实际上在虚拟机的<code>docker0</code>网桥上，Mac主机会被分配一个<code>192.168.65.0</code>段的地址，默认<code>192.168.65.1</code>是网关地址，<code>192.168.65.2</code>就是主机地址 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./docker-for-maccong-rong-qi-fang-wen-zhu-ji-fu-wu.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./jiang-ke-xue-shang-wang-gong-ju-cong-ssqie-huan-dao-liao-v2ray.html" rel="bookmark" title="Permalink to 将科学上网工具从ss切换到了v2ray">
-                                       将科学上网工具从ss切换到了v2ray
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/xiao-lu.html">效率</a>
-
-    on 2018-09-11
-
-
-
-        |
-        <a href="./jiang-ke-xue-shang-wang-gong-ju-cong-ssqie-huan-dao-liao-v2ray.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>昨天使用ss的时候发现bandwagon上做ss服务的vps IP又被墙了，这是最近几个月来第二次被墙了。</p>
-<p>通过<a href="https://kiwivm.64clouds.com/main-exec.php?mode=blacklistcheck">bwg提供的链接</a>确认IP已经被墙，在这个链接上也可以更换vps ip。最近由于墙使用了机器学习算法已经识别了ss包的特征（应该是连接阶段模拟http包的特征，我是在手机wifi信号不好的情况下，在4G和wifi间反复切换，ss反复重连时被墙的。上次被墙也是类似的情况，两次被墙都是在使用电信线路的时候），被墙的机率提高，虽然在bwg已经将更换IP的限制从8周调整为了5周，但是从ss迁移至其它科学上网工具已经是必须的了。</p>
-<p>在没有其它更合适的科学上网工具的情况下，准备切换至<a href="https://www.v2ray.com/chapter_00/install.html">v2ray</a>。</p>
-<p>由于我的vps上的centos版本较旧。在安装v2ray的时候遇到两个问题：</p>
-<p>首先是v2ray的go.sh执行时没有回应</p>
-<div class="highlight"><pre><span></span>bash &lt;(curl -L -s https://install.direct/go.sh)
-</pre></div>
-<p>这是因为curl命令在执行时报了ssl错误，只需要执行</p>
-<div class="highlight"><pre><span></span>yum -y update nss
-</pre></div>
-<p>再运行上面的命令进行安装。</p>
-<p>如果你的vps是centos6.x版本的，在go.sh将v2ray变为系统服务时，仍然会出错：</p>
-<div class="highlight"><pre><span></span>Failed to install daemon …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./jiang-ke-xue-shang-wang-gong-ju-cong-ssqie-huan-dao-liao-v2ray.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./rust-modhe-wen-jian-xi-tong.html" rel="bookmark" title="Permalink to Rust Mod和文件系统">
-                                       Rust Mod和文件系统
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-08-21
-
-        |
-        tags:         <a href="./tag/rust.html">rust</a>
-
-
-        |
-        <a href="./rust-modhe-wen-jian-xi-tong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》Mod和文件系统相关内容的笔记。阅读这本书所敲的代码放在<a href="https://github.com/Jamsa/trpl/blob/master/src/lib.rs">Github</a>上。代码没有按书的结构分章节创建工程，而是将所有代码放在一个单独的工程中。</p>
-<h1>模块</h1>
-<p>使用<code>Cargo</code>创建新项目时，默认创建的是二进制<code>crate</code>而不是创建库<code>crate</code>。创建库<code>crate</code>要使用<code>--lib</code>参数而不是<code>--bin</code>参数：</p>
-<div class="highlight"><pre><span></span>$ cargo new communicator --lib
-$ <span class="nb">cd</span> communicator
-</pre></div>
-<p>这时会生成<code>src/lib.rs</code>而不是<code>src/main.rs</code>。</p>
-<p>在上面链接的示例中，我没有使用这种方式创建<code>mod</code>。因为敲的所有示例都在一个工程中，所以只需要添加<code>lib.rs</code>，<code>Cargo.toml</code>中也没有增加内容，只是添加了调用<code>lib.rs …</code></p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./rust-modhe-wen-jian-xi-tong.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./rustbian-liang-sheng-ming-zhou-qi-guan-li.html" rel="bookmark" title="Permalink to Rust变量生命周期管理">
-                                       Rust变量生命周期管理
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-08-21
-
-        |
-        tags:         <a href="./tag/rust.html">rust</a>
-
-
-        |
-        <a href="./rustbian-liang-sheng-ming-zhou-qi-guan-li.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》生命周期相关内容的笔记。阅读这本书所敲的代码放在<a href="https://github.com/Jamsa/trpl/blob/master/src/generic.rs">Github</a>上。代码没有按书的结构分章节创建工程，而是将所有代码放在一个单独的工程中。</p>
-<h1>生命周期</h1>
-<p>Rust生命周期用于控制变量的作用域，主要目标是避免悬垂引用。</p>
-<p>以下面的代码为例</p>
-<div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">"r: {}"</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-<p>编译时会产生如下错误：</p>
-<div class="highlight"><pre><span></span>error: `x` does not live long enough
-   |
-6  |         r = &amp;x;
-   |              - borrow occurs here
-7  |     }
-   |     ^ `x` dropped here while still borrowed
-...
-10 | }
-   | - borrowed value needs to live until …</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./rustbian-liang-sheng-ming-zhou-qi-guan-li.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./rustsuo-you-quan-xi-tong.html" rel="bookmark" title="Permalink to Rust所有权系统">
-                                       Rust所有权系统
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-08-21
-
-        |
-        tags:         <a href="./tag/rust.html">rust</a>
-
-
-        |
-        <a href="./rustsuo-you-quan-xi-tong.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。阅读这本书所敲的代码放在<a href="https://github.com/Jamsa/trpl/blob/master/src/ownership.rs">Github</a>上。代码没有按书的结构分章节创建工程，而是将所有代码放在一个单独的工程中。</p>
-<h1>所有权</h1>
-<p>所有权是Rust中最为独特的功能，它使得Rust无需垃圾回收即可保障内存安全。</p>
-<h2>所有权规则</h2>
-<ul>
-<li>
-<p>Rust中每个值都有一个被称为所有者的变量。</p>
-</li>
-<li>
-<p>值有且只能有一个所有者。</p>
-</li>
-<li>
-<p>当所有者离开作用域，这个值将被丢弃。</p>
-</li>
-</ul>
-<h2>内存分配</h2>
-<p>以字符串为例，字符串字面量在编译时已经知道它的内容，它被直接硬编码进最终的可执行文件。它的快速高效来自于其不可变性。对于<code>String</code>类型，它为了支持可变，需要在堆上分配一块在编译时未知大小的内存来存储内容。这意味着：</p>
-<p>1.　内存需要在运行时向操作系统申请。</p>
-<p>1.　需要一个在处理完<code>String</code>时将内存返还给操作系统的方法。</p>
-<p>内存申请在所有编程语言中都是非常通用的。内存的返还在不同语言中则各有区别。在有<code>GC</code>的语言中，<code>GC</code>记录并清除不再使用的内存。没有<code>GC</code>时，识别不再使用的内在，调用代码释放它就是程序员的责任了，如使用<code>allocate</code>和<code>free</code>。</p>
-<p>Rust采用了不同的策略 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./rustsuo-you-quan-xi-tong.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html" rel="bookmark" title="Permalink to 使用 Chocolatey 在 Win10 下配置 rust 开发环境">
-                                       使用 Chocolatey 在 Win10 下配置 rust 开发环境
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-07-29
-
-        |
-        tags:         <a href="./tag/rust.html">rust</a>
-        <a href="./tag/chocolatey.html">chocolatey</a>
-        <a href="./tag/cargo.html">cargo</a>
-        <a href="./tag/msvc.html">msvc</a>
-        <a href="./tag/racer.html">racer</a>
-
-
-        |
-        <a href="./shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>简介</h1>
-<p>最近因学习<code>rust</code>编程语言，需要在家中的 Win10 系统上安装<code>rust</code>开发环境。</p>
-<p>安装的目标是在<code>vscode</code>中配合<code>racer</code>实现代码提示功能。</p>
-<p>因刚开始接触<code>rust</code>对于<code>rust</code>的不同<code>channel</code>、<code>toolchain</code>及<code>racer</code>的情况都不太了解所以起了不少弯路，所以编写本文档记录下相关的过程。</p>
-<p>主要参考了：</p>
-<ul>
-<li>
-<p><a href="https://github.com/rust-lang-nursery/rustup.rs/#other-installation-methods">rustup 安装说明</a></p>
-</li>
-<li>
-<p><a href="https://zhuanlan.zhihu.com/p/26944087?open_source=weibo_search">Rust 开发环境指北</a></p>
-</li>
-<li>
-<p><a href="https://github.com/racer-rust/racer">racer 安装说明</a></p>
-</li>
-</ul>
-<p>基础概念：</p>
-<ul>
-<li>
-<p><code>rustup</code>：是<code>rust</code>官方推荐的<code>rust</code>多版本维护工具。它的功能类似于<code>Python</code>的<code>Conda</code>或<code>pyenv</code>这类工具。</p>
-</li>
-<li>
-<p><code>cargo</code>：是<code>rust</code>的构建工具 …</p></li></ul>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./shi-yong-chocolatey-zai-win10-xia-pei-zhi-rust-kai-fa-huan-jing.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html" rel="bookmark" title="Permalink to Scala继承Java泛型方法的问题">
-                                       Scala继承Java泛型方法的问题
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-07-23
-
-        |
-        tags:         <a href="./tag/scala.html">scala</a>
-        <a href="./tag/jtv.html">jtv</a>
-
-
-        |
-        <a href="./scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <h1>问题</h1>
-<p>在使用Scala实现<a href="./jtvkai-fa-bi-ji-4-ke-hu-duan.html">JTV</a>客户端界面程序时，我遇到了Scala重载Java类中的泛型方法的问题。</p>
-<p>因为界面上的<code>JList</code>使用了自定义的元素类型，我需要自定义<code>ListCellRender</code>来列表对象中元素行的显示。最简单的方法就是直接继承<code>DefaultListCellRenderer</code>，它会将<code>JList</code>中的数据元素渲染为<code>JLabel</code>，我只需要覆盖其<code>getListCellRendererComponent</code>实现元素转<code>JLabel</code>的逻辑即可。</p>
-<p>自定义类的结构如下：</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FileRender</span> <span class="k">extends</span> <span class="nc">DefaultListCellRenderer</span><span class="o">{</span>
-    <span class="k">override</span> <span class="k">def</span> <span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="k">:</span> <span class="kt">JList</span><span class="o">[</span><span class="k">_</span><span class="o">],</span> <span class="n">value</span><span class="k">:</span> <span class="kt">scala.Any</span><span class="o">,</span> <span class="n">index</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">isSelected</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">,</span> <span class="n">cellHasFocus</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Component</span> <span class="o">=</span> <span class="k">super</span><span class="o">.</span><span class="n">getListCellRendererComponent</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">isSelected</span><span class="o">,</span> <span class="n">cellHasFocus …</span></pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./scalaji-cheng-javafan-xing-fang-fa-de-wen-ti.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./jtvkai-fa-bi-ji-3-fu-wu-duan.html" rel="bookmark" title="Permalink to JTV开发笔记3-服务端">
-                                       JTV开发笔记3-服务端
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-07-19
-
-        |
-        tags:         <a href="./tag/scala.html">scala</a>
-        <a href="./tag/netty.html">netty</a>
-        <a href="./tag/jtv.html">jtv</a>
-
-
-        |
-        <a href="./jtvkai-fa-bi-ji-3-fu-wu-duan.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>本文是<a href="https://github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
-<h1>概述</h1>
-<p>本文记录的是服务端的程序设计。在写完服务端和客户端程序的时候，我发现整个程序对连接的管理不太完善。于是对客户端程序进行了一次重构，采用连接对象对<code>Channel</code>和消息处理回调进行了封装。在考虑服务端程序的重构时，还没有较好的思路，暂时先用这版服务程序了。</p>
-<h1>设计</h1>
-<h2>功能要求</h2>
-<p>服务端程序需要处理以下任务：</p>
-<ol>
-<li>
-<p>会话和连接的管理：会话连接是个单独的连接，它处理客户端与服务端的命令交互，不参与屏幕和键盘、鼠标事件的传输。客户端进行点对点连接等操作时，由会话连接进行协调来建立点对点连接。</p>
-</li>
-<li>
-<p>点对点消息的传输：当前这版未重构的程序是使用连接对来处理点对点的连接。在会话连接和服务程序的协助下，两个客户端之间可以建立起新的点对点连接。经点对点连接发送的消息将被直接发送到另一端，服务端不对消息进行处理。这里有当前版本可以优化的一个点，在点对点连接建立之后，<code>pipeline</code>应该可以进行动态调节，减少消息的编码和解码开销。</p>
-</li>
-<li>
-<p>管理会话及其连接：管理会话、会话连接、点对点工作连接。在连接中断时，自动从会话的工作连接中移除。如果中断的是会话连接，则应该关闭所有与这个会话相关联的连接，关闭与这个会话中任何一个连接建立的点对点连接。</p>
-</li>
-</ol>
-<h1>实现</h1>
-<h2>会话管理</h2>
-<p>服务端的会话和连接由会话管理器<code>ServerSessionManager</code>进行管理 …</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./jtvkai-fa-bi-ji-3-fu-wu-duan.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="./jtvkai-fa-bi-ji-4-ke-hu-duan.html" rel="bookmark" title="Permalink to JTV开发笔记4-客户端">
-                                       JTV开发笔记4-客户端
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="./author/jamsa.html">Jamsa</a>
-    </address>
-
-    in <a href="./category/kai-fa.html">开发</a>
-
-    on 2018-07-19
-
-        |
-        tags:         <a href="./tag/scala.html">scala</a>
-        <a href="./tag/netty.html">netty</a>
-        <a href="./tag/jtv.html">jtv</a>
-
-
-        |
-        <a href="./jtvkai-fa-bi-ji-4-ke-hu-duan.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>本文是<a href="https://github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
-<h1>概述</h1>
-<p>当前的客户端程序已经经过一轮重构。这轮重构将会话管理和控制窗口进行了分离。会话管理与主窗口关联。远程控制窗口使用自己的管理类，由这个类管理本窗口相关的连接，这样也方便后续增加同时控制多台远程机器的功能。</p>
-<h1>设计</h1>
-<h2>功能设计</h2>
-<p>客户端程序主要处理这些任务：</p>
-<ol>
-<li>
-<p>客户端连接管理：由<code>ConnectionFactory</code>管理连接的创建和销毁。</p>
-</li>
-<li>
-<p>主窗口及会话管理：程序主窗口<code>MainFrame</code>，这个窗口的模型类<code>MainFrameManager</code>管理会话连接，处理登录、注销等与服务端交互的命令。</p>
-</li>
-<li>
-<p>充当被控服务：当接收到远程控制请求时，<code>MainFrameManager</code>负责建立被控连接。被控连接建立后，启动屏幕捕捉线程。该线程按一定的频率，获取屏幕截图，并将它发送至被控连接。<code>MainFrameManager</code>的被控接收到鼠标键盘事件后，也负责处理事件的回放。由<code>MainFrameManager</code>来充当被控端，主要是考虑将来在服务端可以在被控端和控制端建立一对多的连接关系，被控方只需要发送一份屏幕截图，多个控制端都可以收到。</p>
-</li>
-<li>
-<p>远程控制：当客户端作为控制端时，通过创建新的控制窗口<code>RemoteFrame</code>来实现对远程桌面的监控和操作。<code>RemoteFrame …</code></p></li></ol>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="./jtvkai-fa-bi-ji-4-ke-hu-duan.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 10
-        <a href="./index2.html">&raquo;</a>
-</p>
-                </section><!-- /#content -->
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
-<div class="span3">
-    <section id="sidebar">
-            <div>
-                <h2>Browse content by</h2>
-                <ul class="fa-ul">
-                <li><a href="./categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
-                <li><a href="./archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
-                <li><a href="./tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
 
-                </ul>
-            </div><!-- /.browse -->
-<!-- /.Tags -->
-    </section><!-- /#sidebar -->
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
 </div>
-                </div>
-            </div>
-        </div>
 
-        <footer id="site-footer">
-            <div class="row-fluid">
-                <div class="span10 offset1">
-                    <address>
-                        <p>
-                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                        </p>
-                        <p>
-                            <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
-                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
-                        </p>
-                    </address>
-                </div>
-            </div>
-        </footer>
+    </footer>
 
-<script type="text/javascript">
-    var disqus_shortname = 'jamsa-github-io';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
 
-        <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
-        <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <script>
-         var _hmt = _hmt || [];
-         (function() {
-           var hm = document.createElement("script");
-           hm.src = "https://hm.baidu.com/hm.js?5e20e9cdd1185d24ece1dae11118a04f";
-           var s = document.getElementsByTagName("script")[0]; 
-           s.parentNode.insertBefore(hm, s);
-         })();
-        </script>
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
 </body>
 </html>

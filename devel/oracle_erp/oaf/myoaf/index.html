@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>OAF开发笔记 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="开发advancedTable in advancedTable 配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/oracle_erp/oaf/myoaf/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="OAF开发笔记" />
+<meta property="og:description" content="开发advancedTable in advancedTable 配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/oracle_erp/oaf/myoaf/" />
+<meta property="article:published_time" content="2010-12-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2010-12-09T00:00:00+00:00" />
+<meta itemprop="name" content="OAF开发笔记">
+<meta itemprop="description" content="开发advancedTable in advancedTable 配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable">
+<meta itemprop="datePublished" content="2010-12-09T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2010-12-09T00:00:00+00:00" />
+<meta itemprop="wordCount" content="3874">
+
+
+
+<meta itemprop="keywords" content="oracle,ebs,oaf," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OAF开发笔记"/>
+<meta name="twitter:description" content="开发advancedTable in advancedTable 配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h1 id="开发advancedtable-in-advancedtable">开发advancedTable in advancedTable</h1>
+<ol>
+<li>
+<p>配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable，在outerTable上创建detail，在这个detail中再以主从关系中的从VO创建innerTable。outerTable和inerTable都为advancedTable类型。</p>
+</li>
+<li>
+<p>主从关系中主VO需要增加一个属性用于标识下innerTable是否展开，它的值为字符串Y或N。将outerTable的Detail View Attribute设置为这个属性的名称。</p>
+</li>
+<li>
+<p>将outterTable的Child View Attribute设置为关联字段的名称。</p>
+</li>
+<li>
+<p>将outterTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
+</li>
+<li>
+<p>将innerTable和Detail View Attribute设置为对应的属性（如果有）。</p>
+</li>
+<li>
+<p>将innerTable的View Link Instance设置为主从关系的View Link实例名（不是类名）。</p>
+</li>
+<li>
+<p>这些设置与OAF Guide中下面这段代码起的作用是一样的，这样设置以后下面CO中的代码就不需要了。</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">processRequest</span><span class="o">(...)</span>
+<span class="o">{</span>
+  <span class="n">OAWebBean</span> <span class="n">outerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">&#34;outerTable&#34;</span><span class="o">);</span>
+  <span class="n">OAWebBean</span> <span class="n">innerTable</span> <span class="o">=</span> <span class="o">(</span><span class="n">OAWebBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">&#34;innerTable&#34;</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">outerTable</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="n">outerTable</span><span class="o">.</span><span class="na">setAttributeValue</span><span class="o">(</span><span class="n">CHILD_VIEW_ATTRIBUTE_NAME</span><span class="o">,</span><span class="s">&#34;Deptno&#34;</span><span class="o">);</span>
+    <span class="n">outerTable</span><span class="o">.</span><span class="na">setAttributeValue</span><span class="o">(</span><span class="n">VIEW_LINK_NAME</span><span class="o">,</span><span class="s">&#34;DeptEmpVL&#34;</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">innerTable</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="n">innerTable</span><span class="o">.</span><span class="na">setAttributeValue</span><span class="o">(</span><span class="n">CHILD_VIEW_ATTRIBUTE_NAME</span><span class="o">,</span><span class="s">&#34;Deptno&#34;</span><span class="o">);</span>
+    <span class="n">innerTable</span><span class="o">.</span><span class="na">setAttributeValue</span><span class="o">(</span><span class="n">VIEW_LINK_NAME</span><span class="o">,</span><span class="s">&#34;DeptEmpVL&#34;</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="o">...</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="开发hgrid和tree组件">开发HGrid和Tree组件</h1>
+<ol>
+<li>
+<p>以自关联的VO为例，添加一个VL以关联自身。但并不要求必须是自关联。</p>
+</li>
+<li>
+<p>新建一个hGrid区域，在其中添加tree和其它的项。</p>
+</li>
+<li>
+<p>在tree的nodeDef中设置好View Instance和View Attribute以作为节点的标题。</p>
+</li>
+<li>
+<p>在tree和childNode中设置Ancestor Node为需要递归显示的区域，例如：/dtxxsoft/oracle/apps/cux/dpt/task/webui/DptTaskMainPG.TreeColumnRN。不要使用View Link Instance，它已经deprecated，只需要设置View Link Accessor，它的值为VL的定义中Destination一方的Accessor Name。</p>
+</li>
+<li>
+<p>HGrid的查询。多次尝试未成功。替代的方法是另做一个列表页面进行查询，在列表中选中节点后，计算出该节点在树中的路径，再转到HGrid页面，并Focus到这个节点。</p>
+</li>
+<li>
+<p>HGrid的初始焦点路径，例如设置到根节点的第5个子节点下的第2个节点上。查询时也是通过设置该属性来定位。</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span><span class="o">[]</span> <span class="n">focusRootPath</span> <span class="o">=</span> <span class="o">{</span><span class="n">4</span><span class="o">,</span> <span class="n">1</span><span class="o">};</span>
+<span class="n">setInitialFocusPath</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">focusRootPath</span><span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="7">
+<li>
+<p>HGrid列表在数据库中的新数据时不能刷新，即使将HGrid对应的vo缓存清空也无效。只能在页面跳转时不保存am，或者手工调用pageContext.releaseRootApplicationModule方法让页面的AM失效，这样HGrid界面才能刷新。</p>
+</li>
+<li>
+<p>如果设置焦点路径要注意HGrid根节点有多个节点和只有一个节点时的区别，如果只有一个节点则它将是根节点。如果有多个根极节点，则HGrid将自动产生一个根节点。如果只有一个根级节点，则计算路径时，不要将根节点自身计算进去。</p>
+</li>
+</ol>
+<h1 id="关于retainam">关于RetainAM</h1>
+<p>开发手册中所说的RetainAM的情况必须是在两个页面使用相同类型的根应用模块时才能使用。而在实际使用过程中，我发现两个页面使用了不同的AM，在使用RetainAM=Y时同样有效。例如，从A页面Forward到B页面时RetainAM=Y，然后在B页面进行一些操作，此过程中总是使用RetainAM=Y，当从B页面回到A页面时仍然使用RetainAM=Y，这样A页面的AM的状态仍然能够保留。即使我在B页面中使用pageContext.releaseRootApplicationModule()，这时失效的也只是B页面自己的AM，回到A页面时，A页面的AM仍然有效。</p>
+<h1 id="基于sql的只读vo的一个bug">基于SQL的只读VO的一个Bug</h1>
+<p>如果使用<code>select t.* from aaa t</code>之类的SQL来创建VO，当aaa表中添加了新的字段后，VO不能自动同步，页面中的项有可能出现与VO的属性不匹配的情况。</p>
+<h1 id="取库存组织">取库存组织</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">select oav.organization_id org_id,
+       oav.organization_code org_code,
+       oav.organization_name org_name,
+       oav.responsibility_id resp_id,
+       oav.resp_application_id resp_app_id
+from   org_access_view oav,
+       mtl_parameters mp,
+       wip_eam_parameters wep
+where  oav.organization_id = mp.organization_id
+and    NVL(mp.eam_enabled_flag,&#39;N&#39;) = &#39;Y&#39;
+and    oav.organization_id = wep.organization_id
+order by org_code
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="日志">日志</h1>
+<p>OAF日志不支持日志级别的处理。没有日志的优先级。日志级别的有效值是OAFwkConstant中的UNEXPECTED, ERROR, EXCEPTION, EVENT, ROCEDURE, STATEMENT, PERFORMANCE。</p>
+<h1 id="开发包含train的多步处理页面">开发包含train的多步处理页面</h1>
+<p>开发文档中有个错误：</p>
+<p>Step CE-5.3 Add Links to the navigationBar中Destination URI /<yourname>/oracle/apps/ak/employee/webui/ EmpUpdatePG的Destination URI的值应该与应该包含OA.jsp?page=。该值应该与Step CE-4.2 Add Three Train Nodes to the EmpTrainRN Region中设置的Destination URI的值保持一致。</p>
+<p>该错误将导致点击“下一步”时train最多只能到第二步，NavButtonBar中的下拉列表中的当前步骤始终显示为第一步。</p>
+<h1 id="oaf页面缓存">OAF页面缓存</h1>
+<h2 id="清除高速缓存">清除高速缓存</h2>
+<p>页面缓存将被清理
+Functional Adminstrator &gt; Core services &gt; Caching Framework &gt; Clear cache.</p>
+<h2 id="开发中的页面缓存">开发中的页面缓存</h2>
+<p>在JSP页面中使用oracle.apps.jtf.cache.CacheManager.invalidate()方法可以清空页面缓存。</p>
+<h1 id="由链接弹出的页面">由链接弹出的页面</h1>
+<p>将链接的target属性为_blank时页面将在弹出窗口中打开。这时要注意，链接上要加上retainAM=Y否则在窗口弹出后，在原页面中进行操作时将出错。</p>
+<p>有可能是因为oaf中的am实际是与用户session关联的，当与服务器有交互时，如果没有retainAM则上一个am将丢失。ebs中除了lov之类的弹出页面外，也没有其它的弹出页面。估计也是因为这个原因，oaf不能维护在同一个http session中进行两个AM相关的操作。这是根据以下分析得来的：</p>
+<p>在弹出的窗口中，如果所有操作都是post或retainAM=Y的操作，则原窗口中仍可继续操作。如果在弹出窗口中点击了“主页”等会让AM失效的链接时，则父窗口的AM也将失效。</p>
+<h1 id="jsp相关">JSP相关</h1>
+<h2 id="在jsp中获取jdbc连接">在JSP中获取JDBC连接</h2>
+<p>来源：http://www.itjaj.com/thread-3994-1-1.html</p>
+<p>方法一：使用FWAppsContext获取连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;%@page import=&#34;java.sql.Connection&#34;%&gt;
+&lt;%@page import=&#34;oracle.apps.jtf.base.session.FWAppsContext&#34;%&gt;
+&lt;%@page import=&#34;oracle.apps.jtf.base.session.ServletSessionManager&#34;%&gt;
+&lt;%@page import=&#34;oracle.apps.jtf.base.session.FWSession&#34;%&gt;
+
+String appName = request.getParameter(&#34;appName&#34;);
+String stateless = request.getParameter(&#34;stateless&#34;);
+
+if (appName == null) appName = &#34;JTF&#34;;
+if (stateless == null) stateless = &#34;T&#34;;
+
+FWSession _fwSession;
+try {
+  _fwSession = oracle.apps.jtf.base.session.ServletSessionManager.startRequest(request,response,appName,statelessB);
+} catch(oracle.apps.jtf.base.session.ServletSessionManagerException e) {
+  throw e;
+}
+FWAppsContext cont = _fwSession.getFWAppsContext();
+Connection conn = cont.getJDBCConnection();
+
+try {
+  // 程序代码逻辑
+  
+}
+finally {
+  if (conn != null)
+    conn.close();
+}
+
+/**** End Request ****/
+try {
+  oracle.apps.jtf.base.session.ServletSessionManager.endRequest(request, false);
+} catch(oracle.apps.jtf.base.session.ServletSessionManagerException e) {
+  throw e;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>FWAppsContext可以获取很多环境数据，如UserID、RespId、RespApplId等，还可以设置和获取Session值。</p>
+<p>方法二：使用EBS的SSO类库获取数据库连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;%@page import=&#34;oracle.apps.fnd.common.WebAppsContext&#34;%&gt;
+&lt;%@page import=&#34;oracle.apps.fnd.common.ProfileStore&#34;%&gt;
+&lt;%@ page import=&#34;oracle.apps.fnd.sso.*&#34; %&gt;
+
+boolean isCtxAvailable = false;
+WebAppsContext wctx = null;
+
+if (Utils.isAppsContextAvailable())
+{
+  isCtxAvailable = true;
+}
+wctx = Utils.getAppsContext();
+Connection conn = Utils.getConnection();
+ProfileStore profilestore = wctx.getProfileStore();
+
+try
+{
+  // 程序代码逻辑
+
+}
+finally
+{
+  conn.close();
+  if (!isCtxAvailable)
+  {
+    Utils.releaseAppsContext();
+  }
+}
+%&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>方法三：其它方法
+上面两种方法是我常用的方法，除此之外，还可以使用以下任一种方法来获取连接，其实每种方式最终都是调用AppsContext来获取数据库连接的
+1、调用oracle.apps.jtf.aom.transaction.TransactionScope.getConnection();</p>
+<p>2、使用WebRequestUtil来获取WebAppsContext，并最终获取数据库连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;%@ page import=&#34;oracle.apps.fnd.common.WebAppsContext&#34; %&gt;
+&lt;%@ page import=&#34;oracle.apps.fnd.common.WebRequestUtil&#34; %&gt;
+
+&lt;%
+WebAppsContext ctx = WebRequestUtil.validateContext(request, response);
+WebRequestUtil.setClientEncoding(response, ctx);
+Connection conn = ctx.getJDBCConnection();
+...
+%&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="jsp文件编译">JSP文件编译</h2>
+<p>相关环境变量：</p>
+<ul>
+<li>
+<p>$FND_TOP/patch/115/bin/ojspCompile.pl JSP编译脚本</p>
+</li>
+<li>
+<p>$OA_HTML JSP保存目录</p>
+</li>
+<li>
+<p>$OAD_TOP/_pages JSP编译为class后的保存目录</p>
+</li>
+</ul>
+<p>编译命令：</p>
+<ul>
+<li>强制重新编译所有JSP文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">ojspCompile.pl –compile –flush -p
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>编译单个文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">ojspCompile.pl --compile -s a.jsp
+</code></pre></td></tr></table>
+</div>
+</div><p>a.jsp为文件名匹配表达式。</p>
+<h1 id="设置表格中汇总数据的值">设置表格中汇总数据的值</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">OAMessageStyledTextBean</span> <span class="n">salaryBean</span> <span class="o">=</span> 
+    <span class="o">(</span><span class="n">OAMessageStyledTextBean</span><span class="o">)</span><span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">&#34;item1&#34;</span><span class="o">);</span>
+
+<span class="n">salaryBean</span><span class="o">.</span><span class="na">setAttributeValue</span><span class="o">(</span><span class="n">TABULAR_FUNCTION_VALUE_ATTR</span><span class="o">,</span> <span class="s">&#34;123&#34;</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上例中iem1为，设置了Total Value为True的列。</p>
+<h1 id="ui控制">UI控制</h1>
+<h2 id="不同ui效果的例子">不同UI效果的例子</h2>
+<p>对于不同的UI效果可以参考范例包oracle.apps.fnd.framework.toolbox.samplelib中的例子。</p>
+<h2 id="自定义xss文件来设置css定义">自定义xss文件来设置CSS定义</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">  &lt;style selector=&#34;.CuxIssueLevel02&#34;&gt;
+    &lt;property name=&#34;color&#34;&gt;#ff6600&lt;/property&gt;
+  &lt;/style&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>修改OA_HTML/cabo/custom.xss或者添加新的xss文件然后在custom.xss中引用。然后通过设置WebBean的CSSClass属性来使用所定义的样式。</p>
+<p>使用中发现有bug，在其中定义颜色使用&quot;orange&quot;时不能正确生成到css文件中去，而使用rgb方法来表示则正常。</p>
+<h2 id="使用urlinclude引入css定义">使用UrlInclude引入CSS定义</h2>
+<p>使用UrlInclude组件包含CSS文件或包含带样式定义的文件。然后通过设置WebBean的CSSClass属性来使用所定义的样式。</p>
+<h2 id="设置内联样式">设置内联样式</h2>
+<p>直接设置WebBean的InlineStyle来设置内联样式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">CSSStyle</span> <span class="n">cellStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CSSStyle</span><span class="o">();</span>
+<span class="n">cellStyle</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;border&#34;</span><span class="o">,</span> <span class="s">&#34;#cc0000 solid&#34;</span><span class="o">);</span>
+<span class="n">cellStyle</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;border-width&#34;</span><span class="o">,</span> <span class="s">&#34;0 1 1 0&#34;</span><span class="o">);</span>
+<span class="n">cellFormatBean</span><span class="o">.</span><span class="na">setInlineStyle</span><span class="o">(</span><span class="n">cellStyle</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="编程方式实现动态绑定属性">编程方式实现动态绑定属性</h2>
+<p>默认情况下Required, Rendered, Disabled, and Read Only的值可以设置为SPEL表达式。如果有其它属性需要动态绑定则要使用动态绑定技术。OAF提供了三种类型的绑定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">oracle</span><span class="o">.</span><span class="na">apps</span><span class="o">.</span><span class="na">fnd</span><span class="o">.</span><span class="na">framework</span><span class="o">.</span><span class="na">webui</span><span class="o">.</span><span class="na">OADataBoundValueViewObject</span>
+<span class="n">oracle</span><span class="o">.</span><span class="na">apps</span><span class="o">.</span><span class="na">fnd</span><span class="o">.</span><span class="na">framework</span><span class="o">.</span><span class="na">webui</span><span class="o">.</span><span class="na">OADataBoundValueAppModule</span>
+<span class="n">oracle</span><span class="o">.</span><span class="na">apps</span><span class="o">.</span><span class="na">fnd</span><span class="o">.</span><span class="na">framework</span><span class="o">.</span><span class="na">webui</span><span class="o">.</span><span class="na">OAFunctionSecurityBoundValue</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="使用动态绑定控制组件样式">使用动态绑定控制组件样式</h2>
+<p>通过使用OADataBoundValueViewObject将组件的style Class绑定到VO属性上来控制颜色。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">OAWebBean</span> <span class="n">bean</span> <span class="o">=</span> <span class="n">webBean</span><span class="o">.</span><span class="na">findChildRecursive</span><span class="o">(</span><span class="s">&#34;bean&#34;</span><span class="o">);</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">bean</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+    <span class="n">bean</span><span class="o">.</span><span class="na">setAttributeValue</span><span class="o">(</span><span class="n">OAMessageStyledTextBean</span><span class="o">.</span><span class="na">STYLE_CLASS_ATTR</span><span class="o">,</span> 
+                           <span class="k">new</span> <span class="n">OADataBoundValueViewObject</span><span class="o">(</span><span class="n">bean</span><span class="o">,</span> 
+                                                          <span class="s">&#34;ViewAttrName&#34;</span><span class="o">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>样式可以使用上节中介绍的方法进行定义。</p>
+<h1 id="新建记录后在保存后部分lov带出来的只读字段丢失">新建记录后在保存后，部分LOV带出来的只读字段丢失</h1>
+<p>这是因为只读字段的数据不会被保存到VO中，因此需要在保存完后刷新一次当前的VO，让数据重新加载一次，这通常可以调用AM中编辑记录的方法，让它重新执行一次查询，使VO中的只读字段重新从数据库加载。</p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

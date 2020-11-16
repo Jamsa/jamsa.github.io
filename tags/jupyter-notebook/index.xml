@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jupyter notebook on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/jupyter-notebook/</link>
+    <description>Recent content in jupyter notebook on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 25 Feb 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/jupyter-notebook/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Matplotlib的使用</title>
+      <link>http://jamsa.github.io/devel/matplotlib/</link>
+      <pubDate>Sun, 25 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/matplotlib/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 import pylab as pl import numpy as np #在-pi至pi之间产生256个数 X = np.linspace(-np.pi, np.pi, 256, endpoint=True) #计算X的sine与cosine值 C, S = np.cos(X), np.sin(X) #绘制曲</description>
+    </item>
+    
+    <item>
+      <title>Numpy的使用</title>
+      <link>http://jamsa.github.io/devel/numpy/</link>
+      <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/numpy/</guid>
+      <description>1 2 #numpy的使用 import numpy as np 1 2 data1 = [6,7.5,8,0,1] arr1 = np.array(data1) 1 2 data2 = [[1,2,3,4],[5,6,7,8]] arr2 = np.array(data2) 1 2 3 4 print(arr2.ndim) print(arr2.shape) print(arr1.dtype) print(arr2.dtype) 2 (2, 4) float64 int64 1 2 #数组初始化 np.zeros(10) array([ 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]) 1 2 #多维数</description>
+    </item>
+    
+    <item>
+      <title>Learning Sklearn笔记（三）</title>
+      <link>http://jamsa.github.io/devel/learning_sklearn/chap3/</link>
+      <pubDate>Fri, 05 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/learning_sklearn/chap3/</guid>
+      <description>非监督学习 从前一章我们可以看到即监督学习方法可以在已有数据基础上判断将来的数据，但也存在明显的缺点：数据必须是准备过的；必须人工对一定的样本</description>
+    </item>
+    
+    <item>
+      <title>Learning Sklearn笔记（二）</title>
+      <link>http://jamsa.github.io/devel/learning_sklearn/chap2/</link>
+      <pubDate>Fri, 05 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/learning_sklearn/chap2/</guid>
+      <description>Chap2 监督学习 使用SVM进行图像识别 SVM通过选择分享不同样例的最宽分割超平面来进行分类处理。 通过使用非线性平面，例如 polynomial 或 rbf(radial basis function) 核函数将样本映射</description>
+    </item>
+    
+    <item>
+      <title>Learning Sklearn笔记（四）</title>
+      <link>http://jamsa.github.io/devel/learning_sklearn/chap4/</link>
+      <pubDate>Fri, 05 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/learning_sklearn/chap4/</guid>
+      <description>Chap4 特征处理 本章主要学习： 特征抽取：将现实世界的数据构建为sklearn中可用的特征数据 特征选择：从可用的特征数据中，选择适当的特征集。 模型选</description>
+    </item>
+    
+    <item>
+      <title>Learning Sklearn笔记（一）</title>
+      <link>http://jamsa.github.io/devel/learning_sklearn/chap1/</link>
+      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/learning_sklearn/chap1/</guid>
+      <description>Chap1 介绍 任何机器学习问题可以描述为以下三个概念： - 需要学习如何解决的任务为T。 - 为解决该任务所需要的经验为E。 - 度量解决任务执行效果的P。 线性</description>
+    </item>
+    
+    <item>
+      <title>Numpy And Scipy笔记（三）</title>
+      <link>http://jamsa.github.io/devel/scipy_and_numpy/chap04-scikit/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/scipy_and_numpy/chap04-scikit/</guid>
+      <description>1 2 3 %matplotlib inline import numpy as np import matplotlib.pyplot as plt SciKit 本章主要讨论： Scikitimage：比`scipy.ndimage`更强的图像处理模块。 Scikitlearn</description>
+    </item>
+    
+    <item>
+      <title>Numpy And Scipy笔记（二）</title>
+      <link>http://jamsa.github.io/devel/scipy_and_numpy/chap03-scipy/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/scipy_and_numpy/chap03-scipy/</guid>
+      <description>1 2 3 #%matplotlib notebook %matplotlib inline import matplotlib.pyplot as plt SciPy SciPy以NumPy的数组计算处理功能为基础，提供了用于处理科学计算常用的方法：积分、取函数最大、最小值，取稀疏矩</description>
+    </item>
+    
+    <item>
+      <title>Numpy And Scipy笔记（一）</title>
+      <link>http://jamsa.github.io/devel/scipy_and_numpy/chap02-numpy/</link>
+      <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/scipy_and_numpy/chap02-numpy/</guid>
+      <description>NumPy NumPy 数组 `ndarray`与list类似，但是它只允许存储一种类型的数据。这样能得更好的弹性。 1 import numpy as np 1 2 3 4 5 6 7 arr = np.arange(1e7) # 10^7 element larr = arr.tolist() def list_times(alist,</description>
+    </item>
+    
+    <item>
+      <title>Sklearn的基本使用</title>
+      <link>http://jamsa.github.io/devel/sklearn/</link>
+      <pubDate>Tue, 05 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/sklearn/</guid>
+      <description>1 2 3 from sklearn import datasets # 样例数据:鸢尾花 iris = datasets.load_iris() 1 2 3 # 150个鸢尾花观察值指定了一些测量：花萼宽带、花萼长度、花瓣宽度和花瓣长度， # 以及对应的子类：</description>
+    </item>
+    
+  </channel>
+</rss>

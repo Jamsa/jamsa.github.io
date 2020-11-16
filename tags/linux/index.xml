@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/linux/</link>
+    <description>Recent content in linux on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 17 Jan 2008 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux内核设备驱动第三版读书笔记</title>
+      <link>http://jamsa.github.io/devel/linux/linuxdevicedriversiii/</link>
+      <pubDate>Thu, 17 Jan 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/linux/linuxdevicedriversiii/</guid>
+      <description>Chap 2 构建和运行内核 设置测试系统 书中的例子以Kernel 2.6.x为基础（2.6.10）。 Hello World模块 1 2 3 4 5 6 7 8 9 10 11 12 13 14 #include &amp;lt;linux/init.h&amp;gt;#include &amp;lt;linux/module.h&amp;gt;MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;);</description>
+    </item>
+    
+    <item>
+      <title>gawk笔记</title>
+      <link>http://jamsa.github.io/devel/linux/gawk/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/linux/gawk/</guid>
+      <description>I.简介 gawk的主要功能是针对档案的第一行搜寻指令的patterns。当一行里有符合指定的patterns，gawk就会在此行执行指定的a</description>
+    </item>
+    
+    <item>
+      <title>Sed Tips</title>
+      <link>http://jamsa.github.io/devel/linux/sed/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/linux/sed/</guid>
+      <description>I介绍 1. sed可以完成的工作 sed最常用在编辑那些需要不断重复某些编辑动作的文件上。 可以用sed完成一些重复性的工作。 sed可以一次执行多个</description>
+    </item>
+    
+  </channel>
+</rss>

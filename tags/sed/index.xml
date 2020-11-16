@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sed on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/sed/</link>
+    <description>Recent content in sed on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 19 Jun 2007 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/sed/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sed Tips</title>
+      <link>http://jamsa.github.io/devel/linux/sed/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/linux/sed/</guid>
+      <description>I介绍 1. sed可以完成的工作 sed最常用在编辑那些需要不断重复某些编辑动作的文件上。 可以用sed完成一些重复性的工作。 sed可以一次执行多个</description>
+    </item>
+    
+  </channel>
+</rss>

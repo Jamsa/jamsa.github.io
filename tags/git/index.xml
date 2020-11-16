@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/git/</link>
+    <description>Recent content in git on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 12 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Tips</title>
+      <link>http://jamsa.github.io/devel/git_tip/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/git_tip/</guid>
+      <description>强制本地回退至指定版本 1 2 git reflog git reset --hard oxfb 强制远程回退至指定版本 先强制本地回退，然后强制推送。 1 git push -f</description>
+    </item>
+    
+  </channel>
+</rss>

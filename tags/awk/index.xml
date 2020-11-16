@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>awk on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/awk/</link>
+    <description>Recent content in awk on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 19 Jun 2007 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/awk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gawk笔记</title>
+      <link>http://jamsa.github.io/devel/linux/gawk/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/linux/gawk/</guid>
+      <description>I.简介 gawk的主要功能是针对档案的第一行搜寻指令的patterns。当一行里有符合指定的patterns，gawk就会在此行执行指定的a</description>
+    </item>
+    
+  </channel>
+</rss>

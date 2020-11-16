@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring Cloud 上手8-消息总线 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="这是Spring Cloud上手系列的第八篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Bus简介 Spring Cloud Bus以Spring Cloud Stream" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/java/spring_cloud_tut8/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring Cloud 上手8-消息总线" />
+<meta property="og:description" content="这是Spring Cloud上手系列的第八篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Bus简介 Spring Cloud Bus以Spring Cloud Stream" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/java/spring_cloud_tut8/" />
+<meta property="article:published_time" content="2018-06-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-06-11T00:00:00+00:00" />
+<meta itemprop="name" content="Spring Cloud 上手8-消息总线">
+<meta itemprop="description" content="这是Spring Cloud上手系列的第八篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Bus简介 Spring Cloud Bus以Spring Cloud Stream">
+<meta itemprop="datePublished" content="2018-06-11T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-06-11T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2592">
+
+
+
+<meta itemprop="keywords" content="spring cloud," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Cloud 上手8-消息总线"/>
+<meta name="twitter:description" content="这是Spring Cloud上手系列的第八篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Bus简介 Spring Cloud Bus以Spring Cloud Stream"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>这是Spring Cloud上手系列的第八篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1 id="spring-cloud-bus简介">Spring Cloud Bus简介</h1>
+<p>Spring Cloud Bus以Spring Cloud Stream为基础，建立应用间的通讯通道。消息服务即可用于服务监控，也可以用作应用间的通讯和服务解耦。</p>
+<h1 id="将spring-cloud-bus用于配置中心">将Spring Cloud Bus用于配置中心</h1>
+<p>在<a href="../spring_cloud_tut7/">前一篇</a>文章的最后一节，我们通过发送POST请求至应用的<code>/refresh</code>端点，可以让应用重新获取配置。如果我们要同时更新所有节点则需要逐个应用发送请求，这样管理起来并不方便。通过集成<code>spring-cloud-starter-bus-amqp</code>可以让我们通过配置中心应用统一管理各个应用配置信息的刷新。</p>
+<p>集成之后的配置刷新机制如下图：</p>
+<p><img src="../spring_cloud_tut/bus-config-server.png" alt="配置中心-bus"></p>
+<p>当访问配置中心的<code>/bus/refresh</code>时，它将通过总线发送广播消息。各个客户端接收到消息后，将重新读取配置信息。这样所有配置中心客户端就都能及时获取配置信息的变化。</p>
+<h2 id="安装消息中间件">安装消息中间件</h2>
+<p>Spring Cloud Bus支持RabbitMQ和Kafka两种服务。这里我们选择RabbitMQ。安装完毕后，默认的服务端口是<code>5672</code>，默认安装会安装管理控制台，管理控制台运行在<code>15672</code>端口。</p>
+<p><img src="../spring_cloud_tut/rabbitmq.png" alt="RabbitMQ"></p>
+<h2 id="集成消息总线">集成消息总线</h2>
+<p>由于各个应用都有连接配置中心的需要，我们在根模块的<code>build.gradle</code>中添加库和依赖。</p>
+<p>在<code>ext.libs</code>中添加bus`库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">ext</span><span class="o">.</span><span class="na">libs</span> <span class="o">=</span> <span class="o">[</span>
+        <span class="s2">&#34;spring-cloud&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-dependencies:${versions.springCloud}&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;spring-web&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework:spring-web:${versions.spring}&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;spring-boot&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;eureka-server&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-netflix-eureka-server&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;eureka-client&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;zuul&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-netflix-zuul&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;feign&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-feign&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;config-server&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-config-server&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;config-client&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-config-client&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;spring-retry&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.retry:spring-retry&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;spring-boot-actuator&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-actuator&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;spring-boot-aop&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-aop&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;bus&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-bus-amqp&#34;</span>
+<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>添加依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="k">if</span><span class="o">(</span><span class="n">name</span><span class="o">==</span><span class="s1">&#39;api&#39;</span><span class="o">){</span>
+        <span class="c1">// API类工程的基本依赖
+</span><span class="c1"></span>        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;spring-web&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+        <span class="c1">// Feign客户端工程的基本依赖
+</span><span class="c1"></span>        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;feign&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;eureka-client&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;spring-boot-actuator&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;bus&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在配置中心和<code>provider:service</code>应用的配置文件中增加<code>rabbitmq</code>相关的配置信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">bus</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">trace</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">localhost</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">5672</span><span class="w">
+</span><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="编译并运行">编译并运行</h2>
+<p>在根模块中使用<code>gradle build</code>重新编译所有模块。之后运行注册中心、配置中心和<code>provider:service</code>应用。我们就能在<code>provider:service</code>应用的<code>http://localhost:9010/provider/config</code>查看到配置文件中的信息了。</p>
+<p>修改配置文件，之后访问配置中心<code>http://localhost:9002/bus/refresh</code>，从控制台中可以看到<code>provider:service</code>重新读取了配置。</p>
+<p>再次访问<code>provider:service</code>应用的<code>http://localhost:9010/provider/config</code>可以看到修改后的配置已经生效了。</p>
+<p>整个刷新过程中，我们并没有访问<code>provider:service</code>的<code>http://localhost:9010/refresh</code>，通过访问配置中心的<code>/bus/refresh</code>就刷新了，<code>provider:service</code>所读取的配置。</p>
+<h2 id="自动触发配置更新">自动触发配置更新</h2>
+<p>如果配置信息是存储在版本库中，还可以通过版本库的hook实现提交时自动发送请求至配置中心<code>/bus/refresh</code>，这样就能实现完全自动的化的配置重新加载。</p>
+<p>如果只想更新部分服务的配置信息，可以发送请求至<code>/bus/refresh</code>时添加<code>destination</code>参数。如：<code>/bus/refresh?destination=sc-provider:**</code>，这样将刷新<code>sc-provider</code>的所有应用。如果只想刷新某个服务实例，还可以进一步使用<code>/bus/refresh?destination=sc-provider:9010</code>，只刷新<code>sc-provider:9010</code>这个实例。</p>
+<h1 id="总线事件跟踪">总线事件跟踪</h1>
+<p>如果想了解总线上的事件是怎样传播的，只需要设置<code>spring.bus.trace.enabled=true</code>。在访问配置中心的<code>/bus/refresh</code>之后，访问配置中心的<code>/trace</code>端点就能看到如下结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-11T15:55:48.092+0000&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;info&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;signal&#34;</span><span class="p">:</span> <span class="s2">&#34;spring.cloud.bus.ack&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;event&#34;</span><span class="p">:</span> <span class="s2">&#34;RefreshRemoteApplicationEvent&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;39ca8e1f-ffbc-4f2d-881e-07f28ca1809b&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;sc-provider:9010&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;destination&#34;</span><span class="p">:</span> <span class="s2">&#34;**&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-11T15:55:47.832+0000&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;info&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;POST&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/bus/refresh&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;localhost:9002&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;user-agent&#34;</span><span class="p">:</span> <span class="s2">&#34;curl/7.54.0&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;response&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;X-Application-Context&#34;</span><span class="p">:</span> <span class="s2">&#34;sc-config:native:9002&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;200&#34;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;timeTaken&#34;</span><span class="p">:</span> <span class="s2">&#34;5545&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-11T15:55:47.827+0000&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;info&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;signal&#34;</span><span class="p">:</span> <span class="s2">&#34;spring.cloud.bus.ack&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;event&#34;</span><span class="p">:</span> <span class="s2">&#34;RefreshRemoteApplicationEvent&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;39ca8e1f-ffbc-4f2d-881e-07f28ca1809b&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;sc-consumer:9011&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;destination&#34;</span><span class="p">:</span> <span class="s2">&#34;**&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-11T15:55:45.570+0000&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;info&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/sc-provider/dev/master&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;accept&#34;</span><span class="p">:</span> <span class="s2">&#34;application/json, application/*+json&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;user-agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Java/1.8.0_172&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;localhost:9002&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;connection&#34;</span><span class="p">:</span> <span class="s2">&#34;keep-alive&#34;</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;response&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;X-Application-Context&#34;</span><span class="p">:</span> <span class="s2">&#34;sc-config:native:9002&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/json;charset=UTF-8&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;Transfer-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;chunked&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;Date&#34;</span><span class="p">:</span> <span class="s2">&#34;Mon, 11 Jun 2018 15:55:45 GMT&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;200&#34;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;timeTaken&#34;</span><span class="p">:</span> <span class="s2">&#34;828&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-11T15:55:42.539+0000&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;info&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;signal&#34;</span><span class="p">:</span> <span class="s2">&#34;spring.cloud.bus.sent&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;RefreshRemoteApplicationEvent&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;39ca8e1f-ffbc-4f2d-881e-07f28ca1809b&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;sc-config:native:9002&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;destination&#34;</span><span class="p">:</span> <span class="s2">&#34;**:**&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-11T15:55:42.537+0000&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;info&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;signal&#34;</span><span class="p">:</span> <span class="s2">&#34;spring.cloud.bus.ack&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;event&#34;</span><span class="p">:</span> <span class="s2">&#34;RefreshRemoteApplicationEvent&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;39ca8e1f-ffbc-4f2d-881e-07f28ca1809b&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;sc-config:native:9002&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;destination&#34;</span><span class="p">:</span> <span class="s2">&#34;**&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-11T15:55:37.624+0000&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;info&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/sc-provider/dev/master&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;accept&#34;</span><span class="p">:</span> <span class="s2">&#34;application/json, application/*+json&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;user-agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Java/1.8.0_172&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;localhost:9002&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;connection&#34;</span><span class="p">:</span> <span class="s2">&#34;keep-alive&#34;</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;response&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;X-Application-Context&#34;</span><span class="p">:</span> <span class="s2">&#34;sc-config:native:9002&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/json;charset=UTF-8&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;Transfer-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;chunked&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;Date&#34;</span><span class="p">:</span> <span class="s2">&#34;Mon, 11 Jun 2018 15:55:37 GMT&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;200&#34;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;timeTaken&#34;</span><span class="p">:</span> <span class="s2">&#34;691&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-11T15:55:22.168+0000&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;info&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/sc-provider/dev/master&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;accept&#34;</span><span class="p">:</span> <span class="s2">&#34;application/json, application/*+json&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;user-agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Java/1.8.0_172&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;localhost:9002&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;connection&#34;</span><span class="p">:</span> <span class="s2">&#34;keep-alive&#34;</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;response&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;X-Application-Context&#34;</span><span class="p">:</span> <span class="s2">&#34;sc-config:native:9002&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/json;charset=UTF-8&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;Transfer-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;chunked&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;Date&#34;</span><span class="p">:</span> <span class="s2">&#34;Mon, 11 Jun 2018 15:55:22 GMT&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;200&#34;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;timeTaken&#34;</span><span class="p">:</span> <span class="s2">&#34;615&#34;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>从这些日志中可以看到配置中心发出的<code>RefreshRemoteApplicationEvent</code>事件被广播，配置中心客户端接受了这个事件，并重新读取了配置信息。</p>
+<h1 id="在总线上传递自定义消息">在总线上传递自定义消息</h1>
+<p>消息总线除了可以用于配置中心外，还可以处理我们自己的数据。下面我们测试从<code>provider:service</code>产生消息，在<code>consumer:service</code>中消费这条消息，使用的队列名称为<code>hello</code>。</p>
+<p><img src="../spring_cloud_tut/bus-use.png" alt="自定义消息-bus"></p>
+<h2 id="在providerservice中配置消息生产者">在<code>provider:service</code>中配置消息生产者</h2>
+<p>添加<code>Config</code>配置类，在其中配置<code>hello</code>队列：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Config</span> <span class="o">{</span>
+
+    <span class="c1">//名为hello的队列
+</span><span class="c1"></span>    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">Queue</span> <span class="nf">helloQueue</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Queue</span><span class="o">(</span><span class="s">&#34;hello&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>添加<code>Sender</code>类，由它负责发送消息:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Sender</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">AmqpTemplate</span> <span class="n">amqpTemplate</span><span class="o">;</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 发送消息至hello队列
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">send</span><span class="o">(){</span>
+        <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&#34;hello &#34;</span><span class="o">+</span><span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;发送消息:&#34;</span><span class="o">+</span><span class="n">message</span><span class="o">);</span>
+        <span class="n">amqpTemplate</span><span class="o">.</span><span class="na">convertAndSend</span><span class="o">(</span><span class="s">&#34;hello&#34;</span><span class="o">,</span><span class="n">message</span><span class="o">);</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在<code>ProviderController</code>中增加<code>/provider/send</code>端点，用于发送消息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">Sender</span> <span class="n">sender</span><span class="o">;</span>
+
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/provider/send&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">send</span><span class="o">(){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">sender</span><span class="o">.</span><span class="na">send</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="在consumerservice中配置消息消费者">在<code>consumer:service</code>中配置消息消费者</h2>
+<p>添加消息接收类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Component</span>
+<span class="nd">@RabbitListener</span><span class="o">(</span><span class="n">queues</span> <span class="o">=</span> <span class="s">&#34;hello&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Receiver</span> <span class="o">{</span>
+
+    <span class="nd">@RabbitHandler</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">process</span><span class="o">(</span><span class="n">String</span> <span class="n">hello</span><span class="o">){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;接收到消息:&#34;</span><span class="o">+</span><span class="n">hello</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="编译并运行程序">编译并运行程序</h2>
+<p>启动注册中心、配置中心、<code>provider:service</code>和<code>consumer:service</code>四个应用。</p>
+<p>访问<code>provider:service</code>的<code>/provider/send</code>来发送消息。从控制台可以看到消息发出：</p>
+<p><img src="../spring_cloud_tut/bus1.png" alt="bus-sender"></p>
+<p>从<code>consumer:service</code>的控制台，可以看到消费方获取到的消息。</p>
+<p><img src="../spring_cloud_tut/bus2.png" alt="bus-receiver"></p>
+<p>从RabbitMQ控制台也能看到<code>hello</code>队列的情况。</p>
+<p><img src="../spring_cloud_tut/rabbitmq-que.png" alt="rabbitmq-que"></p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

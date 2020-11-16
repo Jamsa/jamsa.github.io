@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>perl on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/perl/</link>
+    <description>Recent content in perl on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 02 Dec 2007 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/perl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Programming Perl笔记</title>
+      <link>http://jamsa.github.io/devel/perl/</link>
+      <pubDate>Sun, 02 Dec 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/perl/</guid>
+      <description>OverView 自然的人工语言 变量语法 变量类型 类型 || 字符 || 例子 || 说明 标量 | $ | $cents | 单个的值（数字或字符串） 数组 | @ | @large | 值列表，键为数字 哈希表 | % | %interest | 一</description>
+    </item>
+    
+  </channel>
+</rss>

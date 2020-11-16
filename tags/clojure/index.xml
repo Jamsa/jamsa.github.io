@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>clojure on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/clojure/</link>
+    <description>Recent content in clojure on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 12 Mar 2012 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Practical Clojure 记笔</title>
+      <link>http://jamsa.github.io/devel/java/practical-clojure/</link>
+      <pubDate>Mon, 12 Mar 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/java/practical-clojure/</guid>
+      <description>状态管理 Clojure主张消除状态管理。而现实世界仍要需要状态变化。 多数语言将事物（things）描述为变量或对象，并允许修改它们。这造成了</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring Cloud 上手4-服务消费者 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="这是Spring Cloud上手系列的第四篇，代码放在GitHub上，随着本系列文章更新。 版本依赖的坑 在写前面几篇的时候都没感觉到Spring" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/java/spring_cloud_tut4/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring Cloud 上手4-服务消费者" />
+<meta property="og:description" content="这是Spring Cloud上手系列的第四篇，代码放在GitHub上，随着本系列文章更新。 版本依赖的坑 在写前面几篇的时候都没感觉到Spring" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/java/spring_cloud_tut4/" />
+<meta property="article:published_time" content="2018-06-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-06-06T00:00:00+00:00" />
+<meta itemprop="name" content="Spring Cloud 上手4-服务消费者">
+<meta itemprop="description" content="这是Spring Cloud上手系列的第四篇，代码放在GitHub上，随着本系列文章更新。 版本依赖的坑 在写前面几篇的时候都没感觉到Spring">
+<meta itemprop="datePublished" content="2018-06-03T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-06-06T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2425">
+
+
+
+<meta itemprop="keywords" content="spring cloud," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Cloud 上手4-服务消费者"/>
+<meta name="twitter:description" content="这是Spring Cloud上手系列的第四篇，代码放在GitHub上，随着本系列文章更新。 版本依赖的坑 在写前面几篇的时候都没感觉到Spring"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>这是Spring Cloud上手系列的第四篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1 id="版本依赖的坑">版本依赖的坑</h1>
+<p>在写前面几篇的时候都没感觉到SpringCloud的依赖关系处理必须使用<code>io.spring.dependency-management</code>来处理。在使用Feign进行服务消费时遇到很多错误：</p>
+<ul>
+<li>
+<p>Feign服务客户端的Bean无法实例化</p>
+</li>
+<li>
+<p>java.lang.NoClassDefFoundError: feign/Feign$Builder</p>
+</li>
+</ul>
+<p>和其它很多错误。现在已经将<a href="../spring_cloud_tut1/">第一篇</a>中的构建依赖处理好。</p>
+<h1 id="配置模块依赖">配置模块依赖</h1>
+<p>在<code>consumer:service</code>工程的<code>build.gradle</code>中添加以下配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-gradle" data-lang="gradle"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:provider:api&#39;</span><span class="o">)</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;eureka-client&#39;</span>  <span class="c1">//Eureka客户端
+</span><span class="c1"></span><span class="o">}</span>
+
+<span class="n">jar</span> <span class="o">{</span>
+    <span class="n">manifest</span> <span class="o">{</span>
+        <span class="n">attributes</span> <span class="s2">&#34;Manifest-Version&#34;</span><span class="o">:</span> <span class="mf">1.0</span><span class="o">,</span>
+                <span class="s1">&#39;Main-Class&#39;</span><span class="o">:</span> <span class="s1">&#39;com.github.jamsa.sc.consumer.controller.ConsumerController&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>即这个工程有三个主要的依赖：</p>
+<ul>
+<li>
+<p><code>provider:api</code>中的接口声明。</p>
+</li>
+<li>
+<p>它也是Eureka客户端工程，也依赖于<code>eureka-client</code>。</p>
+</li>
+<li>
+<p>对<code>feign</code>的依赖则由全局的<code>build.gradle</code>中处理。</p>
+</li>
+</ul>
+<h1 id="使用feign在消费方编写api进行消费">使用Feign在消费方编写API进行消费</h1>
+<p><code>consumer:service</code>中添加消费接口，和对应的Fallback实现，fallback实现中不需要配置<code>@RequestParam</code>这类注解，因为它不是对远程方法的引用，它本身就是无法连接远程服务时的替代实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm"> * 引用服务提供方提供的接口
+</span><span class="cm"> */</span>
+<span class="nd">@FeignClient</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;sc-provider&#34;</span><span class="o">,</span><span class="n">fallback</span> <span class="o">=</span> <span class="n">FeignFallbackConsumerRemoteService</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ConsumerRemoteService</span><span class="o">{</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/provider/hello&#34;</span><span class="o">,</span><span class="n">method</span><span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+    <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nd">@RequestParam</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FeignFallbackConsumerRemoteService</span> <span class="kd">implements</span> <span class="n">ConsumerRemoteService</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;未连接远程服务&#34;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>添加控制器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">
+<span class="cm">/**
+</span><span class="cm"> * 服务消费方
+</span><span class="cm"> */</span>
+<span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableEurekaClient</span>
+<span class="nd">@EnableFeignClients</span><span class="o">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;com.github.jamsa.sc.consumer.service&#34;</span><span class="o">})</span>
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/consumer&#34;</span><span class="o">)</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackages</span><span class="o">={</span><span class="s">&#34;com.github.jamsa.sc.consumer&#34;</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConsumerController</span><span class="o">{</span>
+
+    <span class="c1">//注入服务接口
+</span><span class="c1"></span>    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ConsumerRemoteService</span> <span class="n">consumerRemoteService</span><span class="o">;</span>
+
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/hello&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;Hello From Remote:&#34;</span><span class="o">+</span><span class="n">consumerRemoteService</span><span class="o">.</span><span class="na">hello</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ConsumerController</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在工程根目录使用<code>gradle :consumer:service:build</code>构建之后，执行<code>java -jar consumer/service/build/libs/sc-consumer-service-0.0.1.jar</code>。启动完毕后，就可以通过<code>http://localhost:9011/consumer/hello?name=Jamsa</code>直接访问就能看到从<code>provider</code>返回的信息。</p>
+<h1 id="使用feign-和服务提供方的api进行消费">使用Feign 和服务提供方的API进行消费</h1>
+<p>使用服务提供方的API，只是在消费端编写接口继承提供方的接口。所共享的代码也仅仅只是接口中的方法声明和各类注解了。</p>
+<p>这里我们另外编写一个使用<code>provider:api</code>中的接口的服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@FeignClient</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;sc-provider&#34;</span><span class="o">,</span><span class="n">fallback</span> <span class="o">=</span> <span class="n">FeignFallbackConsumerRemoteService</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/provider&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ConsumerRemoteApiService</span> <span class="kd">extends</span> <span class="n">ProviderRemoteService</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如上所述，这只是一个空接口。</p>
+<p>将它注入到<code>ConsumerController</code>中，并在<code>helloByApi</code>这个方法中调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ConsumerRemoteApiService</span> <span class="n">consumerRemoteApiService</span><span class="o">;</span>
+
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/helloByApi&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">helloByApi</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;Hello From Remote By API:&#34;</span><span class="o">+</span><span class="n">consumerRemoteApiService</span><span class="o">.</span><span class="na">hello</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>重新构建并运行之后，访问<code>http://localhost:9011/consumer/helloByApi?name=Jamsa</code>，结果报错了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Whitelabel Error Page
+
+This application has no explicit mapping for /error, so you are seeing this as a fallback.
+
+Sun Jun 03 23:04:58 CST 2018
+There was an unexpected error (type=Internal Server Error, status=500).
+status 404 reading ConsumerRemoteApiService#hello(String); content: {&#34;timestamp&#34;:1528038298528,&#34;status&#34;:404,&#34;error&#34;:&#34;Not Found&#34;,&#34;message&#34;:&#34;No message available&#34;,&#34;path&#34;:&#34;/hello&#34;}
+</code></pre></td></tr></table>
+</div>
+</div><p>这是因为我在api中写的<code>RequestMapping</code>并非最终的<code>uri</code>，我在<code>ProviderController</code>上添加了<code>@RequestMapping(&quot;/provider&quot;)</code>注解，最终<code>hello</code>方法被映射到了<code>/provider/hello</code>上。</p>
+<p>在上面这种方式进行消费时，虽然我在<code>ConsumerRemoteApiService</code>中也添加了<code>@RequestMapping(&quot;/provider&quot;)</code>注解，但是这个注解好像被忽略掉了，估计是因为被注解的类上没有<code>Controller</code>注解。</p>
+<p>如果要让这种方式调用成功，就不能在<code>ProviderController</code>上添加<code>@RequestMapping</code>注解。需要将它的内容合并到<code>ProviderRemoteService</code>的<code>@RequestMapping</code>。</p>
+<p><code>ProviderController</code>调整为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm"> *  服务提供方
+</span><span class="cm"> * Created by zhujie on 2018/5/29.
+</span><span class="cm"> */</span>
+<span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableEurekaClient</span>
+<span class="nd">@RestController</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackages</span><span class="o">={</span><span class="s">&#34;com.github.jamsa.sc.provider&#34;</span><span class="o">})</span>
+<span class="c1">//@RequestMapping(&#34;/provider&#34;)
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProviderController</span> <span class="kd">implements</span> <span class="n">ProviderRemoteService</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;Hello &#34;</span><span class="o">+</span><span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ProviderController</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><code>ProvicerRemoteServic</code>调整为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ProviderRemoteService</span> <span class="o">{</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/provider/hello&#34;</span><span class="o">,</span><span class="n">method</span><span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+    <span class="n">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nd">@RequestParam</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">name</span><span class="o">);</span><span class="c1">//这个name对服务消费方是必须的，否则调用时会报错
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>调整完毕后重新构建<code>provider:service</code>和<code>consumer:service</code>（因为它们都依赖于<code>provider:api</code>），重新运行这两个应用，就能在<code>http://localhost:9011/consumer/helloByApi?name=Jamsa</code>看到期望的结果了。</p>
+<h1 id="直接使用resttempalte消费服务">直接使用RestTempalte消费服务</h1>
+<p>除使用Feign外，我们也可以直接使用RestTemplate来进行服务消费。</p>
+<p>首先，为了配置方便，我们在<code>controller</code>包下增加<code>Config</code>配置<code>RestTemplate</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Config</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="nd">@LoadBalanced</span>
+    <span class="kd">public</span> <span class="n">RestTemplate</span> <span class="nf">getRestTemplate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">RestTemplate</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后，在<code>ConsumerController</code>中注入<code>RestTemplate</code>并添加这种调用方式的测试入口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">RestTemplate</span> <span class="n">restTemplate</span><span class="o">;</span>
+
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/helloByRest&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">helloByRest</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;Hello From Remote By RestTemplate: &#34;</span><span class="o">+</span><span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">&#34;http://SC-PROVIDER/provider/hello?name=&#34;</span><span class="o">+</span><span class="n">name</span><span class="o">,</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注意，这里的<code>@LoadBalanced</code>注解，如果不使用这个注解，我们在调用服务的时候就只能使用<code>http://localhost:9010/provider/hello</code>这种固定的URL。在这里我们使用的URL是通过服务名拼接的，<code>http://SC-PROVIDER/provider/hello</code>并非真实服务提供方的URL，而是由<code>http://{Eureka服务名}/...</code>构成的，为什么可以这样调用呢？还是因为我们在<code>RestTempate</code>这个bean定义的地方使用了<code>@LoadBalanced</code>注解。</p>
+<p>如果不添加这个注解，<code>RestTempalte</code>将不具备负载均衡的能力，只能单点调用。添加这个注解后对RestTemplate的调用将被拦截，拦截器将使用Ribbon提供的负载均衡能力，从Eureka中获取服务节点，并挑选某个节点调用。</p>
+<p>相关细节可参考 <a href="https://blog.csdn.net/puhaiyang/article/details/79682177">这篇文章</a>。</p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

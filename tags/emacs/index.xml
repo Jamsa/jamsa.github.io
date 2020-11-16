@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emacs on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/emacs/</link>
+    <description>Recent content in emacs on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 23 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Emacs 正则表达式搜索替换的小技巧</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-regexp-replace-tip/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-regexp-replace-tip/</guid>
+      <description>交互式的使用正则表达替换 在Emacs中使用正则表达式替换时并不会像isearch-forward-regexp那么直观，无法查看到输入的正则</description>
+    </item>
+    
+    <item>
+      <title>Emacs Dired Tip</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-dired-tips/</link>
+      <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-dired-tips/</guid>
+      <description>批量mark文件 在dired下 % m regexp可批量mark文件。 更多mark方式可参照手册{:target=&amp;quot;_blank&amp;qu</description>
+    </item>
+    
+    <item>
+      <title>Writing GNU Emacs Extensions笔记</title>
+      <link>http://jamsa.github.io/devel/editor/writing-gnu-emacs-extensions/</link>
+      <pubDate>Tue, 07 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/writing-gnu-emacs-extensions/</guid>
+      <description>定制Emacs 全局按键绑定 1 (global-set-key keysequence command) keysequence 中普通字符按键直接用相应的字符表示。\应该被写作\\。特殊字符如META-问号应该写作\M-?。CONT</description>
+    </item>
+    
+    <item>
+      <title>Emacs Lisp参考手册</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-lisp/</link>
+      <pubDate>Thu, 31 Dec 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-lisp/</guid>
+      <description>介绍 介绍和约定 这是2.9版的GNU Emacs Lisp参考手册，适应于GNU Emacs 22.1。 警告 Lisp历史 习惯约定 这节说明了手册中的符号约定。 一些术语 整</description>
+    </item>
+    
+    <item>
+      <title>Emacs Org Mode及GTD</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-org/</link>
+      <pubDate>Fri, 09 Jan 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-org/</guid>
+      <description>Org Mode常用快捷键 文档操作 TAB 折叠或打开子项 S-TAB 折叠整个文档 节点操作相关 M-左右 左右移动节点 M-S-左右 整体左右移动节点及子节点 M-上下 上移或</description>
+    </item>
+    
+    <item>
+      <title>Programming in Emacs Lisp笔记</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-lisp-intro/</link>
+      <pubDate>Wed, 16 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-lisp-intro/</guid>
+      <description>序 表处理 Lisp列表 数字，列表中的列表 列表里也可以包含数字：(+ 2 2)。 Lisp里的数据和程序都是相同的方式实现的，他们都是在括号中由单词、</description>
+    </item>
+    
+    <item>
+      <title>Emacs Tips</title>
+      <link>http://jamsa.github.io/devel/editor/emacs/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs/</guid>
+      <description>一 基本概念 1.常见的按键组合： a.最常见的命令都被绑定到了&amp;quot;C-n&amp;quot;(n可以是任意符号) b.次常见的命令被绑定到了&amp;qu</description>
+    </item>
+    
+    <item>
+      <title>Xah的Emacs Lisp 教程学习笔记</title>
+      <link>http://jamsa.github.io/devel/editor/emacs-xah-tutorial/</link>
+      <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/emacs-xah-tutorial/</guid>
+      <description>例子 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68</description>
+    </item>
+    
+    <item>
+      <title>Emacs Muse标记规则学习</title>
+      <link>http://jamsa.github.io/devel/editor/muse_start/</link>
+      <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/editor/muse_start/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70</description>
+    </item>
+    
+  </channel>
+</rss>

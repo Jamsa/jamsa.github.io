@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JTV开发笔记1-开始 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 起因 因为工作原因，我经常需要进行远程桌面操作。尝试过多种不同的远程桌面方案，如：QQ远程、" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/java/jtv1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JTV开发笔记1-开始" />
+<meta property="og:description" content="本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 起因 因为工作原因，我经常需要进行远程桌面操作。尝试过多种不同的远程桌面方案，如：QQ远程、" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/java/jtv1/" />
+<meta property="article:published_time" content="2018-07-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-07-17T00:00:00+00:00" />
+<meta itemprop="name" content="JTV开发笔记1-开始">
+<meta itemprop="description" content="本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 起因 因为工作原因，我经常需要进行远程桌面操作。尝试过多种不同的远程桌面方案，如：QQ远程、">
+<meta itemprop="datePublished" content="2018-07-17T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-07-17T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1161">
+
+
+
+<meta itemprop="keywords" content="scala, netty, jtv," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JTV开发笔记1-开始"/>
+<meta name="twitter:description" content="本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 起因 因为工作原因，我经常需要进行远程桌面操作。尝试过多种不同的远程桌面方案，如：QQ远程、"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>本文是<a href="https://github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
+<h1 id="起因">起因</h1>
+<p>因为工作原因，我经常需要进行远程桌面操作。尝试过多种不同的远程桌面方案，如：QQ远程、Teamviewer、Windows远程桌面、Hamachi等等。在速度比较稳定的，且支持内网连接的工具里只有Teamviewer和QQ远程能稳定使用。切换至Mac环境后，Teamviewer就成了唯一选择，Teamviewer被判定为商业使用后，每5分钟会中断一次，无法正常使用。之间也尝试过使用ngrok配合其它内网vnc工具来进行远程连接。但这些方式都不太方便，比如使用ngrok + Windows远程桌面也能连接，但是远程桌面和VNC都无法与远程用户共享桌面。</p>
+<p>由于这些原因，就有了自己开发一个简化版远程桌面工具的想法。</p>
+<h1 id="目标">目标</h1>
+<p>仅把它当作个业余项目，近期目标是实现：以中心服务器进行交换，支持内网连接的远程桌面和控制功能。</p>
+<h1 id="技术选型">技术选型</h1>
+<p>个人项目选型上比较自由，主要考虑以下几个方面：</p>
+<ul>
+<li>
+<p>考虑到跨平台使用，选定在Java平台上。</p>
+</li>
+<li>
+<p>利用Swing的Robot类可实现对键盘、鼠标的控制。</p>
+</li>
+<li>
+<p>Java语言写Swing相关的内容太啰嗦，选Scala了。</p>
+</li>
+<li>
+<p>网络通讯模块选择netty。</p>
+</li>
+</ul>
+<p>选择的版本如下：</p>
+<ul>
+<li>
+<p>scala 2.12.6</p>
+</li>
+<li>
+<p>sbt 1.1.6</p>
+</li>
+<li>
+<p>netty 4.1.25.Final</p>
+</li>
+</ul>
+<h1 id="工程创建">工程创建</h1>
+<p>使用<code>sbt</code>来创建工程，工程代号<code>jtv</code>。</p>
+<ol>
+<li>创建工程目录结构</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">➜  jtv git:(master) ✗ tree -L 2
+.
+├── README.md
+├── build.sbt
+├── client
+│   ├── src
+├── common
+│   ├── src
+├── project
+│   ├── Dependencies.scala
+│   ├── build.properties
+│   ├── plugins.sbt
+├── server
+│   ├── src
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>
+<p>在<code>project/build.properties</code>中添加<code>sbt.version=1.1.6</code>定义sbt版本。</p>
+</li>
+<li>
+<p>在<code>project/plugin.sbt</code>中引用打包插件<code>addSbtPlugin(&quot;com.typesafe.sbt&quot; % &quot;sbt-native-packager&quot; % &quot;1.3.5&quot;)</code></p>
+</li>
+<li>
+<p>将依赖集中定义在<code>project/Dependencies.scala</code>中，内容如下：</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">sbt._</span>
+
+<span class="k">object</span> <span class="nc">Dependencies</span> <span class="o">{</span>
+  <span class="k">lazy</span> <span class="k">val</span> <span class="n">scalaTest</span> <span class="k">=</span> <span class="s">&#34;org.scalatest&#34;</span> <span class="o">%%</span> <span class="s">&#34;scalatest&#34;</span> <span class="o">%</span> <span class="s">&#34;3.0.3&#34;</span>
+  <span class="k">lazy</span> <span class="k">val</span> <span class="n">netty</span> <span class="k">=</span> <span class="s">&#34;io.netty&#34;</span> <span class="o">%</span> <span class="s">&#34;netty-all&#34;</span> <span class="o">%</span> <span class="s">&#34;4.1.25.Final&#34;</span>
+  <span class="k">lazy</span> <span class="k">val</span> <span class="n">logging</span> <span class="k">=</span> <span class="s">&#34;com.typesafe.scala-logging&#34;</span> <span class="o">%%</span> <span class="s">&#34;scala-logging&#34;</span> <span class="o">%</span> <span class="s">&#34;3.9.0&#34;</span>
+  <span class="k">lazy</span> <span class="k">val</span> <span class="n">logback</span> <span class="k">=</span>  <span class="s">&#34;ch.qos.logback&#34;</span> <span class="o">%</span> <span class="s">&#34;logback-classic&#34;</span> <span class="o">%</span> <span class="s">&#34;1.2.3&#34;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用了<code>scala-logging</code>日志模块。</p>
+<ol>
+<li>在<code>build.sbt</code>中定义各个模块：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">Dependencies._</span>
+
+<span class="k">lazy</span> <span class="k">val</span> <span class="n">commonSettings</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
+  <span class="n">organization</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;com.github.jamsa.jtv&#34;</span><span class="o">,</span>
+  <span class="n">version</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;0.1.0&#34;</span><span class="o">,</span>
+  <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.12.6&#34;</span><span class="o">,</span>
+  <span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="n">scalaTest</span> <span class="o">%</span> <span class="nc">Test</span><span class="o">,</span>
+  <span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="n">netty</span><span class="o">,</span>
+  <span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="n">logging</span><span class="o">,</span>
+  <span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="n">logback</span>
+<span class="o">)</span>
+
+<span class="k">lazy</span> <span class="k">val</span> <span class="n">common</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&#34;common&#34;</span><span class="o">))</span>
+  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
+    <span class="n">commonSettings</span><span class="o">,</span>
+    <span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;jtv-common&#34;</span>
+  <span class="o">)</span>
+
+<span class="k">lazy</span> <span class="k">val</span> <span class="n">client</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&#34;client&#34;</span><span class="o">)).</span><span class="n">dependsOn</span><span class="o">(</span><span class="n">common</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
+    <span class="n">commonSettings</span><span class="o">,</span>
+    <span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;jtv-client&#34;</span><span class="o">,</span>
+    <span class="n">mainClass</span> <span class="n">in</span> <span class="nc">Compile</span> <span class="k">:</span><span class="o">=</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;com.github.jamsa.jtv.client.manager.JtvClientManager&#34;</span><span class="o">)</span>
+  <span class="o">).</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">JavaAppPackaging</span><span class="o">)</span>
+
+<span class="k">lazy</span> <span class="k">val</span> <span class="n">server</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&#34;server&#34;</span><span class="o">)).</span><span class="n">dependsOn</span><span class="o">(</span><span class="n">common</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
+    <span class="n">commonSettings</span><span class="o">,</span>
+    <span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;jtv-server&#34;</span><span class="o">,</span>
+    <span class="n">mainClass</span> <span class="n">in</span> <span class="nc">Compile</span> <span class="k">:</span><span class="o">=</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;com.github.jamsa.jtv.server.JtvMain&#34;</span><span class="o">)</span>
+  <span class="o">).</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">JavaAppPackaging</span><span class="o">)</span>
+
+
+<span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">)).</span><span class="n">aggregate</span><span class="o">(</span><span class="n">common</span><span class="o">,</span> <span class="n">client</span><span class="o">,</span> <span class="n">server</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
+    <span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;jtv&#34;</span>
+  <span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>commonSettings</code>为各模块的共享定义。<code>common</code>模块为公共依赖模块，主要存放通讯协议、网络层相关的公用类和工具类。<code>client</code>模块为安装在最终客户机器上的客户端程序。<code>server</code>模块为处理数据交换的服务程序。</p>
+<p>在<code>client</code>和<code>server</code>上启用<code>JavaAppPackaging</code>插件，以便输出最终的发布包。</p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

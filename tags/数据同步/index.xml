@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据同步 on Jamsa&#39;s Blog</title>
+    <link>http://jamsa.github.io/tags/%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/</link>
+    <description>Recent content in 数据同步 on Jamsa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 09 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SymmetricDS 配置笔记</title>
+      <link>http://jamsa.github.io/devel/symmetricds_use/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://jamsa.github.io/devel/symmetricds_use/</guid>
+      <description>介绍 SymmetricDS是一个数据同步工具，当前版本是基于数据库触发器捕捉数据变化的。 官方教程里模拟的场景是主从节点数据同步。使用的数据是</description>
+    </item>
+    
+  </channel>
+</rss>

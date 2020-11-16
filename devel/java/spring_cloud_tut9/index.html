@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring Cloud 上手9-服务监控 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="这是Spring Cloud上手系列的第九篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Sleuth 在Spring Cloud应用中，各服务之间存在" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/java/spring_cloud_tut9/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring Cloud 上手9-服务监控" />
+<meta property="og:description" content="这是Spring Cloud上手系列的第九篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Sleuth 在Spring Cloud应用中，各服务之间存在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/java/spring_cloud_tut9/" />
+<meta property="article:published_time" content="2018-06-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-06-12T00:00:00+00:00" />
+<meta itemprop="name" content="Spring Cloud 上手9-服务监控">
+<meta itemprop="description" content="这是Spring Cloud上手系列的第九篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Sleuth 在Spring Cloud应用中，各服务之间存在">
+<meta itemprop="datePublished" content="2018-06-12T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-06-12T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2460">
+
+
+
+<meta itemprop="keywords" content="spring cloud," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Cloud 上手9-服务监控"/>
+<meta name="twitter:description" content="这是Spring Cloud上手系列的第九篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Sleuth 在Spring Cloud应用中，各服务之间存在"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>这是Spring Cloud上手系列的第九篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1 id="spring-cloud-sleuth">Spring Cloud Sleuth</h1>
+<p>在Spring Cloud应用中，各服务之间存在复杂的调用关系链。Spring Cloud Sleuth主要的功能就是提供服务调用链追踪功能。</p>
+<p>例如，访问<code>gateway</code>的<code>/api/consumer/hello</code>端点时，会调用<code>consumer:service</code>的<code>/consumer/hello</code>端点，之后调用<code>provider:service</code>的<code>/provider/hello</code>端点。在大型系统中，这种调用关系可能会非常复杂，因此需要有机制能对整个调用链进行追踪。</p>
+<p>较早提供这种追踪组件的是Google的Dapper链路跟踪组件，于2010年发表了相关论文，相关的文章是实现链路追踪的理论基础。目前，除Dapper外，还有Twitter和Zipkin，阿里的Eagleeye等。</p>
+<p>Spring Cloud Sleuth中能方便的集成Zipkin。</p>
+<h2 id="相关术语">相关术语</h2>
+<p>Spring Cloud Sleuth使用的是Google Dapper的术语。</p>
+<ul>
+<li>
+<p>Span: 基本工作单元，发送一个远程调用就会产生一个Span，Span用64位ID唯一标识。</p>
+</li>
+<li>
+<p>Trace: 由一系列Span组成的树状结构。调用一个服务接口时，由这次调用所产生的后续调用都会生成一个新的Span，由所有这些Span组成一个Trace。</p>
+</li>
+<li>
+<p>Annotation: 用来记录事件，有一些核心注解来定义请求的开始和结束。这些注解包括：</p>
+<ul>
+<li>
+<p>cs: Client Sent客户端发送请求，表示Span的开始</p>
+</li>
+<li>
+<p>sr: Server Received 服务端获取请求准备开始处理，<code>sr-cs</code>得到的就是网络传输时间</p>
+</li>
+<li>
+<p>ss: Server Sent请求处理的完成时间，<code>ss-sr</code>就是服务器的处理时间</p>
+</li>
+<li>
+<p>cr: Client Received客户端接收响应的时间，<code>cr-cs</code>就是客户端整个请求调用所消耗的时间</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="../spring_cloud_tut/sleuth1.png" alt="服务监控-sleuth"></p>
+<h1 id="集成zipkin">集成Zipkin</h1>
+<p>集成Zipkin的工作主要有：</p>
+<ol>
+<li>
+<p>添加<code>zipkin</code>应用，它主要用作<code>ZipkinServer</code>收集调用链数据，并且提供展示。</p>
+</li>
+<li>
+<p>将<code>gateway</code>、<code>provider:service</code>和<code>consumer:service</code>集成<code>zipkin</code>客户端。</p>
+</li>
+<li>
+<p>通过<code>gateway</code>访问<code>/api/consumer/hello</code>时，<code>ZpkinServer</code>就能收集到数据。</p>
+</li>
+</ol>
+<p>客户端与Zipkin的集成方式主要有两种，一种是通过Http POST数据至Zipkin Server，另一种是通过RabbitMQ接收消息。</p>
+<p>网上很多文章都是以Http POST方式通讯的，有一些虽然是通过RabbitMQ，但是却不是针对<code>Edgware</code>版的，很有可能在<code>Edgware</code>版上无法配置成功。这是因为<code>Edgware</code>之前的版本中，需要整合<code>spring-cloud-sleuth-stream</code>，而在<code>Edgware</code>版本中使用的是<code>Zipkin 2.X</code>，它本身就已经支持消息队列，因此<code>spring-cloud-sleuth-stream</code>将被废弃。</p>
+<p>另外，在Spring Cloud F版中，Zipkin的工作方式仍会有变化。因为新版本的Zipkin在向独立中间件转变，它会转变成像RabbitMQ这样的独立服务。今后，集成起来将会更简单。</p>
+<p>本文不再缀述Http POST方式进行数据传输，只记录如何使用RabbitMQ与Zipkin进行通讯。</p>
+<p><img src="../spring_cloud_tut/zipkin-mq.png" alt="服务监控-zipkin-mq"></p>
+<h2 id="配置依赖">配置依赖</h2>
+<p>在根模块的<code>build.gradle</code>中<code>ext.libs</code>中添加zipkin相关依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">        <span class="c1">//zipkin服务端
+</span><span class="c1"></span>        <span class="s2">&#34;zipkin-server&#34;</span><span class="o">:</span><span class="s2">&#34;io.zipkin.java:zipkin-server&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;zipkin-server-ui&#34;</span><span class="o">:</span><span class="s2">&#34;io.zipkin.java:zipkin-autoconfigure-ui&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;zipkin-server-rabbit&#34;</span><span class="o">:</span><span class="s2">&#34;io.zipkin.java:zipkin-autoconfigure-collector-rabbitmq:2.3.1&#34;</span><span class="o">,</span>
+
+        <span class="c1">//zipkin客户端
+</span><span class="c1"></span>        <span class="s2">&#34;zipkin-client&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.cloud:spring-cloud-starter-zipkin&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;spring-rabbit&#34;</span><span class="o">:</span><span class="s2">&#34;org.springframework.amqp:spring-rabbit&#34;</span>
+<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="添加zipkin-服务模块">添加Zipkin 服务模块</h2>
+<p>在根模块下添加<code>zipkin</code>模块，并将它添加至<code>settings.gradle</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">rootProject</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s1">&#39;sc-cloud&#39;</span>
+
+<span class="n">include</span> <span class="s1">&#39;registry&#39;</span><span class="o">,</span><span class="s1">&#39;gateway&#39;</span><span class="o">,</span><span class="s1">&#39;config&#39;</span><span class="o">,</span><span class="s1">&#39;zipkin&#39;</span>
+<span class="n">include</span> <span class="s1">&#39;provider:api&#39;</span><span class="o">,</span><span class="s1">&#39;provider:service&#39;</span>
+<span class="n">include</span> <span class="s1">&#39;consumer:api&#39;</span><span class="o">,</span><span class="s1">&#39;consumer:service&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在<code>zipkin</code>模块的<code>build.gradle</code>中添加依赖，并设置<code>Main-Class</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="c1">//ZipKin服务
+</span><span class="c1"></span>    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server&#39;</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server-ui&#39;</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server-rabbit&#39;</span>
+<span class="o">}</span>
+
+<span class="n">jar</span> <span class="o">{</span>
+    <span class="n">manifest</span> <span class="o">{</span>
+        <span class="n">attributes</span> <span class="s2">&#34;Manifest-Version&#34;</span><span class="o">:</span> <span class="mf">1.0</span><span class="o">,</span>
+                <span class="s1">&#39;Main-Class&#39;</span><span class="o">:</span> <span class="s1">&#39;com.github.jamsa.sc.zipkin.Application&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>主类代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.jamsa.sc.zipkin</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.cloud.netflix.eureka.EnableEurekaClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">zipkin.server.EnableZipkinServer</span><span class="o">;</span>
+
+<span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableEurekaClient</span>
+<span class="nd">@EnableZipkinServer</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">Application</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>在<code>zipkin</code>应用的<code>application.yml</code>中配置队列相关信息:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">sc-zipkin</span><span class="w">
+</span><span class="w">  </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">localhost</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">5672</span><span class="w">
+</span><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">zipkin</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">collector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:5672</span><span class="w">
+</span><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">      </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l">zipkin</span><span class="w">
+</span><span class="w"></span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">9003</span><span class="w">
+</span><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">instance</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l">localhost</span><span class="w">
+</span><span class="w">  </span><span class="nt">client</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">registerWithEureka</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">    </span><span class="nt">fetchRegistry</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">    </span><span class="nt">serviceUrl</span><span class="p">:</span><span class="w">
+</span><span class="w">     </span><span class="nt">defaultZone</span><span class="p">:</span><span class="w"> </span><span class="l">http://${eureka.instance.hostname}:${server.port}/eureka/</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这里指定了<code>zipkin</code>服务使用的队列名称为<code>zipkin</code>，后面<code>zipkin</code>客户端程序中的队列名称需要配置成同样的值。</p>
+<h2 id="配置zipkin-客户端工程">配置Zipkin 客户端工程</h2>
+<p>为获取上面图中<code>gateway-consumer-provider</code>的调用链信息，我们需要将<code>gateway</code>、<code>consumer:service</code>和<code>provider:service</code>这几个模块配置为<code>zipkin</code>客户端。</p>
+<p>为减少配置量，我们把客户端工程的依赖放在根模块的<code>build.gradle</code>中，在<code>subprojects</code>段中设置以下依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="k">if</span><span class="o">(</span><span class="n">name</span><span class="o">==</span><span class="s1">&#39;api&#39;</span><span class="o">){</span>
+        <span class="c1">// API类工程的基本依赖
+</span><span class="c1"></span>        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;spring-web&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+        <span class="c1">// Feign客户端工程的基本依赖
+</span><span class="c1"></span>        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;feign&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;eureka-client&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;spring-boot-actuator&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;bus&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// service 和 gateway 工程的依赖，zipkin 客户端
+</span><span class="c1"></span>    <span class="k">if</span><span class="o">(</span><span class="n">name</span><span class="o">==</span><span class="s1">&#39;service&#39;</span><span class="o">||</span><span class="n">name</span><span class="o">==</span><span class="s1">&#39;gateway&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-client&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;spring-rabbit&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后，在这几个客户端工程的<code>application.yml</code>或<code>bootstrap.yml</code>中添加<code>zipkin</code>相关配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">zipkin</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l">zipkin</span><span class="w">
+</span><span class="w">  </span><span class="nt">sleuth</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">sampler</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">percentage</span><span class="p">:</span><span class="w"> </span><span class="m">1.0</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这里的<code>spring.sleuth.sampler.percentage</code>是指<code>100%</code>的将链接数据传输给Zipkin服务端，默认值为<code>0.1</code>。这里为了便于查看，我们把它配置为<code>1</code>。实际生产环境上，可以从<code>1</code>开始逐渐的降低。<code>queue</code>属性的值需要与服务端配置的队列名称保持一致。</p>
+<h2 id="测试">测试</h2>
+<p>为了进行集成测试，我们需要启动<code>registry</code>、<code>gateway</code>、<code>provider:service</code>、<code>consumer:service</code>模块外，还需要启动<code>rabbitmq</code>。另外，由于此前<a href="../spring_cloud_tut7/">配置中心</a>一文中<code>provider:service</code>启动时依赖于<code>config</code>模块，因此我们还需要启动<code>config</code>模块。</p>
+<p>启动完毕后，在Rabbit控制台，能看到新创建的<code>zipkin</code>队列。</p>
+<p><img src="../spring_cloud_tut/zipkin-rabbit.png" alt="服务监控-zipkin-rabbit"></p>
+<p>访问<code>http://localhost:9003</code>能看到<code>zipkin</code>服务程序的控制台。</p>
+<p>访问<code>http://localhost:9000/api/consumer/hello?name=Jamsa111</code>之后，再查看<code>zipkin</code>控制台，就能看到调用链信息和依赖分析信息了。</p>
+<p><img src="../spring_cloud_tut/zipkin1.png" alt="服务监控-zipkin1"></p>
+<p><img src="../spring_cloud_tut/zipkin2.png" alt="服务监控-zipkin2"></p>
+<p><img src="../spring_cloud_tut/zipkin3.png" alt="服务监控-zipkin3"></p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

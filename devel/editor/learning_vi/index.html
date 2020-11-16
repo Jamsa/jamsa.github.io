@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Learn VI 笔记 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="VI编辑器 vi默认模式为命令模式 基本编辑命令都是1到2个字母，如i和cw（change word） 命令特点： 命令大小写敏感 输入的时候没有回显 不" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/devel/editor/learning_vi/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Learn VI 笔记" />
+<meta property="og:description" content="VI编辑器 vi默认模式为命令模式 基本编辑命令都是1到2个字母，如i和cw（change word） 命令特点： 命令大小写敏感 输入的时候没有回显 不" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/devel/editor/learning_vi/" />
+<meta property="article:published_time" content="2010-09-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2010-09-29T00:00:00+00:00" />
+<meta itemprop="name" content="Learn VI 笔记">
+<meta itemprop="description" content="VI编辑器 vi默认模式为命令模式 基本编辑命令都是1到2个字母，如i和cw（change word） 命令特点： 命令大小写敏感 输入的时候没有回显 不">
+<meta itemprop="datePublished" content="2010-09-29T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2010-09-29T00:00:00+00:00" />
+<meta itemprop="wordCount" content="672">
+
+
+
+<meta itemprop="keywords" content="vi,vim," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Learn VI 笔记"/>
+<meta name="twitter:description" content="VI编辑器 vi默认模式为命令模式 基本编辑命令都是1到2个字母，如i和cw（change word） 命令特点： 命令大小写敏感 输入的时候没有回显 不"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/devel">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/devel">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h1 id="vi编辑器">VI编辑器</h1>
+<p>vi默认模式为命令模式</p>
+<p>基本编辑命令都是1到2个字母，如i和cw（change word）</p>
+<p>命令特点：</p>
+<ul>
+<li>命令大小写敏感</li>
+<li>输入的时候没有回显</li>
+<li>不需要回车</li>
+</ul>
+<p>也有一些命令有回显如/、:和?等。</p>
+<p>问答 ::</p>
+<p>总结 ::</p>
+<h2 id="打开关闭文件">打开关闭文件</h2>
+<p>在命令行上指定路径和文件名。</p>
+<p>使用vi时可能会出现一些问题如：</p>
+<ul>
+<li>终端类型引起的问题</li>
+<li>文件已经存在</li>
+<li>处理ex line-editing模式</li>
+<li>文件只读的提示</li>
+<li>不能编辑的文件（目录、非ascii、可执行文件等等）</li>
+</ul>
+<p>遇到这些问题时可以用:quit!强制退出。</p>
+<p>:w命令保存文件，:wq、ZZ保存并退出。</p>
+<p>问答 ::</p>
+<p>总结 ::</p>
+<h2 id="不保存而退出">不保存而退出</h2>
+<p>:e!放弃自打开文件以来所做的编辑操作。</p>
+<p>:q!不保存而强制退出。</p>
+<p>保存文件可能遇到：</p>
+<ul>
+<li>文件已经存在。可以用:w!强制覆盖文件，或:w newfile写入其它文件。</li>
+<li>没有权限写文件。同上用:w newfile。</li>
+<li>文件系统满了。用:!rm junkfile删除不需要的文件腾出空间。:!df查看硬盘空间。</li>
+<li>临时文件系统满了。</li>
+<li>硬盘空间限制达到上限。</li>
+</ul>
+<p>问答 ::</p>
+<p>总结 ::</p>
+<h1 id="简单编辑">简单编辑</h1>
+<h2 id="vi命令">vi命令</h2>
+<p>vi有两个模式：命令模式和插入模式。进入时默认为命令模式。按ESC一到二次可退回命令模式。</p>
+<h2 id="移动光标">移动光标</h2>
+<p>命令模式下h j k l分别代表左、下、上和右。</p>
+<p>移动前可以加数字参数比如4l代表按4次l。</p>
+<p>通过:set wm=10这样的选项可以让vi在距右边10个字符时自动插入换行符。</p>
+<p>行内移动：0移到行首，$移到行末。</p>
+<p>:set nu显示行号。</p>
+<p>块移动：w和W向前移动一个单词，b和B向后移动一个单词。两组的区别在于移动时大写的命令将包含标点。块移动命令也可以带数字参数。</p>
+<p>问答 ::</p>
+<p>总结 ::</p>
+<h2 id="简单编辑指令">简单编辑指令</h2>
+<p>a追加，c修改，d删除。</p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
