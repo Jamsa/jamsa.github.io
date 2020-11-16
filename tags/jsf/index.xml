@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 15 Jan 2009 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/jsf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JBoss Seam 学习笔记</title>
-      <link>http://jamsa.github.io/devel/java/seam/</link>
+      <link>http://jamsa.github.io/post/java/seam/</link>
       <pubDate>Thu, 15 Jan 2009 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/seam/</guid>
+      <guid>http://jamsa.github.io/post/java/seam/</guid>
       <description>JBoss Seam介绍 Seam是一个for Java EE5的应用框架。它是从下面的规则得到灵感的： 集成JSF和EJB3.0 集成AJAX。 Seam支持两个开源</description>
     </item>
     

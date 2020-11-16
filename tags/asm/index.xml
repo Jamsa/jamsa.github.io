@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 01 Sep 2010 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/asm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>汇编语言（王爽）读书笔记</title>
-      <link>http://jamsa.github.io/devel/asm/</link>
+      <link>http://jamsa.github.io/post/asm/</link>
       <pubDate>Wed, 01 Sep 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/asm/</guid>
+      <guid>http://jamsa.github.io/post/asm/</guid>
       <description>基础知识 存储单元 最小信息单位是bit（比特、二进制位），8bit为1Byte（字节）。存储单元以字节为单位计。128个存储单元的存储器可以存</description>
     </item>
     

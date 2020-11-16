@@ -9,19 +9,19 @@
     <lastBuildDate>Mon, 21 Sep 2009 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/maven/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Better Builds With Maven 学习笔记</title>
-      <link>http://jamsa.github.io/devel/java/maven2/</link>
+      <link>http://jamsa.github.io/post/java/maven2/</link>
       <pubDate>Mon, 21 Sep 2009 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/maven2/</guid>
+      <guid>http://jamsa.github.io/post/java/maven2/</guid>
       <description>开始 准备使用Maven Maven默认读取&amp;lt;user_home&amp;gt;/.m2/settings.xml，通过proxy段的配置设置代理</description>
     </item>
     
     <item>
       <title>Maven2 Tips</title>
-      <link>http://jamsa.github.io/devel/java/maven2tips/</link>
+      <link>http://jamsa.github.io/post/java/maven2tips/</link>
       <pubDate>Mon, 21 Sep 2009 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/maven2tips/</guid>
+      <guid>http://jamsa.github.io/post/java/maven2tips/</guid>
       <description>mvn命令行 执行Java程序 1 mvn exec:java -Dexec.mainClass=org.jamsa.scalademo.FunctionValue 运行单个单元测试 1 mvn test -Dtest=AppTest 安装包和源码包 1 mvn install:install-file -Dfile=target/jsonplugin-0.34.jar -Dsources=target/jsonplugin-0.34-sources.jar -DartifactId=jsonplugin -DgroupId=com.googlecode -Dversion=0.34 -Dclassifier=sources -Dpackaging=jar 生成lift应用 1 mvn.bat archetype:generate -U -DarchetypeGroupId=net.liftweb -DarchetypeArtifactId=lift-archetype-blank -DremoteRepositories=http://scala-tools.org/repo-releases -DgroupId=demo.helloworld -DartifactId=helloworld -Dversion=1.0-SNAPSHOT pom.x</description>
     </item>
     

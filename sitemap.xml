@@ -9,14 +9,14 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/</loc>
+    <loc>http://jamsa.github.io/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/</loc>
+    <loc>http://jamsa.github.io/post/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -37,7 +37,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/ts_handbook/ts-handbook/</loc>
+    <loc>http://jamsa.github.io/post/ts_handbook/ts-handbook/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -51,7 +51,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/symmetricds_use/</loc>
+    <loc>http://jamsa.github.io/post/symmetricds_use/</loc>
     <lastmod>2019-01-09T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -72,7 +72,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/docker/docker_container_connect_host/</loc>
+    <loc>http://jamsa.github.io/post/docker/docker_container_connect_host/</loc>
     <lastmod>2019-01-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -86,7 +86,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/v2ray_bandwagon/</loc>
+    <loc>http://jamsa.github.io/post/v2ray_bandwagon/</loc>
     <lastmod>2018-09-11T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -107,21 +107,21 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/rust/trpl_mod_filesystem/</loc>
+    <loc>http://jamsa.github.io/post/rust/trpl_mod_filesystem/</loc>
     <lastmod>2018-08-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/rust/trpl_life_cycle/</loc>
+    <loc>http://jamsa.github.io/post/rust/trpl_life_cycle/</loc>
     <lastmod>2018-08-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/rust/trpl_ownership/</loc>
+    <loc>http://jamsa.github.io/post/rust/trpl_ownership/</loc>
     <lastmod>2018-08-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -156,7 +156,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/rust/rust_win_env/</loc>
+    <loc>http://jamsa.github.io/post/rust/rust_win_env/</loc>
     <lastmod>2018-07-29T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -177,7 +177,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/scala_extend_java_generic_method/</loc>
+    <loc>http://jamsa.github.io/post/java/scala_extend_java_generic_method/</loc>
     <lastmod>2018-07-23T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -191,28 +191,28 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/jtv3/</loc>
+    <loc>http://jamsa.github.io/post/java/jtv3/</loc>
     <lastmod>2018-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/jtv4/</loc>
+    <loc>http://jamsa.github.io/post/java/jtv4/</loc>
     <lastmod>2018-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/jtv1/</loc>
+    <loc>http://jamsa.github.io/post/java/jtv1/</loc>
     <lastmod>2018-07-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/jtv2/</loc>
+    <loc>http://jamsa.github.io/post/java/jtv2/</loc>
     <lastmod>2018-07-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -226,7 +226,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/plantuml/</loc>
+    <loc>http://jamsa.github.io/post/plantuml/</loc>
     <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -247,84 +247,84 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut12/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut12/</loc>
     <lastmod>2018-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut11/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut11/</loc>
     <lastmod>2018-06-14T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut10/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut10/</loc>
     <lastmod>2018-06-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut9/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut9/</loc>
     <lastmod>2018-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut8/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut8/</loc>
     <lastmod>2018-06-11T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut7/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut7/</loc>
     <lastmod>2018-06-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut6/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut6/</loc>
     <lastmod>2018-06-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut5/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut5/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut4/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut4/</loc>
     <lastmod>2018-06-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut1/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut1/</loc>
     <lastmod>2018-06-03T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut2/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut2/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/spring_cloud_tut3/</loc>
+    <loc>http://jamsa.github.io/post/java/spring_cloud_tut3/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -338,14 +338,14 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/emacs-regexp-replace-tip/</loc>
+    <loc>http://jamsa.github.io/post/editor/emacs-regexp-replace-tip/</loc>
     <lastmod>2018-05-23T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/emacs-dired-tips/</loc>
+    <loc>http://jamsa.github.io/post/editor/emacs-dired-tips/</loc>
     <lastmod>2018-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -359,7 +359,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/git_tip/</loc>
+    <loc>http://jamsa.github.io/post/git_tip/</loc>
     <lastmod>2018-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -380,7 +380,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/pelican/</loc>
+    <loc>http://jamsa.github.io/post/pelican/</loc>
     <lastmod>2018-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -394,14 +394,14 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/python_env_mgr/</loc>
+    <loc>http://jamsa.github.io/post/python_env_mgr/</loc>
     <lastmod>2018-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/rocketmq_conceptions/</loc>
+    <loc>http://jamsa.github.io/post/java/rocketmq_conceptions/</loc>
     <lastmod>2018-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -415,7 +415,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/gradient/</loc>
+    <loc>http://jamsa.github.io/post/gradient/</loc>
     <lastmod>2018-05-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -429,63 +429,63 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/matplotlib/</loc>
+    <loc>http://jamsa.github.io/post/matplotlib/</loc>
     <lastmod>2018-02-25T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/numpy/</loc>
+    <loc>http://jamsa.github.io/post/numpy/</loc>
     <lastmod>2018-02-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/learning_sklearn/chap3/</loc>
+    <loc>http://jamsa.github.io/post/learning_sklearn/chap3/</loc>
     <lastmod>2018-01-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/learning_sklearn/chap2/</loc>
+    <loc>http://jamsa.github.io/post/learning_sklearn/chap2/</loc>
     <lastmod>2018-01-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/learning_sklearn/chap4/</loc>
+    <loc>http://jamsa.github.io/post/learning_sklearn/chap4/</loc>
     <lastmod>2018-01-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/learning_sklearn/chap1/</loc>
+    <loc>http://jamsa.github.io/post/learning_sklearn/chap1/</loc>
     <lastmod>2018-01-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/scipy_and_numpy/chap04-scikit/</loc>
+    <loc>http://jamsa.github.io/post/scipy_and_numpy/chap04-scikit/</loc>
     <lastmod>2017-03-28T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/scipy_and_numpy/chap03-scipy/</loc>
+    <loc>http://jamsa.github.io/post/scipy_and_numpy/chap03-scipy/</loc>
     <lastmod>2017-03-28T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/scipy_and_numpy/chap02-numpy/</loc>
+    <loc>http://jamsa.github.io/post/scipy_and_numpy/chap02-numpy/</loc>
     <lastmod>2017-03-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -534,21 +534,21 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/pyqtjk/</loc>
+    <loc>http://jamsa.github.io/post/pyqtjk/</loc>
     <lastmod>2017-01-16T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/sklearn/</loc>
+    <loc>http://jamsa.github.io/post/sklearn/</loc>
     <lastmod>2016-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/begin_mac_progamming/</loc>
+    <loc>http://jamsa.github.io/post/begin_mac_progamming/</loc>
     <lastmod>2015-06-29T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -562,7 +562,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/c_primer_plus/</loc>
+    <loc>http://jamsa.github.io/post/c_primer_plus/</loc>
     <lastmod>2015-06-29T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -583,21 +583,21 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/learning_go/</loc>
+    <loc>http://jamsa.github.io/post/learning_go/</loc>
     <lastmod>2015-06-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/scala_cookbook/</loc>
+    <loc>http://jamsa.github.io/post/java/scala_cookbook/</loc>
     <lastmod>2015-05-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/build_machine_learning_system/</loc>
+    <loc>http://jamsa.github.io/post/build_machine_learning_system/</loc>
     <lastmod>2015-05-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -611,7 +611,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/hadoop_in_action/</loc>
+    <loc>http://jamsa.github.io/post/hadoop_in_action/</loc>
     <lastmod>2015-05-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -625,49 +625,49 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/extjs/architecture_view_overview/</loc>
+    <loc>http://jamsa.github.io/post/extjs/architecture_view_overview/</loc>
     <lastmod>2015-05-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/extjs/core_concepts_accessiblity/</loc>
+    <loc>http://jamsa.github.io/post/extjs/core_concepts_accessiblity/</loc>
     <lastmod>2015-05-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/extjs/core_concepts_components/</loc>
+    <loc>http://jamsa.github.io/post/extjs/core_concepts_components/</loc>
     <lastmod>2015-05-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/extjs/core_concepts_classes/</loc>
+    <loc>http://jamsa.github.io/post/extjs/core_concepts_classes/</loc>
     <lastmod>2015-05-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/extjs/core_concepts_events/</loc>
+    <loc>http://jamsa.github.io/post/extjs/core_concepts_events/</loc>
     <lastmod>2015-05-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/extjs/core_concepts_data_package/</loc>
+    <loc>http://jamsa.github.io/post/extjs/core_concepts_data_package/</loc>
     <lastmod>2015-05-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/extjs/architecture_view_controller/</loc>
+    <loc>http://jamsa.github.io/post/extjs/architecture_view_controller/</loc>
     <lastmod>2015-05-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -709,7 +709,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/design_pattern/</loc>
+    <loc>http://jamsa.github.io/post/design_pattern/</loc>
     <lastmod>2014-11-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -723,7 +723,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/mobile/beginning_android_games/</loc>
+    <loc>http://jamsa.github.io/post/mobile/beginning_android_games/</loc>
     <lastmod>2015-04-25T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -744,14 +744,14 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/practical-clojure/</loc>
+    <loc>http://jamsa.github.io/post/java/practical-clojure/</loc>
     <lastmod>2010-07-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/java_nio/</loc>
+    <loc>http://jamsa.github.io/post/java/java_nio/</loc>
     <lastmod>2011-07-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -765,14 +765,14 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/lisp/practical_common_lisp/</loc>
+    <loc>http://jamsa.github.io/post/lisp/practical_common_lisp/</loc>
     <lastmod>2011-06-03T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/scala-tip/</loc>
+    <loc>http://jamsa.github.io/post/java/scala-tip/</loc>
     <lastmod>2010-12-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -793,7 +793,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/myoaf/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/myoaf/</loc>
     <lastmod>2010-12-09T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -807,14 +807,14 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/writing-gnu-emacs-extensions/</loc>
+    <loc>http://jamsa.github.io/post/editor/writing-gnu-emacs-extensions/</loc>
     <lastmod>2010-12-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/learning_vi/</loc>
+    <loc>http://jamsa.github.io/post/editor/learning_vi/</loc>
     <lastmod>2010-09-29T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -849,7 +849,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/cornell_method/</loc>
+    <loc>http://jamsa.github.io/post/cornell_method/</loc>
     <lastmod>2010-09-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -863,7 +863,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/asm/</loc>
+    <loc>http://jamsa.github.io/post/asm/</loc>
     <lastmod>2010-09-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -877,63 +877,63 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/lisp/sicp/</loc>
+    <loc>http://jamsa.github.io/post/lisp/sicp/</loc>
     <lastmod>2010-08-31T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/mobile/android-dev-guide/ui-index/</loc>
+    <loc>http://jamsa.github.io/post/mobile/android-dev-guide/ui-index/</loc>
     <lastmod>2010-08-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/mobile/android-dev-guide/fundamentals/</loc>
+    <loc>http://jamsa.github.io/post/mobile/android-dev-guide/fundamentals/</loc>
     <lastmod>2010-07-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/mobile/android-dev-guide/what-is-android/</loc>
+    <loc>http://jamsa.github.io/post/mobile/android-dev-guide/what-is-android/</loc>
     <lastmod>2010-07-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/page/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/page/</loc>
     <lastmod>2010-07-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/soa_suite/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/soa_suite/</loc>
     <lastmod>2010-07-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/kjlm/</loc>
+    <loc>http://jamsa.github.io/post/kjlm/</loc>
     <lastmod>2010-03-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/emacs-lisp/</loc>
+    <loc>http://jamsa.github.io/post/editor/emacs-lisp/</loc>
     <lastmod>2009-12-31T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/maven2/</loc>
+    <loc>http://jamsa.github.io/post/java/maven2/</loc>
     <lastmod>2009-09-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -947,14 +947,14 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/maven2tips/</loc>
+    <loc>http://jamsa.github.io/post/java/maven2tips/</loc>
     <lastmod>2009-09-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/java/seam/</loc>
+    <loc>http://jamsa.github.io/post/java/seam/</loc>
     <lastmod>2009-01-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -975,7 +975,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/emacs-org/</loc>
+    <loc>http://jamsa.github.io/post/editor/emacs-org/</loc>
     <lastmod>2009-01-09T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -989,49 +989,49 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/build_control/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/build_control/</loc>
     <lastmod>2008-08-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/state/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/state/</loc>
     <lastmod>2008-07-25T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/emacs-lisp-intro/</loc>
+    <loc>http://jamsa.github.io/post/editor/emacs-lisp-intro/</loc>
     <lastmod>2008-07-16T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/emacs/</loc>
+    <loc>http://jamsa.github.io/post/editor/emacs/</loc>
     <lastmod>2008-07-08T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/build_attrsets/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/build_attrsets/</loc>
     <lastmod>2008-07-08T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/build_model/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/build_model/</loc>
     <lastmod>2008-07-08T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/build_view/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/build_view/</loc>
     <lastmod>2008-07-08T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1045,42 +1045,42 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/wxpython/</loc>
+    <loc>http://jamsa.github.io/post/wxpython/</loc>
     <lastmod>2008-07-08T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/bus_svc_overview/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/bus_svc_overview/</loc>
     <lastmod>2008-07-08T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/adv_backbutton/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/adv_backbutton/</loc>
     <lastmod>2008-07-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/adv_back_use_cases/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/adv_back_use_cases/</loc>
     <lastmod>2008-07-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/extjs/extjs/</loc>
+    <loc>http://jamsa.github.io/post/extjs/extjs/</loc>
     <lastmod>2008-03-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/emacs-xah-tutorial/</loc>
+    <loc>http://jamsa.github.io/post/editor/emacs-xah-tutorial/</loc>
     <lastmod>2008-03-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1094,7 +1094,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/linux/linuxdevicedriversiii/</loc>
+    <loc>http://jamsa.github.io/post/linux/linuxdevicedriversiii/</loc>
     <lastmod>2008-01-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1108,21 +1108,21 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/perl/</loc>
+    <loc>http://jamsa.github.io/post/perl/</loc>
     <lastmod>2007-12-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/bus_java/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/bus_java/</loc>
     <lastmod>2007-09-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/oracle_erp/oaf/build_error/</loc>
+    <loc>http://jamsa.github.io/post/oracle_erp/oaf/build_error/</loc>
     <lastmod>2007-08-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1136,21 +1136,21 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/editor/muse_start/</loc>
+    <loc>http://jamsa.github.io/post/editor/muse_start/</loc>
     <lastmod>2007-06-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/linux/gawk/</loc>
+    <loc>http://jamsa.github.io/post/linux/gawk/</loc>
     <lastmod>2007-06-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/python_codestyle/</loc>
+    <loc>http://jamsa.github.io/post/python_codestyle/</loc>
     <lastmod>2007-06-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1164,7 +1164,7 @@
   </url>
   
   <url>
-    <loc>http://jamsa.github.io/devel/linux/sed/</loc>
+    <loc>http://jamsa.github.io/post/linux/sed/</loc>
     <lastmod>2007-06-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

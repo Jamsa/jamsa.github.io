@@ -9,37 +9,37 @@
     <lastBuildDate>Sat, 28 Jul 2012 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Beginning Android Games学习笔记</title>
-      <link>http://jamsa.github.io/devel/mobile/beginning_android_games/</link>
+      <link>http://jamsa.github.io/post/mobile/beginning_android_games/</link>
       <pubDate>Sat, 28 Jul 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/mobile/beginning_android_games/</guid>
+      <guid>http://jamsa.github.io/post/mobile/beginning_android_games/</guid>
       <description>Game Development 101 在开始hacking前先进行游戏设计。这并非指基本的设计，比如FPS中的WSAD的鼠标之类的。而是类似：是否需要splash scree</description>
     </item>
     
     <item>
       <title>Android Dev Guide学习笔记 User Interface</title>
-      <link>http://jamsa.github.io/devel/mobile/android-dev-guide/ui-index/</link>
+      <link>http://jamsa.github.io/post/mobile/android-dev-guide/ui-index/</link>
       <pubDate>Fri, 20 Aug 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/mobile/android-dev-guide/ui-index/</guid>
+      <guid>http://jamsa.github.io/post/mobile/android-dev-guide/ui-index/</guid>
       <description>用户界面 在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是</description>
     </item>
     
     <item>
       <title>Android Dev Guide学习笔记 Application Fundamentals</title>
-      <link>http://jamsa.github.io/devel/mobile/android-dev-guide/fundamentals/</link>
+      <link>http://jamsa.github.io/post/mobile/android-dev-guide/fundamentals/</link>
       <pubDate>Fri, 30 Jul 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/mobile/android-dev-guide/fundamentals/</guid>
+      <guid>http://jamsa.github.io/post/mobile/android-dev-guide/fundamentals/</guid>
       <description>Application基础 Android应用程序是用Java语言编写的。被编译的代码和数据以及应用程序需要的资源文件被打包aapt tool打</description>
     </item>
     
     <item>
       <title>Android Dev Guide学习笔记 What is Android?</title>
-      <link>http://jamsa.github.io/devel/mobile/android-dev-guide/what-is-android/</link>
+      <link>http://jamsa.github.io/post/mobile/android-dev-guide/what-is-android/</link>
       <pubDate>Fri, 30 Jul 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/mobile/android-dev-guide/what-is-android/</guid>
+      <guid>http://jamsa.github.io/post/mobile/android-dev-guide/what-is-android/</guid>
       <description>Android是什么？ 功能 Application framework允许重用和替换的组件 Dalvik虚拟机 集成了基于WebKit引擎的浏览器 基于2D图形库的优化过</description>
     </item>
     

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Android Dev Guide学习笔记 User Interface - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="用户界面 在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/mobile/android-dev-guide/ui-index/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Android Dev Guide学习笔记 User Interface" />
+<meta property="og:description" content="用户界面 在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/mobile/android-dev-guide/ui-index/" />
+<meta property="article:published_time" content="2010-08-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2010-08-20T00:00:00+00:00" />
+<meta itemprop="name" content="Android Dev Guide学习笔记 User Interface">
+<meta itemprop="description" content="用户界面 在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是">
+<meta itemprop="datePublished" content="2010-08-20T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2010-08-20T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2414">
+
+
+
+<meta itemprop="keywords" content="android," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Android Dev Guide学习笔记 User Interface"/>
+<meta name="twitter:description" content="用户界面 在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Android Dev Guide学习笔记 User Interface</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2010-08-20 </span>
+        <div class="post-category">
+            <a href="/categories/%E7%A7%BB%E5%8A%A8/"> 移动 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#用户界面">用户界面</a></li>
+    <li><a href="#view层级结构">View层级结构</a></li>
+    <li><a href="#布局">布局</a></li>
+    <li><a href="#构件">构件</a></li>
+    <li><a href="#ui事件">UI事件</a></li>
+    <li><a href="#菜单">菜单</a></li>
+    <li><a href="#高级主题">高级主题</a>
+      <ul>
+        <li><a href="#适配器">适配器</a></li>
+        <li><a href="#风格和主题">风格和主题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="用户界面">用户界面</h1>
+<p>在Android应用程序中，用户界面是使用View和ViewGroup对象构造的。有许多类型的view和viewgroup，它们都是View类的子类。</p>
+<p>View对象是Android平台表达用户界面的基本单元。View class作为被称作“构件（widget）”的基类，这些构件实现UI对象，如文本域和按钮。ViewGroup类被作为“布局（layout）”类的基类，它用于描述不同的布局方式，如线型、页签等。</p>
+<p>View对象的属性中存储了布局参数和屏幕中特定的矩形框中的内容。View对象自己处理自己的度量、布局、绘制、焦点变化、滚动、和在它的矩形范围内的按键/手势交互。用户界面中的View对象也是用户和交互事件接收器的交互点。</p>
+<h1 id="view层级结构">View层级结构</h1>
+<p>在Android平台上，你可以用一组包含View和ViewGroup节点的层级结构来定义Activity的UI，如下图。这个层级树根据需要可以很简单也可以很复杂，你可以使用Android中预定义的构件和布局来构建它，也可以用自定义的View来构建。</p>
+<p><img src="../android-dev-guide/viewgroup.png" alt="ViewGroup"></p>
+<p>为了让view层级树渲染到屏幕上，你的Activity必须调用setContentView()方法并传递一个根节点的引用。Android系统接收到这个引用来废止、度量和绘制这个树。根节点请求它的子节点绘制自己——每个view group节点负责调用它自己的子节点绘制自己。子节点可能会从父节点中请求得到某个位置的一块区块，但是父节点有最终决定分配哪个位置的多大的区域给子节点。Android从树的顶部开始解析布局元素，并实例华它们并将它们添加到它们的父节点。由于这些元素的绘制是按顺序进行的，如果出现元素重叠，则最后绘制的元素将位于先前绘制的元素的上面。</p>
+<p>要了解View层级结构的度量和绘制，参见How Android Draws Views。</p>
+<h1 id="布局">布局</h1>
+<p>最常见的定义布局和表达view层次结构的是使用XML布局文件。XML布局文件提供了类似HTML的可读性。每个元素表示一个View或ViewGroup对象。View对象是树中的叶节点，ViewGroup对象是树中的分支节点。</p>
+<p>XML中的元素代表各自的Java类。因此<code>&lt;TextView&gt;</code>元素将在UI中创建一个TextView，<code>&lt;LinearLayout&gt;</code>元素将创建一个LinearLayout view group。当加载布局资源时，Android系统将初始化这些运行时对象，并将它们与布局中的元素对应。</p>
+<p>例如，一个简单的virtical类型的布局中有一个text view和一个按钮：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+              <span class="na">android:layout_width=</span><span class="s">&#34;fill_parent&#34;</span> 
+              <span class="na">android:layout_height=</span><span class="s">&#34;fill_parent&#34;</span>
+              <span class="na">android:orientation=</span><span class="s">&#34;vertical&#34;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;TextView</span> <span class="na">android:id=</span><span class="s">&#34;@+id/text&#34;</span>
+              <span class="na">android:layout_width=</span><span class="s">&#34;wrap_content&#34;</span>
+              <span class="na">android:layout_height=</span><span class="s">&#34;wrap_content&#34;</span>
+              <span class="na">android:text=</span><span class="s">&#34;Hello, I am a TextView&#34;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;Button</span> <span class="na">android:id=</span><span class="s">&#34;@+id/button&#34;</span>
+            <span class="na">android:layout_width=</span><span class="s">&#34;wrap_content&#34;</span>
+            <span class="na">android:layout_height=</span><span class="s">&#34;wrap_content&#34;</span>
+            <span class="na">android:text=</span><span class="s">&#34;Hello, I am a Button&#34;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注意这里的LinearLayout元素包含了TextView和Button。你可以在其中嵌套一另一个LinearLayout（或其它类型的ViewGroup），来创建更加复杂的布局。</p>
+<p>关于创建UI布局，请参见Declaring Layout。</p>
+<p>有多种方法可以进行布局。使用不同类型的view group，你可以构建不限数量的子类型的view和view group。Android系统提供了大量预定义的布局类型，包括：LinearLayout，RelativeLayout，TableLayout，GridLayout等等。每个布局都提供了一套独特的定义子view和布局结构位置的参数。</p>
+<p>要了解用于布局的各种view groups，参见Common Layout Objects。</p>
+<ul>
+<li>Tips：你也可以在Java代码中使用addView(View)方法绘制View和ViewGroups，它可以动态的插入新的View和ViewGroup对象。</li>
+</ul>
+<h1 id="构件">构件</h1>
+<p>构件是作为界面与用户交互的View对象。Android提供了一套完整的构件实现，如：按钮、复选框、文本域等，以便快速构建UI。某些Android提供的构件更加复杂，如日期选择、时钟、缩放控件等。但是你并不需要受限于Android平台提供的这些构件。如果你想要进行一些个性化和创建自己的动作元素，你可以通过扩展或组合已有的构件定义自己的View对象。</p>
+<p>请阅读Building Custom Components以了解更多。</p>
+<p>Android提供的构件位于android.widget包中。</p>
+<h1 id="ui事件">UI事件</h1>
+<p>一旦你添加了某些Views（构件）到UI中，你就会需要知道用户与它们的交互，以便执行一些操作。为了得到UI事件通知，你需要做两件事：</p>
+<ul>
+<li>
+<p>定义一个事件监听器并注册到View中。这是如何监听事件的方法。View类包含了一个<code>&lt;something&gt;Listener</code>接口的集合，每个里面都有一个名为<code>On&lt;something&gt;()</code>的回调方法。例如，View.OnClickListener（用于在处理View中的“click”），View.OnTouchListener（用于处理View中触屏幕事件），View.OnKeyListener（用于处理View中的按键）。因此如果你希望在View中发生“click”（比如按钮被选中）动作时得到通知，应该实现OnClickListener并定义它的onClick()回调方法（在这里执行你的点击动作），并用setOnClickListener()方法将它注册到View。</p>
+</li>
+<li>
+<p>覆盖View中已存在的回调方法。这在你实现自己的View类并且需要监听某些特定动作时需要进行。例如这些事件：屏幕被接触时（onTouchEvent()），轨迹球动作时（onTrackballEvent()），或当设备上的按键被按下时（onKeyDown()）。这能让你定义在你的自定义View中对于这些事件的默认行为并决定这些事件是否被传递到其它子View。同样，这些都是View类的回调，只在建立自定义组件时才需要定义。</p>
+</li>
+</ul>
+<p>了解关于处理View用户交互的详情请参考Handling UI Events。</p>
+<h1 id="菜单">菜单</h1>
+<h1 id="高级主题">高级主题</h1>
+<h2 id="适配器">适配器</h2>
+<h2 id="风格和主题">风格和主题</h2>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2010-08-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/android/">android</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/lisp/sicp/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SICP读书笔记</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/mobile/android-dev-guide/fundamentals/">
+            <span class="next-text nav-default">Android Dev Guide学习笔记 Application Fundamentals</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

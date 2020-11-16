@@ -9,109 +9,109 @@
     <lastBuildDate>Fri, 15 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/spring-cloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Spring Cloud 上手12-容器化</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut12/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut12/</link>
       <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut12/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut12/</guid>
       <description>重要提示：本篇文章的目标在Edgware.SR3上并未成功 原因在于在这个版本上Eureka Client运行在Docker中时，无法以Eure</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手11-配置优化</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut11/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut11/</link>
       <pubDate>Thu, 14 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut11/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut11/</guid>
       <description>这是Spring Cloud上手系列的第十一篇，代码放在GitHub上，随着本系列文章更新。 概述 本篇主要对各应用的配置进行优化，原因主要有两个</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手10-日志收集</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut10/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut10/</link>
       <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut10/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut10/</guid>
       <description>这是Spring Cloud上手系列的第十篇，代码放在GitHub上，随着本系列文章更新。 ELK简介 ELK是Logstash、ElasticS</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手9-服务监控</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut9/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut9/</link>
       <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut9/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut9/</guid>
       <description>这是Spring Cloud上手系列的第九篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Sleuth 在Spring Cloud应用中，各服务之间存在</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手8-消息总线</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut8/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut8/</link>
       <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut8/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut8/</guid>
       <description>这是Spring Cloud上手系列的第八篇，代码放在GitHub上，随着本系列文章更新。 Spring Cloud Bus简介 Spring Cloud Bus以Spring Cloud Stream</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手7-配置中心</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut7/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut7/</link>
       <pubDate>Thu, 07 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut7/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut7/</guid>
       <description>这是Spring Cloud上手系列的第七篇，代码放在GitHub上，随着本系列文章更新。 概述 通过Spring Cloud Config可以对各个系统的配</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手6-负载均衡</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut6/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut6/</link>
       <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut6/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut6/</guid>
       <description>这是Spring Cloud上手系列的第六篇，代码放在GitHub上，随着本系列文章更新。 Ribbon 概述 Ribbon是一个客户端负载均衡器。Feign</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手5-服务网关</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut5/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut5/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut5/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut5/</guid>
       <description>这是Spring Cloud上手系列的第五篇，代码放在GitHub上，随着本系列文章更新。 ZUUL概述 服务网关是微服务中向外部系统提供REST</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手4-服务消费者</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut4/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut4/</link>
       <pubDate>Sun, 03 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut4/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut4/</guid>
       <description>这是Spring Cloud上手系列的第四篇，代码放在GitHub上，随着本系列文章更新。 版本依赖的坑 在写前面几篇的时候都没感觉到Spring</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手1-准备</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut1/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut1/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut1/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut1/</guid>
       <description>目标 从15年开始我一直在使用Dubbo框架进行开发，少量在使用Spring Boot开发一些独立的App服务程序。Spring Cloud相关的</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手2-服务注册</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut2/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut2/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut2/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut2/</guid>
       <description>这是Spring Cloud上手系列的第二篇，代码放在GitHub上，随着本系列文章更新。 服务治理框架 Spring Cloud为服务治理提供了抽象接口，在</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手3-服务提供者</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut3/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut3/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut3/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut3/</guid>
       <description>这是Spring Cloud上手系列的第三篇，代码放在GitHub上，随着本系列文章更新。 微服务下的代码共享 对于微服务间是否需要进行代码共享，</description>
     </item>
     

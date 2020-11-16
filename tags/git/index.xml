@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 12 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git Tips</title>
-      <link>http://jamsa.github.io/devel/git_tip/</link>
+      <link>http://jamsa.github.io/post/git_tip/</link>
       <pubDate>Sat, 12 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/git_tip/</guid>
+      <guid>http://jamsa.github.io/post/git_tip/</guid>
       <description>强制本地回退至指定版本 1 2 git reflog git reset --hard oxfb 强制远程回退至指定版本 先强制本地回退，然后强制推送。 1 git push -f</description>
     </item>
     

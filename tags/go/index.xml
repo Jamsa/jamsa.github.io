@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 05 Jun 2015 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Learning Go 笔记</title>
-      <link>http://jamsa.github.io/devel/learning_go/</link>
+      <link>http://jamsa.github.io/post/learning_go/</link>
       <pubDate>Fri, 05 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/learning_go/</guid>
+      <guid>http://jamsa.github.io/post/learning_go/</guid>
       <description>Learning Go 笔记 介绍 离线文档 Go自带godoc用于查看程序模块的文档。 1 godoc builtin Hello World 1 2 3 4 5 6 7 8 /* 这行是必须的，所有 Go 文件都必须以 package 开头，对于可单独</description>
     </item>
     

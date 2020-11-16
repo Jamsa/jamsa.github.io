@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Begin Mac Programming 笔记 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="关于对象 Objective-C 中的对象类型 Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。 当我们在Objectiv" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/begin_mac_progamming/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Begin Mac Programming 笔记" />
+<meta property="og:description" content="关于对象 Objective-C 中的对象类型 Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。 当我们在Objectiv" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/begin_mac_progamming/" />
+<meta property="article:published_time" content="2015-06-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2015-06-29T00:00:00+00:00" />
+<meta itemprop="name" content="Begin Mac Programming 笔记">
+<meta itemprop="description" content="关于对象 Objective-C 中的对象类型 Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。 当我们在Objectiv">
+<meta itemprop="datePublished" content="2015-06-29T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2015-06-29T00:00:00+00:00" />
+<meta itemprop="wordCount" content="6573">
+
+
+
+<meta itemprop="keywords" content="objective-c,mac," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Begin Mac Programming 笔记"/>
+<meta name="twitter:description" content="关于对象 Objective-C 中的对象类型 Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。 当我们在Objectiv"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Begin Mac Programming 笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-06-29 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%BC%80%E5%8F%91/"> 开发 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#关于对象">关于对象</a>
+      <ul>
+        <li><a href="#objective-c-中的对象类型">Objective-C 中的对象类型</a></li>
+        <li><a href="#h文件结构"><code>.h</code>文件结构：</a></li>
+        <li><a href="#m文件结构"><code>.m</code>文件结构：</a></li>
+        <li><a href="#nslog日志类">NSLog日志类</a></li>
+      </ul>
+    </li>
+    <li><a href="#消息机制">消息机制</a>
+      <ul>
+        <li><a href="#消息的定义">消息的定义：</a></li>
+        <li><a href="#target-action机制">Target-Action机制</a></li>
+        <li><a href="#发送消息">发送消息</a></li>
+      </ul>
+    </li>
+    <li><a href="#变量与内存">变量与内存</a></li>
+    <li><a href="#对象和内存管理">对象和内存管理</a>
+      <ul>
+        <li><a href="#对象内存分配">对象内存分配</a>
+          <ul>
+            <li><a href="#对象初始化">对象初始化</a></li>
+          </ul>
+        </li>
+        <li><a href="#在代码中创建对象">在代码中创建对象</a>
+          <ul>
+            <li><a href="#分配内存">分配内存</a></li>
+          </ul>
+        </li>
+        <li><a href="#对象的生命周期">对象的生命周期</a>
+          <ul>
+            <li><a href="#引用计数">引用计数</a></li>
+          </ul>
+        </li>
+        <li><a href="#拒绝对内存管理负责">拒绝对内存管理负责</a>
+          <ul>
+            <li><a href="#autorelease">autorelease</a></li>
+          </ul>
+        </li>
+        <li><a href="#对象初始化参数">对象初始化参数</a></li>
+        <li><a href="#工具类类方法">工具类类方法</a>
+          <ul>
+            <li><a href="#编写自己的类工厂方法">编写自己的类工厂方法</a></li>
+            <li><a href="#类方法中的self">类方法中的<code>self</code></a></li>
+            <li><a href="#何时使用alloc何时使用工厂方法">何时使用<code>alloc</code>，何时使用工厂方法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#集合">集合</a>
+      <ul>
+        <li><a href="#数组">数组</a>
+          <ul>
+            <li><a href="#向方法传递多个参数">向方法传递多个参数</a></li>
+            <li><a href="#数组元素索引">数组元素索引</a></li>
+            <li><a href="#数组元素数量">数组元素数量</a></li>
+          </ul>
+        </li>
+        <li><a href="#对象可变性">对象可变性</a>
+          <ul>
+            <li><a href="#可变的数组和字符串">可变的数组和字符串</a></li>
+            <li><a href="#数组的效率">数组的效率</a></li>
+            <li><a href="#修改数组元素内容">修改数组元素内容</a></li>
+            <li><a href="#字符串的高级特性">字符串的高级特性</a></li>
+            <li><a href="#添加数组元素">添加数组元素</a></li>
+          </ul>
+        </li>
+        <li><a href="#创建新应用">创建新应用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="关于对象">关于对象</h1>
+<h2 id="objective-c-中的对象类型">Objective-C 中的对象类型</h2>
+<p>Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。</p>
+<p>当我们在Objective-c中实例化一个对象后，它立即会发送一个消息来初始化自己。这个消息被称为<code>init</code>，它通设置初始值。</p>
+<p>类定义包括<code>.h</code>和<code>.m</code>两个文件。</p>
+<h2 id="h文件结构"><code>.h</code>文件结构：</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="c1">//
+</span><span class="c1">//  NotifyingClass.h
+</span><span class="c1">//  TextApp
+</span><span class="c1">//
+</span><span class="c1">//  Created by Tim Isted on 08/09/2009.
+</span><span class="c1">//  Copyright 2009 __MyCompanyName__. All rights reserved.
+</span><span class="c1">//
+</span><span class="c1"></span><span class="cp">#import &lt;Cocoa/Cocoa.h&gt;
+</span><span class="cp"></span><span class="k">@interface</span> <span class="nc">NotifyingClass</span> : <span class="nc">NSObject</span> <span class="p">{</span>
+
+<span class="p">}</span>
+<span class="k">@end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在Objective-c中，使用某个类具有某个<code>public interface</code>来描述哪些消息能发送给这个类。<code>@interface</code>这一行的冒号后面指定这个类的父类，这里指向的是NSObject，它是Cocoa框架的基类。</p>
+<p><code>@interface</code>段中的大括号用于指定类的属性。</p>
+<p>右大括号和<code>@end</code>间的内容用于指定类可以接收的消息。</p>
+<p>定义Interface的语法结构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">@interface «nameOfClass» : «nameOfClassToInheritFrom» {
+    «attribute information»
+}
+
+«list of messages responded to»
+
+@end
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="m文件结构"><code>.m</code>文件结构：</h2>
+<p><code>.m</code>文件包含对象的实现。编写的方法放在<code>@implementation</code>和<code>@end</code>之间。</p>
+<p>用于响应<code>init</code>消息的初始化方法默认会调用NSObject基类中的实现。通过查看<code>NSObject.h</code>可以找到它定义的初始化消息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">init</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="nslog日志类">NSLog日志类</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">@implementation</span> <span class="nc">NotifyingClass</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">init</span> <span class="p">{</span>
+
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;Hello World! I&#39;m a new NotifyingClass instance!&#34;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="消息机制">消息机制</h1>
+<h2 id="消息的定义">消息的定义：</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">init</span><span class="p">;</span>
+<span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">allocWithZone:</span> <span class="p">(</span><span class="n">NSZone</span> <span class="o">*</span><span class="p">)</span><span class="nv">zone</span><span class="p">;</span>
+<span class="err">«</span><span class="o">+</span> <span class="n">or</span> <span class="o">-</span><span class="err">»</span> <span class="p">(</span><span class="err">«</span><span class="n">word</span><span class="err">»</span><span class="p">)</span> <span class="err">«</span><span class="n">messageName</span> <span class="err">»</span> <span class="err">«</span><span class="n">some</span> <span class="n">optional</span> <span class="n">bits</span> <span class="err">»</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>+</code>或<code>-</code>用于标明它是一个类方法或是实例方法。<code>«word»</code>指定方法的返回类型。在<code>.h</code>中的方法签名列表中，可以看到使用<code>void</code>或<code>id</code>作为返回类型。</p>
+<h2 id="target-action机制">Target-Action机制</h2>
+<p>某些由Cocoa框架提供的对象允许你为他们提供<code>target</code>对象和指定<code>action</code>——发送给这个对象的消息。比如，在Xcode的界面设计器中创建NSButton实例后，我们可以指定这个按钮被点击时调用NotifyingClass实例（<code>target</code>）的displaySomeText方法（<code>action</code>）。</p>
+<p>如果消息名称的右边有冒号，表明它接收一个或多个参数。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">buildHouse:</span><span class="p">(</span><span class="n">House</span> <span class="o">*</span><span class="p">)</span><span class="nv">houseToBeBuilt</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>括号中内容（House*）用于指定参数类型，括号后面是参数名称。</p>
+<h2 id="发送消息">发送消息</h2>
+<p>方法调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">displaySomeText:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">textView</span> <span class="nl">insertText</span><span class="p">:</span><span class="s">@&#34;displaySomeText just got called!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="变量与内存">变量与内存</h1>
+<p>类似C的变量指针。</p>
+<h1 id="对象和内存管理">对象和内存管理</h1>
+<h2 id="对象内存分配">对象内存分配</h2>
+<p>NSObject提供了类方法<code>alloc</code>用于分配内存。永远不需要重载这个方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">NSObject</span> <span class="o">*</span><span class="n">someNewObject</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSObject</span> <span class="n">alloc</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这将分配一块足够容纳NSObject实例的内存并将这块内存的地址返回给someNewObject指针。<code>alloc</code>方法将所有实例变量设置为零或nil（指针类型），但它不会进行更进一步的『设置』。在使用对象前应该先初始化它的属性。</p>
+<h3 id="对象初始化">对象初始化</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">init</span><span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;Hello world~&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>应该在使用对象前对它的属性进行初始化，因此应该在分配内存后立即调用<code>init</code>方法。</p>
+<p>我们应该合并内存分配和初始化代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">NotifyingClass</span> <span class="o">*</span><span class="n">myFavoriteNotifier</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NotifyingClass</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>由于我们嵌套的调用了<code>alloc</code>和<code>init</code>方法，因此需要让<code>init</code>方法返回初始化后的对象地址，并传递给指针。</p>
+<p>继承时的初始化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">init</span><span class="p">{</span>
+    <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">];</span>
+    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+	<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当从NSObject继承时，不需要调用父类的<code>init</code>方法，因为NSObject不做任何的初始化，<code>isa</code>实例变量是在<code>alloc</code>中设置的。考虑到后期有可能修改父类型，比较好的实践方法是始终调用<code>[super init]</code>。</p>
+<h2 id="在代码中创建对象">在代码中创建对象</h2>
+<h3 id="分配内存">分配内存</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">displaySomeText:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+<span class="p">{</span>
+    <span class="n">WonderfulNumber</span> <span class="o">*</span><span class="n">myWonderfulNumber</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WonderfulNumber</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+
+    <span class="kt">float</span> <span class="n">wonderfulValue</span> <span class="o">=</span> <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="n">storedNumber</span><span class="p">];</span>
+
+    <span class="p">[</span><span class="n">textView</span> <span class="nl">insertText</span><span class="p">:[</span><span class="n">NSString</span>
+        <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&#34;My Wonderful Value = %f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">wonderfulValue</span><span class="p">]];</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的代码中存在问题，通过查看NSObject文档中关于『Creating, Copying, and Deallocating Objects.』相关的内容，能找到NSObject有```dealloc<code>方法。文档中指出，『永远不要直接发送</code>dealloc`消息』。应该使用&quot;release&quot; NSObject protocol方法。</p>
+<p>当对象从内存中删除时它会接收到<code>dealloc</code>消息。</p>
+<p>可以在类的<code>init</code>和<code>dealloc</code>中输出日志，查看释放情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">@implementation</span> <span class="nc">WonderfulNumber</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">init</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">];</span>
+    <span class="n">storedNumber</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;A WonderfulNumber object was initialized!&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">dealloc</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;A WonderfulNumber object was deallocated!&#34;</span><span class="p">);</span>
+    <span class="p">[</span><span class="nb">super</span> <span class="n">dealloc</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setStoredNumber:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">newNumber</span>
+<span class="err">«</span><span class="n">code</span> <span class="n">continues</span><span class="err">»</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>回到之前displaySomeText的代码。添加上述日志后，再执行时会发现<code>dealloc</code>中的日志未被输出。myWonderfulNumber未被释放，会产生内存泄漏。</p>
+<p>因此，我们需要某种方法来标明某个对象不再需要使用，可以被释放掉。</p>
+<p><em><strong>需要重申的是，苹果建议永远不要直接调用<code>dealloc</code>。</strong></em></p>
+<h2 id="对象的生命周期">对象的生命周期</h2>
+<h3 id="引用计数">引用计数</h3>
+<p>假设某个程序需要在屏幕上显示一个数字。当点击菜单上的一个选项时，会创建一个WonderfulNumber对象，并将它显示在窗口中。用户可以打开多个窗口，每次新窗口将显示WonderfulNumber中数字。当所有窗口都被关闭时WonderfulNumber对象才不再被需要。</p>
+<p>我们可能需要在创建WonderfulNumber代码的结尾处调用<code>removeYourselfFromMemory</code>方法。但是问题是我们不知道它被多少个其它的对象所需要。</p>
+<p>我们需要某种方法来跟踪有多少个对象对这个实例『感兴趣』。</p>
+<h4 id="引用计数的介绍">引用计数的介绍</h4>
+<p>Cocoa框架使用了『引用计数』来处理这个问题。这项技术允许对象声明它们对某个对象感兴趣或不再对它感兴趣。</p>
+<p>如果objectA要声明它对objectB感兴趣，objectA向objectB发送<code>retain</code>。当objectA决定不再需要objectB时，它向objectB发送<code>release</code>。</p>
+<p>引用计数是通过在每个对象上维护一个<code>retain count</code>来工作的。在对象上调用<code>retain</code>后，计数加1，调用<code>releas</code>后，计数减1。当对象的引用计数为0时，它将自动从内存中释放。</p>
+<p>比如前面提到的每个新窗口都显示那个WonderfulNumber对象，这些窗口都retain这个WonderfulNumber对象。任何一个窗口关闭时，窗口都release对象。当所有窗口都关闭时，引用计数为0，WonderFulNumber对象被释放。</p>
+<h4 id="内存分配后的引用计数">内存分配后的引用计数</h4>
+<p>因为引用计数为0时，对象会被释放。因此在对象分配内存后，它的计数初始为1。当我们编写下面这行代码时：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">WonderfulNumber</span> <span class="o">*</span><span class="n">myWonderfulNumber</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WonderfulNumber</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>它不只是为对象分配了内存，同样它声明了我们对这个对象感兴趣，因此我们不需要显式的retain这个对象。</p>
+<p>从另一个角度来看，使用了<code>alloc</code>来创建对象，就表示我们『同意』对它『负责』。即我们同意当我们不需要使用它时会<code>release</code>它。</p>
+<p>因此完整的代码应该是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">displaySomeText:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+<span class="p">{</span>
+    <span class="n">WonderfulNumber</span> <span class="o">*</span><span class="n">myWonderfulNumber</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WonderfulNumber</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+
+    <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="nl">setStoredNumber</span><span class="p">:</span><span class="n">pi</span><span class="p">];</span>
+    <span class="kt">float</span> <span class="n">wonderfulValue</span> <span class="o">=</span> <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="n">storedNumber</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">textView</span> <span class="nl">insertText</span><span class="p">:[</span><span class="n">NSString</span>
+	    <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&#34;My Wonderful Value = %f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">wonderfulValue</span><span class="p">]];</span>
+	
+    <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="k">release</span><span class="p">];</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="拒绝对内存管理负责">拒绝对内存管理负责</h2>
+<p>上节提到需要对创建的对象负责。但在某些情况下『对对象负责的责任』并不是非常清析。</p>
+<p>比如，在类的方法中返回字符串指针时，这个类并不应该对字符串对象的最终释放负责。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">storedNumberAsString</span>
+<span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">stringToReturn</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSString</span> <span class="n">alloc</span><span class="p">]</span>
+                                     <span class="nl">initWithFormat</span><span class="p">:</span><span class="s">@&#34;%f&#34;</span><span class="p">,</span> <span class="n">storedNumber</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">stringToReturn</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个方法分配并初始化了一个新的的字符串并在方法结束的地方返回了这个字符串。在这里应该要意识到我们分配了新的对象但是并没有释放它——我们没有对我们创建的对象完全负责。</p>
+<p>如果我们在返回对象前使用<code>[stringToReturn relaase]</code>释放它，那么它会立即被释放掉，方法的返回值将是个无效的对象。</p>
+<p>我们也不希望在其它使用了<code>storedNumberAsString</code>这类方法的地方使用<code>release</code>——除非我们调用了<code>alloc] init]</code>或<code>retain</code>，否则我们不需要调用<code>release</code>，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">{</span>
+    <span class="n">WonderfulNumber</span> <span class="o">*</span><span class="n">myWonderfulNumber</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WonderfulNumber</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="nl">setStoredNumber</span><span class="p">:</span><span class="n">pi</span><span class="p">];</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">numberString</span> <span class="o">=</span> <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="n">storedNumberAsString</span><span class="p">];</span>
+    <span class="err">«</span><span class="k">do</span> <span class="n">something</span> <span class="n">with</span> <span class="n">numberString</span><span class="err">»</span>
+    <span class="p">[</span><span class="n">numberString</span> <span class="k">release</span><span class="p">];</span> <span class="c1">// Uh-oh!
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上在的代码并不是个好主意，我们需要的效果是提供某种机制使得使用WonderfulNumber对象的人总是会释放他们通过<code>storedNumberAsString</code>所得到的字符串。</p>
+<p>我们需要某种方法将对象传递到其它地方，明确的解除我们对它的内存管理『责任』。</p>
+<h3 id="autorelease">autorelease</h3>
+<p>Cocoa提供了<code>autoreleasing</code>机制来处理这种情况。</p>
+<p>通过在对象上调用<code>autorelease</code>而不是<code>release</code>，我们可以将对象的<code>release</code>延时至下一个事件循环。即它在当前执行的代码上会一直存在。一旦程序代码执行完毕，应用程序等侍用户输入时，这个对象就会被<code>release</code>。如果此时它的引用计数为0，则它被释放。</p>
+<p>完整代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="c1">//WonderfulNumber.m
+</span><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">storedNumberAsString</span>
+<span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">stringToReturn</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSString</span> <span class="n">alloc</span><span class="p">]</span>
+                                     <span class="nl">initWithFormat</span><span class="p">:</span><span class="s">@&#34;%f&#34;</span><span class="p">,</span> <span class="n">storedNumber</span><span class="p">];</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">stringToReturn</span> <span class="n">autorelease</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="c1">//NotifyingClass.m
+</span><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">displaySomeText:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+<span class="p">{</span>
+    <span class="n">WonderfulNumber</span> <span class="o">*</span><span class="n">myWonderfulNumber</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WonderfulNumber</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="nl">setStoredNumber</span><span class="p">:</span><span class="n">pi</span><span class="p">];</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">numberString</span> <span class="o">=</span> <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="n">storedNumberAsString</span><span class="p">];</span>
+	<span class="p">[</span><span class="n">textView</span> <span class="nl">insertText</span><span class="p">:</span><span class="n">numberString</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="k">release</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里在WonderfulNumber对象创建之后，我们创建了一个指向字符串对象的指针<code>numberString</code>，并把它插入了textViewer中。</p>
+<p>我们只需要对<code>myWonderfulNumber</code>对象调用<code>release</code>，因为它是在这方法中唯一一个使用<code>alloc</code>分配出来的对象。当<code>displaySomeText</code>方法结束后，<code>numberString</code>指针将不再处于作用范围，由于这里是当前的事件响应代码的『最后一行』，因此这个由<code>storedNumberAsString</code>所返回的字符串对象将在随后被释放（下一事件循环）。</p>
+<p><em><strong>我的思考：autorelease的运行方式：执行autorelease时标记在下一事件循环中，需要对该对象进行release。当进入下一次事件循环后，先对这一对象进行release，发现引用计数为0时，进行释放。这样也能保证在当前这次事件循环中<code>[textView insertText</code>执行时，对象仍然存在</strong></em></p>
+<h2 id="对象初始化参数">对象初始化参数</h2>
+<p>类似于NSString中的<code>initWithFormat</code>方法</p>
+<p>通过提供支持参数的<code>init</code>方法来初始化对象的属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">initWithNumber:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">newNumber</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">];</span>
+    <span class="n">storedNumber</span> <span class="o">=</span> <span class="n">newNumber</span><span class="p">;</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;Object was initialized!&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>这样我们就可以编写下面这样支持初始化参数的代码了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">displaySomeText:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+<span class="p">{</span>
+    <span class="n">WonderfulNumber</span> <span class="o">*</span><span class="n">myWonderfulNumber</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WonderfulNumber</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithNumber</span><span class="p">:</span><span class="n">pi</span><span class="p">];</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">numberString</span> <span class="o">=</span> <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="n">storedNumberAsString</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">textView</span> <span class="nl">insertText</span><span class="p">:</span><span class="n">numberString</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">myWonderfulNumber</span> <span class="k">release</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如何避免用户直接调用<code>[[WonderfulNumber alloc] init]</code>而不提供初始化参数呢？我们可以在<code>init</code>中提供某些默认值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">@implementation</span> <span class="nc">WonderfulNumber</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">init</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">initWithNumber</span><span class="p">:</span><span class="mi">42</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">initWithNumber:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">newNumber</span>
+<span class="err">«</span><span class="n">code</span> <span class="n">continues</span><span class="err">»</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="工具类类方法">工具类类方法</h2>
+<p>在NSString中定义了很多类方法，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">+</span> <span class="nf">stringWithFormat:</span>
+<span class="p">+</span> <span class="nf">localizedStringWithFormat:</span>
+<span class="p">+</span> <span class="nf">stringWithCharacters:length:</span>
+<span class="p">+</span> <span class="nf">stringWithString:</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这此工具方法可以直接在NSString类上调用，它们会返回一个初始化过的对象。使用这些方法的好处在于它们的返回值都是<code>autorelease</code>的。这意味着你可以不使用<code>alloc</code>来创建NSString的实例而不需要对它调用<code>release</code>。因为这些方法返回的是一个已经构建好的对象，因此它们经常被称为<code>factory</code>方法。</p>
+<p>因此我们可以用这个方法来简化我们的<code>storedNumberAsString</code>方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">storedNumberAsString</span>
+<span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">stringToReturn</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&#34;%f&#34;</span><span class="p">,</span> <span class="n">storedNumber</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">stringToReturn</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>因为NSString的类方法返回的是一个已经<code>autorelease</code>的字符串对象，因此我们不需要在返回前再对它调用<code>autorelease</code>了。</p>
+<h3 id="编写自己的类工厂方法">编写自己的类工厂方法</h3>
+<p>遵循习惯性约定，工厂方法的命名一般按下面的格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">«objectType»With«optional arguments:»
+</code></pre></td></tr></table>
+</div>
+</div><p>WonderfulNumber的工厂方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc">
+<span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">wonderfulNumberWithFloat:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">newNumber</span>
+<span class="p">{</span>
+    <span class="n">WonderfulNumber</span> <span class="o">*</span><span class="n">numberToReturn</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WonderfulNumber</span> <span class="n">alloc</span><span class="p">]</span>
+                                             <span class="nl">initWithNumber</span><span class="p">:</span><span class="n">newNumber</span><span class="p">];</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">numberToReturn</span> <span class="n">autorelease</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="类方法中的self">类方法中的<code>self</code></h3>
+<p>考虑到将来WonderfulNumber类可能会存在子类型EvenMoreWonderfulNumber。子类型会继承父类型的方法，当调用`[EvenMoreWonderfulNumber wonderfulNumberWithFloat:55.4]时，它将会返回一个新的WonderfulNumber类型的对象，而不是EvenMoreWonderfulNumber类型的对象。</p>
+<p>为了确保这个方法返回正确的类型我们需要将方法修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc">
+<span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">wonderfulNumberWithFloat:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">newNumber</span>
+<span class="p">{</span>
+    <span class="kt">id</span> <span class="n">numberToReturn</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithNumber</span><span class="p">:</span><span class="n">newNumber</span><span class="p">];</span> <span class="k">return</span> <span class="p">[</span><span class="n">numberToReturn</span> <span class="n">autorelease</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>类方法中的<code>self</code>关键字指向的是类本身，而不是类的实例。这里返回的类型是<code>id</code>类型的，工厂方法基本上都是返回这一类型，这是因为我们不希望在工厂方法中对类型进行硬编码。</p>
+<h3 id="何时使用alloc何时使用工厂方法">何时使用<code>alloc</code>，何时使用工厂方法</h3>
+<p>到目前为止似乎总是应该使用工厂方法。</p>
+<p>但是有时我们会需要一个对象在内存中保留一段时间，在当前事件循环结束后能继续存在。比如，A对象的某个实例变量指向了B对象，在A对象的生命周期中它都需要B对象存在。那么我们应该在A对象的<code>init</code>方法中使用B对象的<code>alloc] init]</code>方法来初始化它，并在A对象的<code>dealloc</code>方法中<code>release</code>这个实例。</p>
+<h1 id="集合">集合</h1>
+<h2 id="数组">数组</h2>
+<p>Cocoa提供了<code>NSArray</code>类。它的常用初始化方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="nf">initWithArray:</span>
+<span class="p">-</span> <span class="nf">initWithArray:copyItems:</span>
+<span class="p">-</span> <span class="nf">initWithContentsOfFile:</span>
+<span class="p">-</span> <span class="nf">initWithContentsOfURL:</span>
+<span class="p">-</span> <span class="nf">initWithObjects:</span>
+<span class="p">-</span> <span class="nf">initWithObjects:count:</span>
+<span class="c1">//工厂方法
+</span><span class="c1"></span><span class="p">+</span> <span class="nf">array</span>
+<span class="p">+</span> <span class="nf">arrayWithArray:</span>
+<span class="p">+</span> <span class="nf">arrayWithContentsOfFile:</span>
+<span class="p">+</span> <span class="nf">arrayWithContentsOfURL:</span>
+<span class="p">+</span> <span class="nf">arrayWithObject:</span>
+<span class="p">+</span> <span class="nf">arrayWithObjects:</span>
+<span class="p">+</span> <span class="nf">arrayWithObjects:count:</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以认为类方法只是调用实例方法并返回一个autorelease的数组。</p>
+<h3 id="向方法传递多个参数">向方法传递多个参数</h3>
+<p>例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">personWithFirstName:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">firstName</span> <span class="nf">lastName:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">lastName</span><span class="p">;</span>
+
+<span class="n">Person</span> <span class="o">*</span><span class="n">somebody</span> <span class="o">=</span> <span class="p">[</span><span class="n">Person</span> <span class="nl">personWithFirstName</span><span class="p">:</span><span class="s">@&#34;Jane&#34;</span> <span class="nl">lastName</span><span class="p">:</span><span class="s">@&#34;Doe&#34;</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面这个工厂方法的名称为<code>personWithFirstName:lastName:</code>。</p>
+<p>NSArray的<code>arrayWithObjects</code>可以接收多个参数，但它并不是<code>arrayWithObject1:object2:object3:</code>，因为它需要接收任意数量的对象。</p>
+<p>Objective-C支持可变长度参数，只需要在调用时在最后一个参数的后面提供一个<code>nil</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">arrayWithObjects:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">firstObj</span><span class="p">,</span> <span class="p">...</span>
+
+<span class="n">NSString</span> <span class="o">*</span><span class="n">firstObject</span> <span class="o">=</span> <span class="s">@&#34;Milk&#34;</span><span class="p">;</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">secondObject</span> <span class="o">=</span> <span class="s">@&#34;Eggs&#34;</span><span class="p">;</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">thirdObject</span> <span class="o">=</span> <span class="s">@&#34;Butter&#34;</span><span class="p">;</span>
+<span class="n">NSArray</span> <span class="o">*</span><span class="n">shoppingListArray</span> <span class="o">=</span>
+    <span class="p">[</span><span class="n">NSArray</span> <span class="nl">arrayWithObjects</span><span class="p">:</span><span class="n">firstObject</span><span class="p">,</span> <span class="n">secondObject</span><span class="p">,</span> <span class="n">thirdObject</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+
+<span class="n">NSString</span> <span class="o">*</span><span class="n">stringToOutput</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&#34;shoppingListArray = %@&#34;</span><span class="p">,</span><span class="n">shoppingListArray</span><span class="p">];</span><span class="c1">//%@用于显示数组
+</span><span class="c1"></span>
+<span class="p">[</span><span class="n">textView</span> <span class="nl">insertText</span><span class="p">:</span><span class="n">stringToOutput</span><span class="p">];</span>
+
+ <span class="n">stringToOutput</span> <span class="o">=</span> <span class="p">[</span><span class="n">stringToOutput</span>
+           <span class="nl">stringByAppendingString</span><span class="p">:[</span><span class="n">shoppingListArray</span>
+                                      <span class="nl">componentsJoinedByString</span><span class="p">:</span><span class="s">@&#34;, &#34;</span><span class="p">]];</span><span class="c1">//拼接数组
+</span><span class="c1"></span><span class="p">[</span><span class="n">textView</span> <span class="nl">insertText</span><span class="p">:</span><span class="n">stringToOutput</span><span class="p">];</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="数组元素索引">数组元素索引</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">stringToOutput</span> <span class="o">=</span> <span class="p">[</span><span class="n">stringToOutput</span>
+        <span class="nl">stringByAppendingString</span><span class="p">:[</span><span class="n">shoppingListArray</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="mi">0</span><span class="p">]];</span><span class="c1">//第二个元素
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">indexOfObject</span> <span class="o">=</span> <span class="p">[</span><span class="n">shoppingListArray</span> <span class="nl">indexOfObject</span><span class="p">:</span><span class="n">secondObject</span><span class="p">];</span><span class="c1">//元素索引
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Objective-C中数组索引是从0开始的。</p>
+<h3 id="数组元素数量">数组元素数量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="kt">int</span> <span class="n">nmberOfItems</span> <span class="o">=</span> <span class="p">[</span><span class="n">shoppingListArray</span> <span class="n">count</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="对象可变性">对象可变性</h2>
+<p>NSString和NSArray都是不可变对象。</p>
+<p>NSString类的<code>stringByAppendingString</code>不是修改已有的字符串，而是返回一个包含旧内容和新内容的字符串。</p>
+<p>NSArray提供了类似的方法<code>arrayByAddingObject</code>。</p>
+<h3 id="可变的数组和字符串">可变的数组和字符串</h3>
+<p>如果一个对象是可变(<code>mutable</code>)的，则它的内容可以动态的修改。</p>
+<p>Cocoa提供了多个可变类，它们是是基于不可变类型的。如：NSMutableString、NSMutableArray等。</p>
+<p>NSMutableArray提供了额外的方法，如<code>addObject</code>或<code>insertObject:atIndex:</code>等可以在数组的中间位置插入新元素。也提供了对应的方法从数组中删除元素。</p>
+<p>创建NSMutableArray对象：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">changingArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="n">array</span><span class="p">];</span>
+<span class="c1">// changingArray is currently an empty array
+</span><span class="c1">// calling [changingArray count] at this point would return 0
+</span><span class="c1"></span><span class="n">NSString</span> <span class="o">*</span><span class="n">firstObject</span> <span class="o">=</span> <span class="s">@&#34;The first string&#34;</span><span class="p">;</span> <span class="p">[</span><span class="n">changingArray</span> <span class="nl">addObject</span><span class="p">:</span><span class="n">firstObject</span><span class="p">];</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">secondObject</span> <span class="o">=</span> <span class="s">@&#34;The second string&#34;</span><span class="p">;</span> <span class="p">[</span><span class="n">changingArray</span> <span class="nl">addObject</span><span class="p">:</span><span class="n">secondObject</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="数组的效率">数组的效率</h3>
+<p>如果知道最终要保存在数组中的元素数量，我们可以使用<code>initWithCapacity</code>或<code>arrayWithCapacity</code>工厂方法来初始化数组。这样在存储元素时速度会更快。超出初始容量时，仍然可以存储，效率比在初始容量中存储差一些。</p>
+<p>这是因为在没有能容纳所有元素的大块内存或我们在原始容量之外添加添加新元素时，数组对象会需要跟踪多个内存块来维护它所保存的对象指针。</p>
+<h3 id="修改数组元素内容">修改数组元素内容</h3>
+<p>NSArray数组虽然是不可变的，但它的元素内容是可变的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">NSString</span> <span class="o">*</span><span class="n">firstObject</span> <span class="o">=</span> <span class="s">@&#34;Milk&#34;</span><span class="p">;</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">secondObject</span> <span class="o">=</span> <span class="s">@&#34;Eggs&#34;</span><span class="p">;</span>
+<span class="n">NSArray</span> <span class="o">*</span><span class="n">fixedArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSArray</span> <span class="nl">arrayWithObjects</span><span class="p">:</span><span class="n">firstObject</span><span class="p">,</span> <span class="n">secondObject</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+<span class="n">secondObject</span> <span class="o">=</span> <span class="s">@&#34;Bread&#34;</span><span class="p">;</span>
+<span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;Contents of Array = %@&#34;</span><span class="p">,</span> <span class="n">fixedArray</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这段代码输出的内容是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Contents of Array = (
+    Milk,
+Eggs )
+</code></pre></td></tr></table>
+</div>
+</div><p>而不是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Contents of Array = (
+    Milk,
+Bread )
+</code></pre></td></tr></table>
+</div>
+</div><p>这是因为数组会<code>retain</code>添加到其中的元素。当给<code>secondObject</code>重新赋值时，是让它指向一个新的内存地址，之前它与数组元素所指向的内存地址相同，重新赋值后，它指向了一个新地址，这对于数组里的内容没有影响。</p>
+<p>如果我们在不可变数组中保存可变字符串，那么数组元素中的内容仍然是可以修改的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">NSMutableString</span> <span class="o">*</span><span class="n">firstObject</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableString</span> <span class="nl">stringWithString</span><span class="p">:</span><span class="s">@&#34;Milk&#34;</span><span class="p">];</span>
+<span class="n">NSMutableString</span> <span class="o">*</span><span class="n">secondObject</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableString</span> <span class="nl">stringWithString</span><span class="p">:</span><span class="s">@&#34;Eggs&#34;</span><span class="p">];</span>
+<span class="n">NSArray</span> <span class="o">*</span><span class="n">fixedArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSArray</span> <span class="nl">arrayWithObjects</span><span class="p">:</span><span class="n">firstObject</span><span class="p">,</span> <span class="n">secondObject</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+<span class="p">[</span><span class="n">secondObject</span> <span class="nl">setString</span><span class="p">:</span><span class="s">@&#34;Bread&#34;</span><span class="p">];</span>
+<span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;Contents of Array = %@&#34;</span><span class="p">,</span> <span class="n">fixedArray</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>将输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">Contents</span> <span class="n">of</span> <span class="n">Array</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">Milk</span><span class="p">,</span>
+<span class="n">Bread</span> <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这种方式虽然可以修改数组元素的内容，但是并不能向数组中添加、删除元素。</p>
+<h3 id="字符串的高级特性">字符串的高级特性</h3>
+<p>构建NSString时使用的<code>@&quot;string&quot;</code>格式与上面的代码是等效的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">NSString</span> <span class="o">*</span><span class="n">string</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithCString</span><span class="p">:</span><span class="s">&#34;this is a C string&#34;</span> <span class="nl">encoding</span><span class="p">:</span><span class="err">«</span><span class="n">some</span> <span class="n">encoding</span><span class="err">»</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="添加数组元素">添加数组元素</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">NSString</span> <span class="o">*</span><span class="n">typedValue</span> <span class="o">=</span> <span class="p">[</span><span class="n">textField</span> <span class="n">stringValue</span><span class="p">];</span>
+<span class="n">shoppingListArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">shoppingListArray</span> <span class="nl">arrayByAddingObject</span><span class="p">:</span><span class="n">typedValue</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="创建新应用">创建新应用</h2>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-06-29
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/objective-c/">objective-c</a>
+          <a href="/tags/mac/">mac</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/sklearn/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Sklearn的基本使用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/c_primer_plus/">
+            <span class="next-text nav-default">C Primer Plus 笔记</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

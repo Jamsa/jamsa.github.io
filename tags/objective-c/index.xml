@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 29 Jun 2015 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/objective-c/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Begin Mac Programming 笔记</title>
-      <link>http://jamsa.github.io/devel/begin_mac_progamming/</link>
+      <link>http://jamsa.github.io/post/begin_mac_progamming/</link>
       <pubDate>Mon, 29 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/begin_mac_progamming/</guid>
+      <guid>http://jamsa.github.io/post/begin_mac_progamming/</guid>
       <description>关于对象 Objective-C 中的对象类型 Mac中使用苹果公司的的Cocoa框架。在Xcode中创建类都继承于NSObject这个基类。 当我们在Objectiv</description>
     </item>
     

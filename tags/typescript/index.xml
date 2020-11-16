@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TypeScript Handbook笔记</title>
-      <link>http://jamsa.github.io/devel/ts_handbook/ts-handbook/</link>
+      <link>http://jamsa.github.io/post/ts_handbook/ts-handbook/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/ts_handbook/ts-handbook/</guid>
+      <guid>http://jamsa.github.io/post/ts_handbook/ts-handbook/</guid>
       <description>[toc] 基础类型 数字 与js一样ts中所有数字都是浮点，类型是number，除十进制、十六进制字面量外，还支持ES2015中的八进制和二进制字面量。</description>
     </item>
     

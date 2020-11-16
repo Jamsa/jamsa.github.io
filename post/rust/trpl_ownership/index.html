@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Rust所有权系统 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。阅读这本书所敲的代码放在Github上。代码没有按书的结构分章节创建工程，而是将" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/rust/trpl_ownership/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Rust所有权系统" />
+<meta property="og:description" content="本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。阅读这本书所敲的代码放在Github上。代码没有按书的结构分章节创建工程，而是将" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/rust/trpl_ownership/" />
+<meta property="article:published_time" content="2018-08-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-08-21T00:00:00+00:00" />
+<meta itemprop="name" content="Rust所有权系统">
+<meta itemprop="description" content="本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。阅读这本书所敲的代码放在Github上。代码没有按书的结构分章节创建工程，而是将">
+<meta itemprop="datePublished" content="2018-08-21T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-08-21T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2182">
+
+
+
+<meta itemprop="keywords" content="rust," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rust所有权系统"/>
+<meta name="twitter:description" content="本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。阅读这本书所敲的代码放在Github上。代码没有按书的结构分章节创建工程，而是将"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Rust所有权系统</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-08-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%BC%80%E5%8F%91/"> 开发 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#所有权">所有权</a>
+      <ul>
+        <li><a href="#所有权规则">所有权规则</a></li>
+        <li><a href="#内存分配">内存分配</a></li>
+        <li><a href="#变量与数据交互">变量与数据交互</a>
+          <ul>
+            <li><a href="#交互方式一移动">交互方式一：移动</a></li>
+            <li><a href="#交互方式二克隆">交互方式二：克隆</a></li>
+            <li><a href="#栈上的数据拷贝">栈上的数据：拷贝</a></li>
+          </ul>
+        </li>
+        <li><a href="#所有权与函数">所有权与函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#引用与借用">引用与借用</a>
+      <ul>
+        <li><a href="#可变引用">可变引用</a></li>
+        <li><a href="#悬垂引用">悬垂引用</a></li>
+        <li><a href="#引用的使用规则">引用的使用规则</a></li>
+      </ul>
+    </li>
+    <li><a href="#slices">Slices</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文是读《Rust程序设计语言第二版》所有权相关内容的笔记。阅读这本书所敲的代码放在<a href="https://github.com/Jamsa/trpl/blob/master/src/ownership.rs">Github</a>上。代码没有按书的结构分章节创建工程，而是将所有代码放在一个单独的工程中。</p>
+<h1 id="所有权">所有权</h1>
+<p>所有权是Rust中最为独特的功能，它使得Rust无需垃圾回收即可保障内存安全。</p>
+<h2 id="所有权规则">所有权规则</h2>
+<ul>
+<li>
+<p>Rust中每个值都有一个被称为所有者的变量。</p>
+</li>
+<li>
+<p>值有且只能有一个所有者。</p>
+</li>
+<li>
+<p>当所有者离开作用域，这个值将被丢弃。</p>
+</li>
+</ul>
+<h2 id="内存分配">内存分配</h2>
+<p>以字符串为例，字符串字面量在编译时已经知道它的内容，它被直接硬编码进最终的可执行文件。它的快速高效来自于其不可变性。对于<code>String</code>类型，它为了支持可变，需要在堆上分配一块在编译时未知大小的内存来存储内容。这意味着：</p>
+<p>　1.　内存需要在运行时向操作系统申请。</p>
+<p>　1.　需要一个在处理完<code>String</code>时将内存返还给操作系统的方法。</p>
+<p>内存申请在所有编程语言中都是非常通用的。内存的返还在不同语言中则各有区别。在有<code>GC</code>的语言中，<code>GC</code>记录并清除不再使用的内存。没有<code>GC</code>时，识别不再使用的内在，调用代码释放它就是程序员的责任了，如使用<code>allocate</code>和<code>free</code>。</p>
+<p>Rust采用了不同的策略：内存在变量离开作用域后就被自动释放。当变量离开作用域，Rust为其调用<code>drop</code>函数，<code>String</code>类的作者可以在这里放置释放内存的代码。（类似<code>C++</code>的<code>RAII</code>）</p>
+<h2 id="变量与数据交互">变量与数据交互</h2>
+<h3 id="交互方式一移动">交互方式一：移动</h3>
+<p>将一个变量赋值给另一个变量时，将复制变量（不是值）。如以下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>字符串变量<code>s1</code>由一个指向存放字符串内容的指针、字符串长度、字符串容量三部分组成。当把<code>s1</code>赋给<code>s2</code>时，会复制指针、长度、容量，但并不会复制指针所指向的数据（值）。</p>
+<p><img src="../trpl/trpl_ownership_string.png" alt="String"></p>
+<p>这样一来，<code>s1</code>和s2<code>就都指向了同一块内存区域。前面提到过当变量离开作用域时，会自动调用</code>drop<code>释放内存。如果</code>s1<code>和</code>s2<code>都释放，会导致同一块内存被释放两次，产生</code>二次释放`问题，产生内存污染和安全漏洞。</p>
+<p>为了保证内存安全，在这种场景下Rust会认为<code>s1</code>不再有效，不需要再次释放。在Rust中这个赋值会复制指针、长度、容量，而不会拷贝数据，听起来像是“浅拷贝”。在这个过程中Rust会让第一个变量无效化，这个操作被称为<code>移动（move）</code>。以下代码会编译报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}, world!&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">s1</span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>因为<code>s1</code>赋给<code>s2</code>之后，相当于<code>s1</code>被移动到了<code>s2</code>，因此<code>s1</code>不再有效。</p>
+<p><img src="../trpl/trpl_ownership_move.png" alt="移动"></p>
+<h3 id="交互方式二克隆">交互方式二：克隆</h3>
+<p>如果确实需要进行深度复制指针指向的数据，可以使用<code>clone</code>方法。下面的<code>s1</code>和<code>s2</code>都有效：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s1</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;s1 = {}, s2 = {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="栈上的数据拷贝">栈上的数据：拷贝</h3>
+<p>对于整形等在编译期已知大小的类型是存储在栈上的，其值拷贝速度非常快，在赋值时会直接被复制（值）。</p>
+<h2 id="所有权与函数">所有权与函数</h2>
+<p>将值传给函数在主义上与给变量赋值相似。向函数传递值可能会移动或复制，就像赋值语句一样。</p>
+<p>返回值也可以转移作用域。函数返回值的所有权发生转移。</p>
+<p>第个函数都获取并返回所有权代码会比较冗余。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">calculate_length</span><span class="p">(</span><span class="n">s</span>: <span class="nb">String</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="p">(</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="kt">usize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">len</span><span class="p">();</span><span class="w"> </span><span class="c1">// len() returns the length of a String.
+</span><span class="c1"></span><span class="w">
+</span><span class="w">    </span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这时可以使用<code>引用</code>功能。</p>
+<h1 id="引用与借用">引用与借用</h1>
+<p>在调用<code>calculate_length</code>时，我们并不希望<code>s</code>的所有权转移至函数内，通常会希望<code>s</code>在调用完函数后仍然可用。这种情况下我们可以使用<code>引用</code>而不是直接获取所有权。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calculate_length</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s1</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;The length of &#39;{}&#39; is {}.&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">calculate_length</span><span class="p">(</span><span class="n">s</span>: <span class="kp">&amp;</span><span class="nb">String</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">usize</span> <span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>&amp;</code>符号就是引用，它允许你使用值，但是并不获取其所有权。<code>s</code>引用指向变量<code>s1</code>，但并不取得<code>s1</code>的指针（<code>s1</code>包括指向数据的指针、容量、长度）所指向的数据（值）的所有权。当引用离开作用域时，其指向的值不会被丢弃。</p>
+<p><img src="../trpl/trpl_ownership_ref.png" alt="引用"></p>
+<p>与使用<code>&amp;</code>相对应的操作是解引用，解引用运算符为<code>*</code>。</p>
+<p>获取引用作为函数参数称为<code>借用</code>。</p>
+<h2 id="可变引用">可变引用</h2>
+<p>如变量一样，引用默认也是不允许修改引用值的。使用<code>&amp;mut s</code>创建<code>s</code>可变引用。可变引用的限制：在特定作用域中的特定数据，有且只有一个可变引用。以下代码将会报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Rust中通过这种方式也避免了数据竞争的发生，因为在编译期就会检查存在数据竞争的代码。</p>
+<p>可以使用大括号来创建新的作用域，以允许拥有多个可变引用，这仍然不是<code>同时</code>拥有：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w"> </span><span class="c1">// r1 goes out of scope here, so we can make a new reference with no problems.
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="悬垂引用">悬垂引用</h2>
+<p>存在指针的语言中，容易通过释放内存时保留指向它的指针而生成一个悬垂指针，其指向的内存可能已经被分配给其它持有者。因此，悬垂指针容易产生各种问题。Rust编译器确保引用永远也不会变成悬垂状态：当我们拥有数据的引用，编译器确保数据不会在引用之前离开作用域。</p>
+<p>以下代码是无法编译通过的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">reference_to_nothing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dangle</span><span class="p">();</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">dangle</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="nb">String</span> <span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="o">&amp;</span><span class="n">s</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>产生的错误为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">error[E0106]: missing lifetime specifier
+ --&gt; dangle.rs:5:16
+  |
+5 | fn dangle() -&gt; &amp;String {
+  |                ^ expected lifetime parameter
+  |
+  = help: this function&#39;s return type contains a borrowed value, but there is
+  no value for it to be borrowed from
+  = help: consider giving it a &#39;static lifetime
+</code></pre></td></tr></table>
+</div>
+</div><p>错误信息与<a href="../trpl_life_cycle/">生命周期</a>有关。</p>
+<p>因为<code>s</code>是在<code>dangle</code>函数内创建的，当<code>dangle</code>的代码执行完毕后，<code>s</code>将被释放，当试图返回它的引用时，Rust能检测出这种错误。</p>
+<p>这种情况下需要返回变量，而不是其引用。返回时所有权将被转移出函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">no_dangle</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">String</span> <span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="n">s</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="引用的使用规则">引用的使用规则</h2>
+<ul>
+<li>
+<p>在任意时间，只能拥有如下中的一个</p>
+<ul>
+<li>
+<p>一个可变引用</p>
+</li>
+<li>
+<p>任意数量的不可变引用</p>
+</li>
+</ul>
+</li>
+<li>
+<p>引用必须总是有效的</p>
+</li>
+</ul>
+<h1 id="slices">Slices</h1>
+<p><code>slice</code>是另一个没有所有权的数据类型。它允许你引用集合中的一段连续的元素，而不引用整个集合。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello world&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">hello</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">..</span><span class="mi">5</span><span class="p">];</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">world</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">6</span><span class="p">..</span><span class="mi">11</span><span class="p">];</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>其内存结构如下：</p>
+<p><img src="../trpl/trpl_ownership_slice.png" alt="Slice"></p>
+<p>字符串<code>slice</code>的类型声明写作<code>&amp;str</code>。</p>
+<p>字符串字面值就是<code>slice</code>，如<code>let s = &quot;Hello, world!&quot;;</code>。</p>
+<p><code>Slice</code>不只是针对字符串，也可以对其它所有类型的集合使用<code>slice</code>。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-08-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/rust/">rust</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/rust/trpl_life_cycle/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Rust变量生命周期管理</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/rust/rust_win_env/">
+            <span class="next-text nav-default">使用 Chocolatey 在 Win10 下配置 rust 开发环境</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring Cloud 上手11-配置优化 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="这是Spring Cloud上手系列的第十一篇，代码放在GitHub上，随着本系列文章更新。 概述 本篇主要对各应用的配置进行优化，原因主要有两个" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/java/spring_cloud_tut11/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring Cloud 上手11-配置优化" />
+<meta property="og:description" content="这是Spring Cloud上手系列的第十一篇，代码放在GitHub上，随着本系列文章更新。 概述 本篇主要对各应用的配置进行优化，原因主要有两个" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/java/spring_cloud_tut11/" />
+<meta property="article:published_time" content="2018-06-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-06-14T00:00:00+00:00" />
+<meta itemprop="name" content="Spring Cloud 上手11-配置优化">
+<meta itemprop="description" content="这是Spring Cloud上手系列的第十一篇，代码放在GitHub上，随着本系列文章更新。 概述 本篇主要对各应用的配置进行优化，原因主要有两个">
+<meta itemprop="datePublished" content="2018-06-14T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-06-14T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2437">
+
+
+
+<meta itemprop="keywords" content="spring cloud," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Cloud 上手11-配置优化"/>
+<meta name="twitter:description" content="这是Spring Cloud上手系列的第十一篇，代码放在GitHub上，随着本系列文章更新。 概述 本篇主要对各应用的配置进行优化，原因主要有两个"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spring Cloud 上手11-配置优化</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-06-14 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%BC%80%E5%8F%91/"> 开发 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述">概述</a></li>
+    <li><a href="#添加依赖">添加依赖</a></li>
+    <li><a href="#调整配置">调整配置</a>
+      <ul>
+        <li><a href="#配置中心服务程序">配置中心服务程序</a></li>
+        <li><a href="#配置中心客户端程序">配置中心客户端程序</a></li>
+        <li><a href="#配置中心的配置仓库">配置中心的配置仓库</a>
+          <ul>
+            <li><a href="#公共配置文件">公共配置文件</a></li>
+            <li><a href="#应用配置文件">应用配置文件</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#构建和运行">构建和运行</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>这是Spring Cloud上手系列的第十一篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1 id="概述">概述</h1>
+<p>本篇主要对各应用的配置进行优化，原因主要有两个：</p>
+<ul>
+<li>
+<p>此前<a href="../spring_cloud_tut7/">配置中心</a>一文中只把<code>provider:service</code>与配置中心进行了集成，其它应用仍是读取本地的配置信息。</p>
+</li>
+<li>
+<p>写至本篇的时候，发现各个模块的配置文件已经比较乱了，存在大量重复配置，配置文件中也存在一些不需要的配置项，需要进行一轮整理。</p>
+</li>
+<li>
+<p>增加<code>profile</code>支持为后面将容器化做准备。</p>
+</li>
+</ul>
+<p>优化的目标：</p>
+<ul>
+<li>
+<p>配置中心（config）和注册中心（registry）读取本地配置信息外（先有鸡还是先有蛋的问题，只能读取本地配置文件）。</p>
+</li>
+<li>
+<p>服务网关(gateway)、服务提供者（provider:service）、服务消费者（consumer:service）、调用链分析（zipkin）应用都只保留<code>boostrap.yml</code>配置文件，且该配置文件中只保留注册中心地址、应用名称、端口等基本信息。其余配置信息移至配置中心的共享配置文件（application.yml）或应用对应的配置文件（{application}.yml）。</p>
+</li>
+<li>
+<p>添加<code>profile</code>支持，默认使用<code>dev</code> profile。在配置中心保存的各个应用的配置文件不添加<code>{application}-{profile}.yml</code>配置文件（减少配置文件的量），profile相关的配置信息写在<code>{application}.yml</code>中。</p>
+</li>
+</ul>
+<h1 id="添加依赖">添加依赖</h1>
+<p>检查要使用配置中心的各个应用的依赖配置，至少需要添加<code>eureka-client</code>和<code>config-client</code>两个依赖。例如，zipkin的依赖配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;eureka-client&#39;</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;config-client&#39;</span> <span class="c1">//Config客户端
+</span><span class="c1"></span>    <span class="c1">//ZipKin服务
+</span><span class="c1"></span>    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server&#39;</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server-ui&#39;</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server-rabbit&#39;</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server-elasticsearch&#39;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="调整配置">调整配置</h1>
+<h2 id="配置中心服务程序">配置中心服务程序</h2>
+<p>调整后配置中心服务程序的<code>application.yml</code>如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l">dev,native</span><span class="w"> </span><span class="c">#使用本地目录读取配置文件，而不是从版本仓库</span><span class="w">
+</span><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">sc-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">native</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">searchLocations</span><span class="p">:</span><span class="w"> </span><span class="l">file:/Users/zhujie/Documents/devel/Java/sc-cloud/support/config</span><span class="w"> </span><span class="c">#需要从sc-cloud目录下运行程序</span><span class="w">
+</span><span class="w">          </span><span class="c">#searchLocations:classpath:/config</span><span class="w">
+</span><span class="w">        </span><span class="c">#git:</span><span class="w">
+</span><span class="w">        </span><span class="c">#  uri: http://xxx.git</span><span class="w">
+</span><span class="w">        </span><span class="c">#  searchPaths: config #配置文件放在根目录时不需要配置</span><span class="w">
+</span><span class="w"></span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">9002</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c">#取消权限验证</span><span class="w">
+</span><span class="w"></span><span class="nt">management</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">security</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 启用/restart端点重新启动应用程序上下文。</span><span class="w">
+</span><span class="w"></span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">restart</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">INFO</span><span class="w">
+</span><span class="w">    </span><span class="nt">org.springframework.web.servlet.DispatcherServlet</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+</span><span class="w">    </span><span class="nt">org.springframework.cloud.sleuth</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="c"># dev profile</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">dev</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">client</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">serviceUrl</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">defaultZone</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:9001/eureka/</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="c"># docker profile</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">docker</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">client</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">serviceUrl</span><span class="p">:</span><span class="w">
+</span><span class="w">     </span><span class="nt">defaultZone</span><span class="p">:</span><span class="w"> </span><span class="l">http://sc-config-0.eureka.default.svc.cluster.local:9001/eureka/,http://sc-config-1.eureka.default.svc.cluster.local:9001/eureka/</span><span class="w">
+</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这里将<code>dev</code>和<code>docker</code>两个<code>profile</code>写在了同一配置文件中。</p>
+<h2 id="配置中心客户端程序">配置中心客户端程序</h2>
+<p>调整后的<code>provider:service</code>的<code>bootstrap.yml</code>配置文件如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l">dev</span><span class="w">
+</span><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">sc-provider</span><span class="w">
+</span><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">failFast</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c">#快速失败</span><span class="w">
+</span><span class="w">      </span><span class="nt">discovery</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">serviceId</span><span class="p">:</span><span class="w"> </span><span class="l">sc-config</span><span class="w"> </span><span class="c">#配置服务中心的应用名称</span><span class="w">
+</span><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w"></span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">9010</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="c"># dev profile</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">dev</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">client</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">serviceUrl</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">defaultZone</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:9001/eureka/</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="c"># docker profile</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">docker</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">client</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">serviceUrl</span><span class="p">:</span><span class="w">
+</span><span class="w">     </span><span class="nt">defaultZone</span><span class="p">:</span><span class="w"> </span><span class="l">http://sc-config-0.eureka.default.svc.cluster.local:9001/eureka/,http://sc-config-1.eureka.default.svc.cluster.local:9001/eureka/</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>内容比原来的精简了很多，这是因为其它配置信息移入了配置仓库的<code>application.yml</code>中。</p>
+<h2 id="配置中心的配置仓库">配置中心的配置仓库</h2>
+<h3 id="公共配置文件">公共配置文件</h3>
+<p>Spring Cloud 配置中心客户端支持共享配置文件。存放在配置中心根目录的<code>application*.yml</code>配置文件会被各个应用加载。我们将公用配置信息保存在<code>support/config/application.yml</code>中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c">#公共配置</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">zipkin</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l">zipkin</span><span class="w">
+</span><span class="w">  </span><span class="nt">sleuth</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">sampler</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">percentage</span><span class="p">:</span><span class="w"> </span><span class="m">1.0</span><span class="w">
+</span><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">bus</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">trace</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c">#取消权限验证</span><span class="w">
+</span><span class="w"></span><span class="nt">management</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">security</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 启用/restart端点重新启动应用程序上下文。</span><span class="w">
+</span><span class="w"></span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">restart</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">INFO</span><span class="w">
+</span><span class="w">    </span><span class="nt">org.springframework.web.servlet.DispatcherServlet</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+</span><span class="w">    </span><span class="nt">org.springframework.cloud.sleuth</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="c"># dev profile</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">dev</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">localhost</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">5672</span><span class="w">
+</span><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="c"># docker profile</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">docker</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">rabbitmq</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">5672</span><span class="w">
+</span><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="应用配置文件">应用配置文件</h3>
+<p>各个配置中心客户端在启动时，会从配置中心读取应用的私有配置，文件名为<code>support/config/{application}-{profile}.yml</code>。以<code>zipkin</code>应用的配置文件<code>sc-zipkin.yml</code>为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">zipkin</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">collector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:5672</span><span class="w">
+</span><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">      </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l">zipkin</span><span class="w">
+</span><span class="w">  </span><span class="nt">storage</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">elasticsearch</span><span class="w">
+</span><span class="w">    </span><span class="nt">elasticsearch</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l">elasticsearch</span><span class="w">
+</span><span class="w">      </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l">zipkin</span><span class="w">
+</span><span class="w">      </span><span class="nt">index-shards</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="w">      </span><span class="nt">index-replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="c"># dev profile</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">dev</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">zipkin</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">collector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:5672</span><span class="w">
+</span><span class="w">  </span><span class="nt">storage</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">elasticsearch</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:9200</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="c"># docker profile</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">docker</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">zipkin</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">collector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="l">rabbitmq:5672</span><span class="w">
+</span><span class="w">  </span><span class="nt">storage</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">elasticsearch</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">http://elk:9200</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h1 id="构建和运行">构建和运行</h1>
+<p>各应用的配置文件都默认使用<code>dev</code> profile，配置的内容与之前是相同的。因此只需在根模块下使用<code>gradle build</code>重新构建。</p>
+<p>注意，上面配置中心客户端应用都是通过注册中心获取<code>sc-config</code>应用的信息，以服务的方式来访问配置中心。因此，在启动应用时要先启动注册中心、之后是配置中心，然后再启动其它应用。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-06-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spring-cloud/">spring cloud</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring_cloud_tut12/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Spring Cloud 上手12-容器化</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/spring_cloud_tut10/">
+            <span class="next-text nav-default">Spring Cloud 上手10-日志收集</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

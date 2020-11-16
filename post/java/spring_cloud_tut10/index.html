@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring Cloud 上手10-日志收集 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="这是Spring Cloud上手系列的第十篇，代码放在GitHub上，随着本系列文章更新。 ELK简介 ELK是Logstash、ElasticS" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/java/spring_cloud_tut10/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring Cloud 上手10-日志收集" />
+<meta property="og:description" content="这是Spring Cloud上手系列的第十篇，代码放在GitHub上，随着本系列文章更新。 ELK简介 ELK是Logstash、ElasticS" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/java/spring_cloud_tut10/" />
+<meta property="article:published_time" content="2018-06-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-06-13T00:00:00+00:00" />
+<meta itemprop="name" content="Spring Cloud 上手10-日志收集">
+<meta itemprop="description" content="这是Spring Cloud上手系列的第十篇，代码放在GitHub上，随着本系列文章更新。 ELK简介 ELK是Logstash、ElasticS">
+<meta itemprop="datePublished" content="2018-06-13T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-06-13T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2595">
+
+
+
+<meta itemprop="keywords" content="spring cloud," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Cloud 上手10-日志收集"/>
+<meta name="twitter:description" content="这是Spring Cloud上手系列的第十篇，代码放在GitHub上，随着本系列文章更新。 ELK简介 ELK是Logstash、ElasticS"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spring Cloud 上手10-日志收集</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-06-13 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%BC%80%E5%8F%91/"> 开发 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#elk简介">ELK简介</a>
+      <ul>
+        <li><a href="#zipkin持久化">Zipkin持久化</a></li>
+        <li><a href="#日志收集方式">日志收集方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#准备elk环境">准备ELK环境</a></li>
+    <li><a href="#elk与zipkin集成">ELK与Zipkin集成</a>
+      <ul>
+        <li><a href="#添加依赖">添加依赖</a></li>
+        <li><a href="#修改配置">修改配置</a></li>
+        <li><a href="#构建和测试">构建和测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#elk日志收集">ELK日志收集</a>
+      <ul>
+        <li><a href="#添加依赖-1">添加依赖</a></li>
+        <li><a href="#增加配置">增加配置</a></li>
+        <li><a href="#构建并运行">构建并运行</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>这是Spring Cloud上手系列的第十篇，代码放在<a href="https://github.com/Jamsa/sc-cloud">GitHub</a>上，随着本系列文章更新。</p>
+<h1 id="elk简介">ELK简介</h1>
+<p>ELK是Logstash、ElasticSearch和Kibana的组合。Logstash处理日志的收集，ElasticSearch处理日志的检索，Kibana对日志进行可视化展示和查询。</p>
+<p>在Spring Cloud微服务架构下可以使用ElasticSearch来存储两类信息：一类是通过Logstash收集的各个应用的日志，另一类是作为Zipkin的持久化存储。</p>
+<h2 id="zipkin持久化">Zipkin持久化</h2>
+<p>Zipkin本身支持采用ElasticSearch作为其存储引擎，它可以直接与ElasticSearch交互，将跟踪信息保存至ElasticSearch。</p>
+<h2 id="日志收集方式">日志收集方式</h2>
+<p>微服务应用的日志则情况更复杂。ELK与Spring Cloud的集成有两种方式：</p>
+<ul>
+<li>一种是各个微服务节点上部署Logstash实例。微服务输出日志时，按Logstash的需要输出为json格式。Logstash则监控这些日志目录，并将这些日志发送至ElasticSearch。由于Logstash是采用jruby实现的，fatjar有20M左右，并且它进行日志处理时候会消耗较多的cpu资源，会影响到微服务节点的性能，因此一般不建议采用此方案。</li>
+</ul>
+<p><img src="../spring_cloud_tut/logstash1.png" alt="日志收集-elk-logstash1"></p>
+<ul>
+<li>另一种方式是微服务节点上部署轻量化的日志收集器。通过日志收集器收集日志并转发至独立的Logstash节点。收集器的形式有很多种，可以直接使用Logger将日志转发给Logstash（这篇文章里我们使用这种方式），也可以使用轻量化的日志收集器Filebeat、rsyslog等。</li>
+</ul>
+<p><img src="../spring_cloud_tut/logstash2.png" alt="日志收集-elk-logstash2"></p>
+<h1 id="准备elk环境">准备ELK环境</h1>
+<p>为测试方便，我们使用Docker来运行ELK镜像，这里不直接使用ELK官方镜像。官方镜像的E L K各个组件是独立的。为了测试方便，我们使用集成了ELK三个组件的像。</p>
+<ol>
+<li>安装ELK镜像</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker pull sebp/elk
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>顺便将rabbitmq也换成Docker方式运行</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker pull rabbitmq:3-management
+</code></pre></td></tr></table>
+</div>
+</div><p>因为我们要访问rabbitmq的控制台，所以要安装<code>3-management</code>，<code>rabbitmq</code>镜像不带插件。</p>
+<ol start="3">
+<li>编写<code>docker-compose.yml</code>配置文件</li>
+</ol>
+<p>在根模块的<code>support/docker</code>目录下新建<code>docker-compose.yml</code>配置文件，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">elk</span><span class="p">:</span><span class="w">
+</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">sebp/elk</span><span class="w">
+</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">   </span>- <span class="s2">&#34;5601:5601&#34;</span><span class="w">
+</span><span class="w">   </span>- <span class="s2">&#34;9200:9200&#34;</span><span class="w">
+</span><span class="w">   </span>- <span class="s2">&#34;5044:5044&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">rabbitmq:3-management</span><span class="w">
+</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">   </span>- <span class="s2">&#34;15672:15672&#34;</span><span class="w">
+</span><span class="w">   </span>- <span class="s2">&#34;5672:5672&#34;</span><span class="w">
+</span><span class="w">   </span>- <span class="s2">&#34;5673:5673&#34;</span><span class="w">
+</span><span class="w">   </span>- <span class="s2">&#34;4369:4369&#34;</span><span class="w">
+</span><span class="w">   </span>- <span class="s2">&#34;25672:25672&#34;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>在这个目录下执行<code>docker-compose up</code>启动容器。</li>
+</ol>
+<p>之后可以从本机的<code>15672</code>、<code>9200</code>、<code>5601</code>分别看到RabbitMQ、ElasticSearch、Kibana的相关信息：</p>
+<p><img src="../spring_cloud_tut/docker-rabbitmq.png" alt="日志收集-docker-rabbitmq"></p>
+<p><img src="../spring_cloud_tut/docker-elasticsearch.png" alt="日志收集-docker-elasticsearch"></p>
+<p><img src="../spring_cloud_tut/docker-kibana.png" alt="日志收集-docker-kibana"></p>
+<h1 id="elk与zipkin集成">ELK与Zipkin集成</h1>
+<p><a href="../spring_cloud_tut9/">上一篇</a>文章中使用Zipkin进行调用链的跟踪。各个服务的调用信息通过RabbitMQ传递至Zipkin服务。默认情况下这些信息是保存在内存中的，并没有进行持久化。我们可以将ELK中的ElasticSearch来存储Zipkin服务接收的数据。</p>
+<h2 id="添加依赖">添加依赖</h2>
+<p>在根模块的<code>build.gradle</code>中添加<code>io.zipkin.java:zipkin-autoconfigure-storage-elasticsearch-http</code>依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">        <span class="c1">//zipkin服务端
+</span><span class="c1"></span>        <span class="s2">&#34;zipkin-server&#34;</span><span class="o">:</span><span class="s2">&#34;io.zipkin.java:zipkin-server&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;zipkin-server-ui&#34;</span><span class="o">:</span><span class="s2">&#34;io.zipkin.java:zipkin-autoconfigure-ui&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;zipkin-server-rabbit&#34;</span><span class="o">:</span><span class="s2">&#34;io.zipkin.java:zipkin-autoconfigure-collector-rabbitmq:2.3.1&#34;</span><span class="o">,</span>
+        <span class="s2">&#34;zipkin-server-elasticsearch&#34;</span><span class="o">:</span><span class="s2">&#34;io.zipkin.java:zipkin-autoconfigure-storage-elasticsearch-http:2.3.1&#34;</span><span class="o">,</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>向<code>zipkin</code>模块的<code>build.gradle</code>中添加该依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="c1">//ZipKin服务
+</span><span class="c1"></span>    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server&#39;</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server-ui&#39;</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server-rabbit&#39;</span>
+    <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-server-elasticsearch&#39;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="修改配置">修改配置</h2>
+<p>在<code>zipkin</code>模块的<code>application.yml</code>中添加存储配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">zipkin</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">collector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:5672</span><span class="w">
+</span><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span><span class="w">      </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l">zipkin</span><span class="w">
+</span><span class="w">  </span><span class="nt">storage</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">elasticsearch</span><span class="w">
+</span><span class="w">    </span><span class="nt">elasticsearch</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l">elasticsearch</span><span class="w">
+</span><span class="w">      </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:9200</span><span class="w">
+</span><span class="w">      </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l">zipkin</span><span class="w">
+</span><span class="w">      </span><span class="nt">index-shards</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="w">      </span><span class="nt">index-replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="构建和测试">构建和测试</h2>
+<p>重新构建<code>zipkin</code>模块并重新运行。再次访问<code>http://localhost:9000/api/consumer/hello?name=dfdsdsds</code>产生一些跟踪数据。再访问<code>http://localhost:5601</code>的Kibana控制台，就能看到<code>zipkin</code>产生的数据了。</p>
+<p><img src="../spring_cloud_tut/elk-zipkin-kibana.png" alt="日志收集-zipkin-kibana"></p>
+<h1 id="elk日志收集">ELK日志收集</h1>
+<p>接下来我们配置各个应用的日志转发功能，将日志信息保存至ELK。</p>
+<p>Spring Boot应用默认使用logback来记录日志。Logstash有针对logback的支持，可以直接在logback中增加Logstash的Appender就可以将日志转化为JSON并存储至ElasticSearch。</p>
+<h2 id="添加依赖-1">添加依赖</h2>
+<p>在根模块的<code>build.gradle</code>的<code>ext.libs</code>中添加<code>logstash</code>依赖:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">        <span class="c1">//logstash
+</span><span class="c1"></span>        <span class="s2">&#34;logstash&#34;</span><span class="o">:</span><span class="s2">&#34;net.logstash.logback:logstash-logback-encoder:4.6&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>将该依赖添加至<code>service</code>、<code>gateway</code>应用中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="c1">// service 和 gateway 工程的依赖，zipkin 客户端
+</span><span class="c1"></span>    <span class="k">if</span><span class="o">(</span><span class="n">name</span><span class="o">==</span><span class="s1">&#39;service&#39;</span><span class="o">||</span><span class="n">name</span><span class="o">==</span><span class="s1">&#39;gateway&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;zipkin-client&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;spring-rabbit&#39;</span>
+            <span class="n">compile</span> <span class="n">libs</span><span class="o">.</span><span class="s1">&#39;logstash&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="增加配置">增加配置</h2>
+<p>我们以<code>consumer:service</code>模块为例。在<code>resources</code>目录下增加<code>logback-spring.xml</code>，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;appender</span> <span class="na">name=</span><span class="s">&#34;LOGSTASH&#34;</span> <span class="na">class=</span><span class="s">&#34;net.logstash.logback.appender.LogstashTcpSocketAppender&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;destination&gt;</span>localhost:4560<span class="nt">&lt;/destination&gt;</span>
+        <span class="nt">&lt;encoder</span> <span class="na">charset=</span><span class="s">&#34;UTF-8&#34;</span> <span class="na">class=</span><span class="s">&#34;net.logstash.logback.encoder.LogstashEncoder&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/appender&gt;</span>
+
+    <span class="nt">&lt;include</span> <span class="na">resource=</span><span class="s">&#34;org/springframework/boot/logging/logback/base.xml&#34;</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;root</span> <span class="na">level=</span><span class="s">&#34;INFO&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;LOGSTASH&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;CONSOLE&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/root&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里配置为将日志发送至<code>localhost:4560</code>，我们希望这个端口是Logstash的日志收集端口。由于我们使用的ELK镜像并没有开放这个端口，因此我们需要对<code>docker-compose.yml</code>稍做调整，让它加载我们自己的配置文件。</p>
+<p>从ELK镜像的<a href="https://github.com/spujadas/elk-docker">GitHub</a>上查看源码，可以看到镜像开放了<code>5044</code>作为<code>Filebeat</code>日志收集端口。但是在我们简单的验证环境上用不上，我们希望在<code>4560</code>开放<code>Logstash</code>的日志收集端口。查看镜像源码可以看到<code>30-output.conf</code>配置文件，这个文件只配置了<code>output</code>，将这个文件复制到<code>support/docker/elk-30-output.conf</code>，并添加<code>input</code>配置，开放<code>logstash</code>日志收集端口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">input {
+    tcp {
+        port =&gt; 4560
+        codec =&gt; json_lines
+    }
+}
+
+output {
+  elasticsearch {
+    hosts =&gt; [&#34;localhost&#34;]
+    manage_template =&gt; false
+    index =&gt; &#34;%{[@metadata][beat]}-%{+YYYY.MM.dd}&#34;
+    document_type =&gt; &#34;%{[@metadata][type]}&#34;
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>调整<code>docker-compose.yml</code>，让ELK容器加载我们的配置文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">elk</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">sebp/elk</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;5601:5601&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;9200:9200&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;5044:5044&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;4560:4560&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">./elk-30-output.conf:/etc/logstash/conf.d/30-output.conf</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">rabbitmq:3-management</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;15672:15672&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;5672:5672&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;5673:5673&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;4369:4369&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;25672:25672&#34;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>重新运行<code>docker-compose up</code>。在docker控制台能看到<code>4560</code>端口的监听信息：</p>
+<p><img src="../spring_cloud_tut/docker-logstash-input.png" alt="日志收集-zipkin-kibana"></p>
+<h2 id="构建并运行">构建并运行</h2>
+<p>在根模块下重新构建<code>consumer:service</code>模块并运行。</p>
+<p>进入Kibana控制台的Management -&gt; Index Patterns可以看到产生了新的索引信息：</p>
+<p><img src="../spring_cloud_tut/kibana-logstash.png" alt="日志收集-kibana-logstash"></p>
+<p>图中的<code>%{[@metadata][beat]}-2018.06.13</code>与<code>elk-30-output.conf</code>中<code>output</code>段的配置是对应的。创建完索引后，在Kibana控制台的Discover界面上，就能看到<code>consumer:service</code>产生的日志了。</p>
+<p><img src="../spring_cloud_tut/kibana-logstash-log.png" alt="日志收集-kibana-logstash-log"></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-06-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spring-cloud/">spring cloud</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring_cloud_tut11/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Spring Cloud 上手11-配置优化</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/spring_cloud_tut9/">
+            <span class="next-text nav-default">Spring Cloud 上手9-服务监控</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

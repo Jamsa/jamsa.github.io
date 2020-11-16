@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 09 Jan 2009 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/org/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs Org Mode及GTD</title>
-      <link>http://jamsa.github.io/devel/editor/emacs-org/</link>
+      <link>http://jamsa.github.io/post/editor/emacs-org/</link>
       <pubDate>Fri, 09 Jan 2009 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/editor/emacs-org/</guid>
+      <guid>http://jamsa.github.io/post/editor/emacs-org/</guid>
       <description>Org Mode常用快捷键 文档操作 TAB 折叠或打开子项 S-TAB 折叠整个文档 节点操作相关 M-左右 左右移动节点 M-S-左右 整体左右移动节点及子节点 M-上下 上移或</description>
     </item>
     

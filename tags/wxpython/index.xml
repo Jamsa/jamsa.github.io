@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 08 Jul 2008 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/wxpython/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>wxPython In Action的读书笔记</title>
-      <link>http://jamsa.github.io/devel/wxpython/</link>
+      <link>http://jamsa.github.io/post/wxpython/</link>
       <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/wxpython/</guid>
+      <guid>http://jamsa.github.io/post/wxpython/</guid>
       <description>Chap 1 Welcome to wxPython 一个20行的wxPython程序： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 #!/bin/env python import wx class MyFrame(wx.Frame): def __init__(self): wx.Frame.__init__(self,None,-1,&amp;#34;My Frame&amp;#34;,size=(300,300)) panel = wx.Panel(self,-1) panel.Bind(wx.EVT_MOTION,self.OnMove) wx.StaticText(panel,-1,&amp;#34;Pos&amp;#34;,pos=(10,12)) self.posCtrl = wx.TextCtrl(panel,-1,&amp;#34;&amp;#34;,pos=(40,10)) def OnMove(self,event): pos = event.GetPosition() self.posCtrl.SetValue(&amp;#34;%s,%s&amp;#34; % (pos.x,pos.y)) if __name__ ==</description>
     </item>
     

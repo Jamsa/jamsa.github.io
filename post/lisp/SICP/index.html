@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SICP读书笔记 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="Chap.1 Building Abstractions with Procedures 在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/lisp/sicp/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SICP读书笔记" />
+<meta property="og:description" content="Chap.1 Building Abstractions with Procedures 在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/lisp/sicp/" />
+<meta property="article:published_time" content="2010-08-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2010-08-31T00:00:00+00:00" />
+<meta itemprop="name" content="SICP读书笔记">
+<meta itemprop="description" content="Chap.1 Building Abstractions with Procedures 在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将">
+<meta itemprop="datePublished" content="2010-08-31T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2010-08-31T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2373">
+
+
+
+<meta itemprop="keywords" content="lisp,scheme," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SICP读书笔记"/>
+<meta name="twitter:description" content="Chap.1 Building Abstractions with Procedures 在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SICP读书笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2010-08-31 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%BC%80%E5%8F%91/"> 开发 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#chap1-building-abstractions-with-procedures">Chap.1 Building Abstractions with Procedures</a>
+      <ul>
+        <li><a href="#exercise-12-将下面的表达式转换为form">Exercise 1.2 将下面的表达式转换为form</a></li>
+        <li><a href="#exercise-13-定义一个过程接收3个参数返回最大的两个参数的平方和">Exercise 1.3 定义一个过程接收3个参数返回最大的两个参数的平方和</a></li>
+        <li><a href="#exercise-14-观察下面的求值模型它整合了操作符和表达式">Exercise 1.4 观察下面的求值模型它整合了操作符和表达式。</a></li>
+        <li><a href="#exercise-15-应用序或正则序测试">Exercise 1.5 应用序或正则序测试</a></li>
+        <li><a href="#section-117-牛顿法求平方根">Section 1.17 牛顿法求平方根</a></li>
+        <li><a href="#exercise-16-能否通过-cond-来定义-if">Exercise 1.6 能否通过 cond 来定义 if</a></li>
+        <li><a href="#exercise-17">Exercise 1.7</a></li>
+        <li><a href="#exercise-18-牛顿法求立方根">Exercise 1.8 牛顿法求立方根</a></li>
+        <li><a href="#section-12-过程和它们所产生的计算">Section 1.2 过程和它们所产生的计算</a>
+          <ul>
+            <li><a href="#section-122-线性递归和迭代">Section 1.2.2 线性递归和迭代</a></li>
+            <li><a href="#section-122-树形递归">Section 1.2.2 树形递归</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="chap1-building-abstractions-with-procedures">Chap.1 Building Abstractions with Procedures</h1>
+<p>在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将两个想法，不论它们是简单或复杂，放到一起，将他们彼此设置并立即观察他们，而不将它们组织成一个想法，通过这种方法可以得到想法之间的关系。3. 将他们从现实的已经存在的其它想法中分离出来：这称为抽象，这样可以构成这些想法的通用想法。</p>
+<p>计算机语言完成任务的三个机制：</p>
+<ul>
+<li>
+<p>原生表达式，它描述了语言所关心的最简单的实体。</p>
+</li>
+<li>
+<p>组合的方法，复合元素是从简单元素构成的。</p>
+</li>
+<li>
+<p>抽象的方法，通过抽象复合元素可以被命名和作为单元被处理。</p>
+</li>
+</ul>
+<p>在编程过程中，我们处理两种类型的元素：过程和数据。数据是要处理的“原材料”，而过程是处理数据的规则的描述。因此，任何一门强大的编程语言应该能够 描述原生数据类型和原生过程，应该有组合和抽象过程和数据的方法。</p>
+<h2 id="exercise-12-将下面的表达式转换为form">Exercise 1.2 将下面的表达式转换为form</h2>
+<p><img src="../SICP/ch1-z-g-3.gif" alt="ch1-z-g-3"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="mi">5</span> <span class="mi">4</span> <span class="p">(</span><span class="nb">- </span><span class="mi">2</span> <span class="p">(</span><span class="nb">- </span><span class="mi">3</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">6</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">4</span> <span class="mi">3</span><span class="p">)))))</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="p">(</span><span class="nb">- </span><span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="mi">2</span> <span class="mi">7</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="exercise-13-定义一个过程接收3个参数返回最大的两个参数的平方和">Exercise 1.3 定义一个过程接收3个参数返回最大的两个参数的平方和</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">a</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">a</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">sum-max-square</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">square</span> <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">&gt;= </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">a</span><span class="p">)</span>
+                   <span class="p">((</span><span class="nb">&gt;= </span><span class="nv">a</span> <span class="nv">c</span><span class="p">)</span> <span class="nv">a</span><span class="p">)</span>
+                   <span class="p">(</span><span class="k">else </span><span class="mi">0</span><span class="p">)))</span>
+     <span class="p">(</span><span class="nf">square</span> <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">&gt;= </span><span class="nv">b</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span>
+                   <span class="p">((</span><span class="nb">&gt;= </span><span class="nv">b</span> <span class="nv">c</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span>
+                   <span class="p">(</span><span class="k">else </span><span class="mi">0</span><span class="p">)))</span>
+     <span class="p">(</span><span class="nf">square</span> <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">&gt;= </span><span class="nv">c</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">c</span><span class="p">)</span>
+                   <span class="p">((</span><span class="nb">&gt;= </span><span class="nv">c</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">c</span><span class="p">)</span>
+                   <span class="p">(</span><span class="k">else </span><span class="mi">0</span><span class="p">)))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="exercise-14-观察下面的求值模型它整合了操作符和表达式">Exercise 1.4 观察下面的求值模型它整合了操作符和表达式。</h2>
+<p>这个例子体现了 scheme 与 common lisp 的区别。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">a-plus-abs-b</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">((</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">b</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">+</span> <span class="nv">-</span><span class="p">)</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>它将根据 b 是否大于 0 来决定对 a 和 b 进行加或减操作。</p>
+<h2 id="exercise-15-应用序或正则序测试">Exercise 1.5 应用序或正则序测试</h2>
+<p>Ben Bitdiddle 发明了一种检测解释器是应用序还是正则序的方法。先定义两个过程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">p</span><span class="p">)</span> <span class="p">(</span><span class="nf">p</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">test</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="mi">0</span>
+      <span class="nv">y</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后对下面的表达式求值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="nf">test</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">p</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>很显然 p 的定义是不正确的，当解释器是应用序的时候会先对参数求值。因此对 (p) 求值时程序将出错。如果程序是正则序则 (p) 不会被立即求值，因为 (= x 0) 将返回真值，整个 test 表达式将返回 0 。</p>
+<h2 id="section-117-牛顿法求平方根">Section 1.17 牛顿法求平方根</h2>
+<p>如果猜想y是x的平方，则下一个更接近x平方根的值是((y+x/y))/2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">average</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">average</span> <span class="nv">guess</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">x</span> <span class="nv">guess</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">square</span> <span class="nv">guess</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span> <span class="mf">0.001</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">sqrt-iter</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+      <span class="nv">guess</span>
+      <span class="p">(</span><span class="nf">sqrt-iter</span> <span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+                 <span class="nv">x</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nf">print</span> <span class="s">&#34;第一种平方根算法：&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">sqrt-iter</span> <span class="mf">1.0</span> <span class="mi">9</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">sqrt-iter</span> <span class="mf">1.0</span> <span class="mf">21.0</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="exercise-16-能否通过-cond-来定义-if">Exercise 1.6 能否通过 cond 来定义 if</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">new-if</span> <span class="nv">predicate</span> <span class="nv">then-clause</span> <span class="nv">else-clause</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">(</span><span class="nf">predicate</span> <span class="nv">then-clause</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">else </span><span class="nv">else-clause</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当测试用 new-if 来实现 Section 1.17 中的求平方根的方法时有可能会出现错误。因为通常 if 是一个特殊的 form 。它只会在条件为真时才对 then 子句求值。而 new-if 只是一个函数，它有可能会对所有参数都求值（比如解释器使用应用序）。在这用于 1.17 中的 sqrt-iter 中时将导致无限循环。</p>
+<h2 id="exercise-17">Exercise 1.7</h2>
+<p>原来的 section 1.17 中的 good-enough? 是比较猜测值的平方与被开方数的差的绝对值小于某个值。这种方法在对那些很小的数求平方根时并不是很有效。一个更好的办法是将它改进成比较两次猜测值之差是否小于某个给定的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="nv">last-value</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">average</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">average</span> <span class="nv">guess</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">x</span> <span class="nv">guess</span><span class="p">)))</span>
+
+<span class="c1">;last-guess表示上一次猜测的值</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">last-guess</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="nv">guess</span> <span class="nv">last-guess</span><span class="p">))</span> <span class="mf">0.000001</span><span class="p">))</span>
+
+<span class="c1">;修改了这个递归计算过程的参数，添加了上次猜测结果</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">sqrt-iter</span> <span class="nv">guess</span> <span class="nv">x</span> <span class="nv">last-guess</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">last-guess</span><span class="p">)</span>
+      <span class="nv">guess</span>
+      <span class="p">(</span><span class="nf">sqrt-iter</span> <span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+                 <span class="nv">x</span> <span class="nv">guess</span><span class="p">)))</span>
+
+<span class="c1">;保证将猜测值设置为与上个猜测值之差的绝对值大于那个比较值0.000001</span>
+<span class="p">(</span><span class="nf">print</span> <span class="s">&#34;第二种平方根算法：&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">sqrt-iter</span> <span class="mf">1.0</span> <span class="mf">9.0</span> <span class="mi">100</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">sqrt-iter</span> <span class="mf">1.0</span> <span class="mf">21.0</span> <span class="mi">100</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="exercise-18-牛顿法求立方根">Exercise 1.8 牛顿法求立方根</h2>
+<p>如果 y 接近 x 的立方根，那么更接近的值是 (x/y*y+2y)/3 。对应的求立方根的程序为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;逼近算法</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">/ </span><span class="nv">x</span> <span class="p">(</span><span class="nf">square</span> <span class="nv">guess</span><span class="p">))</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">guess</span><span class="p">))</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1">;精度检查</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">last-guess</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="nv">guess</span> <span class="nv">last-guess</span><span class="p">))</span> <span class="mf">0.000001</span><span class="p">))</span>
+<span class="c1">;迭代过程</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cube-iter</span> <span class="nv">guess</span> <span class="nv">x</span> <span class="nv">last-guess</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">last-guess</span><span class="p">)</span>
+      <span class="nv">guess</span>
+      <span class="p">(</span><span class="nf">cube-iter</span> <span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">x</span> <span class="nv">guess</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nf">print</span> <span class="s">&#34;求立方根算法求27的立方根:&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">cube-iter</span> <span class="mf">1.0</span> <span class="mi">27</span> <span class="mi">100</span><span class="p">)</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>只是在 exercise 1.7 的基础上替换了 improve 方法。</p>
+<h2 id="section-12-过程和它们所产生的计算">Section 1.2 过程和它们所产生的计算</h2>
+<h3 id="section-122-线性递归和迭代">Section 1.2.2 线性递归和迭代</h3>
+<h4 id="exercise-19-描绘线性迭代和线性递归的计算过程">Exercise 1.9 描绘线性迭代和线性递归的计算过程</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">add-rec</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">a</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="nv">b</span>
+      <span class="p">(</span><span class="nf">inc</span> <span class="p">(</span><span class="nf">add-rec</span> <span class="p">(</span><span class="nf">dec</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span><span class="p">))))</span>
+<span class="c1">;(add-rec 4 5)</span>
+<span class="c1">;(inc (add-rec 3 5))</span>
+<span class="c1">;(inc (inc (add-rec 2 5)))</span>
+<span class="c1">;(inc (inc (inc (add-rec 1 5))))</span>
+<span class="c1">;(inc (inc (inc (inc (add-rec 0 5)))))</span>
+<span class="c1">;(inc (inc (inc (inc 5))))</span>
+<span class="c1">;(inc (inc (inc 6)))</span>
+<span class="c1">;(inc (inc (7)))</span>
+<span class="c1">;(inc 8)</span>
+<span class="c1">;9</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">add-iter</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">a</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="nv">b</span>
+      <span class="p">(</span><span class="nf">add-iter</span> <span class="p">(</span><span class="nf">dec</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">inc</span> <span class="nv">b</span><span class="p">))))</span>
+
+<span class="c1">;(add-iter 4 5)</span>
+<span class="c1">;(add-iter 3 6)</span>
+<span class="c1">;(add-iter 2 7)</span>
+<span class="c1">;(add-iter 1 8)</span>
+<span class="c1">;(add-iter 0 9)</span>
+<span class="c1">;9</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="exercise-110-阿克曼函数">Exercise 1.10 阿克曼函数</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">A</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">y</span> <span class="mi">0</span> <span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">((</span><span class="nb">= </span><span class="nv">x</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">y</span><span class="p">))</span>
+        <span class="p">((</span><span class="nb">= </span><span class="nv">y</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">A</span> <span class="p">(</span><span class="nb">- </span><span class="nv">x</span> <span class="mi">1</span><span class="p">)</span>
+                 <span class="p">(</span><span class="nf">A</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">- </span><span class="nv">y</span> <span class="mi">1</span><span class="p">))))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">f</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">A</span> <span class="mi">0</span> <span class="nv">n</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">g</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">A</span> <span class="mi">1</span> <span class="nv">n</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">h</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">A</span> <span class="mi">2</span> <span class="nv">n</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">k</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">5</span> <span class="nv">n</span> <span class="nv">n</span><span class="p">))</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>通过使用 f,g,h 和正整数 n ，给出计算 5 乘以 n 的 2 次方的函数 <code>(k n)</code> 的定义。</p>
+<ul>
+<li>TODO:</li>
+</ul>
+<h3 id="section-122-树形递归">Section 1.2.2 树形递归</h3>
+<p>树形递归也是一种常见的计算模式。例如Fibonacci数的计算。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Fib(n) = 0                   if n = 0
+Fib(n) = 1                   if n = 1
+Fib(n) = Fib(n-1) + Fib(n-2) otherwise
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fib</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">((</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">fib</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))</span>
+                 <span class="p">(</span><span class="nf">fib</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">2</span><span class="p">))))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>它所产生的计算过程是树状的。会随着n的变大计算规模也逐渐变大。并且在计算过程中间会产生许多重复的计算。例如，计算Fib(3)和Fib(4)时都会需要计算Fib(2)和Fib(1)，这样随着n变大会产生许多重复的计算。</p>
+<p>如果将它转换成递归方式计算规模就不会随n变大而变大。计算的方法是引入两个中间变量a和b，将它们初始化为Fib(0)和Fib(1)，然后a=a+b，b=a，进而计算出Fib(2)，如此递归直至计算出Fib(n)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fib</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">fib-iter</span> <span class="mi">1</span> <span class="mi">0</span> <span class="nv">n</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fib_iter</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">count</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">count</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="nv">b</span>
+      <span class="p">(</span><span class="nf">fib-iter</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">- </span><span class="nv">count</span> <span class="mi">1</span><span class="p">))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>TODO:找零钱的算法</li>
+</ul>
+<h4 id="exercise-111-分别以递归和迭代的方式编写fn">Exercise 1.11 分别以递归和迭代的方式编写f(n)</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">f(n)=n if n&lt;3 and f(n) = f(n-1)+2f(n-2)+3f(n-3) if n &gt;=3
+</code></pre></td></tr></table>
+</div>
+</div><p>递归方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">f</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">3</span><span class="p">)</span> 
+      <span class="nv">n</span>
+      <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">f</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))</span> 
+         <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">f</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">2</span><span class="p">)))</span> 
+         <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="p">(</span><span class="nf">f</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">3</span><span class="p">))))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>迭代方式。这里我引入了3个变量a、b和c分别代表f(n-1)、f(n-2)和f(n-3)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">f1</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">f1-iter</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="nv">n</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">f1-iter</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">count</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">count</span> <span class="mi">0</span><span class="p">)</span> 
+      <span class="nv">c</span>
+      <span class="p">(</span><span class="nf">f1-iter</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="nv">c</span><span class="p">))</span> <span class="nv">a</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">- </span><span class="nv">count</span> <span class="mi">1</span><span class="p">))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="exercise-112-帕斯卡三角">Exercise 1.12 帕斯卡三角</h4>
+<p>编写递归过程计算帕斯卡三角的元素。</p>
+<p>我首先归纳帕斯卡三角的元素的计算方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">f(n,level) = 1                              如果n=1或n=level
+f(n,level) = 0                              如果n&lt;1或n&gt;level则元素不存在
+f(n,level) = f(n,level-1) + f(n-1,level-1)  otherswise
+</code></pre></td></tr></table>
+</div>
+</div><p>其中level为层次，n为在某层中的位置。</p>
+<p>转换成函数定义</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">pascal-triangle</span> <span class="nv">n</span> <span class="nv">level</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">((</span><span class="nb">= </span><span class="nv">n</span> <span class="nv">level</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt; </span><span class="nv">n</span> <span class="nv">level</span><span class="p">))</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">pascal-triangle</span> <span class="nv">n</span> <span class="p">(</span><span class="nb">- </span><span class="nv">level</span> <span class="mi">1</span><span class="p">))</span> <span class="p">(</span><span class="nf">pascal-triangle</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">level</span> <span class="mi">1</span><span class="p">))))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="exercise-113-证明fibn是最接近某数的整数">Exercise 1.13 证明Fib(n)是最接近某数的整数</h4>
+<p><literal style="html">HTML</literal></p>
+<ul>
+<li>TODO:</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2010-08-31
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/lisp/">lisp</a>
+          <a href="/tags/scheme/">scheme</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/asm/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">汇编语言（王爽）读书笔记</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/mobile/android-dev-guide/ui-index/">
+            <span class="next-text nav-default">Android Dev Guide学习笔记 User Interface</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

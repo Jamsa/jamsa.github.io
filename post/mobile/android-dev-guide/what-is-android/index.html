@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Android Dev Guide学习笔记 What is Android? - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="Android是什么？ 功能 Application framework允许重用和替换的组件 Dalvik虚拟机 集成了基于WebKit引擎的浏览器 基于2D图形库的优化过" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/mobile/android-dev-guide/what-is-android/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Android Dev Guide学习笔记 What is Android?" />
+<meta property="og:description" content="Android是什么？ 功能 Application framework允许重用和替换的组件 Dalvik虚拟机 集成了基于WebKit引擎的浏览器 基于2D图形库的优化过" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/mobile/android-dev-guide/what-is-android/" />
+<meta property="article:published_time" content="2010-07-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2010-07-30T00:00:00+00:00" />
+<meta itemprop="name" content="Android Dev Guide学习笔记 What is Android?">
+<meta itemprop="description" content="Android是什么？ 功能 Application framework允许重用和替换的组件 Dalvik虚拟机 集成了基于WebKit引擎的浏览器 基于2D图形库的优化过">
+<meta itemprop="datePublished" content="2010-07-30T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2010-07-30T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1536">
+
+
+
+<meta itemprop="keywords" content="android," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Android Dev Guide学习笔记 What is Android?"/>
+<meta name="twitter:description" content="Android是什么？ 功能 Application framework允许重用和替换的组件 Dalvik虚拟机 集成了基于WebKit引擎的浏览器 基于2D图形库的优化过"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Android Dev Guide学习笔记 What is Android?</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2010-07-30 </span>
+        <div class="post-category">
+            <a href="/categories/%E7%A7%BB%E5%8A%A8/"> 移动 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#android是什么">Android是什么？</a></li>
+    <li><a href="#功能">功能</a></li>
+    <li><a href="#android架构">Android架构</a></li>
+    <li><a href="#应用程序">应用程序</a></li>
+    <li><a href="#应用程序框架">应用程序框架</a></li>
+    <li><a href="#程序库">程序库</a></li>
+    <li><a href="#android运行环境">Android运行环境</a></li>
+    <li><a href="#linux内核">Linux内核</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="android是什么">Android是什么？</h1>
+<h1 id="功能">功能</h1>
+<ul>
+<li>Application framework允许重用和替换的组件</li>
+<li>Dalvik虚拟机</li>
+<li>集成了基于WebKit引擎的浏览器</li>
+<li>基于2D图形库的优化过的图形；基于OpenGL ES 1.0规范的3D图形（可选的硬件加速）。</li>
+<li>SQLite来支持结构化数据存储</li>
+<li>多媒体方面 支持：音频、视频和图像支持（MPEG4、H.264、MP3、AAC、AMR、JPG、PNG、GIF）</li>
+<li>GSM通讯（依赖于硬件）</li>
+<li>蓝牙、EDGE、3G和WiFi（依赖于硬件）</li>
+<li>摄像头、GPS、罗盘和加速感应（依赖于硬件）</li>
+<li>丰富的开发环境，包括：设备模拟器，用于调试的工具，内存和性能分析，和Eclipse IDE插件</li>
+</ul>
+<h1 id="android架构">Android架构</h1>
+<p>下图展示了Android操作系统的主要组件。
+<img src="../android-dev-guide/system-architecture.jpg" alt="system architecture"></p>
+<h1 id="应用程序">应用程序</h1>
+<p>Android发布时一般带有一套核心应用程序，包括email客户端，SMS程序，日历，地图，浏览器，联系人和其它。所有应用都是用Java编写的。</p>
+<h1 id="应用程序框架">应用程序框架</h1>
+<p>通过提供一个开放的开发平台。Android给开发者提供了构建极其丰富和具有创新性的应用的能力。开发者可以自由的获取硬件的好处，访问位置信息，执行后台服务，设置警报，在状态条上增加通知等等。</p>
+<p>开发者可以像核心应用程序一样访问相同的应用程序框架提供的API。应用程序框架被设计为简单的可重用组件；任何应用程序都可以发布它自己的功能其它应用程序可以使用这些功能（比如框架提供的安全性约束）。同样的机制也允许用户替换组件。</p>
+<p>在所有应用程序下都是一套服务系统，它包括：</p>
+<ul>
+<li>丰富和具有扩展性的一套Views，它可以用于构造应用程序，包括：列表、表格、文本框、按钮和甚至是可嵌入的浏览器。</li>
+<li>Content Providers允许应用程序访问数据或者共享自己的数据。</li>
+<li>Resource Manager提供访问非代码性的资源比如：本地化字符串、图片、布局文件。</li>
+<li>Notification Manager允许所有应用程序在状态条上显示自己的通知信息。</li>
+<li>Activity Manager管理应用程序和生命周期并提供了一个通用的导航堆栈（navigation backstack）。</li>
+</ul>
+<h1 id="程序库">程序库</h1>
+<p>Android包括一套用于Android系统组件的C/C++程序库。它通过Android应用程序框架暴露给开发人员。一些核心库如下：</p>
+<ul>
+<li>System C library - 源于BSD系统实现的标准C系统库（libc）被调整为适用于嵌入式Linux设备优化。</li>
+<li>Media Libraries - 基于PacketVideo的OpenCORE；这些程序库支持播放和记录许多流行的音频和视频格式，如：静态图片文件、MPEG4、H.264、MP3、AAC、AMR、JPG和PNG。</li>
+<li>Surface Manager - 管理从不同的应用程序访问显示子系统和无缝集成2D和3D图形。</li>
+<li>LibWebCore - 一个现代的浏览器引擎来支持Android浏览器和可嵌入的web view。</li>
+<li>SGL - 底层的2D图形引擎。</li>
+<li>3D libraries - 基于OpenGL ES 1.0 APIs实现；这个库支持硬件3D加速（在可用时）或包含高度优化的3D软件光栅。</li>
+<li>Freetype - 位图和矢量字体渲染。</li>
+<li>SQLite - 为所有应用程序提供了一个功能强大的轻量级关系数据库引擎。</li>
+</ul>
+<h1 id="android运行环境">Android运行环境</h1>
+<p>Android包含了一套核心程序库在Java程序中绝大部分的功能都是可用的。</p>
+<p>所有Android应用程序运行在自己的进程中，使用自己的Dalvik虚拟机实例。Dalvik虚拟机被编写为可以有效的运行多个虚机。Dalvik虚拟机上的执行文件是Dalvik可执行文件格式（.dex）它被优化为最小的内存占用。这个虚拟机是基于寄存器的，可以运行Java语言编译的被“dx”工具转译为dex格式的class。</p>
+<p>Dalvik虚拟机依赖于Linux内核提供的底层功能，如：线程和底层的内存管理。</p>
+<h1 id="linux内核">Linux内核</h1>
+<p>Android的核心系统服务依赖于Linux 2.6，如：安全、内存管理、进程管理、网络栈和驱动模型。内核也扮演了硬件和其它软件栈之间的抽像层。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2010-07-30
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/android/">android</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/mobile/android-dev-guide/fundamentals/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Android Dev Guide学习笔记 Application Fundamentals</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/oracle_erp/oaf/page/">
+            <span class="next-text nav-default">OA Framework Page解析</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

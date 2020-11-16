@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 31 Aug 2010 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/scheme/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SICP读书笔记</title>
-      <link>http://jamsa.github.io/devel/lisp/sicp/</link>
+      <link>http://jamsa.github.io/post/lisp/sicp/</link>
       <pubDate>Tue, 31 Aug 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/lisp/sicp/</guid>
+      <guid>http://jamsa.github.io/post/lisp/sicp/</guid>
       <description>Chap.1 Building Abstractions with Procedures 在思考活动中通过简单的想法尽力实现强大能量，首要有三： 1. 将多个简单的想法组合成单个的复杂的想法，因而可以完成所有复杂的想法。2. 将</description>
     </item>
     

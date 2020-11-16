@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Ext JS 5 手册 核心概念（四）数据包 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="Ext JS 5 手册 核心概念（四）数据包 核心概念 数据包 数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的： Ext.data.Model Store Ext.data.proxy.Proxy 上面的类几乎在" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/extjs/core_concepts_data_package/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Ext JS 5 手册 核心概念（四）数据包" />
+<meta property="og:description" content="Ext JS 5 手册 核心概念（四）数据包 核心概念 数据包 数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的： Ext.data.Model Store Ext.data.proxy.Proxy 上面的类几乎在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/extjs/core_concepts_data_package/" />
+<meta property="article:published_time" content="2015-05-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2015-05-17T00:00:00+00:00" />
+<meta itemprop="name" content="Ext JS 5 手册 核心概念（四）数据包">
+<meta itemprop="description" content="Ext JS 5 手册 核心概念（四）数据包 核心概念 数据包 数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的： Ext.data.Model Store Ext.data.proxy.Proxy 上面的类几乎在">
+<meta itemprop="datePublished" content="2015-05-17T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2015-05-17T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1578">
+
+
+
+<meta itemprop="keywords" content="javascript,extjs," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ext JS 5 手册 核心概念（四）数据包"/>
+<meta name="twitter:description" content="Ext JS 5 手册 核心概念（四）数据包 核心概念 数据包 数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的： Ext.data.Model Store Ext.data.proxy.Proxy 上面的类几乎在"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Ext JS 5 手册 核心概念（四）数据包</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-05-17 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ext-js-5-手册-核心概念四数据包">Ext JS 5 手册 核心概念（四）数据包</a>
+      <ul>
+        <li><a href="#核心概念">核心概念</a>
+          <ul>
+            <li><a href="#数据包">数据包</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="ext-js-5-手册-核心概念四数据包">Ext JS 5 手册 核心概念（四）数据包</h1>
+<h2 id="核心概念">核心概念</h2>
+<h3 id="数据包">数据包</h3>
+<p>数据包是应用中处理数据加载和保存的。它包含了很多类，其中以下三个是最重要的：</p>
+<ul>
+<li>Ext.data.Model</li>
+<li>Store</li>
+<li>Ext.data.proxy.Proxy</li>
+</ul>
+<p>上面的类几乎在所有应用中都被用到。它们由一些卫星类支撑：</p>
+<p><img src="../extjs5_guide/data-model.png" alt="数据包相关类"></p>
+<h4 id="model">Model</h4>
+<p>类所包的中心是<code>Ext.data.Model</code>。<code>Model</code>用于描述应用中一个实体。
+Model中的主要部分有：</p>
+<ul>
+<li>Fields</li>
+<li>Proxies</li>
+<li>Validations</li>
+<li>Associations</li>
+</ul>
+<p><img src="../extjs5_guide/model-breakdown.png" alt="Model 的主要组成部分"></p>
+<h5 id="创建-model">创建 Model</h5>
+<p>通常可以定义一个公用的基础类。这个基类能定义所有 Model 公用的属性。
+Model 有两个重要的属性<code>fields</code>和<code>schema</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.model.Base&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.data.Model&#39;</span><span class="p">,</span>
+
+    <span class="nx">fields</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;int&#39;</span>
+    <span class="p">}],</span>
+
+    <span class="nx">schema</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">namespace</span><span class="o">:</span> <span class="s1">&#39;MyApp.model&#39;</span><span class="p">,</span>  <span class="c1">// generate auto entityName
+</span><span class="c1"></span>
+        <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>     <span class="c1">// Ext.util.ObjectTemplate
+</span><span class="c1"></span>            <span class="nx">type</span><span class="o">:</span> <span class="nx">ajax</span><span class="p">,</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;{entityName}.json&#39;</span><span class="p">,</span>
+            <span class="nx">reader</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+                <span class="nx">rootProperty</span><span class="o">:</span> <span class="s1">&#39;{entityName:lowercase}&#39;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="proxy">Proxy</h5>
+<p>Proxy 由 Model 和 Store 使用的，用于处理加载和保存 Model 数据的。有两种类型的 Proxy: Client 和 Server。</p>
+<ul>
+<li>Client Proxy 包括 Memory 和 Local Storage两种。</li>
+<li>Server Proxy 用于从远程服务端处理数据。例如：AJAX、JSONP、REST。</li>
+</ul>
+<h5 id="schema">Schema</h5>
+<p>Schema 是一些有关联关系的实体的集合。当 Model 父类型指定了<code>schema</code>属性时，这个属性将会被子类模板继承。</p>
+<p><code>schema</code>的<code>namespace</code>属性能让所有 Model 得到一个缩短的<code>entityName</code>。这个名称主要用于定义 Model 之间的关联关系。</p>
+<p><code>schema</code>的<code>proxy</code>属性是一个对象模板它与基于 Ext.XTemplate 的文本模板是类似的。不同之处在于当给予对象模板数据时它将产生出来对象来。在上面的代码里，模板数据用于自动定义所有 Model 的<code>proxy</code>配置，而不需要显式的定义<code>proxy</code>。</p>
+<p>这样每个 Model 实例将根据不同的值采用相同的方式来加载数据。可以避免了在不同的 Model 中重复定义 proxy。</p>
+<h4 id="store">Store</h4>
+<p>Model 通常与 Store 一起使用，Store 是记录（Model 子类的实例）的集合。创建 Store 并加载数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Store</span> <span class="p">({</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="s1">&#39;MyApp.model.User&#39;</span>
+<span class="p">});</span>
+
+<span class="nx">store</span><span class="p">.</span><span class="nx">load</span><span class="p">({</span>
+    <span class="nx">callback</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">first_name</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">first</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">first_name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="内联数据">内联数据</h5>
+<p>Store 可以加载内联数据。Store 将会将它的<code>data</code>属性中的对象转换成对应的 Model 类型的记录集。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="s1">&#39;MyApp.model.User&#39;</span><span class="p">,</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Philip J. Fry&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Hubert Farnsworth&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Turanga Leela&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Amy Wong&#34;</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="排序和分组">排序和分组</h5>
+<p>Store 可以在本地或远程执行排序、过滤和分组操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">new</span> <span class="nx">Ext</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="s1">&#39;MyApp.model.User&#39;</span><span class="p">,</span>
+
+    <span class="nx">sorters</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+    <span class="nx">filters</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">property</span><span class="o">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+        <span class="nx">value</span>   <span class="o">:</span> <span class="s1">&#39;Philip J. Fry&#39;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="association">Association</h4>
+<p>Model 可以通过 Association API 关联起来。多数应用都需要处理很多互相关联的 Model。</p>
+<p>以下是一个多对一的关联示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.model.User&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;MyApp.model.Base&#39;</span><span class="p">,</span>
+
+    <span class="nx">fields</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;string&#39;</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+
+<span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.model.Post&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;MyApp.model.Base&#39;</span><span class="p">,</span>
+
+    <span class="nx">fields</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;userId&#39;</span><span class="p">,</span>
+        <span class="nx">reference</span><span class="o">:</span> <span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="c1">// the entityName for MyApp.model.User
+</span><span class="c1"></span>        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;int&#39;</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;string&#39;</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>定义好关联关系之后，就可以很容易的访问关联的数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Loads User with ID 1 and related posts and comments
+</span><span class="c1">// using User&#39;s Proxy
+</span><span class="c1"></span><span class="nx">MyApp</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;User: &#39;</span> <span class="o">+</span> <span class="nx">user</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">));</span>
+
+        <span class="nx">user</span><span class="p">.</span><span class="nx">posts</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">posts</span><span class="p">){</span>
+            <span class="nx">posts</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Post: &#39;</span> <span class="o">+</span> <span class="nx">post</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">));</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">posts</span><span class="p">().</span><span class="nx">add</span><span class="p">({</span>
+    <span class="nx">userId</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Post 10&#39;</span>
+<span class="p">});</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">posts</span><span class="p">().</span><span class="nx">sync</span><span class="p">();</span>
+
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">Post</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">post</span><span class="p">.</span><span class="nx">getUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Got user from post: &#39;</span> <span class="o">+</span> <span class="nx">user</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">));</span>
+        <span class="p">});</span>                           
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">Post</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">post</span><span class="p">.</span><span class="nx">setUser</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>                         
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="加载嵌套数据">加载嵌套数据</h5>
+<p>定义好关联关系之后，可以在单个请求中加载关联数据。例如，服务端的响应如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+    <span class="s2">&#34;success&#34;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">&#34;user&#34;</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;Philip J. Fry&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;posts&#34;</span><span class="o">:</span> <span class="p">[{</span>
+            <span class="s2">&#34;title&#34;</span><span class="o">:</span> <span class="s2">&#34;Post 1&#34;</span>
+        <span class="p">},{</span>
+            <span class="s2">&#34;title&#34;</span><span class="o">:</span> <span class="s2">&#34;Post 2&#34;</span>
+        <span class="p">},{</span>
+            <span class="s2">&#34;title&#34;</span><span class="o">:</span> <span class="s2">&#34;Post 3&#34;</span>
+        <span class="p">}]</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这种情况下框架能自动解析出单个响应中的嵌套数据，而不需要发起两次请求，分别来获取 User 和 Post 的数据。</p>
+<h4 id="验证">验证</h4>
+<p>Model 提供了数据验证的支持。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;MyApp.model.User&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.data.Model&#39;</span><span class="p">,</span>
+    <span class="nx">fields</span><span class="o">:</span> <span class="p">...,</span>
+
+    <span class="nx">validators</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="p">[</span>
+            <span class="s1">&#39;presence&#39;</span><span class="p">,</span>
+            <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span> <span class="mi">7</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;exclusion&#39;</span><span class="p">,</span> <span class="nx">list</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Bender&#39;</span><span class="p">]</span> <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>验证定义时是以字段名作为 key，值作为它的规则。这些规则由一个验证对象配置，或多个验证对象配置数组构成的。上面的这个验证规则验证了<code>name</code>字段，它的长度必须大于7，并且不能是<code>Bender</code>。
+某些验证规则可能会包含不同的属性——比如<code>min</code>和<code>max</code>属性等等。Ext JS 有5种内置验证器并且易于添加自定义的规则。</p>
+<ul>
+<li>presence 确保字段有值。</li>
+<li>length 确保字符串的长度处于<code>min</code>和<code>max</code>之间，这两个选项都是可选的</li>
+<li>format 确保字符串匹配某个正则表达式</li>
+<li>inclusion 确保值匹配某个特定的值列表</li>
+<li>exclusion 确保值不属于某个特定的值列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// now lets try to create a new user with as many validation
+</span><span class="c1">// errors as we can
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyApp</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">({</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bender&#39;</span>
+<span class="p">});</span>
+
+<span class="c1">// run some validation on the new user we just created
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Is User valid?&#39;</span><span class="p">,</span> <span class="nx">newUser</span><span class="p">.</span><span class="nx">isValid</span><span class="p">());</span>
+
+<span class="c1">//returns &#39;false&#39; as there were validation errors
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">errors</span> <span class="o">=</span> <span class="nx">newUser</span><span class="p">.</span><span class="nx">getValidation</span><span class="p">(),</span>
+    <span class="nx">error</span>  <span class="o">=</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Error is: &#34;</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+
+<span class="nx">newUser</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Bender Bending Rodriguez&#39;</span><span class="p">);</span>
+<span class="nx">errors</span> <span class="o">=</span> <span class="nx">newUser</span><span class="p">.</span><span class="nx">getValidation</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-05-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">javascript</a>
+          <a href="/tags/extjs/">extjs</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/extjs/core_concepts_events/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Ext JS 5 手册 核心概念（五）事件</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/extjs/architecture_view_controller/">
+            <span class="next-text nav-default">Ext JS5 手册 应用程序架构（二） View Controller</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

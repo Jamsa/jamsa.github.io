@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JTV开发笔记2-网络通讯 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 协议 为实现远程控制，我们需要处理两类通讯，客户端与服务器的通讯、客户端与客户端的通讯。 客户" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/java/jtv2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JTV开发笔记2-网络通讯" />
+<meta property="og:description" content="本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 协议 为实现远程控制，我们需要处理两类通讯，客户端与服务器的通讯、客户端与客户端的通讯。 客户" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/java/jtv2/" />
+<meta property="article:published_time" content="2018-07-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-07-18T00:00:00+00:00" />
+<meta itemprop="name" content="JTV开发笔记2-网络通讯">
+<meta itemprop="description" content="本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 协议 为实现远程控制，我们需要处理两类通讯，客户端与服务器的通讯、客户端与客户端的通讯。 客户">
+<meta itemprop="datePublished" content="2018-07-17T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-07-18T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2488">
+
+
+
+<meta itemprop="keywords" content="scala, netty, jtv," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JTV开发笔记2-网络通讯"/>
+<meta name="twitter:description" content="本文是Jtv的开发笔记。Jtv是一个远程桌面工具。 协议 为实现远程控制，我们需要处理两类通讯，客户端与服务器的通讯、客户端与客户端的通讯。 客户"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JTV开发笔记2-网络通讯</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-17 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%BC%80%E5%8F%91/"> 开发 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#协议">协议</a></li>
+    <li><a href="#消息对象">消息对象</a></li>
+    <li><a href="#网络层">网络层</a>
+      <ul>
+        <li><a href="#数据帧">数据帧</a></li>
+        <li><a href="#编码器和解决码器">编码器和解决码器</a>
+          <ul>
+            <li><a href="#数据帧的编码和解码">数据帧的编码和解码</a></li>
+            <li><a href="#消息对象的编码和解码">消息对象的编码和解码</a></li>
+          </ul>
+        </li>
+        <li><a href="#pipeline">Pipeline</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文是<a href="https://github.com/Jamsa/jtv">Jtv</a>的开发笔记。Jtv是一个远程桌面工具。</p>
+<h1 id="协议">协议</h1>
+<p>为实现远程控制，我们需要处理两类通讯，客户端与服务器的通讯、客户端与客户端的通讯。</p>
+<p>客户端与服务端的通讯主要有：</p>
+<ol>
+<li>
+<p>登录：客户端发送登录请求后，由服务端进行认证，并分配会话ID。</p>
+</li>
+<li>
+<p>连接申请类：客户端创建新连接，通过这个连接发送连接申请，这个连接是源连接。服务端需要将这一申请转发给目标客户端，目标客户端接收到消息后，创建新连接至服务端，这个连接是目标连接。服务端在源连接与目标连接间建立绑定关系后，两个客户端间就可以实现点对点的通讯了。</p>
+</li>
+</ol>
+<p>客户端与客户端的通讯消息主要有以下几类：</p>
+<ol>
+<li>
+<p>文本消息传输：如错误信息，连接关闭通知等。</p>
+</li>
+<li>
+<p>屏幕画面消息：被控端以一定的频度获取屏幕画面，并将它传输至控制端。控制端将其绘制到控制窗口中。</p>
+</li>
+<li>
+<p>鼠标键盘事件：控制端在控制窗口中查看被控端画面，针对该画面操作的键盘和鼠标事件需要被传递到被控端，被控端根据这些事件进行事件的回放。</p>
+</li>
+</ol>
+<h1 id="消息对象">消息对象</h1>
+<p>为满足上述通讯要求，我们需要定义一套用于消息传输的对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">//消息
+</span><span class="c1"></span><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">JtvMessage</span>
+
+<span class="c1">//服务端处理的会话消息
+</span><span class="c1"></span><span class="k">trait</span> <span class="nc">ServerSessionMessage</span> <span class="k">extends</span> <span class="nc">JtvMessage</span>
+<span class="c1">//客户端处理的会话消息
+</span><span class="c1"></span><span class="k">trait</span> <span class="nc">ClientSessionMessage</span> <span class="k">extends</span> <span class="nc">JtvMessage</span>
+<span class="c1">//服务端路由转发的消息
+</span><span class="c1"></span><span class="k">trait</span> <span class="nc">RoutableMessage</span> <span class="k">extends</span> <span class="nc">JtvMessage</span>
+
+<span class="c1">//远程控制消息
+</span><span class="c1">//case class ControlMessage() extends JtvMessage
+</span><span class="c1"></span><span class="k">case</span> <span class="k">class</span> <span class="nc">ScreenCaptureMessage</span><span class="o">(</span><span class="k">val</span> <span class="n">image</span><span class="k">:</span><span class="kt">Array</span><span class="o">[</span><span class="kt">Byte</span><span class="o">],</span> <span class="k">val</span> <span class="n">originWidth</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="k">val</span> <span class="n">originHeight</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">RoutableMessage</span> <span class="k">with</span> <span class="nc">ClientSessionMessage</span>
+<span class="k">case</span> <span class="k">class</span> <span class="nc">MouseEventMessage</span><span class="o">(</span><span class="k">val</span> <span class="n">id</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="k">val</span> <span class="n">x</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="k">val</span> <span class="n">y</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="k">val</span> <span class="n">button</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="k">val</span> <span class="n">wheelRotation</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="k">val</span> <span class="n">screenWidth</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="k">val</span> <span class="n">screenHeight</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">RoutableMessage</span> <span class="k">with</span> <span class="nc">ClientSessionMessage</span>
+<span class="k">case</span> <span class="k">class</span> <span class="nc">KeyEventMessage</span><span class="o">(</span><span class="k">val</span> <span class="n">id</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="k">val</span> <span class="n">keyCode</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">RoutableMessage</span> <span class="k">with</span> <span class="nc">ClientSessionMessage</span>
+
+<span class="k">case</span> <span class="k">class</span> <span class="nc">ErrorMessage</span><span class="o">(</span><span class="k">val</span> <span class="n">message</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">RoutableMessage</span> <span class="k">with</span> <span class="nc">ClientSessionMessage</span>
+
+<span class="c1">//登录
+</span><span class="c1"></span><span class="k">case</span> <span class="k">class</span> <span class="nc">LoginRequest</span><span class="o">(</span><span class="k">val</span> <span class="n">username</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span><span class="k">val</span> <span class="n">password</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ServerSessionMessage</span>
+<span class="k">case</span> <span class="k">class</span> <span class="nc">LoginResponse</span><span class="o">(</span><span class="k">val</span> <span class="n">result</span><span class="k">:</span><span class="kt">Boolean</span><span class="o">,</span><span class="k">val</span> <span class="n">message</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span><span class="k">val</span> <span class="n">sessionId</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="k">val</span> <span class="n">sessionPassword</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ClientSessionMessage</span>
+<span class="k">case</span> <span class="k">class</span> <span class="nc">LogoutRequest</span><span class="o">(</span><span class="k">val</span> <span class="n">sessionId</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ServerSessionMessage</span>
+
+<span class="c1">//请求控制
+</span><span class="c1"></span><span class="k">case</span> <span class="k">class</span> <span class="nc">ControlRequest</span><span class="o">(</span><span class="k">val</span> <span class="n">targetSessionId</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="k">val</span> <span class="n">targetSessionPassword</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span><span class="k">val</span> <span class="n">sourceSessionId</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="k">val</span> <span class="n">sourceChannelId</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">ServerSessionMessage</span> <span class="k">with</span> <span class="nc">ClientSessionMessage</span> <span class="o">{</span>
+  <span class="cm">/*def this(targetSessionId:Int,targetSessionPassword:String,sourceSessionId:Int){
+</span><span class="cm">    this(targetSessionId,targetSessionPassword,sourceSessionId,None)
+</span><span class="cm">  }*/</span>
+<span class="o">}</span>
+<span class="k">case</span> <span class="k">class</span> <span class="nc">ControlResponse</span><span class="o">(</span><span class="k">val</span> <span class="n">result</span><span class="k">:</span><span class="kt">Boolean</span><span class="o">,</span><span class="k">val</span> <span class="n">message</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span><span class="k">val</span> <span class="n">sourceSessionId</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="k">val</span> <span class="n">sourceChannelId</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ServerSessionMessage</span> <span class="k">with</span> <span class="nc">ClientSessionMessage</span>
+
+<span class="k">object</span> <span class="nc">JtvMessage</span><span class="o">{</span>
+  <span class="k">def</span> <span class="n">apply</span><span class="o">(</span><span class="n">bufferedImage</span><span class="k">:</span> <span class="kt">BufferedImage</span><span class="o">)</span><span class="k">:</span> <span class="kt">ScreenCaptureMessage</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">width</span> <span class="k">=</span> <span class="n">bufferedImage</span><span class="o">.</span><span class="n">getWidth</span>
+    <span class="k">val</span> <span class="n">height</span> <span class="k">=</span> <span class="n">bufferedImage</span><span class="o">.</span><span class="n">getHeight</span>
+
+    <span class="k">val</span> <span class="n">newWidth</span> <span class="k">=</span> <span class="mi">960</span>
+    <span class="k">val</span> <span class="n">ratio</span> <span class="k">=</span> <span class="n">width</span><span class="o">/</span><span class="n">newWidth</span>
+    <span class="k">val</span> <span class="n">newHeight</span> <span class="k">=</span> <span class="n">height</span><span class="o">*</span><span class="n">ratio</span><span class="o">.</span><span class="n">toInt</span>
+
+    <span class="k">val</span> <span class="n">resizedImage</span> <span class="k">=</span> <span class="nc">ImageUtils</span><span class="o">.</span><span class="n">resizeImage</span><span class="o">(</span><span class="n">bufferedImage</span><span class="o">,</span><span class="n">newWidth</span><span class="o">,</span><span class="n">newHeight</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">bos</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">ByteArrayOutputStream</span><span class="o">()</span>
+    <span class="nc">ImageIO</span><span class="o">.</span><span class="n">write</span><span class="o">(</span><span class="n">resizedImage</span><span class="o">,</span><span class="s">&#34;png&#34;</span><span class="o">,</span><span class="n">bos</span><span class="o">)</span>
+    <span class="nc">ScreenCaptureMessage</span><span class="o">(</span><span class="n">bos</span><span class="o">.</span><span class="n">toByteArray</span><span class="o">,</span><span class="n">width</span><span class="o">,</span><span class="n">height</span><span class="o">)</span>
+  <span class="o">}</span>
+
+  <span class="k">def</span> <span class="n">apply</span><span class="o">(</span><span class="n">inputEvent</span><span class="k">:</span> <span class="kt">InputEvent</span><span class="o">,</span><span class="n">screenWidth</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="n">screenHeight</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">JtvMessage</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">inputEvent</span> <span class="k">match</span>  <span class="o">{</span>
+      <span class="k">case</span> <span class="n">m</span><span class="k">:</span><span class="kt">MouseWheelEvent</span> <span class="o">=&gt;</span> <span class="nc">MouseEventMessage</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="n">getID</span><span class="o">,</span><span class="n">m</span><span class="o">.</span><span class="n">getX</span><span class="o">,</span><span class="n">m</span><span class="o">.</span><span class="n">getY</span><span class="o">,</span><span class="n">m</span><span class="o">.</span><span class="n">getButton</span><span class="o">,</span><span class="n">m</span><span class="o">.</span><span class="n">getWheelRotation</span><span class="o">,</span><span class="n">screenWidth</span><span class="o">,</span><span class="n">screenHeight</span><span class="o">)</span>
+      <span class="k">case</span> <span class="n">m</span><span class="k">:</span><span class="kt">MouseEvent</span> <span class="o">=&gt;</span> <span class="nc">MouseEventMessage</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="n">getID</span><span class="o">,</span><span class="n">m</span><span class="o">.</span><span class="n">getX</span><span class="o">,</span><span class="n">m</span><span class="o">.</span><span class="n">getY</span><span class="o">,</span><span class="n">m</span><span class="o">.</span><span class="n">getButton</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">screenWidth</span><span class="o">,</span><span class="n">screenHeight</span><span class="o">)</span>
+      <span class="k">case</span> <span class="n">m</span><span class="k">:</span><span class="kt">KeyEvent</span> <span class="o">=&gt;</span> <span class="nc">KeyEventMessage</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="n">getID</span><span class="o">,</span><span class="n">m</span><span class="o">.</span><span class="n">getKeyCode</span><span class="o">)</span>
+      <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="o">(</span><span class="s">&#34;事件类型错误&#34;</span><span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这此类的关系如下：</p>
+<p><img src="../jtv/message_uml.png" alt="消息类结构"></p>
+<p>我将消息分为三类：</p>
+<ul>
+<li>
+<p>ServerSessionMessage: 服务端处理的消息</p>
+</li>
+<li>
+<p>ClientSessionMessage: 客户端处理的消息</p>
+</li>
+<li>
+<p>RoutableMessage: 服务端负责路由的消息，即客户端间通讯的消息，服务端不做处理，只进行转发。</p>
+</li>
+</ul>
+<p>这些消息分类并不是绝对的，像<code>ControlRequest</code>这样的消息即要由服务端处理，也需要由被控的客户端接收处理。这些分类主要是为了能方便的进行消息类型判断。</p>
+<h1 id="网络层">网络层</h1>
+<p>为满足消息数据的传输，我们需要使用netty来完成下面这些任务：</p>
+<ul>
+<li>
+<p>自定义一套对象编码/解码器，处理消息数据的序列化和反序列化</p>
+</li>
+<li>
+<p>自定义一套消息帧机制，处理tcp包粘包/拆包操作</p>
+</li>
+<li>
+<p>编写服务端和客户端的<code>Handler</code></p>
+</li>
+</ul>
+<h2 id="数据帧">数据帧</h2>
+<p>由于Tcp协议只能保证消息的有序性，并不能保证消息的接收能与发送保持一致。因此，需要处理所谓的粘包和拆包。即，发送端需要将数据封装成数据帧格式，每个数据帧的头部记录下版本号、帧类型、帧长度和帧内容。接收端则需要按帧的格式进行读取，在处理帧读取时利用netty自带的一些工具，能达到事半功倍的效果。</p>
+<p>我们将数据帧及其工厂类，定义为<code>JtvFrame</code>类和单例对象。类用于保存数据帧的数据，单例对象负责将<code>JtvMessage</code>对象转化为数据帧对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">//数据帧
+</span><span class="c1"></span><span class="k">object</span> <span class="nc">JtvFrameType</span> <span class="k">extends</span> <span class="nc">Enumeration</span> <span class="o">{</span>
+  <span class="k">type</span> <span class="kt">JtvFrameType</span> <span class="o">=</span> <span class="nc">Value</span>
+  <span class="k">val</span> <span class="nc">KEY_EVENT</span> <span class="o">,</span><span class="nc">MOUSE_EVENT</span><span class="o">,</span><span class="nc">SCREEN_CAPTURE</span><span class="o">,</span><span class="nc">LOGIN_REQUEST</span><span class="o">,</span><span class="nc">LOGIN_RESPONSE</span><span class="o">,</span><span class="nc">CONTROL_REQUEST</span><span class="o">,</span><span class="nc">CONTROL_RESPONSE</span><span class="o">,</span><span class="nc">ERROR_MESSAGE</span><span class="o">,</span><span class="nc">LOGOUT_REQUEST</span><span class="o">,</span><span class="nc">UNKNOW</span> <span class="k">=</span> <span class="nc">Value</span>
+<span class="o">}</span>
+<span class="k">import</span> <span class="nn">JtvFrameType._</span>
+<span class="k">class</span> <span class="nc">JtvFrame</span><span class="o">(</span><span class="k">val</span> <span class="n">version</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="k">val</span> <span class="n">msgType</span><span class="k">:</span><span class="kt">JtvFrameType</span><span class="o">,</span> <span class="k">val</span> <span class="n">sessionId</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="k">val</span> <span class="n">contentLength</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="k">val</span> <span class="n">content</span><span class="k">:</span><span class="kt">Array</span><span class="o">[</span><span class="kt">Byte</span><span class="o">])</span>
+
+<span class="k">object</span> <span class="nc">JtvFrame</span><span class="o">{</span>
+  <span class="k">private</span> <span class="k">val</span> <span class="n">logger</span> <span class="k">=</span> <span class="nc">Logger</span><span class="o">(</span><span class="nc">JtvFrame</span><span class="o">.</span><span class="n">getClass</span><span class="o">)</span>
+  <span class="k">var</span> <span class="n">sessionId</span> <span class="k">=</span> <span class="mi">0</span>
+  <span class="k">val</span> <span class="n">version</span> <span class="k">=</span> <span class="mi">1</span>
+  <span class="k">def</span> <span class="n">apply</span><span class="o">(</span><span class="n">jvtMessage</span><span class="k">:</span> <span class="kt">JtvMessage</span><span class="o">)</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">JtvFrame</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">msgType</span> <span class="k">=</span> <span class="n">jvtMessage</span> <span class="k">match</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="k">_:</span><span class="kt">ScreenCaptureMessage</span> <span class="o">=&gt;</span> <span class="nc">SCREEN_CAPTURE</span>
+      <span class="k">case</span> <span class="k">_:</span><span class="kt">MouseEventMessage</span> <span class="o">=&gt;</span> <span class="nc">MOUSE_EVENT</span>
+      <span class="k">case</span> <span class="n">m</span><span class="k">:</span><span class="kt">KeyEventMessage</span> <span class="o">=&gt;</span> <span class="nc">KEY_EVENT</span>
+      <span class="k">case</span> <span class="k">_:</span><span class="kt">LoginRequest</span> <span class="o">=&gt;</span> <span class="nc">LOGIN_REQUEST</span>
+      <span class="k">case</span> <span class="k">_:</span><span class="kt">LoginResponse</span> <span class="o">=&gt;</span> <span class="nc">LOGIN_RESPONSE</span>
+      <span class="k">case</span> <span class="k">_:</span><span class="kt">ControlRequest</span> <span class="o">=&gt;</span> <span class="nc">CONTROL_REQUEST</span>
+      <span class="k">case</span> <span class="k">_:</span><span class="kt">ControlResponse</span> <span class="o">=&gt;</span> <span class="nc">CONTROL_RESPONSE</span>
+      <span class="k">case</span> <span class="k">_:</span><span class="kt">ErrorMessage</span> <span class="o">=&gt;</span> <span class="nc">ERROR_MESSAGE</span>
+      <span class="k">case</span> <span class="k">_:</span><span class="kt">LogoutRequest</span> <span class="o">=&gt;</span> <span class="nc">LOGOUT_REQUEST</span>
+      <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="nc">UNKNOW</span>
+    <span class="o">}</span>
+
+    <span class="nc">Try</span><span class="o">(</span><span class="nc">CodecUtils</span><span class="o">.</span><span class="n">encode</span><span class="o">(</span><span class="n">jvtMessage</span><span class="o">))</span> <span class="k">match</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="nc">Success</span><span class="o">(</span><span class="n">arr</span><span class="o">)</span> <span class="k">=&gt;</span><span class="nc">Some</span><span class="o">(</span><span class="k">new</span> <span class="nc">JtvFrame</span><span class="o">(</span><span class="n">version</span><span class="o">,</span><span class="n">msgType</span><span class="o">,</span><span class="n">sessionId</span><span class="o">,</span><span class="n">arr</span><span class="o">.</span><span class="n">length</span><span class="o">,</span><span class="n">arr</span><span class="o">))</span>
+      <span class="k">case</span> <span class="nc">Failure</span><span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="o">(</span><span class="s">s&#34;消息转换失败：</span><span class="si">${</span><span class="n">jvtMessage</span><span class="si">}</span><span class="s">&#34;</span><span class="o">,</span><span class="n">e</span><span class="o">)</span>
+        <span class="nc">None</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>JtvFrame</code>类中最重要的两个字段是<code>contentLength</code>和<code>content</code>。分别代表消息内容长度和被序列化的消息。后面进行拆包时依赖于这两个字段，才能读取到完整的数据包。</p>
+<h2 id="编码器和解决码器">编码器和解决码器</h2>
+<p>如前面所述，我们需要两套编码/解码器，分别处理数据帧和消息对象。</p>
+<h3 id="数据帧的编码和解码">数据帧的编码和解码</h3>
+<h4 id="帧编码器">帧编码器</h4>
+<p>它主要负责将帧数据发送至网络通道：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">JtvFrameEncoder</span> <span class="k">extends</span> <span class="nc">MessageToByteEncoder</span><span class="o">[</span><span class="kt">JtvFrame</span><span class="o">]{</span>
+  <span class="k">override</span> <span class="k">def</span> <span class="n">encode</span><span class="o">(</span><span class="n">ctx</span><span class="k">:</span> <span class="kt">ChannelHandlerContext</span><span class="o">,</span> <span class="n">msg</span><span class="k">:</span> <span class="kt">JtvFrame</span><span class="o">,</span> <span class="n">out</span><span class="k">:</span> <span class="kt">ByteBuf</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">writeInt</span><span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="n">version</span><span class="o">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">writeInt</span><span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="n">msgType</span><span class="o">.</span><span class="n">id</span><span class="o">)</span>
+    <span class="c1">//out.writeInt(msg.sessionId)
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">sessionId</span> <span class="k">=</span> <span class="nc">ChannelUtils</span><span class="o">.</span><span class="n">getSessionId</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">channel</span><span class="o">())</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">writeInt</span><span class="o">(</span><span class="n">sessionId</span><span class="o">.</span><span class="n">getOrElse</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">writeInt</span><span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="n">contentLength</span><span class="o">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">writeBytes</span><span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="帧解码器">帧解码器</h4>
+<p>继承<code>netty</code>提供的<code>ReplayingDecoder</code>能较方便的定义帧解码器。这个<code>Decoder</code>是为方便拆包而定义的，我们只需要提供一套状态代码，并根据读取的数据情况，推进状态就能实现拆包处理了。如果没有这个工具，我们就得根据接收的数据长度来处理缓冲区数据，这个操作繁琐且容易出错。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">JtvFrameDecodeState</span> <span class="k">extends</span> <span class="nc">Enumeration</span><span class="o">{</span>
+  <span class="k">type</span> <span class="kt">JtvFrameDecodeState</span> <span class="o">=</span> <span class="nc">Value</span>
+  <span class="k">val</span> <span class="nc">VERSION</span><span class="o">,</span><span class="nc">MSGTYPE</span><span class="o">,</span><span class="nc">SESSIONID</span><span class="o">,</span><span class="nc">CONTENTLENTH</span><span class="o">,</span><span class="nc">CONTENT</span> <span class="k">=</span> <span class="nc">Value</span>
+<span class="o">}</span>
+<span class="k">import</span> <span class="nn">JtvFrameDecodeState._</span>
+<span class="k">class</span> <span class="nc">JtvFrameDecoder</span> <span class="k">extends</span> <span class="nc">ReplayingDecoder</span><span class="o">[</span><span class="kt">JtvFrameDecodeState</span><span class="o">]{</span>
+
+  <span class="k">var</span> <span class="n">version</span><span class="o">,</span><span class="n">contentLength</span><span class="k">:</span><span class="kt">Int</span><span class="o">=</span><span class="k">_</span>
+  <span class="k">var</span> <span class="n">sessionId</span><span class="k">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="k">_</span>
+  <span class="k">var</span> <span class="n">msgType</span> <span class="k">=</span> <span class="nc">JtvFrameType</span><span class="o">.</span><span class="nc">LOGIN_REQUEST</span>
+  <span class="k">var</span> <span class="n">content</span><span class="k">:</span><span class="kt">Array</span><span class="o">[</span><span class="kt">Byte</span><span class="o">]</span><span class="k">=_</span>
+
+  <span class="k">def</span> <span class="n">reset</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">={</span>
+    <span class="n">state</span><span class="o">(</span><span class="nc">VERSION</span><span class="o">)</span>
+    <span class="n">version</span> <span class="k">=</span> <span class="mi">1</span>
+    <span class="n">msgType</span> <span class="k">=</span> <span class="nc">JtvFrameType</span><span class="o">.</span><span class="nc">LOGIN_REQUEST</span>
+    <span class="n">sessionId</span> <span class="k">=</span> <span class="mi">0</span>
+    <span class="n">contentLength</span> <span class="k">=</span> <span class="mi">0</span>
+    <span class="n">content</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">[</span><span class="kt">Byte</span><span class="o">](</span><span class="mi">0</span><span class="o">)</span>
+  <span class="o">}</span>
+
+  <span class="n">reset</span>
+
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">decode</span><span class="o">(</span><span class="n">ctx</span><span class="k">:</span> <span class="kt">ChannelHandlerContext</span><span class="o">,</span> <span class="n">in</span><span class="k">:</span> <span class="kt">ByteBuf</span><span class="o">,</span> <span class="n">out</span><span class="k">:</span> <span class="kt">util.List</span><span class="o">[</span><span class="kt">AnyRef</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+
+    <span class="k">def</span> <span class="n">decode</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="n">state</span><span class="o">()</span> <span class="k">match</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="nc">VERSION</span> <span class="k">=&gt;</span> <span class="o">{</span>
+        <span class="n">version</span> <span class="k">=</span> <span class="n">in</span><span class="o">.</span><span class="n">readInt</span><span class="o">()</span>
+        <span class="n">checkpoint</span><span class="o">(</span><span class="nc">MSGTYPE</span><span class="o">)</span>
+        <span class="n">decode</span>
+      <span class="o">}</span>
+      <span class="k">case</span> <span class="nc">MSGTYPE</span> <span class="k">=&gt;</span> <span class="o">{</span>
+        <span class="n">msgType</span> <span class="k">=</span> <span class="nc">JtvFrameType</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="n">readInt</span><span class="o">())</span>
+        <span class="n">checkpoint</span><span class="o">(</span><span class="nc">SESSIONID</span><span class="o">)</span>
+        <span class="n">decode</span>
+      <span class="o">}</span>
+      <span class="k">case</span> <span class="nc">SESSIONID</span> <span class="k">=&gt;</span> <span class="o">{</span>
+        <span class="n">sessionId</span> <span class="k">=</span> <span class="n">in</span><span class="o">.</span><span class="n">readInt</span><span class="o">()</span>
+        <span class="cm">/*val currentSessionId = ChannelUtils.getSessionId(ctx.channel())
+</span><span class="cm">        currentSessionId match {
+</span><span class="cm">          case Some(sId)  =&gt; {
+</span><span class="cm">            if(sId != sessionId.toString){
+</span><span class="cm">              ctx.channel().writeAndFlush(new ErrorMessage(&#34;会话ID不一致!&#34;))
+</span><span class="cm">              ctx.channel().close()
+</span><span class="cm">              return
+</span><span class="cm">            }
+</span><span class="cm">          }
+</span><span class="cm">          case None =&gt; ChannelUtils.setSessionId(ctx.channel(),sessionId)
+</span><span class="cm">        }*/</span>
+
+        <span class="n">checkpoint</span><span class="o">(</span><span class="nc">CONTENTLENTH</span><span class="o">)</span>
+        <span class="n">decode</span>
+      <span class="o">}</span>
+      <span class="k">case</span> <span class="nc">CONTENTLENTH</span> <span class="k">=&gt;</span> <span class="o">{</span>
+        <span class="n">contentLength</span> <span class="k">=</span> <span class="n">in</span><span class="o">.</span><span class="n">readInt</span><span class="o">()</span>
+        <span class="n">checkpoint</span><span class="o">(</span><span class="nc">CONTENT</span><span class="o">)</span>
+        <span class="n">decode</span>
+      <span class="o">}</span>
+      <span class="k">case</span> <span class="nc">CONTENT</span> <span class="k">=&gt;</span> <span class="o">{</span>
+        <span class="n">content</span> <span class="k">=</span>  <span class="nc">ByteBufUtil</span><span class="o">.</span><span class="n">getBytes</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="n">readBytes</span><span class="o">(</span><span class="n">contentLength</span><span class="o">))</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">JtvFrame</span><span class="o">(</span><span class="n">version</span><span class="o">,</span><span class="n">msgType</span><span class="o">,</span><span class="n">sessionId</span><span class="o">,</span><span class="n">contentLength</span><span class="o">,</span><span class="n">content</span><span class="o">))</span>
+        <span class="n">reset</span>
+        <span class="k">return</span>
+      <span class="o">}</span>
+      <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="o">{</span>
+        <span class="n">reset</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">close</span><span class="o">()</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nc">Exception</span><span class="o">(</span><span class="s">&#34;Unknown decoding state: &#34;</span> <span class="o">+</span> <span class="n">state</span><span class="o">())</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">decode</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>编写编码器的时候，使用了<code>scala</code>的模式匹配来进行状态检查，根据状态来确定所读取的帧字段。由于<code>scala</code>的模式匹配不能像Java的<code>switch</code>那样从上向下执行（不添加break的情况下），因此我们需要在每次匹配之后，重复调用decode以读取后续的字段数据，直到完成<code>content</code>字段的读取。</p>
+<p>读取完<code>content</code>字段的数据后，就可以构建出完整的<code>JtvFrame</code>对象了。这个更对象添加至<code>out</code>集合并返回后，将会被更上层的消息对象解码器解码为消息对象。</p>
+<h3 id="消息对象的编码和解码">消息对象的编码和解码</h3>
+<p>简单起见，消息对象的编码和解码我直接使用Java对象序列化机制。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">JtvMessageDecode</span> <span class="k">extends</span> <span class="nc">MessageToMessageDecoder</span><span class="o">[</span><span class="kt">JtvFrame</span><span class="o">]{</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">decode</span><span class="o">(</span><span class="n">ctx</span><span class="k">:</span> <span class="kt">ChannelHandlerContext</span><span class="o">,</span> <span class="n">msg</span><span class="k">:</span> <span class="kt">JtvFrame</span><span class="o">,</span> <span class="n">out</span><span class="k">:</span> <span class="kt">util.List</span><span class="o">[</span><span class="kt">AnyRef</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="nc">CodecUtils</span><span class="o">.</span><span class="n">decode</span><span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="o">))</span>
+    <span class="cm">/*msg match{
+</span><span class="cm">      case obj:JtvMessage =&gt; out.add(obj)
+</span><span class="cm">      case _ =&gt; None
+</span><span class="cm">    }*/</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="k">class</span> <span class="nc">JtvMessageEncode</span> <span class="k">extends</span> <span class="nc">MessageToMessageEncoder</span><span class="o">[</span><span class="kt">JtvMessage</span><span class="o">]{</span>
+  <span class="k">override</span> <span class="k">def</span> <span class="n">encode</span><span class="o">(</span><span class="n">ctx</span><span class="k">:</span> <span class="kt">ChannelHandlerContext</span><span class="o">,</span> <span class="n">msg</span><span class="k">:</span> <span class="kt">JtvMessage</span><span class="o">,</span> <span class="n">out</span><span class="k">:</span> <span class="kt">util.List</span><span class="o">[</span><span class="kt">AnyRef</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nc">JtvFrame</span><span class="o">(</span><span class="n">msg</span><span class="o">)</span> <span class="k">match</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">m</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">out</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="n">m</span><span class="o">)</span>
+      <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="nc">None</span>
+    <span class="o">}</span>
+    <span class="c1">//out.add()
+</span><span class="c1"></span>  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="pipeline">Pipeline</h2>
+<p>定义完编码和解码器之后，需要将它们添加至netty的<code>Pipeline</code>中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">bootstrap</span><span class="o">.</span><span class="n">group</span><span class="o">(</span><span class="n">bossGroup</span><span class="o">,</span><span class="n">workerGroup</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">channel</span><span class="o">(</span><span class="n">classOf</span><span class="o">[</span><span class="kt">NioServerSocketChannel</span><span class="o">])</span>
+  <span class="o">.</span><span class="n">childHandler</span><span class="o">(</span><span class="k">new</span> <span class="nc">ChannelInitializer</span><span class="o">[</span><span class="kt">NioSocketChannel</span><span class="o">]</span> <span class="o">{</span>
+  <span class="k">override</span> <span class="k">def</span> <span class="n">initChannel</span><span class="o">(</span><span class="n">ch</span><span class="k">:</span> <span class="kt">NioSocketChannel</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">pipeline</span> <span class="k">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">pipeline</span><span class="o">()</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">addLast</span><span class="o">(</span><span class="s">&#34;frameDecoder&#34;</span><span class="o">,</span><span class="k">new</span> <span class="nc">JtvFrameDecoder</span><span class="o">())</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">addLast</span><span class="o">(</span><span class="s">&#34;frameEncoder&#34;</span><span class="o">,</span><span class="k">new</span> <span class="nc">JtvFrameEncoder</span><span class="o">())</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">addLast</span><span class="o">(</span><span class="s">&#34;messageDecoder&#34;</span><span class="o">,</span><span class="k">new</span> <span class="nc">JtvMessageDecode</span><span class="o">())</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">addLast</span><span class="o">(</span><span class="s">&#34;messageEncoder&#34;</span><span class="o">,</span><span class="k">new</span> <span class="nc">JtvMessageEncode</span><span class="o">())</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">addLast</span><span class="o">(</span><span class="k">new</span> <span class="nc">ServerHandler</span><span class="o">())</span>
+  <span class="o">}</span>
+<span class="o">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>编码/解码器的工作时序如下：</p>
+<p><img src="../jtv/codec_seq.png" alt="编码解码器处理时序"></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-07-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/scala/">scala</a>
+          <a href="/tags/netty/"> netty</a>
+          <a href="/tags/jtv/"> jtv</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/jtv1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">JTV开发笔记1-开始</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/plantuml/">
+            <span class="next-text nav-default">PlantUML的使用</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

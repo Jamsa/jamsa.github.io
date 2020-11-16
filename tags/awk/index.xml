@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 19 Jun 2007 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/awk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>gawk笔记</title>
-      <link>http://jamsa.github.io/devel/linux/gawk/</link>
+      <link>http://jamsa.github.io/post/linux/gawk/</link>
       <pubDate>Tue, 19 Jun 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/linux/gawk/</guid>
+      <guid>http://jamsa.github.io/post/linux/gawk/</guid>
       <description>I.简介 gawk的主要功能是针对档案的第一行搜寻指令的patterns。当一行里有符合指定的patterns，gawk就会在此行执行指定的a</description>
     </item>
     

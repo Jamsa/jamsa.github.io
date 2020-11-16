@@ -9,19 +9,19 @@
     <lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker for Mac从容器访问主机服务</title>
-      <link>http://jamsa.github.io/devel/docker/docker_container_connect_host/</link>
+      <link>http://jamsa.github.io/post/docker/docker_container_connect_host/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/docker/docker_container_connect_host/</guid>
+      <guid>http://jamsa.github.io/post/docker/docker_container_connect_host/</guid>
       <description>最近两天，在配置本机一套分布式系统的单点登录功能时，需要用到Nginx做同域单点登录，本打算直接用docker运行一个nginx容器就能解决</description>
     </item>
     
     <item>
       <title>Spring Cloud 上手12-容器化</title>
-      <link>http://jamsa.github.io/devel/java/spring_cloud_tut12/</link>
+      <link>http://jamsa.github.io/post/java/spring_cloud_tut12/</link>
       <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/java/spring_cloud_tut12/</guid>
+      <guid>http://jamsa.github.io/post/java/spring_cloud_tut12/</guid>
       <description>重要提示：本篇文章的目标在Edgware.SR3上并未成功 原因在于在这个版本上Eureka Client运行在Docker中时，无法以Eure</description>
     </item>
     

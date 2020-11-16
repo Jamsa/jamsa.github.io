@@ -1,0 +1,2483 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>TypeScript Handbook笔记 - Jamsa&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jamsa" /><meta name="description" content="[toc] 基础类型 数字 与js一样ts中所有数字都是浮点，类型是number，除十进制、十六进制字面量外，还支持ES2015中的八进制和二进制字面量。" /><meta name="keywords" content="java, python, emacs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://jamsa.github.io/post/ts_handbook/ts-handbook/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="TypeScript Handbook笔记" />
+<meta property="og:description" content="[toc] 基础类型 数字 与js一样ts中所有数字都是浮点，类型是number，除十进制、十六进制字面量外，还支持ES2015中的八进制和二进制字面量。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jamsa.github.io/post/ts_handbook/ts-handbook/" />
+<meta property="article:published_time" content="2020-02-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-02-13T00:00:00+00:00" />
+<meta itemprop="name" content="TypeScript Handbook笔记">
+<meta itemprop="description" content="[toc] 基础类型 数字 与js一样ts中所有数字都是浮点，类型是number，除十进制、十六进制字面量外，还支持ES2015中的八进制和二进制字面量。">
+<meta itemprop="datePublished" content="2020-02-13T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-02-13T00:00:00+00:00" />
+<meta itemprop="wordCount" content="15483">
+
+
+
+<meta itemprop="keywords" content="typescript," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TypeScript Handbook笔记"/>
+<meta name="twitter:description" content="[toc] 基础类型 数字 与js一样ts中所有数字都是浮点，类型是number，除十进制、十六进制字面量外，还支持ES2015中的八进制和二进制字面量。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jamsa&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jamsa&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">TypeScript Handbook笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-02-13 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%BC%80%E5%8F%91/"> 开发 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础类型">基础类型</a></li>
+    <li><a href="#变量声明">变量声明</a>
+      <ul>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#解构">解构</a></li>
+        <li><a href="#展开">展开</a></li>
+      </ul>
+    </li>
+    <li><a href="#接口">接口</a>
+      <ul>
+        <li><a href="#可选属性">可选属性</a></li>
+        <li><a href="#只读属性">只读属性</a></li>
+        <li><a href="#额外的属性检查">额外的属性检查</a></li>
+        <li><a href="#函数类型">函数类型</a></li>
+        <li><a href="#可索引的类型">可索引的类型</a></li>
+        <li><a href="#类类型">类类型</a>
+          <ul>
+            <li><a href="#实现接口">实现接口</a></li>
+            <li><a href="#类静态部分与实现部分的区别">类静态部分与实现部分的区别</a></li>
+          </ul>
+        </li>
+        <li><a href="#继承接口">继承接口</a></li>
+        <li><a href="#混合类型">混合类型</a></li>
+        <li><a href="#接口继承类">接口继承类</a></li>
+      </ul>
+    </li>
+    <li><a href="#类">类</a>
+      <ul>
+        <li><a href="#类-1">类</a></li>
+        <li><a href="#继承">继承</a></li>
+        <li><a href="#公共私有与受保护修饰符">公共、私有与受保护修饰符</a></li>
+        <li><a href="#readonly修饰符">readonly修饰符</a></li>
+        <li><a href="#参数属性">参数属性</a></li>
+        <li><a href="#存取器">存取器</a></li>
+        <li><a href="#静态属性">静态属性</a></li>
+        <li><a href="#抽象类">抽象类</a></li>
+        <li><a href="#高级技巧">高级技巧</a>
+          <ul>
+            <li><a href="#构造函数">构造函数</a></li>
+            <li><a href="#把类当作接口使用">把类当作接口使用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#函数">函数</a>
+      <ul>
+        <li><a href="#函数类型-1">函数类型</a></li>
+        <li><a href="#可选参数和默认值">可选参数和默认值</a></li>
+        <li><a href="#剩余参数">剩余参数</a></li>
+        <li><a href="#this">this</a>
+          <ul>
+            <li><a href="#this参数">this参数</a></li>
+            <li><a href="#this参数在回调函数里">this参数在回调函数里</a></li>
+          </ul>
+        </li>
+        <li><a href="#重载">重载</a></li>
+      </ul>
+    </li>
+    <li><a href="#泛型">泛型</a>
+      <ul>
+        <li><a href="#hello-world">hello world</a></li>
+        <li><a href="#泛型变量">泛型变量</a></li>
+        <li><a href="#泛型类型">泛型类型</a></li>
+        <li><a href="#泛型类">泛型类</a></li>
+        <li><a href="#泛型约束">泛型约束</a></li>
+      </ul>
+    </li>
+    <li><a href="#枚举">枚举</a>
+      <ul>
+        <li><a href="#数字枚举">数字枚举</a></li>
+        <li><a href="#字符串枚举">字符串枚举</a></li>
+        <li><a href="#异构枚举">异构枚举</a></li>
+        <li><a href="#计算和常量成员">计算和常量成员</a></li>
+        <li><a href="#联合枚举与成员的类型">联合枚举与成员的类型</a></li>
+        <li><a href="#运行时的枚举">运行时的枚举</a></li>
+        <li><a href="#反向映射">反向映射</a></li>
+        <li><a href="#const-枚举">const 枚举</a></li>
+        <li><a href="#外部枚举">外部枚举</a></li>
+      </ul>
+    </li>
+    <li><a href="#类型推论">类型推论</a></li>
+    <li><a href="#类型兼容性">类型兼容性</a>
+      <ul>
+        <li><a href="#开始">开始</a></li>
+        <li><a href="#函数比较">函数比较</a>
+          <ul>
+            <li><a href="#函数参数双向协变">函数参数双向协变</a></li>
+            <li><a href="#可选参数及剩余参数">可选参数及剩余参数</a></li>
+            <li><a href="#函数重载">函数重载</a></li>
+          </ul>
+        </li>
+        <li><a href="#枚举-1">枚举</a></li>
+        <li><a href="#类-2">类</a>
+          <ul>
+            <li><a href="#类的私有和受保护成员">类的私有和受保护成员</a></li>
+          </ul>
+        </li>
+        <li><a href="#泛型-1">泛型</a></li>
+        <li><a href="#子类型与赋值">子类型与赋值</a></li>
+      </ul>
+    </li>
+    <li><a href="#高级类型">高级类型</a>
+      <ul>
+        <li><a href="#交叉与联合类型">交叉与联合类型</a></li>
+        <li><a href="#类型区分和保护">类型区分和保护</a></li>
+        <li><a href="#可以为null的类型">可以为null的类型</a></li>
+        <li><a href="#可选参数和可选属性">可选参数和可选属性</a></li>
+        <li><a href="#类型保护和类型断言">类型保护和类型断言</a></li>
+        <li><a href="#类型别名">类型别名</a></li>
+        <li><a href="#字符串字面量类型">字符串字面量类型</a></li>
+        <li><a href="#数字字面量类型">数字字面量类型</a></li>
+        <li><a href="#枚举成员类型">枚举成员类型</a></li>
+        <li><a href="#可辨识联合">可辨识联合</a>
+          <ul>
+            <li><a href="#完整性检查">完整性检查</a></li>
+          </ul>
+        </li>
+        <li><a href="#多态的this类型">多态的this类型</a></li>
+        <li><a href="#索引类型">索引类型</a>
+          <ul>
+            <li><a href="#索引类型和字符串索引签名">索引类型和字符串索引签名</a></li>
+          </ul>
+        </li>
+        <li><a href="#映射类型">映射类型</a>
+          <ul>
+            <li><a href="#由映射类型进行推断">由映射类型进行推断</a></li>
+            <li><a href="#预定义的有条件类型">预定义的有条件类型</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#symbols">Symbols</a>
+      <ul>
+        <li><a href="#内置symbols">内置<code>symbols</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#迭代器和生成器">迭代器和生成器</a>
+      <ul>
+        <li><a href="#可迭代性">可迭代性</a></li>
+      </ul>
+    </li>
+    <li><a href="#模块">模块</a>
+      <ul>
+        <li><a href="#导出">导出</a></li>
+        <li><a href="#导入">导入</a></li>
+        <li><a href="#export-和import--require"><code>export =</code>和<code>import = require()</code></a></li>
+        <li><a href="#生成模块代码">生成模块代码</a></li>
+        <li><a href="#可选的模块加载和其它高级加载场景">可选的模块加载和其它高级加载场景</a></li>
+        <li><a href="#使用其它javascript库">使用其它JavaScript库</a></li>
+        <li><a href="#创建模块结构指导">创建模块结构指导</a></li>
+      </ul>
+    </li>
+    <li><a href="#命名空间">命名空间</a></li>
+    <li><a href="#命名空间和模块">命名空间和模块</a>
+      <ul>
+        <li><a href="#命名空间和模块的陷阱">命名空间和模块的陷阱</a></li>
+        <li><a href="#模块的取舍">模块的取舍</a></li>
+      </ul>
+    </li>
+    <li><a href="#模块解析">模块解析</a>
+      <ul>
+        <li><a href="#相对-vs-非相对模块导入">相对 vs 非相对模块导入</a></li>
+        <li><a href="#模块解析策略">模块解析策略</a></li>
+        <li><a href="#附加的模块解析标记">附加的模块解析标记</a></li>
+        <li><a href="#跟踪模块解析">跟踪模块解析</a></li>
+        <li><a href="#使用--noresolve">使用<code>--noResolve</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#声明合并">声明合并</a>
+      <ul>
+        <li><a href="#基础概念">基础概念</a></li>
+        <li><a href="#合并接口">合并接口</a></li>
+        <li><a href="#合并命名空间">合并命名空间</a></li>
+        <li><a href="#命名空间与类和函数和枚举类型合并">命名空间与类和函数和枚举类型合并</a>
+          <ul>
+            <li><a href="#合并命名空间和类">合并命名空间和类</a></li>
+          </ul>
+        </li>
+        <li><a href="#非法的合并">非法的合并</a></li>
+        <li><a href="#模块扩展">模块扩展</a></li>
+        <li><a href="#全局扩展">全局扩展</a></li>
+      </ul>
+    </li>
+    <li><a href="#jsx">JSX</a>
+      <ul>
+        <li><a href="#as操作符">as操作符</a></li>
+        <li><a href="#类型检查">类型检查</a>
+          <ul>
+            <li><a href="#固有元素">固有元素</a></li>
+            <li><a href="#基于值的元素">基于值的元素</a></li>
+            <li><a href="#属性类型检查">属性类型检查</a></li>
+            <li><a href="#子孙类型检查">子孙类型检查</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#装饰器">装饰器</a>
+      <ul>
+        <li><a href="#装饰器工厂">装饰器工厂</a></li>
+        <li><a href="#装饰器组合">装饰器组合</a></li>
+        <li><a href="#装饰器求值">装饰器求值</a></li>
+        <li><a href="#类装饰器">类装饰器</a></li>
+        <li><a href="#方法装饰器">方法装饰器</a></li>
+        <li><a href="#访问器装饰器">访问器装饰器</a></li>
+        <li><a href="#属性装饰器">属性装饰器</a></li>
+        <li><a href="#参数装饰器">参数装饰器</a></li>
+        <li><a href="#元数据">元数据</a></li>
+      </ul>
+    </li>
+    <li><a href="#mixins">Mixins</a></li>
+    <li><a href="#三斜线指令">三斜线指令</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>[toc]</p>
+<h1 id="基础类型">基础类型</h1>
+<ul>
+<li>数字</li>
+</ul>
+<p>与js一样ts中所有数字都是浮点，类型是<code>number</code>，除十进制、十六进制字面量外，还支持ES2015中的八进制和二进制字面量。</p>
+<ul>
+<li>字符串</li>
+</ul>
+<p>支持反引号模板字符串。</p>
+<ul>
+<li>数组</li>
+</ul>
+<p>两种形式定义<code>T[]</code>和<code>Array&lt;T&gt;</code>。</p>
+<ul>
+<li>元组</li>
+</ul>
+<p>定义形式与数组类似，元素可以使用不同的数据类型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">x</span><span class="o">:</span><span class="p">[</span><span class="kt">string</span><span class="p">,</span> <span class="kt">number</span><span class="p">];</span>
+<span class="nx">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+<span class="nx">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">//下标从0开始
+</span><span class="c1"></span><span class="nx">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1">//越界访问会使用联合类型替代，但元素的类型只能为string或number
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>any</li>
+</ul>
+<p>用于处理动态内容和第三方的代码。</p>
+<p>与<code>object</code>类型的区别在于<code>object</code>类型上无法调用方法，<code>any</code>类型可以。</p>
+<ul>
+<li>void</li>
+</ul>
+<p>与<code>any</code>相反，表示没有任何类型。</p>
+<p>用于函数时，表示没有返回值。用于变量时，只能赋值为<code>undefined</code>或<code>null</code>。</p>
+<ul>
+<li>undefined和null</li>
+</ul>
+<p>是所有类型的子类。但在启用<code>--strictNullChecks</code>后，<code>null</code>和<code>undefined</code>只能赋值给自己或<code>void</code>。</p>
+<ul>
+<li>never</li>
+</ul>
+<p>永不存在的类型。<code>never</code>是任何类型的子类，可以赋值给任何类型。但没有类型是<code>never</code>的子类中可以赋值给<code>never</code>。即使<code>any</code>也不能赋给<code>never</code>。</p>
+<p>用于函数返回值时，表示函数总会抛出异常，或永远不返回。用于变量时，永远不为真的类型所约束。</p>
+<ul>
+<li>object</li>
+</ul>
+<p>非原始类型。除<code>number</code>、<code>string</code>、<code>boolean</code>、<code>symbol</code>、<code>null</code>或<code>undefined</code>之外的类型。</p>
+<ul>
+<li>类型断言</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">somestr</span> <span class="o">=</span> <span class="s2">&#34;hello&#34;</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">strlen1</span>:<span class="kt">number</span> <span class="o">=</span> <span class="p">(&lt;</span><span class="nt">string</span><span class="p">&gt;</span><span class="nx">somestr</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">strlen2</span>:<span class="kt">number</span> <span class="o">=</span> <span class="p">(</span><span class="nx">somstr</span> <span class="kr">as</span> <span class="kt">string</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在tsx中只能使用<code>as</code>语法。</p>
+<h1 id="变量声明">变量声明</h1>
+<h2 id="变量">变量</h2>
+<ul>
+<li>var存在的问题</li>
+</ul>
+<p><code>var</code>声明可以在包含它的函数、模块、命名空间或全局作用域内部的任何位置被访问。</p>
+<ul>
+<li>let声明</li>
+</ul>
+<p><code>let</code>使用的是词法作用域或块作用域。</p>
+<p><code>let</code>不允许重复定义，<code>var</code>是允许的。</p>
+<p>嵌套作用域里引入同名定义会屏蔽外层的定义。</p>
+<ul>
+<li>const声明</li>
+</ul>
+<p>与<code>let</code>类似，只是值不可改变。</p>
+<h2 id="解构">解构</h2>
+<p>支持ES2015特性。</p>
+<ul>
+<li>解构数组</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="p">[</span><span class="nx">first</span><span class="p">,</span> <span class="nx">second</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="c1">//用于函数参数
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">f</span><span class="p">([</span><span class="nx">first</span><span class="p">,</span> <span class="nx">second</span><span class="p">]</span><span class="o">:</span> <span class="p">[</span><span class="kt">number</span><span class="p">,</span> <span class="kt">number</span><span class="p">]){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">first</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//剩余参数
+</span><span class="c1"></span><span class="kd">let</span> <span class="p">[</span><span class="nx">first</span><span class="p">,</span> <span class="p">...</span><span class="nx">rest</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>解析对象</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">a</span><span class="o">:</span> <span class="s2">&#34;foo&#34;</span><span class="p">,</span>
+    <span class="nx">b</span>: <span class="kt">12</span><span class="p">,</span>
+    <span class="nx">c</span><span class="o">:</span> <span class="err">&#34;</span><span class="nx">bar</span>
+<span class="p">};</span>
+<span class="kd">let</span> <span class="p">{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">}</span> <span class="o">=</span> <span class="nx">o</span><span class="p">;</span>
+
+<span class="c1">//剩余参数
+</span><span class="c1"></span><span class="kd">let</span> <span class="p">{</span><span class="nx">a</span><span class="p">,</span> <span class="p">...</span><span class="nx">passthrough</span><span class="p">}</span> <span class="o">=</span> <span class="nx">o</span><span class="p">;</span>
+
+<span class="c1">//默认值
+</span><span class="c1"></span><span class="kd">let</span> <span class="p">{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">1001</span><span class="p">}</span> <span class="o">=</span> <span class="nx">o</span><span class="p">;</span>
+
+<span class="c1">//属性重命名
+</span><span class="c1"></span><span class="kd">let</span> <span class="p">{</span><span class="nx">a</span>: <span class="kt">newName1</span><span class="p">,</span> <span class="nx">b</span>: <span class="kt">newName2</span><span class="p">}</span> <span class="o">=</span> <span class="nx">o</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>函数声明</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">C</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span>:<span class="kt">string</span><span class="p">,</span> <span class="nx">b?</span>: <span class="kt">number</span><span class="p">}</span>
+
+<span class="c1">//参数解构及参数默认值
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">f</span><span class="p">({</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="mi">0</span><span class="p">}</span><span class="o">:</span> <span class="nx">C</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+    <span class="c1">//...
+</span><span class="c1"></span><span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="展开">展开</h2>
+<p>展开与解构相反。</p>
+<p>展开仅包含自身可枚举属性，不包含对象实例中的方法。</p>
+<p>TS当前版本不允许展开泛型函数上的类型参数。</p>
+<h1 id="接口">接口</h1>
+<p>TypeScript的核心原则之一是对值所具有的结构进行类型检查。“鸭式辨型法”或“结构性子类型化”。</p>
+<h2 id="可选属性">可选属性</h2>
+<p>属性名后添加<code>?</code>号。</p>
+<h2 id="只读属性">只读属性</h2>
+<p>属性名前添加<code>readonly</code>标识。只读数组，可以使用<code>ReadonlyArray&lt;T&gt;</code>类型声明。</p>
+<p><code>readonly</code>和<code>const</code>的区别：作为变量用<code>const</code>，作为属性使用<code>readonly</code>。</p>
+<h2 id="额外的属性检查">额外的属性检查</h2>
+<p>TypeScript中传递额外参数给接口时，会因为参数名不匹配而被拒绝，这种情况下要通过以下三种方式才能绕开检查：</p>
+<ul>
+<li>类型断言</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">SquareConfig</span> <span class="p">{</span>
+    <span class="nx">color?</span>: <span class="kt">string</span><span class="p">;</span>
+    <span class="nx">width?</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">createSquare</span><span class="p">(</span><span class="nx">config</span>:<span class="kt">SquareConfig</span><span class="p">)</span><span class="o">:</span><span class="p">{</span><span class="nx">color</span>: <span class="kt">string</span><span class="p">;</span> <span class="nx">area</span>: <span class="kt">number</span><span class="p">}</span> <span class="p">{</span>
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// 参数检查失败
+</span><span class="c1">// let mySquare = createSquare({colour: &#34;red&#34;, width: 100});
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">mySquare</span> <span class="o">=</span> <span class="nx">createSquare</span><span class="p">({</span><span class="nx">width</span>: <span class="kt">100</span><span class="p">,</span> <span class="nx">opacity</span>: <span class="kt">0.5</span><span class="p">}</span> <span class="kr">as</span> <span class="nx">SquareConfig</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>或者通过字符串索引签名</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">SquareConfig</span><span class="p">{</span>
+    <span class="nx">color?</span>: <span class="kt">string</span><span class="p">;</span>
+    <span class="nx">width?</span>: <span class="kt">number</span><span class="p">;</span>
+    <span class="p">[</span><span class="nx">propName</span>: <span class="kt">string</span><span class="p">]</span><span class="o">:</span> <span class="kt">any</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>赋值给另一个变量</li>
+</ul>
+<p>这种方式会导致下面的squareOptions不会经过额外属性检查。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">squareOptions</span> <span class="o">=</span> <span class="p">{</span><span class="nx">colour</span><span class="o">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="nx">width</span>: <span class="kt">100</span><span class="p">};</span>
+<span class="kd">let</span> <span class="nx">mySquare</span> <span class="o">=</span> <span class="nx">createSquare</span><span class="p">(</span><span class="nx">squareOptions</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="函数类型">函数类型</h2>
+<p>接口可以描述函数类型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">SearchFunc</span> <span class="p">{</span>
+    <span class="p">(</span><span class="nx">source</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">subString</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">mySearch</span>: <span class="kt">SerchFunction</span><span class="p">;</span>
+<span class="nx">mySearch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">source</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">subString</span>: <span class="kt">string</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">subString</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">result</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="可索引的类型">可索引的类型</h2>
+<p>TypeScript支持两种索引签名：字符串和数字。可以同时使用，但是数字索引返回的值必须是字符串的索引返回值的子类型。因为用<code>number</code>检索时，会被转化为<code>string</code>再进行检索。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">class</span> <span class="nx">Animal</span><span class="p">{</span>
+    <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Dog</span> <span class="kr">extends</span> <span class="nx">Animal</span><span class="p">{</span>
+    <span class="nx">breed</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">Okay</span><span class="p">{</span>
+    <span class="p">[</span><span class="nx">x</span>: <span class="kt">number</span><span class="p">]</span><span class="o">:</span> <span class="nx">Dog</span><span class="p">;</span>
+    <span class="p">[</span><span class="nx">x</span>: <span class="kt">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">Animal</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以在索引前添加<code>readonly</code>，防止赋值。</p>
+<p>字符串引声明了<code>obj.property</code>和<code>obj[&quot;property&quot;]</code>这两种形式。</p>
+<h2 id="类类型">类类型</h2>
+<h3 id="实现接口">实现接口</h3>
+<p>与Java或C#中类实现接口的方式类似。</p>
+<h3 id="类静态部分与实现部分的区别">类静态部分与实现部分的区别</h3>
+<p>类有两个类型：静态部分类型和实例部分类型。</p>
+<p>此部分官方文档描述并不明确，以下内容参考<a href="https://juejin.im/post/5d217c8e518825701d6a4baf">这篇文章</a>。</p>
+<p>实例类型通常是指通过类实例化出来的对象要满足的部分，如属性和方法。例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">ClockInterface</span><span class="p">{</span>
+    <span class="nx">currentTime</span>: <span class="kt">Date</span><span class="p">;</span>
+    <span class="nx">setTime</span><span class="p">(</span><span class="nx">d</span>: <span class="kt">Date</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>静态部分类型：构造器就是静态类型，例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">class</span> <span class="nx">Clock</span> <span class="kr">implements</span> <span class="nx">ClockInterface</span> <span class="p">{</span>
+    <span class="nx">currentTime</span>: <span class="kt">Date</span><span class="p">;</span>
+    <span class="nx">setTime</span><span class="p">(</span><span class="nx">d</span>: <span class="kt">Date</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="nx">d</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">h</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">m</span>: <span class="kt">number</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>中的<code>constructor</code>。</p>
+<p>当我们的类，去实现一个构造器的接口（静态类型的接口中的<code>new</code>方法）时，会报错。</p>
+<p>即，类<code>不能</code>直接去实现静态部分的接口，但可以直接实现实例类型的接口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">ClockConstructor</span><span class="p">{</span>
+    <span class="k">new</span> <span class="p">(</span><span class="nx">hour</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">minute</span>: <span class="kt">number</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kr">class</span> <span class="nx">Clock</span> <span class="kr">implements</span> <span class="nx">ClockConstructor</span><span class="p">{</span>
+    <span class="nx">currentTime</span>: <span class="kt">Date</span><span class="p">;</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">h</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">m</span>: <span class="kt">number</span><span class="p">){}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这段代码报错是因为，类实现接口时，它实际上是对实例部分做类型检查，如上面的：<code>currentTime</code>属性。而构造器存在于类的静态部分，所以是不会做检查 。所以一个类相关的接口，就是实例部分的接口和构造器接口（静态部分接口）。</p>
+<p>如果要对静态部分做检查，如何实现？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="c1">// 静态部分接口
+</span><span class="c1"></span><span class="kr">interface</span> <span class="nx">ClockConstructor</span> <span class="p">{</span>
+    <span class="k">new</span> <span class="p">(</span><span class="nx">hour</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">minute</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="nx">ClockInterface</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 实例部分接口
+</span><span class="c1"></span><span class="kr">interface</span> <span class="nx">ClockInterface</span> <span class="p">{</span>
+    <span class="nx">tick</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// 第一个参数ctor的类型是接口 ClockConstructor，在这里就为类的静态部分指定需要实现的接口
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">createClock</span><span class="p">(</span><span class="nx">ctor</span>: <span class="kt">ClockConstructor</span><span class="p">,</span> <span class="nx">hour</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">minute</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="nx">ClockInterface</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">ctor</span><span class="p">(</span><span class="nx">hour</span><span class="p">,</span> <span class="nx">minute</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">DigitalClock</span> <span class="kr">implements</span> <span class="nx">ClockInterface</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">h</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">m</span>: <span class="kt">number</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="nx">tick() {</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;beep beep&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">class</span> <span class="nx">AnalogClock</span> <span class="kr">implements</span> <span class="nx">ClockInterface</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">h</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">m</span>: <span class="kt">number</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="nx">tick() {</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;tick toc&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">digital</span> <span class="o">=</span> <span class="nx">createClock</span><span class="p">(</span><span class="nx">DigitalClock</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">analog</span> <span class="o">=</span> <span class="nx">createClock</span><span class="p">(</span><span class="nx">AnalogClock</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="继承接口">继承接口</h2>
+<p>与类一样，接口可以互相继承。</p>
+<h2 id="混合类型">混合类型</h2>
+<p>一个对象可以同时作为函数和对象使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">Counter</span> <span class="p">{</span>
+    <span class="p">(</span><span class="nx">start</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span> <span class="c1">//函数
+</span><span class="c1"></span>    <span class="nx">interval</span>: <span class="kt">number</span><span class="p">;</span> <span class="c1">//对象属性
+</span><span class="c1"></span>    <span class="nx">reset</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span> <span class="c1">//方法
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getCounter</span><span class="p">()</span><span class="o">:</span> <span class="nx">Counter</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">counter</span> <span class="o">=</span> <span class="p">&lt;</span><span class="nt">Counter</span><span class="p">&gt;</span><span class="kd">function</span> <span class="p">(</span><span class="nx">start</span>: <span class="kt">number</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+    <span class="nx">counter</span><span class="p">.</span><span class="nx">interval</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+    <span class="nx">counter</span><span class="p">.</span><span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+    <span class="k">return</span> <span class="nx">counter</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">getCounter</span><span class="p">();</span>
+<span class="nx">c</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nx">c</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="nx">c</span><span class="p">.</span><span class="nx">interval</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="接口继承类">接口继承类</h2>
+<p>接口继承类类型时，它会继承类的成员，但不包括其实现。接口同样会继承到类的<code>private</code>和<code>protected</code>成员。</p>
+<h1 id="类">类</h1>
+<h2 id="类-1">类</h2>
+<p>与Java或C#中的类类似。</p>
+<h2 id="继承">继承</h2>
+<p>可以用<code>super()</code>调用父类构造器。</p>
+<h2 id="公共私有与受保护修饰符">公共、私有与受保护修饰符</h2>
+<ul>
+<li><code>public</code> 为默认范围。</li>
+<li><code>private</code> 类型私有成员。</li>
+<li><code>protected</code> 类型及其子类型可访问。</li>
+</ul>
+<p>即使两个实例中的<code>private</code>和<code>protected</code>属性的名称和数据类型都一致，它们也不会被认为是同一实例类型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">class</span> <span class="nx">Animal</span> <span class="p">{</span>
+    <span class="kr">private</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">theName</span>: <span class="kt">string</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">theName</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Rhino</span> <span class="kr">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="kr">super</span><span class="p">(</span><span class="s2">&#34;Rhino&#34;</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Employee</span> <span class="p">{</span>
+    <span class="kr">private</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">theName</span>: <span class="kt">string</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">theName</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">animal</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Animal</span><span class="p">(</span><span class="s2">&#34;Goat&#34;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">rhino</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Rhino</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">employee</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Employee</span><span class="p">(</span><span class="s2">&#34;Bob&#34;</span><span class="p">);</span>
+
+<span class="nx">animal</span> <span class="o">=</span> <span class="nx">rhino</span><span class="p">;</span>
+<span class="nx">animal</span> <span class="o">=</span> <span class="nx">employee</span><span class="p">;</span> <span class="c1">// 错误: Animal 与 Employee 不兼容.
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="readonly修饰符">readonly修饰符</h2>
+<p>可以将属性设置为只读。</p>
+<h2 id="参数属性">参数属性</h2>
+<p>可以在构造函数中直接定义并初始化成员属性。参数属性通过给构造函数参数前面添加一个访问限定符来声明。如readonly、private、public和protected都可以。</p>
+<h2 id="存取器">存取器</h2>
+<p>使用<code>get</code>和<code>set</code>将属性改写为存取器。</p>
+<p>存取器只支持ES5，不能降级至ES3。</p>
+<h2 id="静态属性">静态属性</h2>
+<p><code>static</code>创建类的静态成员。访问时需要通过类名进行访问。</p>
+<h2 id="抽象类">抽象类</h2>
+<p><code>abstract</code>关键字。可包含成员的实现细节。</p>
+<h2 id="高级技巧">高级技巧</h2>
+<h3 id="构造函数">构造函数</h3>
+<p>声明一个类的时候，声明了实例的类型和构造函数。</p>
+<p>可以用变量保存类的或者说构造函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">class</span> <span class="nx">Greeter</span> <span class="p">{</span>
+    <span class="nx">greeting</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">greeterMaker</span>: <span class="kt">typeof</span> <span class="nx">Greeter</span> <span class="o">=</span> <span class="nx">Greeter</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">greeter</span>:<span class="kt">Greeter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">greeterMaker</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="把类当作接口使用">把类当作接口使用</h3>
+<p>接口可以继承类。</p>
+<h1 id="函数">函数</h1>
+<p>TypeScript中的函数可以创建有名字的函数和匿名函数。</p>
+<h2 id="函数类型-1">函数类型</h2>
+<p>TypeScript能根据返回语句推断返回值类型，因此通常可以省略返回值。</p>
+<p>函数的类型包含参数类型和返回值类型。参数类型匹配时，只检查参数类型，不检查参数名。</p>
+<p>如果函数没有返回值，也必须指定返回值为<code>void</code>。</p>
+<p>函数中使用的捕获变量不会体现在类型上。</p>
+<p>TypeScript里每个函数参数都是必须的。编译器检查用户是否为每个参数都传入了值。即参
+数个数必须与函数期望的参数个数一致。JavaScript里每个参数都是可选的。</p>
+<h2 id="可选参数和默认值">可选参数和默认值</h2>
+<p>可选参数必须跟在必须参数的后面。</p>
+<p>可以为参数定义默认值。带有默认值的必须参数都是可选的，与可选参数一样，在调用时可
+省略。即：可选参数与末尾的默认参数共享参数类型。下面的两个函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">buildName</span><span class="p">(</span><span class="nx">firstName</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">lastName?</span>: <span class="kt">string</span><span class="p">){</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">buildName</span><span class="p">(</span><span class="nx">firstName</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">lastName</span> <span class="o">=</span> <span class="s2">&#34;Smith&#34;</span><span class="p">){</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这两个函数共享同样的类型<code>(firstName: string, lastName?: string)=&gt;string</code>。默认参
+数的默认值消失了，只保留了它是一个可选参数的信息。两种函数的不同之处是，带默认值的参数不需要放在必须参数的后面。如果带默认值的参数出现在必须参数前面，用户必须明确传入<code>undefined</code>来获取默认值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">buildName</span><span class="p">(</span><span class="nx">firstName</span> <span class="o">=</span> <span class="s2">&#34;Will&#34;</span><span class="p">,</span> <span class="nx">lastName</span>: <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">firstName</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="nx">lastName</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">result1</span> <span class="o">=</span> <span class="nx">buildName</span><span class="p">(</span><span class="s2">&#34;Bob&#34;</span><span class="p">);</span>                  <span class="c1">// error, too few parameters
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">result2</span> <span class="o">=</span> <span class="nx">buildName</span><span class="p">(</span><span class="s2">&#34;Bob&#34;</span><span class="p">,</span> <span class="s2">&#34;Adams&#34;</span><span class="p">,</span> <span class="s2">&#34;Sr.&#34;</span><span class="p">);</span>  <span class="c1">// error, too many parameters
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">result3</span> <span class="o">=</span> <span class="nx">buildName</span><span class="p">(</span><span class="s2">&#34;Bob&#34;</span><span class="p">,</span> <span class="s2">&#34;Adams&#34;</span><span class="p">);</span>         <span class="c1">// okay and returns &#34;Bob Adams&#34;
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">result4</span> <span class="o">=</span> <span class="nx">buildName</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="s2">&#34;Adams&#34;</span><span class="p">);</span>     <span class="c1">// okay and returns &#34;Will Adams&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="剩余参数">剩余参数</h2>
+<p>在JavaScript里，可以使用<code>arguments</code>来访问所有传入的参数。</p>
+<p>在TypeScript里，可以把所有参数收集到一个变量里。编译器创建参数数组，名字在省略号（<code>...</code>）后面给定的名字，可以在函数体内使用这个数组。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">buildName</span><span class="p">(</span><span class="nx">firstName</span>: <span class="kt">string</span><span class="p">,</span> <span class="p">...</span><span class="nx">restOfName</span>: <span class="kt">string</span><span class="p">[]){}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="this">this</h2>
+<p><code>this</code>的值在函数被调用的时候才会指定。可通过箭头函数在函数被创建时就绑定好正确的<code>this</code>。</p>
+<h3 id="this参数">this参数</h3>
+<p>在箭头函数时使用<code>this</code>访问属性时，由于<code>this</code>是来自于字面量的函数表达式，得到的类型依旧会为<code>any</code>。修改的方法是为方法提供一个显示的<code>this</code>，这个参数是个假参数，它出现在参数列表的最前面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">deck</span>: <span class="kt">Deck</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">suits</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;hearts&#34;</span><span class="p">,</span> <span class="s2">&#34;spades&#34;</span><span class="p">,</span> <span class="s2">&#34;clubs&#34;</span><span class="p">,</span> <span class="s2">&#34;diamonds&#34;</span><span class="p">],</span>
+    <span class="nx">cards</span>: <span class="kt">Array</span><span class="p">(</span><span class="mi">52</span><span class="p">),</span>
+    <span class="c1">// NOTE: The function now explicitly specifies that its callee must be of type Deck
+</span><span class="c1"></span>    <span class="nx">createCardPicker</span>: <span class="kt">function</span><span class="p">(</span><span class="k">this</span><span class="o">:</span> <span class="nx">Deck</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nx">pickedCard</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">52</span><span class="p">);</span>
+            <span class="kd">let</span> <span class="nx">pickedSuit</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">pickedCard</span> <span class="o">/</span> <span class="mi">13</span><span class="p">);</span>
+
+            <span class="k">return</span> <span class="p">{</span><span class="nx">suit</span>: <span class="kt">this.suits</span><span class="p">[</span><span class="nx">pickedSuit</span><span class="p">],</span> <span class="nx">card</span>: <span class="kt">pickedCard</span> <span class="o">%</span> <span class="mi">13</span><span class="p">};</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">cardPicker</span> <span class="o">=</span> <span class="nx">deck</span><span class="p">.</span><span class="nx">createCardPicker</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">pickedCard</span> <span class="o">=</span> <span class="nx">cardPicker</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里<code>pickedCard</code>这种调用方式，函数内<code>this</code>的指向仍然是正确的。</p>
+<h3 id="this参数在回调函数里">this参数在回调函数里</h3>
+<p>在回调函数里使用<code>this</code>时，为了让<code>this</code>能正确指向调用者。调用者提供的回调方法中，应将第一个参数指定为<code>this</code>。</p>
+<ul>
+<li>todo: 侍补充</li>
+</ul>
+<h2 id="重载">重载</h2>
+<p>为了让编译器能够正确的检查类型，它与JavaScript里的处理流程类似。它查找重载列表，尝试使用第一个重载定义。如果匹配的话就使用这个定义。因此，定义重载的时候，一定要把最精确的定义放在最前面。</p>
+<h1 id="泛型">泛型</h1>
+<h2 id="hello-world">hello world</h2>
+<p>函数上的泛型参数并不一定要在调用时传入，也可以利用类型推断，编译器根据传入参数的类型自动确定泛型参数类型。</p>
+<h2 id="泛型变量">泛型变量</h2>
+<p>使用数组泛型变量时，可以直接调用泛型变量的方法。</p>
+<h2 id="泛型类型">泛型类型</h2>
+<p>可创建泛型接口、泛型函数接口、泛型类。但是无法创建泛型枚举和泛型命名空间。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">GenericIdentityFn</span><span class="p">{</span>
+    <span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;(</span><span class="nx">arg</span>: <span class="kt">T</span><span class="p">)</span><span class="o">:</span> <span class="nx">T</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">identity</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;(</span><span class="nx">arg</span>: <span class="kt">T</span><span class="p">)</span><span class="o">:</span> <span class="nx">T</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">arg</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">myIdentity</span>: <span class="kt">GenericIdentityFn</span> <span class="o">=</span> <span class="nx">identity</span><span class="p">;</span> 
+<span class="kd">let</span> <span class="nx">myIdentity1</span>: <span class="kt">GenericIdentityFn</span><span class="p">&lt;</span><span class="nt">number</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">identity</span><span class="p">;</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="泛型类">泛型类</h2>
+<p>与泛型接口类似。但要注意类的两部分：静态部分和实例部分。泛型类指的是实例部分的类型，所以类的静态属性不能使用泛型类型。</p>
+<h2 id="泛型约束">泛型约束</h2>
+<p>可定义接口类型作为泛型参数的父类来约束泛型类型，或限定泛型类型必须具备的方法和属性。</p>
+<p>在泛型约束中，通过类型参数间的引用关系来约束类型参数。如：Map的类型和Key类型间的约束关系。</p>
+<p>泛型创建工厂中引用构造函数的类类型的方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">create</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;(</span><span class="nx">c</span><span class="o">:</span> <span class="p">{</span><span class="k">new</span><span class="p">()</span><span class="o">:</span> <span class="nx">T</span><span class="p">;})</span><span class="o">:</span> <span class="nx">T</span><span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">c</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="枚举">枚举</h1>
+<p>枚举可以定义带名字的常量。</p>
+<h2 id="数字枚举">数字枚举</h2>
+<p>与其他编程语言的枚举类似，可指定成员的下标，不指定时下标值从0开始，下标值必须为常量。</p>
+<h2 id="字符串枚举">字符串枚举</h2>
+<p>每个成员都必须用字符串字面量，或另外一个字符串枚举成员进行初始化。</p>
+<h2 id="异构枚举">异构枚举</h2>
+<p>可混合使用字符串和数字成员。不推荐使用。</p>
+<h2 id="计算和常量成员">计算和常量成员</h2>
+<p>枚举成员的值可以是常量或计算出来的。被当作常量：</p>
+<ul>
+<li>
+<p>它是枚举的第一个成员且没有初始化，它的值会被设置为0。</p>
+</li>
+<li>
+<p>它不带有初始化器且它之前的枚举成员是一个数字常量。当前枚举成员为前一成员的值加1。</p>
+</li>
+<li>
+<p>成员使用<code>常量枚举表达式</code>初始化。它是TypeScript表达式的子集，可以在编译阶段求值。</p>
+</li>
+</ul>
+<h2 id="联合枚举与成员的类型">联合枚举与成员的类型</h2>
+<p>当所有成员都拥有字面量值时，它就带有特殊的语义：</p>
+<ul>
+<li>
+<p>枚举成员成为了类型，可以在定义类型时，指定某些成员只能是枚举成员的值。（固定值，不能初始化为其他值）</p>
+</li>
+<li>
+<p>枚举类型本身变成了每个枚举成员的<code>联合</code>。类型系统能知道枚举里的值的集合。能在进行比较值的时候，捕获所有条件都无法满足的情况。（因为编译器可以穷举所有成员，发现没有哪个枚举成员能满足条件）</p>
+</li>
+</ul>
+<h2 id="运行时的枚举">运行时的枚举</h2>
+<p>枚举是在运行时真实存在的对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">enum</span> <span class="nx">E</span><span class="p">{</span>
+    <span class="nx">X</span><span class="p">,</span><span class="nx">Y</span><span class="p">,</span><span class="nx">Z</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">obj</span><span class="o">:</span><span class="p">{</span><span class="nx">X</span>: <span class="kt">number</span><span class="p">}){</span>
+    <span class="k">return</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">X</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">f</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个调用可以成功，因为<code>E</code>有<code>number</code>型的数值属性<code>X</code>。</p>
+<h2 id="反向映射">反向映射</h2>
+<p>用于从枚举值得到枚举名字。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">enum</span> <span class="nx">Enum</span><span class="p">{</span>
+    <span class="nx">A</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">Enum</span><span class="p">.</span><span class="nx">A</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">nameOfA</span> <span class="o">=</span> <span class="nx">Enum</span><span class="p">[</span><span class="nx">a</span><span class="p">];</span><span class="c1">//得到&#34;A&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>字符串枚举成员不会生成反向映射。</p>
+<h2 id="const-枚举">const 枚举</h2>
+<p><code>enum</code>前添加<code>const</code>，这类枚举不允许包含计算成员。</p>
+<h2 id="外部枚举">外部枚举</h2>
+<p>添加<code>declare</code>关键字，用来描述已经存在的枚举类型的形状。</p>
+<h1 id="类型推论">类型推论</h1>
+<ul>
+<li>
+<p>根据值类型推断。</p>
+</li>
+<li>
+<p>不能根据值推断出的需要明确指定类型。</p>
+</li>
+<li>
+<p>可根据上下文推断类型，比如：根据回调函数的签名，推断参数类型。</p>
+</li>
+</ul>
+<h1 id="类型兼容性">类型兼容性</h1>
+<p>类型兼容性是基于结构子类型的。结构类型是一种只使用其成员来描述类型的方式。与名义（nominal）类型形成对比，名义类型（Java/C#）是基于声明/类型名称来决定的。结构类型不要求明确的类型声明。</p>
+<p>TypeScript类型系统允许某些在编译阶段无法确认其安全性的操作。</p>
+<h2 id="开始">开始</h2>
+<p>基本规则：如果x要兼容y，y至少具有与x相同的属性（但是可以有多于x的属性）。</p>
+<h2 id="函数比较">函数比较</h2>
+<p>函数比较：函数x能否赋值给函数y，x的每个参数必须能在y里找到对应类型的参数，参数的名字是否相同无所谓，但是类型必须相同。y的参数多于x是允许的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span>: <span class="kt">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">b</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">s</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// OK
+</span><span class="c1"></span><span class="nx">x</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span> <span class="c1">// Error
+</span></code></pre></td></tr></table>
+</div>
+</div><p>允许<code>y=x</code>主要是因为JavaScript里允许忽略参数。</p>
+<h3 id="函数参数双向协变">函数参数双向协变</h3>
+<p>当比较函数参数时，只有当源函数参数能够赋值给目标函数或者反过来时才能赋值成功。这是不稳定的，因为调用者可能传入了一个具有更精确类型信息的函数，但是调用这个传入的函数的时候却使用了不是那么精确的类型信息。</p>
+<h3 id="可选参数及剩余参数">可选参数及剩余参数</h3>
+<p>比较函数时，可选参数与必须参数是可互换的。源类型上有额外的可选参数不是错误，目标类型的可选参数在源类型里没有对应的参数也不是错误。</p>
+<p>当一个函数有剩余参数时，它被当做无限个可选参数。</p>
+<h3 id="函数重载">函数重载</h3>
+<p>对于有重载的函数，源函数的每个重载都要在目标函数上找到对应的函数签名。这确保了目标函数可以在所有源函数可调用的地方调用。</p>
+<h2 id="枚举-1">枚举</h2>
+<p>枚举类型与数字类型兼容，数字类型与枚举类型歉。不同枚举类型间不兼容。</p>
+<h2 id="类-2">类</h2>
+<p>类与对象字面量和接口差不多，不同的是类的静态部分和实例部分。比较两个类类型的对象时，只有实例的成员会被比较。静态成员和构造函数不在比较的范围内。</p>
+<h3 id="类的私有和受保护成员">类的私有和受保护成员</h3>
+<p>私有成员和受保护成员会影响兼容性。检查类实例兼容性时，如果目标类型包含一个私有成员，那么源类型必须包含来自同一个类的这个私有成员。这个规则同样适用于受保护成员。</p>
+<h2 id="泛型-1">泛型</h2>
+<p>TypeScript是结构性的类型系统，类型参数只影响使用其做为类型一部分的结果类型（传入泛型参数后的实例属性的类型）。</p>
+<p>对于指定了泛型参数时，会比较泛型参数类型。没有指定泛型参数时，会把所有泛型参数当作<code>any</code>比较。然后用结果类型进行比较。</p>
+<h2 id="子类型与赋值">子类型与赋值</h2>
+<p>TypeScript里有两种兼容性：子类型和赋值。赋值扩展了子类型兼容性，增加了一些规则，允许和<code>any</code>来回赋值，以及<code>enum</code>和对应数字值之间的来回赋值。实际上类型兼容性是由赋值兼容性来控制的，即使在<code>implements</code>和<code>extends</code>语句也不例外。</p>
+<h1 id="高级类型">高级类型</h1>
+<h2 id="交叉与联合类型">交叉与联合类型</h2>
+<p>交叉类型使用<code>&amp;</code>，联合类型使用<code>|</code>。</p>
+<h2 id="类型区分和保护">类型区分和保护</h2>
+<p>如果想通过属性来判断是否为某种类型时，不能像JavaScript那样编写，会因为类型不确定而无法编译。应该先使用类型断言，再判断属性是否存在。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">pet</span> <span class="o">=</span> <span class="nx">getSmallPet</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">((&lt;</span><span class="nt">Fish</span><span class="p">&gt;</span><span class="nx">pet</span><span class="p">).</span><span class="nx">swim</span><span class="p">){</span>
+    <span class="p">(&lt;</span><span class="nt">Fish</span><span class="p">&gt;</span><span class="nx">pet</span><span class="p">).</span><span class="nx">swim</span><span class="p">();</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="p">(&lt;</span><span class="nt">Bird</span><span class="p">&gt;</span><span class="nx">pet</span><span class="p">).</span><span class="nx">fly</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>自定义<code>类型保护</code>，可以在运行期检查以保证某个作用域里的类型。要定义一个类型保护， 要简单的定义一个函数，它的返回值是一个<code>类型谓词</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">isFish</span><span class="p">(</span><span class="nx">pet</span>: <span class="kt">Fish</span> <span class="o">|</span> <span class="nx">Bird</span><span class="p">)</span><span class="o">:</span> <span class="nx">pet</span> <span class="k">is</span> <span class="nx">Fish</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(&lt;</span><span class="nt">Fish</span><span class="p">&gt;</span><span class="nx">pet</span><span class="p">).</span><span class="nx">swim</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">isFish</span><span class="p">(</span><span class="nx">pet</span><span class="p">)){</span>
+    <span class="nx">pet</span><span class="p">.</span><span class="nx">swim</span><span class="p">();</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="nx">pet</span><span class="p">.</span><span class="nx">fly</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里的<code>pet is Fish</code>就是<code>类型谓词</code>。在<code>if</code>分支里，TypeScript知道pet是<code>Fish</code>类型，在<code>else</code>里一定不是<code>Fish</code>。</p>
+<p><code>typeof</code>和<code>instanceof</code>都类型保护。<code>typeof</code>类型保护只能使用<code>!==</code>或<code>===</code>与<code>string</code>、<code>number</code>、<code>boolean</code>、<code>symbol</code>进行比较，但是TypeScript并不会阻止你与其它字符串比较，但是这种情况下语言不会将与这些字符串的比较识别为类型保护。<code>instanceof</code>的右边要求是一个构造函数。TypeScript将细化为：</p>
+<pre><code>1. 此构造函数的`prototype`属性的类型，如果它不是`any`。
+
+1. 构造签名所返回的类型的联合
+</code></pre>
+<h2 id="可以为null的类型">可以为null的类型</h2>
+<p>类检查器认为<code>null</code>和<code>undefined</code>可以赋值给任何类型。添加<code>--strictNullChecks</code>标记可以解决此错误：当声明一个变量时，它不会自动的包含<code>null</code>或<code>undefined</code>。也可以使用联合类型明确的包含它们。</p>
+<h2 id="可选参数和可选属性">可选参数和可选属性</h2>
+<p>添加了<code>--strictNullChecks</code>后，可选参数和可选属性会自动地加上<code>|undefined</code>。</p>
+<h2 id="类型保护和类型断言">类型保护和类型断言</h2>
+<p>可以像JavaScript里那样用<code>==null</code>排除<code>null</code>值，也可以用<code>||'default'</code>去除<code>null</code>值。当不能去除<code>null</code>或<code>undefined</code>时，可以在变量后添加<code>!</code>用<code>类型断言</code>方式去除。</p>
+<h2 id="类型别名">类型别名</h2>
+<p>用<code>type</code>创建类型的别名。类型别名也可以是泛型的。类型别名可以在属性里引用自己，来定义嵌套结构。也可以与类型交叉一起使用，创建出奇怪的类型。</p>
+<p>接口与类型别名的区别是，接口会创建新的类型名字，类型别名不创建新的类型名字。别名不能被<code>extends</code>和<code>implements</code>。</p>
+<p>如果无法通过接口来描述一个类型，并且需要使用联合类型或元组类型，这时通常会使用别名。</p>
+<h2 id="字符串字面量类型">字符串字面量类型</h2>
+<p>允许你指定字符串必须为固定的值。字符串字面量类型可以与联合类型、类型保护和类型别名很好的配合。例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Easing</span> <span class="o">=</span> <span class="s2">&#34;ease-in&#34;</span><span class="o">|</span><span class="s2">&#34;ease-out&#34;</span><span class="o">|</span><span class="s2">&#34;ease-in-out&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>字符串字面量还可以用于区分函数重载：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">:</span> <span class="s2">&#34;img&#34;</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLImageElement</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">:</span> <span class="s2">&#34;input&#34;</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLInputElement</span><span class="p">;</span>
+<span class="c1">// ... more overloads ...
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Element</span> <span class="p">{</span>
+    <span class="c1">// ... code goes here ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="数字字面量类型">数字字面量类型</h2>
+<p>较少使用。</p>
+<h2 id="枚举成员类型">枚举成员类型</h2>
+<p>枚举一节中提到过。</p>
+<h2 id="可辨识联合">可辨识联合</h2>
+<p>特点：
+1. 具有普通的单例类型属性——可辨识的特征。kind属性
+1. 一个类型别名包含了那些类型的联合——联合。Shape
+1. 此属性上的类型保护。switch</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">Square</span> <span class="p">{</span>
+    <span class="nx">kind</span><span class="o">:</span> <span class="s2">&#34;square&#34;</span><span class="p">;</span>
+    <span class="nx">size</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">interface</span> <span class="nx">Rectangle</span> <span class="p">{</span>
+    <span class="nx">kind</span><span class="o">:</span> <span class="s2">&#34;rectangle&#34;</span><span class="p">;</span>
+    <span class="nx">width</span>: <span class="kt">number</span><span class="p">;</span>
+    <span class="nx">height</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">interface</span> <span class="nx">Circle</span> <span class="p">{</span>
+    <span class="nx">kind</span><span class="o">:</span> <span class="s2">&#34;circle&#34;</span><span class="p">;</span>
+    <span class="nx">radius</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">type</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="nx">Square</span> <span class="o">|</span> <span class="nx">Rectangle</span> <span class="o">|</span> <span class="nx">Circle</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">area</span><span class="p">(</span><span class="nx">s</span>: <span class="kt">Shape</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">kind</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="s2">&#34;square&#34;</span><span class="o">:</span> <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">size</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s2">&#34;rectangle&#34;</span><span class="o">:</span> <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">height</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s2">&#34;circle&#34;</span><span class="o">:</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">radius</span> <span class="o">**</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="完整性检查">完整性检查</h3>
+<p>当上例中的<code>Shape</code>中增加了新的类型后，如果想让TypeScript检查出<code>switch</code>中未完全覆盖，则需要做两个调整：</p>
+<ol>
+<li>
+<p>启用<code>--strictNullChecks</code>，如果不启用，遇到不匹配的类型时，将返回<code>undefined</code>。</p>
+</li>
+<li>
+<p><code>area</code>增加明确的返回值类型，返回<code>undefined</code>就会变成非法。</p>
+</li>
+<li>
+<p>使用<code>never</code>类型，在类型不匹配抛出异常。</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript">
+<span class="kd">function</span> <span class="nx">assertNever</span><span class="p">(</span><span class="nx">x</span>: <span class="kt">never</span><span class="p">)</span><span class="o">:</span> <span class="kt">never</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;Unexpected object: &#34;</span> <span class="o">+</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">area</span><span class="p">(</span><span class="nx">s</span>: <span class="kt">Shape</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">kind</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="s2">&#34;square&#34;</span><span class="o">:</span> <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">size</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s2">&#34;rectangle&#34;</span><span class="o">:</span> <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">height</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s2">&#34;circle&#34;</span><span class="o">:</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">radius</span> <span class="o">**</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">default</span><span class="o">:</span> <span class="k">return</span> <span class="nx">assertNever</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="c1">// error here if there are missing cases
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="多态的this类型">多态的this类型</h2>
+<p>多态的<code>this</code>类型表示的是某个包含类或接口的<code>子类型</code>，这被称为<code>F-bounded</code>多态。它容易实现连贯接口间的继承，如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">class</span> <span class="nx">BasicCalculator</span> <span class="p">{</span>
+    <span class="kr">public</span> <span class="kr">constructor</span><span class="p">(</span><span class="kr">protected</span> <span class="nx">value</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="kr">public</span> <span class="nx">currentValue</span><span class="p">()</span><span class="o">:</span> <span class="kt">number</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kr">public</span> <span class="nx">add</span><span class="p">(</span><span class="nx">operand</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="k">this</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">+=</span> <span class="nx">operand</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kr">public</span> <span class="nx">multiply</span><span class="p">(</span><span class="nx">operand</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="k">this</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">*=</span> <span class="nx">operand</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// ... other operations go here ...
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">v</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BasicCalculator</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">currentValue</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>返回类型是<code>this</code>，使用也继承也同样会有效。</p>
+<h2 id="索引类型">索引类型</h2>
+<p>使用索引类型，编译器能检查使用动态性名的代码。常见于人对象中选取属性的子集。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">pluck</span><span class="p">&lt;</span><span class="nt">T</span><span class="err">,</span> <span class="na">K</span> <span class="na">extends</span> <span class="na">keyof</span> <span class="na">T</span><span class="p">&gt;(</span><span class="nx">o</span>: <span class="kt">T</span><span class="p">,</span> <span class="nx">names</span>: <span class="kt">K</span><span class="p">[])</span><span class="o">:</span> <span class="nx">T</span><span class="p">[</span><span class="nx">K</span><span class="p">][]</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">names</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">o</span><span class="p">[</span><span class="nx">n</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+    <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+    <span class="nx">age</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">person</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jarid&#39;</span><span class="p">,</span>
+    <span class="nx">age</span>: <span class="kt">35</span>
+<span class="p">};</span>
+<span class="kd">let</span> <span class="nx">strings</span>: <span class="kt">string</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">pluck</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]);</span> <span class="c1">// ok, string[]
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>keyof T</code>是<code>索引类型查询操作符</code>。对任何类型<code>T</code>，<code>keyof T</code>的结果是<code>T</code>上已知公共属性名的联合。</p>
+<p><code>T[K]</code>是<code>索引说操作符</code>。</p>
+<h3 id="索引类型和字符串索引签名">索引类型和字符串索引签名</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">Map</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nx">key</span>: <span class="kt">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">T</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">keys</span>: <span class="kt">keyof</span> <span class="nx">Map</span><span class="p">&lt;</span><span class="nt">number</span><span class="p">&gt;;</span> <span class="c1">// string
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">value</span>: <span class="kt">Map</span><span class="p">&lt;</span><span class="nt">number</span><span class="p">&gt;[</span><span class="s1">&#39;foo&#39;</span><span class="p">];</span> <span class="c1">// number
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="映射类型">映射类型</h2>
+<p><code>类型映射</code>是TypeScript里提供的从旧类型创建新类型的方式。在映射类型里，新类型以相同的形式去转换旧类型里的每个属性。</p>
+<p>将所一个类型的所有属性变成只读：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Readonly</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kr">readonly</span> <span class="p">[</span><span class="nx">P</span> <span class="k">in</span> <span class="k">keyof</span> <span class="nx">T</span><span class="p">]</span><span class="o">:</span> <span class="nx">T</span><span class="p">[</span><span class="nx">P</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>将属性变为可选属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Partial</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nx">P</span> <span class="k">in</span> <span class="k">keyof</span> <span class="nx">T</span><span class="p">]</span><span class="o">?:</span> <span class="nx">T</span><span class="p">[</span><span class="nx">P</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Nullable:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Nullable</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span> <span class="p">[</span><span class="nx">P</span> <span class="k">in</span> <span class="k">keyof</span> <span class="nx">T</span><span class="p">]</span><span class="o">:</span> <span class="nx">T</span><span class="p">[</span><span class="nx">P</span><span class="p">]</span> <span class="o">|</span> <span class="kc">null</span> <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这些例子中属性列表是<code>keyof T</code>且结果类型是<code>T[P]</code>的变体。</p>
+<p>映射类型的理解：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Keys</span> <span class="o">=</span> <span class="s1">&#39;option1&#39;</span><span class="o">|</span><span class="s1">&#39;options2&#39;</span><span class="p">;</span>
+<span class="kr">type</span> <span class="nx">Flags</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">K</span> <span class="k">in</span> <span class="nx">Keys</span><span class="p">]</span> <span class="o">:</span> <span class="kr">boolean</span><span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>等效于</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Flags</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">option1</span>: <span class="kt">boolean</span><span class="p">;</span>
+    <span class="nx">option2</span>: <span class="kt">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我的理解：看起来像是整个大括号中的内容是一个联合类型。</p>
+<p>属性代理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Proxy</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kr">get</span><span class="p">()</span><span class="o">:</span> <span class="nx">T</span><span class="p">;</span>
+    <span class="kr">set</span><span class="p">(</span><span class="nx">value</span>: <span class="kt">T</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">type</span> <span class="nx">Proxify</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nx">P</span> <span class="k">in</span> <span class="k">keyof</span> <span class="nx">T</span><span class="p">]</span><span class="o">:</span> <span class="nx">Proxy</span><span class="p">&lt;</span><span class="nt">T</span><span class="err">[</span><span class="na">P</span><span class="err">]</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">proxify</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;(</span><span class="nx">o</span>:<span class="kt">T</span><span class="p">)</span><span class="o">:</span><span class="nx">Proxify</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;{</span>
+    <span class="c1">//代理包装
+</span><span class="c1"></span><span class="p">}</span>
+<span class="kd">let</span> <span class="nx">proxyProps</span> <span class="o">=</span> <span class="nx">proxify</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>将<code>T</code>的所有属性变成包含了<code>get</code>、<code>set</code>方法的代理类型。</p>
+<p>标准库里的还有：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Pick</span><span class="p">&lt;</span><span class="nt">T</span><span class="err">,</span> <span class="na">K</span> <span class="na">extends</span> <span class="na">keyof</span> <span class="na">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nx">P</span> <span class="k">in</span> <span class="nx">K</span><span class="p">]</span><span class="o">:</span> <span class="nx">T</span><span class="p">[</span><span class="nx">P</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="kr">type</span> <span class="nx">Record</span><span class="p">&lt;</span><span class="nt">K</span> <span class="na">extends</span> <span class="na">string</span><span class="err">,</span> <span class="na">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nx">P</span> <span class="k">in</span> <span class="nx">K</span><span class="p">]</span><span class="o">:</span> <span class="nx">T</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Readonly</code>、<code>Partial</code>、<code>Pick</code>是同态的，但是<code>Record</code>不是。<code>Record</code>并不需要输入类型来拷贝属性，所以它不属于同态：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">ThreeStringProps</span> <span class="o">=</span> <span class="nx">Record</span><span class="o">&lt;</span><span class="s1">&#39;prop1&#39;</span> <span class="o">|</span> <span class="s1">&#39;prop2&#39;</span> <span class="o">|</span> <span class="s1">&#39;prop3&#39;</span><span class="p">,</span> <span class="kt">string</span><span class="o">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>非同态类型本质上会创建新的属性，因此它们不会从它处拷贝属性修饰符。（<code>readonly</code>等？）</p>
+<h3 id="由映射类型进行推断">由映射类型进行推断</h3>
+<p>包装类型的拆包：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">unproxify</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;(</span><span class="nx">t</span>: <span class="kt">Proxify</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;)</span><span class="o">:</span> <span class="nx">T</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{}</span> <span class="kr">as</span> <span class="nx">T</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">result</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="nx">t</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="kr">get</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">originalProps</span> <span class="o">=</span> <span class="nx">unproxify</span><span class="p">(</span><span class="nx">proxyProps</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>拆包推断只适用于同态映射类型。</p>
+<h3 id="预定义的有条件类型">预定义的有条件类型</h3>
+<p>TypeScript 2.8的lib.d.ts里预定义的条件类型：</p>
+<ul>
+<li><code>Exclude&lt;T, U&gt;</code> 从T中剔除可赋值给U的类型。</li>
+<li><code>Extract&lt;T, U&gt;</code> 提取T中可以赋值给U的类型。</li>
+<li><code>NonNullable&lt;T&gt;</code> 从T中剔除null和undefined。</li>
+<li><code>ReturnType&lt;T&gt;</code> 获取函数返回值类型。</li>
+<li><code>InstanceType&lt;T&gt;</code> 获取构造函数类型的实例类型。</li>
+</ul>
+<h1 id="symbols">Symbols</h1>
+<p>ES2015开始，<code>symbol</code>成为了原生类型。</p>
+<p><code>symbol</code>类型的值是通过<code>Symbol</code>构造函数创建的。</p>
+<ul>
+<li>构造</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">sym1</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">sym2</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s2">&#34;key&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>不可变且唯一</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">sym2</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s2">&#34;key&#34;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">sym2</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s2">&#34;key&#34;</span><span class="p">);</span>
+<span class="nx">sym2</span> <span class="o">===</span> <span class="nx">sym3</span><span class="p">;</span> <span class="c1">//false
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>作为对象属性的键</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">let</span> <span class="nx">sym</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nx">sym</span><span class="p">]</span><span class="o">:</span> <span class="s2">&#34;value&#34;</span>
+<span class="p">};</span>
+<span class="nx">obj</span><span class="p">[</span><span class="nx">sym</span><span class="p">];</span> <span class="c1">//&#34;value&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>与计算出的属性名声明相结合来声明对象的属性和类成员</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">const</span> <span class="nx">getClassNameSymbol</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">();</span>
+
+<span class="kr">class</span> <span class="nx">C</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nx">getClassNameSymbol</span><span class="p">](){</span>
+        <span class="k">return</span> <span class="s2">&#34;C&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="内置symbols">内置<code>symbols</code></h2>
+<p>内置的<code>symbols</code>用来表示语言内啊的行为。在<code>Symbol</code>对象内定义。</p>
+<h1 id="迭代器和生成器">迭代器和生成器</h1>
+<h2 id="可迭代性">可迭代性</h2>
+<p>当一个对象实现了<code>Symbol.iterator</code>属性时，它就是可迭代的。</p>
+<ul>
+<li>
+<p><code>for..of</code>语句，遍历可迭代对象，调用对象上的<code>Symbol.iterator</code>方法。</p>
+</li>
+<li>
+<p><code>for..of</code>和<code>for..in</code>的区别是<code>for..in</code>迭代的是键列表，而<code>for..of</code>迭代对象的键对应的值。<code>for..in</code>可操作任何对象。<code>for..of</code>关注于可迭代对象的值。</p>
+</li>
+<li>
+<p>生成目标为ES5或ES3时，迭代器只允许在<code>Array</code>类型上使用。在非数组值上使用<code>for..of</code>语句会出错，即使这些非数组值实现了<code>Symbol.iterator</code>属性。</p>
+</li>
+<li>
+<p>目标为兼容ES2015的引擎时，编译器会生成相应引擎的<code>for..of</code>内置迭代器实现方式。</p>
+</li>
+</ul>
+<h1 id="模块">模块</h1>
+<p>ES2015开始，JavaScript引入了模块概念，TypeScript沿用了这个概念。</p>
+<p>模块在其自身作用域里执行，而不是在全局作用域里；即一个模块里的变量、函数、类等在模块外部是不可见的，除非你明确的使用<code>export</code>形式之一导出它们。如果要使用其他模块导出的变量、函数、类、接口等，你必须要导入它们，可以使用<code>import</code>形式之一。</p>
+<p>模块是自声明的：两个模块之间的关系是通过在文件级别上使用<code>imports</code>和<code>exports</code>建立的。</p>
+<p>模块使用模块加载器去导入其它模块。在支持时，模块加载器的作用是在执行此模块代码前查找和执行这个模块的所有依赖。</p>
+<p>TypeScript与ES2015一样，任何包含顶级<code>import</code>和<code>export</code>的文件都被当成一个模块。相反地，如果一个文件不带有顶级的<code>import</code>或者<code>export</code>声明，那么它的内容被视为全局可见的（因此对模块也是可见的）。</p>
+<h2 id="导出">导出</h2>
+<p><code>export</code>关键字导出，<code>export { Aa as a}</code>可对导出重命名。</p>
+<p>重新导出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">export</span> <span class="p">{</span><span class="nx">ZipCodeValidator</span> <span class="kr">as</span> <span class="nx">RegExpBasedZipCodeValidator</span><span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;./ZipCodeValidator&#34;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="o">*</span> <span class="kr">from</span> <span class="s2">&#34;./StringValidator&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="导入">导入</h2>
+<p><code>import</code>关键字导入，通过<code>as</code>对导入进行重命名。</p>
+<p><code>import * as aa from &quot;./aa&quot;</code>将整个模块导入到一个变量。</p>
+<p><code>import &quot;./my-module.js&quot;;</code>有副作用的导入模块，这些模块会设置一些全局状态供其它模块使用，但是这些模块可能没有任何导出或用户不关注它的导出。</p>
+<p>默认导出使用<code>default</code>标记，一个模块只能有一个。</p>
+<h2 id="export-和import--require"><code>export =</code>和<code>import = require()</code></h2>
+<p><code>export default</code>并不能兼容CommonJS和AMD的<code>exports</code>。TypeScript通过<code>export =</code>语法来支持CommonJS和AMD的exports。</p>
+<p><code>import zip = require('./ZipCodeValidator');</code></p>
+<h2 id="生成模块代码">生成模块代码</h2>
+<p>根据编译时指定的模块目标参数，编译器会生成相应的供Node.js(CommonJS、Require.js(AMD)、UMD、SystemJS或ES2015 native modules(ES6)模块加载系统使用的代码。<code>define</code>、<code>require</code>、<code>register</code>的意义需要参考相应模块加载器的文档。</p>
+<h2 id="可选的模块加载和其它高级加载场景">可选的模块加载和其它高级加载场景</h2>
+<p>在不同模块加载系统下实现条件化加载。</p>
+<h2 id="使用其它javascript库">使用其它JavaScript库</h2>
+<p>要描述TypeScript编写的库的类型时需要声明类库所暴露的API。</p>
+<p>通常是在<code>.d.ts</code>文件里定义。作用类似<code>C/C++</code>中的<code>.h</code>文件。</p>
+<h2 id="创建模块结构指导">创建模块结构指导</h2>
+<ul>
+<li>
+<p>尽可能在顶层导出</p>
+</li>
+<li>
+<p>如果仅导出单个<code>class</code>或<code>function</code>，使用<code>export default</code></p>
+</li>
+<li>
+<p>如果要导出多个对象，把它们放在顶层里导出</p>
+</li>
+<li>
+<p>明确地列出导入的名字</p>
+</li>
+<li>
+<p>当你要导出大量内容的时候使用命名空间导入模式<code>import * as ... from </code></p>
+</li>
+<li>
+<p>使用重新导出进行扩展</p>
+</li>
+<li>
+<p>模块里不要使用命名空间</p>
+</li>
+</ul>
+<p>模块结构上的危险信号：</p>
+<ul>
+<li>
+<p>文件顶层声明是<code>export namespace Foo { ... }</code>，可删除<code>Foo</code>并把所有内容向上移一层。</p>
+</li>
+<li>
+<p>文件只有一个<code>export class</code>或者<code>export function</code>，可考虑使用<code>export default</code>。</p>
+</li>
+<li>
+<p>多个文件的顶层具有同样的<code>export namespace Foo {</code>，这些不会合并到同一个<code>Foo</code>中。</p>
+</li>
+</ul>
+<h1 id="命名空间">命名空间</h1>
+<p>使用<code>namespace</code>代替原来的<code>module</code>。</p>
+<p>使用<code>namespace</code>将相关的类型放在同一命名空间里。通过<code>export</code>导出。</p>
+<p>把<code>namespace</code>分割成多个文件时。它们仍然是同一个命名空间，使用的时候就如同它们在同一个文件中定义的一样。因为不同文件间存在依赖关系，所以我们需要加入引用标签（<code>/// &lt;reference path=&quot;Validation.ts&quot; /&gt;</code>）来告诉编译器文件之间的关联。</p>
+<p>涉及多个文件时，我们必须确保所有编译后的代码都被加载。有两种方式实现：</p>
+<ul>
+<li>
+<p><code>tsc --outFile</code>将多个输入文件编译为一个输出文件。</p>
+</li>
+<li>
+<p>将每个文件编译为单独的文件，通过<code>&lt;script&gt;</code>标签按正确的顺序引进来。</p>
+</li>
+</ul>
+<p>使用<code>import q = x.y.z</code>可以给命名空间取别名。这个语法与<code>import x = require('name')</code>语法是不同的。</p>
+<p>使用<code>.d.ts</code>声明上部程序库的命名空间。</p>
+<h1 id="命名空间和模块">命名空间和模块</h1>
+<p>命名空间和模块不同的是，模块可以声明它的依赖。</p>
+<p><code>Node.js</code>默认并推荐使用模块组织代码。ES2015中模块是语言内置的部分。</p>
+<p>推荐使用模块作为组织代码的方式。</p>
+<h2 id="命名空间和模块的陷阱">命名空间和模块的陷阱</h2>
+<ul>
+<li>
+<p>对模块使用<code>/// &lt;reference&gt;</code></p>
+</li>
+<li>
+<p>使用不必要的命名空间，比如导入了<code>namespace</code>，使用的时候需要增加额外<code>.</code>来引用命名空间内的类型。</p>
+</li>
+</ul>
+<h2 id="模块的取舍">模块的取舍</h2>
+<p>TypeScript里模块文件与生成的JS文件是一一对应的。模拟目标模块化系统的不同，可能会导致无法连接多个模块源文件。</p>
+<h1 id="模块解析">模块解析</h1>
+<p>模块解析是指编译器在查找导入模块内容时所遵循的流程。</p>
+<h2 id="相对-vs-非相对模块导入">相对 vs 非相对模块导入</h2>
+<p>相对导入是以<code>/</code>、<code>./</code>或<code>../</code>开头的。</p>
+<p>其它形式的导入被当作非相对导入，如：</p>
+<ul>
+<li>
+<p><code>import * as $ from &quot;jQuery&quot;;</code></p>
+</li>
+<li>
+<p><code>import { Component } from &quot;@angular/core&quot;;</code></p>
+</li>
+</ul>
+<p>相对导入在解析时是相对于导入它的文件，并且不能解析为一个外部模块声明。</p>
+<p>非相对模块的导入可以相对于<code>baseUrl</code>或者通过路径映射来进行解析。它们还可以被解析成外部模块声明。使用非相对路径来导入你的外部依赖。</p>
+<h2 id="模块解析策略">模块解析策略</h2>
+<p>两种：<code>Node</code>和<code>Classic</code>。可使用<code>--moduleResolution</code>标记来指定。未指定时，<code>--module AMD | System | ES2015</code>时的默认值为<code>Classic</code>，其它情况时则为<code>Node</code>。<code>Classic</code>是以前TypeScript的默认解析策略，现在还存在只是为了向后兼容。Node是模仿<code>Node.js</code>的模块解析机制。</p>
+<h2 id="附加的模块解析标记">附加的模块解析标记</h2>
+<p>在<code>tsconfig.json</code>里进行配置，主要有以下几种配置</p>
+<ul>
+<li>
+<p>Base URL</p>
+</li>
+<li>
+<p>路径映射</p>
+</li>
+<li>
+<p>利用<code>rootDirs</code>指定虚拟目录</p>
+</li>
+</ul>
+<h2 id="跟踪模块解析">跟踪模块解析</h2>
+<p>当模块没有被解析时，可通过<code>--traceResolution</code>启用编译器的模块解析跟踪，它会告诉我们在模块解析过程中发生了什么。</p>
+<h2 id="使用--noresolve">使用<code>--noResolve</code></h2>
+<p>这个编译选项告诉编译器不要添加任何不是在命令行传入的文件到编译列表。</p>
+<h1 id="声明合并">声明合并</h1>
+<p>编译器将针对同一个名字的两个独立声明合并为单一声明。合并后的声明同时拥有原先两个声明的特征。任何数量的声明都可以被合并；不限于两个声明。</p>
+<h2 id="基础概念">基础概念</h2>
+<p>TypeScript中的声明会创建以下三种实体之一：命名空间、类型或值。创建命名空间的声明会新建一个命名空间，它包含了用点符号来访问时使用的名字。创建类型的声明是用声明的模型创建一个类型并绑定到给定的名字上。创建值的声明会创建在JavaScript输出中看得到的值。</p>
+<h2 id="合并接口">合并接口</h2>
+<p>合并的机制就是把双方的成员放到一个同名的接口里。</p>
+<p>两个接口中声明了同名的非函数成员且它们的类型不同时，编译器会报错。</p>
+<p>每个同名函数成员都会被当成这个函数的一个重载。需要注意的是后面定义的接口具备更高的优先级。例外的情况是当出现特殊的函数签名时（签名里有一个参数的类型是单一的字符串字面量），它将会被提升到重载列表的最顶端。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">Document</span> <span class="p">{</span>
+    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span>: <span class="kt">any</span><span class="p">)</span><span class="o">:</span> <span class="nx">Element</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">interface</span> <span class="nx">Document</span> <span class="p">{</span>
+    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">:</span> <span class="s2">&#34;div&#34;</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLDivElement</span><span class="p">;</span>
+    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">:</span> <span class="s2">&#34;span&#34;</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLSpanElement</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">interface</span> <span class="nx">Document</span> <span class="p">{</span>
+    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLElement</span><span class="p">;</span>
+    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">:</span> <span class="s2">&#34;canvas&#34;</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLCanvasElement</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//合并后
+</span><span class="c1"></span><span class="kr">interface</span> <span class="nx">Document</span> <span class="p">{</span>
+    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">:</span> <span class="s2">&#34;canvas&#34;</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLCanvasElement</span><span class="p">;</span> <span class="c1">//特殊函数
+</span><span class="c1"></span>    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">:</span> <span class="s2">&#34;div&#34;</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLDivElement</span><span class="p">;</span> <span class="c1">//同一段定义的先定义的优先级高
+</span><span class="c1"></span>    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">:</span> <span class="s2">&#34;span&#34;</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLSpanElement</span><span class="p">;</span>
+    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">HTMLElement</span><span class="p">;</span> <span class="c1">//后定义
+</span><span class="c1"></span>    <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span>: <span class="kt">any</span><span class="p">)</span><span class="o">:</span> <span class="nx">Element</span><span class="p">;</span> <span class="c1">//最先定义
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="合并命名空间">合并命名空间</h2>
+<p>同名命名空间也会合并其成员。命名空间会创建出命名空间和值，两者合并规则不同。</p>
+<p>命名空间合并时，模块导出的同名接口进行合并，构成单一命名空间内含合并后的接口。</p>
+<p>命名空间里值的合并：如果当前已经存在给定名字的命名空间，那么后来的命名空间的导出成员会被加到已经存在的那个模块里。</p>
+<p>非导出成员仅在其原有的（合并前的）命名空间内可见。即，合并之后，从其它命名空间合并进来的成员无法访问非导出成员。</p>
+<h2 id="命名空间与类和函数和枚举类型合并">命名空间与类和函数和枚举类型合并</h2>
+<p>命名空间可以与其它类型的声明进行合并。只要命名空间的定义符合将要合并类型的定义。合并结果包含两者的声明类型。TypeScript使用这个功能去实现一些JavaScript里的设计模式。</p>
+<h3 id="合并命名空间和类">合并命名空间和类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">class</span> <span class="nx">Album</span> <span class="p">{</span>
+    <span class="nx">label</span>: <span class="kt">Album.AlbumLabel</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">namespace</span> <span class="nx">Album</span> <span class="p">{</span>
+    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">AlbumLabel</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面代码合并的结果是一个类并且带有一个内部类。也可以使用命名空间为类增加一些静态属性。</p>
+<p>命名空和函数合并：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">buildLabel</span><span class="p">(</span><span class="nx">name</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">buildLabel</span><span class="p">.</span><span class="nx">prefix</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="nx">buildLabel</span><span class="p">.</span><span class="nx">suffix</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">namespace</span> <span class="nx">buildLabel</span> <span class="p">{</span>
+    <span class="kr">export</span> <span class="kd">let</span> <span class="nx">suffix</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+    <span class="kr">export</span> <span class="kd">let</span> <span class="nx">prefix</span> <span class="o">=</span> <span class="s2">&#34;Hello, &#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">buildLabel</span><span class="p">(</span><span class="s2">&#34;Sam Smith&#34;</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>命名空间和枚举合并：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">enum</span> <span class="nx">Color</span> <span class="p">{</span>
+    <span class="nx">red</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">green</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nx">blue</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="p">}</span>
+
+<span class="kr">namespace</span> <span class="nx">Color</span> <span class="p">{</span>
+    <span class="kr">export</span> <span class="kd">function</span> <span class="nx">mixColor</span><span class="p">(</span><span class="nx">colorName</span>: <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">colorName</span> <span class="o">==</span> <span class="s2">&#34;yellow&#34;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">red</span> <span class="o">+</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">green</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">colorName</span> <span class="o">==</span> <span class="s2">&#34;white&#34;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">red</span> <span class="o">+</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">green</span> <span class="o">+</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">blue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">colorName</span> <span class="o">==</span> <span class="s2">&#34;magenta&#34;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">red</span> <span class="o">+</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">blue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">colorName</span> <span class="o">==</span> <span class="s2">&#34;cyan&#34;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">green</span> <span class="o">+</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">blue</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="非法的合并">非法的合并</h2>
+<p>类不能与其它类或变量合并。</p>
+<h2 id="模块扩展">模块扩展</h2>
+<p>与JS可通过修改类型的<code>prototype</code>来扩展，TypeScript也可以采用这种方式。</p>
+<h2 id="全局扩展">全局扩展</h2>
+<p>可以通过<code>declare global</code>的方式在模块内部添加声明到全局作用域中。</p>
+<h1 id="jsx">JSX</h1>
+<p>TypeScript支持内嵌，类型检查以及将JSX直接编译为JavaScript。</p>
+<p>TypeScript具有三种JSX模式：<code>preserve</code>, <code>react</code>和<code>react-native</code>。这些模式只在代码生成阶段起作用，类型检查并不受影响。可以在命令行使用<code>--jsx</code>来指定模式。</p>
+<h2 id="as操作符">as操作符</h2>
+<p>在<code>.tsx</code>文件里禁用使用尖括号的类型断言，只能使用<code>as</code>操作符。</p>
+<h2 id="类型检查">类型检查</h2>
+<p>JSX的类型检查是区分固有元素与基于值的元素的，区别对侍的原因有两点：</p>
+<ul>
+<li>
+<p>对于React，固有元素会生成字符串（React.createElement(&ldquo;div&rdquo;)），而自定义组件不会生成（React.createElement(MyComponent）。</p>
+</li>
+<li>
+<p>传入JSX元素里的属性类型的查找方式不同。固有元素本身就支持，自定义的组件会自己指定它们具有哪些属性。</p>
+</li>
+</ul>
+<h3 id="固有元素">固有元素</h3>
+<p>固有元素使用特殊的接口<code>JSX.IntrinsicElements</code>来查找。默认地，如果这个接口没有指定，会全部通过，不对固有元素进行类型检查。然而，如果这个接口存在，那么固有元素的名字需要在<code>JSX.IntrinsicElements</code>接口的属性里查找。如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">declare</span> <span class="kr">namespace</span> <span class="nx">JSX</span> <span class="p">{</span>
+    <span class="kr">interface</span> <span class="nx">IntrinsicElements</span> <span class="p">{</span>
+        <span class="nx">foo</span>: <span class="kt">any</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">&lt;</span><span class="nt">foo</span> <span class="p">/&gt;;</span> <span class="c1">// 正确
+</span><span class="c1"></span><span class="p">&lt;</span><span class="nt">bar</span> <span class="p">/&gt;;</span> <span class="c1">// 错误
+</span></code></pre></td></tr></table>
+</div>
+</div><p>也可以在<code>JSX.IntrinsicElements</code>上指定一个用来捕获所有字符串的索引类型。</p>
+<h3 id="基于值的元素">基于值的元素</h3>
+<p>根据作用域里按标识符查找组件定义，基于值的元素有两种：无状态函数组件（SFC）和类组件。</p>
+<p>由于两者在JSX表达式里无法区分，因此TypeScript会先尝试将表达式做为无状态函数组件进行解析，如果失败再尝试以类组件的形式进行解析。如果依旧失败就输出错误。</p>
+<h4 id="无状态函数组件">无状态函数组件</h4>
+<p>它的第一个参数是<code>props</code>对象。TypeScript会强制它的返回值可以赋值给<code>JSX.Element</code>。由于这种组件是函数，还可以利用函数重载。</p>
+<h4 id="类组件">类组件</h4>
+<p>元素的类型和元素实例类型是两个不同的概念。以<code>&lt;Expr /&gt;</code>为例，元素类的类型为<code>Expr</code>类型。如果<code>MyComponent</code>是ES6的类，那么类类型就是类的构造函数和静态部分。如果<code>MyComponent</code>是一个工厂函数，类类型为这个函数。</p>
+<p>一旦建立起了类类型，实例类型由类构造器或调用签名（如果存在的话）的返回值的联合构成。在ES6类的情况下，实例类型为这个类的实例的类型，并且如果是工厂函数，实例类型为这个函数返回值类型。</p>
+<p>元素的实例类型必须赋值给<code>JSX.ElementClass</code>。默认的<code>JSX.ElementClas</code>为<code>{}</code>，但是可以被扩展来限制JSX的类型以符合相应的接口。</p>
+<h3 id="属性类型检查">属性类型检查</h3>
+<p>对固有元素，这是<code>JSX.IntrinsicElements</code>属性的类型。</p>
+<p>基于值的元素，稍复杂些。它取决于先前确定在元素实例类型上的某个属性的类型。至于该使用哪个属性来确定类型取决于<code>JSX.ElementAttributesProperty</code>。它应该使用单一的属性来定义。</p>
+<p>元素属性类型用于在JSX里进行属性的类型检查，支持可选和必须属性。JSX还会使用<code>JSX.IntrinsicAttributes</code>接口来指定额外的属性，这些额外的属性通常不会被组件的<code>props</code>或<code>arguments</code>使用——如React里的<code>key</code>。在React里，它用来允许<code>Ref&lt;T&gt;</code>类型的<code>ref</code>属性。通常来讲，这些接口上的所有属性都是可选的，除非你想要用户在每个JSX标签上都提供一些属性。</p>
+<h3 id="子孙类型检查">子孙类型检查</h3>
+<p>此部分未完成，文档描述不清晰。</p>
+<h1 id="装饰器">装饰器</h1>
+<p>能被附加到类声明、方法、访问符、属性或参数上。使用<code>@expression</code>这种形式，<code>expression</code>求值后必须为一个函数，它会在运行时被调用，被装饰的声明信息作为参数传入。</p>
+<h2 id="装饰器工厂">装饰器工厂</h2>
+<p>它是一个函数，返回一个表达式（函数），供装饰器在运行时调用。即，普通装饰器用<code>@sealed</code>，装饰器工厂使用<code>@value('arg')</code>形式，<code>value</code>是一个返回装饰器函数的工厂函数。</p>
+<h2 id="装饰器组合">装饰器组合</h2>
+<p>多个装饰器可书写在同一行或多行上。多个装饰器用于一个声明上时，求值方式与复合函数的相似：</p>
+<ol>
+<li>
+<p>由上至下（左至右）依次对装饰器表达式求值。（调用工厂方法获得装饰器函数）</p>
+</li>
+<li>
+<p>求值的结果会被当作函数，由下至上（右至左）依次调用。（执行装饰器函数）</p>
+</li>
+</ol>
+<h2 id="装饰器求值">装饰器求值</h2>
+<p>类中不同声明的装饰器按以下规定的顺序应用：</p>
+<ol>
+<li>
+<p>参数装饰器-方法装饰器-访问符装饰器或属性装饰器应用到每个实例成员。</p>
+</li>
+<li>
+<p>参数装饰器-方法装饰器-访问符装饰器或属性装饰器应用到每个静态成员。</p>
+</li>
+<li>
+<p>参数装饰器应用到构造函数。</p>
+</li>
+<li>
+<p>类装饰器应用到类。</p>
+</li>
+</ol>
+<h2 id="类装饰器">类装饰器</h2>
+<p>类装饰器应用于类构造函数，可以来监视、修改或替换类定义。</p>
+<p>它在运行时被当作函数调用，类的构造函数作为其唯一的参数。</p>
+<p>如果类装饰器返回一个值，它会使用提供的构造函数来替换类的声明。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">function</span> <span class="nx">classDecorator</span><span class="p">&lt;</span><span class="nt">T</span> <span class="na">extends</span> <span class="p">{</span><span class="na">new</span><span class="err">(</span><span class="na">...args</span><span class="err">:</span><span class="na">any</span><span class="err">[]):</span><span class="p">{}}&gt;(</span><span class="kr">constructor</span><span class="o">:</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kr">class</span> <span class="kr">extends</span> <span class="kr">constructor</span> <span class="p">{</span>
+        <span class="nx">newProperty</span> <span class="o">=</span> <span class="s2">&#34;new property&#34;</span><span class="p">;</span>
+        <span class="nx">hello</span> <span class="o">=</span> <span class="s2">&#34;override&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">@classDecorator</span>
+<span class="kr">class</span> <span class="nx">Greeter</span> <span class="p">{</span>
+    <span class="nx">property</span> <span class="o">=</span> <span class="s2">&#34;property&#34;</span><span class="p">;</span>
+    <span class="nx">hello</span>: <span class="kt">string</span><span class="p">;</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">m</span>: <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="nx">m</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Greeter</span><span class="p">(</span><span class="s2">&#34;world&#34;</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="方法装饰器">方法装饰器</h2>
+<p>它会被应用到方法的属性描述符上，可以用来监视、修改或者替换方法定义。</p>
+<p>它在运行时被调用，传入3个参数：</p>
+<ol>
+<li>
+<p>对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。</p>
+</li>
+<li>
+<p>成员的名字。</p>
+</li>
+<li>
+<p>成员的属性描述符。</p>
+</li>
+</ol>
+<p>输出目标版本小于ES5时，属性描述符会是<code>undefined</code>。</p>
+<h2 id="访问器装饰器">访问器装饰器</h2>
+<p>声明在一个访问器的声明之前（紧靠着访问器声明）。访问器装饰应用于访问器的属性描述符并且可以用来监视、修改或替换一个访问器的定义。</p>
+<p>TypeScript不允许同时装饰一个成员的<code>get</code>和<code>set</code>访问器。取而代之的是，一个成员的所有装饰器必须应用在文档顺序的第一个访问器上。这是因为，在装饰器应用于一个属性描述符时，它联合了<code>get</code>和<code>set</code>访问器，而不是分开声明的。</p>
+<p>访问器装饰器表达式在运行时当作函数被调用，传入下列3个参数：</p>
+<ol>
+<li>
+<p>对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。</p>
+</li>
+<li>
+<p>成员的名字</p>
+</li>
+<li>
+<p>成员的属性描述符</p>
+</li>
+</ol>
+<p>如果访问器装饰器返回一个值，它会被用作方法的属性描述符。</p>
+<p>如果代码输出目标版本小于ES5返回值会被忽略。</p>
+<h2 id="属性装饰器">属性装饰器</h2>
+<p>声明在属性声明之前。在运行时被调用，传入2个参数：</p>
+<ol>
+<li>
+<p>对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。</p>
+</li>
+<li>
+<p>成员的名字</p>
+</li>
+</ol>
+<h2 id="参数装饰器">参数装饰器</h2>
+<p>声明在参数声明之前。参数装饰器应用于类构造函数或方法声明。</p>
+<p>在运行是当作函数被调用，传入3个参数：</p>
+<ol>
+<li>
+<p>对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。</p>
+</li>
+<li>
+<p>成员的名字。</p>
+</li>
+<li>
+<p>参数在函数参数列表中的索引。</p>
+</li>
+</ol>
+<p>参数装饰器的返回值会被忽略。</p>
+<h2 id="元数据">元数据</h2>
+<p><code>reflect-metadata</code>库来支持实验性的metadata API。</p>
+<h1 id="mixins">Mixins</h1>
+<p>例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="c1">// Disposable Mixin
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Disposable</span> <span class="p">{</span>
+    <span class="nx">isDisposed</span>: <span class="kt">boolean</span><span class="p">;</span>
+    <span class="nx">dispose() {</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">isDisposed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">// Activatable Mixin
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Activatable</span> <span class="p">{</span>
+    <span class="nx">isActive</span>: <span class="kt">boolean</span><span class="p">;</span>
+    <span class="nx">activate() {</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">isActive</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">deactivate() {</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">isActive</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">SmartObject</span> <span class="kr">implements</span> <span class="nx">Disposable</span><span class="p">,</span> <span class="nx">Activatable</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isActive</span> <span class="o">+</span> <span class="s2">&#34; : &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">isDisposed</span><span class="p">),</span> <span class="mi">500</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">interact() {</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">activate</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Disposable
+</span><span class="c1"></span>    <span class="nx">isDisposed</span>: <span class="kt">boolean</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nx">dispose</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+    <span class="c1">// Activatable
+</span><span class="c1"></span>    <span class="nx">isActive</span>: <span class="kt">boolean</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nx">activate</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+    <span class="nx">deactivate</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">applyMixins</span><span class="p">(</span><span class="nx">SmartObject</span><span class="p">,</span> <span class="p">[</span><span class="nx">Disposable</span><span class="p">,</span> <span class="nx">Activatable</span><span class="p">]);</span>
+
+<span class="kd">let</span> <span class="nx">smartObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SmartObject</span><span class="p">();</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">smartObj</span><span class="p">.</span><span class="nx">interact</span><span class="p">(),</span> <span class="mi">1000</span><span class="p">);</span>
+
+<span class="c1">////////////////////////////////////////
+</span><span class="c1">// In your runtime library somewhere
+</span><span class="c1">////////////////////////////////////////
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">applyMixins</span><span class="p">(</span><span class="nx">derivedCtor</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">baseCtors</span>: <span class="kt">any</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="nx">baseCtors</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">baseCtor</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nx">baseCtor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">name</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">derivedCtor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">baseCtor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>applyMixins</code>函数将所有属性，复制到目标上去。</p>
+<h1 id="三斜线指令">三斜线指令</h1>
+<p>包含单个XML标签的单行注释。注释的内容会做为编译器指令使用。</p>
+<p>三斜线指令仅可放在包含它的文件的最顶端。一个三斜线指令的前面只能出现单行或多行注释，这包括其它三斜线指令。如果它们出现在一个语句或声明之后，它们会被当作普通的单行注释。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Jamsa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-02-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/typescript/">typescript</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/symmetricds_use/">
+            <span class="next-text nav-default">SymmetricDS 配置笔记</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/jamsa" class="iconfont icon-github" title="github"></a>
+  <a href="http://jamsa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jamsa</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

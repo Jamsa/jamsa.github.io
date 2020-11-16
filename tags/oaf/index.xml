@@ -9,109 +9,109 @@
     <lastBuildDate>Thu, 09 Dec 2010 00:00:00 +0000</lastBuildDate><atom:link href="http://jamsa.github.io/tags/oaf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OAF开发笔记</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/myoaf/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/myoaf/</link>
       <pubDate>Thu, 09 Dec 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/myoaf/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/myoaf/</guid>
       <description>开发advancedTable in advancedTable 配置两个VO，建立两个VO之间的View Link对象。在页面中以两个VO中的主VO创建outerTable</description>
     </item>
     
     <item>
       <title>OA Framework Page解析</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/page/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/page/</link>
       <pubDate>Tue, 27 Jul 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/page/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/page/</guid>
       <description>Page基础 在浏览器看来，OA Framework页面与其它web页面一样，被渲染为HTML。 在中间层中，页面是由内存中层级分布的Javabe</description>
     </item>
     
     <item>
       <title>OA Framework应用构建之——实现控制器</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_control/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/build_control/</link>
       <pubDate>Wed, 06 Aug 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_control/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/build_control/</guid>
       <description>Slug: build_control 设计一个OA Controller 如OA Framework Page解析中所描述的，OA Controller定义了web beans的行为。具体来说，编写控制器代码的目的是： 在</description>
     </item>
     
     <item>
       <title>OA Framework状态管理</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/state/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/state/</link>
       <pubDate>Fri, 25 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/state/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/state/</guid>
       <description>概述 这个文档用于描述OA Framework状态管理架构，包括缓存应用系统用户数据和从页面间值传递的机制。 结构预览 主要状态管理组： 根应用模块（</description>
     </item>
     
     <item>
       <title>OA Framework应用构建之——创建属性集</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_attrsets/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/build_attrsets/</link>
       <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_attrsets/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/build_attrsets/</guid>
       <description>Slug: build_attrsets 设计属性集 ** 注意：** 这节是为Oracle EBS开发者内部使用的。</description>
     </item>
     
     <item>
       <title>OA Framework应用构建之——实现模型</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_model/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/build_model/</link>
       <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_model/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/build_model/</guid>
       <description>Slug: build_model 设计模型对象 客户／服务代码分离 在OA Framework的MVC框架中，OA Framework划出了客户端和服务端类的清析界限，典型的JS</description>
     </item>
     
     <item>
       <title>OA Framework应用构建之——实现视图</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_view/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/build_view/</link>
       <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_view/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/build_view/</guid>
       <description>Slug: build_view 页面 创建页面的基本步骤是创建pages，region，items。 Page LayoutRegion的关键属性 创建一个pageLayout区域时</description>
     </item>
     
     <item>
       <title>实现服务端功能之——服务</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/bus_svc_overview/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/bus_svc_overview/</link>
       <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/bus_svc_overview/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/bus_svc_overview/</guid>
       <description>Slug: bus_svc_overview 面向服务的架构预览 服务的概念已经出现了很长时间，但面向服务的概念相对是比较新的。面向服务的架构是一种有助于降低应用耦合的一种构建应用的风</description>
     </item>
     
     <item>
       <title>高级OA Framework开发主题——支持浏览后退按钮</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/adv_backbutton/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/adv_backbutton/</link>
       <pubDate>Fri, 04 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/adv_backbutton/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/adv_backbutton/</guid>
       <description>Slug: adv_backbutton 概述 本文档提供了一组目标并描述了编码标准，你必须遵守以确保对浏览器后退按钮的支持。 可用性测试显示用户非常依赖于浏览器后退按钮。不幸的是，</description>
     </item>
     
     <item>
       <title>高级OA Framework开发主题——支持浏览后退按钮的用例</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/adv_back_use_cases/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/adv_back_use_cases/</link>
       <pubDate>Fri, 04 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/adv_back_use_cases/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/adv_back_use_cases/</guid>
       <description>Slug: adv_back_use_cases 概述 本文档描述了与标准后退行为相关的公用应用设计模式，并包含了各个步骤的实现细节。 需要阅读 Supporting the Browser Back Button - Target Goals 一般规则 通常，你的产品在用户使</description>
     </item>
     
     <item>
       <title>实现服务端功能之——Java实体对象</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/bus_java/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/bus_java/</link>
       <pubDate>Sun, 02 Sep 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/bus_java/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/bus_java/</guid>
       <description>Slug: bus_java 关于实体对象 实体对象包含了业务逻辑和对表的DML操作。 对象模型和关键类 oracle.apps.fnd.framework.server.</description>
     </item>
     
     <item>
       <title>OA Framework应用构建之——错误处理</title>
-      <link>http://jamsa.github.io/devel/oracle_erp/oaf/build_error/</link>
+      <link>http://jamsa.github.io/post/oracle_erp/oaf/build_error/</link>
       <pubDate>Tue, 21 Aug 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://jamsa.github.io/devel/oracle_erp/oaf/build_error/</guid>
+      <guid>http://jamsa.github.io/post/oracle_erp/oaf/build_error/</guid>
       <description>Slug: build_error 异常类型 OA Framework处理三种基本类型的异常：通用、校验和严重。这些类型在这节中简单的描述；特殊异常的使用在下面介绍。 通用异常 BC</description>
     </item>
     
